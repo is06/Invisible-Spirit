@@ -1,12 +1,12 @@
-### Invisible Spirit - Code Source version 0.1-110119-1 ###
+### Invisible Spirit - Code Source version 0.1-110123-1 ###
 
-OpenGL est nécessaire pour compiler et exécuter Invisible Spirit.
+OpenGL est nÃ©cessaire pour compiler et exÃ©cuter Invisible Spirit.
 
-Pour compiler le projet, deux méthodes :
+Pour compiler le projet, deux mÃ©thodes :
 
 1. Utiliser CMake
 
-  Définir les variables suivantes dans CMakeCache.txt
+  DÃ©finir les variables suivantes dans CMakeCache.txt
 
     bullet_include_dir:STATIC=/chemin/vers/include/bullet
     bullet_lib_dir:STATIC=/chemin/vers/lib/bullet
@@ -29,7 +29,7 @@ Pour compiler le projet, deux méthodes :
 
 2. Compiler manuellement.
 
-  Les bibliothèques nécessaires sont (l'ordre est important pour Bullet) :
+  Les bibliothÃ¨ques nÃ©cessaires sont (l'ordre est important pour Bullet) :
 
   - libIrrlicht
   - libBulletDynamics
@@ -41,4 +41,4 @@ Pour compiler le projet, deux méthodes :
   - lXxf86vm
   - GL
 
-En cas de problème : http://www.is06.com/contact.php
+En cas de problÃ¨me : http://www.is06.com/contact.php
