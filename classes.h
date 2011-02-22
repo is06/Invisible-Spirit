@@ -62,7 +62,6 @@ class ModelEntity;
 // Modèles 3D animés
 class AnimatedModel;
 class Character;
-class PlayableCharacter;
 class Ayron;
 class NPC;
 class Enemy;
