@@ -23,9 +23,9 @@ link_directories(
 )
 
 file(
-  GLOB
+  GLOB_RECURSE
   source_files
-  *.cpp
+  src/*.cpp
 )
 
 add_executable(
