@@ -1,0 +1,50 @@
+# CMakeList de Invisible Spirit 0.1-110123-1
+# Editez le fichier CMakeCache.txt pour spécifier les chemins vers les
+# bibliothèques Irrlicht et Newton
+# Voir "include_directories" et "link_directories" ci-dessous
+
+# La compilation sur un système Macintosh n'a pas été
+# testée, si vous souhaitez contribuer en proposant une version
+# Mac OS, n'hésitez pas à me contacter : http://www.is06.com/contact.php
+
+cmake_minimum_required(VERSION 2.6)
+
+project(InvisibleSpirit)
+
+include_directories(
+  ${irrlicht_include_dir}
+  ${newton_include_dir}
+)
+link_directories(
+  ${irrlicht_lib_dir}
+  ${newton_lib_dir}
+)
+
+file(
+  GLOB
+  source_files
+  *.cpp
+)
+
+add_executable(
+  InvisibleSpirit
+  ${source_files}
+)
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+  target_link_libraries(
+    InvisibleSpirit
+    Irrlicht
+    Newton
+  )
+ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+  IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    target_link_libraries(
+      InvisibleSpirit
+      GL
+      Xxf86vm
+      Irrlicht
+      Newton
+    )
+  ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
