@@ -1,4 +1,4 @@
-# CMakeList de Invisible Spirit 0.1-110123-1
+# CMakeList de Invisible Spirit 0.1-110122-1
 # Editez le fichier CMakeCache.txt pour spécifier les chemins vers les
 # bibliothèques Irrlicht et Newton
 # Voir "include_directories" et "link_directories" ci-dessous

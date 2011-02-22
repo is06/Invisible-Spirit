@@ -1,10 +1,10 @@
-/**************************************************************************************
-Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon les
-termes de la licence Creative Commons Paternité - Pas d'Utilisation Commerciale -
-Partage des Conditions Initiales à l'Identique 3.0 Unported.
-Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du champ de
-cette licence peuvent être obtenues à http://www.is06.com.
-***************************************************************************************/
+/******************************************************************************
+Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon
+les termes de la licence Creative Commons Paternité - Pas d'Utilisation
+Commerciale - Partage des Conditions Initiales à l'Identique (BY-NC-SA) 3.0
+Unported. Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du
+champ de cette licence peuvent être obtenues à http://www.is06.com.
+*******************************************************************************/
 
 #include "core.h"
 
@@ -16,6 +16,8 @@ using namespace std;
  */
 Scene::Scene() {
   cam = NULL;
+  //control = new PlayerControl();
+
   keyboard = new Keyboard();
   gamepad = new Gamepad();
 }
@@ -30,10 +32,15 @@ void Scene::events() {
   }
 }
 
+void Scene::postRender() {
+
+}
+
 /**
  *
  */
 Scene::~Scene() {
-  delete gamepad;
+  //delete control;
   delete keyboard;
+  delete gamepad;
 }

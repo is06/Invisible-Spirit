@@ -1,10 +1,10 @@
-/**************************************************************************************
-Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon les
-termes de la licence Creative Commons Paternité - Pas d'Utilisation Commerciale -
-Partage des Conditions Initiales à l'Identique 3.0 Unported.
-Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du champ de
-cette licence peuvent être obtenues à http://www.is06.com.
-***************************************************************************************/
+/******************************************************************************
+Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon
+les termes de la licence Creative Commons Paternité - Pas d'Utilisation
+Commerciale - Partage des Conditions Initiales à l'Identique (BY-NC-SA) 3.0
+Unported. Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du
+champ de cette licence peuvent être obtenues à http://www.is06.com.
+*******************************************************************************/
 
 #include "core.h"
 
@@ -23,10 +23,7 @@ ModelEntity::ModelEntity() : Entity() {
  * Fonction de mise à jour et de rendu des entités Modèles 3D
  */
 void ModelEntity::render() { Entity::render();
-  updateBody();
-  f32 newtMatrix[16] = {};
-  NewtonBodyGetMatrix(mainBody, newtMatrix);
-  //_matrix_print(newtMatrix);
+
 }
 
 /**
@@ -35,29 +32,6 @@ void ModelEntity::render() { Entity::render();
  */
 void ModelEntity::loadMesh(const core::stringc& meshFilePath) {
   mainMesh = Game::getSceneManager()->getMesh(meshFilePath);
-}
-
-/**
- * TODO
- */
-void ModelEntity::setCollisionType(CollisionType ct, bool optimizeMesh) {
-  if(mainNode) {
-    switch(ct) {
-      case COLLISION_BOX:
-        setBoxCollision(Game::getNewtonWorld());
-      break;
-      case COLLISION_CYLINDER:
-        setCylinderCollision(Game::getNewtonWorld());
-      break;
-      case COLLISION_MESH:
-        setMeshCollision(Game::getNewtonWorld(), optimizeMesh);
-      break;
-      default:
-      break;
-    }
-  } else {
-    // TODO : indiquer en log ou console que le node n'a pas été créé
-  }
 }
 
 /**
@@ -72,62 +46,11 @@ NewtonBody* ModelEntity::getMainBody() {
   return mainBody;
 }
 
-void ModelEntity::setBoxCollision(NewtonWorld* world) {
+void ModelEntity::loadMeshCollision() {
+  bool optimize = false;
+
   if(mainNode) {
-    core::vector3df scale = mainNode->getScale();
-    f32 sx = mainNode->getBoundingBox().getExtent().X * scale.X;
-    f32 sy = mainNode->getBoundingBox().getExtent().Y * scale.Y;
-    f32 sz = mainNode->getBoundingBox().getExtent().Z * scale.Z;
-    NewtonCollision* collision = NewtonCreateBox(world, sx, sy, sz, 0, NULL);
-
-    f32 newtMatrix[16] = {};
-
-    mainBody = NewtonCreateBody(world, collision, newtMatrix);
-    NewtonBodySetUserData(mainBody, mainNode);
-
-    mainNode->updateAbsolutePosition();
-
-    core::matrix4 irrMatrix = mainNode->getRelativeTransformation();
-    NewtonBodySetMatrix(mainBody, irrMatrix.pointer());
-
-    NewtonBodySetTransformCallback(mainBody, setTransformCallback);
-    NewtonBodySetForceAndTorqueCallback(mainBody, applyForceAndTorqueCallback);
-
-    NewtonBodySetMassMatrix(mainBody, 0.0f, 0.0f, 0.0f, 0.0f);
-
-    NewtonReleaseCollision(world, collision);
-  }
-}
-
-void ModelEntity::setCylinderCollision(NewtonWorld* world) {
-  if(mainNode) {
-    core::vector3df scale = mainNode->getScale();
-    f32 sx = mainNode->getBoundingBox().getExtent().X * scale.X;
-    f32 sy = mainNode->getBoundingBox().getExtent().Y * scale.Y;
-    NewtonCollision* collision = NewtonCreateCylinder(world, (sx / 2), sy, 0, NULL);
-
-    f32 newtMatrix[16] = {};
-
-    mainBody = NewtonCreateBody(world, collision, newtMatrix);
-    NewtonBodySetUserData(mainBody, mainNode);
-
-    mainNode->updateAbsolutePosition();
-
-    core::matrix4 irrMatrix = mainNode->getRelativeTransformation();
-    NewtonBodySetMatrix(mainBody, irrMatrix.pointer());
-
-    NewtonBodySetTransformCallback(mainBody, setTransformCallback);
-    NewtonBodySetForceAndTorqueCallback(mainBody, applyForceAndTorqueCallback);
-
-    NewtonBodySetMassMatrix(mainBody, 0.0f, 0.0f, 0.0f, 0.0f);
-
-    NewtonReleaseCollision(world, collision);
-  }
-}
-
-void ModelEntity::setMeshCollision(NewtonWorld* world, bool optimize) {
-  if(mainNode) {
-    NewtonCollision* treeCollision = NewtonCreateTreeCollision(world, 0);
+    NewtonCollision* treeCollision = NewtonCreateTreeCollision(Game::getNewtonWorld(), 0);
 
     core::vector3df scale = mainNode->getScale();
 
@@ -147,7 +70,7 @@ void ModelEntity::setMeshCollision(NewtonWorld* world, bool optimize) {
 
     // Création du Body Newton
     f32 newtMatrix[16] = {};
-    mainBody = NewtonCreateBody(world, treeCollision, newtMatrix);
+    mainBody = NewtonCreateBody(Game::getNewtonWorld(), treeCollision, newtMatrix);
 
     mainNode->updateAbsolutePosition();
 
@@ -155,10 +78,13 @@ void ModelEntity::setMeshCollision(NewtonWorld* world, bool optimize) {
 
     NewtonBodySetMatrix(mainBody, irrMatrix.pointer());
 
-    NewtonReleaseCollision(world, treeCollision);
+    NewtonReleaseCollision(Game::getNewtonWorld(), treeCollision);
   }
 }
 
+/**
+ * Ajoute un polygone à une collision Newton de type Mesh
+ */
 void ModelEntity::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene::IMeshBuffer* meshBuffer, NewtonCollision* treeCollision, core::vector3df scale) {
   // Tableau qui peut contenir 3 vertices servant à ajouter une face à la collision
   f32 vArray[9];
@@ -196,64 +122,20 @@ void ModelEntity::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene:
       s32 v3i = indices[j + 2];
 
       // On récupère les vertices spécifiés par les indices et on applique à leur Position l'échelle du node
-      vArray = {
-        (vertices[v1i].Pos * scale.X).X,
-        (vertices[v1i].Pos * scale.X).Y,
-        (vertices[v1i].Pos * scale.X).Z,
-        (vertices[v2i].Pos * scale.Y).X,
-        (vertices[v2i].Pos * scale.Y).Y,
-        (vertices[v2i].Pos * scale.Y).Z,
-        (vertices[v3i].Pos * scale.Z).X,
-        (vertices[v3i].Pos * scale.Z).Y,
-        (vertices[v3i].Pos * scale.Z).Z
-      };
+      vArray[0] = (vertices[v1i].Pos * scale.X).X;
+      vArray[1] = (vertices[v1i].Pos * scale.X).Y;
+      vArray[2] = (vertices[v1i].Pos * scale.X).Z;
+      vArray[3] = (vertices[v2i].Pos * scale.Y).X;
+      vArray[4] = (vertices[v2i].Pos * scale.Y).Y;
+      vArray[5] = (vertices[v2i].Pos * scale.Y).Z;
+      vArray[6] = (vertices[v3i].Pos * scale.Z).X;
+      vArray[7] = (vertices[v3i].Pos * scale.Z).Y;
+      vArray[8] = (vertices[v3i].Pos * scale.Z).Z;
 
       // On ajoute la face à la collision - params(collision, nombreDeVertices, pointeurVersTableauDeVertices, tailleDuVertexEnOctets, ID de la face)
       NewtonTreeCollisionAddFace(treeCollision, 3, vArray, sizeof(f32) * 3, 1);
     }
   }
-}
-
-/**
- * Fonction appelée par Newton pour mettre à jour la transformation du node Irrlicht
- * @param NewtonBody* body le body Newton depuis lequel récupérer le node
- * @param float* matrix la matrice de transformation fournie par Newton pour le node
- * @param int threadIndex index du thread pour de l'exécution en parallélisme
- */
-void setTransformCallback(const NewtonBody* body, const float* matrix, int threadIndex) {
-  // On récupère le node depuis la mémoire UserData du Body Newton
-  scene::ISceneNode* node = (scene::ISceneNode*)NewtonBodyGetUserData(body);
-  if(node) {
-    core::matrix4 irrMatrix;
-    memcpy(irrMatrix.pointer(), matrix, sizeof(f32)*16);
-
-    node->setPosition(irrMatrix.getTranslation());
-    node->setRotation(irrMatrix.getRotationDegrees());
-    node->updateAbsolutePosition();
-  }
-}
-
-/**
- * Calcule et applique une force de gravité au body Newton
- * @param NewtonBody* body le body Newton auquel on applique la force
- */
-void applyForceAndTorqueCallback(const NewtonBody* body, float timestep, int threadIndex) {
-  f32 Ixx, Iyy, Izz;
-  f32 mass;
-
-  // On récupère l'information de masse du body en passant la variable mass par référence
-  // Ixx, Iyy, Izz désignent les valeurs de l'inertie du Body
-  // La matrice de masse a été définie par NewtonBodySetMassMatrix() dans ModelEntity::setCollisionBox()
-  NewtonBodyGetMassMatrix(body, &mass, &Ixx, &Iyy, &Izz);
-
-  // On applique la force sur le Body { x, y, z, w }
-  f32 gravityForce[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-  NewtonBodySetForce(body, gravityForce);
-}
-
-void ModelEntity::updateBody() {
-  core::matrix4 irrMatrix = mainNode->getRelativeTransformation();
-  NewtonBodySetMatrix(mainBody, irrMatrix.pointer());
 }
 
 /**

@@ -1,10 +1,10 @@
-/**************************************************************************************
-Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon les
-termes de la licence Creative Commons Paternité - Pas d'Utilisation Commerciale -
-Partage des Conditions Initiales à l'Identique 3.0 Unported.
-Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du champ de
-cette licence peuvent être obtenues à http://www.is06.com.
-***************************************************************************************/
+/******************************************************************************
+Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon
+les termes de la licence Creative Commons Paternité - Pas d'Utilisation
+Commerciale - Partage des Conditions Initiales à l'Identique (BY-NC-SA) 3.0
+Unported. Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du
+champ de cette licence peuvent être obtenues à http://www.is06.com.
+*******************************************************************************/
 
 #include "core.h"
 
@@ -16,9 +16,9 @@ using namespace irr;
  * son masque de collision
  */
 SceneGameplay_MAP_CANYON::SceneGameplay_MAP_CANYON() : SceneGameplay() {
-  level->loadMesh("resource/mesh/level/test.obj");
+  level->loadMesh("resource/mesh/level/test2.obj");
   level->createNode(core::vector3df(0, 0, 0));
-  level->setCollisionType(COLLISION_MESH, false);
+  level->loadMeshCollision();
 }
 
 /**

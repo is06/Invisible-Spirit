@@ -1,24 +1,20 @@
-/**************************************************************************************
-Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon les
-termes de la licence Creative Commons Paternité - Pas d'Utilisation Commerciale -
-Partage des Conditions Initiales à l'Identique 3.0 Unported.
-Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du champ de
-cette licence peuvent être obtenues à http://www.is06.com.
-***************************************************************************************/
+/******************************************************************************
+Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon
+les termes de la licence Creative Commons Paternité - Pas d'Utilisation
+Commerciale - Partage des Conditions Initiales à l'Identique (BY-NC-SA) 3.0
+Unported. Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du
+champ de cette licence peuvent être obtenues à http://www.is06.com.
+*******************************************************************************/
 
 #ifndef __IS06_ENUMS_H__
 #define __IS06_ENUMS_H__
 
 /**
- * Types de collision pour associer à un body Bullet
+ * Types de collision pour associer à un body Newton
  */
 enum CollisionType {
-  COLLISION_BOX,
-  COLLISION_SPHERE,
-  COLLISION_CYLINDER,
-  COLLISION_MESH,
-
-  COLLISION_TYPE_COUNT
+  COLLISION_CHARACTER,
+  COLLISION_MESH
 };
 
 /**
@@ -57,6 +53,27 @@ enum GamepadDirection {
   GP_DIR_BOTTOM_LEFT = 22500,
   GP_DIR_LEFT = 27000,
   GP_DIR_TOP_LEFT = 31500
+};
+
+/**
+ * Liste des commandes associables à un bouton d'interface joueur
+ */
+enum CommandIdentifier {
+  CMD_FIRE,
+  CMD_FIRE2,
+  CMD_FIRE3,
+  CMD_ICE,
+  CMD_ICE2,
+  CMD_ICE3
+};
+
+enum GameplayControlButtons {
+  CB_BUTTON_COMMAND,
+  CB_BUTTON_DEFENSE,
+  CB_BUTTON_JUMP,
+  CB_BUTTON_MENU,
+  CB_BUTTON_PAUSE,
+  CB_BUTTON_QUIT
 };
 
 #endif

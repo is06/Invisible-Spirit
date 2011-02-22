@@ -1,10 +1,10 @@
-/**************************************************************************************
-Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon les
-termes de la licence Creative Commons Paternité - Pas d'Utilisation Commerciale -
-Partage des Conditions Initiales à l'Identique 3.0 Unported.
-Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du champ de
-cette licence peuvent être obtenues à http://www.is06.com.
-***************************************************************************************/
+/******************************************************************************
+Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon
+les termes de la licence Creative Commons Paternité - Pas d'Utilisation
+Commerciale - Partage des Conditions Initiales à l'Identique (BY-NC-SA) 3.0
+Unported. Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du
+champ de cette licence peuvent être obtenues à http://www.is06.com.
+*******************************************************************************/
 
 #include "core.h"
 
@@ -64,14 +64,18 @@ bool AnimatedModel::collidesWithStatic(StaticModel* other) {
     Game::penetration,
     0
   );
+
+  return (res > 0);
 }
 
-f32 AnimatedModel::getRayCastCollision(StaticModel* other) {
+/**
+ *
+ */
+f32 AnimatedModel::getFloorCollision(StaticModel* other) {
 
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
 
-  /*** RayCast ***/
-  f32 normals[128];
+  f32 normals[3];
   s32 faceId;
 
   core::vector3df origin(
@@ -83,6 +87,58 @@ f32 AnimatedModel::getRayCastCollision(StaticModel* other) {
     mainNode->getPosition().X,
     mainNode->getPosition().Y - 1.0f,
     mainNode->getPosition().Z
+  );
+
+  f32 ray = NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, normals, &faceId);
+
+  return ray;
+}
+
+/**
+ *
+ */
+f32 AnimatedModel::getWallCollisionP(StaticModel* other) {
+
+  NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
+
+  f32 normals[3];
+  s32 faceId;
+
+  core::vector3df origin(
+    0.5f * cos(mainNode->getRotation().Y),
+    mainNode->getPosition().Y,
+    0.5f * sin(mainNode->getRotation().Y)
+  );
+  core::vector3df end(
+    mainNode->getPosition().X - 0.5f,
+    mainNode->getPosition().Y,
+    mainNode->getPosition().Z + 1.0f
+  );
+
+  f32 ray = NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, normals, &faceId);
+
+  return ray;
+}
+
+/**
+ *
+ */
+f32 AnimatedModel::getWallCollisionQ(StaticModel* other) {
+
+  NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
+
+  f32 normals[3];
+  s32 faceId;
+
+  core::vector3df origin(
+    mainNode->getPosition().X + 0.5f,
+    mainNode->getPosition().Y,
+    mainNode->getPosition().Z
+  );
+  core::vector3df end(
+    mainNode->getPosition().X + 0.5f,
+    mainNode->getPosition().Y,
+    mainNode->getPosition().Z + 1.0f
   );
 
   f32 ray = NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, normals, &faceId);

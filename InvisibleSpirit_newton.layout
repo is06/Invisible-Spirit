@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="AnimatedModel.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="2326" topLine="66" />
+	</File>
+	<File name="Ayron.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="1373" topLine="113" />
+	</File>
+	<File name="Ayron.h" open="0" top="0" tabpos="2">
+		<Cursor position="1008" topLine="2" />
+	</File>
+	<File name="Camera.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="931" topLine="0" />
+	</File>
+	<File name="Camera.h" open="0" top="0" tabpos="0">
+		<Cursor position="1182" topLine="0" />
+	</File>
+	<File name="Character.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="Character.h" open="0" top="0" tabpos="4">
+		<Cursor position="826" topLine="0" />
+	</File>
+	<File name="DiffuseShaderCallback.h" open="0" top="0" tabpos="3">
+		<Cursor position="56" topLine="0" />
+	</File>
+	<File name="Entity.h" open="0" top="0" tabpos="7">
+		<Cursor position="724" topLine="0" />
+	</File>
+	<File name="EventManager.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="4928" topLine="111" />
+	</File>
+	<File name="EventManager.h" open="0" top="0" tabpos="7">
+		<Cursor position="1487" topLine="21" />
+	</File>
+	<File name="Game.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="5949" topLine="173" />
+	</File>
+	<File name="Game.h" open="0" top="0" tabpos="7">
+		<Cursor position="1092" topLine="19" />
+	</File>
+	<File name="Gamepad.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="690" topLine="0" />
+	</File>
+	<File name="Gamepad.h" open="0" top="0" tabpos="6">
+		<Cursor position="1006" topLine="0" />
+	</File>
+	<File name="Hud.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="21" topLine="0" />
+	</File>
+	<File name="Hud.h" open="0" top="0" tabpos="0">
+		<Cursor position="90" topLine="0" />
+	</File>
+	<File name="Keyboard.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1006" topLine="0" />
+	</File>
+	<File name="LevelMesh.cpp" open="0" top="0" tabpos="11">
+		<Cursor position="987" topLine="2" />
+	</File>
+	<File name="LevelMesh.h" open="0" top="0" tabpos="10">
+		<Cursor position="799" topLine="0" />
+	</File>
+	<File name="ModelEntity.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="948" topLine="96" />
+	</File>
+	<File name="ModelEntity.h" open="0" top="0" tabpos="7">
+		<Cursor position="1290" topLine="6" />
+	</File>
+	<File name="Picture.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="1798" topLine="27" />
+	</File>
+	<File name="Scene.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="1025" topLine="9" />
+	</File>
+	<File name="Scene.h" open="1" top="0" tabpos="1">
+		<Cursor position="890" topLine="0" />
+	</File>
+	<File name="SceneGameplay.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="5203" topLine="0" />
+	</File>
+	<File name="SceneGameplay.h" open="0" top="0" tabpos="6">
+		<Cursor position="957" topLine="0" />
+	</File>
+	<File name="SceneGameplay_MAP_CANYON.cpp" open="0" top="0" tabpos="11">
+		<Cursor position="615" topLine="0" />
+	</File>
+	<File name="Shaders.h" open="0" top="0" tabpos="1">
+		<Cursor position="122" topLine="0" />
+	</File>
+	<File name="StaticModel.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1346" topLine="0" />
+	</File>
+	<File name="classes.h" open="0" top="0" tabpos="3">
+		<Cursor position="698" topLine="0" />
+	</File>
+	<File name="enums.h" open="0" top="0" tabpos="8">
+		<Cursor position="1005" topLine="18" />
+	</File>
+	<File name="maps.h" open="0" top="0" tabpos="9">
+		<Cursor position="748" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>
