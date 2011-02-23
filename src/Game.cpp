@@ -22,9 +22,6 @@ ScreenPosition Game::screenPos;
 Shaders Game::shaders;
 bool Game::exit;
 u8 Game::framerate;
-f32 Game::contacts[MAX_POINT_COLLIDE*3];
-f32 Game::normals[MAX_POINT_COLLIDE*3];
-f32 Game::penetration[MAX_POINT_COLLIDE*3];
 
 /**
  * Pseudo-constructeur de Game, cette fonction initialise les objets Irrlicht, Newton et du jeu

@@ -11,22 +11,22 @@ using namespace irr;
 using namespace std;
 
 /**
- * Constructeur de tous les modèles 3D animés créés dans les scènes
+ * 3D Animated model constructor
  */
 AnimatedModel::AnimatedModel() : ModelEntity() {
 
 }
 
 /**
- * Fonction de mise à jour et de rendu de tous les modèles 3D animés
+ * Update and render function of 3D animated models
  */
 void AnimatedModel::render() { ModelEntity::render();
 
 }
 
 /**
- * Fonction qui crée le node animé et l'ajoute au gestionnaire de scene Irrlicht
- * @param vector3df& initPosition référence vers un vecteur3df qui désigne la position initiale du node
+ * Creates the animated node and add it to Irrlicht's scene manager
+ * @param vector3df& initPosition reference to the node initial position
  */
 void AnimatedModel::createNode(const core::vector3df& initPosition) {
   mainNode = Game::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)mainMesh);
@@ -51,6 +51,10 @@ bool AnimatedModel::collidesWithStatic(StaticModel* other) {
   NewtonBodyGetMatrix(mainBody, mainBodyMatrix);
   NewtonBodyGetMatrix(other->getMainBody(), otherBodyMatrix);
 
+  f32 contacts[3];
+  f32 normals[3];
+  f32 penetration[3];
+  
   s32 res = NewtonCollisionCollide(
     Game::getNewtonWorld(),
     Game::MAX_POINT_COLLIDE,
@@ -58,9 +62,9 @@ bool AnimatedModel::collidesWithStatic(StaticModel* other) {
     mainBodyMatrix,
     otherBodyCollision,
     otherBodyMatrix,
-    Game::contacts,
-    Game::normals,
-    Game::penetration,
+    contacts,
+    normals,
+    penetration,
     0
   );
 
@@ -153,7 +157,7 @@ bool AnimatedModel::collidesWithAnimated(AnimatedModel* other) {
 }
 
 /**
- * Destructeur
+ * Destructor, removes the main node
  */
 AnimatedModel::~AnimatedModel() {
   if(mainNode) {
