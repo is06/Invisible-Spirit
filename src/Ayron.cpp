@@ -11,37 +11,33 @@ using namespace irr;
 using namespace std;
 
 /**
- * Constructeur de l'entité Ayron, définiti le mesh à charger ainsi que sa position initiale
- * @param Camera* cam pointeur vers la caméra associée à l'entité
+ * Ayron entity constructor: defines which mesh to load and set the initial direction
+ * @param Camera* cam pointer to a Camera to link to Ayron
  */
 Ayron::Ayron(Camera* cam) : Character() {
+  // Loading mesh
   loadMesh("resource/mesh/character/cube.obj");
   createNode(core::vector3df(0, 1, -2));
   linkedCam = cam;
 
-  // Spécial Geeko
-  //mainNode->setScale(core::vector3df(0.07,0.07,0.07));
-
-  // Direction de départ du perso : dos à la caméra
+  // Start direction
   mainNode->setRotation(core::vector3df(
     mainNode->getRotation().X,
     cam->getNode()->getRotation().Y - core::radToDeg(core::PI),
     mainNode->getRotation().Z
   ));
-
-  //mainNode->setDebugDataVisible(scene::EDS_FULL);
-  //mainNode->getMaterial(0).Wireframe = true;
 }
 
 /**
- * Fonction de mise à jour et de rendu de l'entité Ayron
- * La fonction appelle la updateBody de l'entité de Mouvement rattaché à l'entité Ayron
- * pour la gestion des collisions et de la physique
+ * Render function, called every cycle
  */
 void Ayron::render() { Character::render();
 
 }
 
+/**
+ * Called while Ayron's floor raycast is NOT in collision with the floor
+ */
 void Ayron::fall() {
   mainNode->setPosition(core::vector3df(
     mainNode->getPosition().X,
@@ -51,7 +47,7 @@ void Ayron::fall() {
 }
 
 /**
- *
+ * Called while Ayron's floor raycast is in collision with the floor
  */
 void Ayron::raise() {
   mainNode->setPosition(core::vector3df(
@@ -62,14 +58,15 @@ void Ayron::raise() {
 }
 
 /**
- *
+ * Called when the player wants Ayron to jump
  */
 void Ayron::jump() {
 
 }
 
 /**
- * Applique une force opposée au déplacement du personnage pour le bloquer contre un mur
+ * Applies an opposite force to Ayron in order to stop it against a wall
+ * Function still under development
  */
 void Ayron::moveOpposite() {
   f32 x = cos(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2));
@@ -83,60 +80,48 @@ void Ayron::moveOpposite() {
 }
 
 /**
- * TODO : a faire
+ * Not sure this function will be used... waiting results from moveOpposite()
  */
 void Ayron::moveSlide(f32 angle) {
-  cout << angle << endl;
-
-/*
-  f32 speed = 0.05f;
-  f32 x = cos(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2) + angle);
-  f32 z = sin(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2) + angle);
-
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X + (x * (speed / 1024.0f)),
-    mainNode->getPosition().Y,
-    mainNode->getPosition().Z + (z * (speed / 1024.0f))
-  ));
-*/
+  
 }
 
 /**
- * Déplace l'entité vers la gauche par rapport à la caméra
- * @param f32 speed vitesse de déplacement
+ * Move Ayron to the left from camera
+ * @param f32 speed movement speed
  */
 void Ayron::goLeft(f32 speed) {
   updateCoords(0, speed);
 }
 
 /**
- * Déplace l'entité vers la droite par rapport à la caméra
- * @param f32 speed vitesse de déplacement
+ * Move Ayron to the right from camera
+ * @param f32 speed movement speed
  */
 void Ayron::goRight(f32 speed) {
   updateCoords(core::PI, speed);
 }
 
 /**
- * Déplace l'entité vers l'avant par rapport à la caméra
- * @param f32 speed vitesse de déplacement
+ * Move Ayron forward from camera
+ * @param f32 speed movement speed
  */
 void Ayron::goForward(f32 speed) {
   updateCoords((core::PI / 2), speed);
 }
 
 /**
- * Déplace l'entité vers l'arrière par rapport à la caméra
- * @param f32 speed vitesse de déplacement
+ * Move Ayron backward from camera
+ * @param f32 speed movement speed
  */
 void Ayron::goBackward(f32 speed) {
   updateCoords((3 * core::PI / 2), speed);
 }
 
 /**
- * Met à jour les coordonnées quand le joueur veut se déplacer
- * @param f32 deltaU valeur de la direction du personnage (considérer le cercle trigonométrique)
- * @param f32 speed vitesse à laquelle le personnage doit se déplacer
+ * Update Ayron's coordinates when the player wants to move him
+ * @param f32 deltaU direction value
+ * @param f32 speed speed value
  */
 void Ayron::updateCoords(f32 deltaU, f32 speed) {
   f32 x = cos(core::degToRad(linkedCam->getNode()->getRotation().Y) + deltaU);
