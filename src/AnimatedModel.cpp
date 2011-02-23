@@ -30,26 +30,23 @@ void AnimatedModel::render() { ModelEntity::render();
  */
 void AnimatedModel::createNode(const core::vector3df& initPosition) {
   mainNode = Game::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)mainMesh);
-  if(!mainNode) {
-    //Game::getErrorManager()->addError(ELL_ERROR, "AnimatedModel:: Node non cree");
-  }
   mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
   mainNode->setPosition(initPosition);
-  //mainNode->setDebugDataVisible(scene::EDS_FULL);
 }
 
 /**
- *
+ * Returns true if the animated model collides with a static model defined by other
+ * @param StaticModel* other pointer to the static object which collides with the animated model
+ * @return bool true if collision
  */
 bool AnimatedModel::collidesWithStatic(StaticModel* other) {
-  NewtonCollision* mainBodyCollision = NewtonBodyGetCollision(mainBody);
-  NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
+  NewtonBody* otherBody = other->getMainBody();
 
   f32 mainBodyMatrix[16] = {};
   f32 otherBodyMatrix[16] = {};
 
   NewtonBodyGetMatrix(mainBody, mainBodyMatrix);
-  NewtonBodyGetMatrix(other->getMainBody(), otherBodyMatrix);
+  NewtonBodyGetMatrix(otherBody, otherBodyMatrix);
 
   f32 contacts[3];
   f32 normals[3];
@@ -57,10 +54,10 @@ bool AnimatedModel::collidesWithStatic(StaticModel* other) {
   
   s32 res = NewtonCollisionCollide(
     Game::getNewtonWorld(),
-    Game::MAX_POINT_COLLIDE,
-    mainBodyCollision,
+    64,
+    NewtonBodyGetCollision(mainBody),
     mainBodyMatrix,
-    otherBodyCollision,
+    NewtonBodyGetCollision(otherBody),
     otherBodyMatrix,
     contacts,
     normals,
@@ -72,33 +69,40 @@ bool AnimatedModel::collidesWithStatic(StaticModel* other) {
 }
 
 /**
- *
+ * Cast a ray from the center of the model to the bottom of it in order to compute
+ * collision with the floor. A value greater than 1.0f means that the model does not
+ * collide with the floor. A value lower than 1.0f means we need to raise the model
+ * @param StaticModel* other pointer to the static object which collides with the animated model
+ * @return f32 collision depth with the floor (distance between the floor and the center of the model)
  */
 f32 AnimatedModel::getFloorCollision(StaticModel* other) {
-
-  NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
-
   f32 normals[3];
   s32 faceId;
 
+  // origin: center of the model
   core::vector3df origin(
     mainNode->getPosition().X,
     mainNode->getPosition().Y,
     mainNode->getPosition().Z
   );
+  // end: bottom of the model
   core::vector3df end(
     mainNode->getPosition().X,
     mainNode->getPosition().Y - 1.0f,
     mainNode->getPosition().Z
   );
 
-  f32 ray = NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, normals, &faceId);
-
-  return ray;
+  return NewtonCollisionRayCast(
+    NewtonBodyGetCollision(other->getMainBody()),
+    &origin.X,
+    &end.X,
+    normals,
+    &faceId
+  );
 }
 
 /**
- *
+ * Not documented yet, sorry :/
  */
 f32 AnimatedModel::getWallCollisionP(StaticModel* other) {
 
@@ -124,7 +128,7 @@ f32 AnimatedModel::getWallCollisionP(StaticModel* other) {
 }
 
 /**
- *
+ * Not documented yet, sorry :/
  */
 f32 AnimatedModel::getWallCollisionQ(StaticModel* other) {
 
@@ -150,7 +154,7 @@ f32 AnimatedModel::getWallCollisionQ(StaticModel* other) {
 }
 
 /**
- *
+ * Under construction
  */
 bool AnimatedModel::collidesWithAnimated(AnimatedModel* other) {
   return false;

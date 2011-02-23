@@ -28,11 +28,6 @@ class Game {
     static ScreenPosition screenPos;
     static Shaders shaders;
 
-    static const u16 MAX_POINT_COLLIDE = 64;
-    static f32 contacts[MAX_POINT_COLLIDE*3];
-    static f32 normals[MAX_POINT_COLLIDE*3];
-    static f32 penetration[MAX_POINT_COLLIDE*3];
-
   private:
     Game();
     static void initScreenPositions(u32 w, u32 h);
