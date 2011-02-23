@@ -12,7 +12,7 @@ champ de cette licence peuvent être obtenues à http://www.is06.com.
 class MAP_CANYON;
 class MAP_OXYGEN;
 
-#include "../src/map/MAP_CANYON.h"
-#include "../src/map/MAP_OXYGEN.h"
+#include "../../src/map/MAP_CANYON.h"
+#include "../../src/map/MAP_OXYGEN.h"
 
 #endif

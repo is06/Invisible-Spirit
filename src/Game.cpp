@@ -76,7 +76,7 @@ void Game::init() {
   exit = false;
 
   // Scène de démarrage
-  currentScene = new SceneGameplay_MAP_CANYON();
+  currentScene = new MAP_CANYON();
 }
 
 /**

@@ -19,6 +19,6 @@ champ de cette licence peuvent être obtenues à http://www.is06.com.
 #include "enums.h"
 #include "structs.h"
 #include "classes.h"
-#include "maps.h"
+#include "ref/maps.h"
 
 #endif
