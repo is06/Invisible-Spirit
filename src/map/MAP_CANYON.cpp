@@ -15,8 +15,8 @@ using namespace irr;
  * Constructeur de la map en cours, définition du mesh du décor, création du node et de
  * son masque de collision
  */
-SceneGameplay_MAP_OXYGEN::SceneGameplay_MAP_OXYGEN() : SceneGameplay() {
-  level->loadMesh("resource/mesh/level/oxygen.obj");
+MAP_CANYON::MAP_CANYON() : SceneGameplay() {
+  level->loadMesh("resource/mesh/level/test2.obj");
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
 }
@@ -24,14 +24,14 @@ SceneGameplay_MAP_OXYGEN::SceneGameplay_MAP_OXYGEN() : SceneGameplay() {
 /**
  * Fonction de test des événements spécifiques à cette map
  */
-void SceneGameplay_MAP_OXYGEN::events() { SceneGameplay::events();
+void MAP_CANYON::events() { SceneGameplay::events();
+
 
 }
 
 /**
  * Detruit les objets définis dans le constructeur
  */
-SceneGameplay_MAP_OXYGEN::~SceneGameplay_MAP_OXYGEN() {
+MAP_CANYON::~MAP_CANYON() {
 
 }
-

@@ -9,10 +9,10 @@ champ de cette licence peuvent être obtenues à http://www.is06.com.
 #ifndef __IS06_MAPS_H__
 #define __IS06_MAPS_H__
 
-class SceneGameplay_MAP_CANYON;
-class SceneGameplay_MAP_OXYGEN;
+class MAP_CANYON;
+class MAP_OXYGEN;
 
-#include "../src/map/SceneGameplay_MAP_CANYON.h"
-#include "../src/map/SceneGameplay_MAP_OXYGEN.h"
+#include "../src/map/MAP_CANYON.h"
+#include "../src/map/MAP_OXYGEN.h"
 
 #endif

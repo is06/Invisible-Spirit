@@ -6,13 +6,13 @@ Unported. Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà d
 champ de cette licence peuvent être obtenues à http://www.is06.com.
 *******************************************************************************/
 
-#ifndef __IS06_SCENE_GAMEPLAY_MAP_OXYGEN__
-#define __IS06_SCENE_GAMEPLAY_MAP_OXYGEN__
+#ifndef __IS06_MAP_OXYGEN__
+#define __IS06_MAP_OXYGEN__
 
-class SceneGameplay_MAP_OXYGEN : public SceneGameplay {
+class MAP_OXYGEN : public SceneGameplay {
   public:
-    SceneGameplay_MAP_OXYGEN();
-    ~SceneGameplay_MAP_OXYGEN();
+    MAP_OXYGEN();
+    ~MAP_OXYGEN();
 
     void events();
 
