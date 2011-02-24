@@ -51,7 +51,7 @@ bool AnimatedModel::collidesWithStatic(StaticModel* other) {
   f32 contacts[3];
   f32 normals[3];
   f32 penetration[3];
-  
+
   s32 res = NewtonCollisionCollide(
     Game::getNewtonWorld(),
     64,
@@ -104,23 +104,32 @@ f32 AnimatedModel::getFloorCollision(StaticModel* other) {
 /**
  * Not documented yet, sorry :/
  */
-f32 AnimatedModel::getWallCollisionP(StaticModel* other) {
+f32 AnimatedModel::getWallCollisionP(StaticModel* other, core::vector3df& origin, core::vector3df& end) {
 
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
 
   f32 normals[3];
   s32 faceId;
 
-  core::vector3df origin(
-    0.5f * cos(mainNode->getRotation().Y),
+  f32 xPoint = mainNode->getPosition().X - 0.5f * cos(core::degToRad(mainNode->getRotation().Y));
+  f32 zPoint = mainNode->getPosition().Z + 0.5f * sin(core::degToRad(mainNode->getRotation().Y));
+
+  origin = core::vector3df(
+    xPoint,
     mainNode->getPosition().Y,
-    0.5f * sin(mainNode->getRotation().Y)
+    zPoint
   );
-  core::vector3df end(
-    mainNode->getPosition().X - 0.5f,
+
+  xPoint = xPoint - 1.0f * cos(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
+  zPoint = zPoint + 1.0f * sin(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
+
+  end = core::vector3df(
+    xPoint,
     mainNode->getPosition().Y,
-    mainNode->getPosition().Z + 1.0f
+    zPoint
   );
+
+  //_vector_print(end);
 
   f32 ray = NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, normals, &faceId);
 
@@ -130,22 +139,29 @@ f32 AnimatedModel::getWallCollisionP(StaticModel* other) {
 /**
  * Not documented yet, sorry :/
  */
-f32 AnimatedModel::getWallCollisionQ(StaticModel* other) {
+f32 AnimatedModel::getWallCollisionQ(StaticModel* other, core::vector3df& origin, core::vector3df& end) {
 
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
 
   f32 normals[3];
   s32 faceId;
 
-  core::vector3df origin(
-    mainNode->getPosition().X + 0.5f,
+  f32 xPoint = mainNode->getPosition().X - 0.5f * cos(core::degToRad(mainNode->getRotation().Y) + core::PI);
+  f32 zPoint = mainNode->getPosition().Z + 0.5f * sin(core::degToRad(mainNode->getRotation().Y) + core::PI);
+
+  origin = core::vector3df(
+    xPoint,
     mainNode->getPosition().Y,
-    mainNode->getPosition().Z
+    zPoint
   );
-  core::vector3df end(
-    mainNode->getPosition().X + 0.5f,
+
+  xPoint = xPoint - 1.0f * cos(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
+  zPoint = zPoint + 1.0f * sin(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
+
+  end = core::vector3df(
+    xPoint,
     mainNode->getPosition().Y,
-    mainNode->getPosition().Z + 1.0f
+    zPoint
   );
 
   f32 ray = NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, normals, &faceId);

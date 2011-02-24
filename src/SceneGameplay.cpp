@@ -28,7 +28,7 @@ SceneGameplay::SceneGameplay() : Scene() {
  */
 void SceneGameplay::events() { Scene::events();
 
-  manageCameraControl();  
+  manageCameraControl();
   manageAyronMovements();
   manageAyronCollisions();
 
@@ -135,13 +135,29 @@ void SceneGameplay::manageAyronCollisions() {
   }
 
   // Collisions avec les murs
-  f32 wallCollisionP = ayron->getWallCollisionP(level);
-  f32 wallCollisionQ = ayron->getWallCollisionQ(level);
+  core::vector3df originP;
+  core::vector3df endP;
+  core::vector3df originQ;
+  core::vector3df endQ;
+
+  originP = core::vector3df(-0.5,0,0);
+  endP = core::vector3df(-0.5,0,-1);
+  originQ = core::vector3df(0.5,0,0);
+  endQ = core::vector3df(0.5,0,-1);
+
+  f32 wallCollisionP = ayron->getWallCollisionP(level, originP, endP);
+  f32 wallCollisionQ = ayron->getWallCollisionQ(level, originQ, endQ);
   if(wallCollisionP < 1.0f || wallCollisionQ < 1.0f) {
-    while(ayron->getWallCollisionP(level) < 0.99 || ayron->getWallCollisionQ(level) < 0.99) {
+    while(ayron->getWallCollisionP(level, originP, endP) < 0.99 || ayron->getWallCollisionQ(level, originQ, endQ) < 0.99) {
       ayron->moveOpposite();
     }
   }
+
+  core::matrix4 mat;
+  Game::getVideoDriver()->setTransform(video::ETS_WORLD, mat);
+
+  Game::getVideoDriver()->draw3DLine(originP, endP, video::SColor(255,255,0,0));
+  Game::getVideoDriver()->draw3DLine(originQ, endQ, video::SColor(255,0,255,255));
 }
 
 void SceneGameplay::postRender() { Scene::postRender();

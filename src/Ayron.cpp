@@ -26,6 +26,8 @@ Ayron::Ayron(Camera* cam) : Character() {
     cam->getNode()->getRotation().Y - core::radToDeg(core::PI),
     mainNode->getRotation().Z
   ));
+
+  mainNode->getMaterial(0).Wireframe = true;
 }
 
 /**
@@ -80,10 +82,10 @@ void Ayron::moveOpposite() {
 }
 
 /**
- * Not sure this function will be used... waiting results from moveOpposite()
+ * TODO
  */
 void Ayron::moveSlide(f32 angle) {
-  
+
 }
 
 /**

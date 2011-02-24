@@ -23,8 +23,8 @@ class AnimatedModel : public ModelEntity {
     bool collidesWithStatic(StaticModel* other);
     bool collidesWithAnimated(AnimatedModel* other);
     f32 getFloorCollision(StaticModel* other);
-    f32 getWallCollisionP(StaticModel* other);
-    f32 getWallCollisionQ(StaticModel* other);
+    f32 getWallCollisionP(StaticModel* other, core::vector3df& origin, core::vector3df& end);
+    f32 getWallCollisionQ(StaticModel* other, core::vector3df& origin, core::vector3df& end);
 
   protected:
 };
