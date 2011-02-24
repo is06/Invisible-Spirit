@@ -18,7 +18,6 @@ class OpacityShaderCallback;
 // =========================================================
 // INTERFACES
 
-class PlayerControl;
 class Keyboard;
 class Mouse;
 class Gamepad;
@@ -84,7 +83,6 @@ class Speaker;
 #include "SettingsGroup.h"
 #include "EventManager.h"
 
-#include "PlayerControl.h"
 #include "Keyboard.h"
 #include "Gamepad.h"
 

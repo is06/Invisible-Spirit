@@ -74,11 +74,23 @@ void Ayron::moveOpposite() {
   f32 x = cos(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2));
   f32 z = sin(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2));
 
+  core::vector3df origin = mainNode->getPosition();
+
   mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X + (x * (0.05f / 1024.0f)),
+    mainNode->getPosition().X - (x * (0.05f / 1024.0f)),
     mainNode->getPosition().Y,
     mainNode->getPosition().Z + (z * (0.05f / 1024.0f))
   ));
+
+  core::vector3df end(
+    mainNode->getPosition().X - (x * (5.0f)),
+    mainNode->getPosition().Y,
+    mainNode->getPosition().Z + (z * (5.0f))
+  );
+
+  core::matrix4 mat;
+  Game::getVideoDriver()->setTransform(video::ETS_WORLD, mat);
+  Game::getVideoDriver()->draw3DLine(origin, end, video::SColor(255,255,255,255));
 }
 
 /**

@@ -69,36 +69,27 @@ void SceneGameplay::manageCameraControl() {
 }
 
 void SceneGameplay::manageAyronMovements() {
-  // Contrôle d'Ayron au clavier
-  if(keyboard->pressed(KEY_LEFT)) {
+
+  if(keyboard->pressed(KEY_UP) || keyboard->pressed(KEY_DOWN)
+  || keyboard->pressed(KEY_LEFT) || keyboard->pressed(KEY_RIGHT)) {
+    // Direction d'Ayron en fonction de l'angle des touches
     ayron->getNode()->setRotation(core::vector3df(
       ayron->getNode()->getRotation().X,
-      cam->getNode()->getRotation().Y + core::radToDeg(core::PI / 2),
+      cam->getNode()->getRotation().Y - (keyboard->getDirectionAngle() + core::radToDeg(core::PI / 2)),
       ayron->getNode()->getRotation().Z
     ));
-    ayron->goLeft(100.0f);
-  } else if(keyboard->pressed(KEY_RIGHT)) {
-    ayron->getNode()->setRotation(core::vector3df(
-      ayron->getNode()->getRotation().X,
-      cam->getNode()->getRotation().Y - core::radToDeg(core::PI / 2),
-      ayron->getNode()->getRotation().Z
-    ));
-    ayron->goRight(100.0f);
-  }
-  if(keyboard->pressed(KEY_UP)) {
-    ayron->getNode()->setRotation(core::vector3df(
-      ayron->getNode()->getRotation().X,
-      cam->getNode()->getRotation().Y + core::radToDeg(core::PI),
-      ayron->getNode()->getRotation().Z
-    ));
-    ayron->goForward(100.0f);
-  } else if(keyboard->pressed(KEY_DOWN)) {
-    ayron->getNode()->setRotation(core::vector3df(
-      ayron->getNode()->getRotation().X,
-      cam->getNode()->getRotation().Y,
-      ayron->getNode()->getRotation().Z
-    ));
-    ayron->goBackward(100.0f);
+
+    if(keyboard->pressed(KEY_LEFT)) {
+      ayron->goLeft(keyboard->getDirectionXAxis() * -1);
+    } else if(keyboard->pressed(KEY_RIGHT)) {
+      ayron->goRight(keyboard->getDirectionXAxis());
+    }
+
+    if(keyboard->pressed(KEY_DOWN)) {
+      ayron->goBackward(keyboard->getDirectionYAxis() * -1);
+    } else if(keyboard->pressed(KEY_UP)) {
+      ayron->goForward(keyboard->getDirectionYAxis());
+    }
   }
 
   // Contrôle d'Ayron au stick analogique gauche
@@ -110,11 +101,13 @@ void SceneGameplay::manageAyronMovements() {
       cam->getNode()->getRotation().Y - (gamepad->getLeftJoystickAngle() + core::radToDeg(core::PI / 2)),
       ayron->getNode()->getRotation().Z
     ));
+
     if(gamepad->getLeftJoystickXAxis() < -35) {
       ayron->goLeft(gamepad->getLeftJoystickXAxis() * -1);
     } else if(gamepad->getLeftJoystickXAxis() > 35) {
       ayron->goRight(gamepad->getLeftJoystickXAxis());
     }
+
     if(gamepad->getLeftJoystickYAxis() < -35) {
       ayron->goBackward(gamepad->getLeftJoystickYAxis() * -1);
     } else if(gamepad->getLeftJoystickYAxis() > 35) {
@@ -126,7 +119,7 @@ void SceneGameplay::manageAyronMovements() {
 void SceneGameplay::manageAyronCollisions() {
   // Collisions avec le sol
   if(ayron->getFloorCollision(level) > 1.0) {
-    ayron->fall();
+    //ayron->fall();
   }
   if(ayron->getFloorCollision(level) < 1.0) {
     while(ayron->getFloorCollision(level) < 0.95) {
@@ -147,7 +140,15 @@ void SceneGameplay::manageAyronCollisions() {
 
   f32 wallCollisionP = ayron->getWallCollisionP(level, originP, endP);
   f32 wallCollisionQ = ayron->getWallCollisionQ(level, originQ, endQ);
+  f32 angle = 0.0f;
   if(wallCollisionP < 1.0f || wallCollisionQ < 1.0f) {
+
+    if(wallCollisionP > 1.0f) wallCollisionP = 1.0f;
+    if(wallCollisionQ > 1.0f) wallCollisionQ = 1.0f;
+
+    //angle = atan(wallCollisionP - wallCollisionQ);
+    //cout << "p = " << wallCollisionP << " ; q = " << wallCollisionQ << " ; a = " << angle << endl;
+
     while(ayron->getWallCollisionP(level, originP, endP) < 0.99 || ayron->getWallCollisionQ(level, originQ, endQ) < 0.99) {
       ayron->moveOpposite();
     }

@@ -17,6 +17,12 @@ class Keyboard {
   public:
     bool pressed(EKEY_CODE code, EventType type = EVENT_ALWAYS);
     bool any(EventType type = EVENT_ALWAYS);
+    s8 getDirectionXAxis();
+    s8 getDirectionYAxis();
+    f32 getDirectionAngle();
+
+  private:
+    f32 directionAngle;
 };
 
 #endif
