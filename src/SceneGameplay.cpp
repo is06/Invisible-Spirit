@@ -28,7 +28,16 @@ SceneGameplay::SceneGameplay() : Scene() {
  */
 void SceneGameplay::events() { Scene::events();
 
-  // Contrôle de la caméra
+  manageCameraControl();  
+  manageAyronMovements();
+  manageAyronCollisions();
+
+  // Rendu des entités
+  ayron->render();
+  cam->render();
+}
+
+void SceneGameplay::manageCameraControl() {
   if(cam->hasControl()) {
     // Mouvements au pavé numérique
     if(keyboard->pressed(KEY_NUMPAD4)) {
@@ -57,7 +66,9 @@ void SceneGameplay::events() { Scene::events();
       }
     }
   }
+}
 
+void SceneGameplay::manageAyronMovements() {
   // Contrôle d'Ayron au clavier
   if(keyboard->pressed(KEY_LEFT)) {
     ayron->getNode()->setRotation(core::vector3df(
@@ -90,15 +101,6 @@ void SceneGameplay::events() { Scene::events();
     ayron->goBackward(100.0f);
   }
 
-  // Gestion du saut
-  /*
-  if(keyboard->pressed(KEY_KEY_V)) {
-    ayron->continueJump();
-  }
-  */
-
-
-
   // Contrôle d'Ayron au stick analogique gauche
   if(fabs(gamepad->getLeftJoystickXAxis()) > 35
   || fabs(gamepad->getLeftJoystickYAxis()) > 35) {
@@ -119,28 +121,9 @@ void SceneGameplay::events() { Scene::events();
       ayron->goForward(gamepad->getLeftJoystickYAxis());
     }
   }
+}
 
-
-  Game::getVideoDriver()->draw3DLine(core::vector3df(
-    ayron->getNode()->getPosition().X + 0.5f,
-    ayron->getNode()->getPosition().Y,
-    ayron->getNode()->getPosition().Z
-  ), core::vector3df(
-    ayron->getNode()->getPosition().X + 0.5f,
-    ayron->getNode()->getPosition().Y,
-    ayron->getNode()->getPosition().Z + 1.0f
-  ), video::SColor(255,0,255,255));
-
-  Game::getVideoDriver()->draw3DLine(core::vector3df(
-    ayron->getNode()->getPosition().X - 0.5f,
-    ayron->getNode()->getPosition().Y,
-    ayron->getNode()->getPosition().Z
-  ), core::vector3df(
-    ayron->getNode()->getPosition().X - 0.5f,
-    ayron->getNode()->getPosition().Y,
-    ayron->getNode()->getPosition().Z + 1.0f
-  ), video::SColor(255,0,255,255));
-
+void SceneGameplay::manageAyronCollisions() {
   // Collisions avec le sol
   if(ayron->getFloorCollision(level) > 1.0) {
     ayron->fall();
@@ -159,10 +142,6 @@ void SceneGameplay::events() { Scene::events();
       ayron->moveOpposite();
     }
   }
-
-  // Rendu des entités
-  ayron->render();
-  cam->render();
 }
 
 void SceneGameplay::postRender() { Scene::postRender();

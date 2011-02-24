@@ -8,37 +8,35 @@ Pour compiler le projet, deux méthodes :
 
   Définir les variables suivantes dans CMakeCache.txt
 
-    bullet_include_dir:STATIC=/chemin/vers/include/bullet
-    bullet_lib_dir:STATIC=/chemin/vers/lib/bullet
+    newton_include_dir:STATIC=/chemin/vers/include/newton
+    newton_lib_dir:STATIC=/chemin/vers/lib/newton
     irrlicht_include_dir:STATIC=/chemin/vers/include/irrlicht
     irrlicht_lib_dir:STATIC=/chemin/vers/lib/irrlicht
 
   Exemple (Code::Blocks - MinGW, Windows)
 
-    bullet_include_dir:STATIC=C:/Program Files/CodeBlocks/MinGW/include/bullet
-    bullet_lib_dir:STATIC=C:/Program Files/CodeBlocks/MinGW/lib/bullet
+    newton_include_dir:STATIC=C:/Program Files/CodeBlocks/MinGW/include/newton
+    newton_lib_dir:STATIC=C:/Program Files/CodeBlocks/MinGW/lib/newton
     irrlicht_include_dir:STATIC=C:/Program Files/CodeBlocks/MinGW/include/irrlicht
     irrlicht_lib_dir:STATIC=C:/Program Files/CodeBlocks/MinGW/lib/irrlicht
 
   Autre exemple (Linux)
 
-    bullet_include_dir:STATIC=/usr/include/bullet/
-    bullet_lib_dir:STATIC=/usr/lib/bullet/
+    newton_include_dir:STATIC=/usr/include/newton/
+    newton_lib_dir:STATIC=/usr/lib/newton/
     irrlicht_include_dir:STATIC=/usr/include/irrlicht/
     irrlicht_lib_dir:STATIC=/usr/lib/irrlicht/
 
 2. Compiler manuellement.
 
-  Les bibliothèques nécessaires sont (l'ordre est important pour Bullet) :
+  Les bibliothèques nécessaires sont :
 
-  - libIrrlicht
-  - libBulletDynamics
-  - libBulletCollision
-  - libLinearMath
+  - Newton
+  - Irrlicht
 
   Sous Linux :
 
-  - lXxf86vm
+  - Xxf86vm
   - GL
 
 En cas de problème : http://www.is06.com/contact.php
