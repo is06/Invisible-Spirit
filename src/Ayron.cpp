@@ -15,6 +15,10 @@ using namespace std;
  * @param Camera* cam pointer to a Camera to link to Ayron
  */
 Ayron::Ayron(Camera* cam) : Character() {
+  controlable = true;
+  jumpStrength = 0.0f;
+  fallStrength = 0.0f;
+
   // Loading mesh
   loadMesh("resource/mesh/character/cube.obj");
   createNode(core::vector3df(0, 1, -2));
@@ -41,17 +45,27 @@ void Ayron::render() { Character::render();
  * Called while Ayron's floor raycast is NOT in collision with the floor
  */
 void Ayron::fall() {
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X,
-    mainNode->getPosition().Y - 0.2,
-    mainNode->getPosition().Z
-  ));
+  if(!isJumping) {
+    if(fallStrength < Ayron::JUMP_STRENGTH) {
+      fallStrength += Ayron::GRAVITY;
+    }
+    mainNode->setPosition(core::vector3df(
+      mainNode->getPosition().X,
+      mainNode->getPosition().Y - fallStrength,
+      mainNode->getPosition().Z
+    ));
+  }
 }
 
 /**
  * Called while Ayron's floor raycast is in collision with the floor
  */
 void Ayron::raise() {
+  if(isFalling) {
+    // Ayron is hitting the floor
+    fallStrength = 0.0f;
+    isFalling = false;
+  }
   mainNode->setPosition(core::vector3df(
     mainNode->getPosition().X,
     mainNode->getPosition().Y + 0.005,
@@ -63,7 +77,32 @@ void Ayron::raise() {
  * Called when the player wants Ayron to jump
  */
 void Ayron::jump() {
+  if(isJumping) {
+    jumpStrength -= Ayron::GRAVITY;
+    if(jumpStrength <= 0) {
+      isJumping = false;
+      isFalling = true;
+    }
+    mainNode->setPosition(core::vector3df(
+      mainNode->getPosition().X,
+      mainNode->getPosition().Y + jumpStrength,
+      mainNode->getPosition().Z
+    ));
+  }
+}
 
+/**
+ *
+ */
+void Ayron::setJumpStrength(f32 value) {
+  jumpStrength = value;
+}
+
+/**
+ *
+ */
+f32 Ayron::getJumpStrength() {
+  return jumpStrength;
 }
 
 /**
@@ -145,4 +184,11 @@ void Ayron::updateCoords(f32 deltaU, f32 speed) {
     mainNode->getPosition().Y,
     mainNode->getPosition().Z + (z * (speed / 1024.0f))
   ));
+}
+
+/**
+ *
+ */
+bool Ayron::hasControl() {
+  return controlable;
 }

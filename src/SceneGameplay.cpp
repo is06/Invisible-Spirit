@@ -29,6 +29,7 @@ SceneGameplay::SceneGameplay() : Scene() {
 void SceneGameplay::events() { Scene::events();
 
   manageCameraControl();
+  manageAyronJumps();
   manageAyronMovements();
   manageAyronCollisions();
 
@@ -37,6 +38,9 @@ void SceneGameplay::events() { Scene::events();
   cam->render();
 }
 
+/**
+ *
+ */
 void SceneGameplay::manageCameraControl() {
   if(cam->hasControl()) {
     // Mouvements au pavé numérique
@@ -68,6 +72,25 @@ void SceneGameplay::manageCameraControl() {
   }
 }
 
+/**
+ *
+ */
+void SceneGameplay::manageAyronJumps() {
+  if(ayron->hasControl()) {
+    ayron->isJumping = false;
+    if(keyboard->pressed(KEY_KEY_V, EVENT_ONCE)) {
+      ayron->setJumpStrength(Ayron::JUMP_STRENGTH);
+    }
+    if(keyboard->pressed(KEY_KEY_V)) {
+      ayron->isJumping = true;
+      ayron->jump();
+    }
+  }
+}
+
+/**
+ *
+ */
 void SceneGameplay::manageAyronMovements() {
 
   if(keyboard->pressed(KEY_UP) || keyboard->pressed(KEY_DOWN)
@@ -116,10 +139,13 @@ void SceneGameplay::manageAyronMovements() {
   }
 }
 
+/**
+ *
+ */
 void SceneGameplay::manageAyronCollisions() {
   // Collisions avec le sol
   if(ayron->getFloorCollision(level) > 1.0) {
-    //ayron->fall();
+    ayron->fall();
   }
   if(ayron->getFloorCollision(level) < 1.0) {
     while(ayron->getFloorCollision(level) < 0.95) {
@@ -161,12 +187,15 @@ void SceneGameplay::manageAyronCollisions() {
   Game::getVideoDriver()->draw3DLine(originQ, endQ, video::SColor(255,0,255,255));
 }
 
+/**
+ *
+ */
 void SceneGameplay::postRender() { Scene::postRender();
   //gpInterface->render();
 }
 
 /**
- * Détruit tous les objets initialisés dans le constructeur
+ * Destroys all objects defined by constructor
  */
 SceneGameplay::~SceneGameplay() {
   delete level;

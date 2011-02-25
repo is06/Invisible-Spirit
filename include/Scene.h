@@ -16,8 +16,8 @@ class Scene {
     Scene();
     virtual ~Scene();
 
-    virtual void events();
-    virtual void postRender();
+    virtual void events() = 0;
+    virtual void postRender() = 0;
 
   protected:
     Camera* cam;
