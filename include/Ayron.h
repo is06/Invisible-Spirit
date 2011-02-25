@@ -28,8 +28,7 @@ class Ayron : public Character {
     f32 getJumpStrength();
 
     // Collisions avec les murs
-    void moveOpposite();
-    void moveSlide(f32 angle);
+    void moveOpposite(bool frontal = true);
 
     bool hasControl();
 

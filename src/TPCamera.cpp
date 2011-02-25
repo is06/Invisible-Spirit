@@ -47,8 +47,6 @@ void TPCamera::render() { Camera::render();
     linkedEntity->getNode()->getPosition().Y + height,
     z
   ));
-
-  cout << height << endl;
 }
 
 /**

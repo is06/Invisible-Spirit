@@ -27,7 +27,6 @@ SceneGameplay::SceneGameplay() : Scene() {
  * Contrôle du personnage et de la caméra
  */
 void SceneGameplay::events() { Scene::events();
-
   manageCameraControl();
   manageAyronJumps();
   manageAyronMovements();
@@ -168,17 +167,13 @@ void SceneGameplay::manageAyronCollisions() {
 
   f32 wallCollisionP = ayron->getWallCollisionP(level, originP, endP);
   f32 wallCollisionQ = ayron->getWallCollisionQ(level, originQ, endQ);
-  f32 angle = 0.0f;
   if(wallCollisionP < 1.0f || wallCollisionQ < 1.0f) {
-
-    if(wallCollisionP > 1.0f) wallCollisionP = 1.0f;
-    if(wallCollisionQ > 1.0f) wallCollisionQ = 1.0f;
-
-    //angle = atan(wallCollisionP - wallCollisionQ);
-    //cout << "p = " << wallCollisionP << " ; q = " << wallCollisionQ << " ; a = " << angle << endl;
-
     while(ayron->getWallCollisionP(level, originP, endP) < 0.99 || ayron->getWallCollisionQ(level, originQ, endQ) < 0.99) {
-      ayron->moveOpposite();
+      if(ayron->getWallCollisionP(level, originP, endP) < 1 && ayron->getWallCollisionQ(level, originP, endP) < 1) {
+        ayron->moveOpposite(true);
+      } else {
+        ayron->moveOpposite(false);
+      }
     }
   }
 

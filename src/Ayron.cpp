@@ -109,20 +109,28 @@ f32 Ayron::getJumpStrength() {
  * Applies an opposite force to Ayron in order to stop it against a wall
  * Function still under development
  */
-void Ayron::moveOpposite() {
+void Ayron::moveOpposite(bool frontal) {
   f32 x = cos(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2));
   f32 z = sin(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2));
 
   core::vector3df origin = mainNode->getPosition();
 
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X - (x * (0.05f / 1024.0f)),
-    mainNode->getPosition().Y,
-    mainNode->getPosition().Z + (z * (0.05f / 1024.0f))
-  ));
+  if(frontal) {
+    mainNode->setPosition(core::vector3df(
+      mainNode->getPosition().X - (x * (0.05f / 1024.0f)),
+      mainNode->getPosition().Y,
+      mainNode->getPosition().Z + (z * (0.05f / 1024.0f))
+    ));
+  } else {
+    mainNode->setPosition(core::vector3df(
+      mainNode->getPosition().X + (x * (0.05f / 1024.0f)),
+      mainNode->getPosition().Y,
+      mainNode->getPosition().Z + (z * (0.05f / 1024.0f))
+    ));
+  }
 
   core::vector3df end(
-    mainNode->getPosition().X - (x * (5.0f)),
+    mainNode->getPosition().X + (x * (5.0f)),
     mainNode->getPosition().Y,
     mainNode->getPosition().Z + (z * (5.0f))
   );
@@ -130,13 +138,6 @@ void Ayron::moveOpposite() {
   core::matrix4 mat;
   Game::getVideoDriver()->setTransform(video::ETS_WORLD, mat);
   Game::getVideoDriver()->draw3DLine(origin, end, video::SColor(255,255,255,255));
-}
-
-/**
- * TODO
- */
-void Ayron::moveSlide(f32 angle) {
-
 }
 
 /**
@@ -180,9 +181,9 @@ void Ayron::updateCoords(f32 deltaU, f32 speed) {
   f32 x = cos(core::degToRad(linkedCam->getNode()->getRotation().Y) + deltaU);
   f32 z = sin(core::degToRad(linkedCam->getNode()->getRotation().Y) + deltaU);
   mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X + ((x * -1) * (speed / 1024.0f)),
+    mainNode->getPosition().X + ((x * -1) * (speed / 2048.0f)),
     mainNode->getPosition().Y,
-    mainNode->getPosition().Z + (z * (speed / 1024.0f))
+    mainNode->getPosition().Z + (z * (speed / 2048.0f))
   ));
 }
 
