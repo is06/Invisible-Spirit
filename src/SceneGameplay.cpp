@@ -79,7 +79,9 @@ void SceneGameplay::manageAyronJumps() {
   if(ayron->hasControl()) {
     ayron->isJumping = false;
     if(keyboard->pressed(KEY_KEY_V, EVENT_ONCE)) {
-      ayron->setJumpStrength(Ayron::JUMP_STRENGTH);
+      if(!ayron->isJumping && !ayron->isFalling) {
+        ayron->setJumpStrength(Ayron::JUMP_STRENGTH);
+      }
     }
     if(keyboard->pressed(KEY_KEY_V)) {
       ayron->isJumping = true;
