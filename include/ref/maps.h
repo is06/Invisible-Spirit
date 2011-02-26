@@ -5,12 +5,13 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_SHADERS_H__
-#define __IS06_SHADERS_H__
+#ifndef __IS06_MAPS_H__
+#define __IS06_MAPS_H__
 
-struct Shaders {
-  s32 opacity;
-  s32 bloom;
-};
+class MAP_CANYON;
+class MAP_OXYGEN;
+
+#include "../../src/map/MAP_CANYON.h"
+#include "../../src/map/MAP_OXYGEN.h"
 
 #endif

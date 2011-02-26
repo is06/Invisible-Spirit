@@ -1,9 +1,8 @@
 /******************************************************************************
-Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon
-les termes de la licence Creative Commons Paternité - Pas d'Utilisation
-Commerciale - Partage des Conditions Initiales à l'Identique (BY-NC-SA) 3.0
-Unported. Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du
-champ de cette licence peuvent être obtenues à http://www.is06.com.
+Invisible Spirit by Thomas Noury is licensed under a Creative Commons
+Attribution-NonCommercial-ShareAlike 3.0 Unported License. Based on a work at
+is06.com. Permissions beyond the scope of this license may be available at
+http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #ifndef __IS06_GAME_H__
@@ -28,11 +27,6 @@ class Game {
 
     static ScreenPosition screenPos;
     static Shaders shaders;
-
-    static const u16 MAX_POINT_COLLIDE = 64;
-    static f32 contacts[MAX_POINT_COLLIDE*3];
-    static f32 normals[MAX_POINT_COLLIDE*3];
-    static f32 penetration[MAX_POINT_COLLIDE*3];
 
   private:
     Game();

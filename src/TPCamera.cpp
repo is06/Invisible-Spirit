@@ -1,9 +1,8 @@
 /******************************************************************************
-Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon
-les termes de la licence Creative Commons Paternité - Pas d'Utilisation
-Commerciale - Partage des Conditions Initiales à l'Identique (BY-NC-SA) 3.0
-Unported. Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du
-champ de cette licence peuvent être obtenues à http://www.is06.com.
+Invisible Spirit by Thomas Noury is licensed under a Creative Commons
+Attribution-NonCommercial-ShareAlike 3.0 Unported License. Based on a work at
+is06.com. Permissions beyond the scope of this license may be available at
+http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../include/core.h"
@@ -16,8 +15,8 @@ using namespace std;
  */
 TPCamera::TPCamera() : Camera() {
   UAxis = (3 * core::PI) / 2;
-  height = 4.0f;
-  distance = 10.0f;
+  height = 1.8f;
+  distance = 4.0f;
 }
 
 /**
@@ -40,7 +39,7 @@ void TPCamera::render() { Camera::render();
 
   irrCam->setTarget(core::vector3df(
     linkedEntity->getNode()->getPosition().X,
-    linkedEntity->getNode()->getPosition().Y + 3,
+    linkedEntity->getNode()->getPosition().Y + 0.8,
     linkedEntity->getNode()->getPosition().Z
   ));
   irrCam->setPosition(core::vector3df(
@@ -50,6 +49,9 @@ void TPCamera::render() { Camera::render();
   ));
 }
 
+/**
+ *
+ */
 void TPCamera::goLeft(s8 speed) {
   UAxis -= ((speed - 25) / 1500.0f);
   if(UAxis < 0) {
@@ -57,6 +59,9 @@ void TPCamera::goLeft(s8 speed) {
   }
 }
 
+/**
+ *
+ */
 void TPCamera::goRight(s8 speed) {
   UAxis += ((speed - 25) / 1500.0f);
   if(UAxis > (2 * core::PI)) {
@@ -64,32 +69,43 @@ void TPCamera::goRight(s8 speed) {
   }
 }
 
+/**
+ *
+ */
 void TPCamera::goFar(s8 speed) {
-  if(height < 8) {
-    height += ((speed - 25) / 500.0f);
-  } else {
-    height = 8;
+  if(height < 3.3) {
+    height += ((speed - 25) / 750.0f);
   }
-  if(distance < 14) {
-    distance += ((speed - 25) / 500.0f);
+  if(height > 3.3) {
+    height = 3.3;
+  }
+  if(distance < 5.5) {
+    distance += ((speed - 25) / 750.0f);
   } else {
-    distance = 14;
+    distance = 5.5;
   }
 }
 
+/**
+ *
+ */
 void TPCamera::goNear(s8 speed) {
-  if(height > 1) {
-    height -= ((speed - 25) / 500.0f);
-  } else {
-    height = 1;
+  if(height > 0.3) {
+    height -= ((speed - 25) / 750.0f);
   }
-  if(distance > 7) {
-    distance -= ((speed - 25) / 500.0f);
+  if(height < 0.3) {
+    height = 0.3;
+  }
+  if(distance > 2.5) {
+    distance -= ((speed - 25) / 750.0f);
   } else {
-    distance = 7;
+    distance = 2.5;
   }
 }
 
+/**
+ *
+ */
 f32 TPCamera::getDistance() {
   return distance;
 }

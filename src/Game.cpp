@@ -1,9 +1,8 @@
 /******************************************************************************
-Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon
-les termes de la licence Creative Commons Paternité - Pas d'Utilisation
-Commerciale - Partage des Conditions Initiales à l'Identique (BY-NC-SA) 3.0
-Unported. Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du
-champ de cette licence peuvent être obtenues à http://www.is06.com.
+Invisible Spirit by Thomas Noury is licensed under a Creative Commons
+Attribution-NonCommercial-ShareAlike 3.0 Unported License. Based on a work at
+is06.com. Permissions beyond the scope of this license may be available at
+http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../include/core.h"
@@ -23,9 +22,6 @@ ScreenPosition Game::screenPos;
 Shaders Game::shaders;
 bool Game::exit;
 u8 Game::framerate;
-f32 Game::contacts[MAX_POINT_COLLIDE*3];
-f32 Game::normals[MAX_POINT_COLLIDE*3];
-f32 Game::penetration[MAX_POINT_COLLIDE*3];
 
 /**
  * Pseudo-constructeur de Game, cette fonction initialise les objets Irrlicht, Newton et du jeu
@@ -76,7 +72,7 @@ void Game::init() {
   exit = false;
 
   // Scène de démarrage
-  currentScene = new SceneGameplay_MAP_CANYON();
+  currentScene = new MAP_CANYON();
 }
 
 /**

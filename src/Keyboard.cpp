@@ -1,9 +1,8 @@
 /******************************************************************************
-Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon
-les termes de la licence Creative Commons Paternité - Pas d'Utilisation
-Commerciale - Partage des Conditions Initiales à l'Identique (BY-NC-SA) 3.0
-Unported. Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du
-champ de cette licence peuvent être obtenues à http://www.is06.com.
+Invisible Spirit by Thomas Noury is licensed under a Creative Commons
+Attribution-NonCommercial-ShareAlike 3.0 Unported License. Based on a work at
+is06.com. Permissions beyond the scope of this license may be available at
+http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../include/core.h"
@@ -33,4 +32,64 @@ bool Keyboard::any(EventType type) {
   } else {
     return Game::getEventManager()->anyKeyDown();
   }
+}
+
+s8 Keyboard::getDirectionXAxis() {
+  if(Game::getEventManager()->isKeyDown(KEY_LEFT)) {
+    if(Game::getEventManager()->isKeyDown(KEY_UP)) {
+      directionAngle = 135.0f;
+      return -87;
+    } else if(Game::getEventManager()->isKeyDown(KEY_DOWN)) {
+      directionAngle = 225.0f;
+      return -87;
+    } else {
+      directionAngle = 180.0f;
+      return -127;
+    }
+  } else if(Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
+    if(Game::getEventManager()->isKeyDown(KEY_UP)) {
+      directionAngle = 45.0f;
+      return 87;
+    } else if(Game::getEventManager()->isKeyDown(KEY_DOWN)) {
+      directionAngle = 315.0f;
+      return 87;
+    } else {
+      directionAngle = 0.0f;
+      return 127;
+    }
+  } else {
+    return 0;
+  }
+}
+
+s8 Keyboard::getDirectionYAxis() {
+  if(Game::getEventManager()->isKeyDown(KEY_UP)) {
+    if(Game::getEventManager()->isKeyDown(KEY_LEFT)) {
+      directionAngle = 135.0f;
+      return 87;
+    } else if(Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
+      directionAngle = 45.0f;
+      return 87;
+    } else {
+      directionAngle = 90.0f;
+      return 127;
+    }
+  } else if(Game::getEventManager()->isKeyDown(KEY_DOWN)) {
+    if(Game::getEventManager()->isKeyDown(KEY_LEFT)) {
+      directionAngle = 225.0f;
+      return -87;
+    } else if(Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
+      directionAngle = 315.0f;
+      return -87;
+    } else {
+      directionAngle = 270.0f;
+      return -127;
+    }
+  } else {
+    return 0;
+  }
+}
+
+f32 Keyboard::getDirectionAngle() {
+  return directionAngle;
 }

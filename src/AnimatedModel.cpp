@@ -1,9 +1,8 @@
 /******************************************************************************
-Le code source d'Invisible Spirit par Thomas Noury est mis à disposition selon
-les termes de la licence Creative Commons Paternité - Pas d'Utilisation
-Commerciale - Partage des Conditions Initiales à l'Identique (BY-NC-SA) 3.0
-Unported. Basé(e) sur une oeuvre à www.is06.com.  Les autorisations au-delà du
-champ de cette licence peuvent être obtenues à http://www.is06.com.
+Invisible Spirit by Thomas Noury is licensed under a Creative Commons
+Attribution-NonCommercial-ShareAlike 3.0 Unported License. Based on a work at
+is06.com. Permissions beyond the scope of this license may be available at
+http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../include/core.h"
@@ -12,56 +11,57 @@ using namespace irr;
 using namespace std;
 
 /**
- * Constructeur de tous les modèles 3D animés créés dans les scènes
+ * 3D Animated model constructor
  */
 AnimatedModel::AnimatedModel() : ModelEntity() {
 
 }
 
 /**
- * Fonction de mise à jour et de rendu de tous les modèles 3D animés
+ * Update and render function of 3D animated models
  */
 void AnimatedModel::render() { ModelEntity::render();
 
 }
 
 /**
- * Fonction qui crée le node animé et l'ajoute au gestionnaire de scene Irrlicht
- * @param vector3df& initPosition référence vers un vecteur3df qui désigne la position initiale du node
+ * Creates the animated node and add it to Irrlicht's scene manager
+ * @param vector3df& initPosition reference to the node initial position
  */
 void AnimatedModel::createNode(const core::vector3df& initPosition) {
   mainNode = Game::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)mainMesh);
-  if(!mainNode) {
-    //Game::getErrorManager()->addError(ELL_ERROR, "AnimatedModel:: Node non cree");
-  }
   mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
   mainNode->setPosition(initPosition);
-  //mainNode->setDebugDataVisible(scene::EDS_FULL);
 }
 
 /**
- *
+ * Returns true if the animated model collides with a static model defined by other
+ * @param StaticModel* other pointer to the static object which collides with the animated model
+ * @return bool true if collision
  */
 bool AnimatedModel::collidesWithStatic(StaticModel* other) {
-  NewtonCollision* mainBodyCollision = NewtonBodyGetCollision(mainBody);
-  NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
+  NewtonBody* otherBody = other->getMainBody();
 
   f32 mainBodyMatrix[16] = {};
   f32 otherBodyMatrix[16] = {};
 
   NewtonBodyGetMatrix(mainBody, mainBodyMatrix);
-  NewtonBodyGetMatrix(other->getMainBody(), otherBodyMatrix);
+  NewtonBodyGetMatrix(otherBody, otherBodyMatrix);
+
+  f32 contacts[3];
+  f32 normals[3];
+  f32 penetration[3];
 
   s32 res = NewtonCollisionCollide(
     Game::getNewtonWorld(),
-    Game::MAX_POINT_COLLIDE,
-    mainBodyCollision,
+    64,
+    NewtonBodyGetCollision(mainBody),
     mainBodyMatrix,
-    otherBodyCollision,
+    NewtonBodyGetCollision(otherBody),
     otherBodyMatrix,
-    Game::contacts,
-    Game::normals,
-    Game::penetration,
+    contacts,
+    normals,
+    penetration,
     0
   );
 
@@ -69,51 +69,67 @@ bool AnimatedModel::collidesWithStatic(StaticModel* other) {
 }
 
 /**
- *
+ * Cast a ray from the center of the model to the bottom of it in order to compute
+ * collision with the floor. A value greater than 1.0f means that the model does not
+ * collide with the floor. A value lower than 1.0f means we need to raise the model
+ * @param StaticModel* other pointer to the static object which collides with the animated model
+ * @return f32 collision depth with the floor (distance between the floor and the center of the model)
  */
 f32 AnimatedModel::getFloorCollision(StaticModel* other) {
-
-  NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
-
   f32 normals[3];
   s32 faceId;
 
+  // origin: center of the model
   core::vector3df origin(
     mainNode->getPosition().X,
     mainNode->getPosition().Y,
     mainNode->getPosition().Z
   );
+  // end: bottom of the model
   core::vector3df end(
     mainNode->getPosition().X,
     mainNode->getPosition().Y - 1.0f,
     mainNode->getPosition().Z
   );
 
-  f32 ray = NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, normals, &faceId);
-
-  return ray;
+  return NewtonCollisionRayCast(
+    NewtonBodyGetCollision(other->getMainBody()),
+    &origin.X,
+    &end.X,
+    normals,
+    &faceId
+  );
 }
 
 /**
- *
+ * Not documented yet, sorry :/
  */
-f32 AnimatedModel::getWallCollisionP(StaticModel* other) {
+f32 AnimatedModel::getWallCollisionP(StaticModel* other, core::vector3df& origin, core::vector3df& end) {
 
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
 
   f32 normals[3];
   s32 faceId;
 
-  core::vector3df origin(
-    0.5f * cos(mainNode->getRotation().Y),
+  f32 xPoint = mainNode->getPosition().X - 0.5f * cos(core::degToRad(mainNode->getRotation().Y));
+  f32 zPoint = mainNode->getPosition().Z + 0.5f * sin(core::degToRad(mainNode->getRotation().Y));
+
+  origin = core::vector3df(
+    xPoint,
     mainNode->getPosition().Y,
-    0.5f * sin(mainNode->getRotation().Y)
+    zPoint
   );
-  core::vector3df end(
-    mainNode->getPosition().X - 0.5f,
+
+  xPoint = xPoint - 1.0f * cos(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
+  zPoint = zPoint + 1.0f * sin(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
+
+  end = core::vector3df(
+    xPoint,
     mainNode->getPosition().Y,
-    mainNode->getPosition().Z + 1.0f
+    zPoint
   );
+
+  //_vector_print(end);
 
   f32 ray = NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, normals, &faceId);
 
@@ -121,24 +137,31 @@ f32 AnimatedModel::getWallCollisionP(StaticModel* other) {
 }
 
 /**
- *
+ * Not documented yet, sorry :/
  */
-f32 AnimatedModel::getWallCollisionQ(StaticModel* other) {
+f32 AnimatedModel::getWallCollisionQ(StaticModel* other, core::vector3df& origin, core::vector3df& end) {
 
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
 
   f32 normals[3];
   s32 faceId;
 
-  core::vector3df origin(
-    mainNode->getPosition().X + 0.5f,
+  f32 xPoint = mainNode->getPosition().X - 0.5f * cos(core::degToRad(mainNode->getRotation().Y) + core::PI);
+  f32 zPoint = mainNode->getPosition().Z + 0.5f * sin(core::degToRad(mainNode->getRotation().Y) + core::PI);
+
+  origin = core::vector3df(
+    xPoint,
     mainNode->getPosition().Y,
-    mainNode->getPosition().Z
+    zPoint
   );
-  core::vector3df end(
-    mainNode->getPosition().X + 0.5f,
+
+  xPoint = xPoint - 1.0f * cos(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
+  zPoint = zPoint + 1.0f * sin(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
+
+  end = core::vector3df(
+    xPoint,
     mainNode->getPosition().Y,
-    mainNode->getPosition().Z + 1.0f
+    zPoint
   );
 
   f32 ray = NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, normals, &faceId);
@@ -147,14 +170,14 @@ f32 AnimatedModel::getWallCollisionQ(StaticModel* other) {
 }
 
 /**
- *
+ * Under construction
  */
 bool AnimatedModel::collidesWithAnimated(AnimatedModel* other) {
   return false;
 }
 
 /**
- * Destructeur
+ * Destructor, removes the main node
  */
 AnimatedModel::~AnimatedModel() {
   if(mainNode) {
