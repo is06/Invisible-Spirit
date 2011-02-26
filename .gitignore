@@ -1,0 +1,10 @@
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cbp
+*.depend
+*.layout
+bin/*.dll
+bin/*.exe
+
