@@ -7,4 +7,6 @@ Makefile
 *.layout
 bin/*.dll
 bin/*.exe
-
+bin/Debug
+bin/Release
+obj/
