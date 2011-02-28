@@ -144,6 +144,21 @@ void SceneGameplay::manageAyronMovements() {
  *
  */
 void SceneGameplay::manageAyronCollisions() {
+  if(keyboard->pressed(KEY_KEY_Y)) {
+    ayron->getNode()->setRotation(core::vector3df(
+      ayron->getNode()->getRotation().X,
+      ayron->getNode()->getRotation().Y + 0.5f,
+      ayron->getNode()->getRotation().Z
+    ));
+  }
+  if(keyboard->pressed(KEY_KEY_U)) {
+    ayron->getNode()->setRotation(core::vector3df(
+      ayron->getNode()->getRotation().X,
+      ayron->getNode()->getRotation().Y - 0.5f,
+      ayron->getNode()->getRotation().Z
+    ));
+  }
+
   // Collisions avec le sol
   if(ayron->getFloorCollision(level) > 1.0) {
     ayron->fall();
@@ -159,21 +174,19 @@ void SceneGameplay::manageAyronCollisions() {
   core::vector3df endP;
   core::vector3df originQ;
   core::vector3df endQ;
+  core::vector3df normal;
 
   originP = core::vector3df(-0.5,0,0);
   endP = core::vector3df(-0.5,0,-1);
   originQ = core::vector3df(0.5,0,0);
   endQ = core::vector3df(0.5,0,-1);
 
-  f32 wallCollisionP = ayron->getWallCollisionP(level, originP, endP);
-  f32 wallCollisionQ = ayron->getWallCollisionQ(level, originQ, endQ);
+  f32 wallCollisionP = ayron->getWallCollisionP(level, originP, endP, normal);
+  f32 wallCollisionQ = ayron->getWallCollisionQ(level, originQ, endQ, normal);
   if(wallCollisionP < 1.0f || wallCollisionQ < 1.0f) {
-    while(ayron->getWallCollisionP(level, originP, endP) < 0.99 || ayron->getWallCollisionQ(level, originQ, endQ) < 0.99) {
-      if(ayron->getWallCollisionP(level, originP, endP) < 1 && ayron->getWallCollisionQ(level, originP, endP) < 1) {
-        ayron->moveOpposite(true);
-      } else {
-        ayron->moveOpposite(false);
-      }
+    //ayron->moveOpposite(normal);
+    while(ayron->getWallCollisionP(level, originP, endP, normal) < 0.99 || ayron->getWallCollisionQ(level, originQ, endQ, normal) < 0.99) {
+      ayron->moveOpposite(normal);
     }
   }
 

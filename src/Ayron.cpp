@@ -21,7 +21,7 @@ Ayron::Ayron(Camera* cam) : Character() {
 
   // Loading mesh
   loadMesh("resource/mesh/character/cube.obj");
-  createNode(core::vector3df(0, 1, -2));
+  createNode(core::vector3df(-3, 1, -4));
   linkedCam = cam;
 
   // Start direction
@@ -109,25 +109,19 @@ f32 Ayron::getJumpStrength() {
  * Applies an opposite force to Ayron in order to stop it against a wall
  * Function still under development
  */
-void Ayron::moveOpposite(bool frontal) {
-  f32 x = cos(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2));
-  f32 z = sin(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2));
+void Ayron::moveOpposite(const core::vector3df& normal) {
+  f32 angle = (core::radToDeg(atan2(normal.X, normal.Z)) * -1) + 90;
+
+  f32 x = cos(core::degToRad(angle));
+  f32 z = sin(core::degToRad(angle));
 
   core::vector3df origin = mainNode->getPosition();
 
-  if(frontal) {
-    mainNode->setPosition(core::vector3df(
-      mainNode->getPosition().X - (x * (0.05f / 1024.0f)),
-      mainNode->getPosition().Y,
-      mainNode->getPosition().Z + (z * (0.05f / 1024.0f))
-    ));
-  } else {
-    mainNode->setPosition(core::vector3df(
-      mainNode->getPosition().X + (x * (0.05f / 1024.0f)),
-      mainNode->getPosition().Y,
-      mainNode->getPosition().Z + (z * (0.05f / 1024.0f))
-    ));
-  }
+  mainNode->setPosition(core::vector3df(
+    mainNode->getPosition().X + (x * (0.05f / 1024.0f)),
+    mainNode->getPosition().Y,
+    mainNode->getPosition().Z + (z * (0.05f / 1024.0f))
+  ));
 
   core::vector3df end(
     mainNode->getPosition().X + (x * (5.0f)),
@@ -137,7 +131,7 @@ void Ayron::moveOpposite(bool frontal) {
 
   core::matrix4 mat;
   Game::getVideoDriver()->setTransform(video::ETS_WORLD, mat);
-  Game::getVideoDriver()->draw3DLine(origin, end, video::SColor(255,255,255,255));
+  Game::getVideoDriver()->draw3DLine(origin, end, video::SColor(255,255,0,255));
 }
 
 /**
