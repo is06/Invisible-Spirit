@@ -29,7 +29,7 @@ class Ayron : public Character {
     f32 getJumpStrength();
 
     // Collisions avec les murs
-    void moveOpposite(bool frontal = true);
+    void moveOpposite(const core::vector3df& normal);
 
     bool hasControl();
 
