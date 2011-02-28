@@ -103,7 +103,7 @@ void Game::run() {
     timeToSleep = ((1000.0f / framerate) - renderTime) + after;
 
     while(device->getTimer()->getRealTime() < timeToSleep) {
-      device->yield();
+      //device->yield();
     }
 
     videoDriver->endScene();

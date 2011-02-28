@@ -8,6 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef GAMEPAD_H
 #define GAMEPAD_H
 
+using namespace irr;
+using namespace std;
+
 class Gamepad {
   public:
     Gamepad();
@@ -22,8 +25,12 @@ class Gamepad {
     s8 getRightJoystickXAxis();
     s8 getRightJoystickYAxis();
 
-    bool buttonPressed(u16 buttons);
-    bool dirPressed(GamepadDirection direction);
+    bool buttonPressed(u16 buttons, EventType type = EVENT_ALWAYS);
+    bool dirPressed(GamepadDirection direction, EventType type = EVENT_ALWAYS);
+
+  private:
+    map<u16, bool> buttonOnce;
+    map<GamepadDirection, bool> directionOnce;
 };
 
 #endif

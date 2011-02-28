@@ -16,8 +16,10 @@ using namespace std;
  */
 Ayron::Ayron(Camera* cam) : Character() {
   controlable = true;
-  jumpStrength = 0.0f;
-  fallStrength = 0.0f;
+  jumpDelta = 0.0f;
+  fallDelta = 0.0f;
+  gravity = 0.005f;
+  jumpStrength = 0.15f;
 
   // Loading mesh
   loadMesh("resource/mesh/character/cube.obj");
@@ -46,12 +48,12 @@ void Ayron::render() { Character::render();
  */
 void Ayron::fall() {
   if(!isJumping) {
-    if(fallStrength < Ayron::JUMP_STRENGTH) {
-      fallStrength += Ayron::GRAVITY;
+    if(fallDelta < jumpStrength) {
+      fallDelta += gravity;
     }
     mainNode->setPosition(core::vector3df(
       mainNode->getPosition().X,
-      mainNode->getPosition().Y - fallStrength,
+      mainNode->getPosition().Y - fallDelta,
       mainNode->getPosition().Z
     ));
   }
@@ -63,7 +65,7 @@ void Ayron::fall() {
 void Ayron::raise() {
   if(isFalling) {
     // Ayron is hitting the floor
-    fallStrength = 0.0f;
+    fallDelta = 0.0f;
     isFalling = false;
   }
   mainNode->setPosition(core::vector3df(
@@ -78,14 +80,14 @@ void Ayron::raise() {
  */
 void Ayron::jump() {
   if(isJumping) {
-    jumpStrength -= Ayron::GRAVITY;
-    if(jumpStrength <= 0) {
+    jumpDelta -= gravity;
+    if(jumpDelta <= 0) {
       isJumping = false;
       isFalling = true;
     }
     mainNode->setPosition(core::vector3df(
       mainNode->getPosition().X,
-      mainNode->getPosition().Y + jumpStrength,
+      mainNode->getPosition().Y + jumpDelta,
       mainNode->getPosition().Z
     ));
   }
@@ -94,8 +96,15 @@ void Ayron::jump() {
 /**
  *
  */
-void Ayron::setJumpStrength(f32 value) {
-  jumpStrength = value;
+void Ayron::setJumpDelta(f32 value) {
+  jumpDelta = value;
+}
+
+/**
+ *
+ */
+f32 Ayron::getJumpDelta() {
+  return jumpDelta;
 }
 
 /**

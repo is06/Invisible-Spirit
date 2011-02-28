@@ -24,7 +24,8 @@ class Ayron : public Character {
     void fall();
     void raise();
     void jump();
-    void setJumpStrength(f32 value);
+    void setJumpDelta(f32 value);
+    f32 getJumpDelta();
     f32 getJumpStrength();
 
     // Collisions avec les murs
@@ -32,17 +33,16 @@ class Ayron : public Character {
 
     bool hasControl();
 
-    const static f32 GRAVITY = 0.02f;
-    const static f32 JUMP_STRENGTH = 0.3f;
-
   private:
     void updateCoords(f32 deltaU, f32 speed);
 
     Camera* linkedCam;
 
     bool controlable;
+    f32 jumpDelta;
+    f32 fallDelta;
+    f32 gravity;
     f32 jumpStrength;
-    f32 fallStrength;
 };
 
 #endif

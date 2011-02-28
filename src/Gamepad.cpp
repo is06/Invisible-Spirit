@@ -85,8 +85,22 @@ s8 Gamepad::getRightJoystickYAxis() {
  * @param u16 buttons la combinaison (addition) de un ou plusieurs boutons spécifiés dans l'enum GamepadButton
  * @return bool si la combinaison spécifiée est bien pressée
  */
-bool Gamepad::buttonPressed(u16 buttons) {
-  return (Game::getEventManager()->getPressedButtons() == buttons);
+bool Gamepad::buttonPressed(u16 buttons, EventType type) {
+  if(type == EVENT_ONCE) {
+    if(!buttonOnce[buttons]) {
+      if(Game::getEventManager()->getPressedButtons() == buttons) {
+        buttonOnce[buttons] = true;
+        return true;
+      }
+    } else {
+      if(Game::getEventManager()->getPressedButtons() != buttons) {
+        buttonOnce[buttons] = false;
+      }
+    }
+    return false;
+  } else {
+    return (Game::getEventManager()->getPressedButtons() == buttons);
+  }
 }
 
 /**
@@ -94,6 +108,20 @@ bool Gamepad::buttonPressed(u16 buttons) {
  * @param GamepadDirection direction la direction spécifiée dans l'enum GamepadDirection
  * @return bool si la direction spécifiée est bien appuyée
  */
-bool Gamepad::dirPressed(GamepadDirection direction) {
-  return ((s32)Game::getEventManager()->getPovValue() == direction);
+bool Gamepad::dirPressed(GamepadDirection direction, EventType type) {
+  if(type == EVENT_ONCE) {
+    if(!directionOnce[direction]) {
+      if((s32)Game::getEventManager()->getPovValue() == direction) {
+        directionOnce[direction] = true;
+        return true;
+      }
+    } else {
+      if((s32)Game::getEventManager()->getPovValue() != direction) {
+        directionOnce[direction] = false;
+      }
+    }
+    return false;
+  } else {
+    return ((s32)Game::getEventManager()->getPovValue() == direction);
+  }
 }

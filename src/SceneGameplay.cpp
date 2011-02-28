@@ -77,12 +77,25 @@ void SceneGameplay::manageCameraControl() {
 void SceneGameplay::manageAyronJumps() {
   if(ayron->hasControl()) {
     ayron->isJumping = false;
+
+    // Clavier
     if(keyboard->pressed(KEY_KEY_V, EVENT_ONCE)) {
       if(!ayron->isJumping && !ayron->isFalling) {
-        ayron->setJumpStrength(Ayron::JUMP_STRENGTH);
+        ayron->setJumpDelta(ayron->getJumpStrength());
       }
     }
     if(keyboard->pressed(KEY_KEY_V)) {
+      ayron->isJumping = true;
+      ayron->jump();
+    }
+
+    // Manette
+    if(gamepad->buttonPressed(GP_BUTTON_B, EVENT_ONCE)) {
+      if(!ayron->isJumping && !ayron->isFalling) {
+        ayron->setJumpDelta(ayron->getJumpStrength());
+      }
+    }
+    if(gamepad->buttonPressed(GP_BUTTON_B)) {
       ayron->isJumping = true;
       ayron->jump();
     }
