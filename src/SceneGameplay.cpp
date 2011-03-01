@@ -11,8 +11,7 @@ using namespace irr;
 using namespace std;
 
 /**
- * Initialise les objets présents dans toutes scènes de Gameplay
- * (Ayron, décor, caméra TP...)
+ * Initialize all objects and entity in this type of scene
  */
 SceneGameplay::SceneGameplay() : Scene() {
   level = new LevelMesh();
@@ -23,8 +22,7 @@ SceneGameplay::SceneGameplay() : Scene() {
 }
 
 /**
- * Fonction qui teste les événements de toute scène de Gameplay
- * Contrôle du personnage et de la caméra
+ * This function manages all events in this type of scene
  */
 void SceneGameplay::events() { Scene::events();
   manageCameraControl();
@@ -32,17 +30,17 @@ void SceneGameplay::events() { Scene::events();
   manageAyronMovements();
   manageAyronCollisions();
 
-  // Rendu des entités
+  // Entities rendering
   ayron->render();
   cam->render();
 }
 
 /**
- *
+ * Manages camera control. Called every cycke
  */
 void SceneGameplay::manageCameraControl() {
   if(cam->hasControl()) {
-    // Mouvements au pavé numérique
+    // Keyboard control
     if(keyboard->pressed(KEY_NUMPAD4)) {
       cam->goLeft(100);
     } else if(keyboard->pressed(KEY_NUMPAD6)) {
@@ -54,7 +52,7 @@ void SceneGameplay::manageCameraControl() {
       cam->goFar(100);
     }
 
-    // Mouvements au stick analogique droit
+    // Joystick control
     if(fabs(gamepad->getRightJoystickXAxis()) > 35
     || fabs(gamepad->getRightJoystickYAxis()) > 35) {
       if(gamepad->getRightJoystickXAxis() < -35) {
@@ -72,7 +70,7 @@ void SceneGameplay::manageCameraControl() {
 }
 
 /**
- *
+ * Manages Ayron's jumps. Called every cycle
  */
 void SceneGameplay::manageAyronJumps() {
   if(ayron->hasControl()) {
@@ -103,13 +101,15 @@ void SceneGameplay::manageAyronJumps() {
 }
 
 /**
- *
+ * This function manages Ayron's movements, both keyboard and gamepad
+ * are functionnal. Called every cycle
  */
 void SceneGameplay::manageAyronMovements() {
 
+  // Keyboard control
   if(keyboard->pressed(KEY_UP) || keyboard->pressed(KEY_DOWN)
   || keyboard->pressed(KEY_LEFT) || keyboard->pressed(KEY_RIGHT)) {
-    // Direction d'Ayron en fonction de l'angle des touches
+    // Ayron's direction from keyboard's arrows angle
     ayron->getNode()->setRotation(core::vector3df(
       ayron->getNode()->getRotation().X,
       cam->getNode()->getRotation().Y - (keyboard->getDirectionAngle() + core::radToDeg(core::PI / 2)),
@@ -129,10 +129,10 @@ void SceneGameplay::manageAyronMovements() {
     }
   }
 
-  // Contrôle d'Ayron au stick analogique gauche
+  // Joystick control
   if(fabs(gamepad->getLeftJoystickXAxis()) > 35
   || fabs(gamepad->getLeftJoystickYAxis()) > 35) {
-    // Direction d'Ayron en fonction de l'angle du joystick
+    // Ayron's direction from joystick's angle
     ayron->getNode()->setRotation(core::vector3df(
       ayron->getNode()->getRotation().X,
       cam->getNode()->getRotation().Y - (gamepad->getLeftJoystickAngle() + core::radToDeg(core::PI / 2)),
@@ -154,25 +154,11 @@ void SceneGameplay::manageAyronMovements() {
 }
 
 /**
- *
+ * This function manages Ayron collision with floor and wall.
+ * Called every cycle
  */
 void SceneGameplay::manageAyronCollisions() {
-  if(keyboard->pressed(KEY_KEY_Y)) {
-    ayron->getNode()->setRotation(core::vector3df(
-      ayron->getNode()->getRotation().X,
-      ayron->getNode()->getRotation().Y + 0.5f,
-      ayron->getNode()->getRotation().Z
-    ));
-  }
-  if(keyboard->pressed(KEY_KEY_U)) {
-    ayron->getNode()->setRotation(core::vector3df(
-      ayron->getNode()->getRotation().X,
-      ayron->getNode()->getRotation().Y - 0.5f,
-      ayron->getNode()->getRotation().Z
-    ));
-  }
-
-  // Collisions avec le sol
+  // Floor collision
   if(ayron->getFloorCollision(level) > 1.0) {
     ayron->fall();
   }
@@ -182,36 +168,19 @@ void SceneGameplay::manageAyronCollisions() {
     }
   }
 
-  // Collisions avec les murs
-  core::vector3df originP;
-  core::vector3df endP;
-  core::vector3df originQ;
-  core::vector3df endQ;
+  // Wall collision, this normal vector will be modified by getWallCollision functions
   core::vector3df normal;
 
-  originP = core::vector3df(-0.5,0,0);
-  endP = core::vector3df(-0.5,0,-1);
-  originQ = core::vector3df(0.5,0,0);
-  endQ = core::vector3df(0.5,0,-1);
-
-  f32 wallCollisionP = ayron->getWallCollisionP(level, originP, endP, normal);
-  f32 wallCollisionQ = ayron->getWallCollisionQ(level, originQ, endQ, normal);
-  if(wallCollisionP < 1.0f || wallCollisionQ < 1.0f) {
-    //ayron->moveOpposite(normal);
-    while(ayron->getWallCollisionP(level, originP, endP, normal) < 0.99 || ayron->getWallCollisionQ(level, originQ, endQ, normal) < 0.99) {
+  if(ayron->getWallCollision(RAY_WALL_P, level, normal) < 1.0f || ayron->getWallCollision(RAY_WALL_Q, level, normal) < 1.0f) {
+    while(ayron->getWallCollision(RAY_WALL_P, level, normal) < 0.99 || ayron->getWallCollision(RAY_WALL_Q, level, normal) < 0.99) {
       ayron->moveOpposite(normal);
     }
   }
-
-  core::matrix4 mat;
-  Game::getVideoDriver()->setTransform(video::ETS_WORLD, mat);
-
-  Game::getVideoDriver()->draw3DLine(originP, endP, video::SColor(255,255,0,0));
-  Game::getVideoDriver()->draw3DLine(originQ, endQ, video::SColor(255,0,255,255));
 }
 
 /**
- *
+ * This functions is called after all scene object render
+ * It renders HUD elements in front of camera
  */
 void SceneGameplay::postRender() { Scene::postRender();
   //gpInterface->render();

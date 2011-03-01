@@ -51,6 +51,8 @@ class Button;
 class TextButton;
 class IconButton;
 class IconTextButton;
+class Menu;
+class MenuOption;
 
 // Newton
 
@@ -105,6 +107,8 @@ class Speaker;
 #include "IconButton.h"
 #include "TextButton.h"
 #include "IconTextButton.h"
+#include "Menu.h"
+#include "MenuOption.h"
 
 #include "Camera.h"
 #include "TPCamera.h"
