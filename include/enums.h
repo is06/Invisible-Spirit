@@ -84,4 +84,15 @@ enum RayType {
   RAY_FLOOR_D
 };
 
+enum MenuStyle {
+  MENU_STYLE_TITLE,
+  MENU_STYLE_HOME,
+  MENU_STYLE_EQUIPMENT
+};
+
+enum MenuIcon {
+  MENU_ICON_SWORD,
+  MENU_ICON_SHIELD
+};
+
 #endif
