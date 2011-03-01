@@ -75,4 +75,13 @@ enum GameplayControlButtons {
   CB_BUTTON_QUIT
 };
 
+enum RayType {
+  RAY_WALL_P,
+  RAY_WALL_Q,
+  RAY_FLOOR_A,
+  RAY_FLOOR_B,
+  RAY_FLOOR_C,
+  RAY_FLOOR_D
+};
+
 #endif
