@@ -31,7 +31,7 @@ Ayron::Ayron(Camera* cam) : Character() {
     mainNode->getRotation().Z
   ));
 
-  mainNode->getMaterial(0).Wireframe = true;
+  //mainNode->getMaterial(0).Wireframe = true;
 }
 
 /**
@@ -110,28 +110,13 @@ f32 Ayron::getJumpStrength() {
  * Function still under development
  */
 void Ayron::moveOpposite(const core::vector3df& normal) {
-  f32 angle = (core::radToDeg(atan2(normal.X, normal.Z)) * -1) + 90;
-
-  f32 x = cos(core::degToRad(angle));
-  f32 z = sin(core::degToRad(angle));
-
-  core::vector3df origin = mainNode->getPosition();
+  f32 angle = (atan2(normal.X, normal.Z) * -1) + (core::PI / 2);
 
   mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X + (x * (0.05f / 1024.0f)),
+    mainNode->getPosition().X + (cos(angle) * (0.05f / 1024.0f)),
     mainNode->getPosition().Y,
-    mainNode->getPosition().Z + (z * (0.05f / 1024.0f))
+    mainNode->getPosition().Z + (sin(angle) * (0.05f / 1024.0f))
   ));
-
-  core::vector3df end(
-    mainNode->getPosition().X + (x * (5.0f)),
-    mainNode->getPosition().Y,
-    mainNode->getPosition().Z + (z * (5.0f))
-  );
-
-  core::matrix4 mat;
-  Game::getVideoDriver()->setTransform(video::ETS_WORLD, mat);
-  Game::getVideoDriver()->draw3DLine(origin, end, video::SColor(255,255,0,255));
 }
 
 /**
