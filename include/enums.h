@@ -95,4 +95,8 @@ enum MenuIcon {
   MENU_ICON_SHIELD
 };
 
+enum FontStyle {
+  FONT_STD_REGULAR
+};
+
 #endif

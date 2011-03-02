@@ -44,6 +44,8 @@ class IconCounter;
 class Picture;
 class Animation;
 class Text;
+class TextChar;
+class TextFont;
 
 class GameplayInterface;
 class ButtonsInterface;
@@ -100,6 +102,9 @@ class Speaker;
 #include "LevelMesh.h"
 
 #include "Hud.h"
+#include "Text.h"
+#include "TextChar.h"
+#include "TextFont.h"
 #include "Picture.h"
 #include "GameplayInterface.h"
 #include "ButtonsInterface.h"

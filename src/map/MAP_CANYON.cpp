@@ -18,6 +18,8 @@ MAP_CANYON::MAP_CANYON() : SceneGameplay() {
   level->loadMesh("resource/mesh/level/test2.obj");
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
+
+  Text* test = new Text("test", 10, 10);
 }
 
 /**
