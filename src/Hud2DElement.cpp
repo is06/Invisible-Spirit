@@ -24,7 +24,8 @@ Hud2DElement::Hud2DElement(f32 w, f32 h, f32 x, f32 y) : Hud() {
   // Materiau
   material.Lighting = false;
   material.DiffuseColor.setAlpha(255);
-  material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.opacity;
+  //material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.opacity;
+  material.MaterialType = video::EMT_TRANSPARENT_ALPHA_CHANNEL;
 
   // Création vertices
   vertices[0] = video::S3DVertex(

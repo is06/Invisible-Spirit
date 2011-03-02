@@ -21,6 +21,7 @@ class Text : public Hud {
   private:
     TextFont* font;
     core::position2df pos;
+    core::position2df currentCharPos;
     core::stringw textStr;
     vector<TextChar> charList;
     vector<TextChar>::iterator charIt;

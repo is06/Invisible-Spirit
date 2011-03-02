@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-class TextChar : public Hud {
+class TextChar : public Hud2DElement {
   public:
     TextChar(u8 code, f32 x, f32 y, TextFont* font);
     ~TextChar();
