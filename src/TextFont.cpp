@@ -14,10 +14,23 @@ TextFont::TextFont(FontStyle style) {
   core::stringc filePath = "resource/hud/font/";
 
   switch(style) {
-    case FONT_STD_REGULAR: filePath.append("std_regular.png"); break;
+    case FONT_STD_REGULAR: filePath.append("std_regular"); break;
   }
 
-  fontTexture = Game::getVideoDriver()->getTexture(filePath);
+  core::stringc texturePath = filePath;
+  core::stringc dataPath = filePath;
+  texturePath.append(".png");
+  dataPath.append(".dat");
+
+  fstream fileStream(dataPath.c_str(), ios::in);
+  //char str;
+  if(fileStream) {
+    // TODO : trouver un moyen de lire les lignes dans un conteneur stringc
+    //getline(fileStream, str);
+    //cout << str << endl;
+  }
+
+  fontTexture = Game::getVideoDriver()->getTexture(texturePath);
   fontMaterial.setTexture(0, fontTexture);
   fontMaterial.Lighting = false;
 }

@@ -21,6 +21,7 @@ class TextFont {
   private:
     video::ITexture* fontTexture;
     video::SMaterial fontMaterial;
+    u8 offset[256];
 };
 
 #endif
