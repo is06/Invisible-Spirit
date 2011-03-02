@@ -18,7 +18,7 @@ SceneGameplay::SceneGameplay() : Scene() {
   cam = new TPCamera();
   ayron = new Ayron(cam);
   cam->linkEntity(ayron);
-  //gpInterface = new GameplayInterface();
+  gpInterface = new GameplayInterface();
 }
 
 /**
@@ -183,7 +183,7 @@ void SceneGameplay::manageAyronCollisions() {
  * It renders HUD elements in front of camera
  */
 void SceneGameplay::postRender() { Scene::postRender();
-  //gpInterface->render();
+  gpInterface->render();
 }
 
 /**
@@ -193,5 +193,5 @@ SceneGameplay::~SceneGameplay() {
   delete level;
   delete ayron;
   delete cam;
-  //delete gpInterface;
+  delete gpInterface;
 }

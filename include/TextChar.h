@@ -13,13 +13,13 @@ using namespace irr;
 
 class TextChar : public Hud {
   public:
-    TextChar(u8 code);
+    TextChar(u8 code, f32 x, f32 y, TextFont* font);
     ~TextChar();
 
     void render();
 
   private:
-
+    TextFont* fontStyle;
 };
 
 #endif

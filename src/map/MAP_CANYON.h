@@ -14,8 +14,10 @@ class MAP_CANYON : public SceneGameplay {
     ~MAP_CANYON();
 
     void events();
+    void postRender();
 
   private:
+    Text* message;
 };
 
 #endif

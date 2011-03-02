@@ -16,8 +16,11 @@ class TextFont {
     TextFont(FontStyle style);
     ~TextFont();
 
+    video::SMaterial& getMaterial();
+
   private:
-    video::ITexture* fontFile;
+    video::ITexture* fontTexture;
+    video::SMaterial fontMaterial;
 };
 
 #endif

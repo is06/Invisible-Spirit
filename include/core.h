@@ -13,6 +13,7 @@ http://www.is06.com. Legal code in license.txt
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <vector>
 
 #include "Util.h"
 #include "enums.h"

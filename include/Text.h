@@ -19,7 +19,12 @@ class Text : public Hud {
     void render();
 
   private:
+    TextFont* font;
     core::position2df pos;
+    core::stringw textStr;
+    vector<TextChar> charList;
+    vector<TextChar>::iterator charIt;
+
 };
 
 #endif

@@ -17,9 +17,15 @@ TextFont::TextFont(FontStyle style) {
     case FONT_STD_REGULAR: filePath.append("std_regular.png"); break;
   }
 
-  fontFile = Game::getVideoDriver()->getTexture(filePath);
+  fontTexture = Game::getVideoDriver()->getTexture(filePath);
+  fontMaterial.setTexture(0, fontTexture);
+  fontMaterial.Lighting = false;
+}
+
+video::SMaterial& TextFont::getMaterial() {
+  return fontMaterial;
 }
 
 TextFont::~TextFont() {
-  fontFile = NULL;
+  fontTexture = NULL;
 }

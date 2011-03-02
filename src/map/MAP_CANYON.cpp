@@ -19,7 +19,7 @@ MAP_CANYON::MAP_CANYON() : SceneGameplay() {
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
 
-  Text* test = new Text("test", 10, 10);
+  message = new Text(L"test!", 10, 10);
 }
 
 /**
@@ -27,12 +27,15 @@ MAP_CANYON::MAP_CANYON() : SceneGameplay() {
  */
 void MAP_CANYON::events() { SceneGameplay::events();
 
+}
 
+void MAP_CANYON::postRender() { SceneGameplay::postRender();
+  message->render();
 }
 
 /**
  * Detruit les objets définis dans le constructeur
  */
 MAP_CANYON::~MAP_CANYON() {
-
+  delete message;
 }

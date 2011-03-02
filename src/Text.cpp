@@ -11,13 +11,21 @@ using namespace std;
 using namespace irr;
 
 Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style) : Hud() {
-
+  textStr = str;
+  font = new TextFont(style);
+  pos = core::dimension2df(x, y);
+  const wchar_t* cs = textStr.c_str();
+  for(u16 i = 0; i < str.size(); i++) {
+    charList.push_back(TextChar(cs[i], 10, 10, font));
+  }
 }
 
 void Text::render() { Hud::render();
-
+  for(charIt = charList.begin(); charIt != charList.end(); charIt++) {
+    charIt->render();
+  }
 }
 
 Text::~Text() {
-
+  delete font;
 }

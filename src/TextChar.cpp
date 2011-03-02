@@ -10,8 +10,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-TextChar::TextChar(u8 code) : Hud() {
-
+TextChar::TextChar(u8 code, f32 x, f32 y, TextFont* font) : Hud() {
+  fontStyle = font;
 }
 
 void TextChar::render() { Hud::render();

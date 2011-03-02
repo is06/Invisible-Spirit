@@ -37,6 +37,7 @@ class Entity;
 
 // Interface 2D Joueur
 class Hud;
+class Hud2DElement;
 class Counter;
 class BarCounter;
 class DigitCounter;
@@ -102,6 +103,7 @@ class Speaker;
 #include "LevelMesh.h"
 
 #include "Hud.h"
+#include "Hud2DElement.h"
 #include "Text.h"
 #include "TextChar.h"
 #include "TextFont.h"

@@ -48,7 +48,7 @@ void Game::init() {
     true,
     (settings->getParamInt("display", "vsync") == 1),
     eventManager);
-  device->setWindowCaption(L"Invisible Spirit 0.1 r11 (01/03/2011)");
+  device->setWindowCaption(L"Invisible Spirit 0.1 r12 (02/03/2011)");
 
   // Activation du joystick
   core::array<SJoystickInfo> joystickInfo;
