@@ -15,17 +15,10 @@ using namespace irr;
  */
 Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style) : Hud() {
   textStr = str;
+  currentSize = 24;
   font = new TextFont(style);
   currentCharPos = pos = core::dimension2df(x, y);
-  const wchar_t* cs = textStr.c_str();
-  for(u16 i = 0; i < str.size(); i++) {
-    if(cs[i] == '\n') {
-      currentCharPos.X = x;
-      currentCharPos.Y -= 28;
-    } else {
-      charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, font));
-    }
-  }
+  updateTiles();
 }
 
 /**
@@ -34,6 +27,31 @@ Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style) : Hud() {
 void Text::render() { Hud::render();
   for(charIt = charList.begin(); charIt != charList.end(); charIt++) {
     charIt->render();
+  }
+}
+
+/**
+ *
+ */
+void Text::setSize(u8 size) {
+  currentSize = size;
+  updateTiles();
+}
+
+/**
+ *
+ */
+void Text::updateTiles() {
+  charList.clear();
+  currentCharPos = pos;
+  const wchar_t* cs = textStr.c_str();
+  for(u16 i = 0; i < textStr.size(); i++) {
+    if(cs[i] == '\n') {
+      currentCharPos.X = pos.X;
+      currentCharPos.Y -= (currentSize - (currentSize / 8));
+    } else {
+      charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font));
+    }
   }
 }
 

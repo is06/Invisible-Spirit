@@ -13,7 +13,7 @@ using namespace irr;
 
 class TextChar : public Hud2DElement {
   public:
-    TextChar(u8 code, f32& x, f32& y, TextFont* font);
+    TextChar(u8 code, f32& x, f32& y, u8 size, TextFont* font);
     ~TextChar();
 
     void render();

@@ -30,6 +30,9 @@ void MAP_CANYON::events() { SceneGameplay::events();
 }
 
 void MAP_CANYON::postRender() { SceneGameplay::postRender();
+  if(keyboard->pressed(KEY_KEY_S, EVENT_ONCE)) {
+    message->setSize(32);
+  }
   message->render();
 }
 

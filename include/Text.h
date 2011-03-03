@@ -17,6 +17,8 @@ class Text : public Hud {
     ~Text();
 
     void render();
+    void setSize(u8 size);
+    void updateTiles();
 
   private:
     TextFont* font;
@@ -25,6 +27,7 @@ class Text : public Hud {
     core::stringw textStr;
     vector<TextChar> charList;
     vector<TextChar>::iterator charIt;
+    u8 currentSize;
 
 };
 
