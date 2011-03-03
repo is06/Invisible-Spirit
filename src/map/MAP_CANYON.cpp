@@ -19,7 +19,7 @@ MAP_CANYON::MAP_CANYON() : SceneGameplay() {
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
 
-  message = new Text(L"Invisible Spirit", -200, -200);
+  message = new Text(L"Ceci est un test sur la premiere ligne,\nEt voici la seconde.", -300, 220);
 }
 
 /**

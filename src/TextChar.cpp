@@ -10,7 +10,11 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-TextChar::TextChar(u8 code, f32 x, f32 y, TextFont* font) : Hud2DElement(32, 32, x, y) {
+TextChar::TextChar(u8 code, f32& x, f32& y, TextFont* font) : Hud2DElement(32, 32, x, y) {
+  x += ((32 * (font->getCharOffset(code) / 100.0f)) / 2);
+  setPosition(x, y);
+  x += ((32 * (font->getCharOffset(code) / 100.0f)) / 2);
+
   fontStyle = font;
   material.setTexture(0, fontStyle->getMaterial().getTexture(0));
 

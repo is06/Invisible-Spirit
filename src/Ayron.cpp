@@ -33,7 +33,7 @@ Ayron::Ayron(Camera* cam) : Character() {
     mainNode->getRotation().Z
   ));
 
-  //mainNode->getMaterial(0).Wireframe = true;
+  mainNode->getMaterial(0).Wireframe = true;
 }
 
 /**

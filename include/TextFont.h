@@ -17,8 +17,11 @@ class TextFont {
     ~TextFont();
 
     video::SMaterial& getMaterial();
+    u8& getCharOffset(u8 code);
 
   private:
+    void readFontData(const core::stringc& dataFilePath);
+
     video::ITexture* fontTexture;
     video::SMaterial fontMaterial;
     u8 offset[256];

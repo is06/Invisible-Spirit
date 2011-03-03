@@ -19,8 +19,12 @@ Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style) : Hud() {
   currentCharPos = pos = core::dimension2df(x, y);
   const wchar_t* cs = textStr.c_str();
   for(u16 i = 0; i < str.size(); i++) {
-    currentCharPos.X += 32;
-    charList.push_back(TextChar(cs[i], currentCharPos.X, 10, font));
+    if(cs[i] == '\n') {
+      currentCharPos.X = x;
+      currentCharPos.Y -= 28;
+    } else {
+      charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, font));
+    }
   }
 }
 
