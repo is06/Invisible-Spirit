@@ -13,7 +13,7 @@ using namespace irr;
 
 class Text : public Hud {
   public:
-    Text(const core::stringw& str, f32 x, f32 y, FontStyle style = FONT_STD_REGULAR);
+    Text(const core::stringw& str, f32 x, f32 y, FontStyle style = FONT_STD_REGULAR, u8 speed = 0);
     ~Text();
 
     void render();
@@ -28,6 +28,7 @@ class Text : public Hud {
     vector<TextChar> charList;
     vector<TextChar>::iterator charIt;
     u8 currentSize;
+    u8 currentSpeed;
 
 };
 

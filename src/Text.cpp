@@ -13,7 +13,7 @@ using namespace irr;
 /**
  *
  */
-Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style) : Hud() {
+Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud() {
   textStr = str;
   currentSize = 24;
   font = new TextFont(style);
@@ -50,7 +50,7 @@ void Text::updateTiles() {
       currentCharPos.X = pos.X;
       currentCharPos.Y -= (currentSize - (currentSize / 8));
     } else {
-      charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font));
+      charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, false));
     }
   }
 }
