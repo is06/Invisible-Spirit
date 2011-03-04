@@ -19,9 +19,8 @@ MAP_CANYON::MAP_CANYON() : SceneGameplay() {
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
 
+  glowEffect = new PostRenderGlow();
   message = new Text(L"Ceci est un test sur la premiere ligne,\nEt voici la seconde.", -300, 220);
-
-  bloomEffect = new PostRenderBloom();
 }
 
 /**
@@ -32,7 +31,7 @@ void MAP_CANYON::events() { SceneGameplay::events();
 }
 
 void MAP_CANYON::postRender() { SceneGameplay::postRender();
-  bloomEffect->render();
+  glowEffect->render();
   //message->render();
 }
 
@@ -40,6 +39,6 @@ void MAP_CANYON::postRender() { SceneGameplay::postRender();
  * Detruit les objets définis dans le constructeur
  */
 MAP_CANYON::~MAP_CANYON() {
-  delete bloomEffect;
+  delete glowEffect;
   delete message;
 }

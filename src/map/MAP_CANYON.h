@@ -17,8 +17,8 @@ class MAP_CANYON : public SceneGameplay {
     void postRender();
 
   private:
+    PostRenderGlow* glowEffect;
     Text* message;
-    PostRenderBloom* bloomEffect;
 };
 
 #endif

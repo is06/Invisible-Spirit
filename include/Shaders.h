@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 struct Shaders {
   s32 opacity;
-  s32 bloom;
+  s32 glow;
 };
 
 #endif
