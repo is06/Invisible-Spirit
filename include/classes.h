@@ -14,6 +14,9 @@ class Settings;
 class SettingsGroup;
 
 class OpacityShaderCallback;
+class BloomShaderCallback;
+
+class PostRenderBloom;
 
 // =========================================================
 // INTERFACES
@@ -116,6 +119,9 @@ class Speaker;
 #include "IconTextButton.h"
 #include "Menu.h"
 #include "MenuOption.h"
+
+#include "PostRenderBloom.h"
+#include "BloomShaderCallback.h"
 
 #include "Camera.h"
 #include "TPCamera.h"

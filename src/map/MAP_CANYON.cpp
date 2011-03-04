@@ -20,6 +20,8 @@ MAP_CANYON::MAP_CANYON() : SceneGameplay() {
   level->loadMeshCollision();
 
   message = new Text(L"Ceci est un test sur la premiere ligne,\nEt voici la seconde.", -300, 220);
+
+  bloomEffect = new PostRenderBloom();
 }
 
 /**
@@ -30,15 +32,14 @@ void MAP_CANYON::events() { SceneGameplay::events();
 }
 
 void MAP_CANYON::postRender() { SceneGameplay::postRender();
-  if(keyboard->pressed(KEY_KEY_S, EVENT_ONCE)) {
-    message->setSize(32);
-  }
-  message->render();
+  bloomEffect->render();
+  //message->render();
 }
 
 /**
  * Detruit les objets définis dans le constructeur
  */
 MAP_CANYON::~MAP_CANYON() {
+  delete bloomEffect;
   delete message;
 }

@@ -50,7 +50,7 @@ void Text::updateTiles() {
       currentCharPos.X = pos.X;
       currentCharPos.Y -= (currentSize - (currentSize / 8));
     } else {
-      charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, false));
+      charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, true));
     }
   }
 }

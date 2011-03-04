@@ -186,7 +186,13 @@ void Game::initShaders() {
     cb->drop();
     */
     // Shader Bloom
-
+    BloomShaderCallback* cb = new BloomShaderCallback();
+    shaders.bloom = gpuManager->addHighLevelShaderMaterialFromFiles(
+      "resource/shader/bloom.vert", "vertexMain", video::EVST_VS_1_1,
+      "resource/shader/bloom.frag", "pixelMain", video::EPST_PS_1_1,
+      cb, video::EMT_TRANSPARENT_ADD_COLOR
+    );
+    cb->drop();
   }
 }
 

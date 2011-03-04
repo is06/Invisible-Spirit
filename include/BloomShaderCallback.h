@@ -5,20 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAP_CANYON__
-#define __IS06_MAP_CANYON__
+#ifndef __BLOOM_SHADER_CALLBACK_H__
+#define __BLOOM_SHADER_CALLBACK_H__
 
-class MAP_CANYON : public SceneGameplay {
+using namespace irr;
+
+class BloomShaderCallback : public video::IShaderConstantSetCallBack {
   public:
-    MAP_CANYON();
-    ~MAP_CANYON();
+    const video::SMaterial* usedMaterial;
+    virtual void OnSetMaterial(const video::SMaterial& material) {
 
-    void events();
-    void postRender();
+    }
+    virtual void OnSetConstants(video::IMaterialRendererServices* services, s32 userData) {
 
-  private:
-    Text* message;
-    PostRenderBloom* bloomEffect;
+    }
 };
 
 #endif
