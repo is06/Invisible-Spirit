@@ -189,7 +189,7 @@ void Game::initShaders() {
     shaders.glow = gpuManager->addHighLevelShaderMaterialFromFiles(
       "resource/shader/glow.vert", "vertexMain", video::EVST_VS_1_1,
       "resource/shader/glow.frag", "pixelMain", video::EPST_PS_1_1,
-      0, video::EMT_SOLID
+      0, video::EMT_TRANSPARENT_ADD_COLOR
     );
   }
 }
