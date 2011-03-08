@@ -14,12 +14,19 @@ using namespace std;
 class GameplayMenu : public Hud {
   public:
     GameplayMenu();
+    ~GameplayMenu();
 
     void render();
+    void toggle();
+
+    Menu* getSectionMenu();
+
+    bool isVisible;
 
   private:
-    Menu sectionMenu;
-    PlayerState stateInfo;
+    Menu* sectionMenu;
+    PlayerState* stateInfo;
+
 };
 
 #endif

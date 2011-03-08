@@ -175,6 +175,14 @@ void Ayron::updateCoords(f32 deltaU, f32 speed) {
   ));
 }
 
+void Ayron::toggleControl() {
+  if(controlable) {
+    controlable = false;
+  } else {
+    controlable = true;
+  }
+}
+
 /**
  *
  */

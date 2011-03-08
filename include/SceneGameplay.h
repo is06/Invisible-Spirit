@@ -21,12 +21,14 @@ class SceneGameplay : public Scene {
     LevelMesh* level;
 
     GameplayInterface* gpInterface;
+    GameplayMenu* gpMenu;
 
   private:
     void manageCameraControl();
     void manageAyronJumps();
     void manageAyronMovements();
     void manageAyronCollisions();
+    void manageMenuControl();
 };
 
 #endif

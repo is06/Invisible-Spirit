@@ -35,6 +35,14 @@ scene::ISceneNode* Camera::getNode() {
   return irrCam;
 }
 
+void Camera::toggleControl() {
+  if(controlable) {
+    controlable = false;
+  } else {
+    controlable = true;
+  }
+}
+
 /**
  * Permet de savoir si le joueur a le contrôle sur la caméra
  * @return bool vaut vrai si le joueur a le contrôle

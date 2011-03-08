@@ -19,25 +19,37 @@ Menu::Menu(f32 x, f32 y, f32 width, u8 height) : Hud() {
   currentHeight = height;
   pos = core::position2df(x, y);
 
-  loopMode = true;
+  loopMode = false;
+
+  cursor = new Picture(32, 32, x, y);
 }
 
 void Menu::render() { Hud::render();
-
-}
-
-void Menu::addOption(const MenuOption& option) {
-  options.insert(make_pair(lastInsertedIndex, option));
-  lastInsertedIndex++;
+  for(optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
+    optionsIt->second->render();
+  }
+  cursor->render();
 }
 
 void Menu::addOption(MenuIcon icon, const core::stringw& title) {
-  options.insert(make_pair(lastInsertedIndex, MenuOption(icon, title)));
+  f32 posY = pos.Y + (lastInsertedIndex * -1 * 24);
+  options.insert(make_pair(lastInsertedIndex, new MenuOption(icon, title, pos.X, posY)));
   lastInsertedIndex++;
 }
 
 void Menu::nextOption() {
-  currentOption++;
+  if(loopMode) {
+    if(currentOption > options.size()) {
+      currentOption = 0;
+      currentOption++;
+      cursor->subY(24);
+    }
+  } else {
+    if(currentOption < options.size() - 1) {
+      currentOption++;
+      cursor->subY(24);
+    }
+  }
 }
 
 void Menu::prevOption() {
@@ -45,10 +57,12 @@ void Menu::prevOption() {
     if(currentOption <= 0) {
       currentOption = options.size();
       currentOption--;
+      cursor->addY(24);
     }
   } else {
     if(currentOption > 0) {
       currentOption--;
+      cursor->addY(24);
     }
   }
 }
@@ -78,10 +92,10 @@ void Menu::removeOption(u16 index) {
 /**
  * TODO
  */
-MenuOption& Menu::getOption(u16 index) {
-  //return options[index];
+MenuOption* Menu::getOption(u16 index) {
+  return options[index];
 }
 
 Menu::~Menu() {
-
+  delete cursor;
 }

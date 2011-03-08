@@ -100,6 +100,30 @@ void Hud2DElement::setPosition(f32 x, f32 y) {
   pos.Y = y;
 }
 
+void Hud2DElement::addX(f32 val) {
+  pos.X += val;
+}
+
+void Hud2DElement::subX(f32 val) {
+  pos.X -= val;
+}
+
+void Hud2DElement::setX(f32 val) {
+  pos.X = val;
+}
+
+void Hud2DElement::addY(f32 val) {
+  pos.Y += val;
+}
+
+void Hud2DElement::subY(f32 val) {
+  pos.Y -= val;
+}
+
+void Hud2DElement::setY(f32 val) {
+  pos.Y = val;
+}
+
 void Hud2DElement::startUVAnimation(f32 uSpeed, f32 vSpeed) {
   animSpeed.X = uSpeed;
   animSpeed.Y = vSpeed;

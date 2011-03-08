@@ -18,6 +18,8 @@ class Text : public Hud {
 
     void render();
     void setSize(u8 size);
+    void setText(const core::stringw& str);
+    void setPosition(const core::position2df& position);
     void updateTiles();
 
   private:

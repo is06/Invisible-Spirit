@@ -11,9 +11,19 @@ using namespace irr;
 using namespace std;
 
 MainStateInfo::MainStateInfo() : Hud() {
-
+  label = new Text();
+  info = new Text();
+  gauge = new BarCounter();
 }
 
 void MainStateInfo::render() { Hud::render();
+  label->render();
+  info->render();
+  gauge->render();
+}
 
+MainStateInfo::~MainStateInfo() {
+  delete label;
+  delete info;
+  delete gauge;
 }

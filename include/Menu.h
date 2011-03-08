@@ -18,10 +18,9 @@ class Menu : public Hud {
 
     virtual void render();
 
-    void addOption(const MenuOption& option);
-    void addOption(MenuIcon icon, const core::stringw& title);
+    void addOption(MenuIcon icon = MENU_ICON_NONE, const core::stringw& title = "[Option]");
     void removeOption(u16 index);
-    MenuOption& getOption(u16 index);
+    MenuOption* getOption(u16 index);
 
     void nextOption();
     void prevOption();
@@ -29,8 +28,10 @@ class Menu : public Hud {
     void lastOption();
 
   protected:
-    map<u16, MenuOption> options;
-    map<u16, MenuOption>::iterator optionsIt;
+    Picture* cursor;
+
+    map<u16, MenuOption*> options;
+    map<u16, MenuOption*>::iterator optionsIt;
     u16 lastInsertedIndex;
     u16 defaultOption;
     u16 currentOption;

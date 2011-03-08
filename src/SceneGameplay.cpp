@@ -19,6 +19,7 @@ SceneGameplay::SceneGameplay() : Scene() {
   ayron = new Ayron(cam);
   cam->linkEntity(ayron);
   gpInterface = new GameplayInterface();
+  gpMenu = new GameplayMenu();
 }
 
 /**
@@ -30,8 +31,15 @@ void SceneGameplay::events() { Scene::events();
   manageAyronMovements();
   manageAyronCollisions();
 
+  // Menu
   if(keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
+    gpMenu->toggle();
+    ayron->toggleControl();
+    cam->toggleControl();
+  }
 
+  if(gpMenu->isVisible) {
+    manageMenuControl();
   }
 
   // Entities rendering
@@ -110,49 +118,51 @@ void SceneGameplay::manageAyronJumps() {
  */
 void SceneGameplay::manageAyronMovements() {
 
-  // Keyboard control
-  if(keyboard->pressed(KEY_UP) || keyboard->pressed(KEY_DOWN)
-  || keyboard->pressed(KEY_LEFT) || keyboard->pressed(KEY_RIGHT)) {
-    // Ayron's direction from keyboard's arrows angle
-    ayron->getNode()->setRotation(core::vector3df(
-      ayron->getNode()->getRotation().X,
-      cam->getNode()->getRotation().Y - (keyboard->getDirectionAngle() + core::radToDeg(core::PI / 2)),
-      ayron->getNode()->getRotation().Z
-    ));
+  if(ayron->hasControl()) {
+    // Keyboard control
+    if(keyboard->pressed(KEY_UP) || keyboard->pressed(KEY_DOWN)
+    || keyboard->pressed(KEY_LEFT) || keyboard->pressed(KEY_RIGHT)) {
+      // Ayron's direction from keyboard's arrows angle
+      ayron->getNode()->setRotation(core::vector3df(
+        ayron->getNode()->getRotation().X,
+        cam->getNode()->getRotation().Y - (keyboard->getDirectionAngle() + core::radToDeg(core::PI / 2)),
+        ayron->getNode()->getRotation().Z
+      ));
 
-    if(keyboard->pressed(KEY_LEFT)) {
-      ayron->goLeft(keyboard->getDirectionXAxis() * -1);
-    } else if(keyboard->pressed(KEY_RIGHT)) {
-      ayron->goRight(keyboard->getDirectionXAxis());
+      if(keyboard->pressed(KEY_LEFT)) {
+        ayron->goLeft(keyboard->getDirectionXAxis() * -1);
+      } else if(keyboard->pressed(KEY_RIGHT)) {
+        ayron->goRight(keyboard->getDirectionXAxis());
+      }
+
+      if(keyboard->pressed(KEY_DOWN)) {
+        ayron->goBackward(keyboard->getDirectionYAxis() * -1);
+      } else if(keyboard->pressed(KEY_UP)) {
+        ayron->goForward(keyboard->getDirectionYAxis());
+      }
     }
 
-    if(keyboard->pressed(KEY_DOWN)) {
-      ayron->goBackward(keyboard->getDirectionYAxis() * -1);
-    } else if(keyboard->pressed(KEY_UP)) {
-      ayron->goForward(keyboard->getDirectionYAxis());
-    }
-  }
+    // Joystick control
+    if(fabs(gamepad->getLeftJoystickXAxis()) > 35
+    || fabs(gamepad->getLeftJoystickYAxis()) > 35) {
+      // Ayron's direction from joystick's angle
+      ayron->getNode()->setRotation(core::vector3df(
+        ayron->getNode()->getRotation().X,
+        cam->getNode()->getRotation().Y - (gamepad->getLeftJoystickAngle() + core::radToDeg(core::PI / 2)),
+        ayron->getNode()->getRotation().Z
+      ));
 
-  // Joystick control
-  if(fabs(gamepad->getLeftJoystickXAxis()) > 35
-  || fabs(gamepad->getLeftJoystickYAxis()) > 35) {
-    // Ayron's direction from joystick's angle
-    ayron->getNode()->setRotation(core::vector3df(
-      ayron->getNode()->getRotation().X,
-      cam->getNode()->getRotation().Y - (gamepad->getLeftJoystickAngle() + core::radToDeg(core::PI / 2)),
-      ayron->getNode()->getRotation().Z
-    ));
+      if(gamepad->getLeftJoystickXAxis() < -35) {
+        ayron->goLeft(gamepad->getLeftJoystickXAxis() * -1);
+      } else if(gamepad->getLeftJoystickXAxis() > 35) {
+        ayron->goRight(gamepad->getLeftJoystickXAxis());
+      }
 
-    if(gamepad->getLeftJoystickXAxis() < -35) {
-      ayron->goLeft(gamepad->getLeftJoystickXAxis() * -1);
-    } else if(gamepad->getLeftJoystickXAxis() > 35) {
-      ayron->goRight(gamepad->getLeftJoystickXAxis());
-    }
-
-    if(gamepad->getLeftJoystickYAxis() < -35) {
-      ayron->goBackward(gamepad->getLeftJoystickYAxis() * -1);
-    } else if(gamepad->getLeftJoystickYAxis() > 35) {
-      ayron->goForward(gamepad->getLeftJoystickYAxis());
+      if(gamepad->getLeftJoystickYAxis() < -35) {
+        ayron->goBackward(gamepad->getLeftJoystickYAxis() * -1);
+      } else if(gamepad->getLeftJoystickYAxis() > 35) {
+        ayron->goForward(gamepad->getLeftJoystickYAxis());
+      }
     }
   }
 }
@@ -183,11 +193,24 @@ void SceneGameplay::manageAyronCollisions() {
 }
 
 /**
+ *
+ */
+void SceneGameplay::manageMenuControl() {
+  if(keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
+    gpMenu->getSectionMenu()->nextOption();
+  }
+  if(keyboard->pressed(KEY_UP, EVENT_ONCE)) {
+    gpMenu->getSectionMenu()->prevOption();
+  }
+}
+
+/**
  * This functions is called after all scene object render
  * It renders HUD elements in front of camera
  */
 void SceneGameplay::postRender() { Scene::postRender();
   gpInterface->render();
+  gpMenu->render();
 }
 
 /**
@@ -198,4 +221,5 @@ SceneGameplay::~SceneGameplay() {
   delete ayron;
   delete cam;
   delete gpInterface;
+  delete gpMenu;
 }

@@ -14,13 +14,14 @@ using namespace std;
 class MainStateInfo : public Hud {
   public:
     MainStateInfo();
+    ~MainStateInfo();
 
     void render();
 
   private:
-    Text label;
-    Text info;
-    BarCounter gauge;
+    Text* label;
+    Text* info;
+    BarCounter* gauge;
 };
 
 #endif

@@ -10,9 +10,10 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-MenuOption::MenuOption(MenuIcon icon, const core::stringw& title) : Hud() {
+MenuOption::MenuOption(MenuIcon icon, const core::stringw& title, f32 x, f32 y) : Hud() {
   currentIcon = icon;
-  currentTitle = title;
+  currentText = new Text(title, x, y, FONT_STD_REGULAR);
+
   hover = false;
   enabled = true;
   visible = true;
@@ -20,7 +21,7 @@ MenuOption::MenuOption(MenuIcon icon, const core::stringw& title) : Hud() {
 }
 
 void MenuOption::render() { Hud::render();
-
+  currentText->render();
 }
 
 void MenuOption::setHover(bool isHover) {
@@ -40,5 +41,5 @@ void MenuOption::setSelectable(bool isSelectable) {
 }
 
 MenuOption::~MenuOption() {
-
+  delete currentText;
 }

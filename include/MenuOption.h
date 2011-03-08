@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 class MenuOption : public Hud {
   public:
-    MenuOption(MenuIcon icon, const core::stringw& title);
+    MenuOption(MenuIcon icon, const core::stringw& title = "[Option]", f32 x = 0, f32 y = 0);
     virtual ~MenuOption();
 
     virtual void render();
@@ -21,8 +21,8 @@ class MenuOption : public Hud {
     void setSelectable(bool isSelectable);
 
   protected:
-    core::stringw currentTitle;
     MenuIcon currentIcon;
+    Text* currentText;
 
     bool hover;
     bool enabled;

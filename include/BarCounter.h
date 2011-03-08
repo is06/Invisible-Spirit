@@ -9,7 +9,7 @@ class BarCounter : public Counter {
     virtual void render();
 
   protected:
-    Picture bar;
+    Picture* bar;
 };
 
 #endif

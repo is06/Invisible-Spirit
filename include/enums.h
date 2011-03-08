@@ -91,6 +91,8 @@ enum MenuStyle {
 };
 
 enum MenuIcon {
+  MENU_ICON_NONE,
+  MENU_ICON_BLANK,
   MENU_ICON_SWORD,
   MENU_ICON_SHIELD
 };

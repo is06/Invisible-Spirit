@@ -14,25 +14,26 @@ using namespace std;
 class PlayerState : public Hud {
   public:
     PlayerState();
+    ~PlayerState();
 
     void render();
 
   private:
-    Text playerName;
-    Text levelLabel;
-    Text levelInfo;
+    Text* playerName;
+    Text* levelLabel;
+    Text* levelInfo;
 
-    MainStateInfo hpInfo;
-    MainStateInfo mpInfo;
-    MainStateInfo expInfo;
-    MainStateInfo nextLevelInfo;
+    MainStateInfo* hpInfo;
+    MainStateInfo* mpInfo;
+    MainStateInfo* expInfo;
+    MainStateInfo* nextLevelInfo;
 
-    CapacityInfo strengthInfo;
-    CapacityInfo defenseInfo;
-    CapacityInfo magicInfo;
-    CapacityInfo concInfo;
-    CapacityInfo precInfo;
-    CapacityInfo speedInfo;
+    CapacityInfo* strengthInfo;
+    CapacityInfo* defenseInfo;
+    CapacityInfo* magicInfo;
+    CapacityInfo* concInfo;
+    CapacityInfo* precInfo;
+    CapacityInfo* speedInfo;
 };
 
 #endif

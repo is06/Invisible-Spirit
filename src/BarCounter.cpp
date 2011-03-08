@@ -11,13 +11,13 @@ using namespace std;
 using namespace irr;
 
 BarCounter::BarCounter(s32 init, s32 min, s32 max) : Counter(init, min, max) {
-
+  bar = new Picture();
 }
 
 void BarCounter::render() {
-
+  bar->render();
 }
 
 BarCounter::~BarCounter() {
-
+  delete bar;
 }

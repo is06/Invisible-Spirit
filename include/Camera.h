@@ -28,6 +28,7 @@ class Camera {
     void setRotation(const core::vector3df& rot);
     scene::ISceneNode* getNode();
 
+    void toggleControl();
     bool hasControl();
 
   protected:

@@ -11,9 +11,19 @@ using namespace irr;
 using namespace std;
 
 PlayerState::PlayerState() {
-
+  playerName = new Text("Ayron", 0, 0);
+  levelLabel = new Text("niv.", 0, -24);
+  levelInfo = new Text("1", 100, -24);
 }
 
 void PlayerState::render() {
+  playerName->render();
+  levelLabel->render();
+  levelInfo->render();
+}
 
+PlayerState::~PlayerState() {
+  delete playerName;
+  delete levelLabel;
+  delete levelInfo;
 }

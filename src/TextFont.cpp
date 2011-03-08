@@ -87,4 +87,5 @@ void TextFont::readFontData(const core::stringc& dataFilePath) {
  */
 TextFont::~TextFont() {
   fontTexture = NULL;
+
 }

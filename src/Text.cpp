@@ -38,6 +38,15 @@ void Text::setSize(u8 size) {
   updateTiles();
 }
 
+void Text::setText(const core::stringw& str) {
+  textStr = str;
+  updateTiles();
+}
+
+void Text::setPosition(const core::position2df& position) {
+  pos = position;
+}
+
 /**
  *
  */
