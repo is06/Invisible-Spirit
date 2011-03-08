@@ -27,6 +27,11 @@ TextChar::TextChar(u8 code, f32& x, f32& y, u8 size, TextFont* font, bool visibl
   f32 startU = endU - space;
   f32 startV = endV - space;
 
+  minTextureOffset.X = startV;
+  minTextureOffset.Y = startU;
+  maxTextureOffset.X = endV;
+  maxTextureOffset.Y = endU;
+
   vertices[0].TCoords.X = startV;
   vertices[0].TCoords.Y = startU;
   vertices[1].TCoords.X = endV;

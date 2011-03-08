@@ -28,27 +28,32 @@ Hud2DElement::Hud2DElement(f32 w, f32 h, f32 x, f32 y) : Hud() {
   //material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.opacity;
   material.MaterialType = video::EMT_TRANSPARENT_ALPHA_CHANNEL;
 
+  minTextureOffset.X = 0.0f;
+  minTextureOffset.Y = 0.0f;
+  maxTextureOffset.X = 1.0f;
+  maxTextureOffset.Y = 1.0f;
+
   // Création vertices
   vertices[0] = video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF * -1), (y / COEFF) + (h / 2 / COEFF), FAR,
     1, 1, 0,
     video::SColor(255,255,255,255),
-    0, 0);
+    minTextureOffset.X, minTextureOffset.Y);
   vertices[1] = video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF), (y / COEFF) + (h / 2 / COEFF), FAR,
     1, 0, 0,
     video::SColor(255,255,255,255),
-    1, 0);
+    maxTextureOffset.X, minTextureOffset.Y);
   vertices[2] = video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF * -1), (y / COEFF) + (h / 2 / COEFF * -1), FAR,
     0, 1, 1,
     video::SColor(255,255,255,255),
-    0, 1);
+    minTextureOffset.X, maxTextureOffset.Y);
   vertices[3] = video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF), (y / COEFF) + (h / 2 / COEFF * -1), FAR,
     0, 0, 1,
     video::SColor(255,255,255,255),
-    1, 1);
+    maxTextureOffset.X, maxTextureOffset.Y);
 }
 
 void Hud2DElement::render() {
@@ -64,6 +69,16 @@ void Hud2DElement::render() {
 
   // Opacité
   material.DiffuseColor.setAlpha(opacity);
+
+  // Offset de texture
+  vertices[0].TCoords.X = minTextureOffset.X;
+  vertices[0].TCoords.Y = minTextureOffset.Y;
+  vertices[1].TCoords.X = maxTextureOffset.X;
+  vertices[1].TCoords.Y = minTextureOffset.Y;
+  vertices[2].TCoords.X = minTextureOffset.X;
+  vertices[2].TCoords.Y = maxTextureOffset.Y;
+  vertices[3].TCoords.X = maxTextureOffset.X;
+  vertices[3].TCoords.Y = maxTextureOffset.Y;
 
   // Animation UV
   if(animSpeed.X != 0.0f || animSpeed.Y != 0.0f) {
@@ -98,6 +113,11 @@ void Hud2DElement::setSize(f32 w, f32 h) {
 void Hud2DElement::setPosition(f32 x, f32 y) {
   pos.X = x;
   pos.Y = y;
+}
+
+void Hud2DElement::setTextureOffset(const core::vector2df& min, const core::vector2df& max) {
+  minTextureOffset = min;
+  maxTextureOffset = max;
 }
 
 void Hud2DElement::addX(f32 val) {

@@ -17,6 +17,7 @@ class Hud2DElement : public Hud {
 
     void setSize(f32 w, f32 h);
     void setPosition(f32 x, f32 y);
+    void setTextureOffset(const core::vector2df& min, const core::vector2df& max);
 
     void addX(f32 val);
     void addY(f32 val);
@@ -42,6 +43,8 @@ class Hud2DElement : public Hud {
     core::dimension2df size;
     core::position2df pos;
     core::vector2df animSpeed;
+    core::vector2df minTextureOffset;
+    core::vector2df maxTextureOffset;
 
     bool isVisible;
     u8 opacity;

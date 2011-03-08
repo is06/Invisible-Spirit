@@ -32,7 +32,7 @@ void Menu::render() { Hud::render();
 }
 
 void Menu::addOption(MenuIcon icon, const core::stringw& title) {
-  f32 posY = pos.Y + (lastInsertedIndex * -1 * 24);
+  f32 posY = pos.Y + (lastInsertedIndex * -1 * 32);
   options.insert(make_pair(lastInsertedIndex, new MenuOption(icon, title, pos.X, posY)));
   lastInsertedIndex++;
 }
@@ -42,12 +42,12 @@ void Menu::nextOption() {
     if(currentOption > options.size()) {
       currentOption = 0;
       currentOption++;
-      cursor->subY(24);
+      cursor->subY(32);
     }
   } else {
     if(currentOption < options.size() - 1) {
       currentOption++;
-      cursor->subY(24);
+      cursor->subY(32);
     }
   }
 }
@@ -57,12 +57,12 @@ void Menu::prevOption() {
     if(currentOption <= 0) {
       currentOption = options.size();
       currentOption--;
-      cursor->addY(24);
+      cursor->addY(32);
     }
   } else {
     if(currentOption > 0) {
       currentOption--;
-      cursor->addY(24);
+      cursor->addY(32);
     }
   }
 }

@@ -12,7 +12,8 @@ using namespace irr;
 
 MenuOption::MenuOption(MenuIcon icon, const core::stringw& title, f32 x, f32 y) : Hud() {
   currentIcon = icon;
-  currentText = new Text(title, x, y, FONT_STD_REGULAR);
+  box = new Window(150, 28, x + 75, y, 3, WIN_STYLE_STD);
+  currentText = new Text(title, x + 6, y, FONT_STD_REGULAR);
 
   hover = false;
   enabled = true;
@@ -21,6 +22,7 @@ MenuOption::MenuOption(MenuIcon icon, const core::stringw& title, f32 x, f32 y) 
 }
 
 void MenuOption::render() { Hud::render();
+  box->render();
   currentText->render();
 }
 
@@ -42,4 +44,5 @@ void MenuOption::setSelectable(bool isSelectable) {
 
 MenuOption::~MenuOption() {
   delete currentText;
+  delete box;
 }

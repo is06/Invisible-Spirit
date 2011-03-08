@@ -49,7 +49,7 @@ class Animation;
 class Text;
 class TextChar;
 class TextFont;
-
+class Window;
 class GameplayInterface;
 class ButtonsInterface;
 class Button;
@@ -125,6 +125,7 @@ class Speaker;
 
 #include "Menu.h"
 #include "MenuOption.h"
+#include "Window.h"
 
 #include "MainStateInfo.h"
 #include "CapacityInfo.h"

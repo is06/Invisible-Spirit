@@ -101,4 +101,8 @@ enum FontStyle {
   FONT_STD_REGULAR
 };
 
+enum WindowStyle {
+  WIN_STYLE_STD
+};
+
 #endif

@@ -23,6 +23,7 @@ class MenuOption : public Hud {
   protected:
     MenuIcon currentIcon;
     Text* currentText;
+    Window* box;
 
     bool hover;
     bool enabled;
