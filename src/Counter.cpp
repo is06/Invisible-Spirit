@@ -16,6 +16,8 @@ Counter::Counter(s32 init, s32 min, s32 max) {
   currentValue = init;
 }
 
+
+
 void Counter::addValue(s32 val) {
   currentValue += val;
 }
@@ -26,4 +28,8 @@ void Counter::subValue(s32 val) {
 
 void Counter::setValue(s32 val) {
   currentValue = val;
+}
+
+Counter::~Counter() {
+
 }

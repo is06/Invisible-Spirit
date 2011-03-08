@@ -19,8 +19,8 @@ class CapacityInfo : public Hud {
     void render();
 
   private:
-    Picture* icon;
-    Text* value;
+    Picture icon;
+    Text value;
 };
 
 #endif

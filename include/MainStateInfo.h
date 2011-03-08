@@ -18,9 +18,9 @@ class MainStateInfo : public Hud {
     void render();
 
   private:
-    Text* label;
-    Text* info;
-    BarCounter* gauge;
+    Text label;
+    Text info;
+    BarCounter gauge;
 };
 
 #endif

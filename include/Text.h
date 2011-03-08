@@ -13,7 +13,7 @@ using namespace irr;
 
 class Text : public Hud {
   public:
-    Text(const core::stringw& str, f32 x, f32 y, FontStyle style = FONT_STD_REGULAR, u8 speed = 0);
+    Text(const core::stringw& str = "[Text]", f32 x = 0, f32 y = 0, FontStyle style = FONT_STD_REGULAR, u8 speed = 0);
     ~Text();
 
     void render();

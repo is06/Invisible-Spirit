@@ -18,8 +18,6 @@ MAP_CANYON::MAP_CANYON() : SceneGameplay() {
   level->loadMesh("resource/mesh/level/test2.obj");
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
-
-  message = new Text(L"Ceci est un test sur la premiere ligne,\nEt voici la seconde.", -300, 220);
 }
 
 /**
@@ -30,12 +28,12 @@ void MAP_CANYON::events() { SceneGameplay::events();
 }
 
 void MAP_CANYON::postRender() { SceneGameplay::postRender();
-  message->render();
+
 }
 
 /**
  * Detruit les objets définis dans le constructeur
  */
 MAP_CANYON::~MAP_CANYON() {
-  delete message;
+
 }

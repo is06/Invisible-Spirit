@@ -13,7 +13,7 @@ using namespace irr;
 
 class Menu : public Hud {
   public:
-    Menu(f32 x, f32 y, f32 width, u8 height);
+    Menu(f32 x = 0, f32 y = 0, f32 width = 150, u8 height = 8);
     virtual ~Menu();
 
     virtual void render();

@@ -13,7 +13,7 @@ using namespace std;
 
 class Picture : public Hud2DElement {
   public:
-    Picture(f32 w, f32 h, f32 x, f32 y, const core::stringc& filePath);
+    Picture(f32 w = 32, f32 h = 32, f32 x = 0, f32 y = 0, const core::stringc& filePath = "resource/hud/default.bmp");
     ~Picture();
 
     void render();

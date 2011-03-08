@@ -11,7 +11,6 @@ using namespace std;
 using namespace irr;
 
 TextChar::TextChar(u8 code, f32& x, f32& y, u8 size, TextFont* font, bool visible) : Hud2DElement(size, size, x, y) {
-  f32 rsize = (size / 100.0f);
   isVisible = visible;
 
   x += ((size * (font->getCharOffset(code) / 100.0f)) / 2);
