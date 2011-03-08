@@ -59,7 +59,11 @@ class IconTextButton;
 class Menu;
 class MenuOption;
 
-// Newton
+// Gameplay Menu
+class GameplayMenu;
+class MainStateInfo;
+class CapacityInfo;
+class PlayerState;
 
 // Modèles 3D
 class ModelEntity;
@@ -110,14 +114,22 @@ class Speaker;
 #include "TextChar.h"
 #include "TextFont.h"
 #include "Picture.h"
+#include "Counter.h"
+#include "BarCounter.h"
 #include "GameplayInterface.h"
 #include "ButtonsInterface.h"
 #include "Button.h"
 #include "IconButton.h"
 #include "TextButton.h"
 #include "IconTextButton.h"
+
 #include "Menu.h"
 #include "MenuOption.h"
+
+#include "MainStateInfo.h"
+#include "CapacityInfo.h"
+#include "PlayerState.h"
+#include "GameplayMenu.h"
 
 #include "PostRenderGlow.h"
 

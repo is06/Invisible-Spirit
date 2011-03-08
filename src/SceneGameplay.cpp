@@ -30,6 +30,10 @@ void SceneGameplay::events() { Scene::events();
   manageAyronMovements();
   manageAyronCollisions();
 
+  if(keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
+
+  }
+
   // Entities rendering
   ayron->render();
   cam->render();
