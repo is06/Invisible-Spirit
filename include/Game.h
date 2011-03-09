@@ -28,6 +28,8 @@ class Game {
     static ScreenPosition screenPos;
     static Shaders shaders;
 
+    static f32 getFramerate();
+
   private:
     Game();
     static void initScreenPositions(u32 w, u32 h);

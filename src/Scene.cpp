@@ -19,6 +19,8 @@ Scene::Scene() {
 
   keyboard = new Keyboard();
   gamepad = new Gamepad();
+
+  timeElapsed = 0.0f;
 }
 
 /**
@@ -26,6 +28,8 @@ Scene::Scene() {
  * (Evénements globaux)
  */
 void Scene::events() {
+  timeElapsed += 0.016666666666f;
+
   if(keyboard->pressed(KEY_ESCAPE, EVENT_ONCE)) {
     Game::debugExit();
   }

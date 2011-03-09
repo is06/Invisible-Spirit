@@ -66,6 +66,9 @@ enum CommandIdentifier {
   CMD_ICE3
 };
 
+/**
+ *
+ */
 enum GameplayControlButtons {
   CB_BUTTON_COMMAND,
   CB_BUTTON_DEFENSE,
@@ -75,6 +78,9 @@ enum GameplayControlButtons {
   CB_BUTTON_QUIT
 };
 
+/**
+ *
+ */
 enum RayType {
   RAY_WALL_P,
   RAY_WALL_Q,
@@ -84,12 +90,18 @@ enum RayType {
   RAY_FLOOR_D
 };
 
+/**
+ *
+ */
 enum MenuStyle {
   MENU_STYLE_TITLE,
   MENU_STYLE_HOME,
   MENU_STYLE_EQUIPMENT
 };
 
+/**
+ *
+ */
 enum MenuIcon {
   MENU_ICON_NONE,
   MENU_ICON_BLANK,
@@ -97,12 +109,26 @@ enum MenuIcon {
   MENU_ICON_SHIELD
 };
 
+/**
+ *
+ */
 enum FontStyle {
   FONT_STD_REGULAR
 };
 
+/**
+ *
+ */
 enum WindowStyle {
   WIN_STYLE_STD
+};
+
+/**
+ *
+ */
+enum BarStyle {
+  BAR_STYLE_DEFAULT,
+  BAR_STYLE_LIFE
 };
 
 #endif

@@ -20,6 +20,12 @@ SceneGameplay::SceneGameplay() : Scene() {
   cam->linkEntity(ayron);
   gpInterface = new GameplayInterface();
   gpMenu = new GameplayMenu();
+
+  //myTimer = new Timer(3.0f, hello);
+}
+
+void SceneGameplay::hello() {
+  cout << "hello" << endl;
 }
 
 /**
@@ -41,6 +47,8 @@ void SceneGameplay::events() { Scene::events();
   if(gpMenu->isVisible) {
     manageMenuControl();
   }
+
+  myTimer->update();
 
   // Entities rendering
   ayron->render();
@@ -209,7 +217,7 @@ void SceneGameplay::manageMenuControl() {
  * It renders HUD elements in front of camera
  */
 void SceneGameplay::postRender() { Scene::postRender();
-  gpInterface->render();
+  //gpInterface->render();
   gpMenu->render();
 }
 
@@ -222,4 +230,6 @@ SceneGameplay::~SceneGameplay() {
   delete cam;
   delete gpInterface;
   delete gpMenu;
+
+  delete myTimer;
 }

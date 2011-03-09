@@ -62,11 +62,6 @@ void Game::init() {
 
   // Initialisation du moteur physique
   newtonWorld = NewtonCreate();
-  NewtonSetPlatformArchitecture(newtonWorld, 0);
-  f32 minSize[3] = {-500.0f, -500.0f, -500.0f};
-  f32 maxSize[3] = {500.0f, 500.0f, 500.0f};
-  NewtonSetWorldSize(newtonWorld, minSize, maxSize);
-  NewtonSetSolverModel(newtonWorld, 1);
 
   framerate = 60;
   exit = false;
@@ -89,13 +84,11 @@ void Game::run() {
 
     before = device->getTimer()->getRealTime();
     fps = videoDriver->getFPS();
-    NewtonUpdate(newtonWorld, (1.0f / (f32)fps));
 
     videoDriver->beginScene();
     currentScene->events();
     sceneManager->drawAll();
     currentScene->postRender();
-
 
     after = device->getTimer()->getRealTime();
     renderTime = after - before;
@@ -157,6 +150,9 @@ void Game::debugExit() {
   //system("pause");
 }
 
+/**
+ *
+ */
 void Game::initScreenPositions(u32 w, u32 h) {
   f32 ratio = (f32)w / (f32)h;
   h = 480;
@@ -170,6 +166,9 @@ void Game::initScreenPositions(u32 w, u32 h) {
   screenPos.right = (w / 2.0f);
 }
 
+/**
+ *
+ */
 void Game::initShaders() {
   shaders.opacity = 0;
 
@@ -192,6 +191,10 @@ void Game::initShaders() {
       0, video::EMT_TRANSPARENT_ADD_COLOR
     );
   }
+}
+
+f32 Game::getFramerate() {
+  return framerate;
 }
 
 /**

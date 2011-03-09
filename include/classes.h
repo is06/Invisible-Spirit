@@ -13,6 +13,8 @@ class EventManager;
 class Settings;
 class SettingsGroup;
 
+class Timer;
+
 class OpacityShaderCallback;
 
 class PostRenderGlow;
@@ -93,6 +95,8 @@ class Speaker;
 #include "Settings.h"
 #include "SettingsGroup.h"
 #include "EventManager.h"
+
+#include "Timer.h"
 
 #include "Keyboard.h"
 #include "Gamepad.h"

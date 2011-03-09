@@ -26,6 +26,8 @@ class Scene {
     Keyboard* keyboard;
     Gamepad* gamepad;
 
+    f32 timeElapsed;
+
   private:
 };
 
