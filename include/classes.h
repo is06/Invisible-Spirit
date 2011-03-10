@@ -31,7 +31,7 @@ class Gamepad;
 
 class Scene;
 class SceneGameplay;
-//class SceneMenu;
+class SceneMenu;
 //class SceneStaffRoll;
 
 // =========================================================
@@ -102,6 +102,7 @@ class Speaker;
 #include "Gamepad.h"
 
 #include "Scene.h"
+#include "SceneMenu.h"
 #include "SceneGameplay.h"
 
 #include "Entity.h"

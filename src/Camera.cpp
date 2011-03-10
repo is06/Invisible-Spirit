@@ -43,6 +43,10 @@ void Camera::toggleControl() {
   }
 }
 
+void Camera::setControl(bool val) {
+  controlable = val;
+}
+
 /**
  * Permet de savoir si le joueur a le contrôle sur la caméra
  * @return bool vaut vrai si le joueur a le contrôle

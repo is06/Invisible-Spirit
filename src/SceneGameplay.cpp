@@ -37,6 +37,11 @@ void SceneGameplay::events() { Scene::events();
   manageAyronMovements();
   manageAyronCollisions();
 
+  // Retour au menu principal
+  if(keyboard->pressed(KEY_ESCAPE)) {
+    Game::changeScene(SCENE_MENU);
+  }
+
   // Menu
   if(keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
     gpMenu->toggle();

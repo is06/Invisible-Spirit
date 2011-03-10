@@ -137,4 +137,10 @@ enum TimerCallback {
   TIMER_CALLBACK_NEXT_CHAR
 };
 
+enum SceneIdentifier {
+  SCENE_MENU,
+
+  SCENE_MAP_CANYON
+};
+
 #endif

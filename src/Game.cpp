@@ -20,6 +20,8 @@ Settings* Game::settings;
 
 ScreenPosition Game::screenPos;
 Shaders Game::shaders;
+SceneIdentifier Game::nextScene;
+bool Game::sceneChanged;
 bool Game::exit;
 u8 Game::framerate;
 
@@ -48,7 +50,7 @@ void Game::init() {
     true,
     (settings->getParamInt("display", "vsync") == 1),
     eventManager);
-  device->setWindowCaption(L"Invisible Spirit 0.1 r12 (02/03/2011)");
+  device->setWindowCaption(L"Invisible Spirit 0.1 r13 (10/03/2011)");
 
   // Activation du joystick
   core::array<SJoystickInfo> joystickInfo;
@@ -66,8 +68,8 @@ void Game::init() {
   framerate = 60;
   exit = false;
 
-  // Scène de démarrage
-  currentScene = new MAP_CANYON();
+  sceneChanged = true;
+  nextScene = SCENE_MENU;
 }
 
 /**
@@ -80,6 +82,9 @@ void Game::run() {
   while(device->run()) {
     if(exit) {
       break;
+    }
+    if(sceneChanged) {
+      loadNextScene();
     }
 
     before = device->getTimer()->getRealTime();
@@ -100,6 +105,8 @@ void Game::run() {
     }
 
     videoDriver->endScene();
+
+
   }
 }
 
@@ -195,6 +202,21 @@ void Game::initShaders() {
 
 f32 Game::getFramerate() {
   return framerate;
+}
+
+void Game::changeScene(SceneIdentifier id) {
+  nextScene = id;
+  sceneChanged = true;
+}
+
+void Game::loadNextScene() {
+  delete currentScene;
+  switch(nextScene) {
+    case SCENE_MENU: currentScene = new SceneMenu(); break;
+
+    case SCENE_MAP_CANYON: currentScene = new MAP_CANYON(); break;
+  }
+  sceneChanged = false;
 }
 
 /**

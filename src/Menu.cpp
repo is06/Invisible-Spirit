@@ -96,6 +96,10 @@ MenuOption* Menu::getOption(u16 index) {
   return options[index];
 }
 
+u16 Menu::getCurrentOption() {
+  return currentOption;
+}
+
 Menu::~Menu() {
   delete cursor;
 }

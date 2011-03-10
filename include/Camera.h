@@ -29,6 +29,7 @@ class Camera {
     scene::ISceneNode* getNode();
 
     void toggleControl();
+    void setControl(bool val);
     bool hasControl();
 
   protected:

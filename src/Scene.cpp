@@ -29,10 +29,6 @@ Scene::Scene() {
  */
 void Scene::events() {
   timeElapsed += 0.016666666666f;
-
-  if(keyboard->pressed(KEY_ESCAPE, EVENT_ONCE)) {
-    Game::debugExit();
-  }
 }
 
 void Scene::postRender() {

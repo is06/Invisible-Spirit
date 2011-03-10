@@ -30,10 +30,13 @@ class Game {
 
     static f32 getFramerate();
 
+    static void changeScene(SceneIdentifier id);
+
   private:
     Game();
     static void initScreenPositions(u32 w, u32 h);
     static void initShaders();
+    static void loadNextScene();
 
     // Objets Irrlicht
     static IrrlichtDevice* device;
@@ -47,7 +50,9 @@ class Game {
     // Objets IS06
     static EventManager* eventManager;
     static Scene* currentScene;
+    static SceneIdentifier nextScene;
 
+    static bool sceneChanged;
     static bool exit;
     static u8 framerate;
 };

@@ -22,6 +22,8 @@ class Menu : public Hud {
     void removeOption(u16 index);
     MenuOption* getOption(u16 index);
 
+    u16 getCurrentOption();
+
     void nextOption();
     void prevOption();
     void firstOption();
