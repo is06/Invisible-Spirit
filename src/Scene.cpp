@@ -39,6 +39,14 @@ void Scene::postRender() {
 
 }
 
+void Scene::hello() {
+
+}
+
+void Scene::nextChar() {
+
+}
+
 /**
  *
  */

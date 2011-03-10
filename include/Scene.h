@@ -19,6 +19,9 @@ class Scene {
     virtual void events() = 0;
     virtual void postRender() = 0;
 
+    virtual void hello();
+    virtual void nextChar();
+
   protected:
     Camera* cam;
     //PlayerControl* control;

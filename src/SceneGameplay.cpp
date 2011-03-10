@@ -21,11 +21,11 @@ SceneGameplay::SceneGameplay() : Scene() {
   gpInterface = new GameplayInterface();
   gpMenu = new GameplayMenu();
 
-  //myTimer = new Timer(3.0f, hello);
+  myTimer = new TimerOnScene(0.5f, this, TIMER_CALLBACK_HELLO);
 }
 
 void SceneGameplay::hello() {
-  cout << "hello" << endl;
+  //cout << "hello" << endl;
 }
 
 /**

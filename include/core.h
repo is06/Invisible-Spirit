@@ -14,6 +14,8 @@ http://www.is06.com. Legal code in license.txt
 #include <fstream>
 #include <map>
 #include <vector>
+//#include <boost/function.hpp>
+//#include <boost/bind.hpp>
 
 #include "Util.h"
 #include "enums.h"

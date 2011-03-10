@@ -22,7 +22,7 @@ Ayron::Ayron(Camera* cam) : Character() {
   jumpStrength = 0.15f;
 
   // Loading mesh
-  loadMesh("resource/mesh/character/cube.mesh");
+  loadMesh("resource/mesh/character/cube.obj");
   createNode(core::vector3df(-3, 1, -4));
   linkedCam = cam;
 
@@ -33,12 +33,7 @@ Ayron::Ayron(Camera* cam) : Character() {
     mainNode->getRotation().Z
   ));
 
-  //mainNode->setScale(core::vector3df(0.01,0.01,0.01));
-
-  video::ITexture* texture = Game::getVideoDriver()->getTexture("resource/mesh/character/cube.bmp");
-  mainNode->setMaterialTexture(0, texture);
-
-  //mainNode->getMaterial(0).Wireframe = true;
+  mainNode->getMaterial(0).Wireframe = true;
 }
 
 /**

@@ -22,6 +22,9 @@ class Text : public Hud {
     void setPosition(const core::position2df& position);
     void updateTiles();
 
+    virtual void hello();
+    virtual void nextChar();
+
   private:
     TextFont* font;
     core::position2df pos;
@@ -31,7 +34,7 @@ class Text : public Hud {
     vector<TextChar>::iterator charIt;
     u8 currentSize;
     u8 currentSpeed;
-
+    TimerOnText* animTimer;
 };
 
 #endif

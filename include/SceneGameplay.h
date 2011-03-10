@@ -28,7 +28,7 @@ class SceneGameplay : public Scene {
     GameplayInterface* gpInterface;
     GameplayMenu* gpMenu;
 
-    Timer* myTimer;
+    TimerOnScene* myTimer;
 
   private:
     void manageCameraControl();

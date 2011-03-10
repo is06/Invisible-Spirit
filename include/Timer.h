@@ -4,28 +4,83 @@
 using namespace irr;
 using namespace std;
 
-typedef void (*Callback)(void);
-
-class Timer {
+template <class T> class Timer {
   public:
-    Timer(f32 end, Callback function);
-    ~Timer();
+    Timer(f32 end = 1.0f, T object = NULL, TimerCallback function = TIMER_CALLBACK_DEFAULT, u32 loopLimit = 1) {
+      callbackObject = object;
+      callbackFunction = function;
+      running = true;
+      reinit(end, object, function, loopLimit);
+    }
 
-    void update();
+    ~Timer() {
+      callbackObject = NULL;
+    }
 
-    void start();
-    void stop();
-    void reset();
-    void reinit(f32 end, Callback function);
+    void update() {
+      if(running && currentLoop < currentLoopLimit) {
+        currentTime += (1.0f / Game::getFramerate());
+        if(currentTime >= endTime) {
+          bool called = true;
+          switch(callbackFunction) {
+            case TIMER_CALLBACK_HELLO: callbackObject->hello(); break;
+            case TIMER_CALLBACK_NEXT_CHAR: callbackObject->nextChar(); break;
+            default: called = false; break;
+          }
+          if(called) {
+            if(currentLoopLimit > 0) {
+              currentLoop++;
+              currentTime = 0.0f;
+            } else {
+              stop();
+            }
+          }
+        }
+      }
+    }
 
-    void setTime(f32 val);
-    f32 getTime();
+    inline void start() {
+      running = true;
+    }
+
+    inline void stop() {
+      running = false;
+    }
+
+    inline void reset() {
+      currentTime = 0.0f;
+    }
+
+    void reinit(f32 end = 1.0f, T object = NULL, TimerCallback function = TIMER_CALLBACK_DEFAULT, u32 loopLimit = 1) {
+      callbackObject = object;
+      callbackFunction = function;
+      currentTime = 0.0f;
+      endTime = end;
+      currentLoop = 0;
+      currentLoopLimit = loopLimit;
+      start();
+    }
+
+    inline void setTime(f32 val) {
+      currentTime = val;
+    }
+
+    inline f32 getTime() {
+      return currentTime;
+    }
 
   private:
     bool running;
+    u32 currentLoopLimit;
+    u32 currentLoop;
     f32 currentTime;
     f32 endTime;
-    Callback endCallback;
+
+    T callbackObject;
+    TimerCallback callbackFunction;
 };
+
+typedef Timer<Scene*> TimerOnScene;
+typedef Timer<Text*> TimerOnText;
 
 #endif

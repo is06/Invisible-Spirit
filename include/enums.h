@@ -131,4 +131,10 @@ enum BarStyle {
   BAR_STYLE_LIFE
 };
 
+enum TimerCallback {
+  TIMER_CALLBACK_DEFAULT,
+  TIMER_CALLBACK_HELLO,
+  TIMER_CALLBACK_NEXT_CHAR
+};
+
 #endif
