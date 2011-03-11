@@ -16,15 +16,24 @@ using namespace irr;
 Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud() {
   textStr = str;
   currentSize = 24;
+  currentSpeed = speed;
   font = new TextFont(style);
   currentCharPos = pos = core::dimension2df(x, y);
+  currentDisplayChar = 0;
   updateTiles();
+
+  if(currentSpeed > 0) {
+    speedTimer = new Timer(0.01f, boost::bind(&Text::nextChar, this), str.size());
+  }
 }
 
 /**
  *
  */
 void Text::render() { Hud::render();
+  if(currentSpeed > 0) {
+    speedTimer->update();
+  }
   for(charIt = charList.begin(); charIt != charList.end(); charIt++) {
     charIt->render();
   }
@@ -48,7 +57,8 @@ void Text::setPosition(const core::position2df& position) {
 }
 
 void Text::nextChar() {
-  cout << "n" << endl;
+  charList[currentDisplayChar].show();
+  currentDisplayChar++;
 }
 
 /**
@@ -63,13 +73,9 @@ void Text::updateTiles() {
       currentCharPos.X = pos.X;
       currentCharPos.Y -= (currentSize - (currentSize / 8));
     } else {
-      charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, true));
+      charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, (currentSpeed == 0)));
     }
   }
-}
-
-void Text::hello() {
-
 }
 
 /**

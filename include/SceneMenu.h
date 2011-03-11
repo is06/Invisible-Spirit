@@ -19,12 +19,10 @@ class SceneMenu : public Scene {
     void events();
     void postRender();
 
-    void hello();
-
   private:
     Menu* mainMenu;
 
-    Timer* myTimer;
+    Text* message;
 };
 
 #endif
