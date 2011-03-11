@@ -34,7 +34,6 @@ class Text : public Hud {
     vector<TextChar>::iterator charIt;
     u8 currentSize;
     u8 currentSpeed;
-    TimerOnText* animTimer;
 };
 
 #endif

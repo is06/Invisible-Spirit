@@ -28,8 +28,6 @@ class SceneGameplay : public Scene {
     GameplayInterface* gpInterface;
     GameplayMenu* gpMenu;
 
-    TimerOnScene* myTimer;
-
   private:
     void manageCameraControl();
     void manageAyronJumps();

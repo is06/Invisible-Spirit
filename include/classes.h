@@ -13,7 +13,7 @@ class EventManager;
 class Settings;
 class SettingsGroup;
 
-template <typename T> class Timer;
+class Timer;
 
 class OpacityShaderCallback;
 

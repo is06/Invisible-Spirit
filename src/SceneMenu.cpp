@@ -17,8 +17,10 @@ SceneMenu::SceneMenu() : Scene() {
   mainMenu = new Menu();
   mainMenu->addOption(MENU_ICON_NONE, L"Nouvelle partie");
   mainMenu->addOption(MENU_ICON_NONE, L"Charger");
-  mainMenu->addOption(MENU_ICON_NONE, L"Base de données");
+  mainMenu->addOption(MENU_ICON_NONE, L"Base de donnees");
   mainMenu->addOption(MENU_ICON_NONE, L"Quitter");
+
+  myTimer = new Timer(1.0f, boost::bind(&SceneMenu::hello, this), 5);
 }
 
 void SceneMenu::events() { Scene::events();
@@ -36,6 +38,12 @@ void SceneMenu::events() { Scene::events();
       case 3: Game::debugExit(); break;
     }
   }
+
+  myTimer->update();
+}
+
+void SceneMenu::hello() {
+  cout << "hello" << endl;
 }
 
 void SceneMenu::postRender() { Scene::postRender();
@@ -45,4 +53,6 @@ void SceneMenu::postRender() { Scene::postRender();
 SceneMenu::~SceneMenu() {
   delete mainMenu;
   delete cam;
+
+  delete myTimer;
 }

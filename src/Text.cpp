@@ -19,7 +19,6 @@ Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style, u8 speed) : 
   font = new TextFont(style);
   currentCharPos = pos = core::dimension2df(x, y);
   updateTiles();
-  animTimer = new TimerOnText(0.1f, this, TIMER_CALLBACK_NEXT_CHAR, str.size());
 }
 
 /**

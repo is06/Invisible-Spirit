@@ -20,8 +20,6 @@ SceneGameplay::SceneGameplay() : Scene() {
   cam->linkEntity(ayron);
   gpInterface = new GameplayInterface();
   gpMenu = new GameplayMenu();
-
-  myTimer = new TimerOnScene(0.5f, this, TIMER_CALLBACK_HELLO);
 }
 
 void SceneGameplay::hello() {
@@ -52,8 +50,6 @@ void SceneGameplay::events() { Scene::events();
   if(gpMenu->isVisible) {
     manageMenuControl();
   }
-
-  myTimer->update();
 
   // Entities rendering
   ayron->render();
@@ -235,6 +231,4 @@ SceneGameplay::~SceneGameplay() {
   delete cam;
   delete gpInterface;
   delete gpMenu;
-
-  delete myTimer;
 }
