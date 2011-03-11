@@ -1,4 +1,4 @@
-### Invisible Spirit - Code Source version 0.1-110123-1 ###
+### Invisible Spirit - Code Source version 0.1-110301-1 ###
 
 OpenGL est nécessaire pour compiler et exécuter Invisible Spirit.
 
@@ -33,6 +33,7 @@ Pour compiler le projet, deux méthodes :
 
   - Newton
   - Irrlicht
+  - Boost
 
   Sous Linux :
 
