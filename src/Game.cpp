@@ -224,6 +224,8 @@ void Game::loadNextScene() {
  */
 void Game::finish() {
   delete currentScene;
+  delete eventManager;
+  delete settings;
   NewtonDestroyAllBodies(newtonWorld);
   NewtonDestroy(newtonWorld);
   device->drop();

@@ -25,8 +25,8 @@ Menu::Menu(f32 x, f32 y, f32 width, u8 height) : Hud() {
 }
 
 void Menu::render() { Hud::render();
-  for(optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
-    optionsIt->second->render();
+  BOOST_FOREACH(MenuOptionMap::value_type op, options) {
+    op.second->render();
   }
   cursor->render();
 }

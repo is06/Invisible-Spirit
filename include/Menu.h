@@ -11,6 +11,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
+typedef boost::unordered_map<u16, MenuOption*> MenuOptionMap;
+
 class Menu : public Hud {
   public:
     Menu(f32 x = 0, f32 y = 0, f32 width = 150, u8 height = 8);
@@ -32,8 +34,7 @@ class Menu : public Hud {
   protected:
     Picture* cursor;
 
-    map<u16, MenuOption*> options;
-    map<u16, MenuOption*>::iterator optionsIt;
+    MenuOptionMap options;
     u16 lastInsertedIndex;
     u16 defaultOption;
     u16 currentOption;

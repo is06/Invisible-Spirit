@@ -14,7 +14,7 @@ SceneMenu::SceneMenu() : Scene() {
   cam = new TPCamera();
   cam->setControl(false);
 
-  message = new Text("Voici un message a afficher progressivement\nMeme sur plusieurs lignes si c'est possible", Game::screenPos.left + 10, Game::screenPos.top - 10, FONT_STD_REGULAR, 1.0f);
+  //message = new Text("Voici un message a afficher progressivement\nMeme sur plusieurs lignes si c'est possible", Game::screenPos.left + 10, Game::screenPos.top - 10, FONT_STD_REGULAR, 1.0f);
 
   mainMenu = new Menu();
   mainMenu->addOption(MENU_ICON_NONE, L"Nouvelle partie");
@@ -42,11 +42,11 @@ void SceneMenu::events() { Scene::events();
 
 void SceneMenu::postRender() { Scene::postRender();
   mainMenu->render();
-  message->render();
+  //message->render();
 }
 
 SceneMenu::~SceneMenu() {
   delete mainMenu;
-  delete message;
+  //delete message;
   delete cam;
 }

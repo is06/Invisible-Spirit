@@ -4,9 +4,11 @@
 using namespace irr;
 using namespace std;
 
+typedef boost::function<void()> VoidCallback;
+
 class Timer {
   public:
-    Timer(f32 end, boost::function<void()> callback, u32 loopLimit = 1);
+    Timer(f32 end, VoidCallback callback, u32 loopLimit = 1);
     ~Timer();
 
     void update();
@@ -15,7 +17,7 @@ class Timer {
     inline void stop();
     inline void reset();
 
-    void reinit(f32 end, boost::function<void()> callback, u32 loopLimit = 1);
+    void reinit(f32 end, VoidCallback callback, u32 loopLimit = 1);
 
     inline void setTime(f32 val);
     inline f32 getTime();
@@ -27,7 +29,7 @@ class Timer {
     f32 currentTime;
     f32 endTime;
 
-    boost::function<void()> endCall;
+    VoidCallback endCall;
 };
 
 #endif

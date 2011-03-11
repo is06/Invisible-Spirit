@@ -11,6 +11,9 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
+typedef boost::unordered_map<u16, bool> GamepadButtonMap;
+typedef boost::unordered_map<GamepadDirection, bool> GamepadDirectionMap;
+
 class Gamepad {
   public:
     Gamepad();
@@ -29,8 +32,8 @@ class Gamepad {
     bool dirPressed(GamepadDirection direction, EventType type = EVENT_ALWAYS);
 
   private:
-    map<u16, bool> buttonOnce;
-    map<GamepadDirection, bool> directionOnce;
+    GamepadButtonMap buttonOnce;
+    GamepadDirectionMap directionOnce;
 };
 
 #endif

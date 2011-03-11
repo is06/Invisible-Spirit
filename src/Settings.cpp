@@ -90,6 +90,7 @@ Settings::Settings() {
       linePosition++;
     }
   }
+  fileStream.close();
 }
 
 core::stringc& Settings::getParamString(const core::stringc& groupName, const core::stringc& paramName) {
@@ -105,5 +106,5 @@ s32 Settings::getParamInt(const core::stringc& groupName, const core::stringc& p
 }
 
 Settings::~Settings() {
-  fileStream.close();
+
 }

@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-Timer::Timer(f32 end, boost::function<void()> callback, u32 loopLimit) {
+Timer::Timer(f32 end, VoidCallback callback, u32 loopLimit) {
   running = true;
   reinit(end, callback, loopLimit);
 }
@@ -46,7 +46,7 @@ void Timer::reset() {
   currentTime = 0.0f;
 }
 
-void Timer::reinit(f32 end, boost::function<void()> callback, u32 loopLimit) {
+void Timer::reinit(f32 end, VoidCallback callback, u32 loopLimit) {
   endCall = callback;
   currentTime = 0.0f;
   endTime = end;

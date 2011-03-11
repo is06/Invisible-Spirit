@@ -22,6 +22,7 @@ Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style, u8 speed) : 
   currentDisplayChar = 0;
   updateTiles();
 
+  speedTimer = NULL;
   if(currentSpeed > 0) {
     speedTimer = new Timer(0.01f, boost::bind(&Text::nextChar, this), str.size());
   }
@@ -83,4 +84,7 @@ void Text::updateTiles() {
  */
 Text::~Text() {
   delete font;
+  if(speedTimer) {
+    delete speedTimer;
+  }
 }
