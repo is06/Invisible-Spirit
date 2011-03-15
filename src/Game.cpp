@@ -69,7 +69,7 @@ void Game::init() {
   exit = false;
 
   sceneChanged = true;
-  nextScene = SCENE_MENU;
+  nextScene = SCENE_MAP_ALPHA_ZONE;
 }
 
 /**
@@ -214,6 +214,7 @@ void Game::loadNextScene() {
   switch(nextScene) {
     case SCENE_MENU: currentScene = new SceneMenu(); break;
 
+    case SCENE_MAP_ALPHA_ZONE: currentScene = new MAP_ALPHA_ZONE(); break;
     case SCENE_MAP_CANYON: currentScene = new MAP_CANYON(); break;
   }
   sceneChanged = false;

@@ -139,7 +139,7 @@ enum TimerCallback {
 
 enum SceneIdentifier {
   SCENE_MENU,
-
+  SCENE_MAP_ALPHA_ZONE,
   SCENE_MAP_CANYON
 };
 

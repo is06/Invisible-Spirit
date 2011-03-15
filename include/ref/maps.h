@@ -8,9 +8,11 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MAPS_H__
 #define __IS06_MAPS_H__
 
+class MAP_ALPHA_ZONE;
 class MAP_CANYON;
 class MAP_OXYGEN;
 
+#include "../../src/map/MAP_ALPHA_ZONE.h"
 #include "../../src/map/MAP_CANYON.h"
 #include "../../src/map/MAP_OXYGEN.h"
 

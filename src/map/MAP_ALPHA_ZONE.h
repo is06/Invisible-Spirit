@@ -5,17 +5,18 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_STATIC_MODEL_H__
-#define __IS06_STATIC_MODEL_H__
+#ifndef __IS06_MAP_ALPHA_ZONE__
+#define __IS06_MAP_ALPHA_ZONE__
 
-class StaticModel : public ModelEntity {
+class MAP_ALPHA_ZONE : public SceneGameplay {
   public:
-    StaticModel();
-    ~StaticModel();
+    MAP_ALPHA_ZONE();
+    ~MAP_ALPHA_ZONE();
 
-    virtual void render();
+    void events();
+    void postRender();
 
-    void createNode(const core::vector3df& initPosition);
+  private:
 };
 
 #endif
