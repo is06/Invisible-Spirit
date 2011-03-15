@@ -19,8 +19,6 @@ class SceneGameplay : public Scene {
     virtual void events();
     virtual void postRender();
 
-    void hello();
-
   protected:
     Ayron* ayron;
     LevelMesh* level;

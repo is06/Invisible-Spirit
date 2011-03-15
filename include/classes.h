@@ -19,6 +19,8 @@ class OpacityShaderCallback;
 
 class PostRenderGlow;
 
+class Translation;
+
 // =========================================================
 // INTERFACES
 
@@ -95,6 +97,8 @@ class Speaker;
 #include "Settings.h"
 #include "SettingsGroup.h"
 #include "EventManager.h"
+
+#include "Translation.h"
 
 #include "Timer.h"
 

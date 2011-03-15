@@ -5,22 +5,26 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_SCENE_MENU_H__
-#define __IS06_SCENE_MENU_H__
+#ifndef __IS06_TRANSLATION_H__
+#define __IS06_TRANSLATION_H__
 
-using namespace irr;
 using namespace std;
+using namespace irr;
 
-class SceneMenu : public Scene {
+typedef map<core::stringc, core::stringw> translationMap;
+
+class Translation {
   public:
-    SceneMenu();
-    ~SceneMenu();
+    Translation(const core::stringc& filePath);
+    ~Translation();
 
-    void events();
-    void postRender();
+    const core::stringw& getTranslation(const core::stringc& identifier) const;
 
   private:
-    Menu* mainMenu;
+    void loadTextData(const core::stringc& fullPath);
+    core::stringw notfound;
+
+    translationMap textData;
 };
 
 #endif

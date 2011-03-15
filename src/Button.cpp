@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/core.h"
 
 Button::Button(f32 x, f32 y) {
-  buttonCircle = new Picture(40, 40, x, y, "resource/hud/buttonCircle.png");
+  buttonCircle = new Picture(40, 40, x, y, "resource/hud/button/buttonCircle.png");
 }
 
 void Button::render() {

@@ -21,6 +21,8 @@ Scene::Scene() {
   gamepad = new Gamepad();
 
   timeElapsed = 0.0f;
+
+  globalTranslations = Game::getGlobalTranslations();
 }
 
 /**

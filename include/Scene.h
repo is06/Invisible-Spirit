@@ -28,6 +28,7 @@ class Scene {
 
     Keyboard* keyboard;
     Gamepad* gamepad;
+    Translation* globalTranslations;
 
     f32 timeElapsed;
 

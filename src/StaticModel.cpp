@@ -14,7 +14,7 @@ using namespace std;
  * Constructeur
  */
 StaticModel::StaticModel() : ModelEntity() {
-
+  mainNode = NULL;
 }
 
 /**
@@ -39,3 +39,8 @@ StaticModel::~StaticModel() {
   mainNode->remove();
 }
 
+StaticModel::~StaticModel() {
+  if(mainNode) {
+    mainNode->remove();
+  }
+}
