@@ -22,10 +22,6 @@ SceneGameplay::SceneGameplay() : Scene() {
   gpMenu = new GameplayMenu();
 }
 
-void SceneGameplay::hello() {
-  //cout << "hello" << endl;
-}
-
 /**
  * This function manages all events in this type of scene
  */
@@ -218,7 +214,7 @@ void SceneGameplay::manageMenuControl() {
  * It renders HUD elements in front of camera
  */
 void SceneGameplay::postRender() { Scene::postRender();
-  //gpInterface->render();
+  gpInterface->render();
   gpMenu->render();
 }
 

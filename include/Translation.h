@@ -22,6 +22,7 @@ class Translation {
 
   private:
     void loadTextData(const core::stringc& fullPath);
+    core::stringw notfound;
 
     translationMap textData;
 };

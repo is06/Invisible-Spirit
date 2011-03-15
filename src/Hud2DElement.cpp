@@ -23,7 +23,7 @@ Hud2DElement::Hud2DElement(f32 w, f32 h, f32 x, f32 y) : Hud() {
 
   // Materiau
   material.Lighting = false;
-  material.DiffuseColor.setAlpha(255);
+  //material.DiffuseColor.setAlpha(255);
   //material.Wireframe = true;
   //material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.opacity;
   material.MaterialType = video::EMT_TRANSPARENT_ALPHA_CHANNEL;
@@ -95,9 +95,12 @@ void Hud2DElement::render() {
   if(isVisible) {
     core::matrix4 mat;
     u16 indices[] = {0,2,3, 2,1,3, 1,0,3, 2,0,1};
+    //material.setTexture(0, NULL);
+    //material.Wireframe = true;
+
     Game::getVideoDriver()->setMaterial(material);
     Game::getVideoDriver()->setTransform(video::ETS_VIEW, mat);
-    Game::getVideoDriver()->drawIndexedTriangleList(vertices, 4, indices, 4);
+    Game::getVideoDriver()->drawVertexPrimitiveList(vertices, 4, indices, 4);
     Game::getVideoDriver()->setTransform(video::ETS_WORLD, mat);
   }
 }

@@ -14,7 +14,7 @@ using namespace std;
  * Constructeur
  */
 StaticModel::StaticModel() : ModelEntity() {
-
+  mainNode = NULL;
 }
 
 /**
@@ -35,3 +35,8 @@ void StaticModel::createNode(const core::vector3df& initPosition) {
   mainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
 }
 
+StaticModel::~StaticModel() {
+  if(mainNode) {
+    mainNode->remove();
+  }
+}

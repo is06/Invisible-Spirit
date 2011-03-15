@@ -17,7 +17,7 @@ class MAP_CANYON : public SceneGameplay {
     void postRender();
 
   private:
-    Text* message;
+
 };
 
 #endif

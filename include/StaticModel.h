@@ -11,6 +11,7 @@ http://www.is06.com. Legal code in license.txt
 class StaticModel : public ModelEntity {
   public:
     StaticModel();
+    ~StaticModel();
 
     virtual void render();
 

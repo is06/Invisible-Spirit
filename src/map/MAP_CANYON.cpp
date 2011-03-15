@@ -18,10 +18,6 @@ MAP_CANYON::MAP_CANYON() : SceneGameplay() {
   level->loadMesh("resource/mesh/level/test2.obj");
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
-
-  translatedText = new Translation("MAP_CANYON.txt");
-
-  message = new Text(translatedText->getTranslation("test"), Game::screenPos.left + 10, Game::screenPos.top - 10, FONT_STD_REGULAR, 1.0f);
 }
 
 /**
@@ -32,13 +28,12 @@ void MAP_CANYON::events() { SceneGameplay::events();
 }
 
 void MAP_CANYON::postRender() { SceneGameplay::postRender();
-  message->render();
+
 }
 
 /**
  * Detruit les objets définis dans le constructeur
  */
 MAP_CANYON::~MAP_CANYON() {
-  delete translatedText;
-  //delete message;
+
 }

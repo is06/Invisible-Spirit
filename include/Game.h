@@ -22,20 +22,20 @@ class Game {
     static NewtonWorld* getNewtonWorld();
     static EventManager* getEventManager();
     static void debugExit();
+    static f32 getFramerate();
+    static void changeScene(SceneIdentifier id);
+    static LocaleIdentifier getCurrentLocale();
+    static Translation* getGlobalTranslations();
 
     static Settings* settings;
-
     static ScreenPosition screenPos;
     static Shaders shaders;
-
-    static f32 getFramerate();
-
-    static void changeScene(SceneIdentifier id);
 
   private:
     Game();
     static void initScreenPositions(u32 w, u32 h);
     static void initShaders();
+    static void initLocale();
     static void loadNextScene();
 
     // Objets Irrlicht
@@ -51,6 +51,8 @@ class Game {
     static EventManager* eventManager;
     static Scene* currentScene;
     static SceneIdentifier nextScene;
+    static LocaleIdentifier currentLocale;
+    static Translation* globalTranslations;
 
     static bool sceneChanged;
     static bool exit;

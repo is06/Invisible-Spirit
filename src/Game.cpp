@@ -17,10 +17,12 @@ NewtonWorld* Game::newtonWorld;
 Scene* Game::currentScene;
 EventManager* Game::eventManager;
 Settings* Game::settings;
+Translation* Game::globalTranslations;
 
 ScreenPosition Game::screenPos;
 Shaders Game::shaders;
 SceneIdentifier Game::nextScene;
+LocaleIdentifier Game::currentLocale;
 bool Game::sceneChanged;
 bool Game::exit;
 u8 Game::framerate;
@@ -61,6 +63,7 @@ void Game::init() {
   sceneManager = device->getSceneManager();
   initScreenPositions(screenWidth, screenHeight);
   initShaders();
+  initLocale();
 
   // Initialisation du moteur physique
   newtonWorld = NewtonCreate();
@@ -105,8 +108,6 @@ void Game::run() {
     }
 
     videoDriver->endScene();
-
-
   }
 }
 
@@ -200,6 +201,16 @@ void Game::initShaders() {
   }
 }
 
+void Game::initLocale() {
+  core::stringc textLocale = settings->getParamString("regional", "locale");
+  currentLocale = LOCALE_FRE_FR;
+  if(textLocale == "eng-GB") {
+    currentLocale = LOCALE_ENG_GB;
+  }
+
+  globalTranslations = new Translation("global.txt");
+}
+
 f32 Game::getFramerate() {
   return framerate;
 }
@@ -219,6 +230,14 @@ void Game::loadNextScene() {
   sceneChanged = false;
 }
 
+LocaleIdentifier Game::getCurrentLocale() {
+  return currentLocale;
+}
+
+Translation* Game::getGlobalTranslations() {
+  return globalTranslations;
+}
+
 /**
  * Pseudo-destructeur de Game
  */
@@ -226,6 +245,7 @@ void Game::finish() {
   delete currentScene;
   delete eventManager;
   delete settings;
+  delete globalTranslations;
   NewtonDestroyAllBodies(newtonWorld);
   NewtonDestroy(newtonWorld);
   device->drop();

@@ -21,8 +21,6 @@ class SceneMenu : public Scene {
 
   private:
     Menu* mainMenu;
-
-    Text* message;
 };
 
 #endif
