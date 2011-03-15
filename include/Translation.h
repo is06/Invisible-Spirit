@@ -5,34 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_SCENE_H__
-#define __IS06_SCENE_H__
+#ifndef __IS06_TRANSLATION_H__
+#define __IS06_TRANSLATION_H__
 
-using namespace irr;
 using namespace std;
+using namespace irr;
 
-class Scene {
+typedef map<core::stringc, core::stringw> translationMap;
+
+class Translation {
   public:
-    Scene();
-    virtual ~Scene();
+    Translation(const core::stringc& filePath);
+    ~Translation();
 
-    virtual void events() = 0;
-    virtual void postRender() = 0;
-
-    virtual void hello();
-    virtual void nextChar();
-
-  protected:
-    Camera* cam;
-    //PlayerControl* control;
-
-    Keyboard* keyboard;
-    Gamepad* gamepad;
-    Translation* translatedText;
-
-    f32 timeElapsed;
+    const core::stringw& getTranslation(const core::stringc& identifier) const;
 
   private:
+    void loadTextData(const core::stringc& fullPath);
+
+    translationMap textData;
 };
 
 #endif

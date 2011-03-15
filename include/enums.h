@@ -143,4 +143,19 @@ enum SceneIdentifier {
   SCENE_MAP_CANYON
 };
 
+enum LocaleIdentifier {
+  LOCALE_ENG_GB,
+  LOCALE_ENG_US,
+  LOCALE_FRE_FR,
+  LOCALE_FRE_CA,
+  LOCALE_FRE_BE,
+  LOCALE_FRE_CH,
+  LOCALE_GER_DE,
+  LOCALE_CAT_ES,
+  LOCALE_ITA_IT,
+  LOCALE_POR_PT,
+  LOCALE_DUT_NL,
+  LOCALE_JPN_JP
+};
+
 #endif
