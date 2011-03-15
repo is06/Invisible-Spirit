@@ -36,10 +36,6 @@ void StaticModel::createNode(const core::vector3df& initPosition) {
 }
 
 StaticModel::~StaticModel() {
-  mainNode->remove();
-}
-
-StaticModel::~StaticModel() {
   if(mainNode) {
     mainNode->remove();
   }
