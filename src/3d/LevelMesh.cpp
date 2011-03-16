@@ -7,30 +7,32 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/ref/core.h"
 
-using namespace std;
 using namespace irr;
 
 /**
- * Constructeur de la map en cours, définition du mesh du décor, création du node et de
- * son masque de collision
+ * Initialise le mesh Bullet qui permet de créer la forme complexe
  */
-MAP_OXYGEN::MAP_OXYGEN() : SceneGameplay() {
-  level->loadMesh("resource/mesh/level/oxygen.obj");
-  level->createNode(core::vector3df(0, 0, 0));
-  level->loadMeshCollision();
-}
-
-/**
- * Fonction de test des événements spécifiques à cette map
- */
-void MAP_OXYGEN::events() { SceneGameplay::events();
+LevelMesh::LevelMesh() : StaticModel() {
 
 }
 
 /**
- * Detruit les objets définis dans le constructeur
+ * Fonction de mise à jour et de rendu de tous les levelMesh créés
  */
-MAP_OXYGEN::~MAP_OXYGEN() {
+void LevelMesh::render() { StaticModel::render();
 
 }
 
+/**
+ * Chargement du masque de collision du mesh Irrlicht dans le mesh Bullet
+ */
+void LevelMesh::loadCollisionMask() {
+
+}
+
+/**
+ * Détruit les objets définis par le constructeur
+ */
+LevelMesh::~LevelMesh() {
+
+}

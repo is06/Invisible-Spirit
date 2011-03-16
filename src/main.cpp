@@ -5,7 +5,7 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../include/core.h"
+#include "../include/ref/core.h"
 
 int main() {
   Game::init();

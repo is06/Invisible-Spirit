@@ -5,22 +5,22 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../include/ref/core.h"
+#include "../../include/ref/core.h"
 
+using namespace std;
 using namespace irr;
 
-SettingsGroup::SettingsGroup(const core::stringc& newName) {
-  setName(newName);
+CapacityInfo::CapacityInfo() : Hud() {
+  icon = new Picture();
+  value = new Text();
 }
 
-void SettingsGroup::setName(const core::stringc& newName) {
-  name = newName;
+void CapacityInfo::render() { Hud::render();
+  icon->render();
+  value->render();
 }
 
-map<core::stringc, core::stringc>& SettingsGroup::getParams() {
-  return params;
-}
-
-core::stringc& SettingsGroup::getName() {
-  return name;
+CapacityInfo::~CapacityInfo() {
+  delete icon;
+  delete value;
 }

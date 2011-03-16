@@ -5,22 +5,29 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../include/ref/core.h"
+#include "../../include/ref/core.h"
 
+using namespace std;
 using namespace irr;
 
-SettingsGroup::SettingsGroup(const core::stringc& newName) {
-  setName(newName);
+Counter::Counter(s32 init, s32 min, s32 max) {
+  minValue = min;
+  maxValue = max;
+  currentValue = init;
 }
 
-void SettingsGroup::setName(const core::stringc& newName) {
-  name = newName;
+void Counter::addValue(s32 val) {
+  currentValue += val;
 }
 
-map<core::stringc, core::stringc>& SettingsGroup::getParams() {
-  return params;
+void Counter::subValue(s32 val) {
+  currentValue -= val;
 }
 
-core::stringc& SettingsGroup::getName() {
-  return name;
+void Counter::setValue(s32 val) {
+  currentValue = val;
+}
+
+Counter::~Counter() {
+
 }

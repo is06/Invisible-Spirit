@@ -5,22 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../include/ref/core.h"
+#include "../../include/ref/core.h"
 
 using namespace irr;
 
-SettingsGroup::SettingsGroup(const core::stringc& newName) {
-  setName(newName);
+/**
+ * Constructeur
+ */
+Character::Character() : AnimatedModel() {
+
 }
 
-void SettingsGroup::setName(const core::stringc& newName) {
-  name = newName;
-}
+/**
+ * Fonction de mise à jour et de rendu de tous les personnages
+ */
+void Character::render() { AnimatedModel::render();
 
-map<core::stringc, core::stringc>& SettingsGroup::getParams() {
-  return params;
-}
-
-core::stringc& SettingsGroup::getName() {
-  return name;
 }

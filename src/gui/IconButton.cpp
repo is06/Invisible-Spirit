@@ -5,22 +5,16 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../include/ref/core.h"
+#include "../../include/ref/core.h"
 
-using namespace irr;
+IconButton::IconButton(f32 x, f32 y) : Button(x, y) {
 
-SettingsGroup::SettingsGroup(const core::stringc& newName) {
-  setName(newName);
 }
 
-void SettingsGroup::setName(const core::stringc& newName) {
-  name = newName;
+void IconButton::render() { Button::render();
+
 }
 
-map<core::stringc, core::stringc>& SettingsGroup::getParams() {
-  return params;
-}
+IconButton::~IconButton() {
 
-core::stringc& SettingsGroup::getName() {
-  return name;
 }

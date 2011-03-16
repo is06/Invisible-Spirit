@@ -5,22 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../include/ref/core.h"
+#include "../../include/ref/core.h"
 
 using namespace irr;
 
-SettingsGroup::SettingsGroup(const core::stringc& newName) {
-  setName(newName);
+/**
+ * Création à l'aide de coordonnées directes
+ */
+Picture::Picture(f32 w, f32 h, f32 x, f32 y, const core::stringc& filePath) : Hud2DElement(w, h, x, y) {
+  texture = Game::getVideoDriver()->getTexture(filePath.c_str());
+  material.setTexture(0, texture);
 }
 
-void SettingsGroup::setName(const core::stringc& newName) {
-  name = newName;
+/**
+ * Rendu de l'élément d'interface
+ */
+void Picture::render() { Hud2DElement::render();
+
 }
 
-map<core::stringc, core::stringc>& SettingsGroup::getParams() {
-  return params;
-}
+Picture::~Picture() {
 
-core::stringc& SettingsGroup::getName() {
-  return name;
 }

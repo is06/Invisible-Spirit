@@ -5,22 +5,28 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../include/ref/core.h"
+#include "../../include/ref/core.h"
 
-using namespace irr;
-
-SettingsGroup::SettingsGroup(const core::stringc& newName) {
-  setName(newName);
+GameplayInterface::GameplayInterface() {
+  buttons = new ButtonsInterface();
 }
 
-void SettingsGroup::setName(const core::stringc& newName) {
-  name = newName;
+void GameplayInterface::render() {
+  buttons->render();
 }
 
-map<core::stringc, core::stringc>& SettingsGroup::getParams() {
-  return params;
+void GameplayInterface::hide() {
+  buttons->hide();
 }
 
-core::stringc& SettingsGroup::getName() {
-  return name;
+void GameplayInterface::show() {
+  buttons->show();
+}
+
+void GameplayInterface::setOpacity(u8 value) {
+  buttons->setOpacity(value);
+}
+
+GameplayInterface::~GameplayInterface() {
+  delete buttons;
 }

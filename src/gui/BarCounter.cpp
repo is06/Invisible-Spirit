@@ -10,27 +10,21 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-/**
- * Constructeur de la map en cours, définition du mesh du décor, création du node et de
- * son masque de collision
- */
-MAP_OXYGEN::MAP_OXYGEN() : SceneGameplay() {
-  level->loadMesh("resource/mesh/level/oxygen.obj");
-  level->createNode(core::vector3df(0, 0, 0));
-  level->loadMeshCollision();
+BarCounter::BarCounter(s32 init, s32 min, s32 max, f32 w, f32 h, f32 x, f32 y, BarStyle style) : Counter(init, min, max) {
+  core::stringc texturePath = "resource/hud/bar/";
+
+  switch(style) {
+    case BAR_STYLE_LIFE: texturePath.append("life.bmp"); break;
+    default: texturePath.append("default.bmp"); break;
+  }
+
+  bar = new Picture(w, h, x, y, texturePath);
 }
 
-/**
- * Fonction de test des événements spécifiques à cette map
- */
-void MAP_OXYGEN::events() { SceneGameplay::events();
-
+void BarCounter::render() {
+  bar->render();
 }
 
-/**
- * Detruit les objets définis dans le constructeur
- */
-MAP_OXYGEN::~MAP_OXYGEN() {
-
+BarCounter::~BarCounter() {
+  delete bar;
 }
-

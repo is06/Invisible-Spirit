@@ -5,22 +5,24 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../include/ref/core.h"
+#ifndef __IS06_CORE_H__
+#define __IS06_CORE_H__
 
-using namespace irr;
+#include <irr/irrlicht.h>
+#include <newton/Newton.h>
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <vector>
+#include <boost/foreach.hpp>
+#include <boost/function.hpp>
+#include <boost/bind.hpp>
+#include <boost/unordered_map.hpp>
 
-SettingsGroup::SettingsGroup(const core::stringc& newName) {
-  setName(newName);
-}
+#include "../Util.h"
+#include "enums.h"
+#include "structs.h"
+#include "classes.h"
+#include "maps.h"
 
-void SettingsGroup::setName(const core::stringc& newName) {
-  name = newName;
-}
-
-map<core::stringc, core::stringc>& SettingsGroup::getParams() {
-  return params;
-}
-
-core::stringc& SettingsGroup::getName() {
-  return name;
-}
+#endif
