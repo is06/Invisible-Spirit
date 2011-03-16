@@ -15,8 +15,7 @@ SceneMenu::SceneMenu() : Scene() {
   cam->setControl(false);
 
   mainMenu = new Menu();
-  mainMenu->addOption(MENU_ICON_NONE, L"Alpha Zone");
-  mainMenu->addOption(MENU_ICON_NONE, L"Map Canyon");
+  mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_new_game"));
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_quit"));
 }
 
@@ -29,9 +28,8 @@ void SceneMenu::events() { Scene::events();
   }
   if(keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
     switch(mainMenu->getCurrentOption()) {
-      case 0: Game::changeScene(SCENE_MAP_ALPHA_ZONE); break;
-      case 1: Game::changeScene(SCENE_MAP_CANYON); break;
-      case 2: Game::debugExit(); break;
+      case 0: Game::getCurrentSave()->createNewFile(); break;
+      case 1: Game::quit(); break;
     }
   }
 }

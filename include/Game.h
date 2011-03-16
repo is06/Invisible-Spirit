@@ -21,11 +21,12 @@ class Game {
     static scene::ISceneManager* getSceneManager();
     static NewtonWorld* getNewtonWorld();
     static EventManager* getEventManager();
-    static void debugExit();
     static f32 getFramerate();
+    static void quit();
     static void changeScene(SceneIdentifier id);
     static LocaleIdentifier getCurrentLocale();
     static Translation* getGlobalTranslations();
+    static Save* getCurrentSave();
 
     static Settings* settings;
     static ScreenPosition screenPos;
@@ -53,6 +54,7 @@ class Game {
     static SceneIdentifier nextScene;
     static LocaleIdentifier currentLocale;
     static Translation* globalTranslations;
+    static Save* currentSave;
 
     static bool sceneChanged;
     static bool exit;

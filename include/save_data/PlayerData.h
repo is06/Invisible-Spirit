@@ -5,17 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_STRUCTS_H__
-#define __IS06_STRUCTS_H__
+#ifndef __IS06_PLAYER_DATA_H__
+#define __IS06_PLAYER_DATA_H__
 
-#include "../save_data/PowerElementData.h"
-#include "../save_data/FightPowerData.h"
-#include "../save_data/MagicPowerData.h"
-#include "../save_data/StatePowerData.h"
-#include "../save_data/PlayerData.h"
-#include "../save_data/PowerData.h"
+using namespace irr;
+using namespace std;
 
-#include "../ScreenPosition.h"
-#include "../Shaders.h"
+struct PlayerData {
+  u8 level;
+  u16 currentHP;
+  u16 maxHP;
+  u16 currentMP;
+  u16 maxMP;
+
+  u8 strength;
+  u8 defense;
+  u8 magic;
+  u8 concentration;
+  u8 precision;
+  u8 speed;
+};
 
 #endif

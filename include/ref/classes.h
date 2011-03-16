@@ -15,10 +15,11 @@ class Settings;
 class SettingsGroup;
 class Timer;
 class Translation;
+class Entity;
+class Save;
 class Keyboard;
 class Mouse;
 class Gamepad;
-class Entity;
 
 // Scnees
 class Scene;
@@ -76,9 +77,10 @@ class PostRenderGlow;
 #include "../EventManager.h"
 #include "../Translation.h"
 #include "../Timer.h"
+#include "../Entity.h"
+#include "../Save.h"
 #include "../Keyboard.h"
 #include "../Gamepad.h"
-#include "../Entity.h"
 
 // Scenes
 #include "../scene/Scene.h"

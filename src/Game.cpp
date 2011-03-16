@@ -8,6 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/ref/core.h"
 
 using namespace irr;
+using namespace std;
 
 IrrlichtDevice* Game::device;
 video::IVideoDriver* Game::videoDriver;
@@ -18,6 +19,7 @@ Scene* Game::currentScene;
 EventManager* Game::eventManager;
 Settings* Game::settings;
 Translation* Game::globalTranslations;
+Save* Game::currentSave;
 
 ScreenPosition Game::screenPos;
 Shaders Game::shaders;
@@ -65,14 +67,14 @@ void Game::init() {
   initShaders();
   initLocale();
 
-  // Initialisation du moteur physique
+  currentSave = new Save();
   newtonWorld = NewtonCreate();
 
   framerate = 60;
   exit = false;
 
   sceneChanged = true;
-  nextScene = SCENE_MAP_ALPHA_ZONE;
+  nextScene = SCENE_MENU;
 }
 
 /**
@@ -153,9 +155,8 @@ EventManager* Game::getEventManager() {
 /**
  * Permet de quitter le programme
  */
-void Game::debugExit() {
+void Game::quit() {
   exit = true;
-  //system("pause");
 }
 
 /**
@@ -239,6 +240,10 @@ Translation* Game::getGlobalTranslations() {
   return globalTranslations;
 }
 
+Save* Game::getCurrentSave() {
+  return currentSave;
+}
+
 /**
  * Pseudo-destructeur de Game
  */
@@ -247,6 +252,7 @@ void Game::finish() {
   delete eventManager;
   delete settings;
   delete globalTranslations;
+  delete currentSave;
   NewtonDestroyAllBodies(newtonWorld);
   NewtonDestroy(newtonWorld);
   device->drop();

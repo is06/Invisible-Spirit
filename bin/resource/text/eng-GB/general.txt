@@ -1,0 +1,2 @@
+main_menu_new_game=New Game
+main_menu_quit=Quit
