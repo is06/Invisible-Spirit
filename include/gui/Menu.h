@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-typedef boost::unordered_map<u16, MenuOption*> MenuOptionMap;
+typedef map<u16, MenuOption*> MenuOptionMap;
 
 class Menu : public Hud {
   public:

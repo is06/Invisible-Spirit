@@ -11,8 +11,6 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-typedef map<core::stringc, core::stringw> translationMap;
-
 class Translation {
   public:
     Translation(const core::stringc& filePath);
@@ -24,7 +22,7 @@ class Translation {
     void loadTextData(const core::stringc& fullPath);
     core::stringw notfound;
 
-    translationMap textData;
+    map<core::stringc, core::stringw> textData;
 };
 
 #endif

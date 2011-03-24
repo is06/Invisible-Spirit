@@ -25,7 +25,7 @@ void Save::write() {
 /**
  * This function creates a brand new file for the player, every memorized pieces
  * of data are initialized here, like the start map or character HP and MP...
- * It changes the current map of the game so the player can start to enjoy the game.
+ * It changes the current map of the game so the player can start to play.
  */
 void Save::createNewFile() {
   // Save info
