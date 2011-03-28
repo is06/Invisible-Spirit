@@ -20,8 +20,16 @@ class Save {
     void write();
     void createNewFile();
 
+    // Set data
+    void powerLevelUp(PowerType type, const core::stringc& id, u32 value);
+    void powerExpUp(PowerType type, const core::stringc& id, u32 value);
+    void powerGet(PowerType type, const core::stringc& id);
+    void playerLevelUp(u32 value);
+    void playerExpUp(u32 value);
+
     // General information
     u8 slot;
+    u8 difficultyLevel;
 
     // Map information
     SceneIdentifier currentMap;
@@ -29,6 +37,12 @@ class Save {
     // Player information
     PlayerData playerData;
     PowerData powerData;
+
+  private:
+    void initFightPowers();
+    void initMagicPowers();
+    void initStatePowers();
+
 };
 
 #endif

@@ -12,9 +12,9 @@ using namespace irr;
 using namespace std;
 
 struct PowerData {
-  FightPowerData fightPowerData;
-  MagicPowerData magicPowerData;
-  StatePowerData statePowerData;
+  map<core::stringc, PowerElementData> fightPowers;
+  map<core::stringc, PowerElementData> magicPowers;
+  map<core::stringc, PowerElementData> statePowers;
 };
 
 #endif

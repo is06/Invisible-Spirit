@@ -172,4 +172,10 @@ enum ElementType {
   ELMTYPE_NEUTRAL
 };
 
+enum PowerType {
+  POWERTYPE_FIGHT,
+  POWERTYPE_MAGIC,
+  POWERTYPE_STATE
+};
+
 #endif

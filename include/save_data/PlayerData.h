@@ -17,11 +17,13 @@ struct PlayerData {
   u16 maxHP;
   u16 currentMP;
   u16 maxMP;
+  u32 currentExp;
+  u32 nextLevel;
 
   u8 strength;
   u8 defense;
   u8 magic;
-  u8 concentration;
+  u8 resistance; // (Defmag)
   u8 precision;
   u8 speed;
 };

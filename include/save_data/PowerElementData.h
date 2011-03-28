@@ -15,6 +15,7 @@ struct PowerElementData {
   core::stringc nameTranslationIdentifier;
   u8 level;
   u32 exp;
+  u32 nextLevel;
   ElementType type;
 };
 

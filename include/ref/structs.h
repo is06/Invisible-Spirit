@@ -9,9 +9,6 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_STRUCTS_H__
 
 #include "../save_data/PowerElementData.h"
-#include "../save_data/FightPowerData.h"
-#include "../save_data/MagicPowerData.h"
-#include "../save_data/StatePowerData.h"
 #include "../save_data/PlayerData.h"
 #include "../save_data/PowerData.h"
 
