@@ -49,7 +49,8 @@ void Scene::nextChar() {
  *
  */
 Scene::~Scene() {
-  //Game::getVideoDriver()->removeAllTextures();
+  Game::getVideoDriver()->removeAllTextures();
+  Game::getSceneManager()->getMeshCache()->clear();
   //delete control;
   delete keyboard;
   delete gamepad;

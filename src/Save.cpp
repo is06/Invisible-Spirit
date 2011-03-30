@@ -62,33 +62,33 @@ void Save::createNewFile() {
  */
 void Save::initFightPowers() {
   PowerElementData& power = powerData.fightPowers["strike"];
-  power.nameTranslationIdentifier = "power_fight_strike_name";
+  power.nameTranslationIdentifier = "gameplay_power_fight_strike";
   power.level = 1;
   power.exp = 0;
   power.nextLevel = 2000;
 
   power = powerData.fightPowers["reversed_strike"];
-  power.nameTranslationIdentifier = "power_fight_reversed_strike_name";
+  power.nameTranslationIdentifier = "gameplay_power_fight_reversed_strike";
   power.level = 1;
   power.exp = 0;
   power.nextLevel = 2000;
 
   power = powerData.fightPowers["final_strike"];
-  power.nameTranslationIdentifier = "power_fight_final_strike_name";
+  power.nameTranslationIdentifier = "gameplay_power_fight_final_strike";
   power.level = 1;
   power.exp = 0;
   power.nextLevel = 2000;
 
   power = powerData.fightPowers["block"];
-  power.nameTranslationIdentifier = "power_fight_block_name";
+  power.nameTranslationIdentifier = "gameplay_power_fight_block";
   power.level = 1;
   power.exp = 0;
 
-  powerData.fightPowers["verticalStrike"].level = 0;
-  powerData.fightPowers["upperStrike"].level = 0;
-  powerData.fightPowers["jumpStrike"].level = 0;
-  powerData.fightPowers["circularStrike"].level = 0;
-  powerData.fightPowers["omniStrike"].level = 0;
+  powerData.fightPowers["vertical_strike"].level = 0;
+  powerData.fightPowers["upper_strike"].level = 0;
+  powerData.fightPowers["jump_strike"].level = 0;
+  powerData.fightPowers["circular_strike"].level = 0;
+  powerData.fightPowers["omni_strike"].level = 0;
 }
 
 /**

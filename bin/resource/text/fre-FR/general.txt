@@ -1,2 +1,0 @@
-main_menu_new_game=Nouvelle partie
-main_menu_quit=Quitter

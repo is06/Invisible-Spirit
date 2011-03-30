@@ -13,7 +13,7 @@ using namespace std;
 
 class GameplayMenu : public Hud {
   public:
-    GameplayMenu();
+    GameplayMenu(Translation* trans);
     ~GameplayMenu();
 
     void render();
@@ -27,6 +27,7 @@ class GameplayMenu : public Hud {
     Menu* sectionMenu;
     PlayerState* stateInfo;
     Window* mainBox;
+    Translation* globalTranslations;
 };
 
 #endif

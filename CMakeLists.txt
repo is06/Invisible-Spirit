@@ -9,7 +9,7 @@
 
 cmake_minimum_required(VERSION 2.6)
 
-project(InvisibleSpirit)
+project(Invisible-Spirit)
 
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
@@ -29,20 +29,20 @@ file(
 )
 
 add_executable(
-  InvisibleSpirit
+  Invisible-Spirit
   ${source_files}
 )
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   target_link_libraries(
-    InvisibleSpirit
+    Invisible-Spirit
     Irrlicht
     Newton
   )
 ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     target_link_libraries(
-      InvisibleSpirit
+      Invisible-Spirit
       GL
       Xxf86vm
       Irrlicht

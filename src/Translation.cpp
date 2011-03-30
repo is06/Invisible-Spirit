@@ -38,6 +38,8 @@ void Translation::loadTextData(const core::stringc& fullPath) {
   wifstream textFile(fullPath.c_str(), ios::in);
   if(textFile) {
 
+    cout << "Processing translation file..." << endl;
+
     wchar_t currentChar;
     bool inTextIdentifier = true;
     bool inTextValue = false;
@@ -47,7 +49,10 @@ void Translation::loadTextData(const core::stringc& fullPath) {
     while(textFile.get(currentChar)) {
       if(currentChar == '\n' || currentChar == '\r') {
         // Nouvelle traduction
-        textData[identifier] = value;
+        if(identifier != "") {
+          cout << "Added translation (" << identifier.c_str() << ") = (" << value.c_str() << ")" << endl;
+          textData[identifier] = value;
+        }
         identifier = "";
         value = L"";
         inTextValue = false;
@@ -72,6 +77,7 @@ void Translation::loadTextData(const core::stringc& fullPath) {
 }
 
 const core::stringw& Translation::getTranslation(const core::stringc& identifier) const {
+  //cout << "'" << textData.find(identifier) << "' <-> '" << textData.end() << "'" << endl;
   if(textData.find(identifier) == textData.end()) {
     cout << "translation not found: '" << identifier.c_str() << "'" << endl;
     return notfound;

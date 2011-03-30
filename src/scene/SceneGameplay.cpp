@@ -19,7 +19,7 @@ SceneGameplay::SceneGameplay() : Scene() {
   ayron = new Ayron(cam);
   cam->linkEntity(ayron);
   gpInterface = new GameplayInterface();
-  gpMenu = new GameplayMenu();
+  gpMenu = new GameplayMenu(globalTranslations);
 }
 
 /**
@@ -30,11 +30,6 @@ void SceneGameplay::events() { Scene::events();
   manageAyronJumps();
   manageAyronMovements();
   manageAyronCollisions();
-
-  // Retour au menu principal
-  if(keyboard->pressed(KEY_ESCAPE)) {
-    Game::changeScene(SCENE_MENU);
-  }
 
   // Menu
   if(keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
@@ -206,6 +201,11 @@ void SceneGameplay::manageMenuControl() {
   }
   if(keyboard->pressed(KEY_UP, EVENT_ONCE)) {
     gpMenu->getSectionMenu()->prevOption();
+  }
+  if(keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
+    if(gpMenu->getSectionMenu()->getCurrentOption() == 4) {
+      Game::changeScene(SCENE_MENU);
+    }
   }
 }
 

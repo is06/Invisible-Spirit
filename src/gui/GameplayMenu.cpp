@@ -10,15 +10,17 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-GameplayMenu::GameplayMenu() {
+GameplayMenu::GameplayMenu(Translation* trans) {
+  globalTranslations = trans;
+
   isVisible = false;
 
   sectionMenu = new Menu(Game::screenPos.left + 24, Game::screenPos.top - 48);
-  sectionMenu->addOption(MENU_ICON_NONE, L"Etat");
-  sectionMenu->addOption(MENU_ICON_NONE, L"Competences");
-  sectionMenu->addOption(MENU_ICON_NONE, L"Objets");
-  sectionMenu->addOption(MENU_ICON_NONE, L"Configuration");
-  sectionMenu->addOption(MENU_ICON_NONE, L"Quitter le jeu");
+  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_power_magic_countdown"));
+  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_powers"));
+  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_items"));
+  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_config"));
+  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_quit"));
 
   stateInfo = new PlayerState();
 }
