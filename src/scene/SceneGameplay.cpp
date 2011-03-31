@@ -54,28 +54,28 @@ void SceneGameplay::manageCameraControl() {
   if(cam->hasControl()) {
     // Keyboard control
     if(keyboard->pressed(KEY_NUMPAD4)) {
-      cam->goLeft(100);
+      cam->goLeft(speedFactor * 100);
     } else if(keyboard->pressed(KEY_NUMPAD6)) {
-      cam->goRight(100);
+      cam->goRight(speedFactor * 100);
     }
     if(keyboard->pressed(KEY_NUMPAD8)) {
-      cam->goNear(100);
+      cam->goNear(speedFactor * 100);
     } else if(keyboard->pressed(KEY_NUMPAD2)) {
-      cam->goFar(100);
+      cam->goFar(speedFactor * 100);
     }
 
     // Joystick control
     if(fabs(gamepad->getRightJoystickXAxis()) > 35
     || fabs(gamepad->getRightJoystickYAxis()) > 35) {
       if(gamepad->getRightJoystickXAxis() < -35) {
-        cam->goLeft(gamepad->getRightJoystickXAxis() * -1);
+        cam->goLeft(speedFactor * gamepad->getRightJoystickXAxis() * -1);
       } else if(gamepad->getRightJoystickXAxis() > 35) {
-        cam->goRight(gamepad->getRightJoystickXAxis());
+        cam->goRight(speedFactor * gamepad->getRightJoystickXAxis());
       }
       if(gamepad->getRightJoystickYAxis() > 35) {
-        cam->goNear(gamepad->getRightJoystickYAxis());
+        cam->goNear(speedFactor * gamepad->getRightJoystickYAxis());
       } else if(gamepad->getRightJoystickYAxis() < -35) {
-        cam->goFar(gamepad->getRightJoystickYAxis() * -1);
+        cam->goFar(speedFactor * gamepad->getRightJoystickYAxis() * -1);
       }
     }
   }
@@ -130,15 +130,15 @@ void SceneGameplay::manageAyronMovements() {
       ));
 
       if(keyboard->pressed(KEY_LEFT)) {
-        ayron->goLeft(keyboard->getDirectionXAxis() * -1);
+        ayron->goLeft(speedFactor * keyboard->getDirectionXAxis() * -1);
       } else if(keyboard->pressed(KEY_RIGHT)) {
-        ayron->goRight(keyboard->getDirectionXAxis());
+        ayron->goRight(speedFactor * keyboard->getDirectionXAxis());
       }
 
       if(keyboard->pressed(KEY_DOWN)) {
-        ayron->goBackward(keyboard->getDirectionYAxis() * -1);
+        ayron->goBackward(speedFactor * keyboard->getDirectionYAxis() * -1);
       } else if(keyboard->pressed(KEY_UP)) {
-        ayron->goForward(keyboard->getDirectionYAxis());
+        ayron->goForward(speedFactor * keyboard->getDirectionYAxis());
       }
     }
 
@@ -174,7 +174,7 @@ void SceneGameplay::manageAyronMovements() {
 void SceneGameplay::manageAyronCollisions() {
   // Floor collision
   if(ayron->getFloorCollision(level) > 1.0) {
-    ayron->fall();
+    ayron->fall(speedFactor);
   }
   if(ayron->getFloorCollision(level) < 1.0) {
     while(ayron->getFloorCollision(level) < 0.95) {

@@ -27,7 +27,10 @@ SceneIdentifier Game::nextScene;
 LocaleIdentifier Game::currentLocale;
 bool Game::sceneChanged;
 bool Game::exit;
+bool Game::independantSpeed;
+bool Game::processorPriority;
 u8 Game::framerate;
+f32 Game::speedFactor;
 
 /**
  * Pseudo-constructeur de Game, cette fonction initialise les objets Irrlicht, Newton et du jeu
@@ -54,7 +57,11 @@ void Game::init() {
     true,
     (settings->getParamInt("display", "vsync") == 1),
     eventManager);
-  device->setWindowCaption(L"Invisible Spirit 0.1 r13 (10/03/2011)");
+  device->setWindowCaption(L"Invisible Spirit 0.1 r14 (31/03/2011)");
+
+  // Gestion de la vitesse de rendu
+  independantSpeed = (settings->getParamInt("processor", "independant_speed") == 1);
+  processorPriority = (settings->getParamInt("processor", "priority") == 1);
 
   // Activation du joystick
   core::array<SJoystickInfo> joystickInfo;
@@ -78,38 +85,76 @@ void Game::init() {
 }
 
 /**
- * Fonction de la boucle principale du jeu
+ * Game main loop
  */
 void Game::run() {
-  f32 fps = 0;
-  f32 before, after, renderTime, timeToSleep;
+  // For independant speed
+  f32 lastCycleTime, loopTime = 0.0f;
+  // For constant speed
+  f32 before, after, renderTime, timeToSleep = 0.0f;
+
+  s32 lastFPS = -1;
 
   while(device->run()) {
     if(exit) {
       break;
     }
+
     if(sceneChanged) {
       loadNextScene();
     }
 
-    before = device->getTimer()->getRealTime();
-    fps = videoDriver->getFPS();
+    s32 fps = videoDriver->getFPS();
 
-    videoDriver->beginScene();
-    currentScene->events();
-    sceneManager->drawAll();
-    currentScene->postRender();
-
-    after = device->getTimer()->getRealTime();
-    renderTime = after - before;
-
-    timeToSleep = ((1000.0f / framerate) - renderTime) + after;
-
-    while(device->getTimer()->getRealTime() < timeToSleep) {
-      //device->yield();
+    if(lastFPS != fps) {
+      core::stringw str = L"fps: ";
+      str += fps;
+      device->setWindowCaption(str.c_str());
+      lastFPS = fps;
     }
 
-    videoDriver->endScene();
+    if(independantSpeed) {
+      // ----------------------------------------------------
+      // Speed Independant Loop
+
+      // Speed factor computation
+      lastCycleTime = device->getTimer()->getRealTime() - loopTime;
+      loopTime = device->getTimer()->getRealTime();
+      speedFactor = lastCycleTime / 1000.0f;
+      if(speedFactor > 1.0f) speedFactor = 1.0f; // Limit min 1fps
+      if(speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed time
+
+      videoDriver->beginScene();
+      currentScene->events();
+      sceneManager->drawAll();
+      currentScene->postRender();
+      videoDriver->endScene();
+
+    } else {
+      // ----------------------------------------------------
+      // Constant Speed Loop
+      before = device->getTimer()->getRealTime();
+
+      speedFactor = 1.0f / framerate;
+
+      videoDriver->beginScene();
+      currentScene->events();
+      sceneManager->drawAll();
+      currentScene->postRender();
+
+      after = device->getTimer()->getRealTime();
+      renderTime = after - before;
+
+      timeToSleep = ((1000.0f / framerate) - renderTime) + after;
+
+      while(device->getTimer()->getRealTime() < timeToSleep) {
+        if(!processorPriority) {
+          device->yield();
+        }
+      }
+
+      videoDriver->endScene();
+    }
   }
 }
 
@@ -214,6 +259,10 @@ void Game::initLocale() {
 
 f32 Game::getFramerate() {
   return framerate;
+}
+
+f32 Game::getSpeedFactor() {
+  return speedFactor;
 }
 
 void Game::changeScene(SceneIdentifier id) {

@@ -16,17 +16,20 @@ class Game {
     static void run();
     static void finish();
 
+    static void quit();
+    static void changeScene(SceneIdentifier id);
+
     static IrrlichtDevice* getDevice();
     static video::IVideoDriver* getVideoDriver();
     static scene::ISceneManager* getSceneManager();
     static NewtonWorld* getNewtonWorld();
     static EventManager* getEventManager();
-    static f32 getFramerate();
-    static void quit();
-    static void changeScene(SceneIdentifier id);
-    static LocaleIdentifier getCurrentLocale();
     static Translation* getGlobalTranslations();
     static Save* getCurrentSave();
+
+    static f32 getFramerate();
+    static f32 getSpeedFactor();
+    static LocaleIdentifier getCurrentLocale();
 
     static Settings* settings;
     static ScreenPosition screenPos;
@@ -58,7 +61,10 @@ class Game {
 
     static bool sceneChanged;
     static bool exit;
+    static bool independantSpeed;
+    static bool processorPriority;
     static u8 framerate;
+    static f32 speedFactor;
 };
 
 #endif

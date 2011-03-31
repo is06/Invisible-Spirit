@@ -30,18 +30,11 @@ Scene::Scene() {
  * (Evénements globaux)
  */
 void Scene::events() {
+  speedFactor = Game::getSpeedFactor();
   timeElapsed += 0.016666666666f;
 }
 
 void Scene::postRender() {
-
-}
-
-void Scene::hello() {
-
-}
-
-void Scene::nextChar() {
 
 }
 

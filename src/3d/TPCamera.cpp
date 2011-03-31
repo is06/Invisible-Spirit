@@ -52,8 +52,8 @@ void TPCamera::render() { Camera::render();
 /**
  *
  */
-void TPCamera::goLeft(s8 speed) {
-  UAxis -= ((speed - 25) / 1500.0f);
+void TPCamera::goLeft(f32 speed) {
+  UAxis -= (speed / 60.0f);
   if(UAxis < 0) {
     UAxis = 2 * core::PI;
   }
@@ -62,8 +62,8 @@ void TPCamera::goLeft(s8 speed) {
 /**
  *
  */
-void TPCamera::goRight(s8 speed) {
-  UAxis += ((speed - 25) / 1500.0f);
+void TPCamera::goRight(f32 speed) {
+  UAxis += (speed / 60.0f);
   if(UAxis > (2 * core::PI)) {
     UAxis = 0;
   }
@@ -72,15 +72,15 @@ void TPCamera::goRight(s8 speed) {
 /**
  *
  */
-void TPCamera::goFar(s8 speed) {
+void TPCamera::goFar(f32 speed) {
   if(height < 3.3) {
-    height += ((speed - 25) / 750.0f);
+    height += (speed / 50.0f);
   }
   if(height > 3.3) {
     height = 3.3;
   }
   if(distance < 5.5) {
-    distance += ((speed - 25) / 750.0f);
+    distance += (speed / 50.0f);
   } else {
     distance = 5.5;
   }
@@ -89,15 +89,15 @@ void TPCamera::goFar(s8 speed) {
 /**
  *
  */
-void TPCamera::goNear(s8 speed) {
+void TPCamera::goNear(f32 speed) {
   if(height > 0.3) {
-    height -= ((speed - 25) / 750.0f);
+    height -= (speed / 50.0f);
   }
   if(height < 0.3) {
     height = 0.3;
   }
   if(distance > 2.5) {
-    distance -= ((speed - 25) / 750.0f);
+    distance -= (speed / 50.0f);
   } else {
     distance = 2.5;
   }

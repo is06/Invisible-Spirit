@@ -19,10 +19,10 @@ class Camera {
     virtual void linkEntity(Ayron* entityToLink) = 0;
     virtual f32 getDistance() = 0;
 
-    virtual void goLeft(s8 speed) = 0;
-    virtual void goRight(s8 speed) = 0;
-    virtual void goFar(s8 speed) = 0;
-    virtual void goNear(s8 speed) = 0;
+    virtual void goLeft(f32 speed) = 0;
+    virtual void goRight(f32 speed) = 0;
+    virtual void goFar(f32 speed) = 0;
+    virtual void goNear(f32 speed) = 0;
 
     void setPosition(const core::vector3df& pos);
     void setRotation(const core::vector3df& rot);

@@ -21,7 +21,7 @@ class Ayron : public Character {
     void goBackward(f32 speed);
 
     // Gravité
-    void fall();
+    void fall(f32 factor);
     void raise();
     void jump();
     void setJumpDelta(f32 value);

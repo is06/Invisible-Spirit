@@ -14,10 +14,10 @@ class TPCamera : public Camera {
 
     void render();
 
-    void goLeft(s8 speed);
-    void goRight(s8 speed);
-    void goFar(s8 speed);
-    void goNear(s8 speed);
+    void goLeft(f32 speed);
+    void goRight(f32 speed);
+    void goFar(f32 speed);
+    void goNear(f32 speed);
 
     void linkEntity(Ayron* entity);
     f32 getDistance();

@@ -18,7 +18,7 @@ Ayron::Ayron(Camera* cam) : Character() {
   controlable = true;
   jumpDelta = 0.0f;
   fallDelta = 0.0f;
-  gravity = 0.005f;
+  gravity = 0.1f;
   jumpStrength = 0.15f;
 
   // Loading mesh
@@ -46,10 +46,10 @@ void Ayron::render() { Character::render();
 /**
  * Called while Ayron's floor raycast is NOT in collision with the floor
  */
-void Ayron::fall() {
+void Ayron::fall(f32 factor) {
   if(!isJumping) {
     if(fallDelta < jumpStrength) {
-      fallDelta += gravity;
+      fallDelta += (factor * gravity);
     }
     mainNode->setPosition(core::vector3df(
       mainNode->getPosition().X,
@@ -169,9 +169,9 @@ void Ayron::updateCoords(f32 deltaU, f32 speed) {
   f32 x = cos(core::degToRad(linkedCam->getNode()->getRotation().Y) + deltaU);
   f32 z = sin(core::degToRad(linkedCam->getNode()->getRotation().Y) + deltaU);
   mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X + ((x * -1) * (speed / 2048.0f)),
+    mainNode->getPosition().X + ((x * -1) * (speed / 32.0f)),
     mainNode->getPosition().Y,
-    mainNode->getPosition().Z + (z * (speed / 2048.0f))
+    mainNode->getPosition().Z + (z * (speed / 32.0f))
   ));
 }
 

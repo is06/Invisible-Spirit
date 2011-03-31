@@ -19,9 +19,6 @@ class Scene {
     virtual void events() = 0;
     virtual void postRender() = 0;
 
-    virtual void hello();
-    virtual void nextChar();
-
   protected:
     Camera* cam;
     //PlayerControl* control;
@@ -31,6 +28,7 @@ class Scene {
     Translation* globalTranslations;
 
     f32 timeElapsed;
+    f32 speedFactor;
 
   private:
 };
