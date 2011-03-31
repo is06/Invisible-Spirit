@@ -96,7 +96,7 @@ void StaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene:
     break;
     default:
       // Type de vertex inconnu, on ne créé pas la collision
-      // TODO : l'indiquer dans un log ou la console
+      cout << "[NWT] /!\\ StaticModel Vertex type not recognized! [" << meshBuffer << "]" << endl;
       skipAddMesh = true;
     break;
   }
