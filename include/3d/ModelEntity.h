@@ -20,7 +20,6 @@ class ModelEntity : public Entity {
     virtual void createNode(const core::vector3df& initPosition) = 0;
 
     void loadMesh(const core::stringc& meshFilePath);
-    void loadMeshCollision();
 
     scene::ISceneNode* getNode();
     NewtonBody* getMainBody();
@@ -31,7 +30,7 @@ class ModelEntity : public Entity {
     NewtonBody* mainBody;
 
   private:
-    void addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene::IMeshBuffer* meshBuffer, NewtonCollision* treeCollision, core::vector3df scale);
+
 };
 
 #endif

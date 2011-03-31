@@ -15,7 +15,13 @@ class StaticModel : public ModelEntity {
 
     virtual void render();
 
+    void loadMeshCollision();
+    void clearMeshCollision();
+
     void createNode(const core::vector3df& initPosition);
+
+  private:
+    void addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene::IMeshBuffer* meshBuffer, NewtonCollision* treeCollision, core::vector3df scale);
 };
 
 #endif

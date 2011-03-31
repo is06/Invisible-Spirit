@@ -35,5 +35,5 @@ void MAP_ALPHA_ZONE::postRender() { SceneGameplay::postRender();
  * Detruit les objets définis dans le constructeur
  */
 MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE() {
-
+  level->clearMeshCollision();
 }
