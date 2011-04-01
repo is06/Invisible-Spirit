@@ -15,7 +15,7 @@ typedef map<u16, MenuOption*> MenuOptionMap;
 
 class Menu : public Hud {
   public:
-    Menu(f32 x = 0, f32 y = 0, f32 width = 150, u8 height = 8);
+    Menu(f32 x = 0, f32 y = 0, f32 width = 150, u8 height = 8, MenuStyle style = MENU_STYLE_STD);
     virtual ~Menu();
 
     virtual void render();
@@ -42,6 +42,8 @@ class Menu : public Hud {
     core::position2df pos;
     f32 currentWidth;
     u8 currentHeight;
+
+    MenuStyle currentStyle;
 
     bool loopMode;
 };

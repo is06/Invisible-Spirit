@@ -14,7 +14,7 @@ SceneMenu::SceneMenu() : Scene() {
   cam = new TPCamera();
   cam->setControl(false);
 
-  mainMenu = new Menu();
+  mainMenu = new Menu(0, 0, 150, 8, MENU_STYLE_TITLE);
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_new_game"));
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_quit"));
 }

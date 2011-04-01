@@ -10,11 +10,24 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
+/**
+ *
+ */
 Window::Window(f32 w, f32 h, f32 x, f32 y, f32 borderWidth, WindowStyle style) : Hud() {
-  core::stringc texturePath = "resource/hud/window/window1.bmp";
-
   pos = core::position2df(x, y);
   size = core::dimension2df(w, h);
+
+  switch(style) {
+    case WIN_STYLE_STD: applyStyleStd(w, h, x, y, borderWidth); break;
+    default: applyStyleNone(); break;
+  }
+}
+
+/**
+ *
+ */
+void Window::applyStyleStd(f32 w, f32 h, f32 x, f32 y, f32 borderWidth) {
+  core::stringc texturePath = "resource/hud/window/window1.bmp";
 
   f32 sideW = w - borderWidth;
   f32 sideH = h - borderWidth;
@@ -47,26 +60,43 @@ Window::Window(f32 w, f32 h, f32 x, f32 y, f32 borderWidth, WindowStyle style) :
   center->setTextureOffset(core::vector2df(0.0625f, 0.0625f), core::vector2df(0.9375f, 0.9375f));
 }
 
-void Window::render() { Hud::render();
-  cornerTL->render();
-  cornerTR->render();
-  cornerBL->render();
-  cornerBR->render();
-  sideTop->render();
-  sideLeft->render();
-  sideRight->render();
-  sideBottom->render();
-  center->render();
+/**
+ *
+ */
+void Window::applyStyleNone() {
+  center = NULL;
 }
 
+/**
+ *
+ */
+void Window::render() { Hud::render();
+  if(center) {
+    cornerTL->render();
+    cornerTR->render();
+    cornerBL->render();
+    cornerBR->render();
+    sideTop->render();
+    sideLeft->render();
+    sideRight->render();
+    sideBottom->render();
+    center->render();
+  }
+}
+
+/**
+ *
+ */
 Window::~Window() {
-  delete cornerTL;
-  delete cornerTR;
-  delete cornerBL;
-  delete cornerBR;
-  delete sideTop;
-  delete sideLeft;
-  delete sideRight;
-  delete sideBottom;
-  delete center;
+  if(center) {
+    delete cornerTL;
+    delete cornerTR;
+    delete cornerBL;
+    delete cornerBR;
+    delete sideTop;
+    delete sideLeft;
+    delete sideRight;
+    delete sideBottom;
+    delete center;
+  }
 }

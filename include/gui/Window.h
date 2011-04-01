@@ -19,6 +19,9 @@ class Window : public Hud {
     void render();
 
   private:
+    void applyStyleStd(f32 w = 150, f32 h = 100, f32 x = 0, f32 y = 0, f32 borderWidth = 4);
+    void applyStyleNone();
+
     core::position2df pos;
     core::dimension2df size;
 

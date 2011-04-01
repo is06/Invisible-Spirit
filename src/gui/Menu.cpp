@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-Menu::Menu(f32 x, f32 y, f32 width, u8 height) : Hud() {
+Menu::Menu(f32 x, f32 y, f32 width, u8 height, MenuStyle style) : Hud() {
   lastInsertedIndex = 0;
   currentOption = 0;
   defaultOption = 0;
@@ -21,7 +21,9 @@ Menu::Menu(f32 x, f32 y, f32 width, u8 height) : Hud() {
 
   loopMode = false;
 
-  cursor = new Picture(32, 32, x, y);
+  currentStyle = style;
+
+  cursor = new Picture(32, 32, x - 16, y);
 }
 
 void Menu::render() { Hud::render();
@@ -33,7 +35,7 @@ void Menu::render() { Hud::render();
 
 void Menu::addOption(MenuIcon icon, const core::stringw& title) {
   f32 posY = pos.Y + (lastInsertedIndex * -1 * 32);
-  options.insert(make_pair(lastInsertedIndex, new MenuOption(icon, title, pos.X, posY)));
+  options.insert(make_pair(lastInsertedIndex, new MenuOption(icon, title, pos.X, posY, currentStyle)));
   lastInsertedIndex++;
 }
 

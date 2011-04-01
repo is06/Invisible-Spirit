@@ -10,9 +10,17 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-MenuOption::MenuOption(MenuIcon icon, const core::stringw& title, f32 x, f32 y) : Hud() {
+MenuOption::MenuOption(MenuIcon icon, const core::stringw& title, f32 x, f32 y, MenuStyle style) : Hud() {
   currentIcon = icon;
-  box = new Window(150, 28, x + 75, y, 3, WIN_STYLE_STD);
+
+  WindowStyle boxStyle = WIN_STYLE_STD;
+
+  switch(style) {
+    case MENU_STYLE_STD: boxStyle = WIN_STYLE_STD; break;
+    default: boxStyle = WIN_STYLE_NONE; break;
+  }
+
+  box = new Window(150, 28, x + 75, y, 3, boxStyle);
   currentText = new Text(title, x + 6, y, FONT_STD_REGULAR);
 
   hover = false;

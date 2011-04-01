@@ -94,6 +94,7 @@ enum RayType {
  *
  */
 enum MenuStyle {
+  MENU_STYLE_STD,
   MENU_STYLE_TITLE,
   MENU_STYLE_HOME,
   MENU_STYLE_EQUIPMENT
@@ -120,7 +121,8 @@ enum FontStyle {
  *
  */
 enum WindowStyle {
-  WIN_STYLE_STD
+  WIN_STYLE_STD,
+  WIN_STYLE_NONE,
 };
 
 /**

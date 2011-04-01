@@ -130,6 +130,10 @@ void Game::run() {
       currentScene->postRender();
       videoDriver->endScene();
 
+      if(!processorPriority) {
+        device->yield();
+      }
+
     } else {
       // ----------------------------------------------------
       // Constant Speed Loop
