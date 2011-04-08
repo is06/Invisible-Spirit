@@ -31,7 +31,7 @@ void Camera::render() {
  * Retourne le node Irrlicht associé à la caméra
  * @return ISceneNode* le noeud associé à la caméra
  */
-scene::ISceneNode* Camera::getNode() {
+scene::ICameraSceneNode* Camera::getNode() {
   return irrCam;
 }
 

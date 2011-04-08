@@ -26,7 +26,7 @@ class Camera {
 
     void setPosition(const core::vector3df& pos);
     void setRotation(const core::vector3df& rot);
-    scene::ISceneNode* getNode();
+    scene::ICameraSceneNode* getNode();
 
     void toggleControl();
     void setControl(bool val);

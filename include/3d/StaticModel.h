@@ -8,6 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_STATIC_MODEL_H__
 #define __IS06_STATIC_MODEL_H__
 
+using namespace irr;
+using namespace std;
+
 class StaticModel : public ModelEntity {
   public:
     StaticModel();
@@ -17,7 +20,6 @@ class StaticModel : public ModelEntity {
 
     void loadMeshCollision();
     void clearMeshCollision();
-
     void createNode(const core::vector3df& initPosition);
 
   private:

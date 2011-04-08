@@ -21,6 +21,7 @@ class SceneMenu : public Scene {
 
   private:
     Menu* mainMenu;
+    StaticModel* lightRays;
 };
 
 #endif

@@ -22,15 +22,13 @@ class ModelEntity : public Entity {
     void loadMesh(const core::stringc& meshFilePath);
 
     scene::ISceneNode* getNode();
+    video::SMaterial& getMaterial();
     NewtonBody* getMainBody();
 
   protected:
     scene::IMesh* mainMesh;
     scene::ISceneNode* mainNode;
     NewtonBody* mainBody;
-
-  private:
-
 };
 
 #endif

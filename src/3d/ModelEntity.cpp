@@ -45,6 +45,10 @@ NewtonBody* ModelEntity::getMainBody() {
   return mainBody;
 }
 
+video::SMaterial& ModelEntity::getMaterial() {
+  return mainNode->getMaterial(0);
+}
+
 /**
  * Détruit les objets initialisés dans le constructeur
  */
