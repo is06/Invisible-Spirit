@@ -14,14 +14,25 @@ MenuOption::MenuOption(MenuIcon icon, const core::stringw& title, f32 x, f32 y, 
   currentIcon = icon;
 
   WindowStyle boxStyle = WIN_STYLE_STD;
+  FontStyle fontStyle = FONT_STD_REGULAR;
 
   switch(style) {
-    case MENU_STYLE_STD: boxStyle = WIN_STYLE_STD; break;
-    default: boxStyle = WIN_STYLE_NONE; break;
+    case MENU_STYLE_STD:
+      boxStyle = WIN_STYLE_STD;
+      fontStyle = FONT_STD_REGULAR;
+    break;
+    case MENU_STYLE_TITLE:
+      boxStyle = WIN_STYLE_NONE;
+      fontStyle = FONT_BORDER_SHADED_REGULAR;
+    break;
+    default:
+      boxStyle = WIN_STYLE_NONE;
+      fontStyle = FONT_STD_REGULAR;
+    break;
   }
 
-  box = new Window(150, 28, x + 75, y, 3, boxStyle);
-  currentText = new Text(title, x + 6, y, FONT_STD_REGULAR);
+  box = new Window(x + 75, y, 150, 28, 3, boxStyle);
+  currentText = new Text(title, x + 6, y, fontStyle);
 
   hover = false;
   enabled = true;

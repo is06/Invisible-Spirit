@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-BarCounter::BarCounter(s32 init, s32 min, s32 max, f32 w, f32 h, f32 x, f32 y, BarStyle style) : Counter(init, min, max) {
+BarCounter::BarCounter(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, BarStyle style) : Counter(init, min, max) {
   core::stringc texturePath = "resource/hud/bar/";
 
   switch(style) {
@@ -18,7 +18,7 @@ BarCounter::BarCounter(s32 init, s32 min, s32 max, f32 w, f32 h, f32 x, f32 y, B
     default: texturePath.append("default.bmp"); break;
   }
 
-  bar = new Picture(w, h, x, y, texturePath);
+  bar = new Picture(x, y, w, h, texturePath);
 }
 
 void BarCounter::render() {

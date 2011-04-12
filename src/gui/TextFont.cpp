@@ -18,9 +18,11 @@ TextFont::TextFont(FontStyle style) {
 
   switch(style) {
     case FONT_STD_REGULAR: filePath.append("std_regular"); break;
+    case FONT_BORDER_SHADED_REGULAR: filePath.append("border_shaded_regular"); break;
   }
 
   core::stringc texturePath = filePath;
+
   core::stringc dataPath = filePath;
   texturePath.append(".png");
   dataPath.append(".dat");

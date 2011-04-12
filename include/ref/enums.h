@@ -114,7 +114,9 @@ enum MenuIcon {
  *
  */
 enum FontStyle {
-  FONT_STD_REGULAR
+  FONT_STD_REGULAR,
+
+  FONT_BORDER_SHADED_REGULAR
 };
 
 /**

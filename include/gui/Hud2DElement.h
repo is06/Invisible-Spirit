@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 class Hud2DElement : public Hud {
   public:
-    Hud2DElement(f32 w, f32 h, f32 x, f32 y);
+    Hud2DElement(f32 x, f32 y, f32 w, f32 h);
     virtual ~Hud2DElement();
 
     virtual void render() = 0;

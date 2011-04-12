@@ -40,12 +40,12 @@ void Game::init() {
   eventManager = new EventManager();
   settings = new Settings();
 
-  // Limites de résolution d'écran 320x200 => 1920x1080
+  // Limites de résolution d'écran 640x480 => 1920x1080
   u32 screenWidth = settings->getParamInt("display", "width");
   u32 screenHeight = settings->getParamInt("display", "height");
-  if(screenWidth < 320) screenWidth = 320;
+  if(screenWidth < 640) screenWidth = 640;
   if(screenWidth > 1920) screenWidth = 1920;
-  if(screenHeight < 200) screenHeight = 200;
+  if(screenHeight < 480) screenHeight = 480;
   if(screenHeight > 1080) screenHeight = 1080;
 
   // Création du device
@@ -57,7 +57,22 @@ void Game::init() {
     true,
     (settings->getParamInt("display", "vsync") == 1),
     eventManager);
-  device->setWindowCaption(L"Invisible Spirit 0.1 r14 (31/03/2011)");
+  device->setWindowCaption(L"Invisible Spirit 0.1 r15 (09/04/2011)");
+
+  video::IVideoModeList* vml = device->getVideoModeList();
+
+
+  s32 videoModeCount = vml->getVideoModeCount();
+  s32 colorDepth;
+  core::dimension2du vres;
+
+  cout << "Supported video modes:" << endl;
+
+  for(s32 i = 0; i < videoModeCount; i++) {
+    vres = vml->getVideoModeResolution(i);
+    colorDepth = vml->getVideoModeDepth(i);
+    cout << "- " << vres.Width << "x" << vres.Height << "x" << colorDepth << endl;
+  }
 
   // Gestion de la vitesse de rendu
   independantSpeed = (settings->getParamInt("processor", "independant_speed") == 1);
@@ -124,7 +139,7 @@ void Game::run() {
       if(speedFactor > 1.0f) speedFactor = 1.0f; // Limit min 1fps
       if(speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed time
 
-      videoDriver->beginScene();
+      videoDriver->beginScene(true, true, video::SColor(255,255,255,255));
       currentScene->events();
       sceneManager->drawAll();
       currentScene->postRender();
@@ -141,7 +156,7 @@ void Game::run() {
 
       speedFactor = 1.0f / framerate;
 
-      videoDriver->beginScene();
+      videoDriver->beginScene(true, true, video::SColor(255,255,255,255));
       currentScene->events();
       sceneManager->drawAll();
       currentScene->postRender();

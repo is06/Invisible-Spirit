@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-Hud2DElement::Hud2DElement(f32 w, f32 h, f32 x, f32 y) : Hud() {
+Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud() {
   // Image visible dès sa création
   isVisible = true;
 
