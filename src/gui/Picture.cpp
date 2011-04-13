@@ -12,7 +12,7 @@ using namespace irr;
 /**
  * Création à l'aide de coordonnées directes
  */
-Picture::Picture(f32 w, f32 h, f32 x, f32 y, const core::stringc& filePath) : Hud2DElement(w, h, x, y) {
+Picture::Picture(f32 x, f32 y, f32 w, f32 h, const core::stringc& filePath) : Hud2DElement(x, y, w, h) {
   texture = Game::getVideoDriver()->getTexture(filePath.c_str());
   material.setTexture(0, texture);
 }

@@ -13,7 +13,7 @@ using namespace std;
 MainStateInfo::MainStateInfo() : Hud() {
   label = new Text();
   info = new Text();
-  gauge = new BarCounter(60, 0, 100, 150, 10, 150, 150, BAR_STYLE_LIFE);
+  gauge = new BarCounter(60, 0, 100, 150, 150, 150, 10, BAR_STYLE_LIFE);
 }
 
 void MainStateInfo::render() { Hud::render();

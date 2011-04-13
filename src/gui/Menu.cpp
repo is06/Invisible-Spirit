@@ -23,7 +23,7 @@ Menu::Menu(f32 x, f32 y, f32 width, u8 height, MenuStyle style) : Hud() {
 
   currentStyle = style;
 
-  cursor = new Picture(32, 32, x - 16, y);
+  cursor = new Picture(x - 16, y, 32, 32, "resource/hud/menus/cursor.png");
 }
 
 void Menu::render() { Hud::render();

@@ -16,7 +16,7 @@ GameplayMenu::GameplayMenu(Translation* trans) {
   isVisible = false;
 
   sectionMenu = new Menu(Game::screenPos.left + 24, Game::screenPos.top - 48);
-  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_power_magic_countdown"));
+  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_status"));
   sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_powers"));
   sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_items"));
   sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_config"));

@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-TextChar::TextChar(u8 code, f32& x, f32& y, u8 size, TextFont* font, bool visible) : Hud2DElement(size, size, x, y) {
+TextChar::TextChar(u8 code, f32& x, f32& y, u8 size, TextFont* font, bool visible) : Hud2DElement(x, y, size, size) {
   isVisible = visible;
 
   x += ((size * (font->getCharOffset(code) / 100.0f)) / 2);

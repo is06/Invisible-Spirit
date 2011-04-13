@@ -20,8 +20,11 @@ class SceneMenu : public Scene {
     void postRender();
 
   private:
+    Picture* dummy;
+    Picture* title;
     Menu* mainMenu;
     StaticModel* lightRays;
+    StaticModel* cloud1;
 };
 
 #endif

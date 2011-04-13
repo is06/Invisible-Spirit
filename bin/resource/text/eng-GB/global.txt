@@ -1,2 +1,8 @@
 main_menu_new_game=New Game
 main_menu_quit=Quit
+
+gameplay_menu_status=Status
+gameplay_menu_powers=Skills
+gameplay_menu_items=Items
+gameplay_menu_config=Configuration
+gameplay_menu_quit=Quit game
