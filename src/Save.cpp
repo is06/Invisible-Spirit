@@ -95,6 +95,7 @@ void Save::initFightPowers() {
  *
  */
 void Save::initMagicPowers() {
+/*
   powerData.magicPowers["barrier"].level = 0;
   powerData.magicPowers["confuse"].level = 0;
   powerData.magicPowers["countdown"].level = 0;
@@ -125,6 +126,7 @@ void Save::initMagicPowers() {
   powerData.magicPowers["water"].level = 0;
   powerData.magicPowers["water2"].level = 0;
   powerData.magicPowers["water3"].level = 0;
+*/
 }
 
 /**
@@ -153,10 +155,15 @@ void Save::powerGet(PowerType type, const core::stringc& id) {
       name.append(id);
       power = powerData.fightPowers[id];
     break;
-    case POWERTYPE_MAGIC:
+    case POWERTYPE_BLACK_MAGIC:
       name.append("magic_");
       name.append(id);
-      power = powerData.magicPowers[id];
+      power = powerData.whiteMagicPowers[id];
+    break;
+    case POWERTYPE_WHITE_MAGIC:
+      name.append("magic_");
+      name.append(id);
+      power = powerData.blackMagicPowers[id];
     break;
     case POWERTYPE_STATE:
       name.append("state_");
