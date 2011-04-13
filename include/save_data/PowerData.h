@@ -13,7 +13,8 @@ using namespace std;
 
 struct PowerData {
   map<core::stringc, PowerElementData> fightPowers;
-  map<core::stringc, PowerElementData> magicPowers;
+  map<core::stringc, PowerElementData> blackMagicPowers;
+  map<core::stringc, PowerElementData> whiteMagicPowers;
   map<core::stringc, PowerElementData> statePowers;
 };
 
