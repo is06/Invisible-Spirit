@@ -18,9 +18,9 @@ class Counter : public Hud {
 
     virtual void render() = 0;
 
-    inline void addValue(s32 val);
-    inline void subValue(s32 val);
-    inline void setValue(s32 val);
+    void addValue(s32 val);
+    void subValue(s32 val);
+    void setValue(s32 val);
 
     void setMin(s32 val);
     void setMax(s32 val);

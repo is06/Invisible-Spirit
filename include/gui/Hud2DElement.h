@@ -26,6 +26,14 @@ class Hud2DElement : public Hud {
     void setX(f32 val);
     void setY(f32 val);
 
+    f32 getX();
+    f32 getY();
+    f32 getWidth();
+    f32 getHeight();
+
+    void setWidth(f32 val);
+    void setHeight(f32 val);
+
     void hide();
     void show();
     void setOpacity(u8 value);

@@ -27,13 +27,15 @@ SceneMenu::SceneMenu() : Scene() {
 
   title = new Picture(100, 0, 256, 102, "resource/texture/menus/title/main.png");
 
+  cpt = new BarCounter(100, 0, 100, 0, 0, 200, 10, BAR_STYLE_LIFE);
+/*
   lightRays = new StaticModel();
   lightRays->loadMesh("resource/mesh/menus/title/rays.obj");
   lightRays->createNode(core::vector3df(0,1000,0));
   lightRays->getNode()->setMaterialFlag(video::EMF_BACK_FACE_CULLING, false);
   lightRays->getNode()->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL);
   lightRays->getNode()->setScale(core::vector3df(300.0f, 300.0f, 300.0f));
-
+*/
 /*
   cloud1 = new StaticModel();
   cloud1->loadMesh("resource/mesh/menus/title/nuage.obj");
@@ -45,21 +47,30 @@ SceneMenu::SceneMenu() : Scene() {
 }
 
 void SceneMenu::events() { Scene::events();
-  lightRays->render();
+  //lightRays->render();
   //cloud1->render();
 
   // Rotation des rayons de lumière
+  /*
   lightRays->getNode()->setRotation(core::vector3df(
     lightRays->getNode()->getRotation().X,
     lightRays->getNode()->getRotation().Y + (5 * Game::getSpeedFactor()),
     lightRays->getNode()->getRotation().Z
   ));
+  */
 
   cam->getNode()->setPosition(core::vector3df(
     cam->getNode()->getPosition().X,
     cam->getNode()->getPosition().Y,
     cam->getNode()->getPosition().Z + (2 * Game::getSpeedFactor())
   ));
+
+  if(keyboard->pressed(KEY_KEY_A, EVENT_ONCE)) {
+    cpt->setValue(30);
+  }
+  if(keyboard->pressed(KEY_KEY_Z, EVENT_ONCE)) {
+    cpt->setValue(75);
+  }
 
   if(keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
     mainMenu->nextOption();
@@ -77,14 +88,19 @@ void SceneMenu::events() { Scene::events();
 
 void SceneMenu::postRender() { Scene::postRender();
   dummy->render();
-  mainMenu->render();
-  title->render();
+  //mainMenu->render();
+  //title->render();
+
+  cpt->render();
 }
 
 SceneMenu::~SceneMenu() {
   delete dummy;
-  delete lightRays;
+  //delete lightRays;
   //delete cloud1;
+
+  delete cpt;
+
   delete title;
   delete mainMenu;
   delete cam;

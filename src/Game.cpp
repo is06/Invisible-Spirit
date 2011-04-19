@@ -139,7 +139,7 @@ void Game::run() {
       if(speedFactor > 1.0f) speedFactor = 1.0f; // Limit min 1fps
       if(speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed time
 
-      videoDriver->beginScene(true, true, video::SColor(255,255,255,255));
+      videoDriver->beginScene(true, true, video::SColor(255,0,0,0));
       currentScene->events();
       sceneManager->drawAll();
       currentScene->postRender();
@@ -156,7 +156,7 @@ void Game::run() {
 
       speedFactor = 1.0f / framerate;
 
-      videoDriver->beginScene(true, true, video::SColor(255,255,255,255));
+      videoDriver->beginScene(true, true, video::SColor(255,0,0,0));
       currentScene->events();
       sceneManager->drawAll();
       currentScene->postRender();

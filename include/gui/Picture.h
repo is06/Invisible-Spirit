@@ -17,6 +17,8 @@ class Picture : public Hud2DElement {
     ~Picture();
 
     void render();
+    void loadSecondTexture(const core::stringc& filePath);
+    void changeTexture(const core::stringc& filePath);
 };
 
 #endif

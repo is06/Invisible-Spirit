@@ -57,7 +57,7 @@ Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud() {
 }
 
 void Hud2DElement::render() {
-  // Déplacement
+  // Déplacement et taille
   vertices[0].Pos.X = (pos.X / COEFF) + (size.Width / 2 / COEFF * -1);
   vertices[0].Pos.Y = (pos.Y / COEFF) + (size.Height / 2 / COEFF);
   vertices[1].Pos.X = (pos.X / COEFF) + (size.Width / 2 / COEFF);
@@ -69,6 +69,8 @@ void Hud2DElement::render() {
 
   // Opacité
   material.DiffuseColor.setAlpha(opacity);
+
+  material.setTexture(0, texture);
 
   // Offset de texture
   vertices[0].TCoords.X = minTextureOffset.X;
@@ -145,6 +147,30 @@ void Hud2DElement::subY(f32 val) {
 
 void Hud2DElement::setY(f32 val) {
   pos.Y = val;
+}
+
+void Hud2DElement::setWidth(f32 val) {
+  size.Width = val;
+}
+
+void Hud2DElement::setHeight(f32 val) {
+  size.Height = val;
+}
+
+f32 Hud2DElement::getX() {
+  return pos.X;
+}
+
+f32 Hud2DElement::getY() {
+  return pos.Y;
+}
+
+f32 Hud2DElement::getWidth() {
+  return size.Width;
+}
+
+f32 Hud2DElement::getHeight() {
+  return size.Height;
 }
 
 void Hud2DElement::startUVAnimation(f32 uSpeed, f32 vSpeed) {

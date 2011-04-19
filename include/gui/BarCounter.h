@@ -10,6 +10,17 @@ class BarCounter : public Counter {
 
   protected:
     Picture* bar;
+    Picture* sub;
+
+    s32 oldValue;
+    f32 subValue;
+    f32 initWidth;
+    f32 initX;
+    f32 decreaseFactor;
+    f32 decreaseTimer;
+
+    bool animate;
+    bool decrease;
 };
 
 #endif

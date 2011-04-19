@@ -24,6 +24,14 @@ void Picture::render() { Hud2DElement::render();
 
 }
 
+void Picture::loadSecondTexture(const core::stringc& filePath) {
+  video::ITexture* second = Game::getVideoDriver()->getTexture(filePath.c_str());
+}
+
+void Picture::changeTexture(const core::stringc& filePath) {
+  texture = Game::getVideoDriver()->getTexture(filePath.c_str());
+}
+
 Picture::~Picture() {
 
 }
