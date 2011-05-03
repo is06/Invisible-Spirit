@@ -183,4 +183,12 @@ enum PowerType {
   POWERTYPE_STATE
 };
 
+enum MusicIdentifier {
+  MUSIC_TEST
+};
+
+enum SoundEffectIdentifier {
+  SFX_TEST
+};
+
 #endif

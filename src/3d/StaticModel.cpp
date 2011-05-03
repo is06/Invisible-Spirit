@@ -32,6 +32,7 @@ void StaticModel::createNode(const core::vector3df& initPosition) {
   mainNode = Game::getSceneManager()->addMeshSceneNode(mainMesh);
   mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
   mainNode->setPosition(initPosition);
+  mainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
 }
 
 void StaticModel::loadMeshCollision() {

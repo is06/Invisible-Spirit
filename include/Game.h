@@ -58,6 +58,7 @@ class Game {
     static LocaleIdentifier currentLocale;
     static Translation* globalTranslations;
     static Save* currentSave;
+    static SoundManager* soundManager;
 
     static bool sceneChanged;
     static bool exit;

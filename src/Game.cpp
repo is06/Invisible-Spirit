@@ -20,6 +20,7 @@ EventManager* Game::eventManager;
 Settings* Game::settings;
 Translation* Game::globalTranslations;
 Save* Game::currentSave;
+SoundManager* Game::soundManager;
 
 ScreenPosition Game::screenPos;
 Shaders Game::shaders;
@@ -61,7 +62,6 @@ void Game::init() {
 
   video::IVideoModeList* vml = device->getVideoModeList();
 
-
   s32 videoModeCount = vml->getVideoModeCount();
   s32 colorDepth;
   core::dimension2du vres;
@@ -89,6 +89,8 @@ void Game::init() {
   initShaders();
   initLocale();
 
+  soundManager = new SoundManager();
+
   currentSave = new Save();
   newtonWorld = NewtonCreate();
 
@@ -96,7 +98,7 @@ void Game::init() {
   exit = false;
 
   sceneChanged = true;
-  nextScene = SCENE_MENU;
+  nextScene = SCENE_MAP_ALPHA_ZONE;
 }
 
 /**

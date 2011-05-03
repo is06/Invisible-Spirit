@@ -5,23 +5,14 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_CORE_H__
-#define __IS06_CORE_H__
+#ifndef __IS06_MUSIC_REFERENCE_H__
+#define __IS06_MUSIC_REFERENCE_H__
 
-#include <irr/irrlicht.h>
-#include <newton/Newton.h>
-#include <fmodex/fmod.h>
-#include <iostream>
-#include <fstream>
-#include <map>
-#include <vector>
-#include <boost/function.hpp>
-#include <boost/bind.hpp>
+using namespace irr;
+using namespace std;
 
-#include "../Util.h"
-#include "enums.h"
-#include "structs.h"
-#include "classes.h"
-#include "maps.h"
+struct MusicReference {
+  map<MusicIdentifier, MusicData> data;
+};
 
 #endif

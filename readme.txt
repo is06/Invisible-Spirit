@@ -1,4 +1,4 @@
-### Invisible Spirit - Code Source version 0.1-110301-1 ###
+﻿### Invisible Spirit - Code Source version 0.1-110503-1 ###
 
 OpenGL est nécessaire pour compiler et exécuter Invisible Spirit.
 
@@ -12,6 +12,8 @@ Pour compiler le projet, deux méthodes :
     newton_lib_dir:STATIC=/chemin/vers/lib/newton
     irrlicht_include_dir:STATIC=/chemin/vers/include/irrlicht
     irrlicht_lib_dir:STATIC=/chemin/vers/lib/irrlicht
+    fmodex_include_dir:STATIC=/chemin/vers/include/fmodex
+    fmodex_lib_dir:STATIC=/chemin/vers/lib/fmodex
 
   Exemple (Code::Blocks - MinGW, Windows)
 
@@ -19,6 +21,8 @@ Pour compiler le projet, deux méthodes :
     newton_lib_dir:STATIC=C:/Program Files/CodeBlocks/MinGW/lib/newton
     irrlicht_include_dir:STATIC=C:/Program Files/CodeBlocks/MinGW/include/irrlicht
     irrlicht_lib_dir:STATIC=C:/Program Files/CodeBlocks/MinGW/lib/irrlicht
+    fmodex_include_dir:STATIC=C:/Program Files/CodeBlocks/MinGW/include/fmodex
+    fmodex_lib_dir:STATIC=C:/Program Files/CodeBlocks/MinGW/lib/fmodex
 
   Autre exemple (Linux)
 
@@ -26,6 +30,8 @@ Pour compiler le projet, deux méthodes :
     newton_lib_dir:STATIC=/usr/lib/newton/
     irrlicht_include_dir:STATIC=/usr/include/irrlicht/
     irrlicht_lib_dir:STATIC=/usr/lib/irrlicht/
+    fmodex_include_dir:STATIC=/usr/include/fmodex/
+    fmodex_lib_dir:STATIC=/usr/lib/fmodex/
 
 2. Compiler manuellement.
 
@@ -34,6 +40,7 @@ Pour compiler le projet, deux méthodes :
   - Newton
   - Irrlicht
   - Boost
+  - FmodEX
 
   Sous Linux :
 

@@ -32,6 +32,7 @@ void AnimatedModel::createNode(const core::vector3df& initPosition) {
   mainNode = Game::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)mainMesh);
   mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
   mainNode->setPosition(initPosition);
+  mainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
 }
 
 /**
@@ -98,17 +99,22 @@ f32 AnimatedModel::getFloorCollision(StaticModel* other) {
 /**
  * Not documented yet, sorry :/
  */
-f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vector3df& normal) {
+f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vector3df& normal, core::vector3df& lineOrigin, core::vector3df& lineEnd) {
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
 
   s32 faceId;
   f32 xPoint;
   f32 zPoint;
 
+  // xPoint et zPoint désignent le point destination de chaque rayon
   if(type == RAY_WALL_P) {
+    // Rayon P (gauche)
+    // xPoint = (MainNode X Position - 0.5) * cos(MainNode Y Rotation)
+    // zPoint = (MainNode Z Position + 0.5) * sin(MainNode Y Rotation)
     xPoint = mainNode->getPosition().X - 0.5f * cos(core::degToRad(mainNode->getRotation().Y));
     zPoint = mainNode->getPosition().Z + 0.5f * sin(core::degToRad(mainNode->getRotation().Y));
   } else {
+    // Rayon Q (droite)
     xPoint = mainNode->getPosition().X - 0.5f * cos(core::degToRad(mainNode->getRotation().Y) + core::PI);
     zPoint = mainNode->getPosition().Z + 0.5f * sin(core::degToRad(mainNode->getRotation().Y) + core::PI);
   }
@@ -127,6 +133,9 @@ f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vect
     mainNode->getPosition().Y,
     zPoint
   );
+
+  lineOrigin = origin;
+  lineEnd = end;
 
   f32 ray = NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, &normal.X, &faceId);
 

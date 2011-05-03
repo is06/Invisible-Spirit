@@ -35,7 +35,7 @@ void Save::createNewFile() {
   currentMap = SCENE_MAP_ALPHA_ZONE;
 
   // PlayerInfo
-  playerData.level = 1;
+  playerData.currentLevel = 1;
 
   playerData.currentHP = 100;
   playerData.maxHP = 100;
@@ -189,7 +189,7 @@ void Save::playerExpUp(u32 value) {
  *
  */
 void Save::playerLevelUp(u32 value) {
-  playerData.level += value;
+  playerData.currentLevel += value;
 }
 
 /**

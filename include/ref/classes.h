@@ -70,6 +70,9 @@ class Speaker;
 class OpacityShaderCallback;
 class PostRenderGlow;
 
+// Sound
+class SoundManager;
+
 // Main classes
 #include "../Game.h"
 #include "../Settings.h"
@@ -122,5 +125,8 @@ class PostRenderGlow;
 
 // Shaders
 #include "../shader/PostRenderGlow.h"
+
+// Sound
+#include "../sound/SoundManager.h"
 
 #endif

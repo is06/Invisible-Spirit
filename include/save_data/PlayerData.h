@@ -12,7 +12,7 @@ using namespace irr;
 using namespace std;
 
 struct PlayerData {
-  u8 level;
+  u8 currentLevel;
   u16 currentHP;
   u16 maxHP;
   u16 currentMP;

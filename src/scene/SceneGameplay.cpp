@@ -185,8 +185,19 @@ void SceneGameplay::manageAyronCollisions() {
   // Wall collision, this normal vector will be modified by getWallCollision functions
   core::vector3df normal;
 
-  if(ayron->getWallCollision(RAY_WALL_P, level, normal) < 1.0f || ayron->getWallCollision(RAY_WALL_Q, level, normal) < 1.0f) {
-    while(ayron->getWallCollision(RAY_WALL_P, level, normal) < 0.99 || ayron->getWallCollision(RAY_WALL_Q, level, normal) < 0.99) {
+  core::vector3df lineOrigin;
+  core::vector3df lineEnd;
+
+  ayron->getWallCollision(RAY_WALL_P, level, normal, lineOrigin, lineEnd);
+  Game::getVideoDriver()->draw3DLine(lineOrigin, lineEnd, video::SColor(255,0,255,255));
+
+  ayron->getWallCollision(RAY_WALL_Q, level, normal, lineOrigin, lineEnd);
+  Game::getVideoDriver()->draw3DLine(lineOrigin, lineEnd, video::SColor(255,0,255,255));
+
+  Game::getVideoDriver()->draw3DLine(core::vector3df(0,0,0), core::vector3df(0,1,0), video::SColor(255,255,255,255));
+
+  if(ayron->getWallCollision(RAY_WALL_P, level, normal, lineOrigin, lineEnd) < 1.0f || ayron->getWallCollision(RAY_WALL_Q, level, normal, lineOrigin, lineEnd) < 1.0f) {
+    while(ayron->getWallCollision(RAY_WALL_P, level, normal, lineOrigin, lineEnd) < 0.99 || ayron->getWallCollision(RAY_WALL_Q, level, normal, lineOrigin, lineEnd) < 0.99) {
       ayron->moveOpposite(normal);
     }
   }

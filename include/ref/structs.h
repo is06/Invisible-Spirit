@@ -12,6 +12,9 @@ http://www.is06.com. Legal code in license.txt
 #include "../save_data/PlayerData.h"
 #include "../save_data/PowerData.h"
 
+#include "../sound/MusicData.h"
+#include "../sound/MusicReference.h"
+
 #include "../ScreenPosition.h"
 #include "../Shaders.h"
 
