@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include <irr/irrlicht.h>
 #include <newton/Newton.h>
-#include <fmodex/fmod.h>
+//#include <fmodex/fmod.h>
 #include <iostream>
 #include <fstream>
 #include <map>

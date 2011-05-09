@@ -12,7 +12,7 @@ using namespace irr;
 
 class DebugMenuOption {
   public:
-    DebugMenuOption(const core::stringw& text, s32 coordY);
+    DebugMenuOption(const core::stringw& text, s32 coordX, s32 coordY, DebugMenuOptionType type = DEBUG_MENU_OPTION_SUB);
     ~DebugMenuOption();
 
     void events();

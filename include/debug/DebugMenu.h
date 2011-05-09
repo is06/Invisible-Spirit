@@ -13,7 +13,7 @@ using namespace irr;
 
 class DebugMenu {
   public:
-    DebugMenu();
+    DebugMenu(s32 menuX);
     ~DebugMenu();
 
     void events();
@@ -21,7 +21,9 @@ class DebugMenu {
     void prevOption();
     void enter();
 
-    void addOption(const core::stringc& text);
+    void addOption(const core::stringc& text, DebugMenuOptionType type = DEBUG_MENU_OPTION_SUB);
+    void removeAllOptions();
+    s32 getCurrentOption();
 
   private:
     bool visible;
@@ -29,6 +31,7 @@ class DebugMenu {
     map<s32, DebugMenuOption*>::iterator optionsIt;
     s32 currentOption;
     s32 nextOptionID;
+    s32 coordX;
     s32 nextOptionY;
 };
 

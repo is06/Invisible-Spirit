@@ -10,12 +10,11 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-DebugMenu::DebugMenu() {
+DebugMenu::DebugMenu(s32 menuX) {
+  coordX = menuX;
   currentOption = 0;
   nextOptionID = 0;
   nextOptionY = 10;
-
-  cout << "[DEBUG] New Menu" << endl;
 }
 
 void DebugMenu::events() {
@@ -29,13 +28,10 @@ void DebugMenu::events() {
   if(Game::getEventManager()->isKeyDownOnce(KEY_UP)) {
     prevOption();
   }
-  if(Game::getEventManager()->isKeyDownOnce(KEY_SPACE)) {
-    enter();
-  }
 }
 
-void DebugMenu::addOption(const core::stringc& text) {
-  options[nextOptionID] = new DebugMenuOption(text, nextOptionY);
+void DebugMenu::addOption(const core::stringc& text, DebugMenuOptionType type) {
+  options[nextOptionID] = new DebugMenuOption(text, coordX, nextOptionY);
   if(nextOptionID == 0) {
     options[nextOptionID]->setSelected(true);
   }
@@ -59,6 +55,19 @@ void DebugMenu::prevOption() {
     currentOption = options.size() - 1;
   }
   options[currentOption]->setSelected(true);
+}
+
+s32 DebugMenu::getCurrentOption() {
+  return currentOption;
+}
+
+void DebugMenu::removeAllOptions() {
+  for(u32 i = 0; i < options.size(); i++) {
+    delete options[i];
+    options.erase(i);
+  }
+  nextOptionID = 0;
+  nextOptionY = 10;
 }
 
 void DebugMenu::enter() {

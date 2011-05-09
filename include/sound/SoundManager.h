@@ -29,7 +29,7 @@ class SoundManager {
     bool getMusicLayerState(MusicIdentifier musicId, u8 layerId);
 
   private:
-    FMOD_SYSTEM* sys;
+    //FMOD_SYSTEM* sys;
 };
 
 #endif

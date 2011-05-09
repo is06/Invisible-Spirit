@@ -8,8 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 
 SoundManager::SoundManager() {
-  FMOD_System_Create(&sys);
-  FMOD_System_Init(sys, 4, FMOD_INIT_NORMAL, NULL);
+  //FMOD_System_Create(&sys);
+  //FMOD_System_Init(sys, 4, FMOD_INIT_NORMAL, NULL);
 }
 
 void SoundManager::loadSFX(SoundEffectIdentifier soundId) {
@@ -41,5 +41,5 @@ bool SoundManager::getMusicLayerState(MusicIdentifier musicId, u8 layerId) {
 }
 
 SoundManager::~SoundManager() {
-  FMOD_System_Release(sys);
+  //FMOD_System_Release(sys);
 }
