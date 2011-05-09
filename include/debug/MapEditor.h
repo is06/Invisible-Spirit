@@ -5,34 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_SCENE_H__
-#define __IS06_SCENE_H__
+#ifndef __IS06_MAP_EDITOR_H__
+#define __IS06_MAP_EDITOR_H__
 
-using namespace irr;
-using namespace std;
-
-class Scene {
+class MapEditor {
   public:
-    Scene();
-    virtual ~Scene();
+    MapEditor();
+    ~MapEditor();
 
-    virtual void events() = 0;
-    virtual void postRender() = 0;
-
-  protected:
-    Camera* cam;
-    //PlayerControl* control;
-
-    MapEditor* mapEditor;
-
-    Keyboard* keyboard;
-    Gamepad* gamepad;
-    Translation* globalTranslations;
-
-    f32 timeElapsed;
-    f32 speedFactor;
+    void events();
+    void toggle();
+    bool isRunning();
 
   private:
+    DebugMenu* mainMenu;
+    DebugMenu* subMenu;
+    DebugMenu* propMenu;
+
+    s32 currentMenuID;
+    bool active;
 };
 
 #endif

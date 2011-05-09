@@ -22,6 +22,8 @@ Scene::Scene() {
 
   timeElapsed = 0.0f;
 
+  mapEditor = new MapEditor();
+
   globalTranslations = Game::getGlobalTranslations();
 }
 
@@ -35,7 +37,12 @@ void Scene::events() {
 }
 
 void Scene::postRender() {
-
+  if(keyboard->pressed(KEY_F12, EVENT_ONCE)) {
+    mapEditor->toggle();
+  }
+  if(mapEditor->isRunning()) {
+    mapEditor->events();
+  }
 }
 
 /**
@@ -47,4 +54,5 @@ Scene::~Scene() {
   //delete control;
   delete keyboard;
   delete gamepad;
+  delete mapEditor;
 }

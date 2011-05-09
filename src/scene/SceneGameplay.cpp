@@ -26,9 +26,12 @@ SceneGameplay::SceneGameplay() : Scene() {
  * This function manages all events in this type of scene
  */
 void SceneGameplay::events() { Scene::events();
-  manageCameraControl();
-  manageAyronJumps();
-  manageAyronMovements();
+  if(!mapEditor->isRunning()) {
+    manageCameraControl();
+    manageAyronJumps();
+    manageAyronMovements();
+  }
+
   manageAyronCollisions();
 
   // Menu

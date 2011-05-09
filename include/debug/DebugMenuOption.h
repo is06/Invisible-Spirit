@@ -5,34 +5,26 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_SCENE_H__
-#define __IS06_SCENE_H__
+#ifndef __IS06_DEBUG_MENU_OPTION_H__
+#define __IS06_DEBUG_MENU_OPTION_H__
 
 using namespace irr;
-using namespace std;
 
-class Scene {
+class DebugMenuOption {
   public:
-    Scene();
-    virtual ~Scene();
+    DebugMenuOption(const core::stringw& text, s32 coordY);
+    ~DebugMenuOption();
 
-    virtual void events() = 0;
-    virtual void postRender() = 0;
-
-  protected:
-    Camera* cam;
-    //PlayerControl* control;
-
-    MapEditor* mapEditor;
-
-    Keyboard* keyboard;
-    Gamepad* gamepad;
-    Translation* globalTranslations;
-
-    f32 timeElapsed;
-    f32 speedFactor;
+    void events();
+    void setSelected(bool value);
+    void setSelectable(bool value);
 
   private:
+    core::stringc currentText;
+    bool selected;
+    bool selectable;
+
+    gui::IGUIStaticText* guiElement;
 };
 
 #endif

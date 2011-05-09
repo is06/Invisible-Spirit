@@ -14,6 +14,7 @@ IrrlichtDevice* Game::device;
 video::IVideoDriver* Game::videoDriver;
 video::IGPUProgrammingServices* Game::gpuManager;
 scene::ISceneManager* Game::sceneManager;
+gui::IGUIEnvironment* Game::debugGUI;
 NewtonWorld* Game::newtonWorld;
 Scene* Game::currentScene;
 EventManager* Game::eventManager;
@@ -85,6 +86,7 @@ void Game::init() {
   videoDriver = device->getVideoDriver();
   gpuManager = videoDriver->getGPUProgrammingServices();
   sceneManager = device->getSceneManager();
+  debugGUI = device->getGUIEnvironment();
   initScreenPositions(screenWidth, screenHeight);
   initShaders();
   initLocale();
@@ -145,6 +147,7 @@ void Game::run() {
       currentScene->events();
       sceneManager->drawAll();
       currentScene->postRender();
+      //debugGUI->drawAll();
       videoDriver->endScene();
 
       if(!processorPriority) {
@@ -162,6 +165,7 @@ void Game::run() {
       currentScene->events();
       sceneManager->drawAll();
       currentScene->postRender();
+      //debugGUI->drawAll();
 
       after = device->getTimer()->getRealTime();
       renderTime = after - before;
@@ -201,6 +205,13 @@ video::IVideoDriver* Game::getVideoDriver() {
  */
 scene::ISceneManager* Game::getSceneManager() {
   return sceneManager;
+}
+
+/**
+ * TODO
+ */
+gui::IGUIEnvironment* Game::getDebugGUI() {
+  return debugGUI;
 }
 
 /**

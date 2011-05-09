@@ -21,6 +21,11 @@ class Keyboard;
 class Mouse;
 class Gamepad;
 
+// Debug classes
+class DebugMenu;
+class DebugMenuOption;
+class MapEditor;
+
 // Scnees
 class Scene;
 class SceneGameplay;
@@ -84,6 +89,11 @@ class SoundManager;
 #include "../Save.h"
 #include "../Keyboard.h"
 #include "../Gamepad.h"
+
+// Debug classes
+#include "../debug/DebugMenu.h"
+#include "../debug/DebugMenuOption.h"
+#include "../debug/MapEditor.h"
 
 // Scenes
 #include "../scene/Scene.h"

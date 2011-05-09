@@ -22,6 +22,7 @@ class Game {
     static IrrlichtDevice* getDevice();
     static video::IVideoDriver* getVideoDriver();
     static scene::ISceneManager* getSceneManager();
+    static gui::IGUIEnvironment* getDebugGUI();
     static NewtonWorld* getNewtonWorld();
     static EventManager* getEventManager();
     static Translation* getGlobalTranslations();
@@ -47,6 +48,7 @@ class Game {
     static video::IVideoDriver* videoDriver;
     static video::IGPUProgrammingServices* gpuManager;
     static scene::ISceneManager* sceneManager;
+    static gui::IGUIEnvironment* debugGUI;
 
     // Objets Newton
     static NewtonWorld* newtonWorld;
