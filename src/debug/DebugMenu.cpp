@@ -10,31 +10,63 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-DebugMenu::DebugMenu(s32 menuX) {
+DebugMenu::DebugMenu(s32 menuX, DebugMenu* parent) {
+  parentMenu = parent;
   coordX = menuX;
+  browseable = false;
+  visible = false;
   currentOption = 0;
   nextOptionID = 0;
   nextOptionY = 10;
 }
 
 void DebugMenu::events() {
-  for(optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
-    optionsIt->second->events();
-  }
-
-  if(Game::getEventManager()->isKeyDownOnce(KEY_DOWN)) {
-    nextOption();
-  }
-  if(Game::getEventManager()->isKeyDownOnce(KEY_UP)) {
-    prevOption();
+  if(visible) {
+    for(optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
+      optionsIt->second->events();
+    }
+    for(subMenusIt = subMenus.begin(); subMenusIt != subMenus.end(); subMenusIt++) {
+      subMenusIt->second->events();
+    }
+    if(browseable) {
+      if(Game::getEventManager()->isKeyDownOnce(KEY_DOWN)) {
+        nextOption();
+      }
+      if(Game::getEventManager()->isKeyDownOnce(KEY_UP)) {
+        prevOption();
+      }
+      if(Game::getEventManager()->isKeyDownOnce(KEY_SPACE)) {
+        enter();
+      }
+      if(Game::getEventManager()->isKeyDownOnce(KEY_ESCAPE)) {
+        returnParent();
+      }
+    }
   }
 }
 
-void DebugMenu::addOption(const core::stringc& text, DebugMenuOptionType type) {
-  options[nextOptionID] = new DebugMenuOption(text, coordX, nextOptionY);
+void DebugMenu::setBrowseable(bool value) {
+  browseable = value;
+}
+
+void DebugMenu::setVisible(bool value) {
+  visible = value;
+}
+
+void DebugMenu::addOption(const core::stringc& text, DebugMenuOptionType type, f32 minValue, f32 maxValue) {
+  options[nextOptionID] = new DebugMenuOption(text, coordX, nextOptionY, type);
+  options[nextOptionID]->setMin(minValue);
+  options[nextOptionID]->setMax(maxValue);
   if(nextOptionID == 0) {
     options[nextOptionID]->setSelected(true);
   }
+  if(type == DEBUG_MENU_OPTION_COLOR) {
+
+  }
+  if(type == DEBUG_MENU_OPTION_SUB) {
+    subMenus[nextOptionID] = new DebugMenu(coordX + 80, this);
+  }
+
   nextOptionID++;
   nextOptionY+= 12;
 }
@@ -61,6 +93,14 @@ s32 DebugMenu::getCurrentOption() {
   return currentOption;
 }
 
+DebugMenu* DebugMenu::getSubMenu(s32 optionID) {
+  return subMenus[optionID];
+}
+
+DebugMenuOption* DebugMenu::getOption(s32 optionID) {
+  return options[optionID];
+}
+
 void DebugMenu::removeAllOptions() {
   for(u32 i = 0; i < options.size(); i++) {
     delete options[i];
@@ -71,7 +111,20 @@ void DebugMenu::removeAllOptions() {
 }
 
 void DebugMenu::enter() {
+  if(options[currentOption]->getType() == DEBUG_MENU_OPTION_SUB) {
+    // On désactive le menu en cours
+    setBrowseable(false);
+    // On active le menu enfant
+    cout << "activate sub menu " << currentOption << endl;
+    subMenus[currentOption]->setVisible(true);
+    subMenus[currentOption]->setBrowseable(true);
+  }
+}
 
+void DebugMenu::returnParent() {
+  setBrowseable(false);
+  setVisible(false);
+  parentMenu->setBrowseable(true);
 }
 
 DebugMenu::~DebugMenu() {

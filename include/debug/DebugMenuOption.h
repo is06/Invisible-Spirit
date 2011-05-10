@@ -18,13 +18,25 @@ class DebugMenuOption {
     void events();
     void setSelected(bool value);
     void setSelectable(bool value);
+    void setMin(f32 value);
+    void setMax(f32 value);
+
+    void attachColor(DebugColor component, const video::SColorf& color);
+
+    DebugMenuOptionType getType();
 
   private:
     core::stringc currentText;
     bool selected;
     bool selectable;
-
+    DebugMenuOptionType currentType;
     gui::IGUIStaticText* guiElement;
+
+    f32 min;
+    f32 max;
+
+    DebugColor colorComponent;
+    video::SColorf colorMemory;
 };
 
 #endif

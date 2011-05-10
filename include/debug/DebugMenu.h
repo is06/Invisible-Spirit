@@ -13,26 +13,36 @@ using namespace irr;
 
 class DebugMenu {
   public:
-    DebugMenu(s32 menuX);
+    DebugMenu(s32 menuX, DebugMenu* parent = NULL);
     ~DebugMenu();
 
     void events();
     void nextOption();
     void prevOption();
     void enter();
-
-    void addOption(const core::stringc& text, DebugMenuOptionType type = DEBUG_MENU_OPTION_SUB);
+    void returnParent();
+    void setBrowseable(bool value);
+    void setVisible(bool value);
+    void addOption(const core::stringc& text, DebugMenuOptionType type = DEBUG_MENU_OPTION_SUB, f32 minValue = 0.0f, f32 maxValue = 1.0f);
     void removeAllOptions();
     s32 getCurrentOption();
 
+    DebugMenu* getSubMenu(s32 optionID);
+    DebugMenuOption* getOption(s32 optionID);
+
   private:
     bool visible;
+    bool browseable;
     map<s32, DebugMenuOption*> options;
     map<s32, DebugMenuOption*>::iterator optionsIt;
+    map<s32, DebugMenu*> subMenus;
+    map<s32, DebugMenu*>::iterator subMenusIt;
     s32 currentOption;
+    s32 parentOptionID;
     s32 nextOptionID;
     s32 coordX;
     s32 nextOptionY;
+    DebugMenu* parentMenu;
 };
 
 

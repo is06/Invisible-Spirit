@@ -19,9 +19,7 @@ class MapEditor {
 
   private:
     DebugMenu* mainMenu;
-    DebugMenu* subMenu[5];
 
-    s32 currentMenuID;
     bool active;
 };
 

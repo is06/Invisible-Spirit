@@ -221,6 +221,10 @@ NewtonWorld* Game::getNewtonWorld() {
   return newtonWorld;
 }
 
+Scene* Game::getCurrentScene() {
+  return currentScene;
+}
+
 /**
  * Permet d'accéder au gestionnaire d'événements
  * @return EventManager* un pointeur vers l'objet eventManager en cours

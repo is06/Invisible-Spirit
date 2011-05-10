@@ -20,6 +20,8 @@ SceneGameplay::SceneGameplay() : Scene() {
   cam->linkEntity(ayron);
   gpInterface = new GameplayInterface();
   gpMenu = new GameplayMenu(globalTranslations);
+
+  Game::getSceneManager()->setAmbientLight(video::SColorf(1.0,1.0,1.0,1.0));
 }
 
 /**

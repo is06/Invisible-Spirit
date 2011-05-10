@@ -27,6 +27,7 @@ class Game {
     static EventManager* getEventManager();
     static Translation* getGlobalTranslations();
     static Save* getCurrentSave();
+    static Scene* getCurrentScene();
 
     static f32 getFramerate();
     static f32 getSpeedFactor();
