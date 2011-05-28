@@ -22,3 +22,4 @@ class Picture : public Hud2DElement {
 };
 
 #endif
+

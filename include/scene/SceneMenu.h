@@ -24,9 +24,6 @@ class SceneMenu : public Scene {
     Picture* title;
     Menu* mainMenu;
     StaticModel* lightRays;
-    StaticModel* cloud1;
-
-    BarCounter* cpt;
 };
 
 #endif

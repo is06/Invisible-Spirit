@@ -10,7 +10,12 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
+u16 Hud2DElement::indices[] = {2, 1, 3, 2, 0, 1};
+core::matrix4 Hud2DElement::mat;
+
 Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud() {
+  texture = NULL;
+  
   // Image visible dès sa création
   isVisible = true;
 
@@ -27,6 +32,7 @@ Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud() {
   //material.Wireframe = true;
   //material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.opacity;
   material.MaterialType = video::EMT_TRANSPARENT_ALPHA_CHANNEL;
+  material.setTexture(0, NULL);
 
   minTextureOffset.X = 0.0f;
   minTextureOffset.Y = 0.0f;
@@ -67,11 +73,6 @@ void Hud2DElement::render() {
   vertices[3].Pos.X = (pos.X / COEFF) + (size.Width / 2 / COEFF);
   vertices[3].Pos.Y = (pos.Y / COEFF) + (size.Height / 2 / COEFF * -1);
 
-  // Opacité
-  material.DiffuseColor.setAlpha(opacity);
-
-  material.setTexture(0, texture);
-
   // Offset de texture
   vertices[0].TCoords.X = minTextureOffset.X;
   vertices[0].TCoords.Y = minTextureOffset.Y;
@@ -94,15 +95,19 @@ void Hud2DElement::render() {
     vertices[3].TCoords.Y += animSpeed.Y;
   }
 
-  if(isVisible) {
-    core::matrix4 mat;
-    u16 indices[] = {0,2,3, 2,1,3, 1,0,3, 2,0,1};
-    //material.setTexture(0, NULL);
-    //material.Wireframe = true;
+  // Draws vertices of 2D element only if visible
+  if(isVisible) {	
+	// Opacity
+	material.DiffuseColor.setAlpha(opacity);
+	
+	// Texture of 2D element
+	if(texture) {
+      material.setTexture(0, texture);
+	}
 
     Game::getVideoDriver()->setMaterial(material);
     Game::getVideoDriver()->setTransform(video::ETS_VIEW, mat);
-    Game::getVideoDriver()->drawVertexPrimitiveList(vertices, 4, indices, 4);
+    Game::getVideoDriver()->drawIndexedTriangleList(vertices, 4, indices, 2);
     Game::getVideoDriver()->setTransform(video::ETS_WORLD, mat);
   }
 }
@@ -196,5 +201,5 @@ void Hud2DElement::setOpacity(u8 value) {
 }
 
 Hud2DElement::~Hud2DElement() {
-
+  texture = NULL;
 }

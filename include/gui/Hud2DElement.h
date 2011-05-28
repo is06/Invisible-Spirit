@@ -59,6 +59,9 @@ class Hud2DElement : public Hud {
 
     const static f32 FAR = 0.1f;
     const static f32 COEFF = 3305.0f;
+    
+    static u16 indices[];
+    static core::matrix4 mat;
 };
 
 #endif

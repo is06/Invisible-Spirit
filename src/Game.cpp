@@ -100,7 +100,7 @@ void Game::init() {
   exit = false;
 
   sceneChanged = true;
-  nextScene = SCENE_MAP_ALPHA_ZONE;
+  nextScene = SCENE_MENU;
 }
 
 /**
@@ -108,9 +108,9 @@ void Game::init() {
  */
 void Game::run() {
   // For independant speed
-  f32 lastCycleTime, loopTime = 0.0f;
+  s32 lastCycleTime, loopTime = 0;
   // For constant speed
-  f32 before, after, renderTime, timeToSleep = 0.0f;
+  s32 before, after, renderTime, timeToSleep = 0;
 
   s32 lastFPS = -1;
 
@@ -170,12 +170,15 @@ void Game::run() {
       after = device->getTimer()->getRealTime();
       renderTime = after - before;
 
-      timeToSleep = ((1000.0f / framerate) - renderTime) + after;
+      timeToSleep = (u32)(((1000.0f / framerate) - renderTime) + after);
 
       while(device->getTimer()->getRealTime() < timeToSleep) {
+        //cout << "srt=" << device->getTimer()->getRealTime() << " // tts=" << (u32)timeToSleep;
         if(!processorPriority) {
+          //cout << " -- yield";
           device->yield();
         }
+        //cout << endl;
       }
 
       videoDriver->endScene();

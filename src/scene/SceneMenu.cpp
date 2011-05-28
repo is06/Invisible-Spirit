@@ -24,54 +24,32 @@ SceneMenu::SceneMenu() : Scene() {
   mainMenu = new Menu(-50, -100, 150, 8, MENU_STYLE_TITLE);
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_new_game"));
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_quit"));
-
+  
   title = new Picture(100, 0, 256, 102, "resource/texture/menus/title/main.png");
 
-  cpt = new BarCounter(100, 0, 100, 0, 0, 200, 10, BAR_STYLE_LIFE);
-/*
   lightRays = new StaticModel();
   lightRays->loadMesh("resource/mesh/menus/title/rays.obj");
   lightRays->createNode(core::vector3df(0,1000,0));
   lightRays->getNode()->setMaterialFlag(video::EMF_BACK_FACE_CULLING, false);
   lightRays->getNode()->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL);
   lightRays->getNode()->setScale(core::vector3df(300.0f, 300.0f, 300.0f));
-*/
-/*
-  cloud1 = new StaticModel();
-  cloud1->loadMesh("resource/mesh/menus/title/nuage.obj");
-  cloud1->createNode(core::vector3df(0,-400,-2000));
-  cloud1->getNode()->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL);
-  cloud1->getNode()->setScale(core::vector3df(1000.0f, 1000.0f, 0.0f));
-  cloud1->getNode()->setRotation(core::vector3df(0.0f, 180.0f, 0.0f));
-*/
 }
 
 void SceneMenu::events() { Scene::events();
-  //lightRays->render();
-  //cloud1->render();
+  lightRays->render();
 
   // Rotation des rayons de lumière
-  /*
   lightRays->getNode()->setRotation(core::vector3df(
     lightRays->getNode()->getRotation().X,
     lightRays->getNode()->getRotation().Y + (5 * Game::getSpeedFactor()),
     lightRays->getNode()->getRotation().Z
   ));
-  */
 
   cam->getNode()->setPosition(core::vector3df(
     cam->getNode()->getPosition().X,
     cam->getNode()->getPosition().Y,
     cam->getNode()->getPosition().Z + (2 * Game::getSpeedFactor())
   ));
-
-  if(keyboard->pressed(KEY_KEY_A, EVENT_ONCE)) {
-    cpt->setValue(30);
-  }
-  if(keyboard->pressed(KEY_KEY_Z, EVENT_ONCE)) {
-    cpt->setValue(75);
-  }
-
   if(keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
     mainMenu->nextOption();
   }
@@ -88,19 +66,13 @@ void SceneMenu::events() { Scene::events();
 
 void SceneMenu::postRender() { Scene::postRender();
   dummy->render();
-  //mainMenu->render();
-  //title->render();
-
-  cpt->render();
+  mainMenu->render();
+  title->render();
 }
 
 SceneMenu::~SceneMenu() {
   delete dummy;
-  //delete lightRays;
-  //delete cloud1;
-
-  delete cpt;
-
+  delete lightRays;
   delete title;
   delete mainMenu;
   delete cam;

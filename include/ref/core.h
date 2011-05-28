@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_CORE_H__
 #define __IS06_CORE_H__
 
-#include <irr/irrlicht.h>
+#include <irrlicht/irrlicht.h>
 #include <newton/Newton.h>
 //#include <fmodex/fmod.h>
 #include <iostream>
