@@ -27,6 +27,7 @@ class Camera {
     void setPosition(const core::vector3df& pos);
     void setRotation(const core::vector3df& rot);
     scene::ICameraSceneNode* getNode();
+    const core::vector3df& getLastPosition() const;
 
     void toggleControl();
     void setControl(bool val);
@@ -35,6 +36,7 @@ class Camera {
   protected:
     scene::ICameraSceneNode* irrCam;
     bool controlable;
+    core::vector3df lastPosition;
 };
 
 #endif

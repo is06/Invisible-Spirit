@@ -38,6 +38,10 @@ void Scene::events() {
   timeElapsed += 0.016666666666f;
 }
 
+Camera* Scene::getActiveCamera() {
+  return cam;
+}
+
 void Scene::postRender() {
   if(keyboard->pressed(KEY_F12, EVENT_ONCE)) {
     mapEditor->toggle();

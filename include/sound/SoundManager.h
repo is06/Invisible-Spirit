@@ -8,15 +8,24 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SOUND_MANAGER_H__
 #define __IS06_SOUND_MANAGER_H__
 
+using namespace irr;
+using namespace std;
+
 class SoundManager {
   public:
     SoundManager();
     ~SoundManager();
 
-    //FMOD::System* getFMODSystem();
+    void setEarsData(Camera* activeCamera, u32 cycleTime);
+    void update();
 
   private:
-    //FMOD::System* sys;
+    FMOD_SYSTEM* sys;
+
+    FMOD_VECTOR cameraPosition;
+    FMOD_VECTOR cameraVelocity;
+    FMOD_VECTOR cameraForward;
+    FMOD_VECTOR cameraUp;
 };
 
 #endif

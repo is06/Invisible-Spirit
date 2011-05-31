@@ -108,9 +108,9 @@ void Game::init() {
  */
 void Game::run() {
   // For independant speed
-  s32 lastCycleTime, loopTime = 0;
+  u32 lastCycleTime, loopTime = 0;
   // For constant speed
-  s32 before, after, renderTime, timeToSleep = 0;
+  u32 before, after, renderTime, timeToSleep = 0;
 
   s32 lastFPS = -1;
 
@@ -148,7 +148,9 @@ void Game::run() {
       sceneManager->drawAll();
       currentScene->postRender();
       //debugGUI->drawAll();
-      //soundManager->getFMODSystem()->update();
+
+      soundManager->setEarsData(currentScene->getActiveCamera(), speedFactor);
+      soundManager->update();
       videoDriver->endScene();
 
       if(!processorPriority) {
@@ -167,7 +169,8 @@ void Game::run() {
       sceneManager->drawAll();
       currentScene->postRender();
       //debugGUI->drawAll();
-      //soundManager->getFMODSystem()->update();
+      soundManager->setEarsData(currentScene->getActiveCamera(), speedFactor);
+      soundManager->update();
       videoDriver->endScene();
 
       after = device->getTimer()->getRealTime();

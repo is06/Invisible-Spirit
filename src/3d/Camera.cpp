@@ -35,6 +35,10 @@ scene::ICameraSceneNode* Camera::getNode() {
   return irrCam;
 }
 
+const core::vector3df& Camera::getLastPosition() const {
+  return lastPosition;
+}
+
 void Camera::toggleControl() {
   if(controlable) {
     controlable = false;
