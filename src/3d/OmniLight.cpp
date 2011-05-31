@@ -7,34 +7,10 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/ref/core.h"
 
-using namespace irr;
+OmniLight::OmniLight() : Light() {
 
-// 0 = No Menu
-// 1 = Main Menu
-// 2 = Sub menu...
-
-MapEditor::MapEditor() {
-  active = false;
 }
 
-void MapEditor::events() {
-  if(active) {
-
-  }
-}
-
-void MapEditor::toggle() {
-  if(active) {
-    active = false;
-  } else {
-    active = true;
-  }
-}
-
-bool MapEditor::isRunning() {
-  return active;
-}
-
-MapEditor::~MapEditor() {
+OmniLight::~OmniLight() {
 
 }

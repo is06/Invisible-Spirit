@@ -100,7 +100,7 @@ void Game::init() {
   exit = false;
 
   sceneChanged = true;
-  nextScene = SCENE_MENU;
+  nextScene = SCENE_MAP_ALPHA_ZONE;
 }
 
 /**
@@ -148,6 +148,7 @@ void Game::run() {
       sceneManager->drawAll();
       currentScene->postRender();
       //debugGUI->drawAll();
+      //soundManager->getFMODSystem()->update();
       videoDriver->endScene();
 
       if(!processorPriority) {
@@ -166,6 +167,8 @@ void Game::run() {
       sceneManager->drawAll();
       currentScene->postRender();
       //debugGUI->drawAll();
+      //soundManager->getFMODSystem()->update();
+      videoDriver->endScene();
 
       after = device->getTimer()->getRealTime();
       renderTime = after - before;
@@ -173,15 +176,10 @@ void Game::run() {
       timeToSleep = (u32)(((1000.0f / framerate) - renderTime) + after);
 
       while(device->getTimer()->getRealTime() < timeToSleep) {
-        //cout << "srt=" << device->getTimer()->getRealTime() << " // tts=" << (u32)timeToSleep;
         if(!processorPriority) {
-          //cout << " -- yield";
           device->yield();
         }
-        //cout << endl;
       }
-
-      videoDriver->endScene();
     }
   }
 }

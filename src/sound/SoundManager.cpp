@@ -8,38 +8,29 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 
 SoundManager::SoundManager() {
-  //FMOD_System_Create(&sys);
-  //FMOD_System_Init(sys, 4, FMOD_INIT_NORMAL, NULL);
+  /*
+  FMOD_RESULT result = FMOD::System_Create(&sys);
+  if(result != FMOD_OK) {
+    cout << "[FMOD] System Creation failed" << endl;
+  }
+  result = system->init(100, FMOD_INIT_NORMAL, 0);
+  if(result != FMOD_OK) {
+    cout << "[FMOD] System Init failed" << endl;
+  }
+  */
 }
 
-void SoundManager::loadSFX(SoundEffectIdentifier soundId) {
-
+/*
+FMOD::System* SoundManager::getFMODSystem() {
+  //return sys;
 }
-
-void SoundManager::playSFX(SoundEffectIdentifier soundId) {
-
-}
-
-void SoundManager::playMusic(MusicIdentifier musicId) {
-
-}
-
-void SoundManager::changeMusicSequence(MusicIdentifier musicId, u8 sequenceId) {
-
-}
-
-void SoundManager::toggleMusicLayer(MusicIdentifier musicId, u8 layerId) {
-
-}
-
-void SoundManager::setMusicLayerState(MusicIdentifier musicId, u8 layerId, bool active) {
-
-}
-
-bool SoundManager::getMusicLayerState(MusicIdentifier musicId, u8 layerId) {
-
-}
+*/
 
 SoundManager::~SoundManager() {
-  //FMOD_System_Release(sys);
+  /*
+  FMOD_RESULT result = sys->release();
+  if(result != FMOD_OK) {
+    cout << "[FMOD] System release failed" << endl;
+  }
+  */
 }

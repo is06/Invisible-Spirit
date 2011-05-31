@@ -22,8 +22,6 @@ class Mouse;
 class Gamepad;
 
 // Debug classes
-class DebugMenu;
-class DebugMenuOption;
 class MapEditor;
 
 // Scnees
@@ -69,7 +67,7 @@ class LevelMesh;
 class Camera;
 class TPCamera;
 class Light;
-class Speaker;
+class OmniLight;
 
 // Shaders
 class OpacityShaderCallback;
@@ -77,6 +75,7 @@ class PostRenderGlow;
 
 // Sound
 class SoundManager;
+class Speaker;
 
 // Main classes
 #include "../Game.h"
@@ -91,8 +90,6 @@ class SoundManager;
 #include "../Gamepad.h"
 
 // Debug classes
-#include "../debug/DebugMenu.h"
-#include "../debug/DebugMenuOption.h"
 #include "../debug/MapEditor.h"
 
 // Scenes
@@ -132,11 +129,14 @@ class SoundManager;
 #include "../3d/LevelMesh.h"
 #include "../3d/Camera.h"
 #include "../3d/TPCamera.h"
+#include "../3d/Light.h"
+#include "../3d/OmniLight.h"
 
 // Shaders
 #include "../shader/PostRenderGlow.h"
 
 // Sound
 #include "../sound/SoundManager.h"
+#include "../sound/Speaker.h"
 
 #endif

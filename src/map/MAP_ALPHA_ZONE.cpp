@@ -18,13 +18,16 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay() {
   level->loadMesh("resource/mesh/level/alphazone.obj");
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
+
+  spk = new Speaker(STREAM_TEST, core::vector3df(0,1,0), "hola", 10);
+  lt = new OmniLight();
 }
 
 /**
  * Fonction de test des événements spécifiques à cette map
  */
 void MAP_ALPHA_ZONE::events() { SceneGameplay::events();
-
+  spk->render();
 }
 
 void MAP_ALPHA_ZONE::postRender() { SceneGameplay::postRender();
@@ -36,4 +39,6 @@ void MAP_ALPHA_ZONE::postRender() { SceneGameplay::postRender();
  */
 MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE() {
   level->clearMeshCollision();
+  delete spk;
+  delete lt;
 }

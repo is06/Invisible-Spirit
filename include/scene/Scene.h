@@ -19,6 +19,8 @@ class Scene {
     virtual void events() = 0;
     virtual void postRender() = 0;
 
+    static bool inMapEditingMode;
+
   protected:
     Camera* cam;
     //PlayerControl* control;

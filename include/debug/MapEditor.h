@@ -18,8 +18,6 @@ class MapEditor {
     bool isRunning();
 
   private:
-    DebugMenu* mainMenu;
-
     bool active;
 };
 

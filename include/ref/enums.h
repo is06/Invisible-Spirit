@@ -183,6 +183,10 @@ enum PowerType {
   POWERTYPE_STATE
 };
 
+enum StreamIdentifier {
+  STREAM_TEST
+};
+
 enum MusicIdentifier {
   MUSIC_TEST
 };
