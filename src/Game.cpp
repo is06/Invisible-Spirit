@@ -139,6 +139,7 @@ void Game::run() {
       // Speed factor computation
       lastCycleTime = device->getTimer()->getRealTime() - loopTime;
       loopTime = device->getTimer()->getRealTime();
+
       speedFactor = lastCycleTime / 1000.0f;
       if(speedFactor > 1.0f) speedFactor = 1.0f; // Limit min 1fps
       if(speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed time
@@ -331,6 +332,10 @@ Translation* Game::getGlobalTranslations() {
 
 Save* Game::getCurrentSave() {
   return currentSave;
+}
+
+SoundManager* Game::getSoundManager() {
+  return soundManager;
 }
 
 /**

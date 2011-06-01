@@ -28,6 +28,7 @@ class Game {
     static Translation* getGlobalTranslations();
     static Save* getCurrentSave();
     static Scene* getCurrentScene();
+    static SoundManager* getSoundManager();
 
     static f32 getFramerate();
     static f32 getSpeedFactor();
