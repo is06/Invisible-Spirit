@@ -38,6 +38,8 @@ class EventManager : public IEventReceiver {
     u16 getPressedButtons();
     u32 getPovValue();
 
+    const SEvent::SGUIEvent& getGUIEvent();
+
     bool OnEvent(const SEvent& event);
 
   private:
@@ -49,6 +51,8 @@ class EventManager : public IEventReceiver {
     bool mouseLeftOnce;
     bool mouseRightDown;
     bool mouseRightOnce;
+
+    SEvent::SGUIEvent guiEvent;
 
     f32 leftJoystickAngle;
     u8 leftJoystickForce;

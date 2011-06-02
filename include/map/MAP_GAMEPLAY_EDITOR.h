@@ -5,27 +5,23 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAP_EDITOR_H__
-#define __IS06_MAP_EDITOR_H__
+#ifndef __IS06_MAP_GAMEPLAY_EDITOR_H__
+#define __IS06_MAP_GAMEPLAY_EDITOR_H__
 
 using namespace irr;
+using namespace std;
 
-class MapEditor {
+class MAP_GAMEPLAY_EDITOR : public SceneGameplay {
   public:
-    MapEditor();
-    ~MapEditor();
+    MAP_GAMEPLAY_EDITOR();
+    ~MAP_GAMEPLAY_EDITOR();
 
     void events();
-    void toggle();
-    bool isRunning();
-
-    void openMapProperties();
 
   private:
-    bool active;
-
-    gui::IGUIWindow* mainMenu;
-    ColorProperty* cp;
+    map<u32, Light*> lightMap;
+    map<u32, Speaker*> speakerMap;
+    map<u32, Trigger*> triggerMap;
 };
 
 #endif

@@ -147,7 +147,7 @@ void Game::run() {
       currentScene->events();
       sceneManager->drawAll();
       currentScene->postRender();
-      //debugGUI->drawAll();
+      debugGUI->drawAll();
       videoDriver->endScene();
 
       if(!processorPriority) {
@@ -161,11 +161,11 @@ void Game::run() {
 
       speedFactor = 1.0f / framerate;
 
-      videoDriver->beginScene(true, true, video::SColor(255,0,0,0));
+      videoDriver->beginScene(true, true, video::SColor(255,255,255,255));
       currentScene->events();
       sceneManager->drawAll();
       currentScene->postRender();
-      //debugGUI->drawAll();
+      debugGUI->drawAll();
 
       after = device->getTimer()->getRealTime();
       renderTime = after - before;

@@ -22,9 +22,8 @@ class Mouse;
 class Gamepad;
 
 // Debug classes
-class DebugMenu;
-class DebugMenuOption;
 class MapEditor;
+class ColorProperty;
 
 // Scnees
 class Scene;
@@ -91,9 +90,8 @@ class SoundManager;
 #include "../Gamepad.h"
 
 // Debug classes
-#include "../debug/DebugMenu.h"
-#include "../debug/DebugMenuOption.h"
 #include "../debug/MapEditor.h"
+#include "../debug/ColorProperty.h"
 
 // Scenes
 #include "../scene/Scene.h"

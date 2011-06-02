@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 #include <newton/Newton.h>
 //#include <fmodex/fmod.h>
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <map>
 #include <vector>
