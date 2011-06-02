@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
+bool Scene::inMapEditingMode;
+
 /**
  * Initialise un objet Camera ainsi que les interfaces d'événements comme le clavier ou la manette
  */
@@ -34,6 +36,10 @@ Scene::Scene() {
 void Scene::events() {
   speedFactor = Game::getSpeedFactor();
   timeElapsed += 0.016666666666f;
+}
+
+Camera* Scene::getActiveCamera() {
+  return cam;
 }
 
 void Scene::postRender() {

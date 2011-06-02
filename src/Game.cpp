@@ -100,7 +100,7 @@ void Game::init() {
   exit = false;
 
   sceneChanged = true;
-  nextScene = SCENE_MENU;
+  nextScene = SCENE_MAP_ALPHA_ZONE;
 }
 
 /**
@@ -108,9 +108,9 @@ void Game::init() {
  */
 void Game::run() {
   // For independant speed
-  s32 lastCycleTime, loopTime = 0;
+  u32 lastCycleTime, loopTime = 0;
   // For constant speed
-  s32 before, after, renderTime, timeToSleep = 0;
+  u32 before, after, renderTime, timeToSleep = 0;
 
   s32 lastFPS = -1;
 
@@ -139,6 +139,7 @@ void Game::run() {
       // Speed factor computation
       lastCycleTime = device->getTimer()->getRealTime() - loopTime;
       loopTime = device->getTimer()->getRealTime();
+
       speedFactor = lastCycleTime / 1000.0f;
       if(speedFactor > 1.0f) speedFactor = 1.0f; // Limit min 1fps
       if(speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed time
@@ -148,6 +149,9 @@ void Game::run() {
       sceneManager->drawAll();
       currentScene->postRender();
       debugGUI->drawAll();
+
+      soundManager->setEarsData(currentScene->getActiveCamera(), speedFactor);
+      soundManager->update();
       videoDriver->endScene();
 
       if(!processorPriority) {
@@ -166,6 +170,9 @@ void Game::run() {
       sceneManager->drawAll();
       currentScene->postRender();
       debugGUI->drawAll();
+      soundManager->setEarsData(currentScene->getActiveCamera(), speedFactor);
+      soundManager->update();
+      videoDriver->endScene();
 
       after = device->getTimer()->getRealTime();
       renderTime = after - before;
@@ -173,15 +180,10 @@ void Game::run() {
       timeToSleep = (u32)(((1000.0f / framerate) - renderTime) + after);
 
       while(device->getTimer()->getRealTime() < timeToSleep) {
-        //cout << "srt=" << device->getTimer()->getRealTime() << " // tts=" << (u32)timeToSleep;
         if(!processorPriority) {
-          //cout << " -- yield";
           device->yield();
         }
-        //cout << endl;
       }
-
-      videoDriver->endScene();
     }
   }
 }
@@ -330,6 +332,10 @@ Translation* Game::getGlobalTranslations() {
 
 Save* Game::getCurrentSave() {
   return currentSave;
+}
+
+SoundManager* Game::getSoundManager() {
+  return soundManager;
 }
 
 /**

@@ -5,31 +5,29 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-/**
- * Développé à l'aide du tutoriel de khayyam sur developpez.com :
- * http://khayyam.developpez.com/articles/cpp/fmodex/
- */
-
 #ifndef __IS06_SOUND_MANAGER_H__
 #define __IS06_SOUND_MANAGER_H__
+
+using namespace irr;
+using namespace std;
 
 class SoundManager {
   public:
     SoundManager();
     ~SoundManager();
 
-    void loadSFX(SoundEffectIdentifier soundId);
-    void playSFX(SoundEffectIdentifier soundId);
-    void playMusic(MusicIdentifier musicId);
-    void changeMusicSequence(MusicIdentifier musicId, u8 sequenceId);
+    void setEarsData(Camera* activeCamera, f32 cycleTime);
+    void update();
 
-    // Music Layers
-    void toggleMusicLayer(MusicIdentifier musicId, u8 layerId);
-    void setMusicLayerState(MusicIdentifier musicId, u8 layerId, bool active);
-    bool getMusicLayerState(MusicIdentifier musicId, u8 layerId);
+    FMOD_SYSTEM* getSystem();
 
   private:
-    //FMOD_SYSTEM* sys;
+    FMOD_SYSTEM* sys;
+
+    FMOD_VECTOR cameraPosition;
+    FMOD_VECTOR cameraVelocity;
+    FMOD_VECTOR cameraForward;
+    FMOD_VECTOR cameraUp;
 };
 
 #endif

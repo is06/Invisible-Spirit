@@ -17,6 +17,8 @@ class MAP_ALPHA_ZONE : public SceneGameplay {
     void postRender();
 
   private:
+    Speaker* spk;
+    OmniLight* lt;
 };
 
 #endif
