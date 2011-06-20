@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MAP_EDITOR_H__
 #define __IS06_MAP_EDITOR_H__
 
+using namespace irr;
+
 class MapEditor {
   public:
     MapEditor();
@@ -17,8 +19,13 @@ class MapEditor {
     void toggle();
     bool isRunning();
 
+    void openMapProperties();
+
   private:
     bool active;
+
+    gui::IGUIWindow* mainMenu;
+    ColorProperty* cp;
 };
 
 #endif

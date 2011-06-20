@@ -30,12 +30,21 @@ EventManager::EventManager() : IEventReceiver() {
  */
 bool EventManager::OnEvent(const SEvent& event) {
   if(event.EventType == EET_KEY_INPUT_EVENT) {
+
     anyDown = keyDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
+
   } else if(event.EventType == EET_MOUSE_INPUT_EVENT) {
+
     mouseLeftDown = event.MouseInput.isLeftPressed();
     mouseRightDown = event.MouseInput.isRightPressed();
     mousePosition = core::position2di(event.MouseInput.X, event.MouseInput.Y);
+
+  } else if(event.EventType == EET_GUI_EVENT) {
+
+    guiEvent = event.GUIEvent;
+
   } else if(event.EventType == EET_JOYSTICK_INPUT_EVENT) {
+
     // Axes
     f32 lXAxis = (event.JoystickEvent.Axis[SEvent::SJoystickEvent::AXIS_X] + 100) / 32768.0f;
     f32 lYAxis = ((event.JoystickEvent.Axis[SEvent::SJoystickEvent::AXIS_Y] + 100) / 32768.0f) * -1;
@@ -157,6 +166,10 @@ bool EventManager::anyKeyDownOnce() {
     }
   }
   return false;
+}
+
+const SEvent::SGUIEvent& EventManager::getGUIEvent() {
+  return guiEvent;
 }
 
 u8 EventManager::getLeftJoystickForce() {

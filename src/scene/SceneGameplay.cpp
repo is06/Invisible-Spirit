@@ -58,14 +58,14 @@ void SceneGameplay::events() { Scene::events();
 void SceneGameplay::manageCameraControl() {
   if(cam->hasControl()) {
     // Keyboard control
-    if(keyboard->pressed(KEY_NUMPAD4)) {
+    if(keyboard->pressed(KEY_KEY_J)) {
       cam->goLeft(speedFactor * 100);
-    } else if(keyboard->pressed(KEY_NUMPAD6)) {
+    } else if(keyboard->pressed(KEY_KEY_L)) {
       cam->goRight(speedFactor * 100);
     }
-    if(keyboard->pressed(KEY_NUMPAD8)) {
+    if(keyboard->pressed(KEY_KEY_I)) {
       cam->goNear(speedFactor * 100);
-    } else if(keyboard->pressed(KEY_NUMPAD2)) {
+    } else if(keyboard->pressed(KEY_KEY_K)) {
       cam->goFar(speedFactor * 100);
     }
 

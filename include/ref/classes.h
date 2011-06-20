@@ -23,6 +23,7 @@ class Gamepad;
 
 // Debug classes
 class MapEditor;
+class ColorProperty;
 
 // Scnees
 class Scene;
@@ -91,6 +92,7 @@ class Speaker;
 
 // Debug classes
 #include "../debug/MapEditor.h"
+#include "../debug/ColorProperty.h"
 
 // Scenes
 #include "../scene/Scene.h"

@@ -5,24 +5,23 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_CORE_H__
-#define __IS06_CORE_H__
+#ifndef __IS06_MAP_GAMEPLAY_EDITOR_H__
+#define __IS06_MAP_GAMEPLAY_EDITOR_H__
 
-#include <irrlicht/irrlicht.h>
-#include <newton/Newton.h>
-#include <fmodex/fmod.h>
-#include <iostream>
-#include <sstream>
-#include <fstream>
-#include <map>
-#include <vector>
-#include <boost/function.hpp>
-#include <boost/bind.hpp>
+using namespace irr;
+using namespace std;
 
-#include "../Util.h"
-#include "enums.h"
-#include "structs.h"
-#include "classes.h"
-#include "maps.h"
+class MAP_GAMEPLAY_EDITOR : public SceneGameplay {
+  public:
+    MAP_GAMEPLAY_EDITOR();
+    ~MAP_GAMEPLAY_EDITOR();
+
+    void events();
+
+  private:
+    map<u32, Light*> lightMap;
+    map<u32, Speaker*> speakerMap;
+    map<u32, Trigger*> triggerMap;
+};
 
 #endif
