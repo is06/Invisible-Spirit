@@ -10,11 +10,11 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-class Camera {
+class Camera : public Entity {
   public:
     Camera();
 
-    virtual void render();
+    virtual void render() = 0;
 
     virtual void linkEntity(Ayron* entityToLink) = 0;
     virtual f32 getDistance() = 0;
