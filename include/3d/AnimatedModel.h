@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ANIMATED_MODEL_H__
 #define __IS06_ANIMATED_MODEL_H__
 
+#include "ModelEntity.h"
+
 using namespace irr;
 
 class AnimatedModel : public ModelEntity {

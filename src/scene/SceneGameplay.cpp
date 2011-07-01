@@ -6,6 +6,16 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/3d/LevelMesh.h"
+#include "../../include/3d/TPCamera.h"
+#include "../../include/3d/Ayron.h"
+#include "../../include/gui/GameplayInterface.h"
+#include "../../include/gui/GameplayMenu.h"
+#include "../../include/Game.h"
+#include "../../include/debug/MapEditor.h"
+#include "../../include/Keyboard.h"
+#include "../../include/Gamepad.h"
+#include "../../include/gui/Menu.h"
 
 using namespace irr;
 using namespace std;

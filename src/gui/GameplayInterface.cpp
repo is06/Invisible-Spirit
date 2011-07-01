@@ -6,6 +6,8 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/gui/GameplayInterface.h"
+#include "../../include/gui/ButtonsInterface.h"
 
 GameplayInterface::GameplayInterface() {
   buttons = new ButtonsInterface();

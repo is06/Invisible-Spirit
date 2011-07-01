@@ -4,6 +4,8 @@
 using namespace std;
 using namespace irr;
 
+#include "../../include/Entity.h"
+
 class Light : public Entity {
   public:
     Light();

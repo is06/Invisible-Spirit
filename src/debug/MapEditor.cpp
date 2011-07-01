@@ -7,6 +7,9 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/debug/MapEditor.h"
+#include "../../include/debug/ColorProperty.h"
+#include "../../include/Game.h"
 
 using namespace irr;
 

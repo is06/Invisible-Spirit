@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MENU_OPTION_H__
 #define __IS06_MENU_OPTION_H__
 
+#include "Hud.h"
+
 class MenuOption : public Hud {
   public:
     MenuOption(MenuIcon icon, const core::stringw& title = "[Option]", f32 x = 0, f32 y = 0, MenuStyle style = MENU_STYLE_STD);

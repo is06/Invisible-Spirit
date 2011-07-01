@@ -12,8 +12,8 @@ class MAP_ALPHA_ZONE;
 class MAP_CANYON;
 class MAP_OXYGEN;
 
-#include "../map/MAP_ALPHA_ZONE.h"
-#include "../map/MAP_CANYON.h"
-#include "../map/MAP_OXYGEN.h"
+#include "../../include/map/MAP_ALPHA_ZONE.h"
+#include "../../include/map/MAP_CANYON.h"
+#include "../../include/map/MAP_OXYGEN.h"
 
 #endif

@@ -6,6 +6,9 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/3d/Ayron.h"
+#include "../../include/3d/Camera.h"
+#include "../../include/3d/Character.h"
 
 using namespace irr;
 using namespace std;

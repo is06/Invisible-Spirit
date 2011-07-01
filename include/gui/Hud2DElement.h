@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_2D_ELEMENT_H__
 #define __IS06_HUD_2D_ELEMENT_H__
 
+#include "Hud.h"
+
 class Hud2DElement : public Hud {
   public:
     Hud2DElement(f32 x, f32 y, f32 w, f32 h);
@@ -59,7 +61,7 @@ class Hud2DElement : public Hud {
 
     const static f32 FAR = 0.1f;
     const static f32 COEFF = 3305.0f;
-    
+
     static u16 indices[];
     static core::matrix4 mat;
 };

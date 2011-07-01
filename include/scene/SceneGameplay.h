@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SCENE_GAMEPLAY_H__
 #define __IS06_SCENE_GAMEPLAY_H__
 
+#include "../../include/scene/Scene.h"
+
 using namespace irr;
 using namespace std;
 

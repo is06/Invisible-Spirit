@@ -8,6 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_CAMERA_H__
 #define __IS06_CAMERA_H__
 
+#include "../../include/3d/Ayron.h"
+#include "../../include/Entity.h"
+
 using namespace irr;
 
 class Camera : public Entity {

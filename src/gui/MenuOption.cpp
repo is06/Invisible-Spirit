@@ -6,6 +6,9 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/gui/MenuOption.h"
+#include "../../include/gui/Window.h"
+#include "../../include/gui/Text.h"
 
 using namespace std;
 using namespace irr;

@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_TEXT_BUTTON_H__
 #define __IS06_TEXT_BUTTON_H__
 
+#include "Button.h"
+
 class TextButton : public Button {
   public:
     TextButton(f32 x, f32 y);

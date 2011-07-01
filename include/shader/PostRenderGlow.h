@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_POST_RENDER_GLOW_H__
 #define __IS06_POST_RENDER_GLOW_H__
 
+#include "../gui/Hud2DElement.h"
+
 class PostRenderGlow : public Hud2DElement {
   public:
     PostRenderGlow();

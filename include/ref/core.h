@@ -21,7 +21,6 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Util.h"
 #include "enums.h"
-#include "structs.h"
 #include "classes.h"
 #include "maps.h"
 

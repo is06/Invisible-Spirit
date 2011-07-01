@@ -6,6 +6,7 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../include/ref/core.h"
+#include "../include/SettingsGroup.h"
 
 using namespace irr;
 

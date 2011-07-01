@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_TPCAMERA_H__
 #define __IS06_TPCAMERA_H__
 
+#include "../../include/3d/Camera.h"
+
 class TPCamera : public Camera {
   public:
     TPCamera();

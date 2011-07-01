@@ -6,6 +6,7 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/gui/IconTextButton.h"
 
 IconTextButton::IconTextButton(f32 x, f32 y) : Button(x, y) {
   //text = new Text(textMsg);

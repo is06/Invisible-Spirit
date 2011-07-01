@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MAIN_STATE_INFO_H__
 #define __IS06_MAIN_STATE_INFO_H__
 
+#include "Hud.h"
+
 using namespace irr;
 using namespace std;
 

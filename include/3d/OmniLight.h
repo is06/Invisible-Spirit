@@ -4,6 +4,8 @@
 using namespace irr;
 using namespace std;
 
+#include "../../include/3d/Light.h"
+
 class OmniLight : public Light {
   public:
     OmniLight();

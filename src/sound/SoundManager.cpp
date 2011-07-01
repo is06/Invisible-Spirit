@@ -6,6 +6,8 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/sound/SoundManager.h"
+#include "../../include/3d/Camera.h"
 
 using namespace irr;
 using namespace std;

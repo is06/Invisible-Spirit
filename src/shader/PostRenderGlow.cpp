@@ -6,6 +6,9 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/shader/PostRenderGlow.h"
+#include "../../include/Game.h"
+#include "../../include/Settings.h"
 
 using namespace std;
 using namespace irr;

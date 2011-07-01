@@ -6,6 +6,11 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/gui/GameplayMenu.h"
+#include "../../include/Game.h"
+#include "../../include/gui/Menu.h"
+#include "../../include/Translation.h"
+#include "../../include/gui/PlayerState.h"
 
 using namespace irr;
 using namespace std;

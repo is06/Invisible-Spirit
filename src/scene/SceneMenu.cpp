@@ -6,6 +6,15 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/scene/SceneMenu.h"
+#include "../../include/3d/TPCamera.h"
+#include "../../include/3d/StaticModel.h"
+#include "../../include/gui/Picture.h"
+#include "../../include/gui/Menu.h"
+#include "../../include/Translation.h"
+#include "../../include/Game.h"
+#include "../../include/Keyboard.h"
+#include "../../include/Save.h"
 
 using namespace irr;
 using namespace std;
@@ -24,7 +33,7 @@ SceneMenu::SceneMenu() : Scene() {
   mainMenu = new Menu(-50, -100, 150, 8, MENU_STYLE_TITLE);
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_new_game"));
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_quit"));
-  
+
   title = new Picture(100, 0, 256, 102, "resource/texture/menus/title/main.png");
 
   lightRays = new StaticModel();

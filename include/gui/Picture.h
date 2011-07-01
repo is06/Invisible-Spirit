@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_PICTURE_H__
 #define __IS06_PICTURE_H__
 
+#include "Hud2DElement.h"
+
 using namespace irr;
 using namespace std;
 

@@ -1,4 +1,15 @@
+/******************************************************************************
+Invisible Spirit by Thomas Noury is licensed under a Creative Commons
+Attribution-NonCommercial-ShareAlike 3.0 Unported License. Based on a work at
+is06.com. Permissions beyond the scope of this license may be available at
+http://www.is06.com. Legal code in license.txt
+
+*******************************************************************************/
+
 #include "../../include/ref/core.h"
+#include "../../include/debug/ColorProperty.h"
+#include "../../include/Game.h"
+#include "../../include/EventManager.h"
 
 using namespace irr;
 using namespace std;
@@ -51,16 +62,16 @@ void ColorProperty::events() {
       gui::IGUIElement* bar = Game::getEventManager()->getGUIEvent().Caller;
       switch(bar->getID()) {
         case 1001:
-          compAEdit->setText(convertIntToString(compABar->getPos()));
+          compAEdit->setText(convertIntToString(compABar->getPos()).c_str());
         break;
         case 1002:
-          compREdit->setText(convertIntToString(compRBar->getPos()));
+          compREdit->setText(convertIntToString(compRBar->getPos()).c_str());
         break;
         case 1003:
-          compGEdit->setText(convertIntToString(compGBar->getPos()));
+          compGEdit->setText(convertIntToString(compGBar->getPos()).c_str());
         break;
         case 1004:
-          compBEdit->setText(convertIntToString(compBBar->getPos()));
+          compBEdit->setText(convertIntToString(compBBar->getPos()).c_str());
         break;
       }
     break;

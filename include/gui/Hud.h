@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_H__
 #define __IS06_HUD_H__
 
+#include "../Entity.h"
+
 class Hud : public Entity {
   public:
     Hud();

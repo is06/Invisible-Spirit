@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_LEVEL_MESH_H__
 #define __IS06_LEVEL_MESH_H__
 
+#include "../../include/3d/StaticModel.h"
+
 using namespace irr;
 
 class LevelMesh : public StaticModel {

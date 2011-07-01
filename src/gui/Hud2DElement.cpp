@@ -6,6 +6,8 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/gui/Hud2DElement.h"
+#include "../../include/Game.h"
 
 using namespace irr;
 using namespace std;
@@ -15,7 +17,7 @@ core::matrix4 Hud2DElement::mat;
 
 Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud() {
   texture = NULL;
-  
+
   // Image visible dès sa création
   isVisible = true;
 
@@ -96,14 +98,14 @@ void Hud2DElement::render() {
   }
 
   // Draws vertices of 2D element only if visible
-  if(isVisible) {	
-	// Opacity
-	material.DiffuseColor.setAlpha(opacity);
-	
-	// Texture of 2D element
-	if(texture) {
+  if(isVisible) {
+    // Opacity
+    material.DiffuseColor.setAlpha(opacity);
+
+    // Texture of 2D element
+    if(texture) {
       material.setTexture(0, texture);
-	}
+    }
 
     Game::getVideoDriver()->setMaterial(material);
     Game::getVideoDriver()->setTransform(video::ETS_VIEW, mat);

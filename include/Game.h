@@ -8,6 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_GAME_H__
 #define __IS06_GAME_H__
 
+#include "ScreenPosition.h"
+#include "Shaders.h"
+
 using namespace irr;
 
 class Game {

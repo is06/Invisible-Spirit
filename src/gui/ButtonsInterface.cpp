@@ -6,6 +6,11 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/gui/ButtonsInterface.h"
+#include "../../include/Game.h"
+#include "../../include/gui/TextButton.h"
+#include "../../include/gui/IconButton.h"
+#include "../../include/gui/IconTextButton.h"
 
 using namespace std;
 

@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_POWER_DATA_H__
 #define __IS06_POWER_DATA_H__
 
+#include "../../include/save_data/PowerElementData.h"
+
 using namespace irr;
 using namespace std;
 
