@@ -19,8 +19,29 @@ TextFont::TextFont(FontStyle style) {
   core::stringc filePath = "resource/hud/font/";
 
   switch(style) {
-    case FONT_STD_REGULAR: filePath.append("std_regular"); break;
-    case FONT_BORDER_SHADED_REGULAR: filePath.append("border_shaded_regular"); break;
+    case FONT_STD_CLASSIC_REGULAR: filePath.append("std_classic_regular"); break;
+    case FONT_COND_CLASSIC_REGULAR: filePath.append("cond_classic_regular"); break;
+    case FONT_EXT_CLASSIC_REGULAR: filePath.append("ext_classic_regular"); break;
+    case FONT_STD_CLASSIC_BOLD: filePath.append("std_classic_bold"); break;
+    case FONT_COND_CLASSIC_BOLD: filePath.append("cond_classic_bold"); break;
+    case FONT_EXT_CLASSIC_BOLD: filePath.append("ext_classic_bold"); break;
+
+    case FONT_STD_SHADED_REGULAR: filePath.append("std_shaded_regular"); break;
+    case FONT_COND_SHADED_REGULAR: filePath.append("cond_shaded_regular"); break;
+    case FONT_EXT_SHADED_REGULAR: filePath.append("ext_shaded_regular"); break;
+    case FONT_STD_SHADED_BOLD: filePath.append("std_shaded_bold"); break;
+    case FONT_COND_SHADED_BOLD: filePath.append("cond_shaded_bold"); break;
+    case FONT_EXT_SHADED_BOLD: filePath.append("ext_shaded_bold"); break;
+
+    case FONT_STD_BORDER_SHADED_REGULAR: filePath.append("std_border_shaded_regular"); break;
+    case FONT_COND_BORDER_SHADED_REGULAR: filePath.append("cond_border_shaded_regular"); break;
+    case FONT_EXT_BORDER_SHADED_REGULAR: filePath.append("ext_border_shaded_regular"); break;
+    case FONT_STD_BORDER_SHADED_BOLD: filePath.append("std_border_shaded_bold"); break;
+    case FONT_COND_BORDER_SHADED_BOLD: filePath.append("cond_border_shaded_bold"); break;
+    case FONT_EXT_BORDER_SHADED_BOLD: filePath.append("ext_border_shaded_bold"); break;
+
+    case FONT_LOCATION_TITLE_REGULAR: filePath.append("location_title_regular"); break;
+    case FONT_DIALOG_NAME_TITLE_REGULAR: filePath.append("dialog_name_regular"); break;
   }
 
   core::stringc texturePath = filePath;

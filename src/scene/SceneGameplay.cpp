@@ -187,6 +187,12 @@ void SceneGameplay::manageAyronMovements() {
  * Called every cycle
  */
 void SceneGameplay::manageAyronCollisions() {
+
+  // Check if level was created
+  if(level->getMesh() == NULL) Game::fatalError(ERRCODE_45);
+  if(level->getNode() == NULL) Game::fatalError(ERRCODE_46);
+  if(level->getMainBody() == NULL) Game::fatalError(ERRCODE_47);
+
   // Floor collision
   if(ayron->getFloorCollision(level) > 1.0) {
     ayron->fall(speedFactor);
@@ -204,12 +210,12 @@ void SceneGameplay::manageAyronCollisions() {
   core::vector3df lineEnd;
 
   ayron->getWallCollision(RAY_WALL_P, level, normal, lineOrigin, lineEnd);
-  Game::getVideoDriver()->draw3DLine(lineOrigin, lineEnd, video::SColor(255,0,255,255));
+  //Game::getVideoDriver()->draw3DLine(lineOrigin, lineEnd, video::SColor(255,0,255,255));
 
   ayron->getWallCollision(RAY_WALL_Q, level, normal, lineOrigin, lineEnd);
-  Game::getVideoDriver()->draw3DLine(lineOrigin, lineEnd, video::SColor(255,0,255,255));
+  //Game::getVideoDriver()->draw3DLine(lineOrigin, lineEnd, video::SColor(255,0,255,255));
 
-  Game::getVideoDriver()->draw3DLine(core::vector3df(0,0,0), core::vector3df(0,1,0), video::SColor(255,255,255,255));
+  //Game::getVideoDriver()->draw3DLine(core::vector3df(0,0,0), core::vector3df(0,1,0), video::SColor(255,255,255,255));
 
   if(ayron->getWallCollision(RAY_WALL_P, level, normal, lineOrigin, lineEnd) < 1.0f || ayron->getWallCollision(RAY_WALL_Q, level, normal, lineOrigin, lineEnd) < 1.0f) {
     while(ayron->getWallCollision(RAY_WALL_P, level, normal, lineOrigin, lineEnd) < 0.99 || ayron->getWallCollision(RAY_WALL_Q, level, normal, lineOrigin, lineEnd) < 0.99) {

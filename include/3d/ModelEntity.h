@@ -21,9 +21,19 @@ class ModelEntity : public Entity {
     virtual void render();
     virtual void createNode(const core::vector3df& initPosition) = 0;
 
+    void setVisible(bool value);
+    void hide();
+    void show();
+
+    // TODO :
+    //void setGhost(bool value);
+    //void setWireFrame(bool value);
+    //void setDebugData(bool value);
+
     void loadMesh(const core::stringc& meshFilePath);
 
     scene::ISceneNode* getNode();
+    scene::IMesh* getMesh();
     video::SMaterial& getMaterial();
     NewtonBody* getMainBody();
 

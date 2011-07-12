@@ -5,17 +5,23 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAPS_H__
-#define __IS06_MAPS_H__
+#ifndef __IS06_MAP_2D_TEST__
+#define __IS06_MAP_2D_TEST__
 
-class MAP_ALPHA_ZONE;
-class MAP_2D_TEST;
-class MAP_CANYON;
-class MAP_OXYGEN;
+#include "../../include/scene/SceneGameplay.h"
+#include "../../include/gui/BarCounter.h"
 
-#include "../../include/map/MAP_2D_TEST.h"
-#include "../../include/map/MAP_ALPHA_ZONE.h"
-#include "../../include/map/MAP_CANYON.h"
-#include "../../include/map/MAP_OXYGEN.h"
+class MAP_2D_TEST : public SceneGameplay {
+  public:
+    MAP_2D_TEST();
+    ~MAP_2D_TEST();
+
+    void events();
+    void postRender();
+
+  private:
+    BarCounter* bar;
+};
 
 #endif
+

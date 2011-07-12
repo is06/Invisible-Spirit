@@ -21,6 +21,8 @@ class Game {
 
     static void quit();
     static void changeScene(SceneIdentifier id);
+    static void fatalError(ErrorCode code);
+    static void errorLog(const core::stringc& errorText);
 
     static IrrlichtDevice* getDevice();
     static video::IVideoDriver* getVideoDriver();

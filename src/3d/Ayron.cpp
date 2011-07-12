@@ -35,8 +35,6 @@ Ayron::Ayron(Camera* cam) : Character() {
     cam->getNode()->getRotation().Y - core::radToDeg(core::PI),
     mainNode->getRotation().Z
   ));
-
-  //mainNode->getMaterial(0).Wireframe = true;
 }
 
 /**

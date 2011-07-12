@@ -10,14 +10,19 @@ class BarCounter : public Counter {
 
     virtual void render();
 
+    void setPosition(f32 x, f32 y);
+    void setX(f32 value);
+    void setY(f32 value);
+
   protected:
     Picture* bar;
     Picture* sub;
 
     s32 oldValue;
-    f32 subValue;
+    f32 behindValue;
     f32 initWidth;
     f32 initX;
+    f32 initY;
     f32 decreaseFactor;
     f32 decreaseTimer;
 

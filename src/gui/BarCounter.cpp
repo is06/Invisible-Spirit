@@ -17,11 +17,12 @@ BarCounter::BarCounter(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, B
   core::stringc texturePath = "resource/hud/bar/";
   sub = NULL;
   oldValue = currentValue + 1;
-  subValue = currentValue;
+  behindValue = currentValue;
   decreaseFactor = 200.0f;
   decreaseTimer = 0.0f;
   initWidth = w;
   initX = x;
+  initY = y;
   animate = false;
   decrease = false;
 
@@ -49,8 +50,15 @@ void BarCounter::render() {
       decrease = true;
     }
     oldValue = currentValue;
-    bar->setWidth((currentValue / 100.0f) * initWidth);
-    bar->setX(initX + (bar->getWidth() / 2.0f));
+
+    if(decrease) {
+      bar->setWidth((currentValue / 100.0f) * initWidth);
+      bar->setX(initX + (bar->getWidth() / 2.0f));
+    } else {
+      sub->setWidth((currentValue / 100.0f) * initWidth);
+      sub->setX(initX + (bar->getWidth() / 2.0f));
+    }
+
     if(sub) {
       animate = true;
       sub->setX(initX + (sub->getWidth() / 2.0f));
@@ -60,37 +68,54 @@ void BarCounter::render() {
     if(decreaseTimer >= 100.0f) {
       if(decrease) {
         // Perte de vie
-        if(subValue < (currentValue + (0.3f * (maxValue - currentValue)))) {
-          decreaseFactor = ((subValue - currentValue) / (maxValue - currentValue)) * 500.0f;
+        if(behindValue < (currentValue + (0.3f * (maxValue - currentValue)))) {
+          decreaseFactor = ((behindValue - currentValue) / (maxValue - currentValue)) * 500.0f;
         }
         if(decreaseFactor > 0.0f) {
-          subValue -= (decreaseFactor * Game::getSpeedFactor());
+          behindValue -= (decreaseFactor * Game::getSpeedFactor());
         }
       } else {
         // Gain de vie
-        subValue += (decreaseFactor * Game::getSpeedFactor());
+        behindValue += (decreaseFactor * Game::getSpeedFactor());
       }
     } else {
       // Evolution du timer
       decreaseTimer += 100.0f * Game::getSpeedFactor();
     }
-    if((s32)subValue <= currentValue) {
+    if((s32)behindValue <= currentValue) {
       // Sub arrivée au niveau du compteur
-      subValue = currentValue;
+      behindValue = currentValue;
       animate = false;
       decrease = false;
       decreaseFactor = 200.0f;
       decreaseTimer = 0.0f;
     }
-    sub->setWidth((subValue / 100.0f) * initWidth);
-    sub->setX(initX + (sub->getWidth() / 2.0f));
+    if(decrease) {
+      sub->setWidth((behindValue / 100.0f) * initWidth);
+      sub->setX(initX + (sub->getWidth() / 2.0f));
+    }
   }
+
+  bar->setY(initY);
+  sub->setY(initY);
 
   if(sub) {
     sub->render();
   }
-
   bar->render();
+}
+
+void BarCounter::setPosition(f32 x, f32 y) {
+  initX = x;
+  initY = y;
+}
+
+void BarCounter::setX(f32 value) {
+  initX = value;
+}
+
+void BarCounter::setY(f32 value) {
+  initY = value;
 }
 
 BarCounter::~BarCounter() {

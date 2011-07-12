@@ -18,6 +18,7 @@ using namespace std;
 ModelEntity::ModelEntity() : Entity() {
   mainMesh = NULL;
   mainNode = NULL;
+  mainBody = NULL;
 }
 
 /**
@@ -35,6 +36,10 @@ void ModelEntity::loadMesh(const core::stringc& meshFilePath) {
   mainMesh = Game::getSceneManager()->getMesh(meshFilePath);
 }
 
+scene::IMesh* ModelEntity::getMesh() {
+  return mainMesh;
+}
+
 /**
  * Retourne le node Irrlicht de l'entité
  * @return ISceneNode* le noeud de l'entité
@@ -49,6 +54,18 @@ NewtonBody* ModelEntity::getMainBody() {
 
 video::SMaterial& ModelEntity::getMaterial() {
   return mainNode->getMaterial(0);
+}
+
+void ModelEntity::hide() {
+  mainNode->setVisible(false);
+}
+
+void ModelEntity::show() {
+  mainNode->setVisible(true);
+}
+
+void ModelEntity::setVisible(bool value) {
+  mainNode->setVisible(value);
 }
 
 /**

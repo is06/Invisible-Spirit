@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 IconTextButton::IconTextButton(f32 x, f32 y) : Button(x, y) {
   //text = new Text(textMsg);
-  //icon = new Picture(40, 40, x - 2, y + 2, "resource/hud/calibrage.bmp");
+  //icon = new Picture(40, 40, x - 2, y + 2, "resource/hud/default.bmp");
 }
 
 void IconTextButton::render() { Button::render();

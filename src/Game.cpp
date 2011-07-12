@@ -68,7 +68,8 @@ void Game::init() {
     (settings->getParamInt("display", "fullscreen") == 1),
     true,
     (settings->getParamInt("display", "vsync") == 1),
-    eventManager);
+    eventManager
+  );
   device->setWindowCaption(L"Invisible Spirit 0.1 r15 (09/04/2011)");
 
   video::IVideoModeList* vml = device->getVideoModeList();
@@ -110,7 +111,7 @@ void Game::init() {
   exit = false;
 
   sceneChanged = true;
-  nextScene = SCENE_MAP_ALPHA_ZONE;
+  nextScene = SCENE_MAP_2D_TEST;
 }
 
 /**
@@ -326,10 +327,28 @@ void Game::loadNextScene() {
   switch(nextScene) {
     case SCENE_MENU: currentScene = new SceneMenu(); break;
 
+    case SCENE_MAP_2D_TEST: currentScene = new MAP_2D_TEST(); break;
     case SCENE_MAP_ALPHA_ZONE: currentScene = new MAP_ALPHA_ZONE(); break;
     case SCENE_MAP_CANYON: currentScene = new MAP_CANYON(); break;
   }
   sceneChanged = false;
+}
+
+void Game::fatalError(ErrorCode code) {
+  switch(code) {
+    case ERRCODE_45: errorLog("/!\\ FATAL ERROR : 45 : Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor"); break;
+    case ERRCODE_46: errorLog("/!\\ FATAL ERROR : 46 : Level Mesh need an Irrlicht node, use createNode method in scene constructor"); break;
+    case ERRCODE_47: errorLog("/!\\ FATAL ERROR : 47 : Level Mesh need a Newton body, use loadMeshCollision method in scene constructor"); break;
+    default: errorLog("/!\\ FATAL ERROR : Unknown error"); break;
+  }
+}
+
+void Game::errorLog(const core::stringc& errorText) {
+  ofstream errorLogFile("error.log", ios::out | ios::app);
+  if(errorLogFile) {
+    errorLogFile << errorText.c_str() << endl;
+    errorLogFile.close();
+  }
 }
 
 LocaleIdentifier Game::getCurrentLocale() {

@@ -17,20 +17,20 @@ MenuOption::MenuOption(MenuIcon icon, const core::stringw& title, f32 x, f32 y, 
   currentIcon = icon;
 
   WindowStyle boxStyle = WIN_STYLE_STD;
-  FontStyle fontStyle = FONT_STD_REGULAR;
+  FontStyle fontStyle = FONT_STD_CLASSIC_REGULAR;
 
   switch(style) {
     case MENU_STYLE_STD:
       boxStyle = WIN_STYLE_STD;
-      fontStyle = FONT_STD_REGULAR;
+      fontStyle = FONT_STD_CLASSIC_REGULAR;
     break;
     case MENU_STYLE_TITLE:
       boxStyle = WIN_STYLE_NONE;
-      fontStyle = FONT_BORDER_SHADED_REGULAR;
+      fontStyle = FONT_STD_BORDER_SHADED_REGULAR;
     break;
     default:
       boxStyle = WIN_STYLE_NONE;
-      fontStyle = FONT_STD_REGULAR;
+      fontStyle = FONT_STD_CLASSIC_REGULAR;
     break;
   }
 

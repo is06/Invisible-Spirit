@@ -58,7 +58,7 @@ ColorProperty::ColorProperty(const video::SColor& initialColor) {
 
 void ColorProperty::events() {
   switch(Game::getEventManager()->getGUIEvent().EventType) {
-    case gui::EGET_SCROLL_BAR_CHANGED:
+    case gui::EGET_SCROLL_BAR_CHANGED: {
       gui::IGUIElement* bar = Game::getEventManager()->getGUIEvent().Caller;
       switch(bar->getID()) {
         case 1001:
@@ -74,7 +74,10 @@ void ColorProperty::events() {
           compBEdit->setText(convertIntToString(compBBar->getPos()).c_str());
         break;
       }
-    break;
+    } break;
+    default: {
+
+    } break;
   }
 }
 
