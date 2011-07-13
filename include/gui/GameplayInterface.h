@@ -19,6 +19,7 @@ class GameplayInterface {
     void setOpacity(u8 value);
 
     ButtonsInterface* buttons;
+    EnergyInterface* energy;
 };
 
 #endif

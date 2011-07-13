@@ -10,6 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/TPCamera.h"
 #include "../../include/3d/Ayron.h"
 #include "../../include/gui/GameplayInterface.h"
+#include "../../include/gui/EnergyInterface.h"
 #include "../../include/gui/GameplayMenu.h"
 #include "../../include/Game.h"
 #include "../../include/debug/MapEditor.h"
@@ -29,6 +30,7 @@ SceneGameplay::SceneGameplay() : Scene() {
   ayron = new Ayron(cam);
   cam->linkEntity(ayron);
   gpInterface = new GameplayInterface();
+  enInterface = new EnergyInterface();
   gpMenu = new GameplayMenu(globalTranslations);
 
   Game::getSceneManager()->setAmbientLight(video::SColorf(1.0,1.0,1.0,1.0));
@@ -247,6 +249,7 @@ void SceneGameplay::manageMenuControl() {
  */
 void SceneGameplay::postRender() { Scene::postRender();
   gpInterface->render();
+  enInterface->render();
   gpMenu->render();
 }
 
@@ -258,5 +261,6 @@ SceneGameplay::~SceneGameplay() {
   delete ayron;
   delete cam;
   delete gpInterface;
+  delete enInterface;
   delete gpMenu;
 }

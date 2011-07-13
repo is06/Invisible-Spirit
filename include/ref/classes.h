@@ -44,6 +44,7 @@ class TextChar;
 class TextFont;
 class Window;
 class GameplayInterface;
+class EnergyInterface;
 class ButtonsInterface;
 class Button;
 class TextButton;

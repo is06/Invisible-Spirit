@@ -5,19 +5,23 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../include/ref/core.h"
-#include "../include/Entity.h"
+#ifndef __IS06_ENERGY_INTERFACE_H__
+#define __IS06_ENERGY_INTERFACE_H__
 
-/**
- * Constructor of all entities
- */
-Entity::Entity() {
+class EnergyInterface {
+  public:
+    EnergyInterface();
+    ~EnergyInterface();
 
-}
+    void render();
+    void hide();
+    void show();
+    void setOpacity(u8 value);
 
-/**
- * Rendering method for all entities
- */
-void Entity::render() {
+    BarCounter* hpBar;
+    BarCounter* mpBar;
+    //SpiritCounter* spiritPower;
+};
 
-}
+#endif
+

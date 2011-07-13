@@ -317,11 +317,17 @@ f32 Game::getSpeedFactor() {
   return speedFactor;
 }
 
+/**
+ * Change the current scene by putting
+ */
 void Game::changeScene(SceneIdentifier id) {
   nextScene = id;
   sceneChanged = true;
 }
 
+/**
+ * Loads the scene which is on stack on the next cycle
+ */
 void Game::loadNextScene() {
   delete currentScene;
   switch(nextScene) {
@@ -334,6 +340,10 @@ void Game::loadNextScene() {
   sceneChanged = false;
 }
 
+/**
+ * Launches an error to error.log file by its code number
+ * @param ErrorCode code the code number
+ */
 void Game::fatalError(ErrorCode code) {
   switch(code) {
     case ERRCODE_45: errorLog("/!\\ FATAL ERROR : 45 : Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor"); break;
@@ -343,6 +353,10 @@ void Game::fatalError(ErrorCode code) {
   }
 }
 
+/**
+ * Writes an error message in error.log file
+ * @param core::stringc& errorText the message to write
+ */
 void Game::errorLog(const core::stringc& errorText) {
   ofstream errorLogFile("error.log", ios::out | ios::app);
   if(errorLogFile) {
@@ -351,24 +365,40 @@ void Game::errorLog(const core::stringc& errorText) {
   }
 }
 
+/**
+ * Get the current locale defined in configuration file
+ * @return LocaleIdentifier
+ */
 LocaleIdentifier Game::getCurrentLocale() {
   return currentLocale;
 }
 
+/**
+ * Returns a pointer to the global translation interface
+ * @return Translation*
+ */
 Translation* Game::getGlobalTranslations() {
   return globalTranslations;
 }
 
+/**
+ * Returns a pointer to the current save slot
+ * @return Save*
+ */
 Save* Game::getCurrentSave() {
   return currentSave;
 }
 
+/**
+ * Returns a pointer to the Invisible Spirit Sound Manager
+ * @return SoundManager*
+ */
 SoundManager* Game::getSoundManager() {
   return soundManager;
 }
 
 /**
- * Pseudo-destructeur de Game
+ * Flush and delete everything, finishes the game
  */
 void Game::finish() {
   delete currentScene;

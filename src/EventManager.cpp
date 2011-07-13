@@ -12,7 +12,7 @@ using namespace std;
 using namespace irr;
 
 /**
- * Initialise l'objet
+ * Initializes arrays for key listening
  */
 EventManager::EventManager() : IEventReceiver() {
   for(u32 i = 0; i < KEY_KEY_CODES_COUNT; i++) {
@@ -25,9 +25,9 @@ EventManager::EventManager() : IEventReceiver() {
 }
 
 /**
- * Se produit lorsqu'un événement Irrlicht se produit
- * @param SEvent& event l'objet SEvent de l'événement actif
- * @return bool si un événement se produit
+ * When an Irrlicht event occurs
+ * @param SEvent& event event object
+ * @return bool true if an event occurs
  */
 bool EventManager::OnEvent(const SEvent& event) {
   if(event.EventType == EET_KEY_INPUT_EVENT) {
@@ -131,12 +131,19 @@ bool EventManager::OnEvent(const SEvent& event) {
 }
 
 /**
- *
+ * Tests if a specific key is pressed
+ * @param EKEY_CODE code the key code to test
+ * @return bool true if key is pressed
  */
 bool EventManager::isKeyDown(EKEY_CODE code) {
   return keyDown[code];
 }
 
+/**
+ * Tests if a specific key is pressed but only one time until key is released
+ * @param EKEY_CODE code the key code to test
+ * @return bool true if key just has been pressed
+ */
 bool EventManager::isKeyDownOnce(EKEY_CODE code) {
   if(!keyOnce[code]) {
     if(isKeyDown(code)) {
@@ -151,10 +158,18 @@ bool EventManager::isKeyDownOnce(EKEY_CODE code) {
   return false;
 }
 
+/**
+ * Tests if any key is pressed
+ * @return bool true if any key is pressed
+ */
 bool EventManager::anyKeyDown() {
   return anyDown;
 }
 
+/**
+ * Tests if any key is pressed but only one time until key is released
+ * @return bool true if any key just has been pressed
+ */
 bool EventManager::anyKeyDownOnce() {
   if(!anyOnce) {
     if(anyKeyDown()) {
@@ -169,50 +184,87 @@ bool EventManager::anyKeyDownOnce() {
   return false;
 }
 
+/**
+ * Returns the SGUIEvent object of the manager
+ * @return SGUIEvent&
+ */
 const SEvent::SGUIEvent& EventManager::getGUIEvent() {
   return guiEvent;
 }
 
+/**
+ * @TODO
+ */
 u8 EventManager::getLeftJoystickForce() {
   return leftJoystickForce;
 }
 
+/**
+ * @TODO
+ */
 f32 EventManager::getLeftJoystickAngle() {
   return leftJoystickAngle;
 }
 
+/**
+ * @TODO
+ */
 s8 EventManager::getLeftJoystickXAxis() {
   return (s8)leftJoystickXAxis;
 }
 
+/**
+ * @TODO
+ */
 s8 EventManager::getLeftJoystickYAxis() {
   return (s8)leftJoystickYAxis;
 }
 
+/**
+ * @TODO
+ */
 u8 EventManager::getRightJoystickForce() {
   return rightJoystickForce;
 }
 
+/**
+ * @TODO
+ */
 f32 EventManager::getRightJoystickAngle() {
   return rightJoystickAngle;
 }
 
+/**
+ * @TODO
+ */
 s8 EventManager::getRightJoystickXAxis() {
   return (s8)rightJoystickXAxis;
 }
 
+/**
+ * @TODO
+ */
 s8 EventManager::getRightJoystickYAxis() {
   return (s8)rightJoystickYAxis;
 }
 
+/**
+ * @TODO
+ */
 u16 EventManager::getPressedButtons() {
   return buttonStates;
 }
 
+/**
+ * @TODO
+ */
 u32 EventManager::getPovValue() {
   return povValue;
 }
 
+/**
+ * @TODO
+ */
 bool EventManager::click() {
   if(!mouseLeftOnce) {
     if(mouseLeftDown) {
@@ -227,7 +279,9 @@ bool EventManager::click() {
   return false;
 }
 
+/**
+ * @TODO
+ */
 const core::position2di& EventManager::getMousePosition() const {
   return mousePosition;
 }
-

@@ -26,6 +26,7 @@ class SceneGameplay : public Scene {
     LevelMesh* level;
 
     GameplayInterface* gpInterface;
+    EnergyInterface* enInterface;
     GameplayMenu* gpMenu;
 
   private:

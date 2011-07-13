@@ -24,25 +24,15 @@ MAP_2D_TEST::MAP_2D_TEST() : SceneGameplay() {
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
 
-  gpInterface->hide();
   ayron->hide();
   level->hide();
-
-  bar = new BarCounter(100, 0, 100, 0, 0, 150, 10, BAR_STYLE_LIFE);
 }
 
 /**
  * Fonction de test des événements spécifiques à cette map
  */
 void MAP_2D_TEST::events() { SceneGameplay::events();
-  bar->render();
 
-  if(keyboard->pressed(KEY_KEY_L, EVENT_ONCE)) {
-    bar->subValue(30);
-  }
-  if(keyboard->pressed(KEY_KEY_G, EVENT_ONCE)) {
-    bar->addValue(50);
-  }
 }
 
 void MAP_2D_TEST::postRender() { SceneGameplay::postRender();
@@ -54,6 +44,5 @@ void MAP_2D_TEST::postRender() { SceneGameplay::postRender();
  */
 MAP_2D_TEST::~MAP_2D_TEST() {
   level->clearMeshCollision();
-  delete bar;
 }
 
