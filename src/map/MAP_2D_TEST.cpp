@@ -12,6 +12,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/BarCounter.h"
 #include "../../include/gui/GameplayInterface.h"
 
+#include "../../include/map/MAP_2D_TEST.h"
+
 using namespace std;
 using namespace irr;
 

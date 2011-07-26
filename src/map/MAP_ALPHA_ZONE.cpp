@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/sound/Speaker.h"
 #include "../../include/3d/OmniLight.h"
 
+#include "../../include/map/MAP_ALPHA_ZONE.h"
+
 using namespace std;
 using namespace irr;
 

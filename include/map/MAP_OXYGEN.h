@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MAP_OXYGEN__
 #define __IS06_MAP_OXYGEN__
 
+#include "../scene/SceneGameplay.h"
+
 class MAP_OXYGEN : public SceneGameplay {
   public:
     MAP_OXYGEN();

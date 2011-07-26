@@ -13,9 +13,4 @@ class MAP_2D_TEST;
 class MAP_CANYON;
 class MAP_OXYGEN;
 
-#include "../../include/map/MAP_2D_TEST.h"
-#include "../../include/map/MAP_ALPHA_ZONE.h"
-#include "../../include/map/MAP_CANYON.h"
-#include "../../include/map/MAP_OXYGEN.h"
-
 #endif

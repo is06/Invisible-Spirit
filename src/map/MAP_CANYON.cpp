@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/3d/LevelMesh.h"
 
+#include "../../include/map/MAP_CANYON.h"
+
 using namespace std;
 using namespace irr;
 

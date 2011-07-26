@@ -17,6 +17,10 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/ref/maps.h"
 #include "../include/Translation.h"
 
+#include "../include/map/MAP_2D_TEST.h"
+#include "../include/map/MAP_ALPHA_ZONE.h"
+#include "../include/map/MAP_CANYON.h"
+
 using namespace irr;
 using namespace std;
 

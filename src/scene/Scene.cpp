@@ -10,6 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Gamepad.h"
 #include "../../include/debug/MapEditor.h"
 #include "../../include/Game.h"
+#include "../../include/scene/Scene.h"
 
 using namespace irr;
 using namespace std;
