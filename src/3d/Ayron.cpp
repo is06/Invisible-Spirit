@@ -24,6 +24,9 @@ Ayron::Ayron(Camera* cam) : Character() {
   gravity = 0.1f;
   jumpStrength = 0.15f;
 
+  floorSensorWidth = 0.4f;
+  wallSensorWidth = 0.5f;
+
   // Loading mesh
   loadMesh("resource/mesh/character/cube.obj");
   createNode(core::vector3df(-3, 1, -4));
@@ -35,6 +38,8 @@ Ayron::Ayron(Camera* cam) : Character() {
     cam->getNode()->getRotation().Y - core::radToDeg(core::PI),
     mainNode->getRotation().Z
   ));
+
+  mainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
 }
 
 /**

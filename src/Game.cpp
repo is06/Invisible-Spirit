@@ -115,7 +115,7 @@ void Game::init() {
   exit = false;
 
   sceneChanged = true;
-  nextScene = SCENE_MAP_2D_TEST;
+  nextScene = SCENE_MAP_CANYON;
 }
 
 /**

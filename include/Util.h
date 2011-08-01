@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
+void _draw_line(const core::vector3df& origin, const core::vector3df& end);
+
 void _matrix_print(const core::matrix4& mat, const core::stringc& name = "");
 void _matrix_print(const f32* mat, const core::stringc& name = "");
 void _vector_print(const core::vector3df& vec, const core::stringc& name = "");

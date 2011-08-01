@@ -25,7 +25,11 @@ class AnimatedModel : public ModelEntity {
     bool collidesWithStatic(StaticModel* other);
     bool collidesWithAnimated(AnimatedModel* other);
     f32 getFloorCollision(StaticModel* other);
-    f32 getWallCollision(RayType type, StaticModel* other, core::vector3df& normal, core::vector3df& lineOrigin, core::vector3df& lineEnd);
+    f32 getWallCollision(RayType type, StaticModel* other, core::vector3df& normal);
+
+  protected:
+    f32 floorSensorWidth;
+    f32 wallSensorWidth;
 };
 
 #endif

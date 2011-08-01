@@ -6,9 +6,20 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../include/ref/core.h"
+#include "../include/Game.h"
 
 using namespace irr;
 using namespace std;
+
+void _draw_line(const core::vector3df& origin, const core::vector3df& end) {
+  video::SMaterial m;
+  m.Lighting = false;
+  m.BackfaceCulling = false;
+  m.FrontfaceCulling = false;
+  Game::getVideoDriver()->setMaterial(m);
+  Game::getVideoDriver()->setTransform(video::ETS_WORLD, core::matrix4());
+  Game::getVideoDriver()->draw3DLine(origin, end, video::SColor(255,255,0,255));
+}
 
 /**
  * Affiche une matrice Irrlicht dans la console

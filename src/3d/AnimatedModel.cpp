@@ -73,36 +73,60 @@ bool AnimatedModel::collidesWithStatic(StaticModel* other) {
 }
 
 /**
- * Cast a ray from the center of the model to the bottom of it in order to compute
- * collision with the floor. A value greater than 1.0f means that the model does not
- * collide with the floor. A value lower than 1.0f means we need to raise the model
- * @param StaticModel* other pointer to the static object which collides with the animated model
- * @return f32 collision depth with the floor (distance between the floor and the center of the model)
+ * Not documented yet, sorry :/
  */
 f32 AnimatedModel::getFloorCollision(StaticModel* other) {
   f32 normals[3];
+  f32 xPoint, zPoint;
   s32 faceId;
 
-  // origin: center of the model
-  core::vector3df origin(
-    mainNode->getPosition().X,
-    mainNode->getPosition().Y,
-    mainNode->getPosition().Z
-  );
-  // end: bottom of the model
-  core::vector3df end(
-    mainNode->getPosition().X,
-    mainNode->getPosition().Y - 1.0f,
-    mainNode->getPosition().Z
-  );
+  //   B
+  // C-+-A
+  //   D
+  f32 rayA, rayB, rayC, rayD;
 
-  return NewtonCollisionRayCast(NewtonBodyGetCollision(other->getMainBody()), &origin.X, &end.X, normals, &faceId);
+  // A
+  xPoint = mainNode->getPosition().X - floorSensorWidth * cos(core::degToRad(mainNode->getRotation().Y));
+  zPoint = mainNode->getPosition().Z + floorSensorWidth * sin(core::degToRad(mainNode->getRotation().Y));
+  core::vector3df origin(xPoint, mainNode->getPosition().Y, zPoint);
+  core::vector3df end(xPoint, mainNode->getPosition().Y - 1.0f, zPoint);
+  rayA = NewtonCollisionRayCast(NewtonBodyGetCollision(other->getMainBody()), &origin.X, &end.X, normals, &faceId);
+  //_draw_line(origin, end);
+
+  // B
+  xPoint = mainNode->getPosition().X - floorSensorWidth * cos(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
+  zPoint = mainNode->getPosition().Z + floorSensorWidth * sin(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
+  origin = core::vector3df(xPoint, mainNode->getPosition().Y, zPoint);
+  end = core::vector3df(xPoint, mainNode->getPosition().Y - 1.0f, zPoint);
+  rayB = NewtonCollisionRayCast(NewtonBodyGetCollision(other->getMainBody()), &origin.X, &end.X, normals, &faceId);
+  //_draw_line(origin, end);
+
+  // C
+  xPoint = mainNode->getPosition().X - floorSensorWidth * cos(core::degToRad(mainNode->getRotation().Y) + (core::PI));
+  zPoint = mainNode->getPosition().Z + floorSensorWidth * sin(core::degToRad(mainNode->getRotation().Y) + (core::PI));
+  origin = core::vector3df(xPoint, mainNode->getPosition().Y, zPoint);
+  end = core::vector3df(xPoint, mainNode->getPosition().Y - 1.0f, zPoint);
+  rayC = NewtonCollisionRayCast(NewtonBodyGetCollision(other->getMainBody()), &origin.X, &end.X, normals, &faceId);
+  //_draw_line(origin, end);
+
+  // D
+  xPoint = mainNode->getPosition().X - floorSensorWidth * cos(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2));
+  zPoint = mainNode->getPosition().Z + floorSensorWidth * sin(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2));
+  origin = core::vector3df(xPoint, mainNode->getPosition().Y, zPoint);
+  end = core::vector3df(xPoint, mainNode->getPosition().Y - 1.0f, zPoint);
+  rayD = NewtonCollisionRayCast(NewtonBodyGetCollision(other->getMainBody()), &origin.X, &end.X, normals, &faceId);
+  //_draw_line(origin, end);
+
+  f32 minAB = core::min_(rayA, rayB);
+  f32 minCD = core::min_(rayC, rayD);
+
+  return core::min_(minAB, minCD);
 }
 
 /**
  * Not documented yet, sorry :/
  */
-f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vector3df& normal, core::vector3df& lineOrigin, core::vector3df& lineEnd) {
+f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vector3df& normal) {
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
 
   s32 faceId;
@@ -137,12 +161,7 @@ f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vect
     zPoint
   );
 
-  lineOrigin = origin;
-  lineEnd = end;
-
-  f32 ray = NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, &normal.X, &faceId);
-
-  return ray;
+  return NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, &normal.X, &faceId);
 }
 
 /**
