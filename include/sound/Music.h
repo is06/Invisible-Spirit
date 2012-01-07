@@ -5,31 +5,26 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MUSIC_REFERENCE_H__
-#define __IS06_MUSIC_REFERENCE_H__
+#ifndef __IS06_MUSIC_H__
+#define __IS06_MUSIC_H__
 
-#include "MusicInfo.h"
+#include "MusicSequence.h"
+#include "MusicSequenceInfo.h"
 
 using namespace irr;
 using namespace std;
 
-class MusicReference {
+class Music {
   public:
-    MusicReference();
-    ~MusicReference();
+    Music(const core::stringc& id);
+    ~Music();
 
-    void play(const core::stringc& id);
-    void stop();
-
-    void muteSequence(const core::stringc& id, u8 number);
-    void soloSequence(const core::stringc& id, u8 number);
-
-    Music* getCurrentMusic();
+    void playSequences(const map<u8, MusicSequenceInfo>& list);
+    void addSequences(const map<u8, MusicSequenceInfo>& list);
+    map<u8, MusicSequence*>& getSequences();
 
   private:
-    core::stringc currentId;
-    Music* currentMusic;
-    map<core::stringc, MusicInfo> musicList;
+    map<u8, MusicSequence*> sequences;
 };
 
 #endif

@@ -38,6 +38,7 @@ class Game {
     static f32 getFramerate();
     static f32 getSpeedFactor();
     static LocaleIdentifier getCurrentLocale();
+    static MusicReference* getMusic();
 
     static Settings* settings;
     static ScreenPosition screenPos;
@@ -48,6 +49,7 @@ class Game {
     static void initScreenPositions(u32 w, u32 h);
     static void initShaders();
     static void initLocale();
+    static void initMusicReference();
     static void loadNextScene();
 
     // Objets Irrlicht
@@ -68,6 +70,7 @@ class Game {
     static Translation* globalTranslations;
     static Save* currentSave;
     static SoundManager* soundManager;
+    static MusicReference* musicLibrary;
 
     static bool sceneChanged;
     static bool exit;

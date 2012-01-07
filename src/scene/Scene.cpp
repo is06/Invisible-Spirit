@@ -18,7 +18,7 @@ using namespace std;
 bool Scene::inMapEditingMode;
 
 /**
- * Initialise un objet Camera ainsi que les interfaces d'Ã©vÃ©nements comme le clavier ou la manette
+ * Initialise un objet Camera ainsi que les interfaces d'événements comme le clavier ou la manette
  */
 Scene::Scene() {
   cam = NULL;
@@ -35,8 +35,8 @@ Scene::Scene() {
 }
 
 /**
- * Fonction de test des Ã©vÃ©nements de toutes les scÃ¨nes du jeu
- * (EvÃ©nements globaux)
+ * Fonction de test des événements de toutes les scènes du jeu
+ * (Evénements globaux)
  */
 void Scene::events() {
   speedFactor = Game::getSpeedFactor();

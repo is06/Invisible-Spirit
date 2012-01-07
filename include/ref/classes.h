@@ -78,5 +78,8 @@ class PostRenderGlow;
 // Sound
 class SoundManager;
 class Speaker;
+class MusicReference;
+class Music;
+class MusicSequence;
 
 #endif

@@ -5,16 +5,15 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MUSIC_DATA_H__
-#define __IS06_MUSIC_DATA_H__
+#ifndef __IS06_MUSIC_INFO_H__
+#define __IS06_MUSIC_INFO_H__
+
+#include "MusicSequenceInfo.h"
 
 using namespace irr;
-using namespace std;
 
-struct MusicData {
-  bool looped;
-  u32 loopStart;
-  u32 loopEnd;
+struct MusicInfo {
+  map<u8, MusicSequenceInfo> sequenceInfo;
 };
 
 #endif

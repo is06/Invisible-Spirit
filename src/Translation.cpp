@@ -35,12 +35,12 @@ Translation::Translation(const core::stringc& filePath) {
 }
 
 void Translation::loadTextData(const core::stringc& fullPath) {
-  cout << "Translation file loaded : " << fullPath.c_str() << endl;
+  //cout << "Translation file loaded : " << fullPath.c_str() << endl;
 
   wifstream textFile(fullPath.c_str(), ios::in);
   if(textFile) {
 
-    cout << "Processing translation file..." << endl;
+    //cout << "Processing translation file..." << endl;
 
     wchar_t currentChar;
     bool inTextIdentifier = true;
@@ -52,7 +52,7 @@ void Translation::loadTextData(const core::stringc& fullPath) {
       if(currentChar == '\n' || currentChar == '\r') {
         // Nouvelle traduction
         if(identifier != "") {
-          cout << "Added translation (" << identifier.c_str() << ") = (" << value.c_str() << ")" << endl;
+          //cout << "Added translation (" << identifier.c_str() << ") = (" << value.c_str() << ")" << endl;
           textData[identifier] = value;
         }
         identifier = "";
@@ -81,7 +81,7 @@ void Translation::loadTextData(const core::stringc& fullPath) {
 const core::stringw& Translation::getTranslation(const core::stringc& identifier) const {
   //cout << "'" << textData.find(identifier) << "' <-> '" << textData.end() << "'" << endl;
   if(textData.find(identifier) == textData.end()) {
-    cout << "translation not found: '" << identifier.c_str() << "'" << endl;
+    //cout << "translation not found: '" << identifier.c_str() << "'" << endl;
     return notfound;
   } else {
     return textData.find(identifier)->second;

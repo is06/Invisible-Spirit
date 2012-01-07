@@ -215,6 +215,7 @@ enum StreamIdentifier {
 };
 
 enum MusicIdentifier {
+  MUSIC_MINING,
   MUSIC_TEST
 };
 

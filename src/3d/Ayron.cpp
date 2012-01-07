@@ -39,7 +39,7 @@ Ayron::Ayron(Camera* cam) : Character() {
     mainNode->getRotation().Z
   ));
 
-  mainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
+  //mainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
 }
 
 /**

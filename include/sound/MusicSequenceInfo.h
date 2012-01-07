@@ -5,14 +5,18 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_STRUCTS_H__
-#define __IS06_STRUCTS_H__
+#ifndef __IS06_MUSIC_SEQUENCE_INFO_H__
+#define __IS06_MUSIC_SEQUENCE_INFO_H__
 
-#include "../save_data/PowerElementData.h"
-#include "../save_data/PlayerData.h"
-#include "../save_data/PowerData.h"
+using namespace irr;
 
-#include "../ScreenPosition.h"
-#include "../Shaders.h"
+struct MusicSequenceInfo {
+  u8 number;
+  bool looped;
+  u32 loopStart;
+  u32 loopEnd;
+  core::stringc fileName;
+};
 
 #endif
+

@@ -172,15 +172,15 @@ void SceneGameplay::manageAyronMovements() {
       ));
 
       if(gamepad->getLeftJoystickXAxis() < -35) {
-        ayron->goLeft(gamepad->getLeftJoystickXAxis() * -1);
+        ayron->goLeft(speedFactor * gamepad->getLeftJoystickXAxis() * -1);
       } else if(gamepad->getLeftJoystickXAxis() > 35) {
-        ayron->goRight(gamepad->getLeftJoystickXAxis());
+        ayron->goRight(speedFactor * gamepad->getLeftJoystickXAxis());
       }
 
       if(gamepad->getLeftJoystickYAxis() < -35) {
-        ayron->goBackward(gamepad->getLeftJoystickYAxis() * -1);
+        ayron->goBackward(speedFactor * gamepad->getLeftJoystickYAxis() * -1);
       } else if(gamepad->getLeftJoystickYAxis() > 35) {
-        ayron->goForward(gamepad->getLeftJoystickYAxis());
+        ayron->goForward(speedFactor * gamepad->getLeftJoystickYAxis());
       }
     }
   }

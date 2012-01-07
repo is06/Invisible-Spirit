@@ -11,6 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/Settings.h"
 #include "../include/sound/SoundManager.h"
 #include "../include/Save.h"
+#include "../include/sound/MusicReference.h"
 #include "../include/scene/Scene.h"
 #include "../include/scene/SceneMenu.h"
 #include "../include/scene/SceneGameplay.h"
@@ -36,6 +37,7 @@ Settings* Game::settings;
 Translation* Game::globalTranslations;
 Save* Game::currentSave;
 SoundManager* Game::soundManager;
+MusicReference* Game::musicLibrary;
 
 ScreenPosition Game::screenPos;
 Shaders Game::shaders;
@@ -108,6 +110,8 @@ void Game::init() {
 
   soundManager = new SoundManager();
 
+  musicLibrary = new MusicReference();
+
   currentSave = new Save();
   newtonWorld = NewtonCreate();
 
@@ -115,7 +119,7 @@ void Game::init() {
   exit = false;
 
   sceneChanged = true;
-  nextScene = SCENE_MAP_CANYON;
+  nextScene = SCENE_MAP_ALPHA_ZONE;
 }
 
 /**
@@ -401,6 +405,10 @@ SoundManager* Game::getSoundManager() {
   return soundManager;
 }
 
+MusicReference* Game::getMusic() {
+  return musicLibrary;
+}
+
 /**
  * Flush and delete everything, finishes the game
  */
@@ -408,6 +416,7 @@ void Game::finish() {
   delete currentScene;
   delete eventManager;
   delete settings;
+  delete musicLibrary;
   delete globalTranslations;
   delete currentSave;
   NewtonDestroyAllBodies(newtonWorld);

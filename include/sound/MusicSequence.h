@@ -5,14 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_STRUCTS_H__
-#define __IS06_STRUCTS_H__
+#ifndef __IS06_MUSIC_SEQUENCE_H__
+#define __IS06_MUSIC_SEQUENCE_H__
 
-#include "../save_data/PowerElementData.h"
-#include "../save_data/PlayerData.h"
-#include "../save_data/PowerData.h"
+#include "MusicSequenceInfo.h"
 
-#include "../ScreenPosition.h"
-#include "../Shaders.h"
+using namespace irr;
+using namespace std;
+
+class MusicSequence {
+  public:
+    MusicSequence(const MusicSequenceInfo& info);
+    ~MusicSequence();
+
+    void play();
+    void setVolume(f32 value);
+
+  private:
+    FMOD_CHANNEL* channelPtr;
+    FMOD_SOUND* soundPtr;
+};
 
 #endif
