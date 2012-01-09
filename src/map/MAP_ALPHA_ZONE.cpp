@@ -27,7 +27,8 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay() {
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
 
-  Game::getMusic()->play("mining");
+  // TODO: fix this instruction
+  //Game::getMusic()->play("mining");
 
   //spk = new Speaker(STREAM_TEST, core::vector3df(0,1,0), "hola", 10);
   lt = new OmniLight();
@@ -41,13 +42,13 @@ void MAP_ALPHA_ZONE::events() { SceneGameplay::events();
   lt->render();
 
   if(keyboard->pressed(KEY_KEY_W, EVENT_ONCE)) {
-    Game::getMusic()->soloSequence("mining", 2);
-    Game::getMusic()->muteSequence("mining", 1);
+    //Game::getMusic()->soloSequence("mining", 2);
+    //Game::getMusic()->muteSequence("mining", 1);
   }
 
   if(keyboard->pressed(KEY_KEY_X, EVENT_ONCE)) {
-    Game::getMusic()->soloSequence("mining", 1);
-    Game::getMusic()->muteSequence("mining", 2);
+    //Game::getMusic()->soloSequence("mining", 1);
+    //Game::getMusic()->muteSequence("mining", 2);
   }
 }
 

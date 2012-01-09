@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Entity.h"
 
+#include "../enums/sound/StreamIdentifier.h"
+
 using namespace irr;
 using namespace std;
 

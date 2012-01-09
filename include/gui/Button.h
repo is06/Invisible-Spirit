@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_BUTTON_H__
 #define __IS06_BUTTON_H__
 
+#include "../enums/gameplay/CommandIdentifier.h"
+
 class Button {
   public:
     Button(f32 x, f32 y);

@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_TEXT_FONT_H__
 #define __IS06_TEXT_FONT_H__
 
+#include "../enums/styles/FontStyle.h"
+
 using namespace std;
 using namespace irr;
 

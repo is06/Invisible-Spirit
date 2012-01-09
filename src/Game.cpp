@@ -245,6 +245,9 @@ NewtonWorld* Game::getNewtonWorld() {
   return newtonWorld;
 }
 
+/**
+ *
+ */
 Scene* Game::getCurrentScene() {
   return currentScene;
 }
@@ -307,6 +310,9 @@ void Game::initShaders() {
   }
 }
 
+/**
+ *
+ */
 void Game::initLocale() {
   core::stringc textLocale = settings->getParamString("regional", "locale");
   currentLocale = LOCALE_FRE_FR;
@@ -317,10 +323,16 @@ void Game::initLocale() {
   globalTranslations = new Translation("global.txt");
 }
 
+/**
+ *
+ */
 f32 Game::getFramerate() {
   return framerate;
 }
 
+/**
+ *
+ */
 f32 Game::getSpeedFactor() {
   return speedFactor;
 }
@@ -405,7 +417,10 @@ SoundManager* Game::getSoundManager() {
   return soundManager;
 }
 
-MusicReference* Game::getMusic() {
+/**
+ *
+ */
+MusicReference* Game::getMusicReference() {
   return musicLibrary;
 }
 

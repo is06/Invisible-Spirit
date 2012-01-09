@@ -8,8 +8,11 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SAVE_H__
 #define __IS06_SAVE_H__
 
-#include "../include/save_data/PlayerData.h"
-#include "../include/save_data/PowerData.h"
+#include "save_data/PlayerData.h"
+#include "save_data/PowerData.h"
+
+#include "enums/gameplay/PowerType.h"
+#include "enums/engine/SceneIdentifier.h"
 
 using namespace irr;
 using namespace std;

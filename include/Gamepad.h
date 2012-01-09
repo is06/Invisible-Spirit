@@ -8,6 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef GAMEPAD_H
 #define GAMEPAD_H
 
+#include "enums/control/GamepadDirection.h"
+#include "enums/engine/EventType.h"
+
 using namespace irr;
 using namespace std;
 

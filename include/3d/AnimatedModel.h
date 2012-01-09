@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "ModelEntity.h"
 
+#include "../enums/engine/RayType.h"
+
 using namespace irr;
 
 class AnimatedModel : public ModelEntity {

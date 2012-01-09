@@ -20,7 +20,6 @@ http://www.is06.com. Legal code in license.txt
 #include <boost/bind.hpp>
 
 #include "../Util.h"
-#include "enums.h"
 #include "classes.h"
 #include "maps.h"
 

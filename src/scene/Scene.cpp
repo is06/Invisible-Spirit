@@ -18,52 +18,52 @@ using namespace std;
 bool Scene::inMapEditingMode;
 
 /**
- * Initialise un objet Camera ainsi que les interfaces d'événements comme le clavier ou la manette
+ * Instanciate required object interfaces such as keyboard or music so we can
+ * use them in every scene
  */
 Scene::Scene() {
   cam = NULL;
-  //control = new PlayerControl();
-
+  timeElapsed = 0.0f;
+  
   keyboard = new Keyboard();
   gamepad = new Gamepad();
-
-  timeElapsed = 0.0f;
-
-  mapEditor = new MapEditor();
-
+  
+  music = Game::getMusicReference();
   globalTranslations = Game::getGlobalTranslations();
 }
 
 /**
- * Fonction de test des événements de toutes les scènes du jeu
- * (Evénements globaux)
+ * Event test of every scene in the game
+ * (global events)
  */
 void Scene::events() {
   speedFactor = Game::getSpeedFactor();
   timeElapsed += 0.016666666666f;
 }
 
+/**
+ * Returns current active camera
+ * @return Camera*
+ */
 Camera* Scene::getActiveCamera() {
   return cam;
 }
 
+/**
+ * This method is called every cycle after the event test method (or main loop
+ * for scenes)
+ * This method can handle post render events like map editor
+ */
 void Scene::postRender() {
-  if(keyboard->pressed(KEY_F12, EVENT_ONCE)) {
-    mapEditor->toggle();
-  }
-  if(mapEditor->isRunning()) {
-    mapEditor->events();
-  }
+  
 }
 
 /**
- *
+ * This destructor removes interfaces and flushes texture and meshes cache
  */
 Scene::~Scene() {
   Game::getVideoDriver()->removeAllTextures();
   Game::getSceneManager()->getMeshCache()->clear();
-  //delete control;
   delete keyboard;
   delete gamepad;
-  delete mapEditor;
 }

@@ -19,6 +19,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/Menu.h"
 #include "../../include/scene/SceneGameplay.h"
 
+#include "../../include/enums/control/GamepadButton.h"
+
 using namespace irr;
 using namespace std;
 
@@ -42,12 +44,9 @@ SceneGameplay::SceneGameplay() : Scene() {
  */
 void SceneGameplay::events() { Scene::events();
 
-  if(!mapEditor->isRunning()) {
-    manageCameraControl();
-    manageAyronJumps();
-    manageAyronMovements();
-  }
-
+  manageCameraControl();
+  manageAyronJumps();
+  manageAyronMovements();
   manageAyronCollisions();
 
   // Menu

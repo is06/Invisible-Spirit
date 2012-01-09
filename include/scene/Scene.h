@@ -26,13 +26,13 @@ class Scene {
   protected:
     Camera* cam;
     //PlayerControl* control;
-
-    MapEditor* mapEditor;
-
+    //MapEditor* mapEditor;
     Keyboard* keyboard;
     Gamepad* gamepad;
+    MusicReference* music;
     Translation* globalTranslations;
-
+    Translation* sceneTranslations;
+    
     f32 timeElapsed;
     f32 speedFactor;
 

@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Hud.h"
 
+#include "../enums/styles/WindowStyle.h"
+
 using namespace irr;
 using namespace std;
 

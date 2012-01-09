@@ -42,6 +42,8 @@ TextFont::TextFont(FontStyle style) {
 
     case FONT_LOCATION_TITLE_REGULAR: filePath.append("location_title_regular"); break;
     case FONT_DIALOG_NAME_TITLE_REGULAR: filePath.append("dialog_name_regular"); break;
+
+    default: break;
   }
 
   core::stringc texturePath = filePath;

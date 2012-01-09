@@ -11,6 +11,11 @@ http://www.is06.com. Legal code in license.txt
 #include "ScreenPosition.h"
 #include "Shaders.h"
 
+#include "enums/engine/SceneIdentifier.h"
+#include "enums/engine/LocaleIdentifier.h"
+#include "enums/debug/ErrorCode.h"
+
+
 using namespace irr;
 
 class Game {
@@ -38,7 +43,7 @@ class Game {
     static f32 getFramerate();
     static f32 getSpeedFactor();
     static LocaleIdentifier getCurrentLocale();
-    static MusicReference* getMusic();
+    static MusicReference* getMusicReference();
 
     static Settings* settings;
     static ScreenPosition screenPos;
@@ -52,17 +57,17 @@ class Game {
     static void initMusicReference();
     static void loadNextScene();
 
-    // Objets Irrlicht
+    // Irrlicht objects
     static IrrlichtDevice* device;
     static video::IVideoDriver* videoDriver;
     static video::IGPUProgrammingServices* gpuManager;
     static scene::ISceneManager* sceneManager;
     static gui::IGUIEnvironment* debugGUI;
 
-    // Objets Newton
+    // Newton objects
     static NewtonWorld* newtonWorld;
 
-    // Objets IS06
+    // is06 objects
     static EventManager* eventManager;
     static Scene* currentScene;
     static SceneIdentifier nextScene;

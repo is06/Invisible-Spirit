@@ -10,6 +10,9 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Hud.h"
 
+#include "../enums/styles/MenuIcon.h"
+#include "../enums/styles/MenuStyle.h"
+
 class MenuOption : public Hud {
   public:
     MenuOption(MenuIcon icon, const core::stringw& title = "[Option]", f32 x = 0, f32 y = 0, MenuStyle style = MENU_STYLE_STD);

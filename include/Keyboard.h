@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_KEYBOARD_H__
 #define __IS06_KEYBOARD_H__
 
+#include "enums/engine/EventType.h"
+
 using namespace irr;
 
 /**
