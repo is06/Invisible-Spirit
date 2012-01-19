@@ -37,6 +37,42 @@ void StaticModel::createNode(const core::vector3df& initPosition) {
   //mainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
 }
 
+/**
+ * Retourne le node Irrlicht de l'entité
+ * @return ISceneNode* le noeud de l'entité
+ */
+scene::IMeshSceneNode* StaticModel::getNode() {
+  return mainNode;
+}
+
+video::SMaterial& StaticModel::getMaterial() {
+  return mainNode->getMaterial(0);
+}
+
+void StaticModel::hide() {
+  mainNode->setVisible(false);
+}
+
+void StaticModel::show() {
+  mainNode->setVisible(true);
+}
+
+void StaticModel::setVisible(bool value) {
+  mainNode->setVisible(value);
+}
+
+void StaticModel::setGhost(bool value) {
+  mainNode->setMaterialFlag(video::EMF_FRONT_FACE_CULLING, !value);
+}
+
+void StaticModel::setWireFrame(bool value) {
+  mainNode->setMaterialFlag(video::EMF_WIREFRAME, value);
+}
+
+void StaticModel::setDebugData(bool value) {
+  mainNode->setDebugDataVisible(value);
+}
+
 void StaticModel::loadMeshCollision() {
   cout << "[NWT] StaticModel Loading mesh collision" << endl;
 

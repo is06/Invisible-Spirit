@@ -17,7 +17,7 @@ using namespace std;
  * 3D Animated model constructor
  */
 AnimatedModel::AnimatedModel() : ModelEntity() {
-
+  mainNode = NULL;
 }
 
 /**
@@ -36,6 +36,42 @@ void AnimatedModel::createNode(const core::vector3df& initPosition) {
   mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
   mainNode->setPosition(initPosition);
   //mainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
+}
+
+/**
+ * Retourne le node Irrlicht de l'entité
+ * @return IAnimatedMeshSceneNode* le noeud de l'entité
+ */
+scene::IAnimatedMeshSceneNode* AnimatedModel::getNode() {
+  return mainNode;
+}
+
+video::SMaterial& AnimatedModel::getMaterial() {
+  return mainNode->getMaterial(0);
+}
+
+void AnimatedModel::hide() {
+  mainNode->setVisible(false);
+}
+
+void AnimatedModel::show() {
+  mainNode->setVisible(true);
+}
+
+void AnimatedModel::setVisible(bool value) {
+  mainNode->setVisible(value);
+}
+
+void AnimatedModel::setGhost(bool value) {
+  mainNode->setMaterialFlag(video::EMF_FRONT_FACE_CULLING, !value);
+}
+
+void AnimatedModel::setWireFrame(bool value) {
+  mainNode->setMaterialFlag(video::EMF_WIREFRAME, value);
+}
+
+void AnimatedModel::setDebugData(bool value) {
+  mainNode->setDebugDataVisible(value);
 }
 
 /**
@@ -169,6 +205,51 @@ f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vect
  */
 bool AnimatedModel::collidesWithAnimated(AnimatedModel* other) {
   return false;
+}
+
+/**
+ *
+ */
+void AnimatedModel::setCurrentAnimation(const core::stringc& name) {
+  currentAnimationName = name;
+  currentAnimationSpeed = 30.0f;
+
+  u32 startFrame = animationList[name].startFrame;
+  u32 endFrame = animationList[name].endFrame;
+
+  mainNode->setCurrentFrame(startFrame);
+  mainNode->setFrameLoop(startFrame, endFrame);
+  mainNode->setLoopMode(animationList[name].looped);
+
+  playAnimation();
+}
+
+/**
+ *
+ */
+void AnimatedModel::pauseAnimation() {
+  mainNode->setAnimationSpeed(0.0f);
+}
+
+/**
+ *
+ */
+void AnimatedModel::playAnimation() {
+  mainNode->setAnimationSpeed(currentAnimationSpeed);
+}
+
+/**
+ *
+ */
+void AnimatedModel::setAnimationSpeed(f32 value) {
+  mainNode->setAnimationSpeed(value);
+}
+
+/**
+ * Returns true if the current animation is finished
+ */
+bool AnimatedModel::animationFinished() {
+  return (mainNode->getFrameNr() == animationList[currentAnimationName].endFrame);
 }
 
 /**

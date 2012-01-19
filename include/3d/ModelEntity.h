@@ -21,25 +21,21 @@ class ModelEntity : public Entity {
     virtual void render();
     virtual void createNode(const core::vector3df& initPosition) = 0;
 
-    void setVisible(bool value);
-    void hide();
-    void show();
+    virtual void setVisible(bool value) = 0;
+    virtual void hide() = 0;
+    virtual void show() = 0;
+    virtual void setGhost(bool value) = 0;
+    virtual void setWireFrame(bool value) = 0;
+    virtual void setDebugData(bool value) = 0;
 
-    // TODO :
-    //void setGhost(bool value);
-    //void setWireFrame(bool value);
-    //void setDebugData(bool value);
+    virtual video::SMaterial& getMaterial() = 0;
 
     void loadMesh(const core::stringc& meshFilePath);
-
-    scene::ISceneNode* getNode();
     scene::IMesh* getMesh();
-    video::SMaterial& getMaterial();
     NewtonBody* getMainBody();
 
   protected:
     scene::IMesh* mainMesh;
-    scene::ISceneNode* mainNode;
     NewtonBody* mainBody;
 };
 

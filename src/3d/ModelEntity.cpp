@@ -17,7 +17,6 @@ using namespace std;
  */
 ModelEntity::ModelEntity() : Entity() {
   mainMesh = NULL;
-  mainNode = NULL;
   mainBody = NULL;
 }
 
@@ -40,32 +39,8 @@ scene::IMesh* ModelEntity::getMesh() {
   return mainMesh;
 }
 
-/**
- * Retourne le node Irrlicht de l'entité
- * @return ISceneNode* le noeud de l'entité
- */
-scene::ISceneNode* ModelEntity::getNode() {
-  return mainNode;
-}
-
 NewtonBody* ModelEntity::getMainBody() {
   return mainBody;
-}
-
-video::SMaterial& ModelEntity::getMaterial() {
-  return mainNode->getMaterial(0);
-}
-
-void ModelEntity::hide() {
-  mainNode->setVisible(false);
-}
-
-void ModelEntity::show() {
-  mainNode->setVisible(true);
-}
-
-void ModelEntity::setVisible(bool value) {
-  mainNode->setVisible(value);
 }
 
 /**
