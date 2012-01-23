@@ -41,7 +41,7 @@ MusicReference* Game::musicLibrary;
 
 ScreenPosition Game::screenPos;
 Shaders Game::shaders;
-SceneIdentifier Game::nextScene;
+s32 Game::nextScene;
 LocaleIdentifier Game::currentLocale;
 bool Game::sceneChanged;
 bool Game::exit;
