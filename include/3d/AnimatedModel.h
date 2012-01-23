@@ -11,6 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "ModelEntity.h"
 
 #include "../enums/engine/RayType.h"
+#include "../enums/engine/CharacterAnimationIdentifier.h"
 #include "MeshAnimationInfo.h"
 
 using namespace irr;
@@ -34,18 +35,19 @@ class AnimatedModel : public ModelEntity {
     void createNode(const core::vector3df& initPosition);
     scene::IAnimatedMeshSceneNode* getNode();
 
-    // Détection de collisions
+    // Collision detection
     bool collidesWithStatic(StaticModel* other);
     bool collidesWithAnimated(AnimatedModel* other);
     f32 getFloorCollision(StaticModel* other);
     f32 getWallCollision(RayType type, StaticModel* other, core::vector3df& normal);
 
     // Animations
-    void setCurrentAnimation(const core::stringc& name);
+    void setCurrentAnimation(CharacterAnimationIdentifier id, f32 speed = 30.0f);
     void pauseAnimation();
     void playAnimation();
     void setAnimationSpeed(f32 value);
-    bool animationFinished();
+    bool currentAnimationFinished();
+    bool animationFinished(CharacterAnimationIdentifier id);
 
   protected:
     f32 floorSensorWidth;
@@ -54,9 +56,9 @@ class AnimatedModel : public ModelEntity {
     scene::IAnimatedMeshSceneNode* mainNode;
 
   private:
-    core::stringc currentAnimationName;
+    CharacterAnimationIdentifier currentAnimationId;
     f32 currentAnimationSpeed;
-    map<core::stringc, MeshAnimationInfo> animationList;
+    map<CharacterAnimationIdentifier, MeshAnimationInfo> animationList;
 };
 
 #endif
