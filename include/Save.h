@@ -8,10 +8,6 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SAVE_H__
 #define __IS06_SAVE_H__
 
-#include "save_data/PlayerData.h"
-#include "save_data/PowerData.h"
-
-#include "enums/gameplay/PowerType.h"
 #include "enums/engine/SceneIdentifier.h"
 
 using namespace irr;
@@ -26,29 +22,21 @@ class Save {
     void write();
     void createNewFile();
 
-    // Set data
-    void powerLevelUp(PowerType type, const core::stringc& id, u32 value);
-    void powerExpUp(PowerType type, const core::stringc& id, u32 value);
-    void powerGet(PowerType type, const core::stringc& id);
-    void playerLevelUp(u32 value);
-    void playerExpUp(u32 value);
-
-    // General information
-    u8 slot;
-    u8 difficultyLevel;
-
-    // Map information
-    SceneIdentifier currentMap;
-
-    // Player information
-    PlayerData playerData;
-    PowerData powerData;
+    s32& getInteger(u32 index);
+    bool& getBoolean(u32 index);
+    core::stringw& getString(u32 index);
 
   private:
-    void initFightPowers();
-    void initMagicPowers();
-    void initStatePowers();
+    // General information
+    u8 slot;
 
+    // Various data
+    map<u32, s32> integerList;
+    map<u32, bool> booleanList;
+    map<u32, core::stringw> stringList;
+
+    // Default values
+    void setGeneralDefaultValues();
 };
 
 #endif

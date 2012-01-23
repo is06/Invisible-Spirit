@@ -5,19 +5,13 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_POWER_DATA_H__
-#define __IS06_POWER_DATA_H__
+#ifndef __IS06_SAVE_INTEGER_IDENTIFIER_H__
+#define __IS06_SAVE_INTEGER_IDENTIFIER_H__
 
-#include "../../include/save_data/PowerElementData.h"
+enum SaveIntegerIdentifier {
+  SII_CURRENT_MAP = 1,
 
-using namespace irr;
-using namespace std;
-
-struct PowerData {
-  map<core::stringc, PowerElementData> fightPowers;
-  map<core::stringc, PowerElementData> blackMagicPowers;
-  map<core::stringc, PowerElementData> whiteMagicPowers;
-  map<core::stringc, PowerElementData> statePowers;
+  SII_DOOMY = 0
 };
 
 #endif

@@ -340,7 +340,7 @@ f32 Game::getSpeedFactor() {
 /**
  * Change the current scene by putting
  */
-void Game::changeScene(SceneIdentifier id) {
+void Game::changeScene(s32 id) {
   nextScene = id;
   sceneChanged = true;
 }

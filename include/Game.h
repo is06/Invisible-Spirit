@@ -25,7 +25,7 @@ class Game {
     static void finish();
 
     static void quit();
-    static void changeScene(SceneIdentifier id);
+    static void changeScene(s32 id);
     static void fatalError(ErrorCode code);
     static void errorLog(const core::stringc& errorText);
 
@@ -70,7 +70,7 @@ class Game {
     // is06 objects
     static EventManager* eventManager;
     static Scene* currentScene;
-    static SceneIdentifier nextScene;
+    static s32 nextScene;
     static LocaleIdentifier currentLocale;
     static Translation* globalTranslations;
     static Save* currentSave;

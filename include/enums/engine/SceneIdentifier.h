@@ -9,10 +9,12 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_SCENE_IDENTIFIER_H__
 
 enum SceneIdentifier {
-  SCENE_MENU,
-  SCENE_MAP_2D_TEST,
-  SCENE_MAP_ALPHA_ZONE,
-  SCENE_MAP_CANYON
+  SCENE_IS06_SCREEN = -1,
+  SCENE_INTRODUCTION = -2,
+  SCENE_MENU = -3,
+  SCENE_MAP_2D_TEST = 1,
+  SCENE_MAP_ALPHA_ZONE = 2,
+  SCENE_MAP_CANYON = 3
 };
 
 #endif
