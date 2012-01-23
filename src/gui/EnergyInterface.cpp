@@ -12,12 +12,12 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace std;
 
-EnergyInterface::EnergyInterface() {
+EnergyInterface::EnergyInterface() : Hud() {
   hpBar = new BarCounter(100, 0, 100, (Game::screenPos.right - 170), (Game::screenPos.bottom + 30), 150, 4, BAR_STYLE_LIFE);
   mpBar = new BarCounter(100, 0, 100, (Game::screenPos.right - 120), (Game::screenPos.bottom + 20), 100, 4, BAR_STYLE_LIFE);
 }
 
-void EnergyInterface::render() {
+void EnergyInterface::render() { Hud::render();
   hpBar->render();
   mpBar->render();
 }

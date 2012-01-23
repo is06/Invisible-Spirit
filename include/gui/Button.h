@@ -9,8 +9,9 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_BUTTON_H__
 
 #include "../enums/gameplay/CommandIdentifier.h"
+#include "Hud.h"
 
-class Button {
+class Button : public Hud {
   public:
     Button(f32 x, f32 y);
     virtual ~Button();

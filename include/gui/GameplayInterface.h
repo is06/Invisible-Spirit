@@ -8,7 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_GAMEPLAY_INTERFACE_H__
 #define __IS06_GAMEPLAY_INTERFACE_H__
 
-class GameplayInterface {
+#include "Hud.h"
+
+class GameplayInterface : public Hud {
   public:
     GameplayInterface();
     ~GameplayInterface();

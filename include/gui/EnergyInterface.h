@@ -8,7 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENERGY_INTERFACE_H__
 #define __IS06_ENERGY_INTERFACE_H__
 
-class EnergyInterface {
+#include "Hud.h"
+
+class EnergyInterface : public Hud {
   public:
     EnergyInterface();
     ~EnergyInterface();

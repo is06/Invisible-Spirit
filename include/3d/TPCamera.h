@@ -21,11 +21,11 @@ class TPCamera : public Camera {
     void goFar(f32 speed);
     void goNear(f32 speed);
 
-    void linkEntity(Ayron* entity);
+    void linkEntity(Character* entity);
     f32 getDistance();
 
   private:
-    Ayron* linkedEntity;
+    Character* linkedEntity;
     f32 UAxis;
     f32 height;
     f32 distance;

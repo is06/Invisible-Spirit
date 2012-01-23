@@ -70,6 +70,9 @@ class Camera;
 class TPCamera;
 class Light;
 class OmniLight;
+class Sensor;
+class PlaneSensor;
+class BoxSensor;
 
 // Shaders
 class OpacityShaderCallback;

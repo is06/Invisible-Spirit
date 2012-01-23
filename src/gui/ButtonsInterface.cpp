@@ -14,14 +14,14 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace std;
 
-ButtonsInterface::ButtonsInterface() {
+ButtonsInterface::ButtonsInterface() : Hud() {
   menu = new TextButton(Game::screenPos.left + 70, Game::screenPos.bottom + 110);
   defense = new IconButton(Game::screenPos.left + 30, Game::screenPos.bottom + 70);
   jump = new IconButton(Game::screenPos.left + 110, Game::screenPos.bottom + 70);
   command = new IconTextButton(Game::screenPos.left + 70, Game::screenPos.bottom + 30);
 }
 
-void ButtonsInterface::render() {
+void ButtonsInterface::render() { Hud::render();
   menu->render();
   defense->render();
   jump->render();

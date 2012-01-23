@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_CAMERA_H__
 #define __IS06_CAMERA_H__
 
-#include "../../include/3d/Ayron.h"
+#include "../../include/3d/Character.h"
 #include "../../include/Entity.h"
 
 using namespace irr;
@@ -19,7 +19,7 @@ class Camera : public Entity {
 
     virtual void render() = 0;
 
-    virtual void linkEntity(Ayron* entityToLink) = 0;
+    virtual void linkEntity(Character* entityToLink) = 0;
     virtual f32 getDistance() = 0;
 
     virtual void goLeft(f32 speed) = 0;

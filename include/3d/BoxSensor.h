@@ -5,21 +5,21 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_ENTITY_H__
-#define __IS06_ENTITY_H__
+#ifndef __IS06_BOX_SENSOR_H__
+#define __IS06_BOX_SENSOR_H__
 
-#include "ref/core.h"
+#include "../Sensor.h"
 
-class Entity {
+using namespace irr;
+
+class BoxSensor : public Sensor {
   public:
-    Entity();
-
-    virtual void render() = 0;
-
-  protected:
-
+    BoxSensor(const core::aabbox3df& initBox);
+    void render();
+    const core::aabbox3df& getBox() const;
 
   private:
+    core::aabbox3df box;
 };
 
 #endif

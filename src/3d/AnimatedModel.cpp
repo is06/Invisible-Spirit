@@ -223,10 +223,26 @@ f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vect
 }
 
 /**
- * Under construction
+ * @todo Under construction
  */
 bool AnimatedModel::collidesWithAnimated(AnimatedModel* other) {
   return false;
+}
+
+/**
+ * @todo Under construction
+ * @todo manage event type
+ */
+bool AnimatedModel::collidesWithPlaneSensor(PlaneSensor* sensor, EventType type) {
+  return false;
+}
+
+/**
+ * Returns true if the object is in the box sensor
+ * @todo manage event type
+ */
+bool AnimatedModel::isInBoxSensor(BoxSensor* sensor, EventType type) {
+  return sensor->getBox().isPointInside(mainNode->getPosition());
 }
 
 /**

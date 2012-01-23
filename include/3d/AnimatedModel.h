@@ -8,11 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ANIMATED_MODEL_H__
 #define __IS06_ANIMATED_MODEL_H__
 
-#include "ModelEntity.h"
-
 #include "../enums/engine/RayType.h"
+#include "../enums/engine/EventType.h"
 #include "../enums/engine/CharacterAnimationIdentifier.h"
+#include "ModelEntity.h"
 #include "MeshAnimationInfo.h"
+#include "BoxSensor.h"
 
 using namespace irr;
 using namespace std;
@@ -38,8 +39,11 @@ class AnimatedModel : public ModelEntity {
     // Collision detection
     bool collidesWithStatic(StaticModel* other);
     bool collidesWithAnimated(AnimatedModel* other);
+    bool collidesWithPlaneSensor(PlaneSensor* sensor, EventType type = EVENT_ALWAYS);
+    bool isInBoxSensor(BoxSensor* sensor, EventType type = EVENT_ALWAYS);
     f32 getFloorCollision(StaticModel* other);
     f32 getWallCollision(RayType type, StaticModel* other, core::vector3df& normal);
+
 
     // Animations
     void setCurrentAnimation(CharacterAnimationIdentifier id, f32 speed = 30.0f);

@@ -12,7 +12,7 @@ using namespace irr;
 using namespace std;
 
 /**
- * Initialise la caméra TP et lui affecte des propriétés par défaut
+ * Sets the third-person camera and defines its default properties
  */
 TPCamera::TPCamera() : Camera() {
   UAxis = (3 * core::PI) / 2;
@@ -21,18 +21,16 @@ TPCamera::TPCamera() : Camera() {
 }
 
 /**
- * Associe une entité Ayron à la caméra
- * @param Ayron* entity pointeur vers une entité Ayron
- * @todo Pouvoir associer n'importe quelle entité à une caméra
+ * Links a Character entity to the camera
+ * @param Character* pointer to a character
  */
-void TPCamera::linkEntity(Ayron* entity) {
+void TPCamera::linkEntity(Character* entity) {
   linkedEntity = entity;
 }
 
 /**
- * Fonction de mise à jour et de rendu de la caméra TP
- * Elle permet de positionner la caméra par rapport au node associé en fonction
- * des propriétés variables par le joueur (déplacement le long du cercle trigonométrique)
+ * Camera update and render method
+ * This method sets the camera position relative to the character and player moves
  */
 void TPCamera::render() { Camera::render();
   f32 x = linkedEntity->getNode()->getPosition().X + distance * cos(UAxis);

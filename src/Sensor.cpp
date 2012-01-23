@@ -5,21 +5,12 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_ENTITY_H__
-#define __IS06_ENTITY_H__
+#include "../include/Sensor.h"
 
-#include "ref/core.h"
+Sensor::Sensor() : Entity() {
 
-class Entity {
-  public:
-    Entity();
+}
 
-    virtual void render() = 0;
+void Sensor::render() { Entity::render();
 
-  protected:
-
-
-  private:
-};
-
-#endif
+}

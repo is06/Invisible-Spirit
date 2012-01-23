@@ -5,21 +5,28 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_ENTITY_H__
-#define __IS06_ENTITY_H__
+#include "../../include/3d/PlaneSensor.h"
 
-#include "ref/core.h"
+using namespace irr;
 
-class Entity {
-  public:
-    Entity();
+/**
+ *
+ */
+PlaneSensor::PlaneSensor(const core::plane3df& initPlane) : Sensor() {
+  plane = initPlane;
+}
 
-    virtual void render() = 0;
+/**
+ *
+ */
+void PlaneSensor::render() { Sensor::render();
 
-  protected:
+}
 
+/**
+ *
+ */
+const core::plane3df& PlaneSensor::getPlane() const {
+  return plane;
+}
 
-  private:
-};
-
-#endif
