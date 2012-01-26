@@ -28,7 +28,8 @@ Ayron::Ayron(Camera* cam) : Character() {
   wallSensorWidth = 0.5f;
 
   // Loading mesh
-  loadMesh("resource/mesh/character/cube.obj");
+  loadMesh("resource/mesh/character/cube.mesh.obj");
+  loadAnimation("resource/mesh/character/cube.anim.data");
   createNode(core::vector3df(-3, 1, -4));
   linkedCam = cam;
 
@@ -38,8 +39,6 @@ Ayron::Ayron(Camera* cam) : Character() {
     cam->getNode()->getRotation().Y - core::radToDeg(core::PI),
     mainNode->getRotation().Z
   ));
-
-  //mainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
 }
 
 /**

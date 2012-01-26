@@ -44,14 +44,14 @@ class AnimatedModel : public ModelEntity {
     f32 getFloorCollision(StaticModel* other);
     f32 getWallCollision(RayType type, StaticModel* other, core::vector3df& normal);
 
-
     // Animations
-    void setCurrentAnimation(CharacterAnimationIdentifier id, f32 speed = 30.0f);
+    void loadAnimation(const core::stringc& fileName);
+    void setCurrentAnimation(s32 id, f32 speed = 30.0f);
     void pauseAnimation();
     void playAnimation();
     void setAnimationSpeed(f32 value);
     bool currentAnimationFinished();
-    bool animationFinished(CharacterAnimationIdentifier id);
+    bool animationFinished(s32 id);
 
   protected:
     f32 floorSensorWidth;
@@ -60,9 +60,9 @@ class AnimatedModel : public ModelEntity {
     scene::IAnimatedMeshSceneNode* mainNode;
 
   private:
-    CharacterAnimationIdentifier currentAnimationId;
+    s32 currentAnimationId;
     f32 currentAnimationSpeed;
-    map<CharacterAnimationIdentifier, MeshAnimationInfo> animationList;
+    map<s32, MeshAnimationInfo> animationList;
 };
 
 #endif

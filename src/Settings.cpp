@@ -13,7 +13,7 @@ using namespace irr;
 using namespace std;
 
 Settings::Settings() {
-  fstream fileStream("settings.ini", ios::in | ios::out);
+  fstream fileStream("settings.ini", ios::in);
   if(fileStream) {
     c8 current;
     bool inGroupNameDeclaration = false;
@@ -26,7 +26,7 @@ Settings::Settings() {
 
     while(fileStream.get(current)) {
       //========================================
-      // Création de groupes
+      // Group creation
       if(inGroupNameDeclaration) {
         if(current != ']') {
           // Adding character to Group Name
@@ -38,7 +38,7 @@ Settings::Settings() {
         }
       }
       //========================================
-      // Création de paramètres
+      // Parameter creation
       else {
         if(inParamNameDeclaration) {
           if(current == '=') {

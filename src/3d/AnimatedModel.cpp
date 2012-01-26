@@ -246,9 +246,82 @@ bool AnimatedModel::isInBoxSensor(BoxSensor* sensor, EventType type) {
 }
 
 /**
+ * Loads the animation data file specified in parameter
+ * @param stringc the animation data file name path
+ */
+void AnimatedModel::loadAnimation(const core::stringc& fileName) {
+  fstream fileStream(fileName.c_str(), ios::in);
+
+  if(fileStream) {
+    bool inAnimNumberDeclaration = true;
+    bool inAnimStartDeclaration = false;
+    bool inAnimEndDeclaration = false;
+    bool inAnimLoopedDeclaration = false;
+
+    c8 current;
+    s32 nr = 0;
+    core::stringc animNumber;
+    core::stringc startFrame;
+    core::stringc endFrame;
+    bool looped;
+
+    while(fileStream.get(current)) {
+      cout << current << endl;
+
+      if(current == '=') {
+        inAnimNumberDeclaration = false;
+        inAnimStartDeclaration = true;
+        continue;
+      }
+      if(current == ':') {
+        if(inAnimStartDeclaration == true) {
+          inAnimStartDeclaration = false;
+          inAnimEndDeclaration = true;
+        }
+        if(inAnimEndDeclaration == true) {
+          inAnimEndDeclaration = true;
+          inAnimLoopedDeclaration = true;
+        }
+        continue;
+      }
+      if(current == ';') {
+        inAnimLoopedDeclaration = false;
+        nr = (s32)atoi(animNumber.c_str());
+        animationList[nr].startFrame = (s32)atoi(startFrame.c_str());
+        animationList[nr].endFrame = (s32)atoi(endFrame.c_str());
+        animationList[nr].looped = looped;
+
+        animNumber = "";
+        startFrame = "";
+        endFrame = "";
+        looped = false;
+        continue;
+      }
+      if(current == '\n' || current == '\r') {
+        inAnimNumberDeclaration = true;
+        continue;
+      }
+
+      if(inAnimNumberDeclaration) {
+        animNumber.append(current);
+      }
+      if(inAnimStartDeclaration) {
+        startFrame.append(current);
+      }
+      if(inAnimEndDeclaration) {
+        endFrame.append(current);
+      }
+      if(inAnimLoopedDeclaration) {
+        looped = (current == 1);
+      }
+    }
+  }
+}
+
+/**
  * Sets the current animation
  */
-void AnimatedModel::setCurrentAnimation(CharacterAnimationIdentifier id, f32 speed) {
+void AnimatedModel::setCurrentAnimation(s32 id, f32 speed) {
   currentAnimationId = id;
   currentAnimationSpeed = speed;
 
@@ -295,7 +368,7 @@ bool AnimatedModel::currentAnimationFinished() {
 /**
  * Returns true if a specific animation is finished
  */
-bool AnimatedModel::animationFinished(CharacterAnimationIdentifier id) {
+bool AnimatedModel::animationFinished(s32 id) {
   return (mainNode->getFrameNr() == animationList[id].endFrame);
 }
 

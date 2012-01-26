@@ -15,7 +15,7 @@ using namespace irr;
 MusicReference::MusicReference() {
   currentMusic = NULL;
 
-  fstream fileStream("resource/music/list.data", ios::in | ios::out);
+  fstream fileStream("resource/music/list.data", ios::in);
   if(fileStream) {
     bool inMusicNameDeclaration = true;
     bool inSeqNumbDeclaration = false;
@@ -33,8 +33,6 @@ MusicReference::MusicReference() {
     core::stringc sequenceFileName;
 
     while(fileStream.get(current)) {
-      cout << current << endl;
-
       if(current == '=') {
         inMusicNameDeclaration = false;
         inSeqNumbDeclaration = true;
@@ -74,7 +72,7 @@ MusicReference::MusicReference() {
         iss.str(sequenceLoopEnd.c_str());
         iss >> loopEndInt;
 
-        cout << "added musique : " << musicName.c_str() << endl;
+        cout << "added music: " << musicName.c_str() << endl;
 
         musicList[musicName].sequenceInfo[sequenceNumberInt].looped = sequenceLooped;
         musicList[musicName].sequenceInfo[sequenceNumberInt].loopStart = loopStartInt;

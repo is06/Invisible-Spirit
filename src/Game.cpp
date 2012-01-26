@@ -76,7 +76,7 @@ void Game::init() {
     (settings->getParamInt("display", "vsync") == 1),
     eventManager
   );
-  device->setWindowCaption(L"Invisible Spirit 0.1 r15 (09/04/2011)");
+  device->setWindowCaption(L"Invisible Spirit 0.1");
 
   video::IVideoModeList* vml = device->getVideoModeList();
 

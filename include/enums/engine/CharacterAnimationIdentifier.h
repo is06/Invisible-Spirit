@@ -8,7 +8,6 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_CHARACTER_ANIMATION_IDENTIFIER_H__
 #define __IS06_CHARACTER_ANIMATION_IDENTIFIER_H__
 
-
 enum CharacterAnimationIdentifier {
   ANIM_STAND = 0,
   ANIM_WALK = 1,
