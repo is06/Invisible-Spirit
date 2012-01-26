@@ -1,4 +1,4 @@
-﻿### Invisible Spirit - Code Source version 0.1-110503-1 ###
+﻿### Invisible Spirit - Code Source version 0.1 ###
 
 OpenGL est nécessaire pour compiler et exécuter Invisible Spirit.
 
@@ -33,7 +33,7 @@ Pour compiler le projet, deux méthodes :
     fmodex_include_dir:STATIC=/usr/include/fmodex/
     fmodex_lib_dir:STATIC=/usr/lib/fmodex/
 
-2. Compiler manuellement.
+2. Compiler manuellement
 
   Les bibliothèques nécessaires sont :
 
