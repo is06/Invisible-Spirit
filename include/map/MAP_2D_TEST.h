@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/scene/SceneGameplay.h"
 #include "../../include/gui/BarCounter.h"
 
-class MAP_2D_TEST : public SceneGameplay {
+class MAP_2D_TEST : public SceneGameplay
+{
   public:
     MAP_2D_TEST();
     ~MAP_2D_TEST();

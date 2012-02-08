@@ -13,25 +13,26 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-MenuOption::MenuOption(MenuIcon icon, const core::stringw& title, f32 x, f32 y, MenuStyle style) : Hud() {
+MenuOption::MenuOption(MenuIcon icon, const core::stringw& title, f32 x, f32 y, MenuStyle style) : Hud()
+{
   currentIcon = icon;
 
   WindowStyle boxStyle = WIN_STYLE_STD;
   FontStyle fontStyle = FONT_STD_CLASSIC_REGULAR;
 
-  switch(style) {
+  switch (style) {
     case MENU_STYLE_STD:
       boxStyle = WIN_STYLE_STD;
       fontStyle = FONT_STD_CLASSIC_REGULAR;
-    break;
+      break;
     case MENU_STYLE_TITLE:
       boxStyle = WIN_STYLE_NONE;
       fontStyle = FONT_STD_BORDER_SHADED_REGULAR;
-    break;
+      break;
     default:
       boxStyle = WIN_STYLE_NONE;
       fontStyle = FONT_STD_CLASSIC_REGULAR;
-    break;
+      break;
   }
 
   box = new Window(x + 75, y, 150, 28, 3, boxStyle);
@@ -43,28 +44,35 @@ MenuOption::MenuOption(MenuIcon icon, const core::stringw& title, f32 x, f32 y, 
   selectable = true;
 }
 
-void MenuOption::render() { Hud::render();
+void MenuOption::render()
+{
+  Hud::render();
   box->render();
   currentText->render();
 }
 
-void MenuOption::setHover(bool isHover) {
+void MenuOption::setHover(bool isHover)
+{
   hover = isHover;
 }
 
-void MenuOption::setEnabled(bool isEnabled) {
+void MenuOption::setEnabled(bool isEnabled)
+{
   enabled = isEnabled;
 }
 
-void MenuOption::setVisible(bool isVisible) {
+void MenuOption::setVisible(bool isVisible)
+{
   visible = isVisible;
 }
 
-void MenuOption::setSelectable(bool isSelectable) {
+void MenuOption::setSelectable(bool isSelectable)
+{
   selectable = isSelectable;
 }
 
-MenuOption::~MenuOption() {
+MenuOption::~MenuOption()
+{
   delete currentText;
   delete box;
 }

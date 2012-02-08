@@ -10,7 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../gui/Hud2DElement.h"
 
-class PostRenderGlow : public Hud2DElement {
+class PostRenderGlow : public Hud2DElement
+{
   public:
     PostRenderGlow();
     ~PostRenderGlow();

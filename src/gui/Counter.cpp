@@ -11,36 +11,41 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-Counter::Counter(s32 init, s32 min, s32 max) {
+Counter::Counter(s32 init, s32 min, s32 max)
+{
   minValue = min;
   maxValue = max;
   currentValue = init;
 }
 
-void Counter::addValue(s32 val) {
+void Counter::addValue(s32 val)
+{
   currentValue += val;
-  if(currentValue > maxValue) {
+  if (currentValue > maxValue) {
     currentValue = maxValue;
   }
 }
 
-void Counter::subValue(s32 val) {
+void Counter::subValue(s32 val)
+{
   currentValue -= val;
-  if(currentValue < minValue) {
+  if (currentValue < minValue) {
     currentValue = minValue;
   }
 }
 
-void Counter::setValue(s32 val) {
+void Counter::setValue(s32 val)
+{
   currentValue = val;
-  if(currentValue > maxValue) {
+  if (currentValue > maxValue) {
     currentValue = maxValue;
   }
-  if(currentValue < minValue) {
+  if (currentValue < minValue) {
     currentValue = minValue;
   }
 }
 
-Counter::~Counter() {
+Counter::~Counter()
+{
 
 }

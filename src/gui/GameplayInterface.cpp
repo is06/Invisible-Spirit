@@ -9,26 +9,33 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/GameplayInterface.h"
 #include "../../include/gui/ButtonsInterface.h"
 
-GameplayInterface::GameplayInterface() : Hud() {
+GameplayInterface::GameplayInterface() : Hud()
+{
   buttons = new ButtonsInterface();
 }
 
-void GameplayInterface::render() { Hud::render();
+void GameplayInterface::render()
+{
+  Hud::render();
   buttons->render();
 }
 
-void GameplayInterface::hide() {
+void GameplayInterface::hide()
+{
   buttons->hide();
 }
 
-void GameplayInterface::show() {
+void GameplayInterface::show()
+{
   buttons->show();
 }
 
-void GameplayInterface::setOpacity(u8 value) {
+void GameplayInterface::setOpacity(u8 value)
+{
   buttons->setOpacity(value);
 }
 
-GameplayInterface::~GameplayInterface() {
+GameplayInterface::~GameplayInterface()
+{
   delete buttons;
 }

@@ -10,7 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-class OpacityShaderCallback : public video::IShaderConstantSetCallBack {
+class OpacityShaderCallback : public video::IShaderConstantSetCallBack
+{
   public:
     const video::SMaterial* usedMaterial;
     virtual void OnSetMaterial(const video::SMaterial& material) {

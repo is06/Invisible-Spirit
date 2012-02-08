@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 /**
  *
  */
-enum MenuStyle {
+enum MenuStyle
+{
   MENU_STYLE_STD,
   MENU_STYLE_TITLE,
   MENU_STYLE_HOME,

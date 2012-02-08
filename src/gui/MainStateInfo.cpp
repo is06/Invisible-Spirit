@@ -13,19 +13,23 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-MainStateInfo::MainStateInfo() : Hud() {
+MainStateInfo::MainStateInfo() : Hud()
+{
   label = new Text();
   info = new Text();
   gauge = new BarCounter(60, 0, 100, 150, 150, 150, 10, BAR_STYLE_LIFE);
 }
 
-void MainStateInfo::render() { Hud::render();
+void MainStateInfo::render()
+{
+  Hud::render();
   label->render();
   info->render();
   gauge->render();
 }
 
-MainStateInfo::~MainStateInfo() {
+MainStateInfo::~MainStateInfo()
+{
   delete label;
   delete info;
   delete gauge;

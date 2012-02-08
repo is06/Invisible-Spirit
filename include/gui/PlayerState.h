@@ -13,7 +13,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-class PlayerState : public Hud {
+class PlayerState : public Hud
+{
   public:
     PlayerState();
     ~PlayerState();

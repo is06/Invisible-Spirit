@@ -17,7 +17,8 @@ using namespace irr;
  * Constructeur de la map en cours, définition du mesh du décor, création du node et de
  * son masque de collision
  */
-MAP_CANYON::MAP_CANYON() : SceneGameplay() {
+MAP_CANYON::MAP_CANYON() : SceneGameplay()
+{
   level->loadMesh("resource/mesh/level/test2.obj");
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
@@ -26,17 +27,20 @@ MAP_CANYON::MAP_CANYON() : SceneGameplay() {
 /**
  * Fonction de test des événements spécifiques à cette map
  */
-void MAP_CANYON::events() { SceneGameplay::events();
-
+void MAP_CANYON::events()
+{
+  SceneGameplay::events();
 }
 
-void MAP_CANYON::postRender() { SceneGameplay::postRender();
-
+void MAP_CANYON::postRender()
+{
+  SceneGameplay::postRender();
 }
 
 /**
  * Detruit les objets définis dans le constructeur
  */
-MAP_CANYON::~MAP_CANYON() {
+MAP_CANYON::~MAP_CANYON()
+{
 
 }

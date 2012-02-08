@@ -8,7 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SOUND_EFFECT_IDENTIFIER_H__
 #define __IS06_SOUND_EFFECT_IDENTIFIER_H__
 
-enum SoundEffectIdentifier {
+enum SoundEffectIdentifier
+{
   SFX_TEST
 };
 

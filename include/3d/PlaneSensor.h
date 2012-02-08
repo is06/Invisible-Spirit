@@ -12,7 +12,8 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-class PlaneSensor : public Sensor {
+class PlaneSensor : public Sensor
+{
   public:
     PlaneSensor(const core::plane3df& initPlane);
     void render();

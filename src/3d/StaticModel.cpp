@@ -15,22 +15,25 @@ using namespace std;
 /**
  * Constructeur
  */
-StaticModel::StaticModel() : ModelEntity() {
+StaticModel::StaticModel() : ModelEntity()
+{
   mainNode = NULL;
 }
 
 /**
  * Fonction de mise à jour et de rendu de toutes les entités statiques présentes dans les scènes
  */
-void StaticModel::render() { ModelEntity::render();
-
+void StaticModel::render()
+{
+  ModelEntity::render();
 }
 
 /**
  * Crée le node et l'ajoute au gestionnaire de scène Irrlicht en fonction de sa position
  * @param vector3df& initPosition référence vers une position initiale du node
  */
-void StaticModel::createNode(const core::vector3df& initPosition) {
+void StaticModel::createNode(const core::vector3df& initPosition)
+{
   mainNode = Game::getSceneManager()->addMeshSceneNode(mainMesh);
   mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
   mainNode->setPosition(initPosition);
@@ -40,57 +43,62 @@ void StaticModel::createNode(const core::vector3df& initPosition) {
  * Retourne le node Irrlicht de l'entité
  * @return ISceneNode* le noeud de l'entité
  */
-scene::IMeshSceneNode* StaticModel::getNode() {
+scene::IMeshSceneNode* StaticModel::getNode()
+{
   return mainNode;
 }
 
-video::SMaterial& StaticModel::getMaterial() {
+video::SMaterial& StaticModel::getMaterial()
+{
   return mainNode->getMaterial(0);
 }
 
-void StaticModel::hide() {
+void StaticModel::hide()
+{
   mainNode->setVisible(false);
 }
 
-void StaticModel::show() {
+void StaticModel::show()
+{
   mainNode->setVisible(true);
 }
 
-void StaticModel::setVisible(bool value) {
+void StaticModel::setVisible(bool value)
+{
   mainNode->setVisible(value);
 }
 
-void StaticModel::setGhost(bool value) {
+void StaticModel::setGhost(bool value)
+{
   mainNode->setMaterialFlag(video::EMF_FRONT_FACE_CULLING, !value);
 }
 
-void StaticModel::setWireFrame(bool value) {
+void StaticModel::setWireFrame(bool value)
+{
   mainNode->setMaterialFlag(video::EMF_WIREFRAME, value);
 }
 
-void StaticModel::setDebugData(bool value) {
+void StaticModel::setDebugData(bool value)
+{
   mainNode->setDebugDataVisible(value);
 }
 
-void StaticModel::loadMeshCollision() {
-  cout << "[NWT] StaticModel Loading mesh collision" << endl;
-
+void StaticModel::loadMeshCollision()
+{
   bool optimize = true;
 
-  if(mainNode) {
+  if (mainNode) {
     NewtonCollision* treeCollision = NewtonCreateTreeCollision(Game::getNewtonWorld(), 0);
-
+    NewtonTreeCollisionBeginBuild(treeCollision);
     core::vector3df scale = mainNode->getScale();
 
-    NewtonTreeCollisionBeginBuild(treeCollision);
-
     // On récupère les meshBuffer, à chaque meshBuffer, on ajoute les informations à la collision
-    for(u32 i = 0; i < mainMesh->getMeshBufferCount(); i++) {
+    for (u32 i = 0; i < mainMesh->getMeshBufferCount(); i++) {
       scene::IMeshBuffer* mb = mainMesh->getMeshBuffer(i);
       addMeshToTreeCollision(mb->getVertexType(), mb, treeCollision, mainNode->getScale());
     }
 
-    if(optimize) {
+    if (optimize) {
       NewtonTreeCollisionEndBuild(treeCollision, 1);
     } else {
       NewtonTreeCollisionEndBuild(treeCollision, 0);
@@ -99,13 +107,10 @@ void StaticModel::loadMeshCollision() {
     // Création du Body Newton
     f32 newtMatrix[16] = {};
     mainBody = NewtonCreateBody(Game::getNewtonWorld(), treeCollision, newtMatrix);
-
     mainNode->updateAbsolutePosition();
 
     core::matrix4 irrMatrix = mainNode->getRelativeTransformation();
-
     NewtonBodySetMatrix(mainBody, irrMatrix.pointer());
-
     NewtonReleaseCollision(Game::getNewtonWorld(), treeCollision);
   }
 }
@@ -113,38 +118,38 @@ void StaticModel::loadMeshCollision() {
 /**
  * Ajoute un polygone à une collision Newton de type Mesh
  */
-void StaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene::IMeshBuffer* meshBuffer, NewtonCollision* treeCollision, core::vector3df scale) {
-  cout << "[NWT] StaticModel mesh added to tree collision" << endl;
+void StaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene::IMeshBuffer* meshBuffer,
+  NewtonCollision* treeCollision, core::vector3df scale)
+{
   // Tableau qui peut contenir 3 vertices servant à ajouter une face à la collision
   f32 vArray[9];
   bool skipAddMesh = false;
   video::S3DVertex* vertices;
 
   // On récupère les vertices du mesh dans un tableau
-  switch(vertexType) {
+  switch (vertexType) {
     case video::EVT_STANDARD:
       vertices = (video::S3DVertex*) meshBuffer->getVertices();
-    break;
+      break;
     case video::EVT_2TCOORDS:
       vertices = (video::S3DVertex2TCoords*) meshBuffer->getVertices();
-    break;
+      break;
     case video::EVT_TANGENTS:
       vertices = (video::S3DVertexTangents*) meshBuffer->getVertices();
-    break;
+      break;
     default:
       // Type de vertex inconnu, on ne créé pas la collision
-      cout << "[NWT] /!\\ StaticModel Vertex type not recognized! [" << meshBuffer << "]" << endl;
       skipAddMesh = true;
-    break;
+      break;
   }
 
-  if(!skipAddMesh) {
+  if (!skipAddMesh) {
     // On récupère tous les indices du mesh dans un tableau
     u16* indices = meshBuffer->getIndices();
 
     // Les indices permettent de récupérer un vertex précis dans l'ordre ou il a été créé
     // On récupère les vertices par groupe de 3 pour former une face (polygone)
-    for(u32 j = 0; j < meshBuffer->getIndexCount(); j += 3) {
+    for (u32 j = 0; j < meshBuffer->getIndexCount(); j += 3) {
       // On récupère les indices des trois vertices courants
       s32 v1i = indices[j];
       s32 v2i = indices[j + 1];
@@ -167,13 +172,15 @@ void StaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene:
   }
 }
 
-void StaticModel::clearMeshCollision() {
-  cout << "[NWT] StaticModel NewtonBody deleted" << endl;
+void StaticModel::clearMeshCollision()
+{
   NewtonDestroyBody(Game::getNewtonWorld(), mainBody);
 }
 
-StaticModel::~StaticModel() {
-  if(mainNode) {
+StaticModel::~StaticModel()
+{
+  if (mainNode) {
     mainNode->remove();
+    mainNode = NULL;
   }
 }

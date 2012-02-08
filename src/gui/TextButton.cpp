@@ -8,14 +8,17 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/gui/TextButton.h"
 
-TextButton::TextButton(f32 x, f32 y) : Button(x, y) {
+TextButton::TextButton(f32 x, f32 y) : Button(x, y)
+{
 
 }
 
-void TextButton::render() { Button::render();
-
+void TextButton::render()
+{
+  Button::render();
 }
 
-TextButton::~TextButton() {
+TextButton::~TextButton()
+{
 
 }

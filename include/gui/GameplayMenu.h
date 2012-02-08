@@ -13,7 +13,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-class GameplayMenu : public Hud {
+class GameplayMenu : public Hud
+{
   public:
     GameplayMenu(Translation* trans);
     ~GameplayMenu();

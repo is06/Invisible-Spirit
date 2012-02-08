@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 /**
  * Types de collision pour associer à un body Newton
  */
-enum CollisionType {
+enum CollisionType
+{
   COLLISION_CHARACTER,
   COLLISION_MESH
 };

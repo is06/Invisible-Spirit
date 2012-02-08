@@ -10,7 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Hud.h"
 
-class ButtonsInterface : public Hud {
+class ButtonsInterface : public Hud
+{
   public:
     ButtonsInterface();
     ~ButtonsInterface();

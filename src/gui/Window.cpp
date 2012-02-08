@@ -15,11 +15,12 @@ using namespace std;
 /**
  *
  */
-Window::Window(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, WindowStyle style) : Hud() {
+Window::Window(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, WindowStyle style) : Hud()
+{
   pos = core::position2df(x, y);
   size = core::dimension2df(w, h);
 
-  switch(style) {
+  switch (style) {
     case WIN_STYLE_STD: applyStyleStd(x, y, w, h, borderWidth); break;
     default: applyStyleNone(); break;
   }
@@ -28,7 +29,8 @@ Window::Window(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, WindowStyle style) :
 /**
  *
  */
-void Window::applyStyleStd(f32 x, f32 y, f32 w, f32 h, f32 borderWidth) {
+void Window::applyStyleStd(f32 x, f32 y, f32 w, f32 h, f32 borderWidth)
+{
   core::stringc texturePath = "resource/hud/window/window1.bmp";
 
   f32 sideW = w - borderWidth;
@@ -65,15 +67,18 @@ void Window::applyStyleStd(f32 x, f32 y, f32 w, f32 h, f32 borderWidth) {
 /**
  *
  */
-void Window::applyStyleNone() {
+void Window::applyStyleNone()
+{
   center = NULL;
 }
 
 /**
  *
  */
-void Window::render() { Hud::render();
-  if(center) {
+void Window::render()
+{
+  Hud::render();
+  if (center) {
     cornerTL->render();
     cornerTR->render();
     cornerBL->render();
@@ -89,8 +94,9 @@ void Window::render() { Hud::render();
 /**
  *
  */
-Window::~Window() {
-  if(center) {
+Window::~Window()
+{
+  if (center) {
     delete cornerTL;
     delete cornerTR;
     delete cornerBL;

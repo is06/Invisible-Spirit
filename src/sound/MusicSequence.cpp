@@ -13,23 +13,27 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-MusicSequence::MusicSequence(const MusicSequenceInfo& info) {
+MusicSequence::MusicSequence(const MusicSequenceInfo& info)
+{
   core::stringc filePath;
   filePath.append("resource/music/");
   filePath.append(info.fileName);
   FMOD_System_CreateStream(Game::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &soundPtr);
 }
 
-void MusicSequence::play() {
+void MusicSequence::play()
+{
   FMOD_System_PlaySound(Game::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, soundPtr, 0, &channelPtr);
 }
 
-void MusicSequence::setVolume(f32 value) {
-  if(value >= 0.0f && value <= 1.0f) {
+void MusicSequence::setVolume(f32 value)
+{
+  if (value >= 0.0f && value <= 1.0f) {
     FMOD_Channel_SetVolume(channelPtr, value);
   }
 }
 
-MusicSequence::~MusicSequence() {
+MusicSequence::~MusicSequence()
+{
   FMOD_Sound_Release(soundPtr);
 }

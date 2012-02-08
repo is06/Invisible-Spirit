@@ -10,19 +10,20 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/Character.h"
 
-class Ayron : public Character {
+class Ayron : public Character
+{
   public:
     Ayron(Camera* cam);
 
     void render();
 
-    // Déplacements par le joueur
+    // Player moves
     void goLeft(f32 speed);
     void goRight(f32 speed);
     void goForward(f32 speed);
     void goBackward(f32 speed);
 
-    // Gravité
+    // Gravity
     void fall(f32 factor);
     void raise();
     void jump();
@@ -30,11 +31,11 @@ class Ayron : public Character {
     f32 getJumpDelta();
     f32 getJumpStrength();
 
-    // Collisions avec les murs
+    // Wall collisions
     void moveOpposite(const core::vector3df& normal);
 
+    // Player control
     void toggleControl();
-
     bool hasControl();
 
   private:

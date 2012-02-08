@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 /**
  * Types d'événements possibles avec les interfaces Keyboard, Mouse et Gamepad
  */
-enum EventType {
+enum EventType
+{
   EVENT_ALWAYS = false,
   EVENT_ONCE = true
 };

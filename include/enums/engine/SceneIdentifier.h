@@ -8,7 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SCENE_IDENTIFIER_H__
 #define __IS06_SCENE_IDENTIFIER_H__
 
-enum SceneIdentifier {
+enum SceneIdentifier
+{
   SCENE_IS06_SCREEN = -1,
   SCENE_INTRODUCTION = -2,
   SCENE_MENU = -3,

@@ -10,7 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Button.h"
 
-class IconButton : public Button {
+class IconButton : public Button
+{
   public:
     IconButton(f32 x, f32 y);
     ~IconButton();

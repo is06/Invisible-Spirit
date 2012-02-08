@@ -10,20 +10,23 @@ http://www.is06.com. Legal code in license.txt
 /**
  *
  */
-BoxSensor::BoxSensor(const core::aabbox3df& initBox) : Sensor() {
+BoxSensor::BoxSensor(const core::aabbox3df& initBox) : Sensor()
+{
   box = initBox;
 }
 
 /**
  *
  */
-void BoxSensor::render() { Sensor::render();
-
+void BoxSensor::render()
+{
+  Sensor::render();
 }
 
 /**
  *
  */
-const core::aabbox3df& BoxSensor::getBox() const {
+const core::aabbox3df& BoxSensor::getBox() const
+{
   return box;
 }

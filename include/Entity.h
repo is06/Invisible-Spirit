@@ -10,16 +10,11 @@ http://www.is06.com. Legal code in license.txt
 
 #include "ref/core.h"
 
-class Entity {
+class Entity
+{
   public:
     Entity();
-
     virtual void render() = 0;
-
-  protected:
-
-
-  private:
 };
 
 #endif

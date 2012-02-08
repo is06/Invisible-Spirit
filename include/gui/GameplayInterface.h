@@ -10,7 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Hud.h"
 
-class GameplayInterface : public Hud {
+class GameplayInterface : public Hud
+{
   public:
     GameplayInterface();
     ~GameplayInterface();

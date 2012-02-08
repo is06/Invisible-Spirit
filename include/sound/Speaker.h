@@ -15,7 +15,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-class Speaker : public Entity {
+class Speaker : public Entity
+{
   public:
     Speaker(StreamIdentifier stream, const core::vector3df& initPos, const core::stringw& text = L"speaker", f32 radius = 10.0f);
     ~Speaker();

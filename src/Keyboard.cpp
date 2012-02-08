@@ -17,8 +17,9 @@ using namespace irr;
  * @param EKEY_CODE code le code de la touche à tester
  * @param EventType type le type d'événement entre ONCE et ALWAYS
  */
-bool Keyboard::pressed(EKEY_CODE code, EventType type) {
-  if(type == EVENT_ONCE) {
+bool Keyboard::pressed(EKEY_CODE code, EventType type)
+{
+  if (type == EVENT_ONCE) {
     return Game::getEventManager()->isKeyDownOnce(code);
   } else {
     return Game::getEventManager()->isKeyDown(code);
@@ -29,31 +30,33 @@ bool Keyboard::pressed(EKEY_CODE code, EventType type) {
  * Permet de savoir si n'importe quelle touche est pressée
  * @param EventType type le type d'événement entre ONCE et ALWAYS
  */
-bool Keyboard::any(EventType type) {
-  if(type == EVENT_ONCE) {
+bool Keyboard::any(EventType type)
+{
+  if (type == EVENT_ONCE) {
     return Game::getEventManager()->anyKeyDownOnce();
   } else {
     return Game::getEventManager()->anyKeyDown();
   }
 }
 
-s8 Keyboard::getDirectionXAxis() {
-  if(Game::getEventManager()->isKeyDown(KEY_LEFT)) {
-    if(Game::getEventManager()->isKeyDown(KEY_UP)) {
+s8 Keyboard::getDirectionXAxis()
+{
+  if (Game::getEventManager()->isKeyDown(KEY_LEFT)) {
+    if (Game::getEventManager()->isKeyDown(KEY_UP)) {
       directionAngle = 135.0f;
       return -87;
-    } else if(Game::getEventManager()->isKeyDown(KEY_DOWN)) {
+    } else if (Game::getEventManager()->isKeyDown(KEY_DOWN)) {
       directionAngle = 225.0f;
       return -87;
     } else {
       directionAngle = 180.0f;
       return -127;
     }
-  } else if(Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
-    if(Game::getEventManager()->isKeyDown(KEY_UP)) {
+  } else if (Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
+    if (Game::getEventManager()->isKeyDown(KEY_UP)) {
       directionAngle = 45.0f;
       return 87;
-    } else if(Game::getEventManager()->isKeyDown(KEY_DOWN)) {
+    } else if (Game::getEventManager()->isKeyDown(KEY_DOWN)) {
       directionAngle = 315.0f;
       return 87;
     } else {
@@ -65,23 +68,24 @@ s8 Keyboard::getDirectionXAxis() {
   }
 }
 
-s8 Keyboard::getDirectionYAxis() {
-  if(Game::getEventManager()->isKeyDown(KEY_UP)) {
-    if(Game::getEventManager()->isKeyDown(KEY_LEFT)) {
+s8 Keyboard::getDirectionYAxis()
+{
+  if (Game::getEventManager()->isKeyDown(KEY_UP)) {
+    if (Game::getEventManager()->isKeyDown(KEY_LEFT)) {
       directionAngle = 135.0f;
       return 87;
-    } else if(Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
+    } else if (Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
       directionAngle = 45.0f;
       return 87;
     } else {
       directionAngle = 90.0f;
       return 127;
     }
-  } else if(Game::getEventManager()->isKeyDown(KEY_DOWN)) {
-    if(Game::getEventManager()->isKeyDown(KEY_LEFT)) {
+  } else if (Game::getEventManager()->isKeyDown(KEY_DOWN)) {
+    if (Game::getEventManager()->isKeyDown(KEY_LEFT)) {
       directionAngle = 225.0f;
       return -87;
-    } else if(Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
+    } else if (Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
       directionAngle = 315.0f;
       return -87;
     } else {
@@ -93,6 +97,7 @@ s8 Keyboard::getDirectionYAxis() {
   }
 }
 
-f32 Keyboard::getDirectionAngle() {
+f32 Keyboard::getDirectionAngle()
+{
   return directionAngle;
 }

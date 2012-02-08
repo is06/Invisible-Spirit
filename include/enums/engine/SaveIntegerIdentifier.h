@@ -8,10 +8,11 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SAVE_INTEGER_IDENTIFIER_H__
 #define __IS06_SAVE_INTEGER_IDENTIFIER_H__
 
-enum SaveIntegerIdentifier {
+enum SaveIntegerIdentifier
+{
   SII_CURRENT_MAP = 1,
 
-  SII_DOOMY = 0
+  SII_DUMMY = 0
 };
 
 #endif

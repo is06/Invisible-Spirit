@@ -16,7 +16,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-class Menu : public Hud {
+class Menu : public Hud
+{
   public:
     Menu(f32 x = 0, f32 y = 0, f32 width = 150, u8 height = 8, MenuStyle style = MENU_STYLE_STD);
     virtual ~Menu();

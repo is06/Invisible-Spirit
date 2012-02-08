@@ -12,20 +12,22 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-Timer::Timer(f32 end, VoidCallback callback, u32 loopLimit) {
+Timer::Timer(f32 end, VoidCallback callback, u32 loopLimit)
+{
   running = true;
   reinit(end, callback, loopLimit);
 }
 
-void Timer::update() {
-  if(running && currentLoop < currentLoopLimit) {
+void Timer::update()
+{
+  if (running && currentLoop < currentLoopLimit) {
     currentTime += (1.0f / Game::getFramerate());
-    if(currentTime >= endTime) {
+    if (currentTime >= endTime) {
       bool called = true;
       // Appel du callback
       endCall();
-      if(called) {
-        if(currentLoopLimit > 0) {
+      if (called) {
+        if (currentLoopLimit > 0) {
           currentLoop++;
           currentTime = 0.0f;
         } else {
@@ -36,19 +38,23 @@ void Timer::update() {
   }
 }
 
-void Timer::start() {
+void Timer::start()
+{
   running = true;
 }
 
-void Timer::stop() {
+void Timer::stop()
+{
   running = false;
 }
 
-void Timer::reset() {
+void Timer::reset()
+{
   currentTime = 0.0f;
 }
 
-void Timer::reinit(f32 end, VoidCallback callback, u32 loopLimit) {
+void Timer::reinit(f32 end, VoidCallback callback, u32 loopLimit)
+{
   endCall = callback;
   currentTime = 0.0f;
   endTime = end;
@@ -57,14 +63,17 @@ void Timer::reinit(f32 end, VoidCallback callback, u32 loopLimit) {
   start();
 }
 
-void Timer::setTime(f32 val) {
+void Timer::setTime(f32 val)
+{
   currentTime = val;
 }
 
-f32 Timer::getTime() {
+f32 Timer::getTime()
+{
   return currentTime;
 }
 
-Timer::~Timer() {
+Timer::~Timer()
+{
 
 }

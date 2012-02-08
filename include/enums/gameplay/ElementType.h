@@ -8,7 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ELEMENT_TYPE_H__
 #define __IS06_ELEMENT_TYPE_H__
 
-enum ElementType {
+enum ElementType
+{
   ELMTYPE_MAGIC_FIRE,
   ELMTYPE_MAGIC_ICE,
   ELMTYPE_MAGIC_EARTH,

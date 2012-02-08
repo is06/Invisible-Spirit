@@ -13,7 +13,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-class TextFont {
+class TextFont
+{
   public:
     TextFont(FontStyle style);
     ~TextFont();

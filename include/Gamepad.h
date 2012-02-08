@@ -17,7 +17,8 @@ using namespace std;
 typedef map<u16, bool> GamepadButtonMap;
 typedef map<GamepadDirection, bool> GamepadDirectionMap;
 
-class Gamepad {
+class Gamepad
+{
   public:
     Gamepad();
 

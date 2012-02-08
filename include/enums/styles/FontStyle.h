@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 /**
  *
  */
-enum FontStyle {
+enum FontStyle
+{
   // Classic style
   FONT_STD_CLASSIC_REGULAR,
   FONT_COND_CLASSIC_REGULAR,

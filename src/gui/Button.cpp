@@ -9,26 +9,33 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/Button.h"
 #include "../../include/gui/Picture.h"
 
-Button::Button(f32 x, f32 y) : Hud() {
+Button::Button(f32 x, f32 y) : Hud()
+{
   buttonCircle = new Picture(x, y, 40, 40, "resource/hud/button/buttonCircle.png");
 }
 
-void Button::render() { Hud::render();
+void Button::render()
+{
+  Hud::render();
   buttonCircle->render();
 }
 
-void Button::hide() {
+void Button::hide()
+{
   buttonCircle->hide();
 }
 
-void Button::show() {
+void Button::show()
+{
   buttonCircle->show();
 }
 
-void Button::setOpacity(u8 value) {
+void Button::setOpacity(u8 value)
+{
   buttonCircle->setOpacity(value);
 }
 
-Button::~Button() {
+Button::~Button()
+{
   delete buttonCircle;
 }

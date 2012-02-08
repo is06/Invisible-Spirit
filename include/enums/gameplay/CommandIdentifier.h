@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 /**
  * Liste des commandes associables à un bouton d'interface joueur
  */
-enum CommandIdentifier {
+enum CommandIdentifier
+{
   CMD_FIRE,
   CMD_FIRE2,
   CMD_FIRE3,

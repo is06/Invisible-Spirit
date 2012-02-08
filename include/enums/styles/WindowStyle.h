@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 /**
  *
  */
-enum WindowStyle {
+enum WindowStyle
+{
   WIN_STYLE_STD,
   WIN_STYLE_NONE,
 };

@@ -14,13 +14,15 @@ using namespace irr;
 /**
  * Constructeur
  */
-Character::Character() : AnimatedModel() {
+Character::Character() : AnimatedModel()
+{
 
 }
 
 /**
  * Fonction de mise à jour et de rendu de tous les personnages
  */
-void Character::render() { AnimatedModel::render();
-
+void Character::render()
+{
+  AnimatedModel::render();
 }

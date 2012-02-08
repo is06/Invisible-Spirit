@@ -14,42 +14,49 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace std;
 
-ButtonsInterface::ButtonsInterface() : Hud() {
+ButtonsInterface::ButtonsInterface() : Hud()
+{
   menu = new TextButton(Game::screenPos.left + 70, Game::screenPos.bottom + 110);
   defense = new IconButton(Game::screenPos.left + 30, Game::screenPos.bottom + 70);
   jump = new IconButton(Game::screenPos.left + 110, Game::screenPos.bottom + 70);
   command = new IconTextButton(Game::screenPos.left + 70, Game::screenPos.bottom + 30);
 }
 
-void ButtonsInterface::render() { Hud::render();
+void ButtonsInterface::render()
+{
+  Hud::render();
   menu->render();
   defense->render();
   jump->render();
   command->render();
 }
 
-void ButtonsInterface::hide() {
+void ButtonsInterface::hide()
+{
   menu->hide();
   defense->hide();
   jump->hide();
   command->hide();
 }
 
-void ButtonsInterface::show() {
+void ButtonsInterface::show()
+{
   menu->show();
   defense->show();
   jump->show();
   command->show();
 }
 
-void ButtonsInterface::setOpacity(u8 value) {
+void ButtonsInterface::setOpacity(u8 value)
+{
   menu->setOpacity(value);
   defense->setOpacity(value);
   jump->setOpacity(value);
   command->setOpacity(value);
 }
 
-ButtonsInterface::~ButtonsInterface() {
+ButtonsInterface::~ButtonsInterface()
+{
   delete menu;
   delete defense;
   delete jump;

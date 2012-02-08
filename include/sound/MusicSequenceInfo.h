@@ -10,7 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-struct MusicSequenceInfo {
+struct MusicSequenceInfo
+{
   u8 number;
   bool looped;
   u32 loopStart;

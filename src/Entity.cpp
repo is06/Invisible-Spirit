@@ -11,13 +11,15 @@ http://www.is06.com. Legal code in license.txt
 /**
  * Constructor of all entities
  */
-Entity::Entity() {
+Entity::Entity()
+{
 
 }
 
 /**
  * Rendering method for all entities
  */
-void Entity::render() {
+void Entity::render()
+{
 
 }

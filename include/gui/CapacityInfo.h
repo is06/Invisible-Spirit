@@ -13,7 +13,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-class CapacityInfo : public Hud {
+class CapacityInfo : public Hud
+{
   public:
     CapacityInfo();
     ~CapacityInfo();

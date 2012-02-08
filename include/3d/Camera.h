@@ -13,7 +13,8 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-class Camera : public Entity {
+class Camera : public Entity
+{
   public:
     Camera();
 

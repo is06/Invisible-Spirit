@@ -15,7 +15,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-GameplayMenu::GameplayMenu(Translation* trans) {
+GameplayMenu::GameplayMenu(Translation* trans)
+{
   globalTranslations = trans;
 
   isVisible = false;
@@ -30,26 +31,30 @@ GameplayMenu::GameplayMenu(Translation* trans) {
   stateInfo = new PlayerState();
 }
 
-void GameplayMenu::render() {
-  if(isVisible) {
+void GameplayMenu::render()
+{
+  if (isVisible) {
     sectionMenu->render();
     stateInfo->render();
   }
 }
 
-void GameplayMenu::toggle() {
-  if(isVisible) {
+void GameplayMenu::toggle()
+{
+  if (isVisible) {
     isVisible = false;
   } else {
     isVisible = true;
   }
 }
 
-Menu* GameplayMenu::getSectionMenu() {
+Menu* GameplayMenu::getSectionMenu()
+{
   return sectionMenu;
 }
 
-GameplayMenu::~GameplayMenu() {
+GameplayMenu::~GameplayMenu()
+{
   delete sectionMenu;
   delete stateInfo;
 }

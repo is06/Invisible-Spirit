@@ -14,27 +14,31 @@ using namespace irr;
 /**
  * Initialise le mesh Bullet qui permet de créer la forme complexe
  */
-LevelMesh::LevelMesh() : StaticModel() {
+LevelMesh::LevelMesh() : StaticModel()
+{
 
 }
 
 /**
  * Fonction de mise à jour et de rendu de tous les levelMesh créés
  */
-void LevelMesh::render() { StaticModel::render();
-
+void LevelMesh::render()
+{
+  StaticModel::render();
 }
 
 /**
  * Chargement du masque de collision du mesh Irrlicht dans le mesh Bullet
  */
-void LevelMesh::loadCollisionMask() {
+void LevelMesh::loadCollisionMask()
+{
 
 }
 
 /**
  * Détruit les objets définis par le constructeur
  */
-LevelMesh::~LevelMesh() {
+LevelMesh::~LevelMesh()
+{
 
 }

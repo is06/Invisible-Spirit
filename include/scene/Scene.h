@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-class Scene {
+class Scene
+{
   public:
     Scene();
     virtual ~Scene();
@@ -32,7 +33,7 @@ class Scene {
     MusicReference* music;
     Translation* globalTranslations;
     Translation* sceneTranslations;
-    
+
     f32 timeElapsed;
     f32 speedFactor;
 

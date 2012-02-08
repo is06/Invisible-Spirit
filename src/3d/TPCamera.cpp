@@ -14,7 +14,8 @@ using namespace std;
 /**
  * Sets the third-person camera and defines its default properties
  */
-TPCamera::TPCamera() : Camera() {
+TPCamera::TPCamera() : Camera()
+{
   UAxis = (3 * core::PI) / 2;
   height = 1.8f;
   distance = 4.0f;
@@ -24,7 +25,8 @@ TPCamera::TPCamera() : Camera() {
  * Links a Character entity to the camera
  * @param Character* pointer to a character
  */
-void TPCamera::linkEntity(Character* entity) {
+void TPCamera::linkEntity(Character* entity)
+{
   linkedEntity = entity;
 }
 
@@ -32,7 +34,10 @@ void TPCamera::linkEntity(Character* entity) {
  * Camera update and render method
  * This method sets the camera position relative to the character and player moves
  */
-void TPCamera::render() { Camera::render();
+void TPCamera::render()
+{
+  Camera::render();
+
   f32 x = linkedEntity->getNode()->getPosition().X + distance * cos(UAxis);
   f32 z = linkedEntity->getNode()->getPosition().Z + distance * sin(UAxis);
 
@@ -51,9 +56,10 @@ void TPCamera::render() { Camera::render();
 /**
  *
  */
-void TPCamera::goLeft(f32 speed) {
+void TPCamera::goLeft(f32 speed)
+{
   UAxis -= (speed / 60.0f);
-  if(UAxis < 0) {
+  if (UAxis < 0) {
     UAxis = 2 * core::PI;
   }
 }
@@ -61,9 +67,10 @@ void TPCamera::goLeft(f32 speed) {
 /**
  *
  */
-void TPCamera::goRight(f32 speed) {
+void TPCamera::goRight(f32 speed)
+{
   UAxis += (speed / 60.0f);
-  if(UAxis > (2 * core::PI)) {
+  if (UAxis > (2 * core::PI)) {
     UAxis = 0;
   }
 }
@@ -71,14 +78,15 @@ void TPCamera::goRight(f32 speed) {
 /**
  *
  */
-void TPCamera::goFar(f32 speed) {
-  if(height < 3.3) {
+void TPCamera::goFar(f32 speed)
+{
+  if (height < 3.3) {
     height += (speed / 50.0f);
   }
-  if(height > 3.3) {
+  if (height > 3.3) {
     height = 3.3;
   }
-  if(distance < 5.5) {
+  if (distance < 5.5) {
     distance += (speed / 50.0f);
   } else {
     distance = 5.5;
@@ -88,14 +96,15 @@ void TPCamera::goFar(f32 speed) {
 /**
  *
  */
-void TPCamera::goNear(f32 speed) {
-  if(height > 0.3) {
+void TPCamera::goNear(f32 speed)
+{
+  if (height > 0.3) {
     height -= (speed / 50.0f);
   }
-  if(height < 0.3) {
+  if (height < 0.3) {
     height = 0.3;
   }
-  if(distance > 2.5) {
+  if (distance > 2.5) {
     distance -= (speed / 50.0f);
   } else {
     distance = 2.5;
@@ -105,6 +114,7 @@ void TPCamera::goNear(f32 speed) {
 /**
  *
  */
-f32 TPCamera::getDistance() {
+f32 TPCamera::getDistance()
+{
   return distance;
 }

@@ -12,7 +12,8 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-class BoxSensor : public Sensor {
+class BoxSensor : public Sensor
+{
   public:
     BoxSensor(const core::aabbox3df& initBox);
     void render();

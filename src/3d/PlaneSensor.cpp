@@ -12,21 +12,24 @@ using namespace irr;
 /**
  *
  */
-PlaneSensor::PlaneSensor(const core::plane3df& initPlane) : Sensor() {
+PlaneSensor::PlaneSensor(const core::plane3df& initPlane) : Sensor()
+{
   plane = initPlane;
 }
 
 /**
  *
  */
-void PlaneSensor::render() { Sensor::render();
-
+void PlaneSensor::render()
+{
+  Sensor::render();
 }
 
 /**
  *
  */
-const core::plane3df& PlaneSensor::getPlane() const {
+const core::plane3df& PlaneSensor::getPlane() const
+{
   return plane;
 }
 

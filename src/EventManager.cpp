@@ -14,8 +14,9 @@ using namespace irr;
 /**
  * Initializes arrays for key listening
  */
-EventManager::EventManager() : IEventReceiver() {
-  for(u32 i = 0; i < KEY_KEY_CODES_COUNT; i++) {
+EventManager::EventManager() : IEventReceiver()
+{
+  for (u32 i = 0; i < KEY_KEY_CODES_COUNT; i++) {
     keyDown[i] = false;
     keyOnce[i] = false;
   }
@@ -29,53 +30,55 @@ EventManager::EventManager() : IEventReceiver() {
  * @param SEvent& event event object
  * @return bool true if an event occurs
  */
-bool EventManager::OnEvent(const SEvent& event) {
-  if(event.EventType == EET_KEY_INPUT_EVENT) {
-
+bool EventManager::OnEvent(const SEvent& event)
+{
+  if (event.EventType == EET_KEY_INPUT_EVENT) {
     anyDown = keyDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
-
-  } else if(event.EventType == EET_MOUSE_INPUT_EVENT) {
-
+  } else if (event.EventType == EET_MOUSE_INPUT_EVENT) {
     mouseLeftDown = event.MouseInput.isLeftPressed();
     mouseRightDown = event.MouseInput.isRightPressed();
     mousePosition = core::position2di(event.MouseInput.X, event.MouseInput.Y);
-
-  } else if(event.EventType == EET_GUI_EVENT) {
-
+  } else if (event.EventType == EET_GUI_EVENT) {
     guiEvent = event.GUIEvent;
-
-  } else if(event.EventType == EET_JOYSTICK_INPUT_EVENT) {
-
+  } else if (event.EventType == EET_JOYSTICK_INPUT_EVENT) {
     // Axes
     f32 lXAxis = (event.JoystickEvent.Axis[SEvent::SJoystickEvent::AXIS_X] + 100) / 32768.0f;
     f32 lYAxis = ((event.JoystickEvent.Axis[SEvent::SJoystickEvent::AXIS_Y] + 100) / 32768.0f) * -1;
     f32 rXAxis = (event.JoystickEvent.Axis[SEvent::SJoystickEvent::AXIS_U] + 100) / 32768.0f;
     f32 rYAxis = ((event.JoystickEvent.Axis[SEvent::SJoystickEvent::AXIS_R] + 100) / 32768.0f) * -1;
 
-    // Gachettes analogiques
+    // @todo: Analog triggers
     //f32 gAxis = event.JoystickEvent.Axis[SEvent::SJoystickEvent::AXIS_Z];
 
-    // Croix multidirectionnelle
+    // D-pad
     povValue = event.JoystickEvent.POV;
 
-    // Boutons
+    // Buttons
     buttonStates = event.JoystickEvent.ButtonStates;
 
-    // Calcul de l'angle
-    if(lXAxis != 0) {
-      if(lXAxis < 0) leftJoystickAngle = core::radToDeg(core::PI + atan(lYAxis/lXAxis));
-      else {
-        if(lYAxis < 0) leftJoystickAngle = core::radToDeg(2*core::PI + atan(lYAxis/lXAxis));
-        else leftJoystickAngle = core::radToDeg(atan(lYAxis/lXAxis));
+    // Angle calculation
+    if (lXAxis != 0) {
+      if (lXAxis < 0) {
+        leftJoystickAngle = core::radToDeg(core::PI + atan(lYAxis/lXAxis));
+      } else {
+        if (lYAxis < 0) {
+          leftJoystickAngle = core::radToDeg(2*core::PI + atan(lYAxis/lXAxis));
+        } else {
+          leftJoystickAngle = core::radToDeg(atan(lYAxis/lXAxis));
+        }
       }
     } else {
       leftJoystickAngle = 0;
     }
-    if(rXAxis != 0) {
-      if(rXAxis < 0) rightJoystickAngle = core::radToDeg(core::PI + atan(rYAxis/rXAxis));
-      else {
-        if(rYAxis < 0) rightJoystickAngle = core::radToDeg(2*core::PI + atan(rYAxis/rXAxis));
-        else rightJoystickAngle = core::radToDeg(atan(rYAxis/rXAxis));
+    if (rXAxis != 0) {
+      if (rXAxis < 0) {
+        rightJoystickAngle = core::radToDeg(core::PI + atan(rYAxis/rXAxis));
+      } else {
+        if (rYAxis < 0) {
+          rightJoystickAngle = core::radToDeg(2*core::PI + atan(rYAxis/rXAxis));
+        } else {
+          rightJoystickAngle = core::radToDeg(atan(rYAxis/rXAxis));
+        }
       }
     } else {
       rightJoystickAngle = 0;
@@ -86,44 +89,56 @@ bool EventManager::OnEvent(const SEvent& event) {
     rightJoystickXAxis = rXAxis * 127;
     rightJoystickYAxis = rYAxis * 127;
 
-    if(leftJoystickXAxis > 127) leftJoystickXAxis = 127;
-    if(leftJoystickXAxis < -127) leftJoystickXAxis = -127;
-    if(leftJoystickYAxis > 127) leftJoystickYAxis = 127;
-    if(leftJoystickYAxis < -127) leftJoystickYAxis = -127;
-    if(rightJoystickXAxis > 127) rightJoystickXAxis = 127;
-    if(rightJoystickXAxis < -127) rightJoystickXAxis = -127;
-    if(rightJoystickYAxis > 127) rightJoystickYAxis = 127;
-    if(rightJoystickYAxis < -127) rightJoystickYAxis = -127;
+    if (leftJoystickXAxis > 127) leftJoystickXAxis = 127;
+    if (leftJoystickXAxis < -127) leftJoystickXAxis = -127;
+    if (leftJoystickYAxis > 127) leftJoystickYAxis = 127;
+    if (leftJoystickYAxis < -127) leftJoystickYAxis = -127;
+    if (rightJoystickXAxis > 127) rightJoystickXAxis = 127;
+    if (rightJoystickXAxis < -127) rightJoystickXAxis = -127;
+    if (rightJoystickYAxis > 127) rightJoystickYAxis = 127;
+    if (rightJoystickYAxis < -127) rightJoystickYAxis = -127;
 
     // Calcul de la force d'inclinaison
-    if(fabs(lXAxis) > 0.05f) {
-      if(lXAxis > 0) lXAxis = (lXAxis * 255);
-      else lXAxis = (fabs(lXAxis) * 255);
+    if (fabs(lXAxis) > 0.05f) {
+      if (lXAxis > 0) {
+        lXAxis = (lXAxis * 255);
+      } else {
+        lXAxis = (fabs(lXAxis) * 255);
+      }
     } else {
       lXAxis = 0;
     }
-    if(fabs(lYAxis) > 0.05f) {
-      if(lYAxis > 0) lYAxis = (lYAxis * 255);
-      else lYAxis = (fabs(lYAxis) * 255);
+    if (fabs(lYAxis) > 0.05f) {
+      if (lYAxis > 0) {
+        lYAxis = (lYAxis * 255);
+      } else {
+        lYAxis = (fabs(lYAxis) * 255);
+      }
     } else {
       lYAxis = 0;
     }
-    if(fabs(rXAxis) > 0.05f) {
-      if(rXAxis > 0) rXAxis = (rXAxis * 255);
-      else rXAxis = (fabs(rXAxis) * 255);
+    if (fabs(rXAxis) > 0.05f) {
+      if (rXAxis > 0) {
+        rXAxis = (rXAxis * 255);
+      } else {
+        rXAxis = (fabs(rXAxis) * 255);
+      }
     } else {
       rXAxis = 0;
     }
     if(fabs(rYAxis) > 0.05f) {
-      if(rYAxis > 0) rYAxis = (rYAxis * 255);
-      else rYAxis = (fabs(rYAxis) * 255);
+      if (rYAxis > 0) {
+        rYAxis = (rYAxis * 255);
+      } else {
+        rYAxis = (fabs(rYAxis) * 255);
+      }
     } else {
       rYAxis = 0;
     }
-    if(lXAxis > 255) lXAxis = 255;
-    if(lYAxis > 255) lYAxis = 255;
-    if(rXAxis > 255) rXAxis = 255;
-    if(rYAxis > 255) rYAxis = 255;
+    if (lXAxis > 255) lXAxis = 255;
+    if (lYAxis > 255) lYAxis = 255;
+    if (rXAxis > 255) rXAxis = 255;
+    if (rYAxis > 255) rYAxis = 255;
     leftJoystickForce = core::max_(core::round_(lXAxis), core::round_(lYAxis));
     rightJoystickForce = core::max_(core::round_(rXAxis), core::round_(rYAxis));
   }
@@ -135,7 +150,8 @@ bool EventManager::OnEvent(const SEvent& event) {
  * @param EKEY_CODE code the key code to test
  * @return bool true if key is pressed
  */
-bool EventManager::isKeyDown(EKEY_CODE code) {
+bool EventManager::isKeyDown(EKEY_CODE code)
+{
   return keyDown[code];
 }
 
@@ -144,14 +160,15 @@ bool EventManager::isKeyDown(EKEY_CODE code) {
  * @param EKEY_CODE code the key code to test
  * @return bool true if key just has been pressed
  */
-bool EventManager::isKeyDownOnce(EKEY_CODE code) {
-  if(!keyOnce[code]) {
-    if(isKeyDown(code)) {
+bool EventManager::isKeyDownOnce(EKEY_CODE code)
+{
+  if (!keyOnce[code]) {
+    if (isKeyDown(code)) {
       keyOnce[code] = true;
       return true;
     }
   } else {
-    if(!isKeyDown(code)) {
+    if (!isKeyDown(code)) {
       keyOnce[code] = false;
     }
   }
@@ -162,7 +179,8 @@ bool EventManager::isKeyDownOnce(EKEY_CODE code) {
  * Tests if any key is pressed
  * @return bool true if any key is pressed
  */
-bool EventManager::anyKeyDown() {
+bool EventManager::anyKeyDown()
+{
   return anyDown;
 }
 
@@ -170,14 +188,15 @@ bool EventManager::anyKeyDown() {
  * Tests if any key is pressed but only one time until key is released
  * @return bool true if any key just has been pressed
  */
-bool EventManager::anyKeyDownOnce() {
-  if(!anyOnce) {
-    if(anyKeyDown()) {
+bool EventManager::anyKeyDownOnce()
+{
+  if (!anyOnce) {
+    if (anyKeyDown()) {
       anyOnce = true;
       return true;
     }
   } else {
-    if(!anyKeyDown()) {
+    if (!anyKeyDown()) {
       anyOnce = false;
     }
   }
@@ -188,91 +207,103 @@ bool EventManager::anyKeyDownOnce() {
  * Returns the SGUIEvent object of the manager
  * @return SGUIEvent&
  */
-const SEvent::SGUIEvent& EventManager::getGUIEvent() {
+const SEvent::SGUIEvent& EventManager::getGUIEvent()
+{
   return guiEvent;
 }
 
 /**
- * @TODO
+ * @todo
  */
-u8 EventManager::getLeftJoystickForce() {
+u8 EventManager::getLeftJoystickForce()
+{
   return leftJoystickForce;
 }
 
 /**
- * @TODO
+ * @todo
  */
-f32 EventManager::getLeftJoystickAngle() {
+f32 EventManager::getLeftJoystickAngle()
+{
   return leftJoystickAngle;
 }
 
 /**
- * @TODO
+ * @todo
  */
-s8 EventManager::getLeftJoystickXAxis() {
+s8 EventManager::getLeftJoystickXAxis()
+{
   return (s8)leftJoystickXAxis;
 }
 
 /**
- * @TODO
+ * @todo
  */
-s8 EventManager::getLeftJoystickYAxis() {
+s8 EventManager::getLeftJoystickYAxis()
+{
   return (s8)leftJoystickYAxis;
 }
 
 /**
- * @TODO
+ * @todo
  */
-u8 EventManager::getRightJoystickForce() {
+u8 EventManager::getRightJoystickForce()
+{
   return rightJoystickForce;
 }
 
 /**
- * @TODO
+ * @todo
  */
-f32 EventManager::getRightJoystickAngle() {
+f32 EventManager::getRightJoystickAngle()
+{
   return rightJoystickAngle;
 }
 
 /**
- * @TODO
+ * @todo
  */
-s8 EventManager::getRightJoystickXAxis() {
+s8 EventManager::getRightJoystickXAxis()
+{
   return (s8)rightJoystickXAxis;
 }
 
 /**
- * @TODO
+ * @todo
  */
-s8 EventManager::getRightJoystickYAxis() {
+s8 EventManager::getRightJoystickYAxis()
+{
   return (s8)rightJoystickYAxis;
 }
 
 /**
- * @TODO
+ * @todo
  */
-u16 EventManager::getPressedButtons() {
+u16 EventManager::getPressedButtons()
+{
   return buttonStates;
 }
 
 /**
- * @TODO
+ * @todo
  */
-u32 EventManager::getPovValue() {
+u32 EventManager::getPovValue()
+{
   return povValue;
 }
 
 /**
- * @TODO
+ * @todo
  */
-bool EventManager::click() {
-  if(!mouseLeftOnce) {
-    if(mouseLeftDown) {
+bool EventManager::click()
+{
+  if (!mouseLeftOnce) {
+    if (mouseLeftDown) {
       mouseLeftOnce = true;
       return true;
     }
   } else {
-    if(!mouseLeftDown) {
+    if (!mouseLeftDown) {
       mouseLeftOnce = false;
     }
   }
@@ -280,8 +311,9 @@ bool EventManager::click() {
 }
 
 /**
- * @TODO
+ * @todo
  */
-const core::position2di& EventManager::getMousePosition() const {
+const core::position2di& EventManager::getMousePosition() const
+{
   return mousePosition;
 }

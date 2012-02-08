@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-void _draw_line(const core::vector3df& origin, const core::vector3df& end) {
+void _draw_line(const core::vector3df& origin, const core::vector3df& end)
+{
   video::SMaterial m;
   m.Lighting = false;
   m.BackfaceCulling = false;
@@ -24,7 +25,8 @@ void _draw_line(const core::vector3df& origin, const core::vector3df& end) {
 /**
  * Affiche une matrice Irrlicht dans la console
  */
-void _matrix_print(const core::matrix4& mat, const core::stringc& name) {
+void _matrix_print(const core::matrix4& mat, const core::stringc& name)
+{
   cout << "matrix (";
   cout << name.c_str();
   cout << ") {" << endl;
@@ -50,7 +52,8 @@ void _matrix_print(const core::matrix4& mat, const core::stringc& name) {
 /**
  * Affiche une matrice tableau dans la console
  */
-void _matrix_print(const f32* mat, const core::stringc& name) {
+void _matrix_print(const f32* mat, const core::stringc& name)
+{
   cout << "matrix (";
   cout << name.c_str();
   cout << ") [" << endl;
@@ -76,7 +79,8 @@ void _matrix_print(const f32* mat, const core::stringc& name) {
 /**
  * Affiche un vecteur3D Irrlicht dans la console
  */
-void _vector_print(const core::vector3df& vec, const core::stringc& name) {
+void _vector_print(const core::vector3df& vec, const core::stringc& name)
+{
   cout << "vector (";
   cout << name.c_str();
   cout << ") { ";
@@ -86,7 +90,8 @@ void _vector_print(const core::vector3df& vec, const core::stringc& name) {
 /**
  * Affiche un vecteur3D tableau dans la console
  */
-void _vector_print(const f32* vec, const core::stringc& name) {
+void _vector_print(const f32* vec, const core::stringc& name)
+{
   cout << "vector (";
   cout << name.c_str();
   cout << ") [ ";
@@ -96,9 +101,10 @@ void _vector_print(const f32* vec, const core::stringc& name) {
 /**
  *
  */
-void _vector_array_print(const f32* vecArray, u32 size, const core::stringc& name) {
+void _vector_array_print(const f32* vecArray, u32 size, const core::stringc& name)
+{
   cout << "vertex array [" << endl;
-  for(u32 i = 0; i < size; i+=3) {
+  for (u32 i = 0; i < size; i+=3) {
     cout << "  vertex { " << vecArray[i] << " ; " << vecArray[i+1] << " ; " << vecArray[i+2] << " }" << endl;
   }
   cout << "]" << endl;
@@ -107,14 +113,16 @@ void _vector_array_print(const f32* vecArray, u32 size, const core::stringc& nam
 /**
  * Affiche un quaternion Irrlicht dans la console
  */
-void _quaternion_print(const core::quaternion& q, const core::stringc& name) {
+void _quaternion_print(const core::quaternion& q, const core::stringc& name)
+{
   cout << "quaternion (";
   cout << name.c_str();
   cout << ") { ";
   cout << q.X << " ; " << q.Y << " ; " << q.Z << " ; " << q.W << " }" << endl;
 }
 
-void _position_print(const scene::ISceneNode* node, const core::stringc& name) {
+void _position_print(const scene::ISceneNode* node, const core::stringc& name)
+{
   cout << "position (";
   cout << name.c_str();
   cout << ") { ";
@@ -123,7 +131,8 @@ void _position_print(const scene::ISceneNode* node, const core::stringc& name) {
   cout << node->getPosition().Z << " }" << endl;
 }
 
-void _rotation_print(const scene::ISceneNode* node, const core::stringc& name) {
+void _rotation_print(const scene::ISceneNode* node, const core::stringc& name)
+{
   cout << "rotation (";
   cout << name.c_str();
   cout << ") { ";
@@ -132,7 +141,8 @@ void _rotation_print(const scene::ISceneNode* node, const core::stringc& name) {
   cout << node->getRotation().Z << " }" << endl;
 }
 
-void _scale_print(const scene::ISceneNode* node, const core::stringc& name) {
+void _scale_print(const scene::ISceneNode* node, const core::stringc& name)
+{
   cout << "scale (";
   cout << name.c_str();
   cout << ") { ";

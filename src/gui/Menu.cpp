@@ -13,7 +13,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-Menu::Menu(f32 x, f32 y, f32 width, u8 height, MenuStyle style) : Hud() {
+Menu::Menu(f32 x, f32 y, f32 width, u8 height, MenuStyle style) : Hud()
+{
   lastInsertedIndex = 0;
   currentOption = 0;
   defaultOption = 0;
@@ -29,61 +30,69 @@ Menu::Menu(f32 x, f32 y, f32 width, u8 height, MenuStyle style) : Hud() {
   cursor = new Picture(x - 16, y, 32, 32, "resource/hud/menus/cursor.png");
 }
 
-void Menu::render() { Hud::render();
-  for(optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
+void Menu::render()
+{
+  Hud::render();
+  for (optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
     optionsIt->second->render();
   }
   cursor->render();
 }
 
-void Menu::addOption(MenuIcon icon, const core::stringw& title) {
+void Menu::addOption(MenuIcon icon, const core::stringw& title)
+{
   f32 posY = pos.Y + (lastInsertedIndex * -1 * 32);
   options.insert(make_pair(lastInsertedIndex, new MenuOption(icon, title, pos.X, posY, currentStyle)));
   lastInsertedIndex++;
 }
 
-void Menu::nextOption() {
-  if(loopMode) {
-    if(currentOption > options.size()) {
+void Menu::nextOption()
+{
+  if (loopMode) {
+    if (currentOption > options.size()) {
       currentOption = 0;
       currentOption++;
       cursor->subY(32);
     }
   } else {
-    if(currentOption < options.size() - 1) {
+    if (currentOption < options.size() - 1) {
       currentOption++;
       cursor->subY(32);
     }
   }
 }
 
-void Menu::prevOption() {
-  if(loopMode) {
-    if(currentOption <= 0) {
+void Menu::prevOption()
+{
+  if (loopMode) {
+    if (currentOption <= 0) {
       currentOption = options.size();
       currentOption--;
       cursor->addY(32);
     }
   } else {
-    if(currentOption > 0) {
+    if (currentOption > 0) {
       currentOption--;
       cursor->addY(32);
     }
   }
 }
 
-void Menu::firstOption() {
+void Menu::firstOption()
+{
   currentOption = 0;
 }
 
-void Menu::lastOption() {
+void Menu::lastOption()
+{
   currentOption = options.size() - 1;
 }
 
 /**
- * TODO
+ * @todo
  */
-void Menu::removeOption(u16 index) {
+void Menu::removeOption(u16 index)
+{
   /*
   options.erase(index);
   lastInsertedIndex = 0;
@@ -95,16 +104,19 @@ void Menu::removeOption(u16 index) {
 }
 
 /**
- * TODO
+ * @todo
  */
-MenuOption* Menu::getOption(u16 index) {
+MenuOption* Menu::getOption(u16 index)
+{
   return options[index];
 }
 
-u16 Menu::getCurrentOption() {
+u16 Menu::getCurrentOption()
+{
   return currentOption;
 }
 
-Menu::~Menu() {
+Menu::~Menu()
+{
   delete cursor;
 }

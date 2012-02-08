@@ -15,7 +15,8 @@ using namespace std;
 /**
  * Constructeur de la caméra, ajoute le noeud au gestionnaire de scène et associe rotation et target
  */
-Camera::Camera() {
+Camera::Camera()
+{
   controlable = true;
   irrCam = Game::getSceneManager()->addCameraSceneNode(0, core::vector3df(0, 0, 0));
   irrCam->bindTargetAndRotation(true);
@@ -25,7 +26,8 @@ Camera::Camera() {
 /**
  * Fonction de mise à jour de tous les objets Camera
  */
-void Camera::render() {
+void Camera::render()
+{
 
 }
 
@@ -33,23 +35,27 @@ void Camera::render() {
  * Retourne le node Irrlicht associé à la caméra
  * @return ISceneNode* le noeud associé à la caméra
  */
-scene::ICameraSceneNode* Camera::getNode() {
+scene::ICameraSceneNode* Camera::getNode()
+{
   return irrCam;
 }
 
-const core::vector3df& Camera::getLastPosition() const {
+const core::vector3df& Camera::getLastPosition() const
+{
   return lastPosition;
 }
 
-void Camera::toggleControl() {
-  if(controlable) {
+void Camera::toggleControl()
+{
+  if (controlable) {
     controlable = false;
   } else {
     controlable = true;
   }
 }
 
-void Camera::setControl(bool val) {
+void Camera::setControl(bool val)
+{
   controlable = val;
 }
 
@@ -57,6 +63,7 @@ void Camera::setControl(bool val) {
  * Permet de savoir si le joueur a le contrôle sur la caméra
  * @return bool vaut vrai si le joueur a le contrôle
  */
-bool Camera::hasControl() {
+bool Camera::hasControl()
+{
   return controlable;
 }

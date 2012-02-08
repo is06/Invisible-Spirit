@@ -7,10 +7,12 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../include/Sensor.h"
 
-Sensor::Sensor() : Entity() {
+Sensor::Sensor() : Entity()
+{
 
 }
 
-void Sensor::render() { Entity::render();
-
+void Sensor::render()
+{
+  Entity::render();
 }

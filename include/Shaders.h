@@ -8,7 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SHADERS_H__
 #define __IS06_SHADERS_H__
 
-struct Shaders {
+struct Shaders
+{
   s32 opacity;
   s32 glow;
 };

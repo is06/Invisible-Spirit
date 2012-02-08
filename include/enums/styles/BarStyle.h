@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 /**
  *
  */
-enum BarStyle {
+enum BarStyle
+{
   BAR_STYLE_DEFAULT,
   BAR_STYLE_LIFE
 };

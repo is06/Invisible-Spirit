@@ -17,7 +17,8 @@ using namespace irr;
 /**
  *
  */
-Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud() {
+Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud()
+{
   textStr = str;
   currentSize = 24;
   currentSpeed = speed;
@@ -27,7 +28,7 @@ Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style, u8 speed) : 
   updateTiles();
 
   speedTimer = NULL;
-  if(currentSpeed > 0) {
+  if (currentSpeed > 0) {
     speedTimer = new Timer(0.01f, boost::bind(&Text::nextChar, this), str.size());
   }
 }
@@ -35,11 +36,13 @@ Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style, u8 speed) : 
 /**
  *
  */
-void Text::render() { Hud::render();
-  if(currentSpeed > 0) {
+void Text::render()
+{
+  Hud::render();
+  if (currentSpeed > 0) {
     speedTimer->update();
   }
-  for(charIt = charList.begin(); charIt != charList.end(); charIt++) {
+  for (charIt = charList.begin(); charIt != charList.end(); charIt++) {
     charIt->render();
   }
 }
@@ -47,21 +50,25 @@ void Text::render() { Hud::render();
 /**
  *
  */
-void Text::setSize(u8 size) {
+void Text::setSize(u8 size)
+{
   currentSize = size;
   updateTiles();
 }
 
-void Text::setText(const core::stringw& str) {
+void Text::setText(const core::stringw& str)
+{
   textStr = str;
   updateTiles();
 }
 
-void Text::setPosition(const core::position2df& position) {
+void Text::setPosition(const core::position2df& position)
+{
   pos = position;
 }
 
-void Text::nextChar() {
+void Text::nextChar()
+{
   charList[currentDisplayChar].show();
   currentDisplayChar++;
 }
@@ -69,12 +76,13 @@ void Text::nextChar() {
 /**
  *
  */
-void Text::updateTiles() {
+void Text::updateTiles()
+{
   charList.clear();
   currentCharPos = pos;
   const wchar_t* cs = textStr.c_str();
-  for(u16 i = 0; i < textStr.size(); i++) {
-    if(cs[i] == '\n') {
+  for (u16 i = 0; i < textStr.size(); i++) {
+    if (cs[i] == '\n') {
       currentCharPos.X = pos.X;
       currentCharPos.Y -= (currentSize - (currentSize / 8));
     } else {
@@ -86,9 +94,10 @@ void Text::updateTiles() {
 /**
  *
  */
-Text::~Text() {
+Text::~Text()
+{
   delete font;
-  if(speedTimer) {
+  if (speedTimer) {
     delete speedTimer;
   }
 }

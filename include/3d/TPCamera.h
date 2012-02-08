@@ -10,7 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/Camera.h"
 
-class TPCamera : public Camera {
+class TPCamera : public Camera
+{
   public:
     TPCamera();
 

@@ -8,7 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SCREEN_POSITION_H__
 #define __IS06_SCREEN_POSITION_H__
 
-struct ScreenPosition {
+struct ScreenPosition
+{
   f32 top;
   f32 bottom;
   f32 left;

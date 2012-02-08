@@ -12,7 +12,8 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-class LevelMesh : public StaticModel {
+class LevelMesh : public StaticModel
+{
   public:
     LevelMesh();
     ~LevelMesh();

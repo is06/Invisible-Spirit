@@ -53,7 +53,8 @@ f32 Game::speedFactor;
 /**
  * Pseudo-constructeur de Game, cette fonction initialise les objets Irrlicht, Newton et du jeu
  */
-void Game::init() {
+void Game::init()
+{
   // Gestionnaire d'événements et paramètres du fichier ini
   eventManager = new EventManager();
   settings = new Settings();
@@ -78,6 +79,7 @@ void Game::init() {
   );
   device->setWindowCaption(L"Invisible Spirit 0.1");
 
+  /*
   video::IVideoModeList* vml = device->getVideoModeList();
 
   s32 videoModeCount = vml->getVideoModeCount();
@@ -86,11 +88,12 @@ void Game::init() {
 
   cout << "Supported video modes:" << endl;
 
-  for(s32 i = 0; i < videoModeCount; i++) {
+  for (s32 i = 0; i < videoModeCount; i++) {
     vres = vml->getVideoModeResolution(i);
     colorDepth = vml->getVideoModeDepth(i);
     cout << "- " << vres.Width << "x" << vres.Height << "x" << colorDepth << endl;
   }
+  */
 
   // Gestion de la vitesse de rendu
   independantSpeed = (settings->getParamInt("processor", "independant_speed") == 1);
@@ -125,7 +128,8 @@ void Game::init() {
 /**
  * Game main loop
  */
-void Game::run() {
+void Game::run()
+{
   // For independant speed
   u32 lastCycleTime, loopTime = 0;
   // For constant speed
@@ -133,25 +137,25 @@ void Game::run() {
 
   s32 lastFPS = -1;
 
-  while(device->run()) {
-    if(exit) {
+  while (device->run()) {
+    if (exit) {
       break;
     }
 
-    if(sceneChanged) {
+    if (sceneChanged) {
       loadNextScene();
     }
 
     s32 fps = videoDriver->getFPS();
 
-    if(lastFPS != fps) {
+    if (lastFPS != fps) {
       core::stringw str = L"fps: ";
       str += fps;
       device->setWindowCaption(str.c_str());
       lastFPS = fps;
     }
 
-    if(independantSpeed) {
+    if (independantSpeed) {
       // ----------------------------------------------------
       // Speed Independant Loop
 
@@ -173,7 +177,7 @@ void Game::run() {
       soundManager->update();
       videoDriver->endScene();
 
-      if(!processorPriority) {
+      if (!processorPriority) {
         device->yield();
       }
 
@@ -198,8 +202,8 @@ void Game::run() {
 
       timeToSleep = (u32)(((1000.0f / framerate) - renderTime) + after);
 
-      while(device->getTimer()->getRealTime() < timeToSleep) {
-        if(!processorPriority) {
+      while (device->getTimer()->getRealTime() < timeToSleep) {
+        if (!processorPriority) {
           device->yield();
         }
       }
@@ -211,7 +215,8 @@ void Game::run() {
  * Permet d'accéder au device Irrlicht n'importe où dans le programme
  * @return IrrlichtDevice* un pointeur vers l'objet du device en cours
  */
-IrrlichtDevice* Game::getDevice() {
+IrrlichtDevice* Game::getDevice()
+{
   return device;
 }
 
@@ -219,7 +224,8 @@ IrrlichtDevice* Game::getDevice() {
  * Permet d'accéder au driver vidéo Irrlicht
  * @return IVideoDriver* un pointeur vers l'objet videoDriver en cours
  */
-video::IVideoDriver* Game::getVideoDriver() {
+video::IVideoDriver* Game::getVideoDriver()
+{
   return videoDriver;
 }
 
@@ -227,28 +233,32 @@ video::IVideoDriver* Game::getVideoDriver() {
  * Permet d'accéder au gestionnaire de scènes Irrlicht
  * @return ISceneManager* un pointeur vers l'objet sceneManager en cours
  */
-scene::ISceneManager* Game::getSceneManager() {
+scene::ISceneManager* Game::getSceneManager()
+{
   return sceneManager;
 }
 
 /**
- * TODO
+ * @todo
  */
-gui::IGUIEnvironment* Game::getDebugGUI() {
+gui::IGUIEnvironment* Game::getDebugGUI()
+{
   return debugGUI;
 }
 
 /**
- * TODO
+ * @todo
  */
-NewtonWorld* Game::getNewtonWorld() {
+NewtonWorld* Game::getNewtonWorld()
+{
   return newtonWorld;
 }
 
 /**
  *
  */
-Scene* Game::getCurrentScene() {
+Scene* Game::getCurrentScene()
+{
   return currentScene;
 }
 
@@ -256,21 +266,24 @@ Scene* Game::getCurrentScene() {
  * Permet d'accéder au gestionnaire d'événements
  * @return EventManager* un pointeur vers l'objet eventManager en cours
  */
-EventManager* Game::getEventManager() {
+EventManager* Game::getEventManager()
+{
   return eventManager;
 }
 
 /**
  * Permet de quitter le programme
  */
-void Game::quit() {
+void Game::quit()
+{
   exit = true;
 }
 
 /**
  *
  */
-void Game::initScreenPositions(u32 w, u32 h) {
+void Game::initScreenPositions(u32 w, u32 h)
+{
   f32 ratio = (f32)w / (f32)h;
   h = 480;
   w = h * ratio;
@@ -286,10 +299,11 @@ void Game::initScreenPositions(u32 w, u32 h) {
 /**
  *
  */
-void Game::initShaders() {
+void Game::initShaders()
+{
   shaders.opacity = 0;
 
-  if(gpuManager) {
+  if (gpuManager) {
 
     // Shader Opacity
     /*
@@ -313,10 +327,11 @@ void Game::initShaders() {
 /**
  *
  */
-void Game::initLocale() {
+void Game::initLocale()
+{
   core::stringc textLocale = settings->getParamString("regional", "locale");
   currentLocale = LOCALE_FRE_FR;
-  if(textLocale == "eng-GB") {
+  if (textLocale == "eng-GB") {
     currentLocale = LOCALE_ENG_GB;
   }
 
@@ -326,21 +341,24 @@ void Game::initLocale() {
 /**
  *
  */
-f32 Game::getFramerate() {
+f32 Game::getFramerate()
+{
   return framerate;
 }
 
 /**
  *
  */
-f32 Game::getSpeedFactor() {
+f32 Game::getSpeedFactor()
+{
   return speedFactor;
 }
 
 /**
  * Change the current scene by putting
  */
-void Game::changeScene(s32 id) {
+void Game::changeScene(s32 id)
+{
   nextScene = id;
   sceneChanged = true;
 }
@@ -348,9 +366,10 @@ void Game::changeScene(s32 id) {
 /**
  * Loads the scene which is on stack on the next cycle
  */
-void Game::loadNextScene() {
+void Game::loadNextScene()
+{
   delete currentScene;
-  switch(nextScene) {
+  switch (nextScene) {
     case SCENE_MENU: currentScene = new SceneMenu(); break;
 
     case SCENE_MAP_2D_TEST: currentScene = new MAP_2D_TEST(); break;
@@ -364,8 +383,9 @@ void Game::loadNextScene() {
  * Launches an error to error.log file by its code number
  * @param ErrorCode code the code number
  */
-void Game::fatalError(ErrorCode code) {
-  switch(code) {
+void Game::fatalError(ErrorCode code)
+{
+  switch (code) {
     case ERRCODE_45: errorLog("/!\\ FATAL ERROR : 45 : Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor"); break;
     case ERRCODE_46: errorLog("/!\\ FATAL ERROR : 46 : Level Mesh need an Irrlicht node, use createNode method in scene constructor"); break;
     case ERRCODE_47: errorLog("/!\\ FATAL ERROR : 47 : Level Mesh need a Newton body, use loadMeshCollision method in scene constructor"); break;
@@ -377,9 +397,10 @@ void Game::fatalError(ErrorCode code) {
  * Writes an error message in error.log file
  * @param core::stringc& errorText the message to write
  */
-void Game::errorLog(const core::stringc& errorText) {
+void Game::errorLog(const core::stringc& errorText)
+{
   ofstream errorLogFile("error.log", ios::out | ios::app);
-  if(errorLogFile) {
+  if (errorLogFile) {
     errorLogFile << errorText.c_str() << endl;
     errorLogFile.close();
   }
@@ -389,7 +410,8 @@ void Game::errorLog(const core::stringc& errorText) {
  * Get the current locale defined in configuration file
  * @return LocaleIdentifier
  */
-LocaleIdentifier Game::getCurrentLocale() {
+LocaleIdentifier Game::getCurrentLocale()
+{
   return currentLocale;
 }
 
@@ -397,7 +419,8 @@ LocaleIdentifier Game::getCurrentLocale() {
  * Returns a pointer to the global translation interface
  * @return Translation*
  */
-Translation* Game::getGlobalTranslations() {
+Translation* Game::getGlobalTranslations()
+{
   return globalTranslations;
 }
 
@@ -405,7 +428,8 @@ Translation* Game::getGlobalTranslations() {
  * Returns a pointer to the current save slot
  * @return Save*
  */
-Save* Game::getCurrentSave() {
+Save* Game::getCurrentSave()
+{
   return currentSave;
 }
 
@@ -413,21 +437,24 @@ Save* Game::getCurrentSave() {
  * Returns a pointer to the Invisible Spirit Sound Manager
  * @return SoundManager*
  */
-SoundManager* Game::getSoundManager() {
+SoundManager* Game::getSoundManager()
+{
   return soundManager;
 }
 
 /**
  *
  */
-MusicReference* Game::getMusicReference() {
+MusicReference* Game::getMusicReference()
+{
   return musicLibrary;
 }
 
 /**
  * Flush and delete everything, finishes the game
  */
-void Game::finish() {
+void Game::finish()
+{
   delete currentScene;
   delete eventManager;
   delete settings;

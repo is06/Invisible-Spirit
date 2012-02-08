@@ -15,7 +15,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-class Window : public Hud {
+class Window : public Hud
+{
   public:
     Window(f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 100, f32 borderWidth = 4, WindowStyle style = WIN_STYLE_STD);
     ~Window();

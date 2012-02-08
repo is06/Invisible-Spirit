@@ -15,7 +15,8 @@ using namespace std;
 /**
  * Initialise les objets liés à l'entité à savoir le mesh, le node, et l'état de mouvement Bullet
  */
-ModelEntity::ModelEntity() : Entity() {
+ModelEntity::ModelEntity() : Entity()
+{
   mainMesh = NULL;
   mainBody = NULL;
 }
@@ -23,29 +24,34 @@ ModelEntity::ModelEntity() : Entity() {
 /**
  * Fonction de mise à jour et de rendu des entités Modèles 3D
  */
-void ModelEntity::render() { Entity::render();
-
+void ModelEntity::render()
+{
+  Entity::render();
 }
 
 /**
  * Charge un mesh dans l'entité
  * @param stringc& meshFilePath référence vers une chaine désignant le chemin du fichier mesh à charger
  */
-void ModelEntity::loadMesh(const core::stringc& meshFilePath) {
+void ModelEntity::loadMesh(const core::stringc& meshFilePath)
+{
   mainMesh = Game::getSceneManager()->getMesh(meshFilePath);
 }
 
-scene::IMesh* ModelEntity::getMesh() {
+scene::IMesh* ModelEntity::getMesh()
+{
   return mainMesh;
 }
 
-NewtonBody* ModelEntity::getMainBody() {
+NewtonBody* ModelEntity::getMainBody()
+{
   return mainBody;
 }
 
 /**
  * Détruit les objets initialisés dans le constructeur
  */
-ModelEntity::~ModelEntity() {
+ModelEntity::~ModelEntity()
+{
 
 }

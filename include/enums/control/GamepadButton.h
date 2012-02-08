@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 /**
  * Liste des commandes boutons disponibles sur l'interface Gamepad
  */
-enum GamepadButton {
+enum GamepadButton
+{
   GP_BUTTON_A = 1,
   GP_BUTTON_B = 2,
   GP_BUTTON_X = 4,

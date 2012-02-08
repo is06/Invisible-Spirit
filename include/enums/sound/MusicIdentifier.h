@@ -8,7 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MUSIC_IDENTIFIER_H__
 #define __IS06_MUSIC_IDENTIFIER_H__
 
-enum MusicIdentifier {
+enum MusicIdentifier
+{
   MUSIC_MINING,
   MUSIC_TEST
 };

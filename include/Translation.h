@@ -11,10 +11,10 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-class Translation {
+class Translation
+{
   public:
     Translation(const core::stringc& filePath);
-    ~Translation();
 
     const core::stringw& getTranslation(const core::stringc& identifier) const;
 

@@ -6,7 +6,8 @@ using namespace irr;
 
 #include "../../include/Entity.h"
 
-class Light : public Entity {
+class Light : public Entity
+{
   public:
     Light();
     ~Light();

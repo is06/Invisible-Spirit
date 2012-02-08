@@ -10,7 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Entity.h"
 
-class Sensor : public Entity {
+class Sensor : public Entity
+{
   public:
     Sensor();
     virtual void render() = 0;

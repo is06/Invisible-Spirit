@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 /**
  * Liste des directions disponibles sur l'interface Gamepad
  */
-enum GamepadDirection {
+enum GamepadDirection
+{
   GP_DIR_TOP = 0,
   GP_DIR_TOP_RIGHT = 4500,
   GP_DIR_RIGHT = 9000,

@@ -8,7 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/ref/core.h"
 #include "../include/Game.h"
 
-int main() {
+int main()
+{
   Game::init();
   Game::run();
   Game::finish();

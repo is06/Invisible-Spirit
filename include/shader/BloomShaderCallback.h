@@ -10,13 +10,18 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-class BloomShaderCallback : public video::IShaderConstantSetCallBack {
+class BloomShaderCallback : public video::IShaderConstantSetCallBack
+{
   public:
     const video::SMaterial* usedMaterial;
-    virtual void OnSetMaterial(const video::SMaterial& material) {
+
+    virtual void OnSetMaterial(const video::SMaterial& material)
+    {
 
     }
-    virtual void OnSetConstants(video::IMaterialRendererServices* services, s32 userData) {
+
+    virtual void OnSetConstants(video::IMaterialRendererServices* services, s32 userData)
+    {
 
     }
 };

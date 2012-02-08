@@ -13,17 +13,21 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-CapacityInfo::CapacityInfo() : Hud() {
+CapacityInfo::CapacityInfo() : Hud()
+{
   icon = new Picture();
   value = new Text();
 }
 
-void CapacityInfo::render() { Hud::render();
+void CapacityInfo::render()
+{
+  Hud::render();
   icon->render();
   value->render();
 }
 
-CapacityInfo::~CapacityInfo() {
+CapacityInfo::~CapacityInfo()
+{
   delete icon;
   delete value;
 }

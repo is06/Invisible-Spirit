@@ -15,7 +15,8 @@ using namespace std;
 u16 Hud2DElement::indices[] = {2, 1, 3, 2, 0, 1};
 core::matrix4 Hud2DElement::mat;
 
-Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud() {
+Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud()
+{
   texture = NULL;
 
   // Image visible dès sa création
@@ -64,7 +65,8 @@ Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud() {
     maxTextureOffset.X, maxTextureOffset.Y);
 }
 
-void Hud2DElement::render() {
+void Hud2DElement::render()
+{
   // Déplacement et taille
   vertices[0].Pos.X = (pos.X / COEFF) + (size.Width / 2 / COEFF * -1);
   vertices[0].Pos.Y = (pos.Y / COEFF) + (size.Height / 2 / COEFF);
@@ -86,7 +88,7 @@ void Hud2DElement::render() {
   vertices[3].TCoords.Y = maxTextureOffset.Y;
 
   // Animation UV
-  if(animSpeed.X != 0.0f || animSpeed.Y != 0.0f) {
+  if (animSpeed.X != 0.0f || animSpeed.Y != 0.0f) {
     vertices[0].TCoords.X += animSpeed.X;
     vertices[0].TCoords.Y += animSpeed.Y;
     vertices[1].TCoords.X += animSpeed.X;
@@ -98,12 +100,12 @@ void Hud2DElement::render() {
   }
 
   // Draws vertices of 2D element only if visible
-  if(isVisible) {
+  if (isVisible) {
     // Opacity
     material.DiffuseColor.setAlpha(opacity);
 
     // Texture of 2D element
-    if(texture) {
+    if (texture) {
       material.setTexture(0, texture);
     }
 
@@ -117,91 +119,112 @@ void Hud2DElement::render() {
 /**
  * Change la taille de l'élément d'interface (déforme la texture)
  */
-void Hud2DElement::setSize(f32 w, f32 h) {
+void Hud2DElement::setSize(f32 w, f32 h)
+{
   size.Width = w;
   size.Height = h;
 }
 
-void Hud2DElement::setPosition(f32 x, f32 y) {
+void Hud2DElement::setPosition(f32 x, f32 y)
+{
   pos.X = x;
   pos.Y = y;
 }
 
-void Hud2DElement::setTextureOffset(const core::vector2df& min, const core::vector2df& max) {
+void Hud2DElement::setTextureOffset(const core::vector2df& min, const core::vector2df& max)
+{
   minTextureOffset = min;
   maxTextureOffset = max;
 }
 
-void Hud2DElement::addX(f32 val) {
+void Hud2DElement::addX(f32 val)
+{
   pos.X += val;
 }
 
-void Hud2DElement::subX(f32 val) {
+void Hud2DElement::subX(f32 val)
+{
   pos.X -= val;
 }
 
-void Hud2DElement::setX(f32 val) {
+void Hud2DElement::setX(f32 val)
+{
   pos.X = val;
 }
 
-void Hud2DElement::addY(f32 val) {
+void Hud2DElement::addY(f32 val)
+{
   pos.Y += val;
 }
 
-void Hud2DElement::subY(f32 val) {
+void Hud2DElement::subY(f32 val)
+{
   pos.Y -= val;
 }
 
-void Hud2DElement::setY(f32 val) {
+void Hud2DElement::setY(f32 val)
+{
   pos.Y = val;
 }
 
-void Hud2DElement::setWidth(f32 val) {
+void Hud2DElement::setWidth(f32 val)
+{
   size.Width = val;
 }
 
-void Hud2DElement::setHeight(f32 val) {
+void Hud2DElement::setHeight(f32 val)
+{
   size.Height = val;
 }
 
-f32 Hud2DElement::getX() {
+f32 Hud2DElement::getX()
+{
   return pos.X;
 }
 
-f32 Hud2DElement::getY() {
+f32 Hud2DElement::getY()
+{
   return pos.Y;
 }
 
-f32 Hud2DElement::getWidth() {
+f32 Hud2DElement::getWidth()
+{
   return size.Width;
 }
 
-f32 Hud2DElement::getHeight() {
+f32 Hud2DElement::getHeight()
+{
   return size.Height;
 }
 
-void Hud2DElement::startUVAnimation(f32 uSpeed, f32 vSpeed) {
+void Hud2DElement::startUVAnimation(f32 uSpeed, f32 vSpeed)
+{
   animSpeed.X = uSpeed;
   animSpeed.Y = vSpeed;
 }
 
-void Hud2DElement::stopUVAnimation() {
+void Hud2DElement::stopUVAnimation()
+{
   animSpeed.X = 0.0f;
   animSpeed.Y = 0.0f;
 }
 
-void Hud2DElement::hide() {
+void Hud2DElement::hide()
+{
   isVisible = false;
 }
 
-void Hud2DElement::show() {
+void Hud2DElement::show()
+{
   isVisible = true;
 }
 
-void Hud2DElement::setOpacity(u8 value) {
+void Hud2DElement::setOpacity(u8 value)
+{
   opacity = value;
 }
 
-Hud2DElement::~Hud2DElement() {
+Hud2DElement::~Hud2DElement()
+{
   texture = NULL;
 }

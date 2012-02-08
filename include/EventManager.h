@@ -13,7 +13,8 @@ using namespace irr;
 /**
  * Cette classe gère les événements du jeu (clavier, souris...)
  */
-class EventManager : public IEventReceiver {
+class EventManager : public IEventReceiver
+{
   public:
     EventManager();
     bool isKeyDown(EKEY_CODE code);

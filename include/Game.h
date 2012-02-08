@@ -18,7 +18,8 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-class Game {
+class Game
+{
   public:
     static void init();
     static void run();

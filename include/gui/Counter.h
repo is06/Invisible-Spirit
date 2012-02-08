@@ -13,12 +13,17 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-class Counter : public Hud {
+class Counter : public Hud
+{
   public:
     Counter(s32 init = 0, s32 min = 0, s32 max = 1000);
     virtual ~Counter();
 
     virtual void render() = 0;
+
+    virtual void hide() = 0;
+    virtual void show() = 0;
+    virtual void setOpacity(u8 value) = 0;
 
     void addValue(s32 val);
     void subValue(s32 val);

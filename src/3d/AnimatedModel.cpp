@@ -16,22 +16,25 @@ using namespace std;
 /**
  * 3D Animated model constructor
  */
-AnimatedModel::AnimatedModel() : ModelEntity() {
+AnimatedModel::AnimatedModel() : ModelEntity()
+{
   mainNode = NULL;
 }
 
 /**
  * Update and render function of 3D animated models
  */
-void AnimatedModel::render() { ModelEntity::render();
-
+void AnimatedModel::render()
+{
+  ModelEntity::render();
 }
 
 /**
  * Creates the animated node and add it to Irrlicht's scene manager
  * @param vector3df& initPosition reference to the node initial position
  */
-void AnimatedModel::createNode(const core::vector3df& initPosition) {
+void AnimatedModel::createNode(const core::vector3df& initPosition)
+{
   mainNode = Game::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)mainMesh);
   mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
   mainNode->setPosition(initPosition);
@@ -41,56 +44,64 @@ void AnimatedModel::createNode(const core::vector3df& initPosition) {
  * Returns the Irrlicht node
  * @return IAnimatedMeshSceneNode* entity's node
  */
-scene::IAnimatedMeshSceneNode* AnimatedModel::getNode() {
+scene::IAnimatedMeshSceneNode* AnimatedModel::getNode()
+{
   return mainNode;
 }
 
 /**
  * Returns Irrlicht material
  */
-video::SMaterial& AnimatedModel::getMaterial() {
+video::SMaterial& AnimatedModel::getMaterial()
+{
   return mainNode->getMaterial(0);
 }
 
 /**
  * Hides the object
  */
-void AnimatedModel::hide() {
+void AnimatedModel::hide()
+{
   mainNode->setVisible(false);
 }
 
 /**
  * Shows the object
  */
-void AnimatedModel::show() {
+void AnimatedModel::show()
+{
   mainNode->setVisible(true);
 }
 
 /**
  * Sets the visibility of the object and disables collisions
  */
-void AnimatedModel::setVisible(bool value) {
+void AnimatedModel::setVisible(bool value)
+{
   mainNode->setVisible(value);
 }
 
 /**
  * Makes the object ghost so it will be invisible and will react to collisions
  */
-void AnimatedModel::setGhost(bool value) {
+void AnimatedModel::setGhost(bool value)
+{
   mainNode->setMaterialFlag(video::EMF_FRONT_FACE_CULLING, !value);
 }
 
 /**
  *
  */
-void AnimatedModel::setWireFrame(bool value) {
+void AnimatedModel::setWireFrame(bool value)
+{
   mainNode->setMaterialFlag(video::EMF_WIREFRAME, value);
 }
 
 /**
  *
  */
-void AnimatedModel::setDebugData(bool value) {
+void AnimatedModel::setDebugData(bool value)
+{
   mainNode->setDebugDataVisible(value);
 }
 
@@ -99,7 +110,8 @@ void AnimatedModel::setDebugData(bool value) {
  * @param StaticModel* other pointer to the static object which collides with the animated model
  * @return bool true if collision
  */
-bool AnimatedModel::collidesWithStatic(StaticModel* other) {
+bool AnimatedModel::collidesWithStatic(StaticModel* other)
+{
   NewtonBody* otherBody = other->getMainBody();
 
   f32 mainBodyMatrix[16] = {};
@@ -133,7 +145,8 @@ bool AnimatedModel::collidesWithStatic(StaticModel* other) {
  * floor collision
  * @return f32 (collision between 0.0f and 1.0f)
  */
-f32 AnimatedModel::getFloorCollision(StaticModel* other) {
+f32 AnimatedModel::getFloorCollision(StaticModel* other)
+{
   f32 normals[3];
   f32 xPoint, zPoint;
   s32 faceId;
@@ -184,7 +197,8 @@ f32 AnimatedModel::getFloorCollision(StaticModel* other) {
 /**
  * Not documented yet, sorry :/
  */
-f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vector3df& normal) {
+f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vector3df& normal)
+{
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
 
   s32 faceId;
@@ -192,10 +206,8 @@ f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vect
   f32 zPoint;
 
   // xPoint and zPoint are destination points of the ray
-  if(type == RAY_WALL_P) {
+  if (type == RAY_WALL_P) {
     // P Ray (left)
-    // xPoint = (MainNode X Position - 0.5) * cos(MainNode Y Rotation)
-    // zPoint = (MainNode Z Position + 0.5) * sin(MainNode Y Rotation)
     xPoint = mainNode->getPosition().X - 0.5f * cos(core::degToRad(mainNode->getRotation().Y));
     zPoint = mainNode->getPosition().Z + 0.5f * sin(core::degToRad(mainNode->getRotation().Y));
   } else {
@@ -225,7 +237,8 @@ f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vect
 /**
  * @todo Under construction
  */
-bool AnimatedModel::collidesWithAnimated(AnimatedModel* other) {
+bool AnimatedModel::collidesWithAnimated(AnimatedModel* other)
+{
   return false;
 }
 
@@ -233,7 +246,8 @@ bool AnimatedModel::collidesWithAnimated(AnimatedModel* other) {
  * @todo Under construction
  * @todo manage event type
  */
-bool AnimatedModel::collidesWithPlaneSensor(PlaneSensor* sensor, EventType type) {
+bool AnimatedModel::collidesWithPlaneSensor(PlaneSensor* sensor, EventType type)
+{
   return false;
 }
 
@@ -241,7 +255,8 @@ bool AnimatedModel::collidesWithPlaneSensor(PlaneSensor* sensor, EventType type)
  * Returns true if the object is in the box sensor
  * @todo manage event type
  */
-bool AnimatedModel::isInBoxSensor(BoxSensor* sensor, EventType type) {
+bool AnimatedModel::isInBoxSensor(BoxSensor* sensor, EventType type)
+{
   return sensor->getBox().isPointInside(mainNode->getPosition());
 }
 
@@ -249,10 +264,11 @@ bool AnimatedModel::isInBoxSensor(BoxSensor* sensor, EventType type) {
  * Loads the animation data file specified in parameter
  * @param stringc the animation data file name path
  */
-void AnimatedModel::loadAnimation(const core::stringc& fileName) {
+void AnimatedModel::loadAnimation(const core::stringc& fileName)
+{
   fstream fileStream(fileName.c_str(), ios::in);
 
-  if(fileStream) {
+  if (fileStream) {
     bool inAnimNumberDeclaration = true;
     bool inAnimStartDeclaration = false;
     bool inAnimEndDeclaration = false;
@@ -265,26 +281,24 @@ void AnimatedModel::loadAnimation(const core::stringc& fileName) {
     core::stringc endFrame;
     bool looped;
 
-    while(fileStream.get(current)) {
-      cout << current << endl;
-
-      if(current == '=') {
+    while (fileStream.get(current)) {
+      if (current == '=') {
         inAnimNumberDeclaration = false;
         inAnimStartDeclaration = true;
         continue;
       }
-      if(current == ':') {
-        if(inAnimStartDeclaration == true) {
+      if (current == ':') {
+        if (inAnimStartDeclaration == true) {
           inAnimStartDeclaration = false;
           inAnimEndDeclaration = true;
         }
-        if(inAnimEndDeclaration == true) {
+        if (inAnimEndDeclaration == true) {
           inAnimEndDeclaration = true;
           inAnimLoopedDeclaration = true;
         }
         continue;
       }
-      if(current == ';') {
+      if (current == ';') {
         inAnimLoopedDeclaration = false;
         nr = (s32)atoi(animNumber.c_str());
         animationList[nr].startFrame = (s32)atoi(startFrame.c_str());
@@ -297,21 +311,21 @@ void AnimatedModel::loadAnimation(const core::stringc& fileName) {
         looped = false;
         continue;
       }
-      if(current == '\n' || current == '\r') {
+      if (current == '\n' || current == '\r') {
         inAnimNumberDeclaration = true;
         continue;
       }
 
-      if(inAnimNumberDeclaration) {
+      if (inAnimNumberDeclaration) {
         animNumber.append(current);
       }
-      if(inAnimStartDeclaration) {
+      if (inAnimStartDeclaration) {
         startFrame.append(current);
       }
-      if(inAnimEndDeclaration) {
+      if (inAnimEndDeclaration) {
         endFrame.append(current);
       }
-      if(inAnimLoopedDeclaration) {
+      if (inAnimLoopedDeclaration) {
         looped = (current == 1);
       }
     }
@@ -321,7 +335,8 @@ void AnimatedModel::loadAnimation(const core::stringc& fileName) {
 /**
  * Sets the current animation
  */
-void AnimatedModel::setCurrentAnimation(s32 id, f32 speed) {
+void AnimatedModel::setCurrentAnimation(s32 id, f32 speed)
+{
   currentAnimationId = id;
   currentAnimationSpeed = speed;
 
@@ -340,43 +355,49 @@ void AnimatedModel::setCurrentAnimation(s32 id, f32 speed) {
 /**
  * Pauses the current animation (speed = 0.0f)
  */
-void AnimatedModel::pauseAnimation() {
+void AnimatedModel::pauseAnimation()
+{
   mainNode->setAnimationSpeed(0.0f);
 }
 
 /**
  * Plays the current animation at current speed
  */
-void AnimatedModel::playAnimation() {
+void AnimatedModel::playAnimation()
+{
   mainNode->setAnimationSpeed(currentAnimationSpeed);
 }
 
 /**
  * Sets the current animation speed
  */
-void AnimatedModel::setAnimationSpeed(f32 value) {
+void AnimatedModel::setAnimationSpeed(f32 value)
+{
   mainNode->setAnimationSpeed(value);
 }
 
 /**
  * Returns true if the current animation is finished
  */
-bool AnimatedModel::currentAnimationFinished() {
+bool AnimatedModel::currentAnimationFinished()
+{
   return animationFinished(currentAnimationId);
 }
 
 /**
  * Returns true if a specific animation is finished
  */
-bool AnimatedModel::animationFinished(s32 id) {
+bool AnimatedModel::animationFinished(s32 id)
+{
   return (mainNode->getFrameNr() == animationList[id].endFrame);
 }
 
 /**
  * Destructor, removes the main node
  */
-AnimatedModel::~AnimatedModel() {
-  if(mainNode) {
+AnimatedModel::~AnimatedModel()
+{
+  if (mainNode) {
     mainNode->remove();
     mainNode = NULL;
   }

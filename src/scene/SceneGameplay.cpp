@@ -13,7 +13,6 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/EnergyInterface.h"
 #include "../../include/gui/GameplayMenu.h"
 #include "../../include/Game.h"
-#include "../../include/debug/MapEditor.h"
 #include "../../include/Keyboard.h"
 #include "../../include/Gamepad.h"
 #include "../../include/gui/Menu.h"
@@ -27,7 +26,8 @@ using namespace std;
 /**
  * Initialize all objects and entity in this type of scene
  */
-SceneGameplay::SceneGameplay() : Scene() {
+SceneGameplay::SceneGameplay() : Scene()
+{
   level = new LevelMesh();
   cam = new TPCamera();
   ayron = new Ayron(cam);
@@ -42,7 +42,9 @@ SceneGameplay::SceneGameplay() : Scene() {
 /**
  * This function manages all events in this type of scene
  */
-void SceneGameplay::events() { Scene::events();
+void SceneGameplay::events()
+{
+  Scene::events();
 
   manageCameraControl();
   manageAyronJumps();
@@ -50,13 +52,13 @@ void SceneGameplay::events() { Scene::events();
   manageAyronCollisions();
 
   // Menu
-  if(keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
+  if (keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
     gpMenu->toggle();
     ayron->toggleControl();
     cam->toggleControl();
   }
 
-  if(gpMenu->isVisible) {
+  if (gpMenu->isVisible) {
     manageMenuControl();
   }
 
@@ -68,31 +70,32 @@ void SceneGameplay::events() { Scene::events();
 /**
  * Manages camera control. Called every cycke
  */
-void SceneGameplay::manageCameraControl() {
-  if(cam->hasControl()) {
+void SceneGameplay::manageCameraControl()
+{
+  if (cam->hasControl()) {
     // Keyboard control
-    if(keyboard->pressed(KEY_KEY_J)) {
+    if (keyboard->pressed(KEY_KEY_J)) {
       cam->goLeft(speedFactor * 100);
-    } else if(keyboard->pressed(KEY_KEY_L)) {
+    } else if (keyboard->pressed(KEY_KEY_L)) {
       cam->goRight(speedFactor * 100);
     }
-    if(keyboard->pressed(KEY_KEY_I)) {
+    if (keyboard->pressed(KEY_KEY_I)) {
       cam->goNear(speedFactor * 100);
-    } else if(keyboard->pressed(KEY_KEY_K)) {
+    } else if (keyboard->pressed(KEY_KEY_K)) {
       cam->goFar(speedFactor * 100);
     }
 
     // Joystick control
-    if(fabs(gamepad->getRightJoystickXAxis()) > 35
+    if (fabs(gamepad->getRightJoystickXAxis()) > 35
     || fabs(gamepad->getRightJoystickYAxis()) > 35) {
-      if(gamepad->getRightJoystickXAxis() < -35) {
+      if (gamepad->getRightJoystickXAxis() < -35) {
         cam->goLeft(speedFactor * gamepad->getRightJoystickXAxis() * -1);
-      } else if(gamepad->getRightJoystickXAxis() > 35) {
+      } else if (gamepad->getRightJoystickXAxis() > 35) {
         cam->goRight(speedFactor * gamepad->getRightJoystickXAxis());
       }
-      if(gamepad->getRightJoystickYAxis() > 35) {
+      if (gamepad->getRightJoystickYAxis() > 35) {
         cam->goNear(speedFactor * gamepad->getRightJoystickYAxis());
-      } else if(gamepad->getRightJoystickYAxis() < -35) {
+      } else if (gamepad->getRightJoystickYAxis() < -35) {
         cam->goFar(speedFactor * gamepad->getRightJoystickYAxis() * -1);
       }
     }
@@ -102,28 +105,29 @@ void SceneGameplay::manageCameraControl() {
 /**
  * Manages Ayron's jumps. Called every cycle
  */
-void SceneGameplay::manageAyronJumps() {
-  if(ayron->hasControl()) {
+void SceneGameplay::manageAyronJumps()
+{
+  if (ayron->hasControl()) {
     ayron->isJumping = false;
 
-    // Clavier
-    if(keyboard->pressed(KEY_KEY_V, EVENT_ONCE)) {
-      if(!ayron->isJumping && !ayron->isFalling) {
+    // Keyboard
+    if (keyboard->pressed(KEY_KEY_V, EVENT_ONCE)) {
+      if (!ayron->isJumping && !ayron->isFalling) {
         ayron->setJumpDelta(ayron->getJumpStrength());
       }
     }
-    if(keyboard->pressed(KEY_KEY_V)) {
+    if (keyboard->pressed(KEY_KEY_V)) {
       ayron->isJumping = true;
       ayron->jump();
     }
 
-    // Manette
-    if(gamepad->buttonPressed(GP_BUTTON_B, EVENT_ONCE)) {
-      if(!ayron->isJumping && !ayron->isFalling) {
+    // Gamepad
+    if (gamepad->buttonPressed(GP_BUTTON_B, EVENT_ONCE)) {
+      if (!ayron->isJumping && !ayron->isFalling) {
         ayron->setJumpDelta(ayron->getJumpStrength());
       }
     }
-    if(gamepad->buttonPressed(GP_BUTTON_B)) {
+    if (gamepad->buttonPressed(GP_BUTTON_B)) {
       ayron->isJumping = true;
       ayron->jump();
     }
@@ -134,11 +138,11 @@ void SceneGameplay::manageAyronJumps() {
  * This function manages Ayron's movements, both keyboard and gamepad
  * are functionnal. Called every cycle
  */
-void SceneGameplay::manageAyronMovements() {
-
-  if(ayron->hasControl()) {
+void SceneGameplay::manageAyronMovements()
+{
+  if (ayron->hasControl()) {
     // Keyboard control
-    if(keyboard->pressed(KEY_UP) || keyboard->pressed(KEY_DOWN)
+    if (keyboard->pressed(KEY_UP) || keyboard->pressed(KEY_DOWN)
     || keyboard->pressed(KEY_LEFT) || keyboard->pressed(KEY_RIGHT)) {
       // Ayron's direction from keyboard's arrows angle
       ayron->getNode()->setRotation(core::vector3df(
@@ -147,21 +151,21 @@ void SceneGameplay::manageAyronMovements() {
         ayron->getNode()->getRotation().Z
       ));
 
-      if(keyboard->pressed(KEY_LEFT)) {
+      if (keyboard->pressed(KEY_LEFT)) {
         ayron->goLeft(speedFactor * keyboard->getDirectionXAxis() * -1);
-      } else if(keyboard->pressed(KEY_RIGHT)) {
+      } else if (keyboard->pressed(KEY_RIGHT)) {
         ayron->goRight(speedFactor * keyboard->getDirectionXAxis());
       }
 
-      if(keyboard->pressed(KEY_DOWN)) {
+      if (keyboard->pressed(KEY_DOWN)) {
         ayron->goBackward(speedFactor * keyboard->getDirectionYAxis() * -1);
-      } else if(keyboard->pressed(KEY_UP)) {
+      } else if (keyboard->pressed(KEY_UP)) {
         ayron->goForward(speedFactor * keyboard->getDirectionYAxis());
       }
     }
 
     // Joystick control
-    if(fabs(gamepad->getLeftJoystickXAxis()) > 35
+    if (fabs(gamepad->getLeftJoystickXAxis()) > 35
     || fabs(gamepad->getLeftJoystickYAxis()) > 35) {
       // Ayron's direction from joystick's angle
       ayron->getNode()->setRotation(core::vector3df(
@@ -170,15 +174,15 @@ void SceneGameplay::manageAyronMovements() {
         ayron->getNode()->getRotation().Z
       ));
 
-      if(gamepad->getLeftJoystickXAxis() < -35) {
+      if (gamepad->getLeftJoystickXAxis() < -35) {
         ayron->goLeft(speedFactor * gamepad->getLeftJoystickXAxis() * -1);
-      } else if(gamepad->getLeftJoystickXAxis() > 35) {
+      } else if (gamepad->getLeftJoystickXAxis() > 35) {
         ayron->goRight(speedFactor * gamepad->getLeftJoystickXAxis());
       }
 
-      if(gamepad->getLeftJoystickYAxis() < -35) {
+      if (gamepad->getLeftJoystickYAxis() < -35) {
         ayron->goBackward(speedFactor * gamepad->getLeftJoystickYAxis() * -1);
-      } else if(gamepad->getLeftJoystickYAxis() > 35) {
+      } else if (gamepad->getLeftJoystickYAxis() > 35) {
         ayron->goForward(speedFactor * gamepad->getLeftJoystickYAxis());
       }
     }
@@ -189,19 +193,19 @@ void SceneGameplay::manageAyronMovements() {
  * This function manages Ayron collision with floor and wall.
  * Called every cycle
  */
-void SceneGameplay::manageAyronCollisions() {
-
+void SceneGameplay::manageAyronCollisions()
+{
   // Check if level was created
-  if(level->getMesh() == NULL) Game::fatalError(ERRCODE_45);
-  if(level->getNode() == NULL) Game::fatalError(ERRCODE_46);
-  if(level->getMainBody() == NULL) Game::fatalError(ERRCODE_47);
+  if (level->getMesh() == NULL) Game::fatalError(ERRCODE_45);
+  if (level->getNode() == NULL) Game::fatalError(ERRCODE_46);
+  if (level->getMainBody() == NULL) Game::fatalError(ERRCODE_47);
 
   // Floor collision
-  if(ayron->getFloorCollision(level) > 1.0) {
+  if (ayron->getFloorCollision(level) > 1.0) {
     ayron->fall(speedFactor);
   }
-  if(ayron->getFloorCollision(level) < 1.0) {
-    while(ayron->getFloorCollision(level) < 0.95) {
+  if (ayron->getFloorCollision(level) < 1.0) {
+    while (ayron->getFloorCollision(level) < 0.95) {
       ayron->raise();
     }
   }
@@ -209,11 +213,10 @@ void SceneGameplay::manageAyronCollisions() {
   // Wall collision, this normal vector will be modified by getWallCollision functions
   core::vector3df normal;
 
-  ayron->getWallCollision(RAY_WALL_P, level, normal);
-  ayron->getWallCollision(RAY_WALL_Q, level, normal);
-
-  if(ayron->getWallCollision(RAY_WALL_P, level, normal) < 1.0f || ayron->getWallCollision(RAY_WALL_Q, level, normal) < 1.0f) {
-    while(ayron->getWallCollision(RAY_WALL_P, level, normal) < 0.99 || ayron->getWallCollision(RAY_WALL_Q, level, normal) < 0.99) {
+  if (ayron->getWallCollision(RAY_WALL_P, level, normal) < 1.0f
+  || ayron->getWallCollision(RAY_WALL_Q, level, normal) < 1.0f) {
+    while (ayron->getWallCollision(RAY_WALL_P, level, normal) < 0.99
+    || ayron->getWallCollision(RAY_WALL_Q, level, normal) < 0.99) {
       ayron->moveOpposite(normal);
     }
   }
@@ -222,15 +225,16 @@ void SceneGameplay::manageAyronCollisions() {
 /**
  *
  */
-void SceneGameplay::manageMenuControl() {
-  if(keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
+void SceneGameplay::manageMenuControl()
+{
+  if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
     gpMenu->getSectionMenu()->nextOption();
   }
-  if(keyboard->pressed(KEY_UP, EVENT_ONCE)) {
+  if (keyboard->pressed(KEY_UP, EVENT_ONCE)) {
     gpMenu->getSectionMenu()->prevOption();
   }
-  if(keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
-    if(gpMenu->getSectionMenu()->getCurrentOption() == 4) {
+  if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
+    if (gpMenu->getSectionMenu()->getCurrentOption() == 4) {
       Game::changeScene(SCENE_MENU);
     }
   }
@@ -240,7 +244,9 @@ void SceneGameplay::manageMenuControl() {
  * This functions is called after all scene object render
  * It renders HUD elements in front of camera
  */
-void SceneGameplay::postRender() { Scene::postRender();
+void SceneGameplay::postRender()
+{
+  Scene::postRender();
   gpInterface->render();
   enInterface->render();
   gpMenu->render();
@@ -249,7 +255,8 @@ void SceneGameplay::postRender() { Scene::postRender();
 /**
  * Destroys all objects defined by constructor
  */
-SceneGameplay::~SceneGameplay() {
+SceneGameplay::~SceneGameplay()
+{
   delete level;
   delete ayron;
   delete cam;

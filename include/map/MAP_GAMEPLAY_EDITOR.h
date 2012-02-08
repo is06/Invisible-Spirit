@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-class MAP_GAMEPLAY_EDITOR : public SceneGameplay {
+class MAP_GAMEPLAY_EDITOR : public SceneGameplay
+{
   public:
     MAP_GAMEPLAY_EDITOR();
     ~MAP_GAMEPLAY_EDITOR();

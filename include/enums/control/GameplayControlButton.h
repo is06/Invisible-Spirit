@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 /**
  *
  */
-enum GameplayControlButtons {
+enum GameplayControlButtons
+{
   CB_BUTTON_COMMAND,
   CB_BUTTON_DEFENSE,
   CB_BUTTON_JUMP,

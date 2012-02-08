@@ -8,7 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ERROR_CODE_H__
 #define __IS06_ERROR_CODE_H__
 
-enum ErrorCode {
+enum ErrorCode
+{
   ERRCODE_45, // Scene requires a Level Mesh
   ERRCODE_46, // Scene requires a Level Mesh Node
   ERRCODE_47, // LevelMesh need a Newton Body

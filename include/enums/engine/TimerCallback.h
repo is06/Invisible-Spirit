@@ -8,7 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_TIMER_CALLBACK_H__
 #define __IS06_TIMER_CALLBACK_H__
 
-enum TimerCallback {
+enum TimerCallback
+{
   TIMER_CALLBACK_DEFAULT,
   TIMER_CALLBACK_HELLO,
   TIMER_CALLBACK_NEXT_CHAR

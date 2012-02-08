@@ -12,12 +12,17 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../enums/styles/BarStyle.h"
 
-class BarCounter : public Counter {
+class BarCounter : public Counter
+{
   public:
     BarCounter(s32 init = 0, s32 min = 0, s32 max = 1000, f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 10, BarStyle style = BAR_STYLE_DEFAULT);
     virtual ~BarCounter();
 
     virtual void render();
+
+    virtual void hide();
+    virtual void show();
+    virtual void setOpacity(u8 value);
 
     void setPosition(f32 x, f32 y);
     void setX(f32 value);

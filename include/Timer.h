@@ -6,7 +6,8 @@ using namespace std;
 
 typedef boost::function<void()> VoidCallback;
 
-class Timer {
+class Timer
+{
   public:
     Timer(f32 end, VoidCallback callback, u32 loopLimit = 1);
     ~Timer();

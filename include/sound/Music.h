@@ -14,7 +14,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-class Music {
+class Music
+{
   public:
     Music(const core::stringc& id);
     ~Music();

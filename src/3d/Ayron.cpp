@@ -17,7 +17,8 @@ using namespace std;
  * Ayron entity constructor: defines which mesh to load and set the initial direction
  * @param Camera* cam pointer to a Camera to link to Ayron
  */
-Ayron::Ayron(Camera* cam) : Character() {
+Ayron::Ayron(Camera* cam) : Character()
+{
   controlable = true;
   jumpDelta = 0.0f;
   fallDelta = 0.0f;
@@ -44,16 +45,18 @@ Ayron::Ayron(Camera* cam) : Character() {
 /**
  * Render function, called every cycle
  */
-void Ayron::render() { Character::render();
-
+void Ayron::render()
+{
+  Character::render();
 }
 
 /**
  * Called while Ayron's floor raycast is NOT in collision with the floor
  */
-void Ayron::fall(f32 factor) {
-  if(!isJumping) {
-    if(fallDelta < jumpStrength) {
+void Ayron::fall(f32 factor)
+{
+  if (!isJumping) {
+    if (fallDelta < jumpStrength) {
       fallDelta += (factor * gravity);
     }
     mainNode->setPosition(core::vector3df(
@@ -67,8 +70,9 @@ void Ayron::fall(f32 factor) {
 /**
  * Called while Ayron's floor raycast is in collision with the floor
  */
-void Ayron::raise() {
-  if(isFalling) {
+void Ayron::raise()
+{
+  if (isFalling) {
     // Ayron is hitting the floor
     fallDelta = 0.0f;
     isFalling = false;
@@ -83,10 +87,11 @@ void Ayron::raise() {
 /**
  * Called when the player wants Ayron to jump
  */
-void Ayron::jump() {
-  if(isJumping) {
+void Ayron::jump()
+{
+  if (isJumping) {
     jumpDelta -= gravity;
-    if(jumpDelta <= 0) {
+    if (jumpDelta <= 0) {
       isJumping = false;
       isFalling = true;
     }
@@ -101,21 +106,24 @@ void Ayron::jump() {
 /**
  *
  */
-void Ayron::setJumpDelta(f32 value) {
+void Ayron::setJumpDelta(f32 value)
+{
   jumpDelta = value;
 }
 
 /**
  *
  */
-f32 Ayron::getJumpDelta() {
+f32 Ayron::getJumpDelta()
+{
   return jumpDelta;
 }
 
 /**
  *
  */
-f32 Ayron::getJumpStrength() {
+f32 Ayron::getJumpStrength()
+{
   return jumpStrength;
 }
 
@@ -123,7 +131,8 @@ f32 Ayron::getJumpStrength() {
  * Applies an opposite force to Ayron in order to stop it against a wall
  * Function still under development
  */
-void Ayron::moveOpposite(const core::vector3df& normal) {
+void Ayron::moveOpposite(const core::vector3df& normal)
+{
   f32 angle = (atan2(normal.X, normal.Z) * -1) + (core::PI / 2);
 
   mainNode->setPosition(core::vector3df(
@@ -137,7 +146,8 @@ void Ayron::moveOpposite(const core::vector3df& normal) {
  * Move Ayron to the left from camera
  * @param f32 speed movement speed
  */
-void Ayron::goLeft(f32 speed) {
+void Ayron::goLeft(f32 speed)
+{
   updateCoords(0, speed);
 }
 
@@ -145,7 +155,8 @@ void Ayron::goLeft(f32 speed) {
  * Move Ayron to the right from camera
  * @param f32 speed movement speed
  */
-void Ayron::goRight(f32 speed) {
+void Ayron::goRight(f32 speed)
+{
   updateCoords(core::PI, speed);
 }
 
@@ -153,7 +164,8 @@ void Ayron::goRight(f32 speed) {
  * Move Ayron forward from camera
  * @param f32 speed movement speed
  */
-void Ayron::goForward(f32 speed) {
+void Ayron::goForward(f32 speed)
+{
   updateCoords((core::PI / 2), speed);
 }
 
@@ -161,7 +173,8 @@ void Ayron::goForward(f32 speed) {
  * Move Ayron backward from camera
  * @param f32 speed movement speed
  */
-void Ayron::goBackward(f32 speed) {
+void Ayron::goBackward(f32 speed)
+{
   updateCoords((3 * core::PI / 2), speed);
 }
 
@@ -170,7 +183,8 @@ void Ayron::goBackward(f32 speed) {
  * @param f32 deltaU direction value
  * @param f32 speed speed value
  */
-void Ayron::updateCoords(f32 deltaU, f32 speed) {
+void Ayron::updateCoords(f32 deltaU, f32 speed)
+{
   f32 x = cos(core::degToRad(linkedCam->getNode()->getRotation().Y) + deltaU);
   f32 z = sin(core::degToRad(linkedCam->getNode()->getRotation().Y) + deltaU);
   mainNode->setPosition(core::vector3df(
@@ -180,8 +194,9 @@ void Ayron::updateCoords(f32 deltaU, f32 speed) {
   ));
 }
 
-void Ayron::toggleControl() {
-  if(controlable) {
+void Ayron::toggleControl()
+{
+  if (controlable) {
     controlable = false;
   } else {
     controlable = true;
@@ -189,8 +204,9 @@ void Ayron::toggleControl() {
 }
 
 /**
- *
+ * Returns true if the player has control
  */
-bool Ayron::hasControl() {
+bool Ayron::hasControl()
+{
   return controlable;
 }

@@ -12,7 +12,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-SoundManager::SoundManager() {
+SoundManager::SoundManager()
+{
   FMOD_System_Create(&sys);
   FMOD_System_Init(sys, 4, FMOD_INIT_NORMAL, NULL);
 
@@ -30,7 +31,8 @@ SoundManager::SoundManager() {
  * Called by the Game main loop, this converts camera's position and rotation to
  * FMOD vector format and store them into sound manager
  */
-void SoundManager::setEarsData(Camera* activeCamera, f32 cycleTime) {
+void SoundManager::setEarsData(Camera* activeCamera, f32 cycleTime)
+{
   core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
   core::vector3df rotation = activeCamera->getNode()->getRotation();
   core::vector3df lastPosition = activeCamera->getLastPosition();
@@ -51,7 +53,7 @@ void SoundManager::setEarsData(Camera* activeCamera, f32 cycleTime) {
   cameraUp.z = up.Z;
 
 /*
-  //@TODO : for doppler effect, check and fix this calculation
+  //@todo : for doppler effect, check and fix this calculation
   cameraVelocity.x = (position.X - lastPosition.X) / cycleTime;
   cameraVelocity.y = (position.Y - lastPosition.Y) / cycleTime;
   cameraVelocity.z = (position.Z - lastPosition.Z) / cycleTime;
@@ -61,19 +63,22 @@ void SoundManager::setEarsData(Camera* activeCamera, f32 cycleTime) {
 /**
  *
  */
-void SoundManager::update() {
+void SoundManager::update()
+{
   FMOD_RESULT result = FMOD_System_Set3DListenerAttributes(sys, 0, &cameraPosition, NULL, &cameraForward, &cameraUp);
-  if(result != FMOD_OK) {
+  if (result != FMOD_OK) {
     cout << "[FMOD] Erreur update 3D" << endl;
   }
   FMOD_System_Update(sys);
 }
 
-FMOD_SYSTEM* SoundManager::getSystem() {
+FMOD_SYSTEM* SoundManager::getSystem()
+{
   return sys;
 }
 
-SoundManager::~SoundManager() {
+SoundManager::~SoundManager()
+{
   FMOD_System_Close(sys);
   FMOD_System_Release(sys);
 }

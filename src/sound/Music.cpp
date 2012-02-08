@@ -11,29 +11,34 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-Music::Music(const core::stringc& id) {
+Music::Music(const core::stringc& id)
+{
 
 }
 
-void Music::addSequences(const map<u8, MusicSequenceInfo>& list) {
+void Music::addSequences(const map<u8, MusicSequenceInfo>& list)
+{
   map<u8, MusicSequenceInfo>::const_iterator msIt;
-  for(msIt = list.begin(); msIt != list.end(); msIt++) {
+  for (msIt = list.begin(); msIt != list.end(); msIt++) {
     cout << "added sequence : " << msIt->second.fileName.c_str() << endl;
     sequences[msIt->first] = new MusicSequence(msIt->second);
   }
 }
 
-void Music::playSequences(const map<u8, MusicSequenceInfo>& list) {
+void Music::playSequences(const map<u8, MusicSequenceInfo>& list)
+{
   map<u8, MusicSequenceInfo>::const_iterator msIt;
-  for(msIt = list.begin(); msIt != list.end(); msIt++) {
+  for (msIt = list.begin(); msIt != list.end(); msIt++) {
     sequences[msIt->first]->play();
   }
 }
 
-map<u8, MusicSequence*>& Music::getSequences() {
+map<u8, MusicSequence*>& Music::getSequences()
+{
   return sequences;
 }
 
-Music::~Music() {
+Music::~Music()
+{
 
 }

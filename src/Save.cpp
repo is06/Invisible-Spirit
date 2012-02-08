@@ -13,21 +13,24 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-Save::Save() {
+Save::Save()
+{
 
 }
 
 /**
  *
  */
-void Save::load() {
+void Save::load()
+{
 
 }
 
 /**
  *
  */
-void Save::write() {
+void Save::write()
+{
 
 }
 
@@ -36,7 +39,8 @@ void Save::write() {
  * of data are initialized here, like the start map or character HP and MP...
  * It changes the current map of the game so the player can start to play.
  */
-void Save::createNewFile() {
+void Save::createNewFile()
+{
   setGeneralDefaultValues();
 
   Game::changeScene(integerList[SII_CURRENT_MAP]);
@@ -45,28 +49,32 @@ void Save::createNewFile() {
 /**
  *
  */
-s32& Save::getInteger(u32 index) {
+s32& Save::getInteger(u32 index)
+{
   return integerList[index];
 }
 
 /**
  *
  */
-bool& Save::getBoolean(u32 index) {
+bool& Save::getBoolean(u32 index)
+{
   return booleanList[index];
 }
 
 /**
  *
  */
-core::stringw& Save::getString(u32 index) {
+core::stringw& Save::getString(u32 index)
+{
   return stringList[index];
 }
 
 /**
  *
  */
-void Save::setGeneralDefaultValues() {
+void Save::setGeneralDefaultValues()
+{
   // Save info
   slot = 0;
 
@@ -77,6 +85,7 @@ void Save::setGeneralDefaultValues() {
 /**
  *
  */
-Save::~Save() {
+Save::~Save()
+{
 
 }

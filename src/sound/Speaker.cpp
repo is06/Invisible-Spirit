@@ -16,7 +16,8 @@ using namespace std;
 /**
  *
  */
-Speaker::Speaker(StreamIdentifier, const core::vector3df& initPos, const core::stringw& text, f32 radius) : Entity() {
+Speaker::Speaker(StreamIdentifier, const core::vector3df& initPos, const core::stringw& text, f32 radius) : Entity()
+{
   video::ITexture* iconTexture = Game::getVideoDriver()->getTexture("resource/debug/icons/speaker.bmp");
 
   icon = Game::getSceneManager()->addBillboardSceneNode(0, core::dimension2df(1.0f, 1.0f), initPos);
@@ -40,15 +41,18 @@ Speaker::Speaker(StreamIdentifier, const core::vector3df& initPos, const core::s
   play();
 }
 
-void Speaker::render() { Entity::render();
-
+void Speaker::render()
+{
+  Entity::render();
 }
 
-const FMOD_VECTOR& Speaker::getPosition() const {
+const FMOD_VECTOR& Speaker::getPosition() const
+{
   return position;
 }
 
-core::vector3df Speaker::getPositionVector() {
+core::vector3df Speaker::getPositionVector()
+{
   return core::vector3df(
     position.x,
     position.y,
@@ -56,38 +60,46 @@ core::vector3df Speaker::getPositionVector() {
   );
 }
 
-void Speaker::setPosition(const FMOD_VECTOR& newPos) {
+void Speaker::setPosition(const FMOD_VECTOR& newPos)
+{
   position = newPos;
 }
 
-void Speaker::setPosition(const core::vector3df& newPos) {
+void Speaker::setPosition(const core::vector3df& newPos)
+{
   position.x = newPos.X;
   position.y = newPos.Y;
   position.z = newPos.Z;
 }
 
-void Speaker::play() {
+void Speaker::play()
+{
   FMOD_System_PlaySound(Game::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, soundPtr, 0, &channelPtr);
   FMOD_Channel_SetPaused(channelPtr, false);
 }
 
-void Speaker::pause() {
+void Speaker::pause()
+{
   FMOD_Channel_SetPaused(channelPtr, true);
 }
 
-void Speaker::resume() {
+void Speaker::resume()
+{
   FMOD_Channel_SetPaused(channelPtr, false);
 }
 
-void Speaker::stop() {
+void Speaker::stop()
+{
   FMOD_Channel_Stop(channelPtr);
 }
 
-void Speaker::setVolume(f32 val) {
+void Speaker::setVolume(f32 val)
+{
 
 }
 
-Speaker::~Speaker() {
+Speaker::~Speaker()
+{
   icon->remove();
   //textBB->remove();
 

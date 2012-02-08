@@ -10,7 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/AnimatedModel.h"
 
-class Character : public AnimatedModel {
+class Character : public AnimatedModel
+{
   public:
     Character();
 

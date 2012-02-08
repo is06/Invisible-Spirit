@@ -15,7 +15,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-class Text : public Hud {
+class Text : public Hud
+{
   public:
     Text(const core::stringw& str = "[Text]", f32 x = 0, f32 y = 0, FontStyle style = FONT_STD_CLASSIC_REGULAR, u8 speed = 0);
     ~Text();

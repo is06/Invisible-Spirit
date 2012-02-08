@@ -8,7 +8,6 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/Keyboard.h"
 #include "../../include/Gamepad.h"
-#include "../../include/debug/MapEditor.h"
 #include "../../include/Game.h"
 #include "../../include/scene/Scene.h"
 
@@ -21,13 +20,14 @@ bool Scene::inMapEditingMode;
  * Instanciate required object interfaces such as keyboard or music so we can
  * use them in every scene
  */
-Scene::Scene() {
+Scene::Scene()
+{
   cam = NULL;
   timeElapsed = 0.0f;
-  
+
   keyboard = new Keyboard();
   gamepad = new Gamepad();
-  
+
   music = Game::getMusicReference();
   globalTranslations = Game::getGlobalTranslations();
 }
@@ -36,7 +36,8 @@ Scene::Scene() {
  * Event test of every scene in the game
  * (global events)
  */
-void Scene::events() {
+void Scene::events()
+{
   speedFactor = Game::getSpeedFactor();
   timeElapsed += 0.016666666666f;
 }
@@ -45,7 +46,8 @@ void Scene::events() {
  * Returns current active camera
  * @return Camera*
  */
-Camera* Scene::getActiveCamera() {
+Camera* Scene::getActiveCamera()
+{
   return cam;
 }
 
@@ -54,14 +56,16 @@ Camera* Scene::getActiveCamera() {
  * for scenes)
  * This method can handle post render events like map editor
  */
-void Scene::postRender() {
-  
+void Scene::postRender()
+{
+
 }
 
 /**
- * This destructor removes interfaces and flushes texture and meshes cache
+ * This destructor removes interfaces and flushes texture and mesh cache
  */
-Scene::~Scene() {
+Scene::~Scene()
+{
   Game::getVideoDriver()->removeAllTextures();
   Game::getSceneManager()->getMeshCache()->clear();
   delete keyboard;

@@ -10,7 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/scene/SceneGameplay.h"
 
-class MAP_ALPHA_ZONE : public SceneGameplay {
+class MAP_ALPHA_ZONE : public SceneGameplay
+{
   public:
     MAP_ALPHA_ZONE();
     ~MAP_ALPHA_ZONE();

@@ -10,14 +10,17 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-Hud::Hud() {
+Hud::Hud()
+{
 
 }
 
-void Hud::render() {
+void Hud::render()
+{
 
 }
 
-Hud::~Hud() {
+Hud::~Hud()
+{
 
 }

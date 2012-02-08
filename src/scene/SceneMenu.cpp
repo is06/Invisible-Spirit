@@ -19,7 +19,8 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-SceneMenu::SceneMenu() : Scene() {
+SceneMenu::SceneMenu() : Scene()
+{
   cam = new TPCamera();
   cam->setControl(false);
 
@@ -44,7 +45,10 @@ SceneMenu::SceneMenu() : Scene() {
   lightRays->getNode()->setScale(core::vector3df(300.0f, 300.0f, 300.0f));
 }
 
-void SceneMenu::events() { Scene::events();
+void SceneMenu::events()
+{
+  Scene::events();
+
   lightRays->render();
 
   // Rotation des rayons de lumière
@@ -59,27 +63,30 @@ void SceneMenu::events() { Scene::events();
     cam->getNode()->getPosition().Y,
     cam->getNode()->getPosition().Z + (2 * Game::getSpeedFactor())
   ));
-  if(keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
+  if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
     mainMenu->nextOption();
   }
-  if(keyboard->pressed(KEY_UP, EVENT_ONCE)) {
+  if (keyboard->pressed(KEY_UP, EVENT_ONCE)) {
     mainMenu->prevOption();
   }
-  if(keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
-    switch(mainMenu->getCurrentOption()) {
+  if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
+    switch (mainMenu->getCurrentOption()) {
       case 0: Game::getCurrentSave()->createNewFile(); break;
       case 1: Game::quit(); break;
     }
   }
 }
 
-void SceneMenu::postRender() { Scene::postRender();
+void SceneMenu::postRender()
+{
+  Scene::postRender();
   dummy->render();
   mainMenu->render();
   title->render();
 }
 
-SceneMenu::~SceneMenu() {
+SceneMenu::~SceneMenu()
+{
   delete dummy;
   delete lightRays;
   delete title;

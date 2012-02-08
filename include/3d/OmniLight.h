@@ -6,12 +6,11 @@ using namespace std;
 
 #include "../../include/3d/Light.h"
 
-class OmniLight : public Light {
+class OmniLight : public Light
+{
   public:
     OmniLight();
     ~OmniLight();
-
-  private:
 };
 
 #endif

@@ -15,7 +15,8 @@ using namespace irr;
 /**
  * Cette classe d'interface permet d'exploiter le clavier dans les scènes
  */
-class Keyboard {
+class Keyboard
+{
   public:
     bool pressed(EKEY_CODE code, EventType type = EVENT_ALWAYS);
     bool any(EventType type = EVENT_ALWAYS);

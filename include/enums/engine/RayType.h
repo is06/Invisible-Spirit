@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 /**
  * RayType for collision detection
  */
-enum RayType {
+enum RayType
+{
   RAY_WALL_P,
   RAY_WALL_Q,
   RAY_FLOOR_A,

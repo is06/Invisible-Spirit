@@ -12,9 +12,10 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-Settings::Settings() {
+Settings::Settings()
+{
   fstream fileStream("settings.ini", ios::in);
-  if(fileStream) {
+  if (fileStream) {
     c8 current;
     bool inGroupNameDeclaration = false;
     bool inParamNameDeclaration = false;
@@ -24,11 +25,11 @@ Settings::Settings() {
     core::stringc paramValue = "";
     u32 linePosition = 0;
 
-    while(fileStream.get(current)) {
+    while (fileStream.get(current)) {
       //========================================
       // Group creation
-      if(inGroupNameDeclaration) {
-        if(current != ']') {
+      if (inGroupNameDeclaration) {
+        if (current != ']') {
           // Adding character to Group Name
           groupName.append(current);
         } else {
@@ -40,15 +41,15 @@ Settings::Settings() {
       //========================================
       // Parameter creation
       else {
-        if(inParamNameDeclaration) {
-          if(current == '=') {
+        if (inParamNameDeclaration) {
+          if (current == '=') {
             // Starting Param Value Extraction
             inParamNameDeclaration = false;
             inParamValueExtraction = true;
             paramValue = "";
             linePosition++;
             continue;
-          } else if(current == ' ' || current == '\t') {
+          } else if (current == ' ' || current == '\t') {
             linePosition++;
             continue;
           } else {
@@ -57,31 +58,31 @@ Settings::Settings() {
           }
         }
 
-        if(inParamValueExtraction && (current == '\n' || current == '\r')) {
+        if (inParamValueExtraction && (current == '\n' || current == '\r')) {
           inParamNameDeclaration = false;
           inParamValueExtraction = false;
-          if(data[groupName]) {
+          if (data[groupName]) {
             // Param Creation
             data[groupName]->getParams()[paramName] = paramValue;
           }
           linePosition = -1;
-        } else if(current == '\n' || current == '\r') {
+        } else if (current == '\n' || current == '\r') {
           linePosition = -1;
         }
 
-        if(inParamValueExtraction) {
+        if (inParamValueExtraction) {
           // Adding character to Param Value
           paramValue.append(current);
         }
       }
 
-      if(linePosition == 0 && current == '[' && !inGroupNameDeclaration) {
+      if (linePosition == 0 && current == '[' && !inGroupNameDeclaration) {
         // Starting Group Declaration
         inGroupNameDeclaration = true;
         groupName = "";
       }
 
-      if(linePosition == 0 && !inParamNameDeclaration && !inGroupNameDeclaration && current != '\n' && current != '\r') {
+      if (linePosition == 0 && !inParamNameDeclaration && !inGroupNameDeclaration && current != '\n' && current != '\r') {
         // Starting Param Name Declaration
         inParamNameDeclaration = true;
         paramName = "";
@@ -95,18 +96,21 @@ Settings::Settings() {
   fileStream.close();
 }
 
-core::stringc& Settings::getParamString(const core::stringc& groupName, const core::stringc& paramName) {
+core::stringc& Settings::getParamString(const core::stringc& groupName, const core::stringc& paramName)
+{
   return data[groupName]->getParams()[paramName];
 }
 
-s32 Settings::getParamInt(const core::stringc& groupName, const core::stringc& paramName) {
-  if(data[groupName]) {
+s32 Settings::getParamInt(const core::stringc& groupName, const core::stringc& paramName)
+{
+  if (data[groupName]) {
     return (s32)atoi(data[groupName]->getParams()[paramName].c_str());
   } else {
     return 0;
   }
 }
 
-Settings::~Settings() {
+Settings::~Settings()
+{
 
 }

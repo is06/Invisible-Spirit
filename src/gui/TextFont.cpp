@@ -15,10 +15,11 @@ using namespace irr;
 /**
  *
  */
-TextFont::TextFont(FontStyle style) {
+TextFont::TextFont(FontStyle style)
+{
   core::stringc filePath = "resource/hud/font/";
 
-  switch(style) {
+  switch (style) {
     case FONT_STD_CLASSIC_REGULAR: filePath.append("std_classic_regular"); break;
     case FONT_COND_CLASSIC_REGULAR: filePath.append("cond_classic_regular"); break;
     case FONT_EXT_CLASSIC_REGULAR: filePath.append("ext_classic_regular"); break;
@@ -62,18 +63,21 @@ TextFont::TextFont(FontStyle style) {
 /**
  *
  */
-video::SMaterial& TextFont::getMaterial() {
+video::SMaterial& TextFont::getMaterial()
+{
   return fontMaterial;
 }
 
-u8& TextFont::getCharOffset(u8 code) {
+u8& TextFont::getCharOffset(u8 code)
+{
   return offset[code];
 }
 
 /**
  *
  */
-void TextFont::readFontData(const core::stringc& dataFilePath) {
+void TextFont::readFontData(const core::stringc& dataFilePath)
+{
   // Lecture des information de taille
   fstream fileStream(dataFilePath.c_str(), ios::in);
   core::stringc currentCode;
@@ -82,23 +86,23 @@ void TextFont::readFontData(const core::stringc& dataFilePath) {
   bool inReadingCode = true;
   bool inReadingWidth = false;
 
-  if(fileStream) {
-    while(fileStream.get(currentChar)) {
+  if (fileStream) {
+    while (fileStream.get(currentChar)) {
       // Lecture du code
-      if(inReadingCode && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
+      if (inReadingCode && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
         currentCode.append(currentChar);
-      } else if(inReadingCode && currentChar == ' ') {
+      } else if (inReadingCode && currentChar == ' ') {
         inReadingCode = false;
         inReadingWidth = true;
       }
 
       // Lecture de la largeur
-      if(inReadingWidth && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
+      if (inReadingWidth && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
         currentWidth.append(currentChar);
       }
 
       // Nouvelle ligne
-      if(currentChar == '\n') {
+      if (currentChar == '\n') {
         offset[atoi(currentCode.c_str())] = atoi(currentWidth.c_str());
         currentCode = "";
         currentWidth = "";
@@ -112,7 +116,7 @@ void TextFont::readFontData(const core::stringc& dataFilePath) {
 /**
  *
  */
-TextFont::~TextFont() {
+TextFont::~TextFont()
+{
   fontTexture = NULL;
-
 }

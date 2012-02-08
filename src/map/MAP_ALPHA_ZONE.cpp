@@ -22,7 +22,8 @@ using namespace irr;
  * Constructeur de la map en cours, définition du mesh du décor, création du node et de
  * son masque de collision
  */
-MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay() {
+MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
+{
   level->loadMesh("resource/mesh/level/alphazone.obj");
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
@@ -37,29 +38,33 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay() {
 /**
  * Fonction de test des événements spécifiques à cette map
  */
-void MAP_ALPHA_ZONE::events() { SceneGameplay::events();
+void MAP_ALPHA_ZONE::events()
+{
+  SceneGameplay::events();
   //spk->render();
   lt->render();
 
-  if(keyboard->pressed(KEY_KEY_W, EVENT_ONCE)) {
+  if (keyboard->pressed(KEY_KEY_W, EVENT_ONCE)) {
     //Game::getMusic()->soloSequence("mining", 2);
     //Game::getMusic()->muteSequence("mining", 1);
   }
 
-  if(keyboard->pressed(KEY_KEY_X, EVENT_ONCE)) {
+  if (keyboard->pressed(KEY_KEY_X, EVENT_ONCE)) {
     //Game::getMusic()->soloSequence("mining", 1);
     //Game::getMusic()->muteSequence("mining", 2);
   }
 }
 
-void MAP_ALPHA_ZONE::postRender() { SceneGameplay::postRender();
-
+void MAP_ALPHA_ZONE::postRender()
+{
+  SceneGameplay::postRender();
 }
 
 /**
  * Detruit les objets définis dans le constructeur
  */
-MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE() {
+MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
+{
   level->clearMeshCollision();
   //delete spk;
   delete lt;

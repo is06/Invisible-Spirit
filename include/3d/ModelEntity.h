@@ -12,8 +12,8 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-class ModelEntity : public Entity {
-
+class ModelEntity : public Entity
+{
   public:
     ModelEntity();
     virtual ~ModelEntity();

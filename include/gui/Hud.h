@@ -10,7 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Entity.h"
 
-class Hud : public Entity {
+class Hud : public Entity
+{
   public:
     Hud();
     virtual ~Hud();
