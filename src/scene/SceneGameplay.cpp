@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/3d/LevelMesh.h"
 #include "../../include/3d/TPCamera.h"
-#include "../../include/3d/Ayron.h"
+#include "../../include/3d/PlayableCharacter.h"
 #include "../../include/gui/GameplayInterface.h"
 #include "../../include/gui/EnergyInterface.h"
 #include "../../include/gui/GameplayMenu.h"
@@ -30,7 +30,7 @@ SceneGameplay::SceneGameplay() : Scene()
 {
   level = new LevelMesh();
   cam = new TPCamera();
-  ayron = new Ayron(cam);
+  ayron = new PlayableCharacter(cam);
   cam->linkEntity(ayron);
   gpInterface = new GameplayInterface();
   enInterface = new EnergyInterface();
@@ -47,9 +47,9 @@ void SceneGameplay::events()
   Scene::events();
 
   manageCameraControl();
-  manageAyronJumps();
-  manageAyronMovements();
-  manageAyronCollisions();
+  manageCharacterJumps();
+  manageCharacterMovements();
+  manageCharacterCollisions();
 
   // Menu
   if (keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
@@ -103,9 +103,9 @@ void SceneGameplay::manageCameraControl()
 }
 
 /**
- * Manages Ayron's jumps. Called every cycle
+ * Manages Character's jumps. Called every cycle
  */
-void SceneGameplay::manageAyronJumps()
+void SceneGameplay::manageCharacterJumps()
 {
   if (ayron->hasControl()) {
     ayron->isJumping = false;
@@ -135,16 +135,16 @@ void SceneGameplay::manageAyronJumps()
 }
 
 /**
- * This function manages Ayron's movements, both keyboard and gamepad
+ * This function manages Character's movements, both keyboard and gamepad
  * are functionnal. Called every cycle
  */
-void SceneGameplay::manageAyronMovements()
+void SceneGameplay::manageCharacterMovements()
 {
   if (ayron->hasControl()) {
     // Keyboard control
     if (keyboard->pressed(KEY_UP) || keyboard->pressed(KEY_DOWN)
     || keyboard->pressed(KEY_LEFT) || keyboard->pressed(KEY_RIGHT)) {
-      // Ayron's direction from keyboard's arrows angle
+      // Character's direction from keyboard's arrows angle
       ayron->getNode()->setRotation(core::vector3df(
         ayron->getNode()->getRotation().X,
         cam->getNode()->getRotation().Y - (keyboard->getDirectionAngle() + core::radToDeg(core::PI / 2)),
@@ -167,7 +167,7 @@ void SceneGameplay::manageAyronMovements()
     // Joystick control
     if (fabs(gamepad->getLeftJoystickXAxis()) > 35
     || fabs(gamepad->getLeftJoystickYAxis()) > 35) {
-      // Ayron's direction from joystick's angle
+      // Character's direction from joystick's angle
       ayron->getNode()->setRotation(core::vector3df(
         ayron->getNode()->getRotation().X,
         cam->getNode()->getRotation().Y - (gamepad->getLeftJoystickAngle() + core::radToDeg(core::PI / 2)),
@@ -190,10 +190,10 @@ void SceneGameplay::manageAyronMovements()
 }
 
 /**
- * This function manages Ayron collision with floor and wall.
+ * This function manages Character collision with floor and wall.
  * Called every cycle
  */
-void SceneGameplay::manageAyronCollisions()
+void SceneGameplay::manageCharacterCollisions()
 {
   // Check if level was created
   if (level->getMesh() == NULL) Game::fatalError(ERRCODE_45);

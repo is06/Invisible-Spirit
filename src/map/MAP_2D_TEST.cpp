@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/Keyboard.h"
 #include "../../include/3d/LevelMesh.h"
-#include "../../include/3d/Ayron.h"
+#include "../../include/3d/PlayableCharacter.h"
 #include "../../include/gui/BarCounter.h"
 #include "../../include/gui/GameplayInterface.h"
 

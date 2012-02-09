@@ -23,7 +23,7 @@ class SceneGameplay : public Scene
     virtual void postRender();
 
   protected:
-    Ayron* ayron;
+    PlayableCharacter* ayron;
     LevelMesh* level;
 
     GameplayInterface* gpInterface;
@@ -32,9 +32,9 @@ class SceneGameplay : public Scene
 
   private:
     void manageCameraControl();
-    void manageAyronJumps();
-    void manageAyronMovements();
-    void manageAyronCollisions();
+    void manageCharacterJumps();
+    void manageCharacterMovements();
+    void manageCharacterCollisions();
     void manageMenuControl();
 };
 

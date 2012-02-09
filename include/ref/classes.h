@@ -61,7 +61,7 @@ class PlayerState;
 class ModelEntity;
 class AnimatedModel;
 class Character;
-class Ayron;
+class PlayableCharacter;
 class NPC;
 class Enemy;
 class StaticModel;
