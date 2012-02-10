@@ -62,10 +62,12 @@ void Game::init()
   // Limites de résolution d'écran 640x480 => 1920x1080
   u32 screenWidth = settings->getParamInt("display", "width");
   u32 screenHeight = settings->getParamInt("display", "height");
+  /*
   if(screenWidth < 640) screenWidth = 640;
   if(screenWidth > 1920) screenWidth = 1920;
   if(screenHeight < 480) screenHeight = 480;
   if(screenHeight > 1080) screenHeight = 1080;
+  */
 
   // Création du device
   device = createDevice(
@@ -122,7 +124,7 @@ void Game::init()
   exit = false;
 
   sceneChanged = true;
-  nextScene = SCENE_MAP_ALPHA_ZONE;
+  nextScene = SCENE_MENU;
 }
 
 /**
@@ -375,6 +377,8 @@ void Game::loadNextScene()
     case SCENE_MAP_2D_TEST: currentScene = new MAP_2D_TEST(); break;
     case SCENE_MAP_ALPHA_ZONE: currentScene = new MAP_ALPHA_ZONE(); break;
     case SCENE_MAP_CANYON: currentScene = new MAP_CANYON(); break;
+
+    default: fatalError(ERRCODE_10); break;
   }
   sceneChanged = false;
 }
@@ -386,6 +390,7 @@ void Game::loadNextScene()
 void Game::fatalError(ErrorCode code)
 {
   switch (code) {
+    case ERRCODE_10: errorLog("/!\\ FATAL ERROR : 10 : Unknown map id"); break;
     case ERRCODE_45: errorLog("/!\\ FATAL ERROR : 45 : Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor"); break;
     case ERRCODE_46: errorLog("/!\\ FATAL ERROR : 46 : Level Mesh need an Irrlicht node, use createNode method in scene constructor"); break;
     case ERRCODE_47: errorLog("/!\\ FATAL ERROR : 47 : Level Mesh need a Newton body, use loadMeshCollision method in scene constructor"); break;

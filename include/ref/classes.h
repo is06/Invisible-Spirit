@@ -17,6 +17,7 @@ class Timer;
 class Translation;
 class Entity;
 class Save;
+class SaveFile;
 class Keyboard;
 class Mouse;
 class Gamepad;

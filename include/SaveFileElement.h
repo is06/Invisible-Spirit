@@ -5,18 +5,17 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_SAVE_INTEGER_IDENTIFIER_H__
-#define __IS06_SAVE_INTEGER_IDENTIFIER_H__
+#ifndef __IS06_SAVE_FILE_ELEMENT_H__
+#define __IS06_SAVE_FILE_ELEMENT_H__
 
-enum SaveIntegerIdentifier
+using namespace irr;
+using namespace std;
+
+struct SaveFileElement
 {
-  SII__FIRST_VALUE__,
-  SII_CURRENT_MAP,
-  SII_HERO_NAME,
-  SII_CHEST_A_OPEN,
-  SII_CHEST_B_OPEN,
-
-  SII__COUNT__
+  u32 index;
+  c8 type;
+  core::stringw value;
 };
 
 #endif
