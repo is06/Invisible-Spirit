@@ -391,6 +391,7 @@ void Game::fatalError(ErrorCode code)
 {
   switch (code) {
     case ERRCODE_10: errorLog("/!\\ FATAL ERROR : 10 : Unknown map id"); break;
+    case ERRCODE_20: errorLog("/!\\ FATAL ERROR : 20 : Unable to open save file"); break;
     case ERRCODE_45: errorLog("/!\\ FATAL ERROR : 45 : Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor"); break;
     case ERRCODE_46: errorLog("/!\\ FATAL ERROR : 46 : Level Mesh need an Irrlicht node, use createNode method in scene constructor"); break;
     case ERRCODE_47: errorLog("/!\\ FATAL ERROR : 47 : Level Mesh need a Newton body, use loadMeshCollision method in scene constructor"); break;

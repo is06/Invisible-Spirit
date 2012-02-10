@@ -32,26 +32,17 @@ void Save::load()
 
   SaveFileElement element;
 
-  cout << "load file" << endl;
-
   for (u32 i = SII__FIRST_VALUE__ + 1; i < SII__COUNT__; i++) {
-    cout << "reading line " << i << endl;
     element = saveFile->getNextElement();
     if (element.type == 'i') {
-      cout << "Try to load an integer..." << endl;
-      wcout << "  " << element.value.c_str() << endl;
       wistringstream wss(element.value.c_str());
       wss >> integerList[i];
     } else if (element.type == 'b') {
-      cout << "Try to load a boolean..." << endl;
-      wcout << "  " << element.value.c_str() << endl;
       s32 intValue = -1;
       wistringstream wss(element.value.c_str());
       wss >> intValue;
       booleanList[i] = (intValue == 1);
     } else if (element.type == 's') {
-      cout << "Try to load a string..." << endl;
-      wcout << "  " << element.value.c_str() << endl;
       stringList[i] = element.value;
     }
   }
@@ -124,13 +115,6 @@ void Save::setGeneralDefaultValues()
   slot = 0;
 
   integerList[SII_CURRENT_MAP] = SCENE_MAP_ALPHA_ZONE;
-  stringList[SII_HERO_NAME] = L"Ayron";
-  booleanList[SII_CHEST_A_OPEN] = true;
-  booleanList[SII_CHEST_B_OPEN] = false;
-
-  //write();
-  //load();
-  //cout << "current map value=" << integerList[SII_CURRENT_MAP] << endl;
 }
 
 /**
