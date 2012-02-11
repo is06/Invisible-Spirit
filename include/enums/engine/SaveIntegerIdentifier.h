@@ -12,9 +12,6 @@ enum SaveIntegerIdentifier
 {
   SII__FIRST_VALUE__,
   SII_CURRENT_MAP,
-  SII_HERO_NAME,
-  SII_CHEST_A_OPEN,
-  SII_CHEST_B_OPEN,
 
   SII__COUNT__
 };

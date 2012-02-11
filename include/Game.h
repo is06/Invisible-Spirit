@@ -27,6 +27,7 @@ class Game
 
     static void quit();
     static void changeScene(s32 id);
+    static void warning(ErrorCode code);
     static void fatalError(ErrorCode code);
     static void errorLog(const core::stringc& errorText);
 

@@ -19,8 +19,8 @@ class Save
     Save();
     ~Save();
 
-    void load();
-    void write();
+    void load(u8 slot);
+    void write(u8 slot);
     void createNewFile();
 
     s32& getInteger(u32 index);
@@ -28,10 +28,7 @@ class Save
     core::stringw& getString(u32 index);
 
   private:
-    // General information
-    u8 slot;
-
-    // Various data
+    // Data maps
     map<u32, s32> integerList;
     map<u32, bool> booleanList;
     map<u32, core::stringw> stringList;

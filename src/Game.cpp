@@ -383,6 +383,14 @@ void Game::loadNextScene()
   sceneChanged = false;
 }
 
+void Game::warning(ErrorCode code)
+{
+  switch (code) {
+    case ERRCODE_21: errorLog("--> WARNING : 21 : Unable to write save file"); break;
+    default: errorLog("Unknown warning"); break;
+  }
+}
+
 /**
  * Launches an error to error.log file by its code number
  * @param ErrorCode code the code number

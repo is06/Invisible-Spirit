@@ -25,7 +25,7 @@ Save::Save()
 /**
  *
  */
-void Save::load()
+void Save::load(u8 slot)
 {
   SaveFile* saveFile = new SaveFile();
   saveFile->prepareForRead(slot);
@@ -53,7 +53,7 @@ void Save::load()
 /**
  *
  */
-void Save::write()
+void Save::write(u8 slot)
 {
   SaveFile* saveFile = new SaveFile();
   saveFile->prepareForWrite(slot);
@@ -111,9 +111,6 @@ core::stringw& Save::getString(u32 index)
  */
 void Save::setGeneralDefaultValues()
 {
-  // Save info
-  slot = 0;
-
   integerList[SII_CURRENT_MAP] = SCENE_MAP_ALPHA_ZONE;
 }
 

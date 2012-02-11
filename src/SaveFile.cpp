@@ -47,7 +47,7 @@ void SaveFile::prepareForWrite(u8 slot)
   ws.open(filePath.c_str(), ios::out | ios::trunc);
 
   if (!ws) {
-    Game::fatalError(ERRCODE_20);
+    Game::fatalError(ERRCODE_21);
   }
 }
 
