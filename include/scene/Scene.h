@@ -35,6 +35,7 @@ class Scene
     Translation* sceneTranslations;
 
     f32 timeElapsed;
+    f32 startTime;
     f32 speedFactor;
 
   private:

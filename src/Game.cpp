@@ -41,6 +41,7 @@ MusicReference* Game::musicLibrary;
 
 ScreenPosition Game::screenPos;
 Shaders Game::shaders;
+GameDebugOption Game::debugOption;
 s32 Game::nextScene;
 LocaleIdentifier Game::currentLocale;
 bool Game::sceneChanged;
@@ -68,6 +69,8 @@ void Game::init()
   if(screenHeight < 480) screenHeight = 480;
   if(screenHeight > 1080) screenHeight = 1080;
   */
+
+  initDebugOptions();
 
   // Création du device
   device = createDevice(
@@ -172,7 +175,10 @@ void Game::run()
       videoDriver->beginScene(true, true, video::SColor(255,0,0,0));
       currentScene->events();
       sceneManager->drawAll();
-      currentScene->postRender();
+
+      if (!debugOption.display.hidePostRender) {
+        currentScene->postRender();
+      }
       debugGUI->drawAll();
 
       soundManager->setEarsData(currentScene->getActiveCamera(), speedFactor);
@@ -193,7 +199,9 @@ void Game::run()
       videoDriver->beginScene(true, true, video::SColor(255,255,255,255));
       currentScene->events();
       sceneManager->drawAll();
-      currentScene->postRender();
+      if (!debugOption.display.hidePostRender) {
+        currentScene->postRender();
+      }
       debugGUI->drawAll();
       soundManager->setEarsData(currentScene->getActiveCamera(), speedFactor);
       soundManager->update();
@@ -340,6 +348,13 @@ void Game::initLocale()
   globalTranslations = new Translation("global.txt");
 }
 
+void Game::initDebugOptions()
+{
+  debugOption.display.hidePostRender = false;
+  debugOption.display.showIrrlichtDebugData = false;
+  debugOption.display.showWireFrame = false;
+}
+
 /**
  *
  */
@@ -354,6 +369,14 @@ f32 Game::getFramerate()
 f32 Game::getSpeedFactor()
 {
   return speedFactor;
+}
+
+/**
+ *
+ */
+f32 Game::getCurrentTime()
+{
+  return device->getTimer()->getRealTime();
 }
 
 /**

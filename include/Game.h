@@ -14,6 +14,7 @@ http://www.is06.com. Legal code in license.txt
 #include "enums/engine/SceneIdentifier.h"
 #include "enums/engine/LocaleIdentifier.h"
 #include "enums/debug/ErrorCode.h"
+#include "debug/GameDebugOption.h"
 
 
 using namespace irr;
@@ -44,12 +45,14 @@ class Game
 
     static f32 getFramerate();
     static f32 getSpeedFactor();
+    static f32 getCurrentTime();
     static LocaleIdentifier getCurrentLocale();
     static MusicReference* getMusicReference();
 
     static Settings* settings;
     static ScreenPosition screenPos;
     static Shaders shaders;
+    static GameDebugOption debugOption;
 
   private:
     Game();
@@ -57,6 +60,7 @@ class Game
     static void initShaders();
     static void initLocale();
     static void initMusicReference();
+    static void initDebugOptions();
     static void loadNextScene();
 
     // Irrlicht objects

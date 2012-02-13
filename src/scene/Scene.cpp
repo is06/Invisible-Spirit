@@ -18,28 +18,34 @@ bool Scene::inMapEditingMode;
 
 /**
  * Instanciate required object interfaces such as keyboard or music so we can
- * use them in every scene
+ * use them in all scenes
  */
 Scene::Scene()
 {
-  cam = NULL;
+  startTime = Game::getCurrentTime();
   timeElapsed = 0.0f;
 
+  cam = NULL;
   keyboard = new Keyboard();
   gamepad = new Gamepad();
-
   music = Game::getMusicReference();
   globalTranslations = Game::getGlobalTranslations();
 }
 
 /**
- * Event test of every scene in the game
+ * Event test of all scenes in the game
  * (global events)
  */
 void Scene::events()
 {
   speedFactor = Game::getSpeedFactor();
-  timeElapsed += 0.016666666666f;
+  timeElapsed = (Game::getCurrentTime() - startTime) / 1000.0f;
+
+/*
+  if (keyboard->pressed(KEY_CONTROL, EVENT_ONCE) && keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
+    Game::debugOption.display.hidePostRender = true;
+  }
+*/
 }
 
 /**
