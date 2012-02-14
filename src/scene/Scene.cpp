@@ -6,9 +6,11 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/Game.h"
 #include "../../include/Keyboard.h"
 #include "../../include/Gamepad.h"
-#include "../../include/Game.h"
+#include "../../include/Save.h"
+#include "../../include/enums/engine/SaveIntegerIdentifier.h"
 #include "../../include/scene/Scene.h"
 
 using namespace irr;
@@ -40,12 +42,18 @@ void Scene::events()
 {
   speedFactor = Game::getSpeedFactor();
   timeElapsed = (Game::getCurrentTime() - startTime) / 1000.0f;
+  gameSave->setInteger(SII_TOTAL_GAME_TIME, (u32)timeElapsed);
 
 /*
   if (keyboard->pressed(KEY_CONTROL, EVENT_ONCE) && keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
     Game::debugOption.display.hidePostRender = true;
   }
 */
+}
+
+void Scene::setSaveSlot(Save* saveSlot)
+{
+  gameSave = saveSlot;
 }
 
 /**

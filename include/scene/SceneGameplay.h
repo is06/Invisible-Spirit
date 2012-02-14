@@ -30,6 +30,8 @@ class SceneGameplay : public Scene
     EnergyInterface* enInterface;
     GameplayMenu* gpMenu;
 
+    GameTimeCounter* gameTotalTime;
+
   private:
     void manageCameraControl();
     void manageCharacterJumps();

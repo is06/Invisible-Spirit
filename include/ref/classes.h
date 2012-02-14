@@ -37,6 +37,7 @@ class Hud2DElement;
 class Counter;
 class BarCounter;
 class DigitCounter;
+class GameTimeCounter;
 class IconCounter;
 class Picture;
 class Animation;

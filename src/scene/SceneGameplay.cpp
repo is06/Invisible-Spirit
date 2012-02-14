@@ -15,10 +15,12 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Game.h"
 #include "../../include/Keyboard.h"
 #include "../../include/Gamepad.h"
+#include "../../include/Save.h"
 #include "../../include/gui/Menu.h"
+#include "../../include/gui/GameTimeCounter.h"
 #include "../../include/scene/SceneGameplay.h"
-
 #include "../../include/enums/control/GamepadButton.h"
+#include "../../include/enums/engine/SaveIntegerIdentifier.h"
 
 using namespace irr;
 using namespace std;
@@ -35,6 +37,7 @@ SceneGameplay::SceneGameplay() : Scene()
   gpInterface = new GameplayInterface();
   enInterface = new EnergyInterface();
   gpMenu = new GameplayMenu(globalTranslations);
+  gameTotalTime = new GameTimeCounter();
 
   Game::getSceneManager()->setAmbientLight(video::SColorf(1.0,1.0,1.0,1.0));
 }
@@ -44,6 +47,8 @@ SceneGameplay::SceneGameplay() : Scene()
  */
 void SceneGameplay::events()
 {
+  gameTotalTime->render(gameSave->getInteger(SII_TOTAL_GAME_TIME));
+
   Scene::events();
 
   manageCameraControl();
@@ -263,4 +268,5 @@ SceneGameplay::~SceneGameplay()
   delete gpInterface;
   delete enInterface;
   delete gpMenu;
+  delete gameTotalTime;
 }

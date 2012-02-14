@@ -12,6 +12,7 @@ enum SaveIntegerIdentifier
 {
   SII__FIRST_VALUE__,
   SII_CURRENT_MAP,
+  SII_TOTAL_GAME_TIME,
 
   SII__COUNT__
 };

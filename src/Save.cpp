@@ -106,12 +106,28 @@ core::stringw& Save::getString(u32 index)
   return stringList[index];
 }
 
+void Save::setInteger(u32 index, s32 value)
+{
+  integerList[index] = value;
+}
+
+void Save::setBoolean(u32 index, bool value)
+{
+  booleanList[index] = value;
+}
+
+void Save::setString(u32 index, const core::stringw& value)
+{
+  stringList[index] = value;
+}
+
 /**
  *
  */
 void Save::setGeneralDefaultValues()
 {
   integerList[SII_CURRENT_MAP] = SCENE_MAP_ALPHA_ZONE;
+  integerList[SII_TOTAL_GAME_TIME] = 0;
 }
 
 /**

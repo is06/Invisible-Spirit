@@ -27,6 +27,10 @@ class Save
     bool& getBoolean(u32 index);
     core::stringw& getString(u32 index);
 
+    void setInteger(u32 index, s32 value);
+    void setBoolean(u32 index, bool value);
+    void setString(u32 index, const core::stringw& value);
+
   private:
     // Data maps
     map<u32, s32> integerList;

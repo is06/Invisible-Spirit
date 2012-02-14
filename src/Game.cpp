@@ -397,12 +397,14 @@ void Game::loadNextScene()
   switch (nextScene) {
     case SCENE_MENU: currentScene = new SceneMenu(); break;
 
-    case SCENE_MAP_2D_TEST: currentScene = new MAP_2D_TEST(); break;
+    case SCENE_MAP_2D_TEST:currentScene = new MAP_2D_TEST(); break;
     case SCENE_MAP_ALPHA_ZONE: currentScene = new MAP_ALPHA_ZONE(); break;
     case SCENE_MAP_CANYON: currentScene = new MAP_CANYON(); break;
 
     default: fatalError(ERRCODE_10); break;
   }
+
+  currentScene->setSaveSlot(currentSave);
   sceneChanged = false;
 }
 

@@ -20,6 +20,8 @@ class Scene
     virtual void events() = 0;
     virtual void postRender() = 0;
 
+    void setSaveSlot(Save* saveSlot);
+
     Camera* getActiveCamera();
 
     static bool inMapEditingMode;
@@ -30,6 +32,7 @@ class Scene
     //MapEditor* mapEditor;
     Keyboard* keyboard;
     Gamepad* gamepad;
+    Save* gameSave;
     MusicReference* music;
     Translation* globalTranslations;
     Translation* sceneTranslations;
