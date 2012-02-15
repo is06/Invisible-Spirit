@@ -1,28 +1,18 @@
-# CMakeList de Invisible Spirit 0.1-110123-1
-# Editez le fichier CMakeCache.txt pour spécifier les chemins vers les
-# bibliothèques Irrlicht et Newton
-# Voir "include_directories" et "link_directories" ci-dessous
+# CMakeList.txt
 
-# La compilation sur un système Macintosh n'a pas été
-# testée, si vous souhaitez contribuer en proposant une version
-# Mac OS, n'hésitez pas à me contacter : http://www.is06.com/contact.php
+# Compilation on Mac System not yet tested, please contact us at http://www.is06.com/contact.php
+# if you want to participate! :)
 
 cmake_minimum_required(VERSION 2.6)
 
 project(Invisible-Spirit)
 
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
+set(CMAKE_MODULE_PATH CMakeModules)
 
-include_directories(
-  ${irrlicht_include_dir}
-  ${newton_include_dir}
-  ${fmodex_include_dir}
-)
-link_directories(
-  ${irrlicht_lib_dir}
-  ${newton_lib_dir}
-  ${fmodex_lib_dir}
-)
+find_package(Irrlicht)
+find_package(FmodEx)
+find_package(Newton)
 
 file(
   GLOB_RECURSE
@@ -40,7 +30,7 @@ IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     Invisible-Spirit
     Irrlicht
     Newton
-    fmodex
+    FmodEx
   )
 ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -50,7 +40,7 @@ ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
       Xxf86vm
       Irrlicht
       Newton
-      fmodex
+      FmodEx
     )
   ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
