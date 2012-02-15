@@ -8,11 +8,11 @@ cmake_minimum_required(VERSION 2.6)
 project(Invisible-Spirit)
 
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
-set(CMAKE_MODULE_PATH CMakeModules)
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
-find_package(Irrlicht)
-find_package(FmodEx)
-find_package(Newton)
+find_package(Irrlicht REQUIRED)
+find_package(FmodEx REQUIRED)
+find_package(Newton REQUIRED)
 
 file(
   GLOB_RECURSE
@@ -28,9 +28,9 @@ add_executable(
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   target_link_libraries(
     Invisible-Spirit
-    Irrlicht
-    Newton
-    FmodEx
+    ${IRRLICHT_LIBRARY}
+		${FMODEX_LIBRARY}
+		${NEWTON_LIBRARY}
   )
 ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -38,9 +38,9 @@ ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
       Invisible-Spirit
       GL
       Xxf86vm
-      Irrlicht
-      Newton
-      FmodEx
+      ${IRRLICHT_LIBRARY}
+			${FMODEX_LIBRARY}
+			${NEWTON_LIBRARY}
     )
   ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
