@@ -13,6 +13,8 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 find_package(Irrlicht REQUIRED)
 find_package(FmodEx REQUIRED)
 find_package(Newton REQUIRED)
+find_package(OpenGL)
+find_package(X11)
 
 file(
   GLOB_RECURSE
@@ -25,22 +27,11 @@ add_executable(
   ${source_files}
 )
 
-IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-  target_link_libraries(
-    Invisible-Spirit
-    ${IRRLICHT_LIBRARY}
-		${FMODEX_LIBRARY}
-		${NEWTON_LIBRARY}
-  )
-ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-  IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    target_link_libraries(
-      Invisible-Spirit
-      GL
-      Xxf86vm
-      ${IRRLICHT_LIBRARY}
-			${FMODEX_LIBRARY}
-			${NEWTON_LIBRARY}
-    )
-  ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+target_link_libraries(
+  Invisible-Spirit
+  ${OPENGL_LIBRARIES}
+  ${X11_X11_LIB}
+  ${IRRLICHT_LIBRARY}
+  ${FMODEX_LIBRARY}
+  ${NEWTON_LIBRARY}
+)
