@@ -9,8 +9,7 @@ typedef boost::function<void()> VoidCallback;
 class Timer
 {
   public:
-    Timer(f32 end, VoidCallback callback, u32 loopLimit = 1);
-    ~Timer();
+    Timer(f32 end, VoidCallback callback, s32 loopLimit = 1);
 
     void update();
 
@@ -18,7 +17,7 @@ class Timer
     inline void stop();
     inline void reset();
 
-    void reinit(f32 end, VoidCallback callback, u32 loopLimit = 1);
+    void reinit(f32 end, VoidCallback callback, s32 loopLimit = 1);
 
     inline void setTime(f32 val);
     inline f32 getTime();

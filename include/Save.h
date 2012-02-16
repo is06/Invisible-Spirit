@@ -28,6 +28,8 @@ class Save
     core::stringw& getString(u32 index);
 
     void setInteger(u32 index, s32 value);
+    void incInteger(u32 index, s32 value);
+    void decInteger(u32 index, s32 value);
     void setBoolean(u32 index, bool value);
     void setString(u32 index, const core::stringw& value);
 

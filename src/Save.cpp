@@ -110,6 +110,16 @@ void Save::setInteger(u32 index, s32 value)
   integerList[index] = value;
 }
 
+void Save::incInteger(u32 index, s32 value)
+{
+  integerList[index] += value;
+}
+
+void Save::decInteger(u32 index, s32 value)
+{
+  integerList[index] -= value;
+}
+
 void Save::setBoolean(u32 index, bool value)
 {
   booleanList[index] = value;
@@ -130,7 +140,7 @@ void Save::setGeneralDefaultValues()
 
   // Time info
   integerList[11] = 0; // Total game time, in seconds
-  integerList[12] = 817; // World time, from 0 to 1439, 720 = 12pm
+  integerList[12] = 1400; // World time, from 0 to 1439, 720 = 12pm
 }
 
 /**

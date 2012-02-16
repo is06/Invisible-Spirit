@@ -38,6 +38,7 @@ class Counter;
 class BarCounter;
 class DigitCounter;
 class GameTimeCounter;
+class WorldTimeCounter;
 class IconCounter;
 class Picture;
 class Animation;

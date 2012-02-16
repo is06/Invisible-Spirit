@@ -31,6 +31,9 @@ class SceneGameplay : public Scene
     GameplayMenu* gpMenu;
 
     GameTimeCounter* gameTotalTime;
+    WorldTimeCounter* worldTime;
+
+    Timer* worldTimeTimer;
 
   private:
     void manageCameraControl();
@@ -38,6 +41,8 @@ class SceneGameplay : public Scene
     void manageCharacterMovements();
     void manageCharacterCollisions();
     void manageMenuControl();
+
+    void updateWorldTime();
 };
 
 #endif

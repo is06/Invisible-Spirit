@@ -16,8 +16,10 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Keyboard.h"
 #include "../../include/Gamepad.h"
 #include "../../include/Save.h"
+#include "../../include/Timer.h"
 #include "../../include/gui/Menu.h"
 #include "../../include/gui/GameTimeCounter.h"
+#include "../../include/gui/WorldTimeCounter.h"
 #include "../../include/scene/SceneGameplay.h"
 #include "../../include/enums/control/GamepadButton.h"
 
@@ -37,6 +39,8 @@ SceneGameplay::SceneGameplay() : Scene()
   enInterface = new EnergyInterface();
   gpMenu = new GameplayMenu(globalTranslations);
   gameTotalTime = new GameTimeCounter();
+  worldTime = new WorldTimeCounter();
+  worldTimeTimer = new Timer(1.0f, boost::bind(&SceneGameplay::updateWorldTime, this), -1);
 
   Game::getSceneManager()->setAmbientLight(video::SColorf(1.0,1.0,1.0,1.0));
 }
@@ -47,6 +51,9 @@ SceneGameplay::SceneGameplay() : Scene()
 void SceneGameplay::events()
 {
   gameTotalTime->render(gameSave->getInteger(11)); // 11 = total game time
+
+  worldTime->render(gameSave->getInteger(12)); // 12 = world time
+  worldTimeTimer->update();
 
   Scene::events();
 
@@ -69,6 +76,14 @@ void SceneGameplay::events()
   // Entities rendering
   ayron->render();
   cam->render();
+}
+
+void SceneGameplay::updateWorldTime()
+{
+  gameSave->incInteger(12, 1);
+  if (gameSave->getInteger(12) >= 1440) {
+    gameSave->setInteger(12, 0);
+  }
 }
 
 /**
@@ -268,4 +283,6 @@ SceneGameplay::~SceneGameplay()
   delete enInterface;
   delete gpMenu;
   delete gameTotalTime;
+  delete worldTime;
+  delete worldTimeTimer;
 }
