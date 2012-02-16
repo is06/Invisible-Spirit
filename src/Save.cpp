@@ -6,7 +6,6 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../include/ref/core.h"
-#include "../include/enums/engine/SaveIntegerIdentifier.h"
 #include "../include/Save.h"
 #include "../include/SaveFile.h"
 #include "../include/Game.h"
@@ -32,7 +31,7 @@ void Save::load(u8 slot)
 
   SaveFileElement element;
 
-  for (u32 i = SII__FIRST_VALUE__ + 1; i < SII__COUNT__; i++) {
+  for (u32 i = 0; i < 65535; i++) {
     element = saveFile->getNextElement();
     if (element.type == 'i') {
       wistringstream wss(element.value.c_str());
@@ -58,7 +57,7 @@ void Save::write(u8 slot)
   SaveFile* saveFile = new SaveFile();
   saveFile->prepareForWrite(slot);
 
-  for (u32 i = SII__FIRST_VALUE__ + 1; i < SII__COUNT__; i++) {
+  for (u32 i = 0; i < 65535; i++) {
     if (integerList.find(i) != integerList.end()) {
       saveFile->addVariable(i, integerList[i]);
     } else if (booleanList.find(i) != booleanList.end()) {
@@ -79,7 +78,7 @@ void Save::write(u8 slot)
 void Save::createNewFile()
 {
   setGeneralDefaultValues();
-  Game::changeScene(integerList[SII_CURRENT_MAP]);
+  Game::changeScene(integerList[1]);
 }
 
 /**
@@ -126,8 +125,12 @@ void Save::setString(u32 index, const core::stringw& value)
  */
 void Save::setGeneralDefaultValues()
 {
-  integerList[SII_CURRENT_MAP] = SCENE_MAP_ALPHA_ZONE;
-  integerList[SII_TOTAL_GAME_TIME] = 0;
+  // Map info
+  integerList[1] = SCENE_MAP_ALPHA_ZONE; // Current map id
+
+  // Time info
+  integerList[11] = 0; // Total game time, in seconds
+  integerList[12] = 817; // World time, from 0 to 1439, 720 = 12pm
 }
 
 /**

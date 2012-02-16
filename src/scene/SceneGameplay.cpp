@@ -20,7 +20,6 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/GameTimeCounter.h"
 #include "../../include/scene/SceneGameplay.h"
 #include "../../include/enums/control/GamepadButton.h"
-#include "../../include/enums/engine/SaveIntegerIdentifier.h"
 
 using namespace irr;
 using namespace std;
@@ -47,7 +46,7 @@ SceneGameplay::SceneGameplay() : Scene()
  */
 void SceneGameplay::events()
 {
-  gameTotalTime->render(gameSave->getInteger(SII_TOTAL_GAME_TIME));
+  gameTotalTime->render(gameSave->getInteger(11)); // 11 = total game time
 
   Scene::events();
 
