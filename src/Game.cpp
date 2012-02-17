@@ -52,27 +52,25 @@ u8 Game::framerate;
 f32 Game::speedFactor;
 
 /**
- * Pseudo-constructeur de Game, cette fonction initialise les objets Irrlicht, Newton et du jeu
+ * All initializations
  */
 void Game::init()
 {
-  // Gestionnaire d'événements et paramètres du fichier ini
+  // Event Manager and INI settings
   eventManager = new EventManager();
   settings = new Settings();
 
-  // Limites de résolution d'écran 640x480 => 1920x1080
+  // Screen size limit 640x480 => 1920x1080
   u32 screenWidth = settings->getParamInt("display", "width");
   u32 screenHeight = settings->getParamInt("display", "height");
-  /*
   if(screenWidth < 640) screenWidth = 640;
   if(screenWidth > 1920) screenWidth = 1920;
   if(screenHeight < 480) screenHeight = 480;
   if(screenHeight > 1080) screenHeight = 1080;
-  */
 
   initDebugOptions();
 
-  // Création du device
+  // Irrlicht Device creation
   device = createDevice(
     video::EDT_OPENGL,
     core::dimension2du(screenWidth, screenHeight),
@@ -83,22 +81,6 @@ void Game::init()
     eventManager
   );
   device->setWindowCaption(L"Invisible Spirit 0.1");
-
-  /*
-  video::IVideoModeList* vml = device->getVideoModeList();
-
-  s32 videoModeCount = vml->getVideoModeCount();
-  s32 colorDepth;
-  core::dimension2du vres;
-
-  cout << "Supported video modes:" << endl;
-
-  for (s32 i = 0; i < videoModeCount; i++) {
-    vres = vml->getVideoModeResolution(i);
-    colorDepth = vml->getVideoModeDepth(i);
-    cout << "- " << vres.Width << "x" << vres.Height << "x" << colorDepth << endl;
-  }
-  */
 
   // Gestion de la vitesse de rendu
   independantSpeed = (settings->getParamInt("processor", "independant_speed") == 1);
@@ -167,15 +149,13 @@ void Game::run()
       // Speed factor computation
       lastCycleTime = device->getTimer()->getRealTime() - loopTime;
       loopTime = device->getTimer()->getRealTime();
-
       speedFactor = lastCycleTime / 1000.0f;
       if(speedFactor > 1.0f) speedFactor = 1.0f; // Limit min 1fps
-      if(speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed time
+      if(speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed movements
 
       videoDriver->beginScene(true, true, video::SColor(255,0,0,0));
       currentScene->events();
       sceneManager->drawAll();
-
       if (!debugOption.display.hidePostRender) {
         currentScene->postRender();
       }
@@ -183,8 +163,8 @@ void Game::run()
 
       soundManager->setEarsData(currentScene->getActiveCamera(), speedFactor);
       soundManager->update();
-      videoDriver->endScene();
 
+      videoDriver->endScene();
       if (!processorPriority) {
         device->yield();
       }
@@ -222,8 +202,8 @@ void Game::run()
 }
 
 /**
- * Permet d'accéder au device Irrlicht n'importe où dans le programme
- * @return IrrlichtDevice* un pointeur vers l'objet du device en cours
+ * Access to the Irrlicht device
+ * @return IrrlichtDevice*
  */
 IrrlichtDevice* Game::getDevice()
 {
@@ -231,8 +211,8 @@ IrrlichtDevice* Game::getDevice()
 }
 
 /**
- * Permet d'accéder au driver vidéo Irrlicht
- * @return IVideoDriver* un pointeur vers l'objet videoDriver en cours
+ * Access to the Irrlicht video driver
+ * @return IVideoDriver*
  */
 video::IVideoDriver* Game::getVideoDriver()
 {
@@ -240,8 +220,8 @@ video::IVideoDriver* Game::getVideoDriver()
 }
 
 /**
- * Permet d'accéder au gestionnaire de scènes Irrlicht
- * @return ISceneManager* un pointeur vers l'objet sceneManager en cours
+ * Access to the Irrlicht scene manager
+ * @return ISceneManager*
  */
 scene::ISceneManager* Game::getSceneManager()
 {
@@ -249,7 +229,8 @@ scene::ISceneManager* Game::getSceneManager()
 }
 
 /**
- * @todo
+ * Access to the Debug GUI interface
+ * @return IGUIEnvironment*
  */
 gui::IGUIEnvironment* Game::getDebugGUI()
 {
@@ -257,7 +238,8 @@ gui::IGUIEnvironment* Game::getDebugGUI()
 }
 
 /**
- * @todo
+ * Access to the Newton world entity
+ * @return NewtonWorld*
  */
 NewtonWorld* Game::getNewtonWorld()
 {
@@ -265,7 +247,8 @@ NewtonWorld* Game::getNewtonWorld()
 }
 
 /**
- *
+ * Access to the current scene
+ * @return Scene*
  */
 Scene* Game::getCurrentScene()
 {
@@ -273,8 +256,8 @@ Scene* Game::getCurrentScene()
 }
 
 /**
- * Permet d'accéder au gestionnaire d'événements
- * @return EventManager* un pointeur vers l'objet eventManager en cours
+ * Access to the Event manager
+ * @return EventManager*
  */
 EventManager* Game::getEventManager()
 {
@@ -282,7 +265,7 @@ EventManager* Game::getEventManager()
 }
 
 /**
- * Permet de quitter le programme
+ * Set instruction in order to quit the game
  */
 void Game::quit()
 {
@@ -290,7 +273,9 @@ void Game::quit()
 }
 
 /**
- *
+ * Initializes screen position values
+ * @param u32 w screen width
+ * @param u32 h screen height
  */
 void Game::initScreenPositions(u32 w, u32 h)
 {
@@ -307,7 +292,7 @@ void Game::initScreenPositions(u32 w, u32 h)
 }
 
 /**
- *
+ * Initializes shader custom material values
  */
 void Game::initShaders()
 {
@@ -335,7 +320,7 @@ void Game::initShaders()
 }
 
 /**
- *
+ * Creates a global translation object according to the locale set in settings
  */
 void Game::initLocale()
 {
@@ -348,6 +333,9 @@ void Game::initLocale()
   globalTranslations = new Translation("global.txt");
 }
 
+/**
+ *
+ */
 void Game::initDebugOptions()
 {
   debugOption.display.hidePostRender = false;
@@ -356,7 +344,8 @@ void Game::initDebugOptions()
 }
 
 /**
- *
+ * Returns constant framerate target value
+ * @return f32
  */
 f32 Game::getFramerate()
 {
@@ -364,7 +353,9 @@ f32 Game::getFramerate()
 }
 
 /**
- *
+ * Returns the speed factor, used to perform computation on movements
+ * and time
+ * @return f32
  */
 f32 Game::getSpeedFactor()
 {
@@ -380,7 +371,8 @@ f32 Game::getCurrentTime()
 }
 
 /**
- * Change the current scene by putting
+ * Changes the current scene by passing its id
+ * @param s32 id the scene id
  */
 void Game::changeScene(s32 id)
 {
@@ -389,7 +381,7 @@ void Game::changeScene(s32 id)
 }
 
 /**
- * Loads the scene which is on stack on the next cycle
+ * Loads the scene which is specified in nextScene attribute on the next cycle
  */
 void Game::loadNextScene()
 {
@@ -408,6 +400,9 @@ void Game::loadNextScene()
   sceneChanged = false;
 }
 
+/**
+ *
+ */
 void Game::warning(ErrorCode code)
 {
   switch (code) {

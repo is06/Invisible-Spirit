@@ -85,6 +85,22 @@ void SceneMenu::postRender()
   title->render();
 }
 
+void SceneMenu::initModeList()
+{
+  video::IVideoModeList* vml = Game::getDevice()->getVideoModeList();
+
+  s32 videoModeCount = vml->getVideoModeCount();
+  s32 colorDepth;
+  core::dimension2du vres;
+
+  for (s32 i = 0; i < videoModeCount; i++) {
+    vres = vml->getVideoModeResolution(i);
+    colorDepth = vml->getVideoModeDepth(i);
+
+    modeList[i] = core::vector3di(vres.Width, vres.Height, colorDepth);
+  }
+}
+
 SceneMenu::~SceneMenu()
 {
   delete dummy;

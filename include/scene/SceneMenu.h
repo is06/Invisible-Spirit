@@ -23,10 +23,13 @@ class SceneMenu : public Scene
     void postRender();
 
   private:
+    void initModeList();
+
     Picture* dummy;
     Picture* title;
     Menu* mainMenu;
     StaticModel* lightRays;
+    map<u16, core::vector3di> modeList;
 };
 
 #endif
