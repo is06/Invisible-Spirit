@@ -40,9 +40,11 @@ SceneMenu::SceneMenu() : Scene()
   lightRays = new StaticModel();
   lightRays->loadMesh("resource/mesh/menus/title/rays.obj");
   lightRays->createNode(core::vector3df(0,1000,0));
-  lightRays->getNode()->setMaterialFlag(video::EMF_BACK_FACE_CULLING, false);
-  lightRays->getNode()->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL);
-  lightRays->getNode()->setScale(core::vector3df(300.0f, 300.0f, 300.0f));
+  if (lightRays->getNode()) {
+    lightRays->getNode()->setMaterialFlag(video::EMF_BACK_FACE_CULLING, false);
+    lightRays->getNode()->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL);
+    lightRays->getNode()->setScale(core::vector3df(300.0f, 300.0f, 300.0f));
+  }
 }
 
 void SceneMenu::events()
@@ -52,11 +54,13 @@ void SceneMenu::events()
   lightRays->render();
 
   // Rotation des rayons de lumière
-  lightRays->getNode()->setRotation(core::vector3df(
-    lightRays->getNode()->getRotation().X,
-    lightRays->getNode()->getRotation().Y + (5 * Game::getSpeedFactor()),
-    lightRays->getNode()->getRotation().Z
-  ));
+  if (lightRays->getNode()) {
+    lightRays->getNode()->setRotation(core::vector3df(
+      lightRays->getNode()->getRotation().X,
+      lightRays->getNode()->getRotation().Y + (5 * Game::getSpeedFactor()),
+      lightRays->getNode()->getRotation().Z
+    ));
+  }
 
   cam->getNode()->setPosition(core::vector3df(
     cam->getNode()->getPosition().X,

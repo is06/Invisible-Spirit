@@ -22,6 +22,7 @@ Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style, u8 speed) : 
   textStr = str;
   currentSize = 24;
   currentSpeed = speed;
+  charList.clear();
   font = new TextFont(style);
   currentCharPos = pos = core::dimension2df(x, y);
   currentDisplayChar = 0;

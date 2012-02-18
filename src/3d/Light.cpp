@@ -29,4 +29,5 @@ void Light::render()
 Light::~Light()
 {
   node->remove();
+  icon->remove();
 }

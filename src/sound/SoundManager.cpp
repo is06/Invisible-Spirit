@@ -34,8 +34,8 @@ SoundManager::SoundManager()
 void SoundManager::setEarsData(Camera* activeCamera, f32 cycleTime)
 {
   core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
-  core::vector3df rotation = activeCamera->getNode()->getRotation();
-  core::vector3df lastPosition = activeCamera->getLastPosition();
+  //core::vector3df rotation = activeCamera->getNode()->getRotation();
+  //core::vector3df lastPosition = activeCamera->getLastPosition();
   core::vector3df forward = activeCamera->getNode()->getTarget() - position;
   forward.normalize();
   core::vector3df up = activeCamera->getNode()->getUpVector();

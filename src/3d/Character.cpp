@@ -16,7 +16,12 @@ using namespace irr;
  */
 Character::Character() : AnimatedModel()
 {
+  isJumping = false;
+  isFalling = true;
+  isWalking = false;
+  isTalking = false;
 
+  jumpStrength = 0.0f;
 }
 
 /**

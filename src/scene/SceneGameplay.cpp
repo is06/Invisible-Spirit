@@ -161,8 +161,7 @@ void SceneGameplay::manageCharacterMovements()
 {
   if (ayron->hasControl()) {
     // Keyboard control
-    if (keyboard->pressed(KEY_UP) || keyboard->pressed(KEY_DOWN)
-    || keyboard->pressed(KEY_LEFT) || keyboard->pressed(KEY_RIGHT)) {
+    if (keyboard->pressed(KEY_UP) || keyboard->pressed(KEY_DOWN) || keyboard->pressed(KEY_LEFT) || keyboard->pressed(KEY_RIGHT)) {
       // Character's direction from keyboard's arrows angle
       ayron->getNode()->setRotation(core::vector3df(
         ayron->getNode()->getRotation().X,
@@ -184,8 +183,7 @@ void SceneGameplay::manageCharacterMovements()
     }
 
     // Joystick control
-    if (fabs(gamepad->getLeftJoystickXAxis()) > 35
-    || fabs(gamepad->getLeftJoystickYAxis()) > 35) {
+    if (fabs(gamepad->getLeftJoystickXAxis()) > 35 || fabs(gamepad->getLeftJoystickYAxis()) > 35) {
       // Character's direction from joystick's angle
       ayron->getNode()->setRotation(core::vector3df(
         ayron->getNode()->getRotation().X,
@@ -276,13 +274,13 @@ void SceneGameplay::postRender()
  */
 SceneGameplay::~SceneGameplay()
 {
-  delete level;
-  delete ayron;
-  delete cam;
-  delete gpInterface;
-  delete enInterface;
-  delete gpMenu;
-  delete gameTotalTime;
-  delete worldTime;
-  delete worldTimeTimer;
+  if (level) delete level;
+  if (ayron) delete ayron;
+  if (cam) delete cam;
+  if (gpInterface) delete gpInterface;
+  if (enInterface) delete enInterface;
+  if (gpMenu) delete gpMenu;
+  if (gameTotalTime) delete gameTotalTime;
+  if (worldTime) delete worldTime;
+  if (worldTimeTimer) delete worldTimeTimer;
 }

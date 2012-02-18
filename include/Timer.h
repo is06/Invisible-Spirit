@@ -24,8 +24,8 @@ class Timer
 
   private:
     bool running;
-    u32 currentLoopLimit;
-    u32 currentLoop;
+    s32 currentLoopLimit;
+    s32 currentLoop;
     f32 currentTime;
     f32 endTime;
 

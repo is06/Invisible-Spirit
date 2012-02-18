@@ -13,6 +13,7 @@ enum ErrorCode
   ERRCODE_10, // Unknown map id
   ERRCODE_20, // Unable to open save file
   ERRCODE_21, // Unable to write save file
+  ERRCODE_30, // Mesh file not found
   ERRCODE_45, // Scene requires a Level Mesh
   ERRCODE_46, // Scene requires a Level Mesh Node
   ERRCODE_47, // LevelMesh need a Newton Body

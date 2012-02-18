@@ -10,11 +10,12 @@ project(Invisible-Spirit)
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
+#set(CMAKE_CXX_FLAGS "-g -Wall")
+
 find_package(Irrlicht REQUIRED)
 find_package(FmodEx REQUIRED)
 find_package(Newton REQUIRED)
-find_package(OpenGL)
-find_package(X11)
+find_package(Boost REQUIRED)
 
 file(
   GLOB_RECURSE
@@ -29,9 +30,12 @@ add_executable(
 
 target_link_libraries(
   Invisible-Spirit
-  ${OPENGL_LIBRARIES}
-  ${X11_X11_LIB}
   ${IRRLICHT_LIBRARY}
+  GL
+  GLU
+  Xxf86vm
+  Xext
+  X11
   ${FMODEX_LIBRARY}
   ${NEWTON_LIBRARY}
 )

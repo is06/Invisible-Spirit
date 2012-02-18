@@ -34,9 +34,13 @@ void StaticModel::render()
  */
 void StaticModel::createNode(const core::vector3df& initPosition)
 {
-  mainNode = Game::getSceneManager()->addMeshSceneNode(mainMesh);
-  mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
-  mainNode->setPosition(initPosition);
+  if (mainMesh) {
+    mainNode = Game::getSceneManager()->addMeshSceneNode(mainMesh);
+    mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
+    mainNode->setPosition(initPosition);
+  } else {
+    Game::fatalError(ERRCODE_30);
+  }
 }
 
 /**
@@ -90,7 +94,6 @@ void StaticModel::loadMeshCollision()
   if (mainNode) {
     NewtonCollision* treeCollision = NewtonCreateTreeCollision(Game::getNewtonWorld(), 0);
     NewtonTreeCollisionBeginBuild(treeCollision);
-    core::vector3df scale = mainNode->getScale();
 
     // On récupère les meshBuffer, à chaque meshBuffer, on ajoute les informations à la collision
     for (u32 i = 0; i < mainMesh->getMeshBufferCount(); i++) {
