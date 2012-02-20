@@ -10,6 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 // Main classes
 class Game;
+class EngineException;
 class EventManager;
 class Settings;
 class SettingsGroup;

@@ -7,12 +7,17 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../include/ref/core.h"
 #include "../include/Game.h"
+#include "../include/EngineException.h"
 
 int main()
 {
-  Game::init();
-  Game::run();
-  Game::finish();
-
+  try {
+    Game::init();
+    Game::run();
+    Game::finish();
+  } catch(const std::exception& e) {
+    cerr << "Exception: " << e.what() << endl;
+    Game::errorLog(e);
+  }
   return 0;
 }

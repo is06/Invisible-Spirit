@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../include/ref/core.h"
 #include "../include/Game.h"
+#include "../include/EngineException.h"
 #include "../include/EventManager.h"
 #include "../include/Settings.h"
 #include "../include/sound/SoundManager.h"
@@ -408,8 +409,8 @@ void Game::loadNextScene()
 void Game::warning(ErrorCode code)
 {
   switch (code) {
-    case ERRCODE_21: errorLog("--> WARNING : 21 : Unable to write save file"); break;
-    default: errorLog("Unknown warning"); break;
+    case ERRCODE_21: throw EngineException(code, "Unable to write save file", 2); break;
+    default: throw EngineException(code, "Unknown warning", 2); break;
   }
 }
 
@@ -420,25 +421,26 @@ void Game::warning(ErrorCode code)
 void Game::fatalError(ErrorCode code)
 {
   switch (code) {
-    case ERRCODE_10: errorLog("/!\\ FATAL ERROR : 10 : Unknown map id"); break;
-    case ERRCODE_20: errorLog("/!\\ FATAL ERROR : 20 : Unable to open save file"); break;
-    case ERRCODE_30: errorLog("/!\\ FATAL ERROR : 30 : Mesh file not found"); break;
-    case ERRCODE_45: errorLog("/!\\ FATAL ERROR : 45 : Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor"); break;
-    case ERRCODE_46: errorLog("/!\\ FATAL ERROR : 46 : Level Mesh need an Irrlicht node, use createNode method in scene constructor"); break;
-    case ERRCODE_47: errorLog("/!\\ FATAL ERROR : 47 : Level Mesh need a Newton body, use loadMeshCollision method in scene constructor"); break;
-    default: errorLog("/!\\ FATAL ERROR : Unknown error"); break;
+    case ERRCODE_10: throw EngineException(code, "Unknown map id", 3); break;
+    case ERRCODE_20: throw EngineException(code, "Unable to open save file", 3); break;
+    case ERRCODE_30: throw EngineException(code, "Mesh file not found", 3); break;
+    case ERRCODE_45: throw EngineException(code, "Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor", 3); break;
+    case ERRCODE_46: throw EngineException(code, "Level Mesh need an Irrlicht node, use createNode method in scene constructor", 3); break;
+    case ERRCODE_47: throw EngineException(code, "Level Mesh need a Newton body, use loadMeshCollision method in scene constructor", 3); break;
+    default: throw EngineException(code, "Unknown error", 3); break;
   }
+
 }
 
 /**
  * Writes an error message in error.log file
- * @param string& errorText the message to write
+ * @param EngineException& to write
  */
-void Game::errorLog(const string& errorText)
+void Game::errorLog(const exception& e)
 {
   ofstream errorLogFile("error.log", ios::out | ios::app);
   if (errorLogFile) {
-    errorLogFile << errorText.c_str() << endl;
+    errorLogFile << e.what() << endl;
     errorLogFile.close();
   }
 }

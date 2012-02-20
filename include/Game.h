@@ -30,7 +30,7 @@ class Game
     static void changeScene(s32 id);
     static void warning(ErrorCode code);
     static void fatalError(ErrorCode code);
-    static void errorLog(const string& errorText);
+    static void errorLog(const exception& e);
 
     static IrrlichtDevice* getDevice();
     static video::IVideoDriver* getVideoDriver();
