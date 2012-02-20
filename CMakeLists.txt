@@ -10,6 +10,7 @@ project(Invisible-Spirit)
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
+# Uncomment this line if you want debug symbols
 #set(CMAKE_CXX_FLAGS "-g -Wall")
 
 find_package(Irrlicht REQUIRED)
@@ -28,14 +29,23 @@ add_executable(
   ${source_files}
 )
 
-target_link_libraries(
-  Invisible-Spirit
-  ${IRRLICHT_LIBRARY}
-  GL
-  GLU
-  Xxf86vm
-  Xext
-  X11
-  ${FMODEX_LIBRARY}
-  ${NEWTON_LIBRARY}
-)
+IF(WIN32)
+  target_link_libraries(
+    Invisible-Spirit
+    ${IRRLICHT_LIBRARY}
+    ${FMODEX_LIBRARY}
+    ${NEWTON_LIBRARY}
+  )
+ELSE(WIN32)
+  target_link_libraries(
+    Invisible-Spirit
+    ${IRRLICHT_LIBRARY}
+    GL
+    GLU
+    Xxf86vm
+    Xext
+    X11
+    ${FMODEX_LIBRARY}
+    ${NEWTON_LIBRARY}
+  )
+ENDIF(WIN32)
