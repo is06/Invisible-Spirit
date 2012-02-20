@@ -19,18 +19,18 @@ class MusicReference
     MusicReference();
     ~MusicReference();
 
-    void play(const core::stringc& id);
+    void play(const string& id);
     void stop();
 
-    void muteSequence(const core::stringc& id, u8 number);
-    void soloSequence(const core::stringc& id, u8 number);
+    void muteSequence(const string& id, u8 number);
+    void soloSequence(const string& id, u8 number);
 
     Music* getCurrentMusic();
 
   private:
-    core::stringc currentId;
+    string currentId;
     Music* currentMusic;
-    map<core::stringc, MusicInfo> musicList;
+    map<string, MusicInfo> musicList;
 };
 
 #endif

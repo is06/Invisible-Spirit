@@ -12,9 +12,9 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-Translation::Translation(const core::stringc& filePath)
+Translation::Translation(const string& filePath)
 {
-  core::stringc fullPath = "resource/text/";
+  string fullPath = "resource/text/";
   notfound = L"[not_found]";
 
   switch (Game::getCurrentLocale())
@@ -23,33 +23,29 @@ Translation::Translation(const core::stringc& filePath)
     case LOCALE_FRE_BE:
     case LOCALE_FRE_CA:
     case LOCALE_FRE_CH:
-      fullPath.append("fre-FR");
+      fullPath += "fre-FR";
       break;
     default:
-      fullPath.append("eng-GB");
+      fullPath += "eng-GB";
       break;
   }
 
-  fullPath.append("/");
-  fullPath.append(filePath);
-
+  fullPath += "/" + filePath;
   loadTextData(fullPath);
 }
 
-void Translation::loadTextData(const core::stringc& fullPath)
+void Translation::loadTextData(const string& fullPath)
 {
   //cout << "Translation file loaded : " << fullPath.c_str() << endl;
 
   wifstream textFile(fullPath.c_str(), ios::in);
   if (textFile) {
-
     //cout << "Processing translation file..." << endl;
-
     wchar_t currentChar;
     bool inTextIdentifier = true;
     bool inTextValue = false;
-    core::stringc identifier = "";
-    core::stringw value = L"";
+    string identifier = "";
+    wstring value = L"";
 
     while (textFile.get(currentChar)) {
       if (currentChar == '\n' || currentChar == '\r') {
@@ -64,7 +60,7 @@ void Translation::loadTextData(const core::stringc& fullPath)
         inTextIdentifier = true;
       } else {
         if (inTextValue) {
-          value.append(currentChar);
+          value += currentChar;
         }
         if (inTextIdentifier) {
           if (currentChar == '=') {
@@ -72,7 +68,7 @@ void Translation::loadTextData(const core::stringc& fullPath)
             inTextIdentifier = false;
             inTextValue = true;
           } else {
-            identifier.append(currentChar);
+            identifier += currentChar;
           }
         }
       }
@@ -81,7 +77,7 @@ void Translation::loadTextData(const core::stringc& fullPath)
   }
 }
 
-const core::stringw& Translation::getTranslation(const core::stringc& identifier) const
+const wstring& Translation::getTranslation(const string& identifier) const
 {
   //cout << "'" << textData.find(identifier) << "' <-> '" << textData.end() << "'" << endl;
   if (textData.find(identifier) == textData.end()) {

@@ -17,7 +17,7 @@ using namespace std;
 class Music
 {
   public:
-    Music(const core::stringc& id);
+    Music(const string& id);
     ~Music();
 
     void playSequences(const map<u8, MusicSequenceInfo>& list);

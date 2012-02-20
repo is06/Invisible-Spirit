@@ -31,33 +31,33 @@ void GameTimeCounter::render(s32 totalGameTime)
 
 void GameTimeCounter::updateValues(s32 time)
 {
-  hours = "";
+  hours = L"";
   u32 hoursInt = time / 3600;
   u32 hoursInMinutes = (hoursInt * 60);
   if (hoursInt < 10) {
-    hours += "0";
+    hours += L"0";
   }
   hours += hoursInt;
 
-  minutes = "";
+  minutes = L"";
   u32 minutesInt = (time - hoursInMinutes) / 60;
   u32 minutesInSeconds = (minutesInt * 60);
   if (minutesInt < 10) {
-    minutes += "0";
+    minutes += L"0";
   }
   minutes += minutesInt;
 
-  seconds = "";
+  seconds = L"";
   u32 secondsInt = (time - hoursInMinutes - minutesInSeconds);
   if (secondsInt < 10) {
-    seconds += "0";
+    seconds += L"0";
   }
   seconds += secondsInt;
 }
 
 void GameTimeCounter::updateDigits()
 {
-  counterText->setText(hours + ":" + minutes + ":" + seconds);
+  counterText->setText(hours + L":" + minutes + L":" + seconds);
 }
 
 void GameTimeCounter::hide()

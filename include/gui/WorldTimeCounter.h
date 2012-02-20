@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Counter.h"
 
+using namespace std;
+
 class WorldTimeCounter : public Counter
 {
   public:
@@ -23,8 +25,8 @@ class WorldTimeCounter : public Counter
     void setOpacity(u8 value);
 
   private:
-    core::stringw minutes;
-    core::stringw hours;
+    wstring minutes;
+    wstring hours;
 
     Text* counterText;
 

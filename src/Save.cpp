@@ -100,7 +100,7 @@ bool& Save::getBoolean(u32 index)
 /**
  *
  */
-core::stringw& Save::getString(u32 index)
+wstring& Save::getString(u32 index)
 {
   return stringList[index];
 }
@@ -125,7 +125,7 @@ void Save::setBoolean(u32 index, bool value)
   booleanList[index] = value;
 }
 
-void Save::setString(u32 index, const core::stringw& value)
+void Save::setString(u32 index, const wstring& value)
 {
   stringList[index] = value;
 }

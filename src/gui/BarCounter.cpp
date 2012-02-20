@@ -15,7 +15,7 @@ using namespace irr;
 
 BarCounter::BarCounter(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, BarStyle style) : Counter(init, min, max)
 {
-  core::stringc texturePath = "resource/hud/bar/";
+  string texturePath = "resource/hud/bar/";
   sub = NULL;
   oldValue = currentValue + 1;
   behindValue = currentValue;
@@ -29,12 +29,12 @@ BarCounter::BarCounter(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, B
 
   switch (style) {
     case BAR_STYLE_LIFE:
-      texturePath.append("life.bmp");
+      texturePath += "life.bmp";
       sub = new Picture(x, y, w, h, "resource/hud/bar/life_gain.bmp");
       sub->loadSecondTexture("resource/hud/bar/life_loss.bmp");
       break;
     default:
-      texturePath.append("default.bmp");
+      texturePath += "default.bmp";
       break;
   }
 

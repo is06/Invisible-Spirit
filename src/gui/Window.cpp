@@ -31,7 +31,7 @@ Window::Window(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, WindowStyle style) :
  */
 void Window::applyStyleStd(f32 x, f32 y, f32 w, f32 h, f32 borderWidth)
 {
-  core::stringc texturePath = "resource/hud/window/window1.bmp";
+  string texturePath = "resource/hud/window/window1.bmp";
 
   f32 sideW = w - borderWidth;
   f32 sideH = h - borderWidth;

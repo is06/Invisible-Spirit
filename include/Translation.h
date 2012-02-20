@@ -14,15 +14,15 @@ using namespace irr;
 class Translation
 {
   public:
-    Translation(const core::stringc& filePath);
+    Translation(const string& filePath);
 
-    const core::stringw& getTranslation(const core::stringc& identifier) const;
+    const wstring& getTranslation(const string& identifier) const;
 
   private:
-    void loadTextData(const core::stringc& fullPath);
-    core::stringw notfound;
+    void loadTextData(const string& fullPath);
+    wstring notfound;
 
-    map<core::stringc, core::stringw> textData;
+    map<string, wstring> textData;
 };
 
 #endif

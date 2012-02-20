@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Counter.h"
 
+using namespace std;
+
 class GameTimeCounter : public Counter
 {
   public:
@@ -23,9 +25,9 @@ class GameTimeCounter : public Counter
     void setOpacity(u8 value);
 
   private:
-    core::stringw seconds;
-    core::stringw minutes;
-    core::stringw hours;
+    wstring seconds;
+    wstring minutes;
+    wstring hours;
 
     Text* counterText;
 

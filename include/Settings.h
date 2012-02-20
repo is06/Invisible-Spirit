@@ -17,11 +17,11 @@ class Settings
     Settings();
     ~Settings();
 
-    core::stringc& getParamString(const core::stringc& groupName, const core::stringc& paramName);
-    s32 getParamInt(const core::stringc& groupName, const core::stringc& paramName);
+    string& getParamString(const string& groupName, const string& paramName);
+    s32 getParamInt(const string& groupName, const string& paramName);
 
   private:
-    map<core::stringc, SettingsGroup*> data;
+    map<string, SettingsGroup*> data;
     fstream fileStream;
 };
 

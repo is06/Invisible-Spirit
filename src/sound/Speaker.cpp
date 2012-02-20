@@ -16,7 +16,7 @@ using namespace std;
 /**
  *
  */
-Speaker::Speaker(StreamIdentifier, const core::vector3df& initPos, const core::stringw& text, f32 radius) : Entity()
+Speaker::Speaker(StreamIdentifier, const core::vector3df& initPos, const wstring& text, f32 radius) : Entity()
 {
   video::ITexture* iconTexture = Game::getVideoDriver()->getTexture("resource/debug/icons/speaker.bmp");
 

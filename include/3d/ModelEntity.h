@@ -11,6 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../Entity.h"
 
 using namespace irr;
+using namespace std;
 
 class ModelEntity : public Entity
 {
@@ -30,7 +31,7 @@ class ModelEntity : public Entity
 
     virtual video::SMaterial& getMaterial() = 0;
 
-    void loadMesh(const core::stringc& meshFilePath);
+    void loadMesh(const string& meshFilePath);
     scene::IMesh* getMesh();
     NewtonBody* getMainBody();
 

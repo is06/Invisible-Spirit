@@ -39,7 +39,7 @@ void Menu::render()
   cursor->render();
 }
 
-void Menu::addOption(MenuIcon icon, const core::stringw& title)
+void Menu::addOption(MenuIcon icon, const wstring& title)
 {
   f32 posY = pos.Y + (lastInsertedIndex * -1 * 32);
   options.insert(make_pair(lastInsertedIndex, new MenuOption(icon, title, pos.X, posY, currentStyle)));

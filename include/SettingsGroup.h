@@ -14,16 +14,16 @@ using namespace std;
 class SettingsGroup
 {
   public:
-    SettingsGroup(const core::stringc& newName);
+    SettingsGroup(const string& newName);
 
-    void setName(const core::stringc& newName);
-    core::stringc& getName();
+    void setName(const string& newName);
+    string& getName();
 
-    map<core::stringc, core::stringc>& getParams();
+    map<string, string>& getParams();
 
   private:
-    core::stringc name;
-    map<core::stringc, core::stringc> params;
+    string name;
+    map<string, string> params;
 };
 
 #endif

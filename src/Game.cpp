@@ -136,7 +136,7 @@ void Game::run()
     s32 fps = videoDriver->getFPS();
 
     if (lastFPS != fps) {
-      core::stringw str = L"fps: ";
+      wstring str = L"fps: ";
       str += fps;
       device->setWindowCaption(str.c_str());
       lastFPS = fps;
@@ -324,7 +324,7 @@ void Game::initShaders()
  */
 void Game::initLocale()
 {
-  //core::stringc textLocale = settings->getParamString("regional", "locale");
+  //string textLocale = settings->getParamString("regional", "locale");
   currentLocale = LOCALE_FRE_FR;
   /*
   if (textLocale == "eng-GB") {
@@ -432,9 +432,9 @@ void Game::fatalError(ErrorCode code)
 
 /**
  * Writes an error message in error.log file
- * @param core::stringc& errorText the message to write
+ * @param string& errorText the message to write
  */
-void Game::errorLog(const core::stringc& errorText)
+void Game::errorLog(const string& errorText)
 {
   ofstream errorLogFile("error.log", ios::out | ios::app);
   if (errorLogFile) {

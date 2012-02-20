@@ -24,7 +24,7 @@ class SaveFile
 
     void addVariable(u32 index, s32 value);
     void addVariable(u32 index, bool value);
-    void addVariable(u32 index, const core::stringw& value);
+    void addVariable(u32 index, const wstring& value);
 
     SaveFileElement getNextElement();
 

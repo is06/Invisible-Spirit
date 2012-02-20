@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-Music::Music(const core::stringc& id)
+Music::Music(const string& id)
 {
 
 }

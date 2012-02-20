@@ -17,7 +17,7 @@ using namespace irr;
 /**
  *
  */
-Text::Text(const core::stringw& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud()
+Text::Text(const wstring& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud()
 {
   textStr = str;
   currentSize = 24;
@@ -57,7 +57,7 @@ void Text::setSize(u8 size)
   updateTiles();
 }
 
-void Text::setText(const core::stringw& str)
+void Text::setText(const wstring& str)
 {
   textStr = str;
   updateTiles();

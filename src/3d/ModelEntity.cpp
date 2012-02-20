@@ -31,11 +31,11 @@ void ModelEntity::render()
 
 /**
  * Charge un mesh dans l'entité
- * @param stringc& meshFilePath référence vers une chaine désignant le chemin du fichier mesh à charger
+ * @param string& meshFilePath référence vers une chaine désignant le chemin du fichier mesh à charger
  */
-void ModelEntity::loadMesh(const core::stringc& meshFilePath)
+void ModelEntity::loadMesh(const string& meshFilePath)
 {
-  mainMesh = Game::getSceneManager()->getMesh(meshFilePath);
+  mainMesh = Game::getSceneManager()->getMesh(meshFilePath.c_str());
 }
 
 scene::IMesh* ModelEntity::getMesh()

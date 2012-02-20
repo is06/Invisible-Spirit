@@ -9,6 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_MUSIC_SEQUENCE_INFO_H__
 
 using namespace irr;
+using namespace std;
 
 struct MusicSequenceInfo
 {
@@ -16,7 +17,7 @@ struct MusicSequenceInfo
   bool looped;
   u32 loopStart;
   u32 loopEnd;
-  core::stringc fileName;
+  string fileName;
 };
 
 #endif

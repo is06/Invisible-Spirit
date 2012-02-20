@@ -16,12 +16,12 @@ using namespace std;
 class Picture : public Hud2DElement
 {
   public:
-    Picture(f32 x = 0, f32 y = 0, f32 w = 32, f32 h = 32, const core::stringc& filePath = "resource/hud/default.bmp");
+    Picture(f32 x = 0, f32 y = 0, f32 w = 32, f32 h = 32, const string& filePath = "resource/hud/default.bmp");
     ~Picture();
 
     void render();
-    void loadSecondTexture(const core::stringc& filePath);
-    void changeTexture(const core::stringc& filePath);
+    void loadSecondTexture(const string& filePath);
+    void changeTexture(const string& filePath);
 };
 
 #endif

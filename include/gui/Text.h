@@ -18,12 +18,12 @@ using namespace irr;
 class Text : public Hud
 {
   public:
-    Text(const core::stringw& str = "[Text]", f32 x = 0, f32 y = 0, FontStyle style = FONT_STD_CLASSIC_REGULAR, u8 speed = 0);
+    Text(const wstring& str = L"[Text]", f32 x = 0, f32 y = 0, FontStyle style = FONT_STD_CLASSIC_REGULAR, u8 speed = 0);
     ~Text();
 
     void render();
     void setSize(u8 size);
-    void setText(const core::stringw& str);
+    void setText(const wstring& str);
     void setPosition(const core::position2df& position);
     void updateTiles();
 
@@ -33,7 +33,7 @@ class Text : public Hud
     TextFont* font;
     core::position2df pos;
     core::position2df currentCharPos;
-    core::stringw textStr;
+    wstring textStr;
     vector<TextChar> charList;
     vector<TextChar>::iterator charIt;
     u8 currentSize;

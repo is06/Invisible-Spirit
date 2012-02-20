@@ -31,25 +31,25 @@ void WorldTimeCounter::render(s32 totalGameTime)
 
 void WorldTimeCounter::updateValues(s32 time)
 {
-  hours = "";
+  hours = L"";
   u32 hoursInt = time / 60;
   u32 hoursInMinutes = (hoursInt * 60);
   if (hoursInt < 10) {
-    hours += "0";
+    hours += L"0";
   }
   hours += hoursInt;
 
-  minutes = "";
+  minutes = L"";
   u32 minutesInt = (time - hoursInMinutes);
   if (minutesInt < 10) {
-    minutes += "0";
+    minutes += L"0";
   }
   minutes += minutesInt;
 }
 
 void WorldTimeCounter::updateDigits()
 {
-  counterText->setText(hours + ":" + minutes);
+  counterText->setText(hours + L":" + minutes);
 }
 
 void WorldTimeCounter::hide()

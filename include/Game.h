@@ -16,8 +16,8 @@ http://www.is06.com. Legal code in license.txt
 #include "enums/debug/ErrorCode.h"
 #include "debug/GameDebugOption.h"
 
-
 using namespace irr;
+using namespace std;
 
 class Game
 {
@@ -30,7 +30,7 @@ class Game
     static void changeScene(s32 id);
     static void warning(ErrorCode code);
     static void fatalError(ErrorCode code);
-    static void errorLog(const core::stringc& errorText);
+    static void errorLog(const string& errorText);
 
     static IrrlichtDevice* getDevice();
     static video::IVideoDriver* getVideoDriver();

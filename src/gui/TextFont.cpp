@@ -17,45 +17,40 @@ using namespace irr;
  */
 TextFont::TextFont(FontStyle style)
 {
-  core::stringc filePath = "resource/hud/font/";
+  string filePath = "resource/hud/font/";
 
   switch (style) {
-    case FONT_STD_CLASSIC_REGULAR: filePath.append("std_classic_regular"); break;
-    case FONT_COND_CLASSIC_REGULAR: filePath.append("cond_classic_regular"); break;
-    case FONT_EXT_CLASSIC_REGULAR: filePath.append("ext_classic_regular"); break;
-    case FONT_STD_CLASSIC_BOLD: filePath.append("std_classic_bold"); break;
-    case FONT_COND_CLASSIC_BOLD: filePath.append("cond_classic_bold"); break;
-    case FONT_EXT_CLASSIC_BOLD: filePath.append("ext_classic_bold"); break;
+    case FONT_STD_CLASSIC_REGULAR: filePath += "std_classic_regular"; break;
+    case FONT_COND_CLASSIC_REGULAR: filePath += "cond_classic_regular"; break;
+    case FONT_EXT_CLASSIC_REGULAR: filePath += "ext_classic_regular"; break;
+    case FONT_STD_CLASSIC_BOLD: filePath += "std_classic_bold"; break;
+    case FONT_COND_CLASSIC_BOLD: filePath += "cond_classic_bold"; break;
+    case FONT_EXT_CLASSIC_BOLD: filePath += "ext_classic_bold"; break;
 
-    case FONT_STD_SHADED_REGULAR: filePath.append("std_shaded_regular"); break;
-    case FONT_COND_SHADED_REGULAR: filePath.append("cond_shaded_regular"); break;
-    case FONT_EXT_SHADED_REGULAR: filePath.append("ext_shaded_regular"); break;
-    case FONT_STD_SHADED_BOLD: filePath.append("std_shaded_bold"); break;
-    case FONT_COND_SHADED_BOLD: filePath.append("cond_shaded_bold"); break;
-    case FONT_EXT_SHADED_BOLD: filePath.append("ext_shaded_bold"); break;
+    case FONT_STD_SHADED_REGULAR: filePath += "std_shaded_regular"; break;
+    case FONT_COND_SHADED_REGULAR: filePath += "cond_shaded_regular"; break;
+    case FONT_EXT_SHADED_REGULAR: filePath += "ext_shaded_regular"; break;
+    case FONT_STD_SHADED_BOLD: filePath += "std_shaded_bold"; break;
+    case FONT_COND_SHADED_BOLD: filePath += "cond_shaded_bold"; break;
+    case FONT_EXT_SHADED_BOLD: filePath += "ext_shaded_bold"; break;
 
-    case FONT_STD_BORDER_SHADED_REGULAR: filePath.append("std_border_shaded_regular"); break;
-    case FONT_COND_BORDER_SHADED_REGULAR: filePath.append("cond_border_shaded_regular"); break;
-    case FONT_EXT_BORDER_SHADED_REGULAR: filePath.append("ext_border_shaded_regular"); break;
-    case FONT_STD_BORDER_SHADED_BOLD: filePath.append("std_border_shaded_bold"); break;
-    case FONT_COND_BORDER_SHADED_BOLD: filePath.append("cond_border_shaded_bold"); break;
-    case FONT_EXT_BORDER_SHADED_BOLD: filePath.append("ext_border_shaded_bold"); break;
+    case FONT_STD_BORDER_SHADED_REGULAR: filePath += "std_border_shaded_regular"; break;
+    case FONT_COND_BORDER_SHADED_REGULAR: filePath += "cond_border_shaded_regular"; break;
+    case FONT_EXT_BORDER_SHADED_REGULAR: filePath += "ext_border_shaded_regular"; break;
+    case FONT_STD_BORDER_SHADED_BOLD: filePath += "std_border_shaded_bold"; break;
+    case FONT_COND_BORDER_SHADED_BOLD: filePath += "cond_border_shaded_bold"; break;
+    case FONT_EXT_BORDER_SHADED_BOLD: filePath += "ext_border_shaded_bold"; break;
 
-    case FONT_LOCATION_TITLE_REGULAR: filePath.append("location_title_regular"); break;
-    case FONT_DIALOG_NAME_TITLE_REGULAR: filePath.append("dialog_name_regular"); break;
+    case FONT_LOCATION_TITLE_REGULAR: filePath += "location_title_regular"; break;
+    case FONT_DIALOG_NAME_TITLE_REGULAR: filePath += "dialog_name_regular"; break;
 
     default: break;
   }
 
-  core::stringc texturePath = filePath;
-
-  core::stringc dataPath = filePath;
-  texturePath.append(".png");
-  dataPath.append(".dat");
-
+  string texturePath = filePath + ".png";
+  string dataPath = filePath + ".dat";
   readFontData(dataPath);
-
-  fontTexture = Game::getVideoDriver()->getTexture(texturePath);
+  fontTexture = Game::getVideoDriver()->getTexture(texturePath.c_str());
   fontMaterial.setTexture(0, fontTexture);
   fontMaterial.Lighting = false;
 }
@@ -76,13 +71,13 @@ u8& TextFont::getCharOffset(u8 code)
 /**
  *
  */
-void TextFont::readFontData(const core::stringc& dataFilePath)
+void TextFont::readFontData(const string& dataFilePath)
 {
   // Lecture des information de taille
   fstream fileStream(dataFilePath.c_str(), ios::in);
-  core::stringc currentCode;
-  core::stringc currentWidth;
-  c8 currentChar;
+  string currentCode;
+  string currentWidth;
+  char currentChar;
   bool inReadingCode = true;
   bool inReadingWidth = false;
 
@@ -90,7 +85,7 @@ void TextFont::readFontData(const core::stringc& dataFilePath)
     while (fileStream.get(currentChar)) {
       // Lecture du code
       if (inReadingCode && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
-        currentCode.append(currentChar);
+        currentCode += currentChar;
       } else if (inReadingCode && currentChar == ' ') {
         inReadingCode = false;
         inReadingWidth = true;
@@ -98,7 +93,7 @@ void TextFont::readFontData(const core::stringc& dataFilePath)
 
       // Lecture de la largeur
       if (inReadingWidth && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
-        currentWidth.append(currentChar);
+        currentWidth += currentChar;
       }
 
       // Nouvelle ligne

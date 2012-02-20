@@ -15,9 +15,8 @@ using namespace irr;
 
 MusicSequence::MusicSequence(const MusicSequenceInfo& info)
 {
-  core::stringc filePath;
-  filePath.append("resource/music/");
-  filePath.append(info.fileName);
+  string filePath("resource/music/");
+  filePath += info.fileName;
   FMOD_System_CreateStream(Game::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &soundPtr);
 }
 

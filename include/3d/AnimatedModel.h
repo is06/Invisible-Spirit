@@ -46,7 +46,7 @@ class AnimatedModel : public ModelEntity
     f32 getWallCollision(RayType type, StaticModel* other, core::vector3df& normal);
 
     // Animations
-    void loadAnimation(const core::stringc& fileName);
+    void loadAnimation(const string& fileName);
     void setCurrentAnimation(s32 id, f32 speed = 30.0f);
     void pauseAnimation();
     void playAnimation();

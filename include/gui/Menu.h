@@ -24,7 +24,7 @@ class Menu : public Hud
 
     virtual void render();
 
-    void addOption(MenuIcon icon = MENU_ICON_NONE, const core::stringw& title = "[Option]");
+    void addOption(MenuIcon icon = MENU_ICON_NONE, const wstring& title = L"[Option]");
     void removeOption(u16 index);
     MenuOption* getOption(u16 index);
 

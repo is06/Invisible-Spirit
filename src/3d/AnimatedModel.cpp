@@ -262,9 +262,9 @@ bool AnimatedModel::isInBoxSensor(BoxSensor* sensor, EventType type)
 
 /**
  * Loads the animation data file specified in parameter
- * @param stringc the animation data file name path
+ * @param string the animation data file name path
  */
-void AnimatedModel::loadAnimation(const core::stringc& fileName)
+void AnimatedModel::loadAnimation(const string& fileName)
 {
   fstream fileStream(fileName.c_str(), ios::in);
 
@@ -276,9 +276,9 @@ void AnimatedModel::loadAnimation(const core::stringc& fileName)
 
     c8 current;
     s32 nr = 0;
-    core::stringc animNumber;
-    core::stringc startFrame;
-    core::stringc endFrame;
+    string animNumber;
+    string startFrame;
+    string endFrame;
     bool looped;
 
     while (fileStream.get(current)) {
@@ -317,13 +317,13 @@ void AnimatedModel::loadAnimation(const core::stringc& fileName)
       }
 
       if (inAnimNumberDeclaration) {
-        animNumber.append(current);
+        animNumber += current;
       }
       if (inAnimStartDeclaration) {
-        startFrame.append(current);
+        startFrame += current;
       }
       if (inAnimEndDeclaration) {
-        endFrame.append(current);
+        endFrame += current;
       }
       if (inAnimLoopedDeclaration) {
         looped = (current == 1);

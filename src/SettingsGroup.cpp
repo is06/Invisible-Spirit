@@ -10,22 +10,22 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-SettingsGroup::SettingsGroup(const core::stringc& newName)
+SettingsGroup::SettingsGroup(const string& newName)
 {
   setName(newName);
 }
 
-void SettingsGroup::setName(const core::stringc& newName)
+void SettingsGroup::setName(const string& newName)
 {
   name = newName;
 }
 
-map<core::stringc, core::stringc>& SettingsGroup::getParams()
+map<string, string>& SettingsGroup::getParams()
 {
   return params;
 }
 
-core::stringc& SettingsGroup::getName()
+string& SettingsGroup::getName()
 {
   return name;
 }

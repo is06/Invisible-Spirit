@@ -26,9 +26,8 @@ SaveFile::SaveFile()
  */
 void SaveFile::prepareForRead(u8 slot)
 {
-  core::stringc filePath = "save_";
-  filePath.append(slot);
-  filePath.append(".dat");
+  string filePath("save_");
+  filePath += slot + ".dat";
   rs.open(filePath.c_str(), ios::in);
 
   if (!rs) {
@@ -41,9 +40,8 @@ void SaveFile::prepareForRead(u8 slot)
  */
 void SaveFile::prepareForWrite(u8 slot)
 {
-  core::stringc filePath = "save_";
-  filePath.append(slot);
-  filePath.append(".dat");
+  string filePath("save_");
+  filePath += slot + ".dat";
   ws.open(filePath.c_str(), ios::out | ios::trunc);
 
   if (!ws) {
@@ -71,7 +69,7 @@ void SaveFile::addVariable(u32 index, bool value)
 /**
  * Adds a string variable in the save file
  */
-void SaveFile::addVariable(u32 index, const core::stringw& value)
+void SaveFile::addVariable(u32 index, const wstring& value)
 {
   ws << index << "\ts\t" << value.c_str() << "\n";
 }
@@ -86,9 +84,9 @@ SaveFileElement SaveFile::getNextElement()
   bool inIndexDeclaration = true;
   bool inTypeDeclaration = false;
   bool inValueDeclaration = false;
-  core::stringc index = "";
-  c8 type;
-  core::stringw value = L"";
+  string index = "";
+  char type;
+  wstring value = L"";
 
   SaveFileElement result;
 
@@ -114,13 +112,13 @@ SaveFileElement SaveFile::getNextElement()
         break;
       }
       if (inIndexDeclaration) {
-        index.append(currentChar);
+        index += currentChar;
       }
       if (inTypeDeclaration) {
         type = (c8)currentChar;
       }
       if (inValueDeclaration) {
-        value.append(currentChar);
+        value += currentChar;
       }
     }
   }

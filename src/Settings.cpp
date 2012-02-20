@@ -16,13 +16,13 @@ Settings::Settings()
 {
   fstream fileStream("settings.ini", ios::in);
   if (fileStream) {
-    c8 current;
+    char current;
     bool inGroupNameDeclaration = false;
     bool inParamNameDeclaration = false;
     bool inParamValueExtraction = false;
-    core::stringc groupName = "";
-    core::stringc paramName = "";
-    core::stringc paramValue = "";
+    string groupName = "";
+    string paramName = "";
+    string paramValue = "";
     u32 linePosition = 0;
 
     while (fileStream.get(current)) {
@@ -31,7 +31,7 @@ Settings::Settings()
       if (inGroupNameDeclaration) {
         if (current != ']') {
           // Adding character to Group Name
-          groupName.append(current);
+          groupName += current;
         } else {
           // Group Creation
           data[groupName] = new SettingsGroup(groupName);
@@ -54,7 +54,7 @@ Settings::Settings()
             continue;
           } else {
             // Adding character to Param Name
-            paramName.append(current);
+            paramName += current;
           }
         }
 
@@ -72,7 +72,7 @@ Settings::Settings()
 
         if (inParamValueExtraction) {
           // Adding character to Param Value
-          paramValue.append(current);
+          paramValue += current;
         }
       }
 
@@ -87,7 +87,7 @@ Settings::Settings()
         inParamNameDeclaration = true;
         paramName = "";
         // Adding character to Param Name
-        paramName.append(current);
+        paramName += current;
       }
 
       linePosition++;
@@ -96,12 +96,12 @@ Settings::Settings()
   fileStream.close();
 }
 
-core::stringc& Settings::getParamString(const core::stringc& groupName, const core::stringc& paramName)
+string& Settings::getParamString(const string& groupName, const string& paramName)
 {
   return data[groupName]->getParams()[paramName];
 }
 
-s32 Settings::getParamInt(const core::stringc& groupName, const core::stringc& paramName)
+s32 Settings::getParamInt(const string& groupName, const string& paramName)
 {
   if (data[groupName]) {
     return (s32)atoi(data[groupName]->getParams()[paramName].c_str());

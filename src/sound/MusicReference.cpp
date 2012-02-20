@@ -25,13 +25,13 @@ MusicReference::MusicReference()
     bool inSeqEndDeclaration = false;
     bool inSeqFileDeclaration = false;
 
-    c8 current;
-    core::stringc musicName;
-    core::stringc sequenceNumber;
+    char current;
+    string musicName;
+    string sequenceNumber;
     bool sequenceLooped;
-    core::stringc sequenceLoopStart;
-    core::stringc sequenceLoopEnd;
-    core::stringc sequenceFileName;
+    string sequenceLoopStart;
+    string sequenceLoopEnd;
+    string sequenceFileName;
 
     while (fileStream.get(current)) {
       if (current == '=') {
@@ -92,28 +92,28 @@ MusicReference::MusicReference()
       }
 
       if (inMusicNameDeclaration) {
-        musicName.append(current);
+        musicName += current;
       }
       if (inSeqNumbDeclaration) {
-        sequenceNumber.append(current);
+        sequenceNumber += current;
       }
       if (inSeqLoopDeclaration) {
         sequenceLooped = (current == '1');
       }
       if (inSeqStartDeclaration) {
-        sequenceLoopStart.append(current);
+        sequenceLoopStart += current;
       }
       if (inSeqEndDeclaration) {
-        sequenceLoopEnd.append(current);
+        sequenceLoopEnd += current;
       }
       if (inSeqFileDeclaration) {
-        sequenceFileName.append(current);
+        sequenceFileName += current;
       }
     }
   }
 }
 
-void MusicReference::play(const core::stringc& id)
+void MusicReference::play(const string& id)
 {
   currentId = id;
 
@@ -124,12 +124,12 @@ void MusicReference::play(const core::stringc& id)
   }
 }
 
-void MusicReference::muteSequence(const core::stringc& id, u8 number)
+void MusicReference::muteSequence(const string& id, u8 number)
 {
   currentMusic->getSequences()[number]->setVolume(0.0f);
 }
 
-void MusicReference::soloSequence(const core::stringc& id, u8 number)
+void MusicReference::soloSequence(const string& id, u8 number)
 {
   currentMusic->getSequences()[number]->setVolume(1.0f);
 }

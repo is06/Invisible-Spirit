@@ -15,7 +15,7 @@ struct SaveFileElement
 {
   u32 index;
   c8 type;
-  core::stringw value;
+  wstring value;
 };
 
 #endif
