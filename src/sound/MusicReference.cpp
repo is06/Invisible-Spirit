@@ -25,13 +25,13 @@ MusicReference::MusicReference()
     bool inSeqEndDeclaration = false;
     bool inSeqFileDeclaration = false;
 
-    char current;
-    string musicName;
-    string sequenceNumber;
-    bool sequenceLooped;
-    string sequenceLoopStart;
-    string sequenceLoopEnd;
-    string sequenceFileName;
+    char current = 0;
+    string musicName("");
+    string sequenceNumber("");
+    bool sequenceLooped = true;
+    string sequenceLoopStart("");
+    string sequenceLoopEnd("");
+    string sequenceFileName("");
 
     while (fileStream.get(current)) {
       if (current == '=') {

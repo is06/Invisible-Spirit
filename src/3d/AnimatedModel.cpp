@@ -274,12 +274,12 @@ void AnimatedModel::loadAnimation(const string& fileName)
     bool inAnimEndDeclaration = false;
     bool inAnimLoopedDeclaration = false;
 
-    c8 current;
+    char current = 0;
     s32 nr = 0;
-    string animNumber;
-    string startFrame;
-    string endFrame;
-    bool looped;
+    string animNumber("");
+    string startFrame("");
+    string endFrame("");
+    bool looped = true;
 
     while (fileStream.get(current)) {
       if (current == '=') {

@@ -140,7 +140,7 @@ void Save::setGeneralDefaultValues()
 
   // Time info
   integerList[11] = 0; // Total game time, in seconds
-  integerList[12] = 1400; // World time, from 0 to 1439, 720 = 12pm
+  integerList[12] = 1337; // World time, from 0 to 1439, 720 = 12pm
 }
 
 /**

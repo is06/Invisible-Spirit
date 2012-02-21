@@ -80,13 +80,13 @@ void SaveFile::addVariable(u32 index, const wstring& value)
  */
 SaveFileElement SaveFile::getNextElement()
 {
-  wchar_t currentChar;
+  wchar_t currentChar = 0;
   bool inIndexDeclaration = true;
   bool inTypeDeclaration = false;
   bool inValueDeclaration = false;
-  string index = "";
-  char type;
-  wstring value = L"";
+  string index("");
+  char type = 0;
+  wstring value(L"");
 
   SaveFileElement result;
 
