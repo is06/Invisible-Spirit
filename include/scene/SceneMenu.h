@@ -23,6 +23,10 @@ class SceneMenu : public Scene
     void postRender();
 
   private:
+    void manageMainMenu();
+    void manageSaveListMenu();
+    void manageOptionMenu();
+
     void initModeList();
 
     Picture* dummy;
@@ -30,6 +34,12 @@ class SceneMenu : public Scene
     Menu* mainMenu;
     StaticModel* lightRays;
     map<u16, core::vector3di> modeList;
+
+    bool inTitleFadeIn;
+    bool inMainMenu;
+    bool inSaveListMenu;
+    bool inOptionMenu;
+    bool inNewGameFadeOut;
 };
 
 #endif

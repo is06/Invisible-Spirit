@@ -21,6 +21,12 @@ using namespace std;
 
 SceneMenu::SceneMenu() : Scene()
 {
+  inTitleFadeIn = false;
+  inMainMenu = true;
+  inSaveListMenu = false;
+  inOptionMenu = false;
+  inNewGameFadeOut = false;
+
   cam = new TPCamera();
   cam->setControl(false);
 
@@ -33,6 +39,8 @@ SceneMenu::SceneMenu() : Scene()
 
   mainMenu = new Menu(-50, -100, 150, 8, MENU_STYLE_TITLE);
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_new_game"));
+  mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_load_game"));
+  mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_option"));
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_quit"));
 
   title = new Picture(100, 0, 256, 102, "resource/texture/menus/title/main.png");
@@ -51,33 +59,23 @@ void SceneMenu::events()
 {
   Scene::events();
 
+  // Light rays rotation
   lightRays->render();
-
-  // Rotation des rayons de lumière
   if (lightRays->getNode()) {
-    lightRays->getNode()->setRotation(core::vector3df(
-      lightRays->getNode()->getRotation().X,
-      lightRays->getNode()->getRotation().Y + (5 * Game::getSpeedFactor()),
-      lightRays->getNode()->getRotation().Z
-    ));
+    lightRays->turnY(5);
   }
 
-  cam->getNode()->setPosition(core::vector3df(
-    cam->getNode()->getPosition().X,
-    cam->getNode()->getPosition().Y,
-    cam->getNode()->getPosition().Z + (2 * Game::getSpeedFactor())
-  ));
-  if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
-    mainMenu->nextOption();
+  // Camera movement
+  if (cam->getZ() < 3500) {
+    cam->moveZ(2);
   }
-  if (keyboard->pressed(KEY_UP, EVENT_ONCE)) {
-    mainMenu->prevOption();
-  }
-  if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
-    switch (mainMenu->getCurrentOption()) {
-      case 0: Game::getCurrentSave()->createNewFile(); break;
-      case 1: Game::quit(); break;
-    }
+
+  if (inMainMenu) {
+    manageMainMenu();
+  } else if (inSaveListMenu) {
+    manageSaveListMenu();
+  } else if (inOptionMenu) {
+    manageOptionMenu();
   }
 }
 
@@ -87,6 +85,38 @@ void SceneMenu::postRender()
   dummy->render();
   mainMenu->render();
   title->render();
+}
+
+/**
+ * Main Menu events
+ */
+void SceneMenu::manageMainMenu()
+{
+  if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
+    mainMenu->nextOption();
+  }
+  if (keyboard->pressed(KEY_UP, EVENT_ONCE)) {
+    mainMenu->prevOption();
+  }
+  if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
+    switch (mainMenu->getCurrentOption()) {
+      case 0: Game::getCurrentSave()->createNewFile(); break;
+      case 1: break;
+      case 2: break;
+      case 3: Game::quit(); break;
+      default: break;
+    }
+  }
+}
+
+void SceneMenu::manageSaveListMenu()
+{
+
+}
+
+void SceneMenu::manageOptionMenu()
+{
+
 }
 
 void SceneMenu::initModeList()

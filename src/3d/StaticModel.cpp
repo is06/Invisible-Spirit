@@ -87,6 +87,60 @@ void StaticModel::setDebugData(bool value)
   mainNode->setDebugDataVisible(value);
 }
 
+void StaticModel::turnX(f32 speed)
+{
+  mainNode->setRotation(core::vector3df(
+    mainNode->getRotation().X + (speed * Game::getSpeedFactor()),
+    mainNode->getRotation().Y,
+    mainNode->getRotation().Z
+  ));
+}
+
+void StaticModel::turnY(f32 speed)
+{
+  mainNode->setRotation(core::vector3df(
+    mainNode->getRotation().X,
+    mainNode->getRotation().Y + (speed * Game::getSpeedFactor()),
+    mainNode->getRotation().Z
+  ));
+}
+
+void StaticModel::turnZ(f32 speed)
+{
+  mainNode->setRotation(core::vector3df(
+    mainNode->getRotation().X,
+    mainNode->getRotation().Y,
+    mainNode->getRotation().Z + (speed * Game::getSpeedFactor())
+  ));
+}
+
+void StaticModel::moveX(f32 speed)
+{
+  mainNode->setPosition(core::vector3df(
+    mainNode->getPosition().X + (speed * Game::getSpeedFactor()),
+    mainNode->getPosition().Y,
+    mainNode->getPosition().Z
+  ));
+}
+
+void StaticModel::moveY(f32 speed)
+{
+  mainNode->setPosition(core::vector3df(
+    mainNode->getPosition().X,
+    mainNode->getPosition().Y + (speed * Game::getSpeedFactor()),
+    mainNode->getPosition().Z
+  ));
+}
+
+void StaticModel::moveZ(f32 speed)
+{
+  mainNode->setPosition(core::vector3df(
+    mainNode->getPosition().X,
+    mainNode->getPosition().Y,
+    mainNode->getPosition().Z + (speed * Game::getSpeedFactor())
+  ));
+}
+
 void StaticModel::loadMeshCollision()
 {
   bool optimize = true;

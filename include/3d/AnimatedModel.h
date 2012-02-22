@@ -33,6 +33,14 @@ class AnimatedModel : public ModelEntity
     void setWireFrame(bool value);
     void setDebugData(bool value);
 
+    // Movements
+    void turnX(f32 speed);
+    void turnY(f32 speed);
+    void turnZ(f32 speed);
+    void moveX(f32 speed);
+    void moveY(f32 speed);
+    void moveZ(f32 speed);
+
     video::SMaterial& getMaterial();
     void createNode(const core::vector3df& initPosition);
     scene::IAnimatedMeshSceneNode* getNode();

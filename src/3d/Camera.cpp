@@ -31,6 +31,75 @@ void Camera::render()
 
 }
 
+void Camera::turnX(f32 speed)
+{
+  irrCam->setRotation(core::vector3df(
+    irrCam->getRotation().X + (speed * Game::getSpeedFactor()),
+    irrCam->getRotation().Y,
+    irrCam->getRotation().Z
+  ));
+}
+
+void Camera::turnY(f32 speed)
+{
+  irrCam->setRotation(core::vector3df(
+    irrCam->getRotation().X,
+    irrCam->getRotation().Y + (speed * Game::getSpeedFactor()),
+    irrCam->getRotation().Z
+  ));
+}
+
+void Camera::turnZ(f32 speed)
+{
+  irrCam->setRotation(core::vector3df(
+    irrCam->getRotation().X,
+    irrCam->getRotation().Y,
+    irrCam->getRotation().Z + (speed * Game::getSpeedFactor())
+  ));
+}
+
+void Camera::moveX(f32 speed)
+{
+  irrCam->setPosition(core::vector3df(
+    getX() + (speed * Game::getSpeedFactor()),
+    getY(),
+    getZ()
+  ));
+}
+
+void Camera::moveY(f32 speed)
+{
+  irrCam->setPosition(core::vector3df(
+    getX(),
+    getY() + (speed * Game::getSpeedFactor()),
+    getZ()
+  ));
+}
+
+void Camera::moveZ(f32 speed)
+{
+  irrCam->setPosition(core::vector3df(
+    getX(),
+    getY(),
+    getZ() + (speed * Game::getSpeedFactor())
+  ));
+}
+
+f32 Camera::getX()
+{
+  return irrCam->getPosition().X;
+}
+
+f32 Camera::getY()
+{
+  return irrCam->getPosition().Y;
+}
+
+f32 Camera::getZ()
+{
+  return irrCam->getPosition().Z;
+}
+
 /**
  * Retourne le node Irrlicht associé à la caméra
  * @return ISceneNode* le noeud associé à la caméra

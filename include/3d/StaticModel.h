@@ -28,6 +28,13 @@ class StaticModel : public ModelEntity
     void setWireFrame(bool value);
     void setDebugData(bool value);
 
+    void turnX(f32 speed);
+    void turnY(f32 speed);
+    void turnZ(f32 speed);
+    void moveX(f32 speed);
+    void moveY(f32 speed);
+    void moveZ(f32 speed);
+
     video::SMaterial& getMaterial();
 
     void loadMeshCollision();

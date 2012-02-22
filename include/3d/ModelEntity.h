@@ -31,6 +31,13 @@ class ModelEntity : public Entity
 
     virtual video::SMaterial& getMaterial() = 0;
 
+    virtual void turnX(f32 speed) = 0;
+    virtual void turnY(f32 speed) = 0;
+    virtual void turnZ(f32 speed) = 0;
+    virtual void moveX(f32 speed) = 0;
+    virtual void moveY(f32 speed) = 0;
+    virtual void moveZ(f32 speed) = 0;
+
     void loadMesh(const string& meshFilePath);
     scene::IMesh* getMesh();
     NewtonBody* getMainBody();

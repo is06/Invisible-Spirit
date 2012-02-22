@@ -1,4 +1,6 @@
-main_menu_new_game=Jouer
+main_menu_new_game=Nouvelle partie
+main_menu_load_game=Charger
+main_menu_option=Paramètres
 main_menu_quit=Quitter
 
 gameplay_menu_status=Etat

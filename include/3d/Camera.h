@@ -23,6 +23,16 @@ class Camera : public Entity
     virtual void linkEntity(Character* entityToLink) = 0;
     virtual f32 getDistance() = 0;
 
+    void turnX(f32 speed);
+    void turnY(f32 speed);
+    void turnZ(f32 speed);
+    void moveX(f32 speed);
+    void moveY(f32 speed);
+    void moveZ(f32 speed);
+    f32 getX();
+    f32 getY();
+    f32 getZ();
+
     virtual void goLeft(f32 speed) = 0;
     virtual void goRight(f32 speed) = 0;
     virtual void goFar(f32 speed) = 0;
