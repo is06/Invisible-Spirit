@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/EventManager.h"
 #include "../include/Settings.h"
 #include "../include/sound/SoundManager.h"
-#include "../include/Save.h"
+#include "../include/save/Save.h"
 #include "../include/sound/MusicReference.h"
 #include "../include/scene/Scene.h"
 #include "../include/scene/SceneMenu.h"

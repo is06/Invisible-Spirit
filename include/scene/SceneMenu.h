@@ -9,6 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_SCENE_MENU_H__
 
 #include "Scene.h"
+#include "../save/SaveSlot.h"
 
 using namespace irr;
 using namespace std;
@@ -23,17 +24,25 @@ class SceneMenu : public Scene
     void postRender();
 
   private:
+    void createSaveListMenu();
+    void destroySaveListMenu();
+    void createOptionMenu();
+    void destroyOptionMenu();
+
     void manageMainMenu();
     void manageSaveListMenu();
     void manageOptionMenu();
 
     void initModeList();
+    void retrieveSaveSlotList();
+    void clearSaveSlotList();
 
     Picture* dummy;
     Picture* title;
     Menu* mainMenu;
     StaticModel* lightRays;
     map<u16, core::vector3di> modeList;
+    map<u8, SaveSlot*> saveSlotList;
 
     bool inTitleFadeIn;
     bool inMainMenu;

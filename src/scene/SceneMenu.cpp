@@ -14,11 +14,14 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Translation.h"
 #include "../../include/Game.h"
 #include "../../include/Keyboard.h"
-#include "../../include/Save.h"
+#include "../../include/save/Save.h"
 
 using namespace irr;
 using namespace std;
 
+/**
+ * Init common elements
+ */
 SceneMenu::SceneMenu() : Scene()
 {
   inTitleFadeIn = false;
@@ -26,6 +29,8 @@ SceneMenu::SceneMenu() : Scene()
   inSaveListMenu = false;
   inOptionMenu = false;
   inNewGameFadeOut = false;
+
+  initModeList();
 
   cam = new TPCamera();
   cam->setControl(false);
@@ -55,6 +60,9 @@ SceneMenu::SceneMenu() : Scene()
   }
 }
 
+/**
+ * Common events
+ */
 void SceneMenu::events()
 {
   Scene::events();
@@ -79,6 +87,9 @@ void SceneMenu::events()
   }
 }
 
+/**
+ * Hud render
+ */
 void SceneMenu::postRender()
 {
   Scene::postRender();
@@ -101,24 +112,88 @@ void SceneMenu::manageMainMenu()
   if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
     switch (mainMenu->getCurrentOption()) {
       case 0: Game::getCurrentSave()->createNewFile(); break;
-      case 1: break;
-      case 2: break;
+      case 1: createSaveListMenu(); break;
+      case 2: createOptionMenu(); break;
       case 3: Game::quit(); break;
       default: break;
     }
   }
 }
 
+/**
+ * Get in Save List menu
+ */
+void SceneMenu::createSaveListMenu()
+{
+  inMainMenu = false;
+  inSaveListMenu = true;
+
+  retrieveSaveSlotList();
+}
+
+/**
+ * Save List menu events
+ */
 void SceneMenu::manageSaveListMenu()
 {
 
 }
 
+/**
+ * Quit Save List menu
+ */
+void SceneMenu::destroySaveListMenu()
+{
+  inMainMenu = true;
+  inSaveListMenu = false;
+}
+
+/**
+ * Get in Option menu
+ */
+void SceneMenu::createOptionMenu()
+{
+  inMainMenu = false;
+  inOptionMenu = true;
+}
+
+/**
+ * Option menu events
+ */
 void SceneMenu::manageOptionMenu()
 {
 
 }
 
+/**
+ * Quit Option menu
+ */
+void SceneMenu::destroyOptionMenu()
+{
+  inMainMenu = true;
+  inOptionMenu = false;
+}
+
+void SceneMenu::retrieveSaveSlotList()
+{
+  clearSaveSlotList();
+  for (u8 i = 0; i <= 255; i++) {
+    Save* save = new Save();
+    save->loadPrimitiveInfo(i);
+    saveSlotList[i] = new SaveSlot(save);
+  }
+}
+
+void SceneMenu::clearSaveSlotList()
+{
+  for (u8 i = 0; i <= 255; i++) {
+    saveSlotList[i] = NULL;
+  }
+}
+
+/**
+ * Init supported video mode list
+ */
 void SceneMenu::initModeList()
 {
   video::IVideoModeList* vml = Game::getDevice()->getVideoModeList();

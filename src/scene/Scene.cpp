@@ -9,7 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Game.h"
 #include "../../include/Keyboard.h"
 #include "../../include/Gamepad.h"
-#include "../../include/Save.h"
+#include "../../include/save/Save.h"
 #include "../../include/scene/Scene.h"
 
 using namespace irr;
