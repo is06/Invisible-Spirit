@@ -16,6 +16,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/scene/Scene.h"
 #include "../include/scene/SceneMenu.h"
 #include "../include/scene/SceneGameplay.h"
+#include "../include/shader/DiffuseShaderCallback.h"
 #include "../include/ref/maps.h"
 #include "../include/Translation.h"
 
@@ -57,60 +58,19 @@ f32 Game::speedFactor;
  */
 void Game::init()
 {
-  // Event Manager and INI settings
-  eventManager = new EventManager();
   settings = new Settings();
 
-  // Screen size limit 640x480 => 1920x1080
-  u32 screenWidth = settings->getParamInt("display", "width");
-  u32 screenHeight = settings->getParamInt("display", "height");
-  if(screenWidth < 640) screenWidth = 640;
-  if(screenWidth > 1920) screenWidth = 1920;
-  if(screenHeight < 480) screenHeight = 480;
-  if(screenHeight > 1080) screenHeight = 1080;
-
+  initScreenPositions();
+  initIrrlichtInterfaces();
   initDebugOptions();
-
-  // Irrlicht Device creation
-  device = createDevice(
-    video::EDT_OPENGL,
-    core::dimension2du(screenWidth, screenHeight),
-    settings->getParamInt("display", "depth"),
-    (settings->getParamInt("display", "fullscreen") == 1),
-    true,
-    (settings->getParamInt("display", "vsync") == 1),
-    eventManager
-  );
-  device->setWindowCaption(L"Invisible Spirit 0.1");
-
-  // Gestion de la vitesse de rendu
-  independantSpeed = (settings->getParamInt("processor", "independant_speed") == 1);
-  processorPriority = (settings->getParamInt("processor", "priority") == 1);
-
-  // Activation du joystick
-  core::array<SJoystickInfo> joystickInfo;
-  device->activateJoysticks(joystickInfo);
-
-  videoDriver = device->getVideoDriver();
-  gpuManager = videoDriver->getGPUProgrammingServices();
-  sceneManager = device->getSceneManager();
-  debugGUI = device->getGUIEnvironment();
-  initScreenPositions(screenWidth, screenHeight);
+  initRenderSystem();
+  initControls();
   initShaders();
   initLocale();
-
-  soundManager = new SoundManager();
-
-  musicLibrary = new MusicReference();
-
-  currentSave = new Save();
-  newtonWorld = NewtonCreate();
-
-  framerate = 60;
-  exit = false;
-
-  sceneChanged = true;
-  nextScene = SCENE_MENU;
+  initScenes();
+  initPhysics();
+  initSoundLayer();
+  initSaveSystem();
 }
 
 /**
@@ -274,22 +234,72 @@ void Game::quit()
 }
 
 /**
- * Initializes screen position values
- * @param u32 w screen width
- * @param u32 h screen height
+ * Irrlicht interfaces initialization
  */
-void Game::initScreenPositions(u32 w, u32 h)
+void Game::initIrrlichtInterfaces()
 {
-  f32 ratio = (f32)w / (f32)h;
-  h = 480;
-  w = h * ratio;
+  // Custom Event Manager
+  eventManager = new EventManager();
 
+  // Irrlicht Device creation
+  device = createDevice(
+    video::EDT_OPENGL,
+    core::dimension2du(screenPos.width, screenPos.height),
+    settings->getParamInt("display", "depth"),
+    (settings->getParamInt("display", "fullscreen") == 1),
+    true,
+    (settings->getParamInt("display", "vsync") == 1),
+    eventManager
+  );
+  device->setWindowCaption(L"Invisible Spirit 0.1");
+
+  // Other interfaces
+  videoDriver = device->getVideoDriver();
+  gpuManager = videoDriver->getGPUProgrammingServices();
+  sceneManager = device->getSceneManager();
+  debugGUI = device->getGUIEnvironment();
+}
+
+/**
+ *
+ */
+void Game::initRenderSystem()
+{
+  // Render speed
+  framerate = 60;
+  independantSpeed = (settings->getParamInt("processor", "independant_speed") == 1);
+  processorPriority = (settings->getParamInt("processor", "priority") == 1);
+}
+
+/**
+ * Initializes screen position values
+ */
+void Game::initScreenPositions()
+{
+  // Getting from ini file
+  u32 screenWidth = settings->getParamInt("display", "width");
+  u32 screenHeight = settings->getParamInt("display", "height");
+
+  // Screen size limit 640x480 => 1920x1080
+  if(screenWidth < 640) screenWidth = 640;
+  if(screenWidth > 1920) screenWidth = 1920;
+  if(screenHeight < 480) screenHeight = 480;
+  if(screenHeight > 1080) screenHeight = 1080;
+
+  // Ratio computation
+  f32 ratio = (f32)screenWidth / (f32)screenHeight;
+  screenHeight = 480;
+  screenWidth = screenHeight * ratio;
+
+  // Screen position info
   screenPos.hCenter = 0.0f;
   screenPos.vCenter = 0.0f;
-  screenPos.top = (h / 2.0f);
-  screenPos.bottom = (h / 2.0f) * -1;
-  screenPos.left = (w / 2.0f) * -1;
-  screenPos.right = (w / 2.0f);
+  screenPos.top = (screenHeight / 2.0f);
+  screenPos.bottom = (screenHeight / 2.0f) * -1;
+  screenPos.left = (screenWidth / 2.0f) * -1;
+  screenPos.right = (screenWidth / 2.0f);
+  screenPos.width = screenWidth;
+  screenPos.height = screenHeight;
 }
 
 /**
@@ -297,20 +307,19 @@ void Game::initScreenPositions(u32 w, u32 h)
  */
 void Game::initShaders()
 {
-  shaders.opacity = 0;
+  shaders.diffuse = 0;
+  shaders.glow = 0;
 
   if (gpuManager) {
-
-    // Shader Opacity
-    /*
-    OpacityShaderCallback* cb = new OpacityShaderCallback();
-    shaders.opacity = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/shader/opacity.vert", "vertexMain", video::EVST_VS_1_1,
-      "resource/shader/opacity.frag", "pixelMain", video::EPST_PS_1_1,
+    // Shader Diffuse (2D Elements)
+    DiffuseShaderCallback* cb = new DiffuseShaderCallback();
+    shaders.diffuse = gpuManager->addHighLevelShaderMaterialFromFiles(
+      "resource/shader/diffuse.vert", "vertexMain", video::EVST_VS_1_1,
+      "resource/shader/diffuse.frag", "pixelMain", video::EPST_PS_1_1,
       cb, video::EMT_TRANSPARENT_ALPHA_CHANNEL
     );
     cb->drop();
-    */
+
     // Shader Glow
     shaders.glow = gpuManager->addHighLevelShaderMaterialFromFiles(
       "resource/shader/glow.vert", "vertexMain", video::EVST_VS_1_1,
@@ -344,6 +353,51 @@ void Game::initDebugOptions()
   debugOption.display.hidePostRender = false;
   debugOption.display.showIrrlichtDebugData = false;
   debugOption.display.showWireFrame = false;
+}
+
+/**
+ *
+ */
+void Game::initSoundLayer()
+{
+  soundManager = new SoundManager();
+  musicLibrary = new MusicReference();
+}
+
+/**
+ *
+ */
+void Game::initScenes()
+{
+  exit = false;
+  sceneChanged = true;
+  nextScene = SCENE_MENU;
+}
+
+/**
+ *
+ */
+void Game::initControls()
+{
+  // Joystick activation
+  core::array<SJoystickInfo> joystickInfo;
+  device->activateJoysticks(joystickInfo);
+}
+
+/**
+ *
+ */
+void Game::initPhysics()
+{
+  newtonWorld = NewtonCreate();
+}
+
+/**
+ *
+ */
+void Game::initSaveSystem()
+{
+  currentSave = new Save();
 }
 
 /**

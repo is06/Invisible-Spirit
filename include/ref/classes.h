@@ -81,7 +81,7 @@ class PlaneSensor;
 class BoxSensor;
 
 // Shaders
-class OpacityShaderCallback;
+class DiffuseShaderCallback;
 class PostRenderGlow;
 
 // Sound

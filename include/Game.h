@@ -56,11 +56,21 @@ class Game
 
   private:
     Game();
-    static void initScreenPositions(u32 w, u32 h);
+
+    // Game initializations
+    static void initIrrlichtInterfaces();
+    static void initRenderSystem();
+    static void initScreenPositions();
     static void initShaders();
     static void initLocale();
-    static void initMusicReference();
+    static void initScenes();
+    static void initControls();
+    static void initSoundLayer();
+    static void initPhysics();
+    static void initSaveSystem();
     static void initDebugOptions();
+
+    // Game actions
     static void loadNextScene();
 
     // Irrlicht objects
@@ -76,13 +86,13 @@ class Game
     // is06 objects
     static EventManager* eventManager;
     static Scene* currentScene;
-    static s32 nextScene;
-    static LocaleIdentifier currentLocale;
     static Translation* globalTranslations;
     static Save* currentSave;
     static SoundManager* soundManager;
     static MusicReference* musicLibrary;
 
+    static LocaleIdentifier currentLocale;
+    static s32 nextScene;
     static bool sceneChanged;
     static bool exit;
     static bool independantSpeed;
