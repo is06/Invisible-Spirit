@@ -34,12 +34,12 @@ void Save::loadPrimitiveInfo(u8 slot)
   for (u32 i = 0; i < 65535; i++) {
     element = saveFile->getNextElement();
     if (element.type == 'i') {
-      //wistringstream wss(element.value.c_str());
-      //wss >> integerList[i];
+      //istringstream iss(element.value.c_str());
+      //iss >> integerList[i];
     } else if (element.type == 'b') {
       //s32 intValue = -1;
-      //wistringstream wss(element.value.c_str());
-      //wss >> intValue;
+      //istringstream iss(element.value.c_str());
+      //iss >> intValue;
       //booleanList[i] = (intValue == 1);
     } else if (element.type == 's') {
       //stringList[i] = element.value;
@@ -60,12 +60,12 @@ void Save::load(u8 slot)
   for (u32 i = 0; i < 65535; i++) {
     element = saveFile->getNextElement();
     if (element.type == 'i') {
-      wistringstream wss(element.value.c_str());
-      wss >> integerList[i];
+      istringstream iss(element.value.c_str());
+      iss >> integerList[i];
     } else if (element.type == 'b') {
       s32 intValue = -1;
-      wistringstream wss(element.value.c_str());
-      wss >> intValue;
+      istringstream iss(element.value.c_str());
+      iss >> intValue;
       booleanList[i] = (intValue == 1);
     } else if (element.type == 's') {
       stringList[i] = element.value;
@@ -126,7 +126,7 @@ bool& Save::getBoolean(u32 index)
 /**
  *
  */
-wstring& Save::getString(u32 index)
+string& Save::getString(u32 index)
 {
   return stringList[index];
 }
@@ -151,7 +151,7 @@ void Save::setBoolean(u32 index, bool value)
   booleanList[index] = value;
 }
 
-void Save::setString(u32 index, const wstring& value)
+void Save::setString(u32 index, const string& value)
 {
   stringList[index] = value;
 }
@@ -166,7 +166,7 @@ void Save::setGeneralDefaultValues()
 
   // Map info
   integerList[11] = SCENE_MAP_ALPHA_ZONE; // Current map id
-  stringList[12] = L"Alpha Zone (Debug)"; // Current map name
+  stringList[12] = "Alpha Zone (Debug)"; // Current map name
 
   // Time info
   integerList[21] = 0; // Total game time, in seconds

@@ -26,19 +26,19 @@ class Save
 
     s32& getInteger(u32 index);
     bool& getBoolean(u32 index);
-    wstring& getString(u32 index);
+    string& getString(u32 index);
 
     void setInteger(u32 index, s32 value);
     void incInteger(u32 index, s32 value);
     void decInteger(u32 index, s32 value);
     void setBoolean(u32 index, bool value);
-    void setString(u32 index, const wstring& value);
+    void setString(u32 index, const string& value);
 
   private:
     // Data maps
     map<u32, s32> integerList;
     map<u32, bool> booleanList;
-    map<u32, wstring> stringList;
+    map<u32, string> stringList;
 
     // Default values
     void setGeneralDefaultValues();

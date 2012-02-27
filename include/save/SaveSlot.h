@@ -17,8 +17,7 @@ class SaveSlot
     ~SaveSlot();
 
   private:
-    wstring name;
-    wstring placeNameIdentifier;
+    string placeNameIdentifier;
     u32 totalGameTime;
 };
 

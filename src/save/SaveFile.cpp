@@ -69,7 +69,7 @@ void SaveFile::addVariable(u32 index, bool value)
 /**
  * Adds a string variable in the save file
  */
-void SaveFile::addVariable(u32 index, const wstring& value)
+void SaveFile::addVariable(u32 index, const string& value)
 {
   ws << index << "\ts\t" << value.c_str() << "\n";
 }
@@ -80,13 +80,13 @@ void SaveFile::addVariable(u32 index, const wstring& value)
  */
 SaveFileElement SaveFile::getNextElement()
 {
-  wchar_t currentChar = 0;
+  char currentChar = 0;
   bool inIndexDeclaration = true;
   bool inTypeDeclaration = false;
   bool inValueDeclaration = false;
   string index("");
   char type = 0;
-  wstring value(L"");
+  string value("");
 
   SaveFileElement result;
 
@@ -115,7 +115,7 @@ SaveFileElement SaveFile::getNextElement()
         index += currentChar;
       }
       if (inTypeDeclaration) {
-        type = (c8)currentChar;
+        type = (char)currentChar;
       }
       if (inValueDeclaration) {
         value += currentChar;

@@ -3,7 +3,7 @@ with a human-readable description
 
 Primitive info
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-  1 [s]: Slot name
+  1 [s]: Slot name (not used for the moment)
 
 Map info
 ¯¯¯¯¯¯¯¯

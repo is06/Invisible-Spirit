@@ -11,7 +11,6 @@ http://www.is06.com. Legal code in license.txt
 
 SaveSlot::SaveSlot(Save* save)
 {
-  name = save->getString(1);
   placeNameIdentifier = save->getString(12);
   totalGameTime = save->getInteger(21);
 }

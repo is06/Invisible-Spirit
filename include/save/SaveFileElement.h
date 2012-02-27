@@ -15,7 +15,7 @@ struct SaveFileElement
 {
   u32 index;
   c8 type;
-  wstring value;
+  string value;
 };
 
 #endif

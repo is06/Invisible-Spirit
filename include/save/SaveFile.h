@@ -24,13 +24,13 @@ class SaveFile
 
     void addVariable(u32 index, s32 value);
     void addVariable(u32 index, bool value);
-    void addVariable(u32 index, const wstring& value);
+    void addVariable(u32 index, const string& value);
 
     SaveFileElement getNextElement();
 
   private:
-    wifstream rs;
-    wofstream ws;
+    ifstream rs;
+    ofstream ws;
 };
 
 #endif
