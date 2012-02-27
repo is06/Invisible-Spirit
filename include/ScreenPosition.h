@@ -19,6 +19,7 @@ struct ScreenPosition
 
   u32 width;
   u32 height;
+  u8 depth;
 };
 
 #endif

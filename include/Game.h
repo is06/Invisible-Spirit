@@ -49,6 +49,8 @@ class Game
     static LocaleIdentifier getCurrentLocale();
     static MusicReference* getMusicReference();
 
+    static void changeScreenDisplay(u32 width=848, u32 height=480, u8 colorDepth=32);
+
     static Settings* settings;
     static ScreenPosition screenPos;
     static Shaders shaders;
@@ -94,6 +96,7 @@ class Game
     static LocaleIdentifier currentLocale;
     static s32 nextScene;
     static bool sceneChanged;
+    static bool screenSizeChanged;
     static bool exit;
     static bool independantSpeed;
     static bool processorPriority;

@@ -47,6 +47,7 @@ GameDebugOption Game::debugOption;
 s32 Game::nextScene;
 LocaleIdentifier Game::currentLocale;
 bool Game::sceneChanged;
+bool Game::screenSizeChanged;
 bool Game::exit;
 bool Game::independantSpeed;
 bool Game::processorPriority;
@@ -86,7 +87,7 @@ void Game::run()
   s32 lastFPS = -1;
 
   while (device->run()) {
-    if (exit) {
+    if (exit || screenSizeChanged) {
       break;
     }
 
@@ -115,10 +116,20 @@ void Game::run()
       if(speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed movements
 
       videoDriver->beginScene(true, true, video::SColor(255,0,0,0));
+
+      // Main events
       currentScene->events();
+      if (exit || screenSizeChanged) {
+        break;
+      }
       sceneManager->drawAll();
+
+      // Post Render events
       if (!debugOption.display.hidePostRender) {
         currentScene->postRender();
+      }
+      if (exit || screenSizeChanged) {
+        break;
       }
       debugGUI->drawAll();
 
@@ -138,12 +149,23 @@ void Game::run()
       speedFactor = 1.0f / framerate;
 
       videoDriver->beginScene(true, true, video::SColor(255,255,255,255));
+
+      // Main events
       currentScene->events();
+      if (exit || screenSizeChanged) {
+        break;
+      }
       sceneManager->drawAll();
+
+      // Post Render events
       if (!debugOption.display.hidePostRender) {
         currentScene->postRender();
       }
+      if (exit || screenSizeChanged) {
+        break;
+      }
       debugGUI->drawAll();
+
       soundManager->setEarsData(currentScene->getActiveCamera(), speedFactor);
       soundManager->update();
       videoDriver->endScene();
@@ -245,7 +267,7 @@ void Game::initIrrlichtInterfaces()
   device = createDevice(
     video::EDT_OPENGL,
     core::dimension2du(screenPos.width, screenPos.height),
-    settings->getParamInt("display", "depth"),
+    screenPos.depth,
     (settings->getParamInt("display", "fullscreen") == 1),
     true,
     (settings->getParamInt("display", "vsync") == 1),
@@ -276,9 +298,12 @@ void Game::initRenderSystem()
  */
 void Game::initScreenPositions()
 {
+  screenSizeChanged = false;
+
   // Getting from ini file
   u32 screenWidth = settings->getParamInt("display", "width");
   u32 screenHeight = settings->getParamInt("display", "height");
+  u8 screenDepth = settings->getParamInt("display", "depth");
 
   // Screen size limit 640x480 => 1920x1080
   if(screenWidth < 640) screenWidth = 640;
@@ -300,6 +325,7 @@ void Game::initScreenPositions()
   screenPos.right = (screenWidth / 2.0f);
   screenPos.width = screenWidth;
   screenPos.height = screenHeight;
+  screenPos.depth = screenDepth;
 }
 
 /**
@@ -398,6 +424,21 @@ void Game::initPhysics()
 void Game::initSaveSystem()
 {
   currentSave = new Save();
+}
+
+/**
+ *
+ */
+void Game::changeScreenDisplay(u32 width, u32 height, u8 colorDepth)
+{
+  screenSizeChanged = true;
+  delete currentScene;
+  device->drop();
+  screenPos.width = width;
+  screenPos.height = height;
+  screenPos.depth = colorDepth;
+  initIrrlichtInterfaces();
+  initScenes();
 }
 
 /**

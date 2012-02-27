@@ -104,7 +104,7 @@ void Save::write(u8 slot)
 void Save::createNewFile()
 {
   setGeneralDefaultValues();
-  Game::changeScene(integerList[1]);
+  Game::changeScene(integerList[11]);
 }
 
 /**
