@@ -41,6 +41,7 @@ class BarCounter;
 class DigitCounter;
 class GameTimeCounter;
 class WorldTimeCounter;
+class TargetLifeMeter;
 class IconCounter;
 class Picture;
 class Animation;
