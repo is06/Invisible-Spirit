@@ -18,7 +18,7 @@ using namespace std;
 class MenuOption : public Hud
 {
   public:
-    MenuOption(MenuIcon icon, const wstring& title = L"[Option]", f32 x = 0, f32 y = 0, MenuStyle style = MENU_STYLE_STD);
+    MenuOption(MenuIcon icon, const string& title = "[Option]", f32 x = 0, f32 y = 0, MenuStyle style = MENU_STYLE_STD);
     virtual ~MenuOption();
 
     virtual void render();

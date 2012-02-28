@@ -25,8 +25,8 @@ class WorldTimeCounter : public Counter
     void setOpacity(u8 value);
 
   private:
-    wstring minutes;
-    wstring hours;
+    string minutes;
+    string hours;
 
     Text* counterText;
 

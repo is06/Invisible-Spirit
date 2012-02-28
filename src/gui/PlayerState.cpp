@@ -15,9 +15,9 @@ using namespace std;
 
 PlayerState::PlayerState()
 {
-  playerName = new Text(L"Ayron", 0, 0);
-  levelLabel = new Text(L"niv.", 0, -24);
-  levelInfo = new Text(L"1", 100, -24);
+  playerName = new Text("Ayron", 0, 0);
+  levelLabel = new Text("niv.", 0, -24);
+  levelInfo = new Text("1", 100, -24);
 
   hpInfo = new MainStateInfo();
 }

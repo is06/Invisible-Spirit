@@ -17,7 +17,7 @@ using namespace irr;
 /**
  *
  */
-Text::Text(const wstring& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud()
+Text::Text(const string& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud()
 {
   textStr = str;
   currentSize = 24;
@@ -57,7 +57,7 @@ void Text::setSize(u8 size)
   updateTiles();
 }
 
-void Text::setText(const wstring& str)
+void Text::setText(const string& str)
 {
   textStr = str;
   updateTiles();
@@ -81,7 +81,7 @@ void Text::updateTiles()
 {
   charList.clear();
   currentCharPos = pos;
-  const wchar_t* cs = textStr.c_str();
+  const char* cs = textStr.c_str();
   for (u16 i = 0; i < textStr.size(); i++) {
     if (cs[i] == '\n') {
       currentCharPos.X = pos.X;

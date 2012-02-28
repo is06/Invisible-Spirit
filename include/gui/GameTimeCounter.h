@@ -25,9 +25,9 @@ class GameTimeCounter : public Counter
     void setOpacity(u8 value);
 
   private:
-    wstring seconds;
-    wstring minutes;
-    wstring hours;
+    string seconds;
+    string minutes;
+    string hours;
 
     Text* counterText;
 

@@ -15,15 +15,20 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
+// the first byte is 110xxxxx: this means the character is stored with two bytes (utf-8)
+// if ((current_char & 0xE0) == 0xC0) {
+
+
+
 class Text : public Hud
 {
   public:
-    Text(const wstring& str = L"[Text]", f32 x = 0, f32 y = 0, FontStyle style = FONT_STD_CLASSIC_REGULAR, u8 speed = 0);
+    Text(const string& str = "[Text]", f32 x = 0, f32 y = 0, FontStyle style = FONT_STD_CLASSIC_REGULAR, u8 speed = 0);
     ~Text();
 
     void render();
     void setSize(u8 size);
-    void setText(const wstring& str);
+    void setText(const string& str);
     void setPosition(const core::position2df& position);
     void updateTiles();
 
@@ -33,7 +38,7 @@ class Text : public Hud
     TextFont* font;
     core::position2df pos;
     core::position2df currentCharPos;
-    wstring textStr;
+    string textStr;
     vector<TextChar> charList;
     vector<TextChar>::iterator charIt;
     u8 currentSize;

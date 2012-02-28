@@ -16,13 +16,13 @@ class Translation
   public:
     Translation(const string& filePath);
 
-    const wstring& getTranslation(const string& identifier) const;
+    const string& getTranslation(const string& identifier) const;
 
   private:
     void loadTextData(const string& fullPath);
-    wstring notfound;
+    string notfound;
 
-    map<string, wstring> textData;
+    map<string, string> textData;
 };
 
 #endif

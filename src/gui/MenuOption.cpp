@@ -13,7 +13,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-MenuOption::MenuOption(MenuIcon icon, const wstring& title, f32 x, f32 y, MenuStyle style) : Hud()
+MenuOption::MenuOption(MenuIcon icon, const string& title, f32 x, f32 y, MenuStyle style) : Hud()
 {
   currentIcon = icon;
 

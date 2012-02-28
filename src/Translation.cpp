@@ -15,7 +15,7 @@ using namespace std;
 Translation::Translation(const string& filePath)
 {
   string fullPath = "resource/text/";
-  notfound = L"[not_found]";
+  notfound = "[not_found]";
 
   switch (Game::getCurrentLocale())
   {
@@ -38,14 +38,14 @@ void Translation::loadTextData(const string& fullPath)
 {
   //cout << "Translation file loaded : " << fullPath.c_str() << endl;
 
-  wifstream textFile(fullPath.c_str(), ios::in);
+  ifstream textFile(fullPath.c_str(), ios::in);
   if (textFile) {
     //cout << "Processing translation file..." << endl;
-    wchar_t currentChar;
+    char currentChar;
     bool inTextIdentifier = true;
     bool inTextValue = false;
     string identifier = "";
-    wstring value = L"";
+    string value = "";
 
     while (textFile.get(currentChar)) {
       if (currentChar == '\n' || currentChar == '\r') {
@@ -55,7 +55,7 @@ void Translation::loadTextData(const string& fullPath)
           textData[identifier] = value;
         }
         identifier = "";
-        value = L"";
+        value = "";
         inTextValue = false;
         inTextIdentifier = true;
       } else {
@@ -68,7 +68,7 @@ void Translation::loadTextData(const string& fullPath)
             inTextIdentifier = false;
             inTextValue = true;
           } else {
-            identifier += currentChar;
+            identifier += static_cast<char>(currentChar);
           }
         }
       }
@@ -77,7 +77,7 @@ void Translation::loadTextData(const string& fullPath)
   }
 }
 
-const wstring& Translation::getTranslation(const string& identifier) const
+const string& Translation::getTranslation(const string& identifier) const
 {
   //cout << "'" << textData.find(identifier) << "' <-> '" << textData.end() << "'" << endl;
   if (textData.find(identifier) == textData.end()) {

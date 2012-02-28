@@ -98,7 +98,7 @@ void Game::run()
     s32 fps = videoDriver->getFPS();
 
     if (lastFPS != fps) {
-      wstring str = L"fps: ";
+      core::stringw str = L"fps: ";
       str += fps;
       device->setWindowCaption(str.c_str());
       lastFPS = fps;
