@@ -34,7 +34,7 @@ Table List:
 
 2 bytes:
 ¯¯¯¯¯¯¯¯
-Encoding:           Table Number Ranges
+Encoding:           Table Number and Character Ranges
 
 Latin:              (194)-160 ~ (202)-175
 Greek and Coptic:   (205)-176 ~ (207)-191
