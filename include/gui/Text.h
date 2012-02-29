@@ -15,11 +15,6 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-// the first byte is 110xxxxx: this means the character is stored with two bytes (utf-8)
-// if ((current_char & 0xE0) == 0xC0) {
-
-
-
 class Text : public Hud
 {
   public:

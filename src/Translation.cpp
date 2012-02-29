@@ -68,7 +68,7 @@ void Translation::loadTextData(const string& fullPath)
             inTextIdentifier = false;
             inTextValue = true;
           } else {
-            identifier += static_cast<char>(currentChar);
+            identifier += currentChar;
           }
         }
       }

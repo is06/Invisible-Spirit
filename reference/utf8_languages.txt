@@ -1,0 +1,52 @@
+
+Table List:
+¯¯¯¯¯¯¯¯¯¯¯
+194 Latin-1
+195 Latin-1
+196 Latin-1
+197 Latin-1
+198 Latin Extended-B
+199 Latin Extended-B
+200 Latin Extended-B
+201 Latin Extended-B
+202 Latin Extended-B
+203 Latin
+204 Latin
+205 Greek and Coptic
+206 Greek and Coptic
+207 Greek and Coptic
+208 Cyrillic
+209 Cyrillic
+210 Cyrillic
+211 Cyrillic
+212 Cyrillic / Armenian
+213 Armenian
+214 Armenian / Hebrew
+215 Hebrew
+216 Arabic
+217 Arabic
+218 Arabic
+219 Arabic
+220 Syriac
+221 Syriac / Arabic
+222 Thaana
+223 NKO
+
+2 bytes:
+¯¯¯¯¯¯¯¯
+Encoding:           Table Number Ranges
+
+Latin:              (194)-160 ~ (202)-175
+Greek and Coptic:   (205)-176 ~ (207)-191
+Cyrillic:           (208)-128 ~ (212)-167
+Armenian:           (212)-177 ~ (214)-138
+Hebrew:             (214)-145 ~ (215)-180
+Arabic:             (216)-128 ~ (219)-191
+Syriac:             (220)-128 ~ (221)-143
+Arabic Supplement:  (221)-144 ~ (221)-191
+Thaana:             (222)-128 ~ (222)-177
+NKO:                (223)-128 ~ (223)-186
+
+
+3 bytes utf-8 characters will not be supported
+----------------------------------------------

@@ -21,12 +21,18 @@ class TextFont
 
     video::SMaterial& getMaterial();
     u8& getCharOffset(u8 code);
+    FontStyle getCurrentStyle();
+
+    void resetToStandard();
+    void changeExtTexture(u8 number);
 
   private:
     void readFontData(const string& dataFilePath);
+    void getTextureFromStyle(FontStyle style, u8 extTexture=0);
 
     video::ITexture* fontTexture;
     video::SMaterial fontMaterial;
+    FontStyle currentStyle;
     u8 offset[256];
 };
 

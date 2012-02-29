@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-TextChar::TextChar(u8 code, f32& x, f32& y, u8 size, TextFont* font, bool visible) : Hud2DElement(x, y, size, size)
+TextChar::TextChar(u8 code, f32& x, f32& y, u8 size, TextFont* font, bool visible, u8 extTexture) : Hud2DElement(x, y, size, size)
 {
   isVisible = visible;
 
@@ -21,6 +21,13 @@ TextChar::TextChar(u8 code, f32& x, f32& y, u8 size, TextFont* font, bool visibl
   x += ((size * (font->getCharOffset(code) / 100.0f)) / 2);
 
   fontStyle = font;
+
+  if (!extTexture) {
+    fontStyle->resetToStandard();
+  } else {
+    fontStyle->changeExtTexture(extTexture);
+  }
+
   material.setTexture(0, fontStyle->getMaterial().getTexture(0));
 
   f32 space = 1.0f / 16.0f;
