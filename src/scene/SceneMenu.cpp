@@ -24,6 +24,9 @@ using namespace std;
  */
 SceneMenu::SceneMenu() : Scene()
 {
+  newGameIsFading = false;
+  quitIsFading = false;
+
   inTitleFadeIn = false;
   inMainMenu = true;
   inSaveListMenu = false;
@@ -58,6 +61,8 @@ SceneMenu::SceneMenu() : Scene()
     lightRays->getNode()->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL);
     lightRays->getNode()->setScale(core::vector3df(300.0f, 300.0f, 300.0f));
   }
+
+  fadeIn();
 }
 
 /**
@@ -103,20 +108,51 @@ void SceneMenu::postRender()
  */
 void SceneMenu::manageMainMenu()
 {
-  if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
-    mainMenu->nextOption();
-  }
-  if (keyboard->pressed(KEY_UP, EVENT_ONCE)) {
-    mainMenu->prevOption();
-  }
-  if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
-    switch (mainMenu->getCurrentOption()) {
-      case 0: Game::getCurrentSave()->createNewFile(); break;
-      case 1: createSaveListMenu(); break;
-      case 2: createOptionMenu(); break;
-      case 3: Game::quit(); break;
-      default: break;
+  cout << (u32)fader->isReady() << endl;
+  if (!quitIsFading && !newGameIsFading) {
+    if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
+      mainMenu->nextOption();
     }
+    if (keyboard->pressed(KEY_UP, EVENT_ONCE)) {
+      mainMenu->prevOption();
+    }
+    if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
+      switch (mainMenu->getCurrentOption()) {
+        case 0:
+          // Fade Out and boolean to go to gameplay (demo)
+          fader->fadeOut(1.0f);
+          newGameIsFading = true;
+          break;
+        case 1:
+          createSaveListMenu();
+          break;
+        case 2:
+          createOptionMenu();
+          break;
+        case 3:
+          // Fade Out and boolean to quit the game
+          fader->fadeOut(1.0f);
+          quitIsFading = true;
+          break;
+        default: break;
+      }
+    }
+  } else {
+    if (fader->isReady()) {
+      if (newGameIsFading) {
+        // New Game
+        Game::getCurrentSave()->createNewFile();
+      }
+      if (quitIsFading) {
+        // Quit to OS
+        //Game::quit();
+      }
+    }
+  }
+
+  if (fader->isReady()) {
+    fader->remove();
+    fader = Game::getDebugGUI()->addInOutFader();
   }
 }
 
@@ -174,6 +210,9 @@ void SceneMenu::destroyOptionMenu()
   inOptionMenu = false;
 }
 
+/**
+ * @todo
+ */
 void SceneMenu::retrieveSaveSlotList()
 {
   clearSaveSlotList();
@@ -184,6 +223,9 @@ void SceneMenu::retrieveSaveSlotList()
   }
 }
 
+/**
+ * @todo
+ */
 void SceneMenu::clearSaveSlotList()
 {
   for (u8 i = 0; i <= 255; i++) {

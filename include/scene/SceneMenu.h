@@ -44,6 +44,9 @@ class SceneMenu : public Scene
     map<u16, core::vector3di> modeList;
     map<u8, SaveSlot*> saveSlotList;
 
+    bool newGameIsFading;
+    bool quitIsFading;
+
     bool inTitleFadeIn;
     bool inMainMenu;
     bool inSaveListMenu;

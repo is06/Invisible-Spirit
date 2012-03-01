@@ -9,10 +9,10 @@ Table List:
 199 Latin Extended-B
 200 Latin Extended-B
 201 Latin Extended-B
-202 Latin Extended-B
-203 Latin
-204 Latin
-205 Greek and Coptic
+202 IPA Extensions / Modifiers
+203 Modifiers
+204 Combining
+205 Combining / Greek and Coptic
 206 Greek and Coptic
 207 Greek and Coptic
 208 Cyrillic

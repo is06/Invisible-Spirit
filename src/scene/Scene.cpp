@@ -31,6 +31,8 @@ Scene::Scene()
   gamepad = new Gamepad();
   music = Game::getMusicReference();
   globalTranslations = Game::getGlobalTranslations();
+
+  fader = Game::getDebugGUI()->addInOutFader();
 }
 
 /**
@@ -75,12 +77,33 @@ void Scene::postRender()
 }
 
 /**
+ *
+ */
+void Scene::fadeIn(f32 speed, FadeColor color)
+{
+  fader->setColor(video::SColor(0, 0, 0, 0));
+  fader->fadeIn(speed * 1000);
+}
+
+/**
+ *
+ */
+void Scene::fadeOut(f32 speed, FadeColor color)
+{
+  fader->setColor(video::SColor(0, 0, 0, 0));
+  fader->fadeOut(speed * 1000);
+}
+
+/**
  * This destructor removes interfaces and flushes texture and mesh cache
  */
 Scene::~Scene()
 {
+  fader->remove();
+
   Game::getVideoDriver()->removeAllTextures();
   Game::getSceneManager()->getMeshCache()->clear();
+
   delete keyboard;
   delete gamepad;
 }

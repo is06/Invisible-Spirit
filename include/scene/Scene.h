@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SCENE_H__
 #define __IS06_SCENE_H__
 
+#include "../enums/styles/FadeColor.h"
+
 using namespace irr;
 using namespace std;
 
@@ -21,12 +23,16 @@ class Scene
     virtual void postRender() = 0;
 
     void setSaveSlot(Save* saveSlot);
+    void fadeIn(f32 speed = 1.5f, FadeColor color = FADE_COLOR_BLACK);
+    void fadeOut(f32 speed = 3.0f, FadeColor color = FADE_COLOR_BLACK);
 
     Camera* getActiveCamera();
 
     static bool inMapEditingMode;
 
   protected:
+    gui::IGUIInOutFader* fader;
+
     Camera* cam;
     //PlayerControl* control;
     //MapEditor* mapEditor;
