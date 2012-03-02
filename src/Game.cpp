@@ -280,6 +280,9 @@ void Game::initIrrlichtInterfaces()
   gpuManager = videoDriver->getGPUProgrammingServices();
   sceneManager = device->getSceneManager();
   debugGUI = device->getGUIEnvironment();
+
+  // Check Driver Graphical Capabilities
+  checkGraphicalCapabilities();
 }
 
 /**
@@ -427,6 +430,31 @@ void Game::initSaveSystem()
 }
 
 /**
+ * Check for mandatory graphical capabilities
+ */
+void Game::checkGraphicalCapabilities()
+{
+  if (!videoDriver->queryFeature(video::EVDF_VERTEX_SHADER_1_1)) {
+    fatalError(ERRCODE_50);
+  }
+  if (!videoDriver->queryFeature(video::EVDF_PIXEL_SHADER_1_1)) {
+    fatalError(ERRCODE_51);
+  }
+  if (!videoDriver->queryFeature(video::EVDF_RENDER_TO_TARGET)) {
+    fatalError(ERRCODE_52);
+  }
+  if (!videoDriver->queryFeature(video::EVDF_TEXTURE_NSQUARE)) {
+    fatalError(ERRCODE_53);
+  }
+  if (!videoDriver->queryFeature(video::EVDF_TEXTURE_NPOT)) {
+    fatalError(ERRCODE_54);
+  }
+  if (!videoDriver->queryFeature(video::EVDF_ARB_GLSL)) {
+    fatalError(ERRCODE_55);
+  }
+}
+
+/**
  *
  */
 void Game::changeScreenDisplay(u32 width, u32 height, u8 colorDepth)
@@ -522,6 +550,12 @@ void Game::fatalError(ErrorCode code)
     case ERRCODE_45: throw EngineException(code, "Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor", 3); break;
     case ERRCODE_46: throw EngineException(code, "Level Mesh need an Irrlicht node, use createNode method in scene constructor", 3); break;
     case ERRCODE_47: throw EngineException(code, "Level Mesh need a Newton body, use loadMeshCollision method in scene constructor", 3); break;
+    case ERRCODE_50: throw EngineException(code, "Vertex Shaders 2.0 not supported", 3); break;
+    case ERRCODE_51: throw EngineException(code, "Pixels Shaders 2.0 not supported", 3); break;
+    case ERRCODE_52: throw EngineException(code, "Render to target not supported", 3); break;
+    case ERRCODE_53: throw EngineException(code, "Non-square textures not supported", 3); break;
+    case ERRCODE_54: throw EngineException(code, "Non-power of two texture size not supported", 3); break;
+    case ERRCODE_55: throw EngineException(code, "GLSL not supported", 3); break;
     default: throw EngineException(code, "Unknown error", 3); break;
   }
 

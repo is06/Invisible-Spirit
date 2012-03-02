@@ -71,6 +71,7 @@ class Game
     static void initPhysics();
     static void initSaveSystem();
     static void initDebugOptions();
+    static void checkGraphicalCapabilities();
 
     // Game actions
     static void loadNextScene();
