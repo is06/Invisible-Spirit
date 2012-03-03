@@ -43,6 +43,9 @@ SceneGameplay::SceneGameplay() : Scene()
   worldTimeTimer = new Timer(1.0f, boost::bind(&SceneGameplay::updateWorldTime, this), -1);
 
   Game::getSceneManager()->setAmbientLight(video::SColorf(1.0,1.0,1.0,1.0));
+
+  quitIsFading = false;
+  fadeIn(0.5f);
 }
 
 /**
@@ -252,8 +255,12 @@ void SceneGameplay::manageMenuControl()
   }
   if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
     if (gpMenu->getSectionMenu()->getCurrentOption() == 4) {
-      Game::changeScene(SCENE_MENU);
+      quitIsFading = true;
+      fadeOut(0.5f);
     }
+  }
+  if (quitIsFading && outFader->isReady()) {
+    Game::changeScene(SCENE_MENU);
   }
 }
 

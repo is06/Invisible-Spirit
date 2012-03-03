@@ -308,6 +308,10 @@ void Game::initScreenPositions()
   u32 screenHeight = settings->getParamInt("display", "height");
   u8 screenDepth = settings->getParamInt("display", "depth");
 
+  screenPos.width = screenWidth;
+  screenPos.height = screenHeight;
+  screenPos.depth = screenDepth;
+
   // Screen size limit 640x480 => 1920x1080
   if(screenWidth < 640) screenWidth = 640;
   if(screenWidth > 1920) screenWidth = 1920;
@@ -326,9 +330,6 @@ void Game::initScreenPositions()
   screenPos.bottom = (screenHeight / 2.0f) * -1;
   screenPos.left = (screenWidth / 2.0f) * -1;
   screenPos.right = (screenWidth / 2.0f);
-  screenPos.width = screenWidth;
-  screenPos.height = screenHeight;
-  screenPos.depth = screenDepth;
 }
 
 /**
