@@ -43,6 +43,8 @@ class SceneGameplay : public Scene
     void manageMenuControl();
 
     void updateWorldTime();
+
+    bool quitIsFading;
 };
 
 #endif

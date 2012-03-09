@@ -62,7 +62,7 @@ SceneMenu::SceneMenu() : Scene()
     lightRays->getNode()->setScale(core::vector3df(300.0f, 300.0f, 300.0f));
   }
 
-  fadeIn();
+  fadeIn(0.5f);
 }
 
 /**
@@ -108,7 +108,6 @@ void SceneMenu::postRender()
  */
 void SceneMenu::manageMainMenu()
 {
-  cout << (u32)fader->isReady() << endl;
   if (!quitIsFading && !newGameIsFading) {
     if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
       mainMenu->nextOption();
@@ -120,7 +119,7 @@ void SceneMenu::manageMainMenu()
       switch (mainMenu->getCurrentOption()) {
         case 0:
           // Fade Out and boolean to go to gameplay (demo)
-          fader->fadeOut(1.0f);
+          fadeOut(0.5f);
           newGameIsFading = true;
           break;
         case 1:
@@ -131,28 +130,23 @@ void SceneMenu::manageMainMenu()
           break;
         case 3:
           // Fade Out and boolean to quit the game
-          fader->fadeOut(1.0f);
+          fadeOut(0.5f);
           quitIsFading = true;
           break;
         default: break;
       }
     }
   } else {
-    if (fader->isReady()) {
+    if (outFader->isReady()) {
       if (newGameIsFading) {
         // New Game
         Game::getCurrentSave()->createNewFile();
       }
       if (quitIsFading) {
         // Quit to OS
-        //Game::quit();
+        Game::quit();
       }
     }
-  }
-
-  if (fader->isReady()) {
-    fader->remove();
-    fader = Game::getDebugGUI()->addInOutFader();
   }
 }
 

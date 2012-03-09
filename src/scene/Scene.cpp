@@ -32,7 +32,8 @@ Scene::Scene()
   music = Game::getMusicReference();
   globalTranslations = Game::getGlobalTranslations();
 
-  fader = Game::getDebugGUI()->addInOutFader();
+  inFader = Game::getDebugGUI()->addInOutFader();
+  outFader = Game::getDebugGUI()->addInOutFader();
 }
 
 /**
@@ -81,8 +82,8 @@ void Scene::postRender()
  */
 void Scene::fadeIn(f32 speed, FadeColor color)
 {
-  fader->setColor(video::SColor(0, 0, 0, 0));
-  fader->fadeIn(speed * 1000);
+  inFader->setColor(video::SColor(0, 0, 0, 0));
+  inFader->fadeIn(speed * 1000);
 }
 
 /**
@@ -90,8 +91,8 @@ void Scene::fadeIn(f32 speed, FadeColor color)
  */
 void Scene::fadeOut(f32 speed, FadeColor color)
 {
-  fader->setColor(video::SColor(0, 0, 0, 0));
-  fader->fadeOut(speed * 1000);
+  outFader->setColor(video::SColor(0, 0, 0, 0));
+  outFader->fadeOut(speed * 1000);
 }
 
 /**
@@ -99,7 +100,8 @@ void Scene::fadeOut(f32 speed, FadeColor color)
  */
 Scene::~Scene()
 {
-  fader->remove();
+  inFader->remove();
+  outFader->remove();
 
   Game::getVideoDriver()->removeAllTextures();
   Game::getSceneManager()->getMeshCache()->clear();

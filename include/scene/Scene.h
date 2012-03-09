@@ -31,7 +31,8 @@ class Scene
     static bool inMapEditingMode;
 
   protected:
-    gui::IGUIInOutFader* fader;
+    gui::IGUIInOutFader* inFader;
+    gui::IGUIInOutFader* outFader;
 
     Camera* cam;
     //PlayerControl* control;
