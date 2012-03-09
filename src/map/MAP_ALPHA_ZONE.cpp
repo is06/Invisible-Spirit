@@ -19,53 +19,70 @@ using namespace std;
 using namespace irr;
 
 /**
- * Constructeur de la map en cours, définition du mesh du décor, création du node et de
- * son masque de collision
+ * Alpha Zone constructor
  */
 MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
 {
+  // Level Mesh
   level->loadMesh("resource/mesh/level/alphazone.obj");
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
 
-  // TODO: fix this instruction
-  //Game::getMusic()->play("mining");
+  // Multi-layers music example
+  music->play("bodhum");
+  music->soloSequence("bodhum", 1);
+  music->muteSequence("bodhum", 2);
 
+  // 3D Speaker example
   //spk = new Speaker(STREAM_TEST, core::vector3df(0,1,0), "hola", 10);
-  lt = new OmniLight();
+
+  // Omni Light example
+  //lt = new OmniLight();
 }
 
 /**
- * Fonction de test des événements spécifiques à cette map
+ * Alpha Zone events
  */
 void MAP_ALPHA_ZONE::events()
 {
   SceneGameplay::events();
+
+  // Object rendering
   //spk->render();
-  lt->render();
+  //lt->render();
 
+  // Multi-layer music events
+  // When pressing W, sequence 2 (aggressive mix) is played
   if (keyboard->pressed(KEY_KEY_W, EVENT_ONCE)) {
-    //Game::getMusic()->soloSequence("mining", 2);
-    //Game::getMusic()->muteSequence("mining", 1);
+    music->soloSequence("bodhum", 2);
+    music->muteSequence("bodhum", 1);
   }
-
+  // When pressing X, sequence 1 (normal) is played
   if (keyboard->pressed(KEY_KEY_X, EVENT_ONCE)) {
-    //Game::getMusic()->soloSequence("mining", 1);
-    //Game::getMusic()->muteSequence("mining", 2);
+    music->soloSequence("bodhum", 1);
+    music->muteSequence("bodhum", 2);
   }
 }
 
+/**
+ * Post-rendering events
+ */
 void MAP_ALPHA_ZONE::postRender()
 {
   SceneGameplay::postRender();
 }
 
 /**
- * Detruit les objets définis dans le constructeur
+ * Delete all created pointers
  */
 MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
 {
+  // Level Mesh collision clear
   level->clearMeshCollision();
+
+  // 3D Speaker deletion
   //delete spk;
-  delete lt;
+
+  // Omni Light deletion
+  //delete lt;
 }

@@ -42,7 +42,7 @@ SceneGameplay::SceneGameplay() : Scene()
   worldTime = new WorldTimeCounter();
   worldTimeTimer = new Timer(1.0f, boost::bind(&SceneGameplay::updateWorldTime, this), -1);
 
-  Game::getSceneManager()->setAmbientLight(video::SColorf(1.0,1.0,1.0,1.0));
+  //Game::getSceneManager()->setAmbientLight(video::SColorf(1.0,1.0,1.0,1.0));
 }
 
 /**

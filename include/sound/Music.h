@@ -22,7 +22,8 @@ class Music
 
     void playSequences(const map<u8, MusicSequenceInfo>& list);
     void addSequences(const map<u8, MusicSequenceInfo>& list);
-    map<u8, MusicSequence*>& getSequences();
+    map<u8, MusicSequence*>& getSequenceMap();
+    MusicSequence* getSequence(u8 number);
 
   private:
     map<u8, MusicSequence*> sequences;

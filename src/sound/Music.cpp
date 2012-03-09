@@ -25,6 +25,9 @@ void Music::addSequences(const map<u8, MusicSequenceInfo>& list)
   }
 }
 
+/**
+ * Plays all the music sequences
+ */
 void Music::playSequences(const map<u8, MusicSequenceInfo>& list)
 {
   map<u8, MusicSequenceInfo>::const_iterator msIt;
@@ -33,11 +36,29 @@ void Music::playSequences(const map<u8, MusicSequenceInfo>& list)
   }
 }
 
-map<u8, MusicSequence*>& Music::getSequences()
+/**
+ * Returns a reference to the sequences map
+ */
+map<u8, MusicSequence*>& Music::getSequenceMap()
 {
   return sequences;
 }
 
+/**
+ * Returns a pointer to a sequence specified by number
+ */
+MusicSequence* Music::getSequence(u8 number)
+{
+  if (sequences[number]) {
+    return sequences[number];
+  } else {
+    return NULL;
+  }
+}
+
+/**
+ * @todo Delete sequences
+ */
 Music::~Music()
 {
 

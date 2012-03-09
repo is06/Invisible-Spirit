@@ -92,7 +92,7 @@ class Game
     static Translation* globalTranslations;
     static Save* currentSave;
     static SoundManager* soundManager;
-    static MusicReference* musicLibrary;
+    static MusicReference* musicReference;
 
     static LocaleIdentifier currentLocale;
     static s32 nextScene;

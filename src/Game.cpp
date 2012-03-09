@@ -39,7 +39,7 @@ Settings* Game::settings;
 Translation* Game::globalTranslations;
 Save* Game::currentSave;
 SoundManager* Game::soundManager;
-MusicReference* Game::musicLibrary;
+MusicReference* Game::musicReference;
 
 ScreenPosition Game::screenPos;
 Shaders Game::shaders;
@@ -266,7 +266,7 @@ void Game::initIrrlichtInterfaces()
   // Irrlicht Device creation
   device = createDevice(
     video::EDT_OPENGL,
-    core::dimension2du(screenPos.width, screenPos.height),
+    core::dimension2du(160, 120),
     screenPos.depth,
     (settings->getParamInt("display", "fullscreen") == 1),
     true,
@@ -309,10 +309,12 @@ void Game::initScreenPositions()
   u8 screenDepth = settings->getParamInt("display", "depth");
 
   // Screen size limit 640x480 => 1920x1080
+  /*
   if(screenWidth < 640) screenWidth = 640;
   if(screenWidth > 1920) screenWidth = 1920;
   if(screenHeight < 480) screenHeight = 480;
   if(screenHeight > 1080) screenHeight = 1080;
+  */
 
   // Ratio computation
   f32 ratio = (f32)screenWidth / (f32)screenHeight;
@@ -390,7 +392,7 @@ void Game::initDebugOptions()
 void Game::initSoundLayer()
 {
   soundManager = new SoundManager();
-  musicLibrary = new MusicReference();
+  musicReference = new MusicReference();
 }
 
 /**
@@ -615,7 +617,7 @@ SoundManager* Game::getSoundManager()
  */
 MusicReference* Game::getMusicReference()
 {
-  return musicLibrary;
+  return musicReference;
 }
 
 /**
@@ -625,7 +627,7 @@ void Game::finish()
 {
   delete currentScene;
   delete settings;
-  delete musicLibrary;
+  delete musicReference;
   delete globalTranslations;
   delete currentSave;
   NewtonDestroyAllBodies(newtonWorld);

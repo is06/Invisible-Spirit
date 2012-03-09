@@ -16,15 +16,7 @@ SoundManager::SoundManager()
 {
   FMOD_System_Create(&sys);
   FMOD_System_Init(sys, 4, FMOD_INIT_NORMAL, NULL);
-
   FMOD_System_Set3DSettings(sys, 1.0f, 1.0f, 1.0f);
-
-/*
-  FMOD_SOUND* sound;
-  FMOD_CHANNEL* channel;
-  FMOD_System_CreateStream(sys, "sp_a2_laser_chaining_b1.mp3", FMOD_HARDWARE | FMOD_LOOP_NORMAL | FMOD_2D, 0, &sound);
-  FMOD_System_PlaySound(sys, FMOD_CHANNEL_FREE, sound, 0, &channel);
-*/
 }
 
 /**

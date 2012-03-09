@@ -17,7 +17,13 @@ MusicSequence::MusicSequence(const MusicSequenceInfo& info)
 {
   string filePath("resource/music/");
   filePath += info.fileName;
-  FMOD_System_CreateStream(Game::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &soundPtr);
+
+  if (info.looped) {
+    FMOD_System_CreateStream(Game::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &soundPtr);
+    FMOD_Sound_SetLoopPoints(soundPtr, info.loopStart, FMOD_TIMEUNIT_MS, info.loopEnd, FMOD_TIMEUNIT_MS);
+  } else {
+    FMOD_System_CreateStream(Game::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_OFF, 0, &soundPtr);
+  }
 }
 
 void MusicSequence::play()

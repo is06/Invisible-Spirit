@@ -126,12 +126,16 @@ void MusicReference::play(const string& id)
 
 void MusicReference::muteSequence(const string& id, u8 number)
 {
-  currentMusic->getSequences()[number]->setVolume(0.0f);
+  if (currentMusic->getSequence(number)) {
+    currentMusic->getSequence(number)->setVolume(0.0f);
+  }
 }
 
 void MusicReference::soloSequence(const string& id, u8 number)
 {
-  currentMusic->getSequences()[number]->setVolume(1.0f);
+  if (currentMusic->getSequence(number)) {
+    currentMusic->getSequence(number)->setVolume(1.0f);
+  }
 }
 
 void MusicReference::stop()
