@@ -16,30 +16,29 @@ Music::Music(const string& id)
 
 }
 
-void Music::addSequences(const map<u8, MusicSequenceInfo>& list)
+void Music::addSequences(const map<u16, MusicSequenceInfo>& list)
 {
-  map<u8, MusicSequenceInfo>::const_iterator msIt;
+  map<u16, MusicSequenceInfo>::const_iterator msIt;
   for (msIt = list.begin(); msIt != list.end(); msIt++) {
-    cout << "added sequence : " << msIt->second.fileName.c_str() << endl;
-    sequences[msIt->first] = new MusicSequence(msIt->second);
+    sequences[msIt->second.number] = new MusicSequence(msIt->second);
   }
 }
 
 /**
  * Plays all the music sequences
  */
-void Music::playSequences(const map<u8, MusicSequenceInfo>& list)
+void Music::playSequences(const map<u16, MusicSequenceInfo>& list)
 {
-  map<u8, MusicSequenceInfo>::const_iterator msIt;
+  map<u16, MusicSequenceInfo>::const_iterator msIt;
   for (msIt = list.begin(); msIt != list.end(); msIt++) {
-    sequences[msIt->first]->play();
+    sequences[msIt->second.number]->play();
   }
 }
 
 /**
  * Returns a reference to the sequences map
  */
-map<u8, MusicSequence*>& Music::getSequenceMap()
+map<u16, MusicSequence*>& Music::getSequenceMap()
 {
   return sequences;
 }
@@ -47,7 +46,7 @@ map<u8, MusicSequence*>& Music::getSequenceMap()
 /**
  * Returns a pointer to a sequence specified by number
  */
-MusicSequence* Music::getSequence(u8 number)
+MusicSequence* Music::getSequence(u16 number)
 {
   if (sequences[number]) {
     return sequences[number];

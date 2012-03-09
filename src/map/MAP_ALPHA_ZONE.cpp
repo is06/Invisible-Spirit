@@ -30,7 +30,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
 
   // Multi-layers music example
   music->play("bodhum");
-  music->soloSequence("bodhum", 1);
+  music->unmuteSequence("bodhum", 1);
   music->muteSequence("bodhum", 2);
 
   // 3D Speaker example
@@ -54,13 +54,13 @@ void MAP_ALPHA_ZONE::events()
   // Multi-layer music events
   // When pressing W, sequence 2 (aggressive mix) is played
   if (keyboard->pressed(KEY_KEY_W, EVENT_ONCE)) {
-    music->soloSequence("bodhum", 2);
-    music->muteSequence("bodhum", 1);
+    music->unmuteSequence("bodhum", 1);
+    music->muteSequence("bodhum", 2);
   }
   // When pressing X, sequence 1 (normal) is played
   if (keyboard->pressed(KEY_KEY_X, EVENT_ONCE)) {
-    music->soloSequence("bodhum", 1);
-    music->muteSequence("bodhum", 2);
+    music->unmuteSequence("bodhum", 2);
+    music->muteSequence("bodhum", 1);
   }
 }
 

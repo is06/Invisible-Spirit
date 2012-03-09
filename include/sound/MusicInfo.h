@@ -14,7 +14,7 @@ using namespace irr;
 
 struct MusicInfo
 {
-  map<u8, MusicSequenceInfo> sequenceInfo;
+  map<u16, MusicSequenceInfo> sequenceInfo;
 };
 
 #endif

@@ -22,8 +22,8 @@ class MusicReference
     void play(const string& id);
     void stop();
 
-    void muteSequence(const string& id, u8 number);
-    void soloSequence(const string& id, u8 number);
+    void muteSequence(const string& id, u16 number);
+    void unmuteSequence(const string& id, u16 number);
 
     Music* getCurrentMusic();
 

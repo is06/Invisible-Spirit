@@ -13,7 +13,7 @@ using namespace std;
 
 struct MusicSequenceInfo
 {
-  u8 number;
+  u16 number;
   bool looped;
   u32 loopStart;
   u32 loopEnd;

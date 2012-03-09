@@ -60,19 +60,21 @@ MusicReference::MusicReference()
           continue;
         }
       } else if (current == ';') {
+        // Ending a sequence declaration
         inSeqFileDeclaration = false;
         inSeqNumbDeclaration = true;
 
-        s32 sequenceNumberInt;
+        u16 sequenceNumberInt;
         u32 loopStartInt;
         u32 loopEndInt;
-        std::istringstream iss(sequenceNumber.c_str());
+        std::istringstream iss(sequenceNumber);
         iss >> sequenceNumberInt;
-        iss.str(sequenceLoopStart.c_str());
+        iss.str(sequenceLoopStart);
         iss >> loopStartInt;
-        iss.str(sequenceLoopEnd.c_str());
+        iss.str(sequenceLoopEnd);
         iss >> loopEndInt;
 
+        musicList[musicName].sequenceInfo[sequenceNumberInt].number = sequenceNumberInt;
         musicList[musicName].sequenceInfo[sequenceNumberInt].looped = sequenceLooped;
         musicList[musicName].sequenceInfo[sequenceNumberInt].loopStart = loopStartInt;
         musicList[musicName].sequenceInfo[sequenceNumberInt].loopEnd = loopEndInt;
@@ -85,9 +87,12 @@ MusicReference::MusicReference()
 
         continue;
       } else if (current == '\n' || current == '\r') {
+        // Ending a music declaration
         inMusicNameDeclaration = true;
+        inSeqNumbDeclaration = false;
         inSeqFileDeclaration = false;
         musicName = "";
+
         continue;
       }
 
@@ -124,14 +129,14 @@ void MusicReference::play(const string& id)
   }
 }
 
-void MusicReference::muteSequence(const string& id, u8 number)
+void MusicReference::muteSequence(const string& id, u16 number)
 {
   if (currentMusic->getSequence(number)) {
     currentMusic->getSequence(number)->setVolume(0.0f);
   }
 }
 
-void MusicReference::soloSequence(const string& id, u8 number)
+void MusicReference::unmuteSequence(const string& id, u16 number)
 {
   if (currentMusic->getSequence(number)) {
     currentMusic->getSequence(number)->setVolume(1.0f);

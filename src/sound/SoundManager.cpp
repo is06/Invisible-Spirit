@@ -12,6 +12,9 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
+/**
+ *
+ */
 SoundManager::SoundManager()
 {
   FMOD_System_Create(&sys);
@@ -64,11 +67,17 @@ void SoundManager::update()
   FMOD_System_Update(sys);
 }
 
+/**
+ *
+ */
 FMOD_SYSTEM* SoundManager::getSystem()
 {
   return sys;
 }
 
+/**
+ *
+ */
 SoundManager::~SoundManager()
 {
   FMOD_System_Close(sys);

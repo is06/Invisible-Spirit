@@ -20,13 +20,13 @@ class Music
     Music(const string& id);
     ~Music();
 
-    void playSequences(const map<u8, MusicSequenceInfo>& list);
-    void addSequences(const map<u8, MusicSequenceInfo>& list);
-    map<u8, MusicSequence*>& getSequenceMap();
-    MusicSequence* getSequence(u8 number);
+    void playSequences(const map<u16, MusicSequenceInfo>& list);
+    void addSequences(const map<u16, MusicSequenceInfo>& list);
+    map<u16, MusicSequence*>& getSequenceMap();
+    MusicSequence* getSequence(u16 number);
 
   private:
-    map<u8, MusicSequence*> sequences;
+    map<u16, MusicSequence*> sequences;
 };
 
 #endif
