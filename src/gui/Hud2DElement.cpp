@@ -18,8 +18,9 @@ core::matrix4 Hud2DElement::mat;
 Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud()
 {
   texture = NULL;
+  opacity = 255;
 
-  // Image visible dÃ¨s sa crÃ©ation
+  // Image visible dès sa création
   isVisible = true;
 
   // Animation Texture
@@ -31,10 +32,15 @@ Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud()
 
   // Materiau
   material.Lighting = false;
-  //material.DiffuseColor.setAlpha(255);
+  material.DiffuseColor.setAlpha(opacity);
+  /*
+  material.DiffuseColor.setRed(255);
+  material.DiffuseColor.setGreen(255);
+  material.DiffuseColor.setBlue(255);
+  */
   //material.Wireframe = true;
-  //material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.opacity;
-  material.MaterialType = video::EMT_TRANSPARENT_ALPHA_CHANNEL;
+  material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.diffuse;
+  //material.MaterialType = video::EMT_TRANSPARENT_ALPHA_CHANNEL;
   material.setTexture(0, NULL);
 
   minTextureOffset.X = 0.0f;
@@ -42,7 +48,7 @@ Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud()
   maxTextureOffset.X = 1.0f;
   maxTextureOffset.Y = 1.0f;
 
-  // CrÃ©ation vertices
+  // Création vertices
   vertices[0] = video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF * -1), (y / COEFF) + (h / 2 / COEFF), FAR,
     1, 1, 0,
@@ -67,7 +73,7 @@ Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud()
 
 void Hud2DElement::render()
 {
-  // DÃ©placement et taille
+  // Déplacement et taille
   vertices[0].Pos.X = (pos.X / COEFF) + (size.Width / 2 / COEFF * -1);
   vertices[0].Pos.Y = (pos.Y / COEFF) + (size.Height / 2 / COEFF);
   vertices[1].Pos.X = (pos.X / COEFF) + (size.Width / 2 / COEFF);
@@ -102,7 +108,9 @@ void Hud2DElement::render()
   // Draws vertices of 2D element only if visible
   if (isVisible) {
     // Opacity
-    material.DiffuseColor.setAlpha(opacity);
+    if (opacity < 255) {
+      material.DiffuseColor.setAlpha(opacity);
+    }
 
     // Texture of 2D element
     if (texture) {
@@ -117,7 +125,7 @@ void Hud2DElement::render()
 }
 
 /**
- * Change la taille de l'Ã©lÃ©ment d'interface (dÃ©forme la texture)
+ * Change la taille de l'élément d'interface (déforme la texture)
  */
 void Hud2DElement::setSize(f32 w, f32 h)
 {
@@ -222,6 +230,12 @@ void Hud2DElement::show()
 void Hud2DElement::setOpacity(u8 value)
 {
   opacity = value;
+}
+
+void Hud2DElement::diffuse(video::SColor color)
+{
+  opacity = color.getAlpha();
+  material.DiffuseColor = color;
 }
 
 Hud2DElement::~Hud2DElement()

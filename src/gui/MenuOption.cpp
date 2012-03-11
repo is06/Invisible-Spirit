@@ -27,7 +27,7 @@ MenuOption::MenuOption(MenuIcon icon, const string& title, f32 x, f32 y, MenuSty
       break;
     case MENU_STYLE_TITLE:
       boxStyle = WIN_STYLE_NONE;
-      fontStyle = FONT_STD_BORDER_SHADED_REGULAR;
+      fontStyle = FONT_STD_CLASSIC_REGULAR;
       break;
     default:
       boxStyle = WIN_STYLE_NONE;

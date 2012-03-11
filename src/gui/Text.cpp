@@ -20,7 +20,7 @@ using namespace irr;
 Text::Text(const string& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud()
 {
   textStr = str;
-  currentSize = 24;
+  currentSize = 48;
   currentSpeed = speed;
   charList.clear();
   font = new TextFont(style);
@@ -86,7 +86,7 @@ void Text::updateTiles()
   for (u16 i = 0; i < textStr.size(); i++) {
     if (cs[i] == '\n') {
       currentCharPos.X = pos.X;
-      currentCharPos.Y -= (currentSize - (currentSize / 8));
+      currentCharPos.Y -= (currentSize - (currentSize));
     } else {
       // The first byte is 110xxxxx: this means the character is stored with two bytes (utf-8)
       // Thanks to Christopho (https://github.com/christopho) for this trick

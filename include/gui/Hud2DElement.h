@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Hud.h"
 
+using namespace irr;
+
 class Hud2DElement : public Hud
 {
   public:
@@ -40,6 +42,7 @@ class Hud2DElement : public Hud
     void hide();
     void show();
     void setOpacity(u8 value);
+    void diffuse(video::SColor color);
 
     void startUVAnimation(f32 uSpeed, f32 vSpeed);
     void stopUVAnimation();
@@ -61,7 +64,7 @@ class Hud2DElement : public Hud
     u8 opacity;
 
     const static f32 FAR = 0.1f;
-    const static f32 COEFF = 3305.0f;
+    const static f32 COEFF = 4954.94f;
 
     static u16 indices[];
     static core::matrix4 mat;

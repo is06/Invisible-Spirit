@@ -254,7 +254,7 @@ void SceneGameplay::manageMenuControl()
     gpMenu->getSectionMenu()->prevOption();
   }
   if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
-    if (gpMenu->getSectionMenu()->getCurrentOption() == 4) {
+    if (gpMenu->getSectionMenu()->getCurrentOption() == 8) {
       quitIsFading = true;
       fadeOut(0.5f);
     }

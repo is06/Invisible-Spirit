@@ -115,7 +115,7 @@ void Game::run()
       if(speedFactor > 1.0f) speedFactor = 1.0f; // Limit min 1fps
       if(speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed movements
 
-      videoDriver->beginScene(true, true, video::SColor(255,0,0,0));
+      videoDriver->beginScene(true, true, video::SColor(255, 0, 0, 0));
 
       // Main events
       currentScene->events();
@@ -148,7 +148,7 @@ void Game::run()
 
       speedFactor = 1.0f / framerate;
 
-      videoDriver->beginScene(true, true, video::SColor(255,255,255,255));
+      videoDriver->beginScene(true, true, video::SColor(255, 255, 255, 255));
 
       // Main events
       currentScene->events();
@@ -263,17 +263,22 @@ void Game::initIrrlichtInterfaces()
   // Custom Event Manager
   eventManager = new EventManager();
 
+  // Getting from ini file
+  u32 screenWidth = settings->getParamInt("display", "width");
+  u32 screenHeight = settings->getParamInt("display", "height");
+  u8 screenDepth = settings->getParamInt("display", "depth");
+
   // Irrlicht Device creation
   device = createDevice(
     video::EDT_OPENGL,
-    core::dimension2du(160, 120),
+    core::dimension2du(1280, 720),
     screenPos.depth,
     (settings->getParamInt("display", "fullscreen") == 1),
     true,
     (settings->getParamInt("display", "vsync") == 1),
     eventManager
   );
-  device->setWindowCaption(L"Invisible Spirit 0.1");
+  device->setWindowCaption(L"Invisible Spirit 0.1 release 8");
 
   // Other interfaces
   videoDriver = device->getVideoDriver();
@@ -322,8 +327,10 @@ void Game::initScreenPositions()
 
   // Ratio computation
   f32 ratio = (f32)screenWidth / (f32)screenHeight;
-  screenHeight = 480;
+  screenHeight = 720;
   screenWidth = screenHeight * ratio;
+
+  cout << screenWidth << "x" << screenHeight << endl;
 
   // Screen position info
   screenPos.hCenter = 0.0f;
@@ -446,6 +453,7 @@ void Game::checkGraphicalCapabilities()
   if (!videoDriver->queryFeature(video::EVDF_RENDER_TO_TARGET)) {
     fatalError(ERRCODE_52);
   }
+  /*
   if (!videoDriver->queryFeature(video::EVDF_TEXTURE_NSQUARE)) {
     fatalError(ERRCODE_53);
   }
@@ -455,6 +463,7 @@ void Game::checkGraphicalCapabilities()
   if (!videoDriver->queryFeature(video::EVDF_ARB_GLSL)) {
     fatalError(ERRCODE_55);
   }
+  */
 }
 
 /**

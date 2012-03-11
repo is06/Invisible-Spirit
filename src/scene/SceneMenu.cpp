@@ -51,7 +51,7 @@ SceneMenu::SceneMenu() : Scene()
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_option"));
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_quit"));
 
-  title = new Picture(100, 0, 256, 102, "resource/texture/menus/title/main.png");
+  title = new Picture(100, 0, 372, 142, "resource/texture/menus/title/main.png");
 
   lightRays = new StaticModel();
   lightRays->loadMesh("resource/mesh/menus/title/rays.obj");

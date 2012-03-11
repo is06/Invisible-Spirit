@@ -1,13 +1,17 @@
 main_menu_new_game=Nouvelle partie
 main_menu_load_game=Charger
-main_menu_option=Paramètres
+main_menu_option=Configuration
 main_menu_quit=Quitter
 
-gameplay_menu_status=Etat
-gameplay_menu_powers=Pouvoirs
+gameplay_menu_swords=Epées
+gameplay_menu_spirits=Esprits
 gameplay_menu_items=Objets
-gameplay_menu_config=Configuration
-gameplay_menu_quit=Quitter le jeu
+gameplay_menu_status=Statut quête
+gameplay_menu_dimensions=Dimensions
+gameplay_menu_tales=Récits
+gameplay_menu_monsters=Bestiaire
+gameplay_menu_settings=Paramètres
+gameplay_menu_quit=Quitter
 
 gameplay_state_level=Niveau
 gameplay_state_level_abbr=Niv.

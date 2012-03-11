@@ -41,7 +41,7 @@ void Menu::render()
 
 void Menu::addOption(MenuIcon icon, const string& title)
 {
-  f32 posY = pos.Y + (lastInsertedIndex * -1 * 32);
+  f32 posY = pos.Y + (lastInsertedIndex * -1 * 40);
   options.insert(make_pair(lastInsertedIndex, new MenuOption(icon, title, pos.X, posY, currentStyle)));
   lastInsertedIndex++;
 }
@@ -52,12 +52,12 @@ void Menu::nextOption()
     if (currentOption > options.size()) {
       currentOption = 0;
       currentOption++;
-      cursor->subY(32);
+      cursor->subY(40);
     }
   } else {
     if (currentOption < options.size() - 1) {
       currentOption++;
-      cursor->subY(32);
+      cursor->subY(40);
     }
   }
 }
@@ -68,12 +68,12 @@ void Menu::prevOption()
     if (currentOption <= 0) {
       currentOption = options.size();
       currentOption--;
-      cursor->addY(32);
+      cursor->addY(40);
     }
   } else {
     if (currentOption > 0) {
       currentOption--;
-      cursor->addY(32);
+      cursor->addY(40);
     }
   }
 }

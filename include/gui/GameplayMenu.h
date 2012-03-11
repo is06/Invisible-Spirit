@@ -27,6 +27,9 @@ class GameplayMenu : public Hud
     bool isVisible;
 
   private:
+    Picture* topBar;
+    Picture* background;
+
     Menu* sectionMenu;
     PlayerState* stateInfo;
     Window* mainBox;
