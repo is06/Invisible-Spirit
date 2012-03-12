@@ -16,7 +16,7 @@ MusicReference::MusicReference()
 {
   currentMusic = NULL;
 
-  fstream fileStream("resource/music/list.data", ios::in);
+  fstream fileStream("resource/music/list.ism", ios::in);
   if (fileStream) {
     bool inMusicNameDeclaration = true;
     bool inSeqNumbDeclaration = false;

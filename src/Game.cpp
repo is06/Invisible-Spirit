@@ -381,7 +381,7 @@ void Game::initLocale()
   }
   */
 
-  globalTranslations = new Translation("global.txt");
+  globalTranslations = new Translation("global.ist");
 }
 
 /**

@@ -13,7 +13,8 @@ using namespace std;
 using namespace irr;
 
 /**
- *
+ * Constructor, defines current font style and get the appropriate texture
+ * @param FontStyle style
  */
 TextFont::TextFont(FontStyle style)
 {
@@ -22,7 +23,8 @@ TextFont::TextFont(FontStyle style)
 }
 
 /**
- *
+ * Returns the font Irrlicht material structure
+ * @return video::SMaterial& reference to the font material
  */
 video::SMaterial& TextFont::getMaterial()
 {
@@ -30,7 +32,9 @@ video::SMaterial& TextFont::getMaterial()
 }
 
 /**
- *
+ * Returns the offset of the specified character
+ * @param u8 code decimal code of the character
+ * @return u8& reference to the offset value
  */
 u8& TextFont::getCharOffset(u8 code)
 {
@@ -38,29 +42,28 @@ u8& TextFont::getCharOffset(u8 code)
 }
 
 /**
- *
+ * Reset current character table to standard (one-byte character)
  */
 void TextFont::resetToStandard()
 {
-  //cout << "Reset table texture to standard" << endl;
   getTextureFromStyle(currentStyle);
 }
 
 /**
- *
+ * Loads another texture in order to get multi-byte character (UTF-8)
+ * @param u8 number the number of the table (example: 195 for latin acutes characters)
  */
 void TextFont::changeExtTexture(u8 number)
 {
-  //cout << "Changing table texture to number " << number << endl;
   getTextureFromStyle(currentStyle, number);
 }
 
 /**
- *
+ * Reads font characters size and offset
+ * @param const string& dataFilePath the path of the font data file
  */
 void TextFont::readFontData(const string& dataFilePath)
 {
-  // Lecture des information de taille
   fstream fileStream(dataFilePath.c_str(), ios::in);
   string currentCode;
   string currentWidth;
@@ -70,7 +73,7 @@ void TextFont::readFontData(const string& dataFilePath)
 
   if (fileStream) {
     while (fileStream.get(currentChar)) {
-      // Lecture du code
+      // Get code
       if (inReadingCode && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
         currentCode += currentChar;
       } else if (inReadingCode && currentChar == ' ') {
@@ -78,12 +81,12 @@ void TextFont::readFontData(const string& dataFilePath)
         inReadingWidth = true;
       }
 
-      // Lecture de la largeur
+      // Get width
       if (inReadingWidth && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
         currentWidth += currentChar;
       }
 
-      // Nouvelle ligne
+      // New line
       if (currentChar == '\n') {
         offset[atoi(currentCode.c_str())] = atoi(currentWidth.c_str());
         currentCode = "";
@@ -95,44 +98,28 @@ void TextFont::readFontData(const string& dataFilePath)
   }
 }
 
+/**
+ * Returns current font style
+ * @return FontStyle the current style
+ */
 FontStyle TextFont::getCurrentStyle()
 {
   return currentStyle;
 }
 
 /**
- *
+ * Changes current character texture from a style and eventually an extended texture
+ * for multi-byte characters (UTF-8)
+ * @param FontStyle style
+ * @param u8 extTexture the number of the table (example: 195 for latin acutes characters)
  */
 void TextFont::getTextureFromStyle(FontStyle style, u8 extTexture)
 {
   string filePath = "resource/hud/font/";
 
   switch (style) {
-    case FONT_STD_CLASSIC_REGULAR: filePath += "std_classic_regular"; break;
-    case FONT_COND_CLASSIC_REGULAR: filePath += "cond_classic_regular"; break;
-    case FONT_EXT_CLASSIC_REGULAR: filePath += "ext_classic_regular"; break;
-    case FONT_STD_CLASSIC_BOLD: filePath += "std_classic_bold"; break;
-    case FONT_COND_CLASSIC_BOLD: filePath += "cond_classic_bold"; break;
-    case FONT_EXT_CLASSIC_BOLD: filePath += "ext_classic_bold"; break;
-
-    case FONT_STD_SHADED_REGULAR: filePath += "std_shaded_regular"; break;
-    case FONT_COND_SHADED_REGULAR: filePath += "cond_shaded_regular"; break;
-    case FONT_EXT_SHADED_REGULAR: filePath += "ext_shaded_regular"; break;
-    case FONT_STD_SHADED_BOLD: filePath += "std_shaded_bold"; break;
-    case FONT_COND_SHADED_BOLD: filePath += "cond_shaded_bold"; break;
-    case FONT_EXT_SHADED_BOLD: filePath += "ext_shaded_bold"; break;
-
-    case FONT_STD_BORDER_SHADED_REGULAR: filePath += "std_border_shaded_regular"; break;
-    case FONT_COND_BORDER_SHADED_REGULAR: filePath += "cond_border_shaded_regular"; break;
-    case FONT_EXT_BORDER_SHADED_REGULAR: filePath += "ext_border_shaded_regular"; break;
-    case FONT_STD_BORDER_SHADED_BOLD: filePath += "std_border_shaded_bold"; break;
-    case FONT_COND_BORDER_SHADED_BOLD: filePath += "cond_border_shaded_bold"; break;
-    case FONT_EXT_BORDER_SHADED_BOLD: filePath += "ext_border_shaded_bold"; break;
-
-    case FONT_LOCATION_TITLE_REGULAR: filePath += "location_title_regular"; break;
-    case FONT_DIALOG_NAME_TITLE_REGULAR: filePath += "dialog_name_regular"; break;
-
-    default: break;
+    case FONT_STANDARD_48: filePath += "standard_48"; break;
+    default: filePath += "standard_48"; break;
   }
 
   string texturePath = filePath;
@@ -153,7 +140,7 @@ void TextFont::getTextureFromStyle(FontStyle style, u8 extTexture)
 }
 
 /**
- *
+ * Destructor
  */
 TextFont::~TextFont()
 {

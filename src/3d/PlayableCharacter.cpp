@@ -29,8 +29,8 @@ PlayableCharacter::PlayableCharacter(Camera* cam) : Character()
   wallSensorWidth = 0.5f;
 
   // Loading mesh
-  loadMesh("resource/mesh/character/cube.mesh.obj");
-  loadAnimation("resource/mesh/character/cube.anim.data");
+  loadMesh("resource/mesh/character/cube.obj");
+  loadAnimation("resource/mesh/character/cube.isa");
   createNode(core::vector3df(-3, 1, -4));
   linkedCam = cam;
 
