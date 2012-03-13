@@ -41,7 +41,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
   //lt = new OmniLight();
 
   // Dialogs
-  dialog = new Dialog("MAP_ALPHA_ZONE.isd");
+  dialog = new Dialog("MAP_ALPHA_ZONE.isd", sceneTranslations);
 }
 
 /**

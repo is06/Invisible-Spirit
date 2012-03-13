@@ -15,13 +15,24 @@ using namespace std;
 class Dialog
 {
   public:
-    Dialog(const string& filePath);
+    Dialog(const string& filePath, Translation* translation);
     ~Dialog();
 
     void render();
     void loadDialogData(const string& fullPath);
     void start(const string& dialogIdentifier);
+    void createMessage(u32 number);
+    void deleteCurrentMessage();
+    void nextMessage();
+    void goToMessage(u32 number);
+    void getMessageNumber(const string& identifier);
     bool finished();
+
+  private:
+    map<u32, string> messageList;
+    u32 currentMessageNumber;
+    Text* currentMessage;
+    Translation* currentTranslation;
 };
 
 #endif
