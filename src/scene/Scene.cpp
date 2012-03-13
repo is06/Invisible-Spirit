@@ -11,6 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Gamepad.h"
 #include "../../include/save/Save.h"
 #include "../../include/scene/Scene.h"
+#include "../../include/engine/Dialog.h"
 
 using namespace irr;
 using namespace std;
@@ -27,11 +28,13 @@ Scene::Scene()
   timeElapsed = 0.0f;
 
   cam = NULL;
+  sceneTranslations = NULL;
+  dialog = NULL;
   keyboard = new Keyboard();
   gamepad = new Gamepad();
+
   music = Game::getMusicReference();
   globalTranslations = Game::getGlobalTranslations();
-
   inFader = Game::getDebugGUI()->addInOutFader();
   outFader = Game::getDebugGUI()->addInOutFader();
 }
@@ -74,7 +77,9 @@ Camera* Scene::getActiveCamera()
  */
 void Scene::postRender()
 {
-
+  if (dialog) {
+    dialog->render();
+  }
 }
 
 /**
@@ -105,6 +110,10 @@ Scene::~Scene()
 
   Game::getVideoDriver()->removeAllTextures();
   Game::getSceneManager()->getMeshCache()->clear();
+
+  if (dialog) {
+    delete dialog;
+  }
 
   delete keyboard;
   delete gamepad;

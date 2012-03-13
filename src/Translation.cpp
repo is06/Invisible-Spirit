@@ -17,8 +17,7 @@ Translation::Translation(const string& filePath)
   string fullPath = "resource/text/";
   notfound = "[not_found]";
 
-  switch (Game::getCurrentLocale())
-  {
+  switch (Game::getCurrentLocale()) {
     case LOCALE_FRE_FR:
     case LOCALE_FRE_BE:
     case LOCALE_FRE_CA:

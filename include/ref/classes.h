@@ -24,6 +24,9 @@ class Keyboard;
 class Mouse;
 class Gamepad;
 
+// Engine classes
+class Dialog;
+
 // Debug classes
 class MapEditor;
 class ColorProperty;

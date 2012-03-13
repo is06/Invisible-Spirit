@@ -40,6 +40,7 @@ class Scene
     Keyboard* keyboard;
     Gamepad* gamepad;
     Save* gameSave;
+    Dialog* dialog;
     MusicReference* music;
     Translation* globalTranslations;
     Translation* sceneTranslations;

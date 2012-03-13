@@ -9,6 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Game.h"
 #include "../../include/Keyboard.h"
 #include "../../include/3d/LevelMesh.h"
+#include "../../include/engine/Dialog.h"
 #include "../../include/sound/MusicReference.h"
 #include "../../include/sound/Speaker.h"
 #include "../../include/3d/OmniLight.h"
@@ -38,6 +39,9 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
 
   // Omni Light example
   //lt = new OmniLight();
+
+  // Dialogs
+  dialog = new Dialog("MAP_ALPHA_ZONE.isd");
 }
 
 /**
@@ -47,12 +51,11 @@ void MAP_ALPHA_ZONE::events()
 {
   SceneGameplay::events();
 
-  //dialog->start("norya_first_start");
-/*
+  dialog->start("norya_first_start");
   if (dialog->finished()) {
 
   }
-*/
+
   // Object rendering
   //spk->render();
   //lt->render();
