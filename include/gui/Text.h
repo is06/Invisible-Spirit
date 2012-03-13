@@ -18,16 +18,19 @@ using namespace irr;
 class Text : public Hud
 {
   public:
-    Text(const string& str = "[Text]", f32 x = 0, f32 y = 0, FontStyle style = FONT_STD_CLASSIC_REGULAR, u8 speed = 0);
+    Text(const string& str = "[Text]", f32 x = 0, f32 y = 0, FontStyle style = FONT_STANDARD_48, u8 speed = 0);
     ~Text();
 
     void render();
     void setSize(u8 size);
     void setText(const string& str);
     void setPosition(const core::position2df& position);
-    void updateTiles();
-
     void nextChar();
+    void updateTiles();
+    void setSideBounds(f32 left, f32 right);
+    void alignLeft();
+    void alignCenter();
+    void alignRight();
 
   private:
     TextFont* font;
@@ -39,6 +42,9 @@ class Text : public Hud
     u8 currentSize;
     u8 currentSpeed;
     u16 currentDisplayChar;
+    u16 width;
+    f32 leftBound;
+    f32 rightBound;
 
     Timer* speedTimer;
 };

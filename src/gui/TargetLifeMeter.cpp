@@ -18,7 +18,7 @@ using namespace std;
 
 TargetLifeMeter::TargetLifeMeter(s32 init, s32 min, s32 max)
 {
-  label = new Text("Cible", 0, 0, FONT_STD_CLASSIC_REGULAR, 0);
+  label = new Text("Cible", 0, 0, FONT_STANDARD_48, 0);
   counter = new BarCounter(init, min, max, 0, 0, 150, 10, BAR_STYLE_LIFE);
   barBack = new Picture();
 }

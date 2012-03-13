@@ -47,6 +47,12 @@ void MAP_ALPHA_ZONE::events()
 {
   SceneGameplay::events();
 
+  //dialog->start("norya_first_start");
+/*
+  if (dialog->finished()) {
+
+  }
+*/
   // Object rendering
   //spk->render();
   //lt->render();
