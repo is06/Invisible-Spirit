@@ -132,7 +132,7 @@ void TextFont::getTextureFromStyle(FontStyle style, u8 extTexture)
   }
 
   texturePath += ".png";
-  string dataPath = filePath + ".dat";
+  string dataPath = filePath + ".isf";
   readFontData(dataPath);
   fontTexture = Game::getVideoDriver()->getTexture(texturePath.c_str());
   fontMaterial.setTexture(0, fontTexture);

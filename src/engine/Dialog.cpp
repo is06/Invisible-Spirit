@@ -19,6 +19,7 @@ using namespace std;
 Dialog::Dialog(const string& filePath, Translation* translation)
 {
   currentTranslation = translation;
+  currentMessage = NULL;
 
   string fullPath = "resource/text/";
 
@@ -70,7 +71,8 @@ void Dialog::start(const string& dialogIdentifier)
  */
 void Dialog::createMessage(u32 number)
 {
-  currentMessage = new Text(currentTranslation->getTranslation(messageList[number]));
+  //cout << "Try to create dialog message '" << messageList[number] << "'" << endl;
+  //currentMessage = new Text(currentTranslation->getTranslation(messageList[number]));
 }
 
 /**

@@ -1,6 +1,6 @@
 # Blender3D v248 OBJ File: 
 # www.blender3d.org
-mtllib cube.material.mtl
+mtllib cube.mtl
 v 1.000000 -1.000000 -1.000000
 v 1.000000 -1.000000 1.000000
 v -1.000000 -1.000000 1.000000

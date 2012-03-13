@@ -11,6 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "Hud.h"
 
 #include "../enums/styles/FontStyle.h"
+#include "../enums/styles/TextAlignment.h"
 
 using namespace std;
 using namespace irr;
@@ -28,9 +29,7 @@ class Text : public Hud
     void nextChar();
     void updateTiles();
     void setSideBounds(f32 left, f32 right);
-    void alignLeft();
-    void alignCenter();
-    void alignRight();
+    void setAlign(TextAlignment align);
 
   private:
     TextFont* font;
@@ -42,9 +41,11 @@ class Text : public Hud
     u8 currentSize;
     u8 currentSpeed;
     u16 currentDisplayChar;
-    u16 width;
+    u16 currentLineNumber;
+    map<u16, u16> lineWidthList;
     f32 leftBound;
     f32 rightBound;
+    TextAlignment currentAlign;
 
     Timer* speedTimer;
 };

@@ -37,6 +37,8 @@ class SceneMenu : public Scene
     void retrieveSaveSlotList();
     void clearSaveSlotList();
 
+    Text* essai;
+
     Picture* dummy;
     Picture* title;
     Menu* mainMenu;

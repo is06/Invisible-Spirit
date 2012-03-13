@@ -11,6 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/StaticModel.h"
 #include "../../include/gui/Picture.h"
 #include "../../include/gui/Menu.h"
+#include "../../include/gui/Text.h"
 #include "../../include/Translation.h"
 #include "../../include/Game.h"
 #include "../../include/Keyboard.h"
@@ -62,6 +63,8 @@ SceneMenu::SceneMenu() : Scene()
     lightRays->getNode()->setScale(core::vector3df(300.0f, 300.0f, 300.0f));
   }
 
+  essai = new Text("Voici un texte\nsur plusieurs lignes\net aligné à droite",0,0,FONT_STANDARD_48, 20);
+
   fadeIn(0.5f);
 }
 
@@ -99,8 +102,9 @@ void SceneMenu::postRender()
 {
   Scene::postRender();
   dummy->render();
-  mainMenu->render();
-  title->render();
+  //mainMenu->render();
+  //title->render();
+  essai->render();
 }
 
 /**
@@ -248,6 +252,7 @@ void SceneMenu::initModeList()
 
 SceneMenu::~SceneMenu()
 {
+  delete essai;
   delete dummy;
   delete lightRays;
   delete title;
