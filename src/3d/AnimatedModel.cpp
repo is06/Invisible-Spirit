@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/ref/core.h"
 #include "../../include/Game.h"
+#include "../../include/scene/Scene.h"
 #include "../../include/3d/AnimatedModel.h"
 #include "../../include/3d/StaticModel.h"
 
@@ -444,6 +445,14 @@ bool AnimatedModel::currentAnimationFinished()
 bool AnimatedModel::animationFinished(s32 id)
 {
   return (mainNode->getFrameNr() == animationList[id].endFrame);
+}
+
+/**
+ *
+ */
+void AnimatedModel::setShadowMode(ShadowMode mode)
+{
+  Game::getCurrentScene()->getShadowProcessor()->setEntity(mainNode, mode);
 }
 
 /**

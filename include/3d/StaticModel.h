@@ -42,6 +42,9 @@ class StaticModel : public ModelEntity
     void createNode(const core::vector3df& initPosition);
     scene::IMeshSceneNode* getNode();
 
+    // Shadows
+    void setShadowMode(ShadowMode mode = SHADOW_MODE_CAST);
+
   protected:
     scene::IMeshSceneNode* mainNode;
 

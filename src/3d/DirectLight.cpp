@@ -5,21 +5,19 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_POST_RENDER_GLOW_H__
-#define __IS06_POST_RENDER_GLOW_H__
+#include "../../include/ref/core.h"
+#include "../../include/Game.h"
+#include "../../include/3d/DirectLight.h"
 
-#include "../gui/Hud2DElement.h"
+using namespace irr;
+using namespace std;
 
-class PostRenderGlow : public Hud2DElement
+DirectLight::DirectLight()
 {
-  public:
-    PostRenderGlow();
-    ~PostRenderGlow();
+  camera = Game::getSceneManager()->addCameraSceneNode();
+}
 
-    void render();
-
-  private:
-
-};
-
-#endif
+DirectLight::~DirectLight()
+{
+  camera->remove();
+}

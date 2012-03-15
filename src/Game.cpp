@@ -271,8 +271,8 @@ void Game::initIrrlichtInterfaces()
   // Irrlicht Device creation
   device = createDevice(
     video::EDT_OPENGL,
-    core::dimension2du(1280, 720),
-    screenPos.depth,
+    core::dimension2du(screenWidth, screenHeight),
+    screenDepth,
     (settings->getParamInt("display", "fullscreen") == 1),
     true,
     (settings->getParamInt("display", "vsync") == 1),

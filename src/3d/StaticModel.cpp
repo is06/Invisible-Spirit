@@ -8,6 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/3d/StaticModel.h"
 #include "../../include/Game.h"
+#include "../../include/scene/Scene.h"
 
 using namespace irr;
 using namespace std;
@@ -232,6 +233,14 @@ void StaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene:
 void StaticModel::clearMeshCollision()
 {
   NewtonDestroyBody(Game::getNewtonWorld(), mainBody);
+}
+
+/**
+ *
+ */
+void StaticModel::setShadowMode(ShadowMode mode)
+{
+  Game::getCurrentScene()->getShadowProcessor()->setEntity(mainNode, mode);
 }
 
 StaticModel::~StaticModel()

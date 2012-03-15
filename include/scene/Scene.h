@@ -8,6 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SCENE_H__
 #define __IS06_SCENE_H__
 
+#include "../engine/ShadowProcessor.h"
 #include "../enums/styles/FadeColor.h"
 
 using namespace irr;
@@ -28,6 +29,8 @@ class Scene
 
     Camera* getActiveCamera();
 
+    ShadowProcessor* getShadowProcessor();
+
     static bool inMapEditingMode;
 
   protected:
@@ -44,6 +47,8 @@ class Scene
     MusicReference* music;
     Translation* globalTranslations;
     Translation* sceneTranslations;
+
+    ShadowProcessor* shadows;
 
     f32 timeElapsed;
     f32 startTime;

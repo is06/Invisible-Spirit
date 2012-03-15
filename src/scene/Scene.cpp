@@ -37,6 +37,8 @@ Scene::Scene()
   globalTranslations = Game::getGlobalTranslations();
   inFader = Game::getDebugGUI()->addInOutFader();
   outFader = Game::getDebugGUI()->addInOutFader();
+
+  shadows = new ShadowProcessor();
 }
 
 /**
@@ -56,6 +58,9 @@ void Scene::events()
 */
 }
 
+/**
+ * @todo
+ */
 void Scene::setSaveSlot(Save* saveSlot)
 {
   gameSave = saveSlot;
@@ -77,13 +82,15 @@ Camera* Scene::getActiveCamera()
  */
 void Scene::postRender()
 {
+  shadows->render();
+
   if (dialog) {
     dialog->render();
   }
 }
 
 /**
- *
+ * @todo
  */
 void Scene::fadeIn(f32 speed, FadeColor color)
 {
@@ -92,12 +99,20 @@ void Scene::fadeIn(f32 speed, FadeColor color)
 }
 
 /**
- *
+ * @todo
  */
 void Scene::fadeOut(f32 speed, FadeColor color)
 {
   outFader->setColor(video::SColor(0, 0, 0, 0));
   outFader->fadeOut(speed * 1000);
+}
+
+/**
+ * @todo
+ */
+ShadowProcessor* Scene::getShadowProcessor()
+{
+  return shadows;
 }
 
 /**
@@ -117,4 +132,6 @@ Scene::~Scene()
 
   delete keyboard;
   delete gamepad;
+
+  delete shadows;
 }

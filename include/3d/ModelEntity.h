@@ -9,6 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_MODEL_ENTITY_H__
 
 #include "../Entity.h"
+#include "../enums/engine/ShadowMode.h"
 
 using namespace irr;
 using namespace std;
@@ -37,6 +38,8 @@ class ModelEntity : public Entity
     virtual void moveX(f32 speed) = 0;
     virtual void moveY(f32 speed) = 0;
     virtual void moveZ(f32 speed) = 0;
+
+    virtual void setShadowMode(ShadowMode mode = SHADOW_MODE_CAST) = 0;
 
     void loadMesh(const string& meshFilePath);
     scene::IMesh* getMesh();

@@ -85,7 +85,7 @@ class BoxSensor;
 
 // Shaders
 class DiffuseShaderCallback;
-class PostRenderGlow;
+class PostRenderSurface;
 
 // Sound
 class SoundManager;

@@ -62,6 +62,9 @@ class AnimatedModel : public ModelEntity
     bool currentAnimationFinished();
     bool animationFinished(s32 id);
 
+    // Shadows
+    void setShadowMode(ShadowMode mode = SHADOW_MODE_CAST);
+
   protected:
     f32 floorSensorWidth;
     f32 wallSensorWidth;

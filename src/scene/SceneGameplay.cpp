@@ -6,22 +6,22 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/ref/core.h"
+#include "../../include/enums/control/GamepadButton.h"
 #include "../../include/3d/LevelMesh.h"
 #include "../../include/3d/TPCamera.h"
 #include "../../include/3d/PlayableCharacter.h"
 #include "../../include/gui/GameplayInterface.h"
 #include "../../include/gui/EnergyInterface.h"
 #include "../../include/gui/GameplayMenu.h"
-#include "../../include/Game.h"
-#include "../../include/Keyboard.h"
-#include "../../include/Gamepad.h"
-#include "../../include/save/Save.h"
-#include "../../include/Timer.h"
 #include "../../include/gui/Menu.h"
 #include "../../include/gui/GameTimeCounter.h"
 #include "../../include/gui/WorldTimeCounter.h"
+#include "../../include/save/Save.h"
 #include "../../include/scene/SceneGameplay.h"
-#include "../../include/enums/control/GamepadButton.h"
+#include "../../include/Game.h"
+#include "../../include/Keyboard.h"
+#include "../../include/Gamepad.h"
+#include "../../include/Timer.h"
 
 using namespace irr;
 using namespace std;
@@ -33,8 +33,14 @@ SceneGameplay::SceneGameplay() : Scene()
 {
   level = new LevelMesh();
   cam = new TPCamera();
+
+  // Ayron info
   ayron = new PlayableCharacter(cam);
+  ayron->setShadowMode(SHADOW_MODE_CAST);
+  // Link Ayron to Third-Person Camera
   cam->linkEntity(ayron);
+
+  // GUI Interfaces
   gpInterface = new GameplayInterface();
   enInterface = new EnergyInterface();
   gpMenu = new GameplayMenu(globalTranslations);
@@ -42,9 +48,10 @@ SceneGameplay::SceneGameplay() : Scene()
   worldTime = new WorldTimeCounter();
   worldTimeTimer = new Timer(1.0f, boost::bind(&SceneGameplay::updateWorldTime, this), -1);
 
-  //Game::getSceneManager()->setAmbientLight(video::SColorf(1.0,1.0,1.0,1.0));
-
+  // Flag for fade out
   quitIsFading = false;
+
+  // Fade at scene start
   fadeIn(0.5f);
 }
 
