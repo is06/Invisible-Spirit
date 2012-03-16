@@ -31,7 +31,7 @@ ShadowProcessor::ShadowProcessor()
 
   // Depth texture quality from settings.ini
   u32 depthQuality = Game::settings->getParamInt("shadows", "depth_quality");
-  video::E_TEXTURE_CREATION_FLAG depthTextureQuality = video::ECF_G16R16F;
+  video::ECOLOR_FORMAT depthTextureQuality = video::ECF_G16R16F;
   if (depthQuality == 32) {
     depthTextureQuality = video::ECF_G32R32F;
   }

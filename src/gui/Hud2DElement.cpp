@@ -20,7 +20,7 @@ Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud()
   texture = NULL;
   opacity = 255;
 
-  // Image visible dès sa création
+  // Visible on start
   isVisible = true;
 
   // Animation Texture
@@ -30,25 +30,35 @@ Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud()
   size = core::dimension2df(w, h);
   pos = core::position2df(x, y);
 
-  // Materiau
+  // Material
   material.Lighting = false;
   material.DiffuseColor.setAlpha(opacity);
+
+  // Diffuse effect
   /*
   material.DiffuseColor.setRed(255);
   material.DiffuseColor.setGreen(255);
   material.DiffuseColor.setBlue(255);
   */
+
+  // Wireframe effect (debug purpose?)
   //material.Wireframe = true;
+
+  // Diffuse shader
   material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.diffuse;
-  //material.MaterialType = video::EMT_TRANSPARENT_ALPHA_CHANNEL;
+
   material.setTexture(0, NULL);
+
+  // Disable filtering clamp
+  material.TextureLayer[0].TextureWrapU = video::ETC_CLAMP_TO_EDGE;
+  material.TextureLayer[0].TextureWrapV = video::ETC_CLAMP_TO_EDGE;
 
   minTextureOffset.X = 0.0f;
   minTextureOffset.Y = 0.0f;
   maxTextureOffset.X = 1.0f;
   maxTextureOffset.Y = 1.0f;
 
-  // Création vertices
+  // Vertices creation
   vertices[0] = video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF * -1), (y / COEFF) + (h / 2 / COEFF), FAR,
     1, 1, 0,
@@ -115,6 +125,7 @@ void Hud2DElement::render()
     // Texture of 2D element
     if (texture) {
       material.setTexture(0, texture);
+
     }
 
     Game::getVideoDriver()->setMaterial(material);
