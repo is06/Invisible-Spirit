@@ -19,21 +19,28 @@ using namespace std;
 ShadowProcessor::ShadowProcessor()
 {
   // Render to target texture quality from settings.ini
-  u32 quality = Game::settings->getParamInt("shadows", "quality");
-  switch (quality) {
-    case 1: quality = 64; break;  // 4K
+  u32 textureQuality = Game::settings->getParamInt("shadows", "texture_quality");
+  switch (textureQuality) {
+    case 1: textureQuality = 64; break;  // 4K
     default:
-    case 2: quality = 128; break; // 16K
-    case 3: quality = 256; break; // 65K
-    case 4: quality = 512; break; // 256K
-    case 5: quality = 1024; break; // 1M
+    case 2: textureQuality = 128; break; // 16K
+    case 3: textureQuality = 256; break; // 65K
+    case 4: textureQuality = 512; break; // 256K
+    case 5: textureQuality = 1024; break; // 1M
+  }
+
+  // Depth texture quality from settings.ini
+  u32 depthQuality = Game::settings->getParamInt("shadows", "depth_quality");
+  video::E_TEXTURE_CREATION_FLAG depthTextureQuality = video::ECF_G16R16F;
+  if (depthQuality == 32) {
+    depthTextureQuality = video::ECF_G32R32F;
   }
 
   // Shadow map texture creation (render target)
   shadowMap = Game::getVideoDriver()->addRenderTargetTexture(
-    core::dimension2du(quality, quality),
+    core::dimension2du(textureQuality, textureQuality),
     "IS06_SHADOW_MAP",
-    video::ECF_G16R16F
+    depthTextureQuality
   );
 }
 
@@ -42,6 +49,7 @@ ShadowProcessor::ShadowProcessor()
  */
 void ShadowProcessor::render()
 {
+  // Changing render target to a texture
   Game::getVideoDriver()->setRenderTarget(shadowMap, true, true, video::SColor(255, 255, 255, 255));
 
   for (shadowsIt = shadows.begin(); shadowsIt != shadows.end(); shadowsIt++) {
@@ -55,6 +63,9 @@ void ShadowProcessor::render()
       // @todo
     }
   }
+
+  // Restore render target to main display window
+  Game::getVideoDriver()->setRenderTarget(0, true, true, video::SColor(255, 0, 0, 0));
 }
 
 void ShadowProcessor::renderCastingNodes()
