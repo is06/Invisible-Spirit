@@ -46,13 +46,14 @@ SceneMenu::SceneMenu() : Scene()
   // Temporary picture to avoid a strange bug in hud rendering (first picture to render badly positionned)
   dummy = new Picture(-5000, -5000, 0, 0);
 
-  mainMenu = new Menu(-50, -100, 150, 8, MENU_STYLE_TITLE);
-  mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_new_game"));
-  mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_load_game"));
-  mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_option"));
+  mainMenu = new Menu(Game::screenPos.left + 100, -100, 150, 8, MENU_STYLE_TITLE);
+  mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_launch_demo"));
+  //mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_load_game"));
+  //mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_option"));
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_quit"));
 
-  title = new Picture(100, 0, 372, 142, "resource/texture/menus/title/main.png");
+  title = new Picture(Game::screenPos.right - 413, 100, 826, 101, "resource/texture/menus/title/main.png");
+  cc = new Picture(Game::screenPos.left + 300, Game::screenPos.bottom + 50, 420, 44, "resource/texture/menus/title/cc.png");
 
   lightRays = new StaticModel();
   lightRays->loadMesh("resource/mesh/menus/title/rays.obj");
@@ -62,8 +63,6 @@ SceneMenu::SceneMenu() : Scene()
     lightRays->getNode()->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL);
     lightRays->getNode()->setScale(core::vector3df(300.0f, 300.0f, 300.0f));
   }
-
-  essai = new Text("Voici un texte\nsur plusieurs lignes\net aligné à droite",0,0,FONT_STANDARD_48, 20);
 
   fadeIn(0.5f);
 }
@@ -102,9 +101,9 @@ void SceneMenu::postRender()
 {
   Scene::postRender();
   dummy->render();
-  //mainMenu->render();
-  //title->render();
-  essai->render();
+  mainMenu->render();
+  title->render();
+  cc->render();
 }
 
 /**
@@ -126,13 +125,15 @@ void SceneMenu::manageMainMenu()
           fadeOut(0.5f);
           newGameIsFading = true;
           break;
+          /*
         case 1:
           createSaveListMenu();
           break;
         case 2:
           createOptionMenu();
           break;
-        case 3:
+          */
+        case 1:
           // Fade Out and boolean to quit the game
           fadeOut(0.5f);
           quitIsFading = true;
@@ -252,10 +253,10 @@ void SceneMenu::initModeList()
 
 SceneMenu::~SceneMenu()
 {
-  delete essai;
   delete dummy;
   delete lightRays;
   delete title;
+  delete cc;
   delete mainMenu;
   delete cam;
 }

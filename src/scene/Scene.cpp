@@ -38,7 +38,7 @@ Scene::Scene()
   inFader = Game::getDebugGUI()->addInOutFader();
   outFader = Game::getDebugGUI()->addInOutFader();
 
-  shadows = new ShadowProcessor();
+  //shadows = new ShadowProcessor();
 }
 
 /**
@@ -82,7 +82,7 @@ Camera* Scene::getActiveCamera()
  */
 void Scene::postRender()
 {
-  shadows->render();
+  //shadows->render();
 
   if (dialog) {
     dialog->render();
@@ -133,5 +133,5 @@ Scene::~Scene()
   delete keyboard;
   delete gamepad;
 
-  delete shadows;
+  //delete shadows;
 }

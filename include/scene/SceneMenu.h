@@ -37,10 +37,9 @@ class SceneMenu : public Scene
     void retrieveSaveSlotList();
     void clearSaveSlotList();
 
-    Text* essai;
-
     Picture* dummy;
     Picture* title;
+    Picture* cc;
     Menu* mainMenu;
     StaticModel* lightRays;
     map<u16, core::vector3di> modeList;

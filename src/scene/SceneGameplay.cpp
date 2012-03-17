@@ -36,7 +36,7 @@ SceneGameplay::SceneGameplay() : Scene()
 
   // Ayron info
   ayron = new PlayableCharacter(cam);
-  ayron->setShadowMode(SHADOW_MODE_CAST);
+  //ayron->setShadowMode(SHADOW_MODE_CAST);
   // Link Ayron to Third-Person Camera
   cam->linkEntity(ayron);
 
