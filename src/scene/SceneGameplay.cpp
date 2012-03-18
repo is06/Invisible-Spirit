@@ -115,6 +115,7 @@ void SceneGameplay::manageCameraControl()
     }
 
     // Joystick control
+    /*
     if (fabs(gamepad->getRightJoystickXAxis()) > 35
     || fabs(gamepad->getRightJoystickYAxis()) > 35) {
       if (gamepad->getRightJoystickXAxis() < -35) {
@@ -128,6 +129,7 @@ void SceneGameplay::manageCameraControl()
         cam->goFar(speedFactor * gamepad->getRightJoystickYAxis() * -1);
       }
     }
+    */
   }
 }
 
@@ -151,6 +153,7 @@ void SceneGameplay::manageCharacterJumps()
     }
 
     // Gamepad
+    /*
     if (gamepad->buttonPressed(GP_BUTTON_B, EVENT_ONCE)) {
       if (!ayron->isJumping && !ayron->isFalling) {
         ayron->setJumpDelta(ayron->getJumpStrength());
@@ -160,6 +163,7 @@ void SceneGameplay::manageCharacterJumps()
       ayron->isJumping = true;
       ayron->jump();
     }
+    */
   }
 }
 
@@ -193,6 +197,7 @@ void SceneGameplay::manageCharacterMovements()
     }
 
     // Joystick control
+    /*
     if (fabs(gamepad->getLeftJoystickXAxis()) > 35 || fabs(gamepad->getLeftJoystickYAxis()) > 35) {
       // Character's direction from joystick's angle
       ayron->getNode()->setRotation(core::vector3df(
@@ -213,6 +218,7 @@ void SceneGameplay::manageCharacterMovements()
         ayron->goForward(speedFactor * gamepad->getLeftJoystickYAxis());
       }
     }
+    */
   }
 }
 
