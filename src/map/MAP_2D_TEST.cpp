@@ -9,8 +9,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Keyboard.h"
 #include "../../include/3d/LevelMesh.h"
 #include "../../include/3d/PlayableCharacter.h"
-#include "../../include/gui/BarCounter.h"
-#include "../../include/gui/GameplayInterface.h"
+#include "../../include/gui/counter/BarCounter.h"
+#include "../../include/gui/gameplay/GameplayInterface.h"
 
 #include "../../include/map/MAP_2D_TEST.h"
 

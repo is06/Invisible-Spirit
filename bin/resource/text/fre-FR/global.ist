@@ -7,6 +7,7 @@ main_menu_quit=Quitter
 gameplay_menu_swords=Epées
 gameplay_menu_spirits=Esprits
 gameplay_menu_items=Objets
+gameplay_menu_maps=Plans
 gameplay_menu_status=Statut quête
 gameplay_menu_dimensions=Dimensions
 gameplay_menu_tales=Récits

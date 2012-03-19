@@ -5,24 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAP_2D_TEST__
-#define __IS06_MAP_2D_TEST__
+#ifndef __IS06_BUTTON_H__
+#define __IS06_BUTTON_H__
 
-#include "../../include/scene/SceneGameplay.h"
-#include "../../include/gui/counter/BarCounter.h"
+#include "../../enums/gameplay/CommandIdentifier.h"
+#include "../Hud.h"
 
-class MAP_2D_TEST : public SceneGameplay
+class TargetLifeMeter : public Hud
 {
   public:
-    MAP_2D_TEST();
-    ~MAP_2D_TEST();
+    TargetLifeMeter(s32 init, s32 min, s32 max);
+    ~TargetLifeMeter();
 
-    void events();
-    void postRender();
+    void render(const core::vector3df& targetPosition);
+    void updateValue(const s32& value);
 
   private:
-    BarCounter* bar;
+    Picture* barBack;
+    BarCounter* counter;
+    Text* label;
 };
 
 #endif
-

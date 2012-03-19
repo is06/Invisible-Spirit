@@ -5,24 +5,19 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAP_2D_TEST__
-#define __IS06_MAP_2D_TEST__
+#include "../../../../include/gui/menus/gameplay/WeaponMenu.h"
 
-#include "../../include/scene/SceneGameplay.h"
-#include "../../include/gui/counter/BarCounter.h"
-
-class MAP_2D_TEST : public SceneGameplay
+WeaponMenu::WeaponMenu() : Hud()
 {
-  public:
-    MAP_2D_TEST();
-    ~MAP_2D_TEST();
 
-    void events();
-    void postRender();
+}
 
-  private:
-    BarCounter* bar;
-};
+void WeaponMenu::render(Keyboard* keyboard)
+{
+  Hud::render();
+}
 
-#endif
+WeaponMenu::~WeaponMenu()
+{
 
+}

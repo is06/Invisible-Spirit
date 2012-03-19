@@ -5,24 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAP_2D_TEST__
-#define __IS06_MAP_2D_TEST__
+#ifndef __IS06_CAPACITY_INFO_H__
+#define __IS06_CAPACITY_INFO_H__
 
-#include "../../include/scene/SceneGameplay.h"
-#include "../../include/gui/counter/BarCounter.h"
+#include "../Hud.h"
 
-class MAP_2D_TEST : public SceneGameplay
+using namespace irr;
+using namespace std;
+
+class CapacityInfo : public Hud
 {
   public:
-    MAP_2D_TEST();
-    ~MAP_2D_TEST();
+    CapacityInfo();
+    ~CapacityInfo();
 
-    void events();
-    void postRender();
+    void render();
 
   private:
-    BarCounter* bar;
+    Picture* icon;
+    Text* value;
 };
 
 #endif
-

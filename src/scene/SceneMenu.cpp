@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/TPCamera.h"
 #include "../../include/3d/StaticModel.h"
 #include "../../include/gui/Picture.h"
-#include "../../include/gui/Menu.h"
+#include "../../include/gui/menus/common/Menu.h"
 #include "../../include/gui/Text.h"
 #include "../../include/Translation.h"
 #include "../../include/Game.h"
