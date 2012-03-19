@@ -1,0 +1,26 @@
+
+IRRLICHT
+====================
+
+Zlib Licence
+
+Mention :
+  Logo Irrlicht
+
+
+NEWTON GAME DYNAMICS
+====================
+
+Zlib Licence
+
+Mention :
+  Logo Newton Game Dynamics
+
+
+FMOD
+====================
+
+Non-commercial license
+
+Mention :
+  FMOD Sound System, copyright © Firelight Technologies Pty, Ltd., 1994-2011.
