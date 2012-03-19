@@ -14,11 +14,17 @@ using namespace irr;
 
 TextChar::TextChar(u8 code, f32& x, f32& y, u8 size, TextFont* font, bool visible, u8 extTexture) : Hud2DElement(x, y, size, size)
 {
+  u32 offsetCode = code;
+
   isVisible = visible;
 
-  x += (size * (font->getCharOffset(code) / 100.0f) / 2);
+  if (extTexture) {
+    offsetCode = ((u16)extTexture * 1000) + ((u16)code);
+  }
+
+  x += (size * (font->getCharOffset(offsetCode) / 100.0f) / 2);
   setPosition(x, y);
-  x += (size * (font->getCharOffset(code) / 100.0f) / 2);
+  x += (size * (font->getCharOffset(offsetCode) / 100.0f) / 2);
 
   fontStyle = font;
 

@@ -117,7 +117,6 @@ void Text::updateTiles()
         // Multi-byte utf-8 character found!
         nextUtf8Table = cs[i];
       } else {
-        cout << "Code : [" << (int)nextUtf8Table << "] " << (int)cs[i] << endl;
         if (!nextUtf8Table) {
           // Standard character
           charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, (currentSpeed == 0)));

@@ -88,6 +88,7 @@ void TextFont::readFontData(const string& dataFilePath)
 
       // New line
       if (currentChar == '\n') {
+
         offset[atoi(currentCode.c_str())] = atoi(currentWidth.c_str());
         currentCode = "";
         currentWidth = "";
