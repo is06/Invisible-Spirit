@@ -10,12 +10,12 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/LevelMesh.h"
 #include "../../include/3d/TPCamera.h"
 #include "../../include/3d/PlayableCharacter.h"
-#include "../../include/gui/GameplayInterface.h"
-#include "../../include/gui/EnergyInterface.h"
-#include "../../include/gui/GameplayMenu.h"
-#include "../../include/gui/Menu.h"
-#include "../../include/gui/GameTimeCounter.h"
-#include "../../include/gui/WorldTimeCounter.h"
+#include "../../include/gui/gameplay/GameplayInterface.h"
+#include "../../include/gui/gameplay/EnergyInterface.h"
+#include "../../include/gui/menus/gameplay/GameplayMenu.h"
+#include "../../include/gui/menus/common/Menu.h"
+#include "../../include/gui/counter/GameTimeCounter.h"
+#include "../../include/gui/counter/WorldTimeCounter.h"
 #include "../../include/save/Save.h"
 #include "../../include/scene/SceneGameplay.h"
 #include "../../include/Game.h"
@@ -260,12 +260,6 @@ void SceneGameplay::manageCharacterCollisions()
  */
 void SceneGameplay::manageMenuControl()
 {
-  if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
-    gpMenu->getSectionMenu()->nextOption();
-  }
-  if (keyboard->pressed(KEY_UP, EVENT_ONCE)) {
-    gpMenu->getSectionMenu()->prevOption();
-  }
   if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
     if (gpMenu->getSectionMenu()->getCurrentOption() == 8) {
       quitIsFading = true;
@@ -286,7 +280,7 @@ void SceneGameplay::postRender()
   Scene::postRender();
   gpInterface->render();
   enInterface->render();
-  gpMenu->render();
+  gpMenu->render(keyboard);
 }
 
 /**

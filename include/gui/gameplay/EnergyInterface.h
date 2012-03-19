@@ -5,23 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAP_2D_TEST__
-#define __IS06_MAP_2D_TEST__
+#ifndef __IS06_ENERGY_INTERFACE_H__
+#define __IS06_ENERGY_INTERFACE_H__
 
-#include "../../include/scene/SceneGameplay.h"
-#include "../../include/gui/counter/BarCounter.h"
+#include "../Hud.h"
 
-class MAP_2D_TEST : public SceneGameplay
+class EnergyInterface : public Hud
 {
   public:
-    MAP_2D_TEST();
-    ~MAP_2D_TEST();
+    EnergyInterface();
+    ~EnergyInterface();
 
-    void events();
-    void postRender();
+    void render();
+    void hide();
+    void show();
+    void setOpacity(u8 value);
 
-  private:
-    BarCounter* bar;
+    BarCounter* hpBar;
+    BarCounter* mpBar;
+    //SpiritCounter* spiritPower;
 };
 
 #endif

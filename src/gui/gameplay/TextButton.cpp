@@ -5,24 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAP_2D_TEST__
-#define __IS06_MAP_2D_TEST__
+#include "../../../include/ref/core.h"
+#include "../../../include/gui/gameplay/TextButton.h"
 
-#include "../../include/scene/SceneGameplay.h"
-#include "../../include/gui/counter/BarCounter.h"
-
-class MAP_2D_TEST : public SceneGameplay
+TextButton::TextButton(f32 x, f32 y) : Button(x, y)
 {
-  public:
-    MAP_2D_TEST();
-    ~MAP_2D_TEST();
 
-    void events();
-    void postRender();
+}
 
-  private:
-    BarCounter* bar;
-};
+void TextButton::render()
+{
+  Button::render();
+}
 
-#endif
+TextButton::~TextButton()
+{
 
+}
