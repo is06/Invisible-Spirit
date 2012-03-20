@@ -133,7 +133,7 @@ void Game::run()
       }
       debugGUI->drawAll();
 
-      soundManager->setEarsData(currentScene->getActiveCamera(), speedFactor);
+      soundManager->setEarsData(currentScene->getActiveCamera());
       soundManager->update();
 
       videoDriver->endScene();
@@ -166,7 +166,7 @@ void Game::run()
       }
       debugGUI->drawAll();
 
-      soundManager->setEarsData(currentScene->getActiveCamera(), speedFactor);
+      soundManager->setEarsData(currentScene->getActiveCamera());
       soundManager->update();
       videoDriver->endScene();
 
@@ -637,11 +637,14 @@ void Game::finish()
 {
   delete currentScene;
   delete settings;
+  delete soundManager;
   delete musicReference;
   delete globalTranslations;
   delete currentSave;
+
   NewtonDestroyAllBodies(newtonWorld);
   NewtonDestroy(newtonWorld);
   device->drop();
+
   delete eventManager;
 }

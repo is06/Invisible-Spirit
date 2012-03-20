@@ -17,7 +17,7 @@ class SoundManager
     SoundManager();
     ~SoundManager();
 
-    void setEarsData(Camera* activeCamera, f32 cycleTime);
+    void setEarsData(Camera* activeCamera);
     void update();
 
     FMOD_SYSTEM* getSystem();

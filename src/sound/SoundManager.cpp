@@ -26,7 +26,7 @@ SoundManager::SoundManager()
  * Called by the Game main loop, this converts camera's position and rotation to
  * FMOD vector format and store them into sound manager
  */
-void SoundManager::setEarsData(Camera* activeCamera, f32 cycleTime)
+void SoundManager::setEarsData(Camera* activeCamera)
 {
   core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
   //core::vector3df rotation = activeCamera->getNode()->getRotation();
