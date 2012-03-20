@@ -42,12 +42,17 @@ class ModelEntity : public Entity
     virtual void setShadowMode(ShadowMode mode = SHADOW_MODE_CAST) = 0;
 
     void loadMesh(const string& meshFilePath);
+
+    void attachSpeaker(Speaker* spk);
+    void detachSpeaker();
+
     scene::IMesh* getMesh();
     NewtonBody* getMainBody();
 
   protected:
     scene::IMesh* mainMesh;
     NewtonBody* mainBody;
+    Speaker* attachedSpeaker;
 };
 
 #endif

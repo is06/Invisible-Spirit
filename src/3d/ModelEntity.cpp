@@ -13,16 +13,17 @@ using namespace irr;
 using namespace std;
 
 /**
- * Initialise les objets liés à l'entité à savoir le mesh, le node, et l'état de mouvement Bullet
+ * Initializations
  */
 ModelEntity::ModelEntity() : Entity()
 {
   mainMesh = NULL;
   mainBody = NULL;
+  attachedSpeaker = NULL;
 }
 
 /**
- * Fonction de mise à jour et de rendu des entités Modèles 3D
+ * Rendering and event method
  */
 void ModelEntity::render()
 {
@@ -30,28 +31,42 @@ void ModelEntity::render()
 }
 
 /**
- * Charge un mesh dans l'entité
- * @param string& meshFilePath référence vers une chaine désignant le chemin du fichier mesh à charger
+ * Loads a mesh in this entity
+ * @param string& meshFilePath
  */
 void ModelEntity::loadMesh(const string& meshFilePath)
 {
   mainMesh = Game::getSceneManager()->getMesh(meshFilePath.c_str());
 }
 
+/**
+ * Returns the irrlicht mesh object of the entity
+ */
 scene::IMesh* ModelEntity::getMesh()
 {
   return mainMesh;
 }
 
+/**
+ * Returns newton main body of this entity
+ */
 NewtonBody* ModelEntity::getMainBody()
 {
   return mainBody;
 }
 
 /**
- * Détruit les objets initialisés dans le constructeur
+ *
+ */
+void ModelEntity::attachSpeaker(Speaker* spk)
+{
+  attachedSpeaker = spk;
+}
+
+/**
+ * Destroys all objects
  */
 ModelEntity::~ModelEntity()
 {
-
+  attachedSpeaker = NULL;
 }

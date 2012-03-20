@@ -9,6 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/StaticModel.h"
 #include "../../include/Game.h"
 #include "../../include/scene/Scene.h"
+#include "../../include/sound/Speaker.h"
 
 using namespace irr;
 using namespace std;
@@ -27,6 +28,11 @@ StaticModel::StaticModel() : ModelEntity()
 void StaticModel::render()
 {
   ModelEntity::render();
+
+  // Attached speaker position update
+  if (attachedSpeaker) {
+    attachedSpeaker->setPosition(mainNode->getPosition());
+  }
 }
 
 /**

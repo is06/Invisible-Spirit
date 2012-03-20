@@ -8,12 +8,16 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/Game.h"
 #include "../../include/scene/Scene.h"
+#include "../../include/sound/Speaker.h"
 #include "../../include/3d/AnimatedModel.h"
 #include "../../include/3d/StaticModel.h"
 
 using namespace irr;
 using namespace std;
 
+/**
+ * Default animated model
+ */
 AnimatedModel::AnimatedModel() : ModelEntity()
 {
   AnimatedModel("resource/mesh/character/cube.obj", "resource/mesh/character/cube.isa");
@@ -36,8 +40,16 @@ AnimatedModel::AnimatedModel(const string& meshFile, const string& animationFile
 void AnimatedModel::render()
 {
   ModelEntity::render();
+
+  // Attached speaker position update
+  if (attachedSpeaker) {
+    attachedSpeaker->setPosition(mainNode->getPosition());
+  }
 }
 
+/**
+ * Turns the model relative to the X axe
+ */
 void AnimatedModel::turnX(f32 speed)
 {
   mainNode->setRotation(core::vector3df(
@@ -47,6 +59,9 @@ void AnimatedModel::turnX(f32 speed)
   ));
 }
 
+/**
+ * Turns the model relative to the Y axe
+ */
 void AnimatedModel::turnY(f32 speed)
 {
   mainNode->setRotation(core::vector3df(
@@ -56,6 +71,9 @@ void AnimatedModel::turnY(f32 speed)
   ));
 }
 
+/**
+ * Turns the model relative to the Z axe
+ */
 void AnimatedModel::turnZ(f32 speed)
 {
   mainNode->setRotation(core::vector3df(
@@ -65,6 +83,9 @@ void AnimatedModel::turnZ(f32 speed)
   ));
 }
 
+/**
+ * Move the model relative to the X axe
+ */
 void AnimatedModel::moveX(f32 speed)
 {
   mainNode->setPosition(core::vector3df(
@@ -74,6 +95,9 @@ void AnimatedModel::moveX(f32 speed)
   ));
 }
 
+/**
+ * Move the model relative to the Y axe
+ */
 void AnimatedModel::moveY(f32 speed)
 {
   mainNode->setPosition(core::vector3df(
@@ -83,6 +107,9 @@ void AnimatedModel::moveY(f32 speed)
   ));
 }
 
+/**
+ * Move the model relative to the Z axe
+ */
 void AnimatedModel::moveZ(f32 speed)
 {
   mainNode->setPosition(core::vector3df(
@@ -145,7 +172,7 @@ void AnimatedModel::setVisible(bool value)
 }
 
 /**
- * Makes the object ghost so it will be invisible and will react to collisions
+ * Makes the object ghost so it will be invisible but will reacts to collisions
  */
 void AnimatedModel::setGhost(bool value)
 {
@@ -153,7 +180,7 @@ void AnimatedModel::setGhost(bool value)
 }
 
 /**
- *
+ * Sets the wireframe mode for this model
  */
 void AnimatedModel::setWireFrame(bool value)
 {
@@ -161,7 +188,7 @@ void AnimatedModel::setWireFrame(bool value)
 }
 
 /**
- *
+ * Shows irrlicht debug data for this model
  */
 void AnimatedModel::setDebugData(bool value)
 {
