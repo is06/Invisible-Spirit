@@ -9,7 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Game.h"
 #include "../../include/Keyboard.h"
 #include "../../include/3d/LevelMesh.h"
-#include "../../include/engine/Dialog.h"
+#include "../../include/engine/DialogInterface.h"
 #include "../../include/sound/MusicReference.h"
 #include "../../include/sound/Speaker.h"
 #include "../../include/3d/OmniLight.h"
@@ -41,7 +41,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
   //lt = new OmniLight();
 
   // Dialogs
-  dialog = new Dialog("MAP_ALPHA_ZONE.isd", sceneTranslations);
+  dialog = new DialogInterface("MAP_ALPHA_ZONE.isd", sceneTranslations);
 }
 
 /**

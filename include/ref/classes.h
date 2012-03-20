@@ -25,7 +25,7 @@ class Mouse;
 class Gamepad;
 
 // Engine classes
-class Dialog;
+class DialogInterface;
 
 // Debug classes
 class MapEditor;
@@ -62,6 +62,15 @@ class IconTextButton;
 class Menu;
 class MenuOption;
 class GameplayMenu;
+class DimensionMenu;
+class ItemMenu;
+class MapMenu;
+class MonstersMenu;
+class SettingsMenu;
+class SpiritMenu;
+class StatusMenu;
+class TalesMenu;
+class WeaponMenu;
 class MainStateInfo;
 class CapacityInfo;
 class PlayerState;
@@ -69,19 +78,26 @@ class PlayerState;
 // 3D
 class ModelEntity;
 class AnimatedModel;
-class Character;
-class PlayableCharacter;
-class NPC;
-class Enemy;
 class StaticModel;
 class LevelMesh;
 class Camera;
 class TPCamera;
 class Light;
+class DirectLight;
 class OmniLight;
 class Sensor;
 class PlaneSensor;
 class BoxSensor;
+
+// Characters
+class Character;
+class PlayableCharacter;
+class NPC;
+
+// Enemies
+class Enemy;
+class FloorEnemy;
+class AirEnemy;
 
 // Shaders
 class DiffuseShaderCallback;

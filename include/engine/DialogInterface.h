@@ -5,18 +5,18 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_DIALOG_H__
-#define __IS06_DIALOG_H__
+#ifndef __IS06_DIALOG_INTERFACE_H__
+#define __IS06_DIALOG_INTERFACE_H__
 
 #include "../ref/core.h"
 
 using namespace std;
 
-class Dialog
+class DialogInterface
 {
   public:
-    Dialog(const string& filePath, Translation* translation);
-    ~Dialog();
+    DialogInterface(const string& filePath, Translation* translation);
+    ~DialogInterface();
 
     void render();
     void loadDialogData(const string& fullPath);
@@ -27,8 +27,10 @@ class Dialog
     void goToMessage(u32 number);
     void getMessageNumber(const string& identifier);
     bool finished();
+    const string& getIdentifier() const;
 
   private:
+    string identifier;
     map<u32, string> messageList;
     u32 currentMessageNumber;
     Text* currentMessage;

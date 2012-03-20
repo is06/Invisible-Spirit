@@ -22,6 +22,7 @@ class AnimatedModel : public ModelEntity
 {
   public:
     AnimatedModel();
+    AnimatedModel(const string& meshFile, const string& animationFile);
     virtual ~AnimatedModel();
 
     virtual void render();

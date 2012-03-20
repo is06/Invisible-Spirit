@@ -14,11 +14,19 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
+AnimatedModel::AnimatedModel() : ModelEntity()
+{
+  AnimatedModel("resource/mesh/character/cube.obj", "resource/mesh/character/cube.isa");
+}
+
 /**
  * 3D Animated model constructor
  */
-AnimatedModel::AnimatedModel() : ModelEntity()
+AnimatedModel::AnimatedModel(const string& meshFile, const string& animationFile) : ModelEntity()
 {
+  loadMesh(meshFile);
+  loadAnimation(animationFile);
+
   mainNode = NULL;
 }
 

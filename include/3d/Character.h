@@ -13,7 +13,7 @@ http://www.is06.com. Legal code in license.txt
 class Character : public AnimatedModel
 {
   public:
-    Character();
+    Character(const string& meshFile, const string& animationFile);
 
     virtual void render();
 

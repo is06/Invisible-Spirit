@@ -2,8 +2,8 @@
 
 Invisible Spirit requires several libraries in order to be compilated :
 
-- Irrlicht (>= 1.7.2)
-- FmodEx (>= 4.34.04)
+- Irrlicht (>= 1.7)
+- FmodEx (>= 4.30)
 - Newton Game Dynamics (>= 2.29)
 - Boost (>= 1.46)
 

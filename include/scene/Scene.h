@@ -43,7 +43,7 @@ class Scene
     Keyboard* keyboard;
     Gamepad* gamepad;
     Save* gameSave;
-    Dialog* dialog;
+    DialogInterface* dialog;
     MusicReference* music;
     Translation* globalTranslations;
     Translation* sceneTranslations;

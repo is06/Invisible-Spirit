@@ -9,14 +9,14 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Game.h"
 #include "../../include/Translation.h"
 #include "../../include/gui/Text.h"
-#include "../../include/engine/Dialog.h"
+#include "../../include/engine/DialogInterface.h"
 
 using namespace std;
 
 /**
  *
  */
-Dialog::Dialog(const string& filePath, Translation* translation)
+DialogInterface::DialogInterface(const string& filePath, Translation* translation)
 {
   currentTranslation = translation;
   currentMessage = NULL;
@@ -42,7 +42,7 @@ Dialog::Dialog(const string& filePath, Translation* translation)
 /**
  *
  */
-void Dialog::render()
+void DialogInterface::render()
 {
   if (currentMessage) {
     currentMessage->render();
@@ -52,7 +52,7 @@ void Dialog::render()
 /**
  * @todo
  */
-void Dialog::loadDialogData(const string& fullPath)
+void DialogInterface::loadDialogData(const string& fullPath)
 {
 
 }
@@ -60,8 +60,9 @@ void Dialog::loadDialogData(const string& fullPath)
 /**
  *
  */
-void Dialog::start(const string& dialogIdentifier)
+void DialogInterface::start(const string& dialogIdentifier)
 {
+  identifier = dialogIdentifier;
   currentMessageNumber = 0;
   createMessage(currentMessageNumber);
 }
@@ -69,7 +70,7 @@ void Dialog::start(const string& dialogIdentifier)
 /**
  *
  */
-void Dialog::createMessage(u32 number)
+void DialogInterface::createMessage(u32 number)
 {
   //cout << "Try to create dialog message '" << messageList[number] << "'" << endl;
   //currentMessage = new Text(currentTranslation->getTranslation(messageList[number]));
@@ -78,7 +79,7 @@ void Dialog::createMessage(u32 number)
 /**
  *
  */
-void Dialog::deleteCurrentMessage()
+void DialogInterface::deleteCurrentMessage()
 {
   if (currentMessage) {
     delete currentMessage;
@@ -88,7 +89,7 @@ void Dialog::deleteCurrentMessage()
 /**
  *
  */
-void Dialog::nextMessage()
+void DialogInterface::nextMessage()
 {
   currentMessageNumber++;
   deleteCurrentMessage();
@@ -98,7 +99,7 @@ void Dialog::nextMessage()
 /**
  *
  */
-void Dialog::goToMessage(u32 number)
+void DialogInterface::goToMessage(u32 number)
 {
   currentMessageNumber = number;
   deleteCurrentMessage();
@@ -108,7 +109,7 @@ void Dialog::goToMessage(u32 number)
 /**
  * @todo
  */
-void Dialog::getMessageNumber(const string& identifier)
+void DialogInterface::getMessageNumber(const string& identifier)
 {
 
 }
@@ -116,7 +117,7 @@ void Dialog::getMessageNumber(const string& identifier)
 /**
  * @todo
  */
-bool Dialog::finished()
+bool DialogInterface::finished()
 {
   return false;
 }
@@ -124,7 +125,15 @@ bool Dialog::finished()
 /**
  *
  */
-Dialog::~Dialog()
+const string& DialogInterface::getIdentifier() const
+{
+  return identifier;
+}
+
+/**
+ *
+ */
+DialogInterface::~DialogInterface()
 {
   if (currentMessage) {
     delete currentMessage;

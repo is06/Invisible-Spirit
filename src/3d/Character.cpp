@@ -14,7 +14,7 @@ using namespace irr;
 /**
  * Constructeur
  */
-Character::Character() : AnimatedModel()
+Character::Character(const string& meshFile, const string& animationFile) : AnimatedModel(meshFile, animationFile)
 {
   isJumping = false;
   isFalling = true;

@@ -17,7 +17,7 @@ using namespace std;
  * PlayableCharacter entity constructor: defines which mesh to load and set the initial direction
  * @param Camera* cam pointer to a Camera to link to PlayableCharacter
  */
-PlayableCharacter::PlayableCharacter(Camera* cam) : Character()
+PlayableCharacter::PlayableCharacter(Camera* cam) : Character("resource/mesh/character/cube.obj", "resource/mesh/character/cube.isa")
 {
   controlable = true;
   jumpDelta = 0.0f;
@@ -29,8 +29,6 @@ PlayableCharacter::PlayableCharacter(Camera* cam) : Character()
   wallSensorWidth = 0.5f;
 
   // Loading mesh
-  loadMesh("resource/mesh/character/cube.obj");
-  loadAnimation("resource/mesh/character/cube.isa");
   createNode(core::vector3df(-3, 1, -4));
   linkedCam = cam;
 

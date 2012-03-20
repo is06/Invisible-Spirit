@@ -5,20 +5,18 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../../include/ref/core.h"
-#include "../../../../include/gui/menus/gameplay/DimensionMenu.h"
+#ifndef __IS06_FLOOR_ENEMY_H__
+#define __IS06_FLOOR_ENEMY_H__
 
-DimensionMenu::DimensionMenu() : Hud()
+#include "../../include/3d/Enemy.h"
+
+class FloorEnemy : public Enemy
 {
+  public:
+    FloorEnemy();
+    virtual ~FloorEnemy();
 
-}
+    virtual void render();
+};
 
-void DimensionMenu::render(Keyboard* keyboard)
-{
-  Hud::render();
-}
-
-DimensionMenu::~DimensionMenu()
-{
-
-}
+#endif

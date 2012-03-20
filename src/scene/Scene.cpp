@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Gamepad.h"
 #include "../../include/save/Save.h"
 #include "../../include/scene/Scene.h"
-#include "../../include/engine/Dialog.h"
+#include "../../include/engine/DialogInterface.h"
 
 using namespace irr;
 using namespace std;

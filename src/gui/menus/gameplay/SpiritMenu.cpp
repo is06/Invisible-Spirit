@@ -5,6 +5,7 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
+#include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/SpiritMenu.h"
 
 SpiritMenu::SpiritMenu() : Hud()
