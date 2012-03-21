@@ -20,10 +20,6 @@ ModelEntity::ModelEntity() : Entity()
   mainMesh = NULL;
   mainBody = NULL;
   attachedSpeaker = NULL;
-
-  renderForGlow = false;
-  renderForShadowPass1 = false;
-  renderForShadowPass2 = false;
 }
 
 /**
@@ -31,7 +27,7 @@ ModelEntity::ModelEntity() : Entity()
  */
 void ModelEntity::update()
 {
-  Entity::update();
+  //Entity::update();
 }
 
 /**

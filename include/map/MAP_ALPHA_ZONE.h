@@ -9,6 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_MAP_ALPHA_ZONE__
 
 #include "../../include/scene/SceneGameplay.h"
+#include "../../include/shader/PostRenderGlow.h"
 
 class MAP_ALPHA_ZONE : public SceneGameplay
 {
@@ -22,6 +23,8 @@ class MAP_ALPHA_ZONE : public SceneGameplay
   private:
     Speaker* spk;
     OmniLight* lt;
+
+    PostRenderGlow* glowShader;
 };
 
 #endif

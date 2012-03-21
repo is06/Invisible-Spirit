@@ -76,14 +76,6 @@ Camera* Scene::getActiveCamera()
 }
 
 /**
- *
- */
-void Scene::glowingEntitiesRender()
-{
-
-}
-
-/**
  * This method is called every cycle after the event test method (or main loop
  * for scenes)
  * This method can handle post render events like map editor

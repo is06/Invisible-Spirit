@@ -14,5 +14,5 @@ Sensor::Sensor() : Entity()
 
 void Sensor::update()
 {
-  Entity::update();
+  //Entity::update();
 }

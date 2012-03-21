@@ -15,19 +15,3 @@ Entity::Entity()
 {
 
 }
-
-/**
- * Update method for all entities
- */
-void Entity::update()
-{
-
-}
-
-/**
- * Render method for all entities
- */
-void Entity::render()
-{
-
-}

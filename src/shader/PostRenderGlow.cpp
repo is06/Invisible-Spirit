@@ -14,7 +14,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-PostRenderGlow::PostRenderGlow() : Hud2DElement(1280, 720, 0, 0)
+PostRenderGlow::PostRenderGlow() : Hud2DElement(0, 0, 1280, 720)
 {
   texture = 0;
 
@@ -29,26 +29,24 @@ PostRenderGlow::PostRenderGlow() : Hud2DElement(1280, 720, 0, 0)
     case 5: quality = 1024; break; // 4MB
   }
 
-  vertices[0].TCoords.X = 0.0f;
-  vertices[0].TCoords.Y = 1.0f;
-  vertices[1].TCoords.X = 1.0f;
-  vertices[1].TCoords.Y = 1.0f;
-  vertices[2].TCoords.X = 0.0f;
-  vertices[2].TCoords.Y = 0.0f;
-  vertices[3].TCoords.X = 1.0f;
-  vertices[3].TCoords.Y = 0.0f;
+  minTextureOffset.X = 0.0f;
+  minTextureOffset.Y = 1.0f;
+  maxTextureOffset.X = 1.0f;
+  maxTextureOffset.Y = 0.0f;
 
-  material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.glow;
-  texture = Game::getVideoDriver()->addRenderTargetTexture(core::dimension2du(quality, quality), "RTT1", video::ECF_R8G8B8);
+  //material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.glow;
+  texture = Game::getVideoDriver()->addRenderTargetTexture(core::dimension2du(1024, 1024), "GlowRTT", video::ECF_R8G8B8);
   material.setTexture(0, texture);
 }
 
 void PostRenderGlow::render()
 {
   Hud2DElement::render();
+
   if (texture) {
     Game::getVideoDriver()->setRenderTarget(texture, true, true, video::SColor(255, 0, 0, 0));
-    Game::getCurrentScene()->glowingEntitiesRender();
+    Game::getSceneManager()->drawAll();
+    //Game::getCurrentScene()->glowingEntitiesRender();
     Game::getVideoDriver()->setRenderTarget(0, false, true, 0);
   }
 }

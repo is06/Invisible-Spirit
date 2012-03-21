@@ -42,6 +42,8 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
 
   // Dialogs
   dialog = new DialogInterface("MAP_ALPHA_ZONE.isd", sceneTranslations);
+
+  glowShader = new PostRenderGlow();
 }
 
 /**
@@ -78,6 +80,7 @@ void MAP_ALPHA_ZONE::events()
  */
 void MAP_ALPHA_ZONE::postRender()
 {
+  //glowShader->render();
   SceneGameplay::postRender();
 }
 
@@ -94,4 +97,6 @@ MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
 
   // Omni Light deletion
   //delete lt;
+
+  delete glowShader;
 }

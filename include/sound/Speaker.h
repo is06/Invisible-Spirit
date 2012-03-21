@@ -21,7 +21,7 @@ class Speaker : public Entity
     Speaker(StreamIdentifier stream, const core::vector3df& initPos, const string& text = "speaker", f32 radius = 10.0f);
     ~Speaker();
 
-    void render();
+    void update();
 
     const FMOD_VECTOR& getPosition() const;
     core::vector3df getPositionVector();

@@ -98,7 +98,7 @@ void Game::run()
     s32 fps = videoDriver->getFPS();
 
     if (lastFPS != fps) {
-      core::stringw str = L"fps: ";
+      core::stringw str = L"Invisible Spirit 0.1 release 9 - fps: ";
       str += fps;
       device->setWindowCaption(str.c_str());
       lastFPS = fps;
@@ -119,17 +119,11 @@ void Game::run()
 
       // Main events
       currentScene->events();
-      if (exit || screenSizeChanged) {
-        break;
-      }
       sceneManager->drawAll();
 
       // Post Render events
       if (!debugOption.display.hidePostRender) {
         currentScene->postRender();
-      }
-      if (exit || screenSizeChanged) {
-        break;
       }
       debugGUI->drawAll();
 
@@ -152,17 +146,11 @@ void Game::run()
 
       // Main events
       currentScene->events();
-      if (exit || screenSizeChanged) {
-        break;
-      }
       sceneManager->drawAll();
 
       // Post Render events
       if (!debugOption.display.hidePostRender) {
         currentScene->postRender();
-      }
-      if (exit || screenSizeChanged) {
-        break;
       }
       debugGUI->drawAll();
 
@@ -278,7 +266,7 @@ void Game::initIrrlichtInterfaces()
     (settings->getParamInt("display", "vsync") == 1),
     eventManager
   );
-  device->setWindowCaption(L"Invisible Spirit 0.1 release 8");
+  device->setWindowCaption(L"Invisible Spirit 0.1 release 9");
 
   // Other interfaces
   videoDriver = device->getVideoDriver();
@@ -363,7 +351,7 @@ void Game::initShaders()
     shaders.glow = gpuManager->addHighLevelShaderMaterialFromFiles(
       "resource/shader/glow.vert", "vertexMain", video::EVST_VS_1_1,
       "resource/shader/glow.frag", "pixelMain", video::EPST_PS_1_1,
-      0, video::EMT_TRANSPARENT_ADD_COLOR
+      0, video::EMT_SOLID
     );
   }
 }

@@ -23,7 +23,7 @@ Light::Light() : Entity()
 
 void Light::update()
 {
-  Entity::update();
+  //Entity::update();
 }
 
 Light::~Light()

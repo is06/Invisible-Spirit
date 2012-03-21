@@ -84,8 +84,8 @@ void SceneGameplay::events()
   }
 
   // Entities rendering
-  ayron->render();
-  cam->render();
+  ayron->update();
+  cam->update();
 }
 
 void SceneGameplay::updateWorldTime()
@@ -268,18 +268,6 @@ void SceneGameplay::manageMenuControl()
   }
   if (quitIsFading && outFader->isReady()) {
     Game::changeScene(SCENE_MENU);
-  }
-}
-
-/**
- * Render all glow registered nodes
- */
-void SceneGameplay::glowingEntitiesRender()
-{
-  for (glowingEntitiesIt = glowingEntities.begin(); glowingEntitiesIt != glowingEntities.end(); glowingEntitiesIt++) {
-    if (glowingEntitiesIt->second) {
-      glowingEntitiesIt->first->shaderRender();
-    }
   }
 }
 

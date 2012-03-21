@@ -21,7 +21,6 @@ class Scene
     virtual ~Scene();
 
     virtual void events() = 0;
-    virtual void glowingEntitiesRender();
     virtual void postRender() = 0;
 
     void setSaveSlot(Save* saveSlot);

@@ -41,9 +41,9 @@ Speaker::Speaker(StreamIdentifier, const core::vector3df& initPos, const string&
   play();
 }
 
-void Speaker::render()
+void Speaker::update()
 {
-  Entity::render();
+  //Entity::render();
 }
 
 const FMOD_VECTOR& Speaker::getPosition() const

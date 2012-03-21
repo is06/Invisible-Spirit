@@ -54,10 +54,6 @@ class ModelEntity : public Entity
     scene::IMesh* mainMesh;
     NewtonBody* mainBody;
     Speaker* attachedSpeaker;
-
-    bool renderForGlow;
-    bool renderForShadowPass1;
-    bool renderForShadowPass2;
 };
 
 #endif

@@ -75,7 +75,7 @@ void SceneMenu::events()
   Scene::events();
 
   // Light rays rotation
-  lightRays->render();
+  lightRays->update();
   if (lightRays->getNode()) {
     lightRays->turnY(5);
   }

@@ -14,8 +14,6 @@ class Entity
 {
   public:
     Entity();
-    virtual void update();
-    virtual void render();
 };
 
 #endif
