@@ -31,12 +31,12 @@ void TPCamera::linkEntity(Character* entity)
 }
 
 /**
- * Camera update and render method
+ * Camera update method
  * This method sets the camera position relative to the character and player moves
  */
-void TPCamera::render()
+void TPCamera::update()
 {
-  Camera::render();
+  Camera::update();
 
   f32 x = linkedEntity->getNode()->getPosition().X + distance * cos(UAxis);
   f32 z = linkedEntity->getNode()->getPosition().Z + distance * sin(UAxis);

@@ -15,7 +15,7 @@ class TPCamera : public Camera
   public:
     TPCamera();
 
-    void render();
+    void update();
 
     void goLeft(f32 speed);
     void goRight(f32 speed);

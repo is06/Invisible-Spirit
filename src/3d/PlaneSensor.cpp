@@ -20,9 +20,9 @@ PlaneSensor::PlaneSensor(const core::plane3df& initPlane) : Sensor()
 /**
  *
  */
-void PlaneSensor::render()
+void PlaneSensor::update()
 {
-  Sensor::render();
+  Sensor::update();
 }
 
 /**

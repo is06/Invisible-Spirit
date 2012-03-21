@@ -26,7 +26,7 @@ Camera::Camera()
 /**
  * Fonction de mise à jour de tous les objets Camera
  */
-void Camera::render()
+void Camera::update()
 {
 
 }

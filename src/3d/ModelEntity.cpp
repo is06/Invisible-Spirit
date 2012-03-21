@@ -20,14 +20,26 @@ ModelEntity::ModelEntity() : Entity()
   mainMesh = NULL;
   mainBody = NULL;
   attachedSpeaker = NULL;
+
+  renderForGlow = false;
+  renderForShadowPass1 = false;
+  renderForShadowPass2 = false;
 }
 
 /**
  * Rendering and event method
  */
-void ModelEntity::render()
+void ModelEntity::update()
 {
-  Entity::render();
+  Entity::update();
+}
+
+/**
+ *
+ */
+void ModelEntity::shaderRender()
+{
+
 }
 
 /**

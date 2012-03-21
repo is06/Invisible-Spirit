@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Shadow.h"
 #include "../enums/engine/ShadowMode.h"
-#include "../shader/PostRenderSurface.h"
+//#include "../shader/PostRenderShadow.h"
 
 using namespace irr;
 using namespace std;

@@ -25,7 +25,8 @@ class AnimatedModel : public ModelEntity
     AnimatedModel(const string& meshFile, const string& animationFile);
     virtual ~AnimatedModel();
 
-    virtual void render();
+    virtual void update();
+    virtual void shaderRender();
 
     void setVisible(bool value);
     void hide();

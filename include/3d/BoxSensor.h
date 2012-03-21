@@ -16,7 +16,7 @@ class BoxSensor : public Sensor
 {
   public:
     BoxSensor(const core::aabbox3df& initBox);
-    void render();
+    void update();
     const core::aabbox3df& getBox() const;
 
   private:

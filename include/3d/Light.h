@@ -12,7 +12,7 @@ class Light : public Entity
     Light();
     ~Light();
 
-    void render();
+    void update();
 
   private:
     scene::ILightSceneNode* node;

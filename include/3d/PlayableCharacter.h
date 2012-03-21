@@ -15,7 +15,7 @@ class PlayableCharacter : public Character
   public:
     PlayableCharacter(Camera* cam);
 
-    void render();
+    void update();
 
     // Player moves
     void goLeft(f32 speed);

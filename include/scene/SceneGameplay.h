@@ -20,6 +20,7 @@ class SceneGameplay : public Scene
     virtual ~SceneGameplay();
 
     virtual void events();
+    virtual void glowingEntitiesRender();
     virtual void postRender();
 
   protected:

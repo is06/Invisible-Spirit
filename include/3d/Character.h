@@ -15,7 +15,7 @@ class Character : public AnimatedModel
   public:
     Character(const string& meshFile, const string& animationFile);
 
-    virtual void render();
+    virtual void update();
 
     bool isJumping;
     bool isFalling;

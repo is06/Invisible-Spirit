@@ -21,9 +21,9 @@ Light::Light() : Entity()
   icon->setMaterialTexture(0, iconTexture);
 }
 
-void Light::render()
+void Light::update()
 {
-  Entity::render();
+  Entity::update();
 }
 
 Light::~Light()

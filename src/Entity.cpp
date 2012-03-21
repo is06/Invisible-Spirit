@@ -17,7 +17,15 @@ Entity::Entity()
 }
 
 /**
- * Rendering method for all entities
+ * Update method for all entities
+ */
+void Entity::update()
+{
+
+}
+
+/**
+ * Render method for all entities
  */
 void Entity::render()
 {

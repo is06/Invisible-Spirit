@@ -16,7 +16,7 @@ class FloorEnemy : public Enemy
     FloorEnemy();
     virtual ~FloorEnemy();
 
-    virtual void render();
+    virtual void update();
 };
 
 #endif

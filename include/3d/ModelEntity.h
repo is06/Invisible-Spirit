@@ -20,7 +20,8 @@ class ModelEntity : public Entity
     ModelEntity();
     virtual ~ModelEntity();
 
-    virtual void render();
+    virtual void update() = 0;
+    virtual void shaderRender();
     virtual void createNode(const core::vector3df& initPosition) = 0;
 
     virtual void setVisible(bool value) = 0;
@@ -53,6 +54,10 @@ class ModelEntity : public Entity
     scene::IMesh* mainMesh;
     NewtonBody* mainBody;
     Speaker* attachedSpeaker;
+
+    bool renderForGlow;
+    bool renderForShadowPass1;
+    bool renderForShadowPass2;
 };
 
 #endif

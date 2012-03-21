@@ -25,9 +25,9 @@ Character::Character(const string& meshFile, const string& animationFile) : Anim
 }
 
 /**
- * Fonction de mise à jour et de rendu de tous les personnages
+ * Fonction de mise à jour de tous les personnages
  */
-void Character::render()
+void Character::update()
 {
-  AnimatedModel::render();
+  AnimatedModel::update();
 }

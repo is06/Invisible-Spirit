@@ -16,7 +16,7 @@ class Enemy : public AnimatedModel
     Enemy();
     virtual ~Enemy();
 
-    virtual void render();
+    virtual void update();
 
   protected:
 

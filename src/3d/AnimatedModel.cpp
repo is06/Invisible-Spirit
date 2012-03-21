@@ -35,16 +35,24 @@ AnimatedModel::AnimatedModel(const string& meshFile, const string& animationFile
 }
 
 /**
- * Update and render function of 3D animated models
+ * Update function of 3D animated models
  */
-void AnimatedModel::render()
+void AnimatedModel::update()
 {
-  ModelEntity::render();
+  ModelEntity::update();
 
   // Attached speaker position update
   if (attachedSpeaker) {
     attachedSpeaker->setPosition(mainNode->getPosition());
   }
+}
+
+/**
+ *
+ */
+void AnimatedModel::shaderRender()
+{
+  mainNode->render();
 }
 
 /**

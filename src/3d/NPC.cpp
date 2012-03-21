@@ -22,9 +22,9 @@ NPC::NPC(const string& meshFile, const string& animationFile) : Character(meshFi
 /**
  * Rendering and events method
  */
-void NPC::render()
+void NPC::update()
 {
-  Character::render();
+  Character::update();
 }
 
 /**

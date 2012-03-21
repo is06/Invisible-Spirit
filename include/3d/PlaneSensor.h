@@ -16,7 +16,7 @@ class PlaneSensor : public Sensor
 {
   public:
     PlaneSensor(const core::plane3df& initPlane);
-    void render();
+    void update();
 
     const core::plane3df& getPlane() const;
 

@@ -18,7 +18,7 @@ class Camera : public Entity
   public:
     Camera();
 
-    virtual void render() = 0;
+    virtual void update() = 0;
 
     virtual void linkEntity(Character* entityToLink) = 0;
     virtual f32 getDistance() = 0;

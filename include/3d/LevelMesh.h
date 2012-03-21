@@ -18,7 +18,7 @@ class LevelMesh : public StaticModel
     LevelMesh();
     ~LevelMesh();
 
-    void render();
+    void update();
     void loadCollisionMask();
 };
 

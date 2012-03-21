@@ -19,7 +19,7 @@ class NPC : public Character
     NPC(const string& meshFile, const string& animationFile);
     ~NPC();
 
-    void render();
+    void update();
     void talk(const string& dialogIdentifier) const;
     void attachDialogInterface(DialogInterface* dialog);
     const string& getRandomTalkingDialogIdentifier(bool avoidDoubles = false);

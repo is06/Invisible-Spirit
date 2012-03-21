@@ -14,9 +14,9 @@ FloorEnemy::FloorEnemy() : Enemy()
 
 }
 
-void FloorEnemy::render()
+void FloorEnemy::update()
 {
-  Enemy::render();
+  Enemy::update();
 }
 
 FloorEnemy::~FloorEnemy()

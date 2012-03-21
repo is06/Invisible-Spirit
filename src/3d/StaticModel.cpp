@@ -25,14 +25,22 @@ StaticModel::StaticModel() : ModelEntity()
 /**
  * Fonction de mise à jour et de rendu de toutes les entités statiques présentes dans les scènes
  */
-void StaticModel::render()
+void StaticModel::update()
 {
-  ModelEntity::render();
+  ModelEntity::update();
 
   // Attached speaker position update
   if (attachedSpeaker) {
     attachedSpeaker->setPosition(mainNode->getPosition());
   }
+}
+
+/**
+ * Render for shader effect
+ */
+void StaticModel::shaderRender()
+{
+  mainNode->render();
 }
 
 /**

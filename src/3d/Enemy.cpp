@@ -14,9 +14,9 @@ Enemy::Enemy() : AnimatedModel()
 
 }
 
-void Enemy::render()
+void Enemy::update()
 {
-  AnimatedModel::render();
+  AnimatedModel::update();
 }
 
 Enemy::~Enemy()

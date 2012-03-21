@@ -272,6 +272,18 @@ void SceneGameplay::manageMenuControl()
 }
 
 /**
+ * Render all glow registered nodes
+ */
+void SceneGameplay::glowingEntitiesRender()
+{
+  for (glowingEntitiesIt = glowingEntities.begin(); glowingEntitiesIt != glowingEntities.end(); glowingEntitiesIt++) {
+    if (glowingEntitiesIt->second) {
+      glowingEntitiesIt->first->shaderRender();
+    }
+  }
+}
+
+/**
  * This functions is called after all scene object render
  * It renders HUD elements in front of camera
  */

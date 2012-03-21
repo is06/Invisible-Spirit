@@ -12,7 +12,7 @@ Sensor::Sensor() : Entity()
 
 }
 
-void Sensor::render()
+void Sensor::update()
 {
-  Entity::render();
+  Entity::update();
 }

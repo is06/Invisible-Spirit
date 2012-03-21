@@ -41,11 +41,11 @@ PlayableCharacter::PlayableCharacter(Camera* cam) : Character("resource/mesh/cha
 }
 
 /**
- * Render function, called every cycle
+ * Update function, called every cycle
  */
-void PlayableCharacter::render()
+void PlayableCharacter::update()
 {
-  Character::render();
+  Character::update();
 }
 
 /**

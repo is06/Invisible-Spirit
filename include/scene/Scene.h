@@ -21,6 +21,7 @@ class Scene
     virtual ~Scene();
 
     virtual void events() = 0;
+    virtual void glowingEntitiesRender();
     virtual void postRender() = 0;
 
     void setSaveSlot(Save* saveSlot);
@@ -53,6 +54,9 @@ class Scene
     f32 timeElapsed;
     f32 startTime;
     f32 speedFactor;
+
+    map<ModelEntity*, bool> glowingEntities;
+    map<ModelEntity*, bool>::iterator glowingEntitiesIt;
 
   private:
 };

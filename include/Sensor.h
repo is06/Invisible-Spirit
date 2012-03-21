@@ -14,7 +14,7 @@ class Sensor : public Entity
 {
   public:
     Sensor();
-    virtual void render() = 0;
+    virtual void update() = 0;
 };
 
 #endif

@@ -18,9 +18,9 @@ BoxSensor::BoxSensor(const core::aabbox3df& initBox) : Sensor()
 /**
  *
  */
-void BoxSensor::render()
+void BoxSensor::update()
 {
-  Sensor::render();
+  Sensor::update();
 }
 
 /**

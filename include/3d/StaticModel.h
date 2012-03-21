@@ -19,7 +19,8 @@ class StaticModel : public ModelEntity
     StaticModel();
     ~StaticModel();
 
-    virtual void render();
+    virtual void update();
+    virtual void shaderRender();
 
     void setVisible(bool value);
     void hide();

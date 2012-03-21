@@ -20,11 +20,11 @@ LevelMesh::LevelMesh() : StaticModel()
 }
 
 /**
- * Fonction de mise à jour et de rendu de tous les levelMesh créés
+ * Fonction de mise à jour de tous les levelMesh créés
  */
-void LevelMesh::render()
+void LevelMesh::update()
 {
-  StaticModel::render();
+  StaticModel::update();
 }
 
 /**

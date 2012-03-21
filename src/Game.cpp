@@ -568,7 +568,7 @@ void Game::fatalError(ErrorCode code)
     case ERRCODE_53: throw EngineException(code, "Non-square textures not supported", 3); break;
     case ERRCODE_54: throw EngineException(code, "Non-power of two texture size not supported", 3); break;
     case ERRCODE_55: throw EngineException(code, "GLSL not supported", 3); break;
-    default: throw EngineException(code, "Unknown error", 3); break;
+    default: throw EngineException(code, "Internal error", 3); break;
   }
 
 }
