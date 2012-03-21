@@ -24,6 +24,8 @@ Text::Text(const string& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud()
   currentSpeed = speed;
   currentAlign = TEXT_ALIGN_LEFT;
   charList.clear();
+
+  // @todo : create font outside text object to avoid useless multiple declarations
   font = new TextFont(style);
   currentCharPos = pos = core::dimension2df(x, y);
   currentDisplayChar = 0;

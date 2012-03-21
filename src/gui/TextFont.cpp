@@ -19,6 +19,7 @@ using namespace irr;
 TextFont::TextFont(FontStyle style)
 {
   currentStyle = style;
+  getFontDataFromStyle(style);
   getTextureFromStyle(style);
 }
 
@@ -64,6 +65,7 @@ void TextFont::changeExtTexture(u8 number)
  */
 void TextFont::readFontData(const string& dataFilePath)
 {
+  cout << "reading font data..." << endl;
   fstream fileStream(dataFilePath.c_str(), ios::in);
   string currentCode;
   string currentWidth;
@@ -88,7 +90,6 @@ void TextFont::readFontData(const string& dataFilePath)
 
       // New line
       if (currentChar == '\n') {
-
         offset[atoi(currentCode.c_str())] = atoi(currentWidth.c_str());
         currentCode = "";
         currentWidth = "";
@@ -106,6 +107,19 @@ void TextFont::readFontData(const string& dataFilePath)
 FontStyle TextFont::getCurrentStyle()
 {
   return currentStyle;
+}
+
+void TextFont::getFontDataFromStyle(FontStyle style)
+{
+  string filePath = "resource/hud/font/";
+
+  switch (style) {
+    case FONT_STANDARD_48: filePath += "standard_48"; break;
+    default: filePath += "standard_48"; break;
+  }
+
+  string dataPath = filePath + ".isf";
+  readFontData(dataPath);
 }
 
 /**
@@ -133,8 +147,7 @@ void TextFont::getTextureFromStyle(FontStyle style, u8 extTexture)
   }
 
   texturePath += ".png";
-  string dataPath = filePath + ".isf";
-  readFontData(dataPath);
+
   fontTexture = Game::getVideoDriver()->getTexture(texturePath.c_str());
   fontMaterial.setTexture(0, fontTexture);
   fontMaterial.Lighting = false;

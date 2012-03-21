@@ -28,12 +28,13 @@ class TextFont
 
   private:
     void readFontData(const string& dataFilePath);
+    void getFontDataFromStyle(FontStyle style);
     void getTextureFromStyle(FontStyle style, u8 extTexture=0);
 
     video::ITexture* fontTexture;
     video::SMaterial fontMaterial;
     FontStyle currentStyle;
-    u8 offset[256];
+    map<u32, u8> offset;
 };
 
 #endif
