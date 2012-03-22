@@ -11,7 +11,8 @@ http://www.is06.com. Legal code in license.txt
 struct Shaders
 {
   s32 diffuse;
-  s32 glow;
+  s32 verticalBlur;
+  s32 horizontalBlur;
 };
 
 #endif

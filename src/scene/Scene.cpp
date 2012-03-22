@@ -10,6 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Keyboard.h"
 #include "../../include/Gamepad.h"
 #include "../../include/3d/ModelEntity.h"
+#include "../../include/gui/Picture.h"
 #include "../../include/save/Save.h"
 #include "../../include/scene/Scene.h"
 #include "../../include/engine/DialogInterface.h"
@@ -39,6 +40,9 @@ Scene::Scene()
   globalTranslations = Game::getGlobalTranslations();
   inFader = Game::getDebugGUI()->addInOutFader();
   outFader = Game::getDebugGUI()->addInOutFader();
+
+  // Temporary picture to avoid a strange bug in hud rendering (first picture to render badly positionned)
+  dummy = new Picture(-5000, -5000, 0, 0);
 
   //shadows = new ShadowProcessor();
 }
@@ -82,7 +86,7 @@ Camera* Scene::getActiveCamera()
  */
 void Scene::postRender()
 {
-
+  dummy->render();
 }
 
 /**
@@ -178,6 +182,7 @@ Scene::~Scene()
 
   delete keyboard;
   delete gamepad;
+  delete dummy;
 
   //delete shadows;
 }

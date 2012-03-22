@@ -42,6 +42,8 @@ class Scene
     gui::IGUIInOutFader* inFader;
     gui::IGUIInOutFader* outFader;
 
+    Picture* dummy;
+
     Camera* cam;
     //PlayerControl* control;
     //MapEditor* mapEditor;

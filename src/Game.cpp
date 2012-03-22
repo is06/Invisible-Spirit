@@ -337,7 +337,8 @@ void Game::initScreenPositions()
 void Game::initShaders()
 {
   shaders.diffuse = 0;
-  shaders.glow = 0;
+  shaders.horizontalBlur = 0;
+  shaders.verticalBlur = 0;
 
   if (gpuManager) {
     // Shader Diffuse (2D Elements)
@@ -349,11 +350,18 @@ void Game::initShaders()
     );
     cb->drop();
 
-    // Shader Glow
-    shaders.glow = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/shader/glow.vert", "vertexMain", video::EVST_VS_1_1,
-      "resource/shader/glow.frag", "pixelMain", video::EPST_PS_1_1,
-      0, video::EMT_TRANSPARENT_ADD_COLOR
+    // Horizontal Blur Shader
+    shaders.horizontalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
+      "resource/shader/blur.vert", "vertexMain", video::EVST_VS_1_1,
+      "resource/shader/hBlur.frag", "pixelMain", video::EPST_PS_1_1,
+      0, video::EMT_SOLID
+    );
+
+    // Vertical Blur Shader
+    shaders.verticalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
+      "resource/shader/blur.vert", "vertexMain", video::EVST_VS_1_1,
+      "resource/shader/vBlur.frag", "pixelMain", video::EPST_PS_1_1,
+      0, video::EMT_SOLID
     );
   }
 }
@@ -400,7 +408,7 @@ void Game::initScenes()
 {
   exit = false;
   sceneChanged = true;
-  nextScene = SCENE_MENU;
+  nextScene = SCENE_MAP_ALPHA_ZONE;
 }
 
 /**

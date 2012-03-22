@@ -43,9 +43,6 @@ SceneMenu::SceneMenu() : Scene()
   cam->getNode()->setTarget(core::vector3df(0,100,0));
   cam->getNode()->setFarValue(10000.0f);
 
-  // Temporary picture to avoid a strange bug in hud rendering (first picture to render badly positionned)
-  dummy = new Picture(-5000, -5000, 0, 0);
-
   mainMenu = new Menu(Game::screenPos.left + 100, -100, 150, 8, MENU_STYLE_TITLE);
   mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_launch_demo"));
   //mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_load_game"));
@@ -109,7 +106,6 @@ void SceneMenu::hudRender()
 {
   Scene::hudRender();
 
-  dummy->render();
   mainMenu->render();
   title->render();
   cc->render();
@@ -262,7 +258,6 @@ void SceneMenu::initModeList()
 
 SceneMenu::~SceneMenu()
 {
-  delete dummy;
   delete lightRays;
   delete title;
   delete cc;

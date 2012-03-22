@@ -34,20 +34,34 @@ PostRenderGlow::PostRenderGlow() : Hud2DElement(0, 0, 1280, 720)
   maxTextureOffset.X = 1.0f;
   maxTextureOffset.Y = 0.0f;
 
-  material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.glow;
-  texture = Game::getVideoDriver()->addRenderTargetTexture(core::dimension2du(quality, quality), "GlowRTT", video::ECF_R8G8B8);
+  texture = Game::getVideoDriver()->addRenderTargetTexture(core::dimension2du(512, 512), "GlowRTT", video::ECF_R8G8B8);
   material.setTexture(0, texture);
 }
 
+/**
+ * Render post render quad (Hud2DElement) two times (one for each shader pass)
+ * Calling render of parent class results in an execution of both vertex and fragment shader
+ * First pass : horizontal blur
+ * Second pass : vertical blur
+ */
 void PostRenderGlow::render()
 {
+  // Perform first pass (horizontal blur)
+  material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.horizontalBlur;
   Hud2DElement::render();
 
   if (texture) {
-    Game::getVideoDriver()->setRenderTarget(texture, true, true, video::SColor(255, 0, 0, 0));
+    Game::getVideoDriver()->setRenderTarget(texture, true, true, video::SColor(255, 255, 255, 255));
+    // Darken non glowing entities
     Game::getCurrentScene()->darkenNonGlowingEntities();
+    // Draw the whole scene
     Game::getSceneManager()->drawAll();
+    // Perform second pass (vertical blur)
+    material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.verticalBlur;
+    Hud2DElement::render();
+    // Restore lighting material of all darkened entities
     Game::getCurrentScene()->revealNonGlowingEntities();
+    // Reset render target to main display viewport
     Game::getVideoDriver()->setRenderTarget(0, false, true, 0);
   }
 }
