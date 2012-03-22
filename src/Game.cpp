@@ -125,6 +125,7 @@ void Game::run()
       if (!debugOption.display.hidePostRender) {
         currentScene->postRender();
       }
+      currentScene->hudRender();
       debugGUI->drawAll();
 
       soundManager->setEarsData(currentScene->getActiveCamera());
@@ -152,6 +153,7 @@ void Game::run()
       if (!debugOption.display.hidePostRender) {
         currentScene->postRender();
       }
+      currentScene->hudRender();
       debugGUI->drawAll();
 
       soundManager->setEarsData(currentScene->getActiveCamera());
