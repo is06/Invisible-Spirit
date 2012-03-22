@@ -67,41 +67,81 @@ scene::IMeshSceneNode* StaticModel::getNode()
   return mainNode;
 }
 
+/**
+ *
+ */
 video::SMaterial& StaticModel::getMaterial()
 {
   return mainNode->getMaterial(0);
 }
 
+/**
+ *
+ */
 void StaticModel::hide()
 {
   mainNode->setVisible(false);
 }
 
+/**
+ *
+ */
 void StaticModel::show()
 {
   mainNode->setVisible(true);
 }
 
+/**
+ *
+ */
 void StaticModel::setVisible(bool value)
 {
   mainNode->setVisible(value);
 }
 
+/**
+ *
+ */
 void StaticModel::setGhost(bool value)
 {
   mainNode->setMaterialFlag(video::EMF_FRONT_FACE_CULLING, !value);
 }
 
+/**
+ *
+ */
 void StaticModel::setWireFrame(bool value)
 {
   mainNode->setMaterialFlag(video::EMF_WIREFRAME, value);
 }
 
+/**
+ *
+ */
 void StaticModel::setDebugData(bool value)
 {
   mainNode->setDebugDataVisible(value);
 }
 
+/**
+ *
+ */
+void StaticModel::darken()
+{
+  mainNode->setMaterialFlag(video::EMF_LIGHTING, true);
+}
+
+/**
+ *
+ */
+void StaticModel::undarken()
+{
+  mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
+}
+
+/**
+ *
+ */
 void StaticModel::turnX(f32 speed)
 {
   mainNode->setRotation(core::vector3df(
@@ -111,6 +151,9 @@ void StaticModel::turnX(f32 speed)
   ));
 }
 
+/**
+ *
+ */
 void StaticModel::turnY(f32 speed)
 {
   mainNode->setRotation(core::vector3df(
@@ -120,6 +163,9 @@ void StaticModel::turnY(f32 speed)
   ));
 }
 
+/**
+ *
+ */
 void StaticModel::turnZ(f32 speed)
 {
   mainNode->setRotation(core::vector3df(
@@ -129,6 +175,9 @@ void StaticModel::turnZ(f32 speed)
   ));
 }
 
+/**
+ *
+ */
 void StaticModel::moveX(f32 speed)
 {
   mainNode->setPosition(core::vector3df(
@@ -138,6 +187,9 @@ void StaticModel::moveX(f32 speed)
   ));
 }
 
+/**
+ *
+ */
 void StaticModel::moveY(f32 speed)
 {
   mainNode->setPosition(core::vector3df(
@@ -147,6 +199,9 @@ void StaticModel::moveY(f32 speed)
   ));
 }
 
+/**
+ *
+ */
 void StaticModel::moveZ(f32 speed)
 {
   mainNode->setPosition(core::vector3df(
@@ -156,6 +211,9 @@ void StaticModel::moveZ(f32 speed)
   ));
 }
 
+/**
+ *
+ */
 void StaticModel::loadMeshCollision()
 {
   bool optimize = true;
@@ -244,6 +302,9 @@ void StaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene:
   }
 }
 
+/**
+ *
+ */
 void StaticModel::clearMeshCollision()
 {
   NewtonDestroyBody(Game::getNewtonWorld(), mainBody);
@@ -257,6 +318,9 @@ void StaticModel::setShadowMode(ShadowMode mode)
   Game::getCurrentScene()->getShadowProcessor()->setEntity(mainNode, mode);
 }
 
+/**
+ *
+ */
 StaticModel::~StaticModel()
 {
   if (mainNode) {

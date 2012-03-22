@@ -204,6 +204,22 @@ void AnimatedModel::setDebugData(bool value)
 }
 
 /**
+ *
+ */
+void AnimatedModel::darken()
+{
+  mainNode->setMaterialFlag(video::EMF_LIGHTING, true);
+}
+
+/**
+ *
+ */
+void AnimatedModel::undarken()
+{
+  mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
+}
+
+/**
  * Returns true if the animated model collides with a static model defined by other
  * @param StaticModel* other pointer to the static object which collides with the animated model
  * @return bool true if collision

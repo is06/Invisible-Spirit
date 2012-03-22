@@ -20,9 +20,9 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/ref/maps.h"
 #include "../include/Translation.h"
 
-#include "../include/map/MAP_2D_TEST.h"
 #include "../include/map/MAP_ALPHA_ZONE.h"
 #include "../include/map/MAP_CANYON.h"
+#include "../include/map/MAP_OXYGEN.h"
 
 using namespace irr;
 using namespace std;
@@ -351,7 +351,7 @@ void Game::initShaders()
     shaders.glow = gpuManager->addHighLevelShaderMaterialFromFiles(
       "resource/shader/glow.vert", "vertexMain", video::EVST_VS_1_1,
       "resource/shader/glow.frag", "pixelMain", video::EPST_PS_1_1,
-      0, video::EMT_SOLID
+      0, video::EMT_TRANSPARENT_ADD_COLOR
     );
   }
 }

@@ -30,6 +30,8 @@ class ModelEntity : public Entity
     virtual void setGhost(bool value) = 0;
     virtual void setWireFrame(bool value) = 0;
     virtual void setDebugData(bool value) = 0;
+    virtual void darken() = 0;
+    virtual void undarken() = 0;
 
     virtual video::SMaterial& getMaterial() = 0;
 

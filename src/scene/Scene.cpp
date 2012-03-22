@@ -9,9 +9,11 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Game.h"
 #include "../../include/Keyboard.h"
 #include "../../include/Gamepad.h"
+#include "../../include/3d/ModelEntity.h"
 #include "../../include/save/Save.h"
 #include "../../include/scene/Scene.h"
 #include "../../include/engine/DialogInterface.h"
+
 
 using namespace irr;
 using namespace std;
@@ -95,6 +97,42 @@ void Scene::hudRender()
   if (dialog) {
     dialog->render();
   }
+}
+
+/**
+ *
+ */
+void Scene::darkenNonGlowingEntities()
+{
+  Game::getSceneManager()->setAmbientLight(video::SColorf(0.0f, 0.0f, 0.0f));
+
+  // @todo : turn off all lights
+
+  for (entityListIt = entityList.begin(); entityListIt != entityList.end(); entityListIt++) {
+    entityListIt->first->darken();
+  }
+}
+
+/**
+ *
+ */
+void Scene::revealNonGlowingEntities()
+{
+  Game::getSceneManager()->setAmbientLight(video::SColorf(1.0f, 1.0f, 1.0f));
+
+  // @todo : turn on all lights
+
+  for (entityListIt = entityList.begin(); entityListIt != entityList.end(); entityListIt++) {
+    entityListIt->first->undarken();
+  }
+}
+
+/**
+ *
+ */
+void Scene::addToEntityList(ModelEntity* entity)
+{
+  entityList[entity] = false;
 }
 
 /**

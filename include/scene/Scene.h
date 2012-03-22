@@ -24,6 +24,10 @@ class Scene
     virtual void postRender() = 0;
     virtual void hudRender() = 0;
 
+    void darkenNonGlowingEntities();
+    void revealNonGlowingEntities();
+    void addToEntityList(ModelEntity* entity);
+
     void setSaveSlot(Save* saveSlot);
     void fadeIn(f32 speed = 1.5f, FadeColor color = FADE_COLOR_BLACK);
     void fadeOut(f32 speed = 3.0f, FadeColor color = FADE_COLOR_BLACK);
@@ -55,8 +59,8 @@ class Scene
     f32 startTime;
     f32 speedFactor;
 
-    map<ModelEntity*, bool> glowingEntities;
-    map<ModelEntity*, bool>::iterator glowingEntitiesIt;
+    map<ModelEntity*, bool> entityList;
+    map<ModelEntity*, bool>::iterator entityListIt;
 
   private:
 };

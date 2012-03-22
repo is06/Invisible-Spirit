@@ -34,8 +34,8 @@ PostRenderGlow::PostRenderGlow() : Hud2DElement(0, 0, 1280, 720)
   maxTextureOffset.X = 1.0f;
   maxTextureOffset.Y = 0.0f;
 
-  //material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.glow;
-  texture = Game::getVideoDriver()->addRenderTargetTexture(core::dimension2du(1024, 1024), "GlowRTT", video::ECF_R8G8B8);
+  material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.glow;
+  texture = Game::getVideoDriver()->addRenderTargetTexture(core::dimension2du(quality, quality), "GlowRTT", video::ECF_R8G8B8);
   material.setTexture(0, texture);
 }
 
@@ -45,8 +45,9 @@ void PostRenderGlow::render()
 
   if (texture) {
     Game::getVideoDriver()->setRenderTarget(texture, true, true, video::SColor(255, 0, 0, 0));
+    Game::getCurrentScene()->darkenNonGlowingEntities();
     Game::getSceneManager()->drawAll();
-    //Game::getCurrentScene()->glowingEntitiesRender();
+    Game::getCurrentScene()->revealNonGlowingEntities();
     Game::getVideoDriver()->setRenderTarget(0, false, true, 0);
   }
 }

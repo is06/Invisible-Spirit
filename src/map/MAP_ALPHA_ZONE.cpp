@@ -44,7 +44,8 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
   dialog = new DialogInterface("MAP_ALPHA_ZONE.isd", sceneTranslations);
 
   // Glow shader example
-  //glowShader = new PostRenderGlow();
+  glowShader = new PostRenderGlow();
+  addToEntityList(level);
 }
 
 /**
@@ -83,7 +84,7 @@ void MAP_ALPHA_ZONE::postRender()
 {
   SceneGameplay::postRender();
 
-  //glowShader->render();
+  glowShader->render();
 }
 
 /**
@@ -109,5 +110,5 @@ MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
   //delete lt;
 
   // Glow shader deletion
-  //delete glowShader;
+  delete glowShader;
 }

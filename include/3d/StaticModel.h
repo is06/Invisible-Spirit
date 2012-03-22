@@ -28,6 +28,8 @@ class StaticModel : public ModelEntity
     void setGhost(bool value);
     void setWireFrame(bool value);
     void setDebugData(bool value);
+    void darken();
+    void undarken();
 
     void turnX(f32 speed);
     void turnY(f32 speed);

@@ -34,6 +34,8 @@ class AnimatedModel : public ModelEntity
     void setGhost(bool value);
     void setWireFrame(bool value);
     void setDebugData(bool value);
+    void darken();
+    void undarken();
 
     // Movements
     void turnX(f32 speed);
