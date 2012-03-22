@@ -32,9 +32,20 @@ void MAP_CANYON::events()
   SceneGameplay::events();
 }
 
+/**
+ *
+ */
 void MAP_CANYON::postRender()
 {
   SceneGameplay::postRender();
+}
+
+/**
+ *
+ */
+void MAP_CANYON::hudRender()
+{
+  SceneGameplay::hudRender();
 }
 
 /**

@@ -95,11 +95,20 @@ void SceneMenu::events()
 }
 
 /**
- * Hud render
+ *
  */
 void SceneMenu::postRender()
 {
   Scene::postRender();
+}
+
+/**
+ * Hud render
+ */
+void SceneMenu::hudRender()
+{
+  Scene::hudRender();
+
   dummy->render();
   mainMenu->render();
   title->render();

@@ -21,6 +21,7 @@ class SceneGameplay : public Scene
 
     virtual void events();
     virtual void postRender();
+    virtual void hudRender();
 
   protected:
     PlayableCharacter* ayron;

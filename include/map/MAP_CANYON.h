@@ -18,6 +18,7 @@ class MAP_CANYON : public SceneGameplay
 
     void events();
     void postRender();
+    void hudRender();
 
   private:
 

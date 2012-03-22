@@ -272,12 +272,21 @@ void SceneGameplay::manageMenuControl()
 }
 
 /**
- * This functions is called after all scene object render
- * It renders HUD elements in front of camera
+ *
  */
 void SceneGameplay::postRender()
 {
   Scene::postRender();
+}
+
+/**
+ * This functions is called after all scene object render
+ * It renders HUD elements in front of camera
+ */
+void SceneGameplay::hudRender()
+{
+  Scene::hudRender();
+
   gpInterface->render();
   enInterface->render();
   gpMenu->render(keyboard);

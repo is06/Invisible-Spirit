@@ -22,6 +22,7 @@ class Scene
 
     virtual void events() = 0;
     virtual void postRender() = 0;
+    virtual void hudRender() = 0;
 
     void setSaveSlot(Save* saveSlot);
     void fadeIn(f32 speed = 1.5f, FadeColor color = FADE_COLOR_BLACK);

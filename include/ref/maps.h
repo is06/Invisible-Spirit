@@ -9,7 +9,6 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_MAPS_H__
 
 class MAP_ALPHA_ZONE;
-class MAP_2D_TEST;
 class MAP_CANYON;
 class MAP_OXYGEN;
 

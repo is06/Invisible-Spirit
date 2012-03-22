@@ -19,6 +19,7 @@ class MAP_ALPHA_ZONE : public SceneGameplay
 
     void events();
     void postRender();
+    void hudRender();
 
   private:
     Speaker* spk;

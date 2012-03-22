@@ -22,6 +22,7 @@ class SceneMenu : public Scene
 
     void events();
     void postRender();
+    void hudRender();
 
   private:
     void createSaveListMenu();

@@ -30,9 +30,9 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
   level->loadMeshCollision();
 
   // Multi-layers music example
-  music->play("bodhum");
-  music->unmuteSequence("bodhum", 1);
-  music->muteSequence("bodhum", 2);
+  //music->play("bodhum");
+  //music->unmuteSequence("bodhum", 1);
+  //music->muteSequence("bodhum", 2);
 
   // 3D Speaker example
   //spk = new Speaker(STREAM_TEST, core::vector3df(0,1,0), "hola", 10);
@@ -43,7 +43,8 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
   // Dialogs
   dialog = new DialogInterface("MAP_ALPHA_ZONE.isd", sceneTranslations);
 
-  glowShader = new PostRenderGlow();
+  // Glow shader example
+  //glowShader = new PostRenderGlow();
 }
 
 /**
@@ -76,12 +77,21 @@ void MAP_ALPHA_ZONE::events()
 }
 
 /**
- * Post-rendering events
+ * Post-rendering (example: glow shader)
  */
 void MAP_ALPHA_ZONE::postRender()
 {
-  //glowShader->render();
   SceneGameplay::postRender();
+
+  //glowShader->render();
+}
+
+/**
+ * Player HUD render
+ */
+void MAP_ALPHA_ZONE::hudRender()
+{
+  SceneGameplay::hudRender();
 }
 
 /**
@@ -98,5 +108,6 @@ MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
   // Omni Light deletion
   //delete lt;
 
-  delete glowShader;
+  // Glow shader deletion
+  //delete glowShader;
 }
