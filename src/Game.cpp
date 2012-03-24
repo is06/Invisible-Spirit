@@ -408,7 +408,7 @@ void Game::initScenes()
 {
   exit = false;
   sceneChanged = true;
-  nextScene = SCENE_MAP_ALPHA_ZONE;
+  nextScene = SCENE_MENU;
 }
 
 /**

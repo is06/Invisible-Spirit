@@ -28,6 +28,7 @@ class GameTimeCounter : public Counter
     string seconds;
     string minutes;
     string hours;
+    ostringstream oss;
 
     Text* counterText;
 

@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../../../include/ref/core.h"
 #include "../../../../include/Game.h"
+#include "../../../../include/save/Save.h"
 #include "../../../../include/Keyboard.h"
 #include "../../../../include/Translation.h"
 #include "../../../../include/gui/menus/gameplay/GameplayMenu.h"
@@ -21,7 +22,7 @@ using namespace std;
 /**
  * All elements creation
  */
-GameplayMenu::GameplayMenu(Translation* trans)
+GameplayMenu::GameplayMenu(Translation* trans, Keyboard* kb)
 {
   // Properties
   isVisible = false;
@@ -36,6 +37,9 @@ GameplayMenu::GameplayMenu(Translation* trans)
   tlMenu = NULL;
   mnMenu = NULL;
   seMenu = NULL;
+
+  // Keyboard pointer
+  keyboard = kb;
 
   // Translation pointer
   globalTranslations = trans;
@@ -73,7 +77,7 @@ GameplayMenu::GameplayMenu(Translation* trans)
 /**
  * Gameplay menu render: all entities are rendered here
  */
-void GameplayMenu::render(Keyboard* keyboard)
+void GameplayMenu::render()
 {
   if (isVisible) {
     if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {

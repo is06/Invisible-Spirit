@@ -55,7 +55,7 @@ void Scene::events()
 {
   speedFactor = Game::getSpeedFactor();
   timeElapsed = (Game::getCurrentTime() - startTime) / 1000.0f;
-  gameSave->setInteger(11, (u32)timeElapsed); // 11 = Total game time
+  //gameSave->setInteger(11, (u32)timeElapsed); // 11 = Total game time
 
 /*
   if (keyboard->pressed(KEY_CONTROL, EVENT_ONCE) && keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {

@@ -47,6 +47,7 @@ Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud()
   // Diffuse shader
   material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.diffuse;
 
+  material.setFlag(video::EMF_ANISOTROPIC_FILTER, true);
   material.setTexture(0, NULL);
 
   // Disable filtering clamp

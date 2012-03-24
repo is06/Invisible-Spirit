@@ -31,10 +31,9 @@ class SceneGameplay : public Scene
     EnergyInterface* enInterface;
     GameplayMenu* gpMenu;
 
-    GameTimeCounter* gameTotalTime;
     WorldTimeCounter* worldTime;
 
-    Timer* worldTimeTimer;
+    Timer* everySecondTimer;
 
   private:
     void manageCameraControl();
@@ -43,7 +42,7 @@ class SceneGameplay : public Scene
     void manageCharacterCollisions();
     void manageMenuControl();
 
-    void updateWorldTime();
+    void everySecond();
 
     bool quitIsFading;
 };

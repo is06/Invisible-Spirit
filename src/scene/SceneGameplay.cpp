@@ -14,8 +14,6 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/gameplay/EnergyInterface.h"
 #include "../../include/gui/menus/gameplay/GameplayMenu.h"
 #include "../../include/gui/menus/common/Menu.h"
-#include "../../include/gui/counter/GameTimeCounter.h"
-#include "../../include/gui/counter/WorldTimeCounter.h"
 #include "../../include/save/Save.h"
 #include "../../include/scene/SceneGameplay.h"
 #include "../../include/Game.h"
@@ -43,10 +41,8 @@ SceneGameplay::SceneGameplay() : Scene()
   // GUI Interfaces
   gpInterface = new GameplayInterface();
   enInterface = new EnergyInterface();
-  gpMenu = new GameplayMenu(globalTranslations);
-  gameTotalTime = new GameTimeCounter();
-  worldTime = new WorldTimeCounter();
-  worldTimeTimer = new Timer(1.0f, boost::bind(&SceneGameplay::updateWorldTime, this), -1);
+  gpMenu = new GameplayMenu(globalTranslations, keyboard);
+  everySecondTimer = new Timer(1.0f, boost::bind(&SceneGameplay::everySecond, this), 9999);
 
   // Flag for fade out
   quitIsFading = false;
@@ -60,12 +56,9 @@ SceneGameplay::SceneGameplay() : Scene()
  */
 void SceneGameplay::events()
 {
-  gameTotalTime->render(gameSave->getInteger(11)); // 11 = total game time
-
-  worldTime->render(gameSave->getInteger(12)); // 12 = world time
-  worldTimeTimer->update();
-
   Scene::events();
+
+  everySecondTimer->update();
 
   manageCameraControl();
   manageCharacterJumps();
@@ -88,12 +81,9 @@ void SceneGameplay::events()
   cam->update();
 }
 
-void SceneGameplay::updateWorldTime()
+void SceneGameplay::everySecond()
 {
-  gameSave->incInteger(12, 1);
-  if (gameSave->getInteger(12) >= 1440) {
-    gameSave->setInteger(12, 0);
-  }
+  gameSave->incInteger(21, 1);
 }
 
 /**
@@ -261,7 +251,7 @@ void SceneGameplay::manageCharacterCollisions()
 void SceneGameplay::manageMenuControl()
 {
   if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
-    if (gpMenu->getSectionMenu()->getCurrentOption() == 8) {
+    if (gpMenu->getSectionMenu()->getCurrentOption() == 9) {
       quitIsFading = true;
       fadeOut(0.5f);
     }
@@ -287,9 +277,9 @@ void SceneGameplay::hudRender()
 {
   Scene::hudRender();
 
-  gpInterface->render();
-  enInterface->render();
-  gpMenu->render(keyboard);
+  //gpInterface->render();
+  //enInterface->render();
+  gpMenu->render();
 }
 
 /**
@@ -303,7 +293,5 @@ SceneGameplay::~SceneGameplay()
   if (gpInterface) delete gpInterface;
   if (enInterface) delete enInterface;
   if (gpMenu) delete gpMenu;
-  if (gameTotalTime) delete gameTotalTime;
-  if (worldTime) delete worldTime;
-  if (worldTimeTimer) delete worldTimeTimer;
+  if (everySecondTimer) delete everySecondTimer;
 }

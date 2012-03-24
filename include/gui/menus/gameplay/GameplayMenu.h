@@ -25,10 +25,10 @@ using namespace std;
 class GameplayMenu : public Hud
 {
   public:
-    GameplayMenu(Translation* trans);
+    GameplayMenu(Translation* trans, Keyboard* kb);
     ~GameplayMenu();
 
-    void render(Keyboard* keyboard);
+    void render();
     void toggle();
 
     void goToWeaponMenu();
@@ -46,6 +46,7 @@ class GameplayMenu : public Hud
     bool isVisible;
 
   private:
+    Keyboard* keyboard;
     Translation* globalTranslations;
     Picture* background;
     Picture* topBar;
