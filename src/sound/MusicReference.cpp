@@ -69,8 +69,10 @@ MusicReference::MusicReference()
         u32 loopEndInt;
         std::istringstream iss(sequenceNumber);
         iss >> sequenceNumberInt;
+        iss.clear();
         iss.str(sequenceLoopStart);
         iss >> loopStartInt;
+        iss.clear();
         iss.str(sequenceLoopEnd);
         iss >> loopEndInt;
 

@@ -1,6 +1,11 @@
 This file enumerates all save file variables associating integers identifiers
 with a human-readable description
 
+Legend:
+[i] Integer
+[s] String
+[b] Boolean
+
 Primitive info
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯
   1 [s]: Slot name (not used for the moment)
@@ -19,3 +24,6 @@ Player info
 ¯¯¯¯¯¯¯¯¯¯¯
 101 [i]: Current HP (from 0 to 9999)
 102 [i]: Current max HP (from 0 to 9999)
+103 [i]: Current spirit power value (from 0 to 100)
+104 [i]: Experience points
+105 [i]: Current level (from 0 to 999)

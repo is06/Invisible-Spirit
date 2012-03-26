@@ -19,6 +19,7 @@ MusicSequence::MusicSequence(const MusicSequenceInfo& info)
   filePath += info.fileName;
 
   if (info.looped) {
+    cout << info.loopStart << " -> " << info.loopEnd << endl;
     FMOD_System_CreateStream(Game::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &soundPtr);
     FMOD_Sound_SetLoopPoints(soundPtr, info.loopStart, FMOD_TIMEUNIT_MS, info.loopEnd, FMOD_TIMEUNIT_MS);
   } else {
