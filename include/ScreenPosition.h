@@ -17,9 +17,12 @@ struct ScreenPosition
   f32 vCenter;
   f32 hCenter;
 
-  u32 width;
-  u32 height;
-  u8 depth;
+  u16 width;
+  u16 height;
+
+  u16 displayWidth;
+  u16 displayHeight;
+  u8 displayDepth;
 };
 
 #endif

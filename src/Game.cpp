@@ -303,9 +303,9 @@ void Game::initScreenPositions()
   u32 screenHeight = settings->getParamInt("display", "height");
   u8 screenDepth = settings->getParamInt("display", "depth");
 
-  screenPos.width = screenWidth;
-  screenPos.height = screenHeight;
-  screenPos.depth = screenDepth;
+  screenPos.displayWidth = screenWidth;
+  screenPos.displayHeight = screenHeight;
+  screenPos.displayDepth = screenDepth;
 
   // Screen size limit 640x480 => 1920x1080
   /*
@@ -323,12 +323,15 @@ void Game::initScreenPositions()
   cout << screenWidth << "x" << screenHeight << endl;
 
   // Screen position info
+  screenPos.width = screenWidth;
+  screenPos.height = screenHeight;
   screenPos.hCenter = 0.0f;
   screenPos.vCenter = 0.0f;
   screenPos.top = (screenHeight / 2.0f);
   screenPos.bottom = (screenHeight / 2.0f) * -1;
   screenPos.left = (screenWidth / 2.0f) * -1;
   screenPos.right = (screenWidth / 2.0f);
+
 }
 
 /**
@@ -472,9 +475,9 @@ void Game::changeScreenDisplay(u32 width, u32 height, u8 colorDepth)
   screenSizeChanged = true;
   delete currentScene;
   device->drop();
-  screenPos.width = width;
-  screenPos.height = height;
-  screenPos.depth = colorDepth;
+  screenPos.displayWidth = width;
+  screenPos.displayHeight = height;
+  screenPos.displayDepth = colorDepth;
   initIrrlichtInterfaces();
   initScenes();
 }

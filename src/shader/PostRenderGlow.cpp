@@ -14,7 +14,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-PostRenderGlow::PostRenderGlow() : Hud2DElement(0, 0, 1280, 720)
+PostRenderGlow::PostRenderGlow() : Hud2DElement(0, 0, Game::screenPos.width, Game::screenPos.height)
 {
   texture = 0;
 
@@ -40,6 +40,7 @@ PostRenderGlow::PostRenderGlow() : Hud2DElement(0, 0, 1280, 720)
   maxTextureOffset.X = 1.0f;
   maxTextureOffset.Y = 0.0f;
 
+  material.AntiAliasing = false;
   texture = Game::getVideoDriver()->addRenderTargetTexture(core::dimension2du(512, 512), "GlowRTT", textureColorFormat);
   material.setTexture(0, texture);
 }
@@ -63,12 +64,12 @@ void PostRenderGlow::render()
     // Draw the whole scene
     Game::getSceneManager()->drawAll();
     // Perform second pass (vertical blur)
-    //material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.verticalBlur;
-    //Hud2DElement::render();
+    material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.verticalBlur;
+    Hud2DElement::render();
     // Restore lighting material of all darkened entities
     Game::getCurrentScene()->revealNonGlowingEntities();
     // Reset render target to main display viewport
-    Game::getVideoDriver()->setRenderTarget(0, false, true, 0);
+    Game::getVideoDriver()->setRenderTarget(video::ERT_FRAME_BUFFER, false, true, 0);
   }
 }
 
