@@ -31,6 +31,32 @@ void PlayerState::render()
   hpInfo->render();
 }
 
+void PlayerState::show()
+{
+  playerName->show();
+  levelLabel->show();
+  levelInfo->show();
+
+  hpInfo->show();
+}
+
+void PlayerState::hide()
+{
+  playerName->hide();
+  levelLabel->hide();
+  levelInfo->hide();
+
+  hpInfo->hide();
+}
+
+void PlayerState::setOpacity(u8 value)
+{
+  playerName->setOpacity(value);
+  levelLabel->setOpacity(value);
+  levelInfo->setOpacity(value);
+  hpInfo->setOpacity(value);
+}
+
 PlayerState::~PlayerState()
 {
   delete playerName;

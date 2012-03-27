@@ -8,14 +8,14 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/MapMenu.h"
 
-MapMenu::MapMenu() : Hud()
+MapMenu::MapMenu() : GameplaySubMenu()
 {
 
 }
 
 void MapMenu::render(Keyboard* keyboard)
 {
-  Hud::render();
+  GameplaySubMenu::render();
 }
 
 MapMenu::~MapMenu()

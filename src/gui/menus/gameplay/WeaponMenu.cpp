@@ -8,14 +8,14 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/WeaponMenu.h"
 
-WeaponMenu::WeaponMenu() : Hud()
+WeaponMenu::WeaponMenu() : GameplaySubMenu()
 {
 
 }
 
 void WeaponMenu::render(Keyboard* keyboard)
 {
-  Hud::render();
+  GameplaySubMenu::render();
 }
 
 WeaponMenu::~WeaponMenu()

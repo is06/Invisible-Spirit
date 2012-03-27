@@ -16,7 +16,11 @@ class Hud : public Entity
     Hud();
     virtual ~Hud();
 
-    virtual void render();
+    virtual void render() = 0;
+
+    virtual void setOpacity(u8 value) = 0;
+    virtual void show() = 0;
+    virtual void hide() = 0;
 
   protected:
 };

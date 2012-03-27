@@ -5,21 +5,23 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_STATUS_MENU_H__
-#define __IS06_STATUS_MENU_H__
+#ifndef __IS06_GAMEPLAY_SUB_MENU_H__
+#define __IS06_GAMEPLAY_SUB_MENU_H__
 
-#include "GameplaySubMenu.h"
+#include "../../Hud.h"
 
-using namespace irr;
-using namespace std;
-
-class StatusMenu : public GameplaySubMenu
-{
+class GameplaySubMenu : public Hud {
   public:
-    StatusMenu();
-    ~StatusMenu();
+    GameplaySubMenu();
+    ~GameplaySubMenu();
 
-    void render(Keyboard* keyboard);
+    virtual void render();
+    virtual void show();
+    virtual void hide();
+    virtual void setOpacity(u8 value);
+
+  protected:
+
 };
 
 #endif

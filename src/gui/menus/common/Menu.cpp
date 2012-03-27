@@ -103,6 +103,27 @@ void Menu::removeOption(u16 index)
   */
 }
 
+void Menu::show()
+{
+  for (optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
+    optionsIt->second->show();
+  }
+}
+
+void Menu::hide()
+{
+  for (optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
+    optionsIt->second->hide();
+  }
+}
+
+void Menu::setOpacity(u8 value)
+{
+  for (optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
+    optionsIt->second->setOpacity(value);
+  }
+}
+
 /**
  * @todo
  */

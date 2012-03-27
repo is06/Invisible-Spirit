@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_DIMENSION_MENU_H__
 #define __IS06_DIMENSION_MENU_H__
 
-#include "../../Hud.h"
+#include "GameplaySubMenu.h"
 
 using namespace irr;
 using namespace std;
 
-class DimensionMenu : public Hud
+class DimensionMenu : public GameplaySubMenu
 {
   public:
     DimensionMenu();

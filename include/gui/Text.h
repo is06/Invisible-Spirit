@@ -30,6 +30,9 @@ class Text : public Hud
     void updateTiles();
     void setSideBounds(f32 left, f32 right);
     void setAlign(TextAlignment align);
+    void show();
+    void hide();
+    void setOpacity(u8 value);
 
   private:
     TextFont* font;

@@ -20,6 +20,9 @@ class PlayerState : public Hud
     ~PlayerState();
 
     void render();
+    void show();
+    void hide();
+    void setOpacity(u8 value);
 
   private:
     Text* playerName;

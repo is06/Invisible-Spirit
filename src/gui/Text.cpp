@@ -164,6 +164,27 @@ void Text::setAlign(TextAlignment align)
   }
 }
 
+void Text::show()
+{
+  for (charIt = charList.begin(); charIt != charList.end(); charIt++) {
+    charIt->show();
+  }
+}
+
+void Text::hide()
+{
+  for (charIt = charList.begin(); charIt != charList.end(); charIt++) {
+    charIt->hide();
+  }
+}
+
+void Text::setOpacity(u8 value)
+{
+  for (charIt = charList.begin(); charIt != charList.end(); charIt++) {
+    charIt->setOpacity(value);
+  }
+}
+
 /**
  *
  */

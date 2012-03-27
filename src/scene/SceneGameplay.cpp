@@ -43,7 +43,7 @@ SceneGameplay::SceneGameplay() : Scene()
   // GUI Interfaces
   gpInterface = new GameplayInterface();
   enInterface = new EnergyInterface();
-  gpMenu = new GameplayMenu(globalTranslations);
+  gpMenu = new GameplayMenu(globalTranslations, keyboard);
   gameTotalTime = new GameTimeCounter();
   worldTime = new WorldTimeCounter();
   worldTimeTimer = new Timer(1.0f, boost::bind(&SceneGameplay::updateWorldTime, this), -1);
@@ -289,7 +289,7 @@ void SceneGameplay::hudRender()
 
   gpInterface->render();
   enInterface->render();
-  gpMenu->render(keyboard);
+  gpMenu->render();
 }
 
 /**

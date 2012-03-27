@@ -8,14 +8,14 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/MonstersMenu.h"
 
-MonstersMenu::MonstersMenu() : Hud()
+MonstersMenu::MonstersMenu() : GameplaySubMenu()
 {
 
 }
 
 void MonstersMenu::render(Keyboard* keyboard)
 {
-  Hud::render();
+  GameplaySubMenu::render();
 }
 
 MonstersMenu::~MonstersMenu()

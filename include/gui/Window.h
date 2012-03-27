@@ -22,6 +22,9 @@ class Window : public Hud
     ~Window();
 
     void render();
+    void show();
+    void hide();
+    void setOpacity(u8 value);
 
   private:
     void applyStyleStd(f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 100, f32 borderWidth = 4);

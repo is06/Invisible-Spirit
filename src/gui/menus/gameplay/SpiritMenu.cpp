@@ -8,14 +8,14 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/SpiritMenu.h"
 
-SpiritMenu::SpiritMenu() : Hud()
+SpiritMenu::SpiritMenu() : GameplaySubMenu()
 {
 
 }
 
 void SpiritMenu::render(Keyboard* keyboard)
 {
-  Hud::render();
+  GameplaySubMenu::render();
 }
 
 SpiritMenu::~SpiritMenu()

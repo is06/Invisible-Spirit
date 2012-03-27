@@ -20,6 +20,9 @@ class MainStateInfo : public Hud
     ~MainStateInfo();
 
     void render();
+    void show();
+    void hide();
+    void setOpacity(u8 value);
 
   private:
     Text* label;

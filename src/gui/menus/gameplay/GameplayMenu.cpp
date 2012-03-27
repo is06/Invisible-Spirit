@@ -11,6 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/Translation.h"
 #include "../../../../include/gui/menus/gameplay/GameplayMenu.h"
 #include "../../../../include/gui/menus/common/Menu.h"
+#include "../../../../include/gui/menus/common/MenuOption.h"
 #include "../../../../include/gui/Picture.h"
 #include "../../../../include/gui/gameplay/PlayerState.h"
 #include "../../../../include/gui/counter/GameTimeCounter.h"
@@ -21,7 +22,7 @@ using namespace std;
 /**
  * All elements creation
  */
-GameplayMenu::GameplayMenu(Translation* trans)
+GameplayMenu::GameplayMenu(Translation* trans, Keyboard* kb)
 {
   // Properties
   isVisible = false;
@@ -39,6 +40,9 @@ GameplayMenu::GameplayMenu(Translation* trans)
 
   // Translation pointer
   globalTranslations = trans;
+
+  // Keyboard pointer
+  keyboard = kb;
 
   // Black transparent background
   background = new Picture(0, 0, 1280, 720, "resource/hud/menus/gameplay/back.png");
@@ -60,6 +64,8 @@ GameplayMenu::GameplayMenu(Translation* trans)
   sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_settings"));
   sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_quit"));
 
+  //sectionMenu->getOption(0)->setEnabled(false);
+
   // Player state info panel (right)
   stateInfo = new PlayerState();
 
@@ -73,7 +79,7 @@ GameplayMenu::GameplayMenu(Translation* trans)
 /**
  * Gameplay menu render: all entities are rendered here
  */
-void GameplayMenu::render(Keyboard* keyboard)
+void GameplayMenu::render()
 {
   if (isVisible) {
     if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
@@ -118,6 +124,21 @@ void GameplayMenu::render(Keyboard* keyboard)
       seMenu->render(keyboard);
     }
   }
+}
+
+void GameplayMenu::show()
+{
+
+}
+
+void GameplayMenu::hide()
+{
+
+}
+
+void GameplayMenu::setOpacity(u8 value)
+{
+
 }
 
 /**
