@@ -17,6 +17,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/scene/SceneMenu.h"
 #include "../include/scene/SceneGameplay.h"
 #include "../include/shader/DiffuseShaderCallback.h"
+#include "../include/shader/IceShaderCallback.h"
 #include "../include/ref/maps.h"
 #include "../include/Translation.h"
 
@@ -345,13 +346,22 @@ void Game::initShaders()
 
   if (gpuManager) {
     // Shader Diffuse (2D Elements)
-    DiffuseShaderCallback* cb = new DiffuseShaderCallback();
+    DiffuseShaderCallback* diffuseCallback = new DiffuseShaderCallback();
     shaders.diffuse = gpuManager->addHighLevelShaderMaterialFromFiles(
       "resource/shader/diffuse.vert", "vertexMain", video::EVST_VS_1_1,
       "resource/shader/diffuse.frag", "pixelMain", video::EPST_PS_1_1,
-      cb, video::EMT_TRANSPARENT_ALPHA_CHANNEL
+      diffuseCallback, video::EMT_TRANSPARENT_ALPHA_CHANNEL
     );
-    cb->drop();
+    diffuseCallback->drop();
+
+    // Ice shader
+    IceShaderCallback* iceCallback = new IceShaderCallback();
+    shaders.ice = gpuManager->addHighLevelShaderMaterialFromFiles(
+      "resource/shader/ice.vert", "vertexMain", video::EVST_VS_1_1,
+      "resource/shader/ice.frag", "pixelMain", video::EPST_PS_1_1,
+      iceCallback, video::EMT_SOLID
+    );
+    iceCallback->drop();
 
     // Horizontal Blur Shader
     shaders.horizontalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(

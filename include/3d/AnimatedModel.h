@@ -79,6 +79,7 @@ class AnimatedModel : public ModelEntity
     s32 currentAnimationId;
     f32 currentAnimationSpeed;
     map<s32, MeshAnimationInfo> animationList;
+    map<Sensor*, bool> sensorOnce;
 };
 
 #endif

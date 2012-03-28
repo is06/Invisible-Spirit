@@ -367,11 +367,25 @@ bool AnimatedModel::collidesWithPlaneSensor(PlaneSensor* sensor, EventType type)
 
 /**
  * Returns true if the object is in the box sensor
- * @todo manage event type
  */
 bool AnimatedModel::isInBoxSensor(BoxSensor* sensor, EventType type)
 {
-  return sensor->getBox().isPointInside(mainNode->getPosition());
+  bool inside = sensor->getBox().isPointInside(mainNode->getPosition());
+  if (type == EVENT_ONCE) {
+    if (!sensorOnce[sensor]) {
+      if (inside) {
+        sensorOnce[sensor] = true;
+        return true;
+      }
+    } else {
+      if (!inside) {
+        sensorOnce[sensor] = false;
+      }
+    }
+    return false;
+  } else {
+    return inside;
+  }
 }
 
 /**
