@@ -28,6 +28,27 @@ void MainStateInfo::render()
   gauge->render();
 }
 
+void MainStateInfo::show()
+{
+  label->show();
+  info->show();
+  gauge->show();
+}
+
+void MainStateInfo::hide()
+{
+  label->hide();
+  info->hide();
+  gauge->hide();
+}
+
+void MainStateInfo::setOpacity(u8 value)
+{
+  label->setOpacity(value);
+  info->setOpacity(value);
+  gauge->setOpacity(value);
+}
+
 MainStateInfo::~MainStateInfo()
 {
   delete label;

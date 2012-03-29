@@ -5,21 +5,36 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_STATUS_MENU_H__
-#define __IS06_STATUS_MENU_H__
+#include "../../../../include/ref/core.h"
+#include "../../../../include/gui/menus/gameplay/GameplaySubMenu.h"
 
-#include "GameplaySubMenu.h"
-
-using namespace irr;
-using namespace std;
-
-class StatusMenu : public GameplaySubMenu
+GameplaySubMenu::GameplaySubMenu() : Hud()
 {
-  public:
-    StatusMenu();
-    ~StatusMenu();
 
-    void render(Keyboard* keyboard);
-};
+}
 
-#endif
+void GameplaySubMenu::render()
+{
+  Hud::render();
+}
+
+void GameplaySubMenu::show()
+{
+
+}
+
+void GameplaySubMenu::hide()
+{
+
+}
+
+void GameplaySubMenu::setOpacity(u8 value)
+{
+
+}
+
+GameplaySubMenu::~GameplaySubMenu()
+{
+
+}
+

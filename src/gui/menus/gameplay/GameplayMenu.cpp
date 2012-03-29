@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/Translation.h"
 #include "../../../../include/gui/menus/gameplay/GameplayMenu.h"
 #include "../../../../include/gui/menus/common/Menu.h"
+#include "../../../../include/gui/menus/common/MenuOption.h"
 #include "../../../../include/gui/Picture.h"
 #include "../../../../include/gui/gameplay/PlayerState.h"
 #include "../../../../include/gui/counter/GameTimeCounter.h"
@@ -44,6 +45,9 @@ GameplayMenu::GameplayMenu(Translation* trans, Keyboard* kb)
   // Translation pointer
   globalTranslations = trans;
 
+  // Keyboard pointer
+  keyboard = kb;
+
   // Black transparent background
   background = new Picture(0, 0, 1280, 720, "resource/hud/menus/gameplay/back.png");
   background->setOpacity(128);
@@ -63,6 +67,8 @@ GameplayMenu::GameplayMenu(Translation* trans, Keyboard* kb)
   sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_monsters"));
   sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_settings"));
   sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_quit"));
+
+  //sectionMenu->getOption(0)->setEnabled(false);
 
   // Player state info panel (right)
   stateInfo = new PlayerState();
@@ -122,6 +128,21 @@ void GameplayMenu::render()
       seMenu->render(keyboard);
     }
   }
+}
+
+void GameplayMenu::show()
+{
+
+}
+
+void GameplayMenu::hide()
+{
+
+}
+
+void GameplayMenu::setOpacity(u8 value)
+{
+
 }
 
 /**

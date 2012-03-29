@@ -34,6 +34,8 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
   //music->unmuteSequence("bodhum", 1);
   //music->muteSequence("bodhum", 2);
 
+  //music->play("boss");
+
   // 3D Speaker example
   //spk = new Speaker(STREAM_TEST, core::vector3df(0,1,0), "hola", 10);
 

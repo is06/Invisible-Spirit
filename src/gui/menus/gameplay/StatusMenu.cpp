@@ -8,14 +8,14 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/StatusMenu.h"
 
-StatusMenu::StatusMenu() : Hud()
+StatusMenu::StatusMenu() : GameplaySubMenu()
 {
 
 }
 
 void StatusMenu::render(Keyboard* keyboard)
 {
-  Hud::render();
+  GameplaySubMenu::render();
 }
 
 StatusMenu::~StatusMenu()

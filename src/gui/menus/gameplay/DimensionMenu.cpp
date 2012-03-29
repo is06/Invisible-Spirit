@@ -8,14 +8,14 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/DimensionMenu.h"
 
-DimensionMenu::DimensionMenu() : Hud()
+DimensionMenu::DimensionMenu() : GameplaySubMenu()
 {
 
 }
 
 void DimensionMenu::render(Keyboard* keyboard)
 {
-  Hud::render();
+  GameplaySubMenu::render();
 }
 
 DimensionMenu::~DimensionMenu()

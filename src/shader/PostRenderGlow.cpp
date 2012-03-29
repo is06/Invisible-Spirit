@@ -14,19 +14,25 @@ http://www.is06.com. Legal code in license.txt
 using namespace std;
 using namespace irr;
 
-PostRenderGlow::PostRenderGlow() : Hud2DElement(0, 0, 1280, 720)
+PostRenderGlow::PostRenderGlow() : Hud2DElement(0, 0, Game::screenPos.width, Game::screenPos.height)
 {
   texture = 0;
 
   // Render to target texture quality
-  u32 quality = Game::settings->getParamInt("glow", "quality");
-  switch (quality) {
-    case 1: quality = 64; break;  // 16KB
+  u32 texture_quality = Game::settings->getParamInt("glow", "texture_quality");
+  switch (texture_quality) {
+    case 1: texture_quality = 64; break;  // 16KB
     default:
-    case 2: quality = 128; break; // 64KB
-    case 3: quality = 256; break; // 256KB
-    case 4: quality = 512; break; // 1MB
-    case 5: quality = 1024; break; // 4MB
+    case 2: texture_quality = 128; break; // 64KB
+    case 3: texture_quality = 256; break; // 256KB
+    case 4: texture_quality = 512; break; // 1MB
+    case 5: texture_quality = 1024; break; // 4MB
+  }
+
+  u32 depth_quality = Game::settings->getParamInt("glow", "depth_quality");
+  video::ECOLOR_FORMAT textureColorFormat = video::ECF_R5G6B5;
+  if (depth_quality == 32) {
+    textureColorFormat = video::ECF_R8G8B8;
   }
 
   minTextureOffset.X = 0.0f;
@@ -34,7 +40,8 @@ PostRenderGlow::PostRenderGlow() : Hud2DElement(0, 0, 1280, 720)
   maxTextureOffset.X = 1.0f;
   maxTextureOffset.Y = 0.0f;
 
-  texture = Game::getVideoDriver()->addRenderTargetTexture(core::dimension2du(512, 512), "GlowRTT", video::ECF_R8G8B8);
+  material.AntiAliasing = false;
+  texture = Game::getVideoDriver()->addRenderTargetTexture(core::dimension2du(512, 512), "GlowRTT", textureColorFormat);
   material.setTexture(0, texture);
 }
 
@@ -62,7 +69,7 @@ void PostRenderGlow::render()
     // Restore lighting material of all darkened entities
     Game::getCurrentScene()->revealNonGlowingEntities();
     // Reset render target to main display viewport
-    Game::getVideoDriver()->setRenderTarget(0, false, true, 0);
+    Game::getVideoDriver()->setRenderTarget(video::ERT_FRAME_BUFFER, false, true, 0);
   }
 }
 

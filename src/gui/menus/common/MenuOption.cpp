@@ -59,16 +59,33 @@ void MenuOption::setHover(bool isHover)
 void MenuOption::setEnabled(bool isEnabled)
 {
   enabled = isEnabled;
-}
-
-void MenuOption::setVisible(bool isVisible)
-{
-  visible = isVisible;
+  if (enabled) {
+    setOpacity(255);
+  } else {
+    setOpacity(128);
+  }
 }
 
 void MenuOption::setSelectable(bool isSelectable)
 {
   selectable = isSelectable;
+}
+
+void MenuOption::show()
+{
+  visible = true;
+  currentText->show();
+}
+
+void MenuOption::hide()
+{
+  visible = false;
+  currentText->hide();
+}
+
+void MenuOption::setOpacity(u8 value)
+{
+  currentText->setOpacity(value);
 }
 
 MenuOption::~MenuOption()

@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../gui/Hud2DElement.h"
 
+using namespace irr;
+
 class PostRenderGlow : public Hud2DElement
 {
   public:
@@ -19,7 +21,8 @@ class PostRenderGlow : public Hud2DElement
     void render();
 
   private:
-
+    //video::IRenderTarget* rt1st;
+    //video::IRenderTarget* rt2nd;
 };
 
 #endif

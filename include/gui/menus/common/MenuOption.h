@@ -23,10 +23,12 @@ class MenuOption : public Hud
 
     virtual void render();
 
-    void setVisible(bool isVisible);
     void setHover(bool isHover);
     void setEnabled(bool isEnabled);
     void setSelectable(bool isSelectable);
+    void show();
+    void hide();
+    void setOpacity(u8 value);
 
   protected:
     MenuIcon currentIcon;

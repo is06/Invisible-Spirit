@@ -34,6 +34,9 @@ class Menu : public Hud
     void prevOption();
     void firstOption();
     void lastOption();
+    void show();
+    void hide();
+    void setOpacity(u8 value);
 
   protected:
     Picture* cursor;

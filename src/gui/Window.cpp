@@ -91,6 +91,45 @@ void Window::render()
   }
 }
 
+void Window::show()
+{
+  cornerTL->show();
+  cornerTR->show();
+  cornerBL->show();
+  cornerBR->show();
+  sideTop->show();
+  sideLeft->show();
+  sideRight->show();
+  sideBottom->show();
+  center->show();
+}
+
+void Window::hide()
+{
+  cornerTL->hide();
+  cornerTR->hide();
+  cornerBL->hide();
+  cornerBR->hide();
+  sideTop->hide();
+  sideLeft->hide();
+  sideRight->hide();
+  sideBottom->hide();
+  center->hide();
+}
+
+void Window::setOpacity(u8 value)
+{
+  cornerTL->setOpacity(value);
+  cornerTR->setOpacity(value);
+  cornerBL->setOpacity(value);
+  cornerBR->setOpacity(value);
+  sideTop->setOpacity(value);
+  sideLeft->setOpacity(value);
+  sideRight->setOpacity(value);
+  sideBottom->setOpacity(value);
+  center->setOpacity(value);
+}
+
 /**
  *
  */

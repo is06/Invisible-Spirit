@@ -30,6 +30,9 @@ class GameplayMenu : public Hud
 
     void render();
     void toggle();
+    void show();
+    void hide();
+    void setOpacity(u8 value);
 
     void goToWeaponMenu();
     void goToSpiritMenu();
@@ -53,6 +56,7 @@ class GameplayMenu : public Hud
     Menu* sectionMenu;
     PlayerState* stateInfo;
     GameTimeCounter* gameplayTime;
+    Keyboard* keyboard;
     //DigitCounter* moneyCounter;
 
     // Sub menus
