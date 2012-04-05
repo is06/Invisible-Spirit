@@ -111,10 +111,10 @@ void Game::run()
       lastCycleTime = device->getTimer()->getRealTime() - loopTime;
       loopTime = device->getTimer()->getRealTime();
       speedFactor = lastCycleTime / 1000.0f;
-      if(speedFactor > 1.0f) speedFactor = 1.0f; // Limit min 1fps
-      if(speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed movements
+      if (speedFactor > 1.0f) speedFactor = 1.0f; // Limit min 1fps
+      if (speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed movements
 
-      videoDriver->beginScene(true, true, video::SColor(255, 255, 255, 255));
+      videoDriver->beginScene(true, true, video::SColor(255, 0, 0, 0));
 
       // Main events
       currentScene->events();
@@ -538,6 +538,7 @@ void Game::fatalError(ErrorCode code)
     case ERRCODE_53: throw EngineException(code, "Non-square textures not supported", 3); break;
     case ERRCODE_54: throw EngineException(code, "Non-power of two texture size not supported", 3); break;
     case ERRCODE_55: throw EngineException(code, "GLSL not supported", 3); break;
+    case ERRCODE_60: throw EngineException(code, "No local translation object for dialog interface", 3); break;
     default: throw EngineException(code, "Internal error", 3); break;
   }
 

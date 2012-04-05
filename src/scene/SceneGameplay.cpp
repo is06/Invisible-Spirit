@@ -287,8 +287,8 @@ void SceneGameplay::hudRender()
 {
   Scene::hudRender();
 
-  gpInterface->render();
-  enInterface->render();
+  //gpInterface->render();
+  //enInterface->render();
   gpMenu->render();
 }
 
