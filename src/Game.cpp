@@ -16,8 +16,6 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/scene/Scene.h"
 #include "../include/scene/SceneMenu.h"
 #include "../include/scene/SceneGameplay.h"
-#include "../include/shader/DiffuseShaderCallback.h"
-#include "../include/shader/IceShaderCallback.h"
 #include "../include/ref/maps.h"
 #include "../include/Translation.h"
 
@@ -321,8 +319,6 @@ void Game::initScreenPositions()
   screenHeight = 720;
   screenWidth = screenHeight * ratio;
 
-  cout << screenWidth << "x" << screenHeight << endl;
-
   // Screen position info
   screenPos.width = screenWidth;
   screenPos.height = screenHeight;
@@ -340,43 +336,8 @@ void Game::initScreenPositions()
  */
 void Game::initShaders()
 {
-  shaders.diffuse = 0;
-  shaders.horizontalBlur = 0;
-  shaders.verticalBlur = 0;
-
-  if (gpuManager) {
-    // Shader Diffuse (2D Elements)
-    DiffuseShaderCallback* diffuseCallback = new DiffuseShaderCallback();
-    shaders.diffuse = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/shader/diffuse.vert", "vertexMain", video::EVST_VS_1_1,
-      "resource/shader/diffuse.frag", "pixelMain", video::EPST_PS_1_1,
-      diffuseCallback, video::EMT_TRANSPARENT_ALPHA_CHANNEL
-    );
-    diffuseCallback->drop();
-
-    // Ice shader
-    IceShaderCallback* iceCallback = new IceShaderCallback();
-    shaders.ice = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/shader/ice.vert", "vertexMain", video::EVST_VS_1_1,
-      "resource/shader/ice.frag", "pixelMain", video::EPST_PS_1_1,
-      iceCallback, video::EMT_SOLID
-    );
-    iceCallback->drop();
-
-    // Horizontal Blur Shader
-    shaders.horizontalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/shader/blur.vert", "vertexMain", video::EVST_VS_1_1,
-      "resource/shader/hBlur.frag", "pixelMain", video::EPST_PS_1_1,
-      0, video::EMT_SOLID
-    );
-
-    // Vertical Blur Shader
-    shaders.verticalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/shader/blur.vert", "vertexMain", video::EVST_VS_1_1,
-      "resource/shader/vBlur.frag", "pixelMain", video::EPST_PS_1_1,
-      0, video::EMT_SOLID
-    );
-  }
+  shaders = Shaders();
+  shaders.createMaterials(gpuManager);
 }
 
 /**
