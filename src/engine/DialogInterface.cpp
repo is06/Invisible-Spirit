@@ -71,7 +71,7 @@ void DialogInterface::loadDialogData(const string& fullPath)
     while (fileStream.get(current)) {
       if (current == '=') {
         // Add dialog to list
-        cout << "create new dialog (" << dialogIdentifier << ")" << endl;
+        //cout << "create new dialog (" << dialogIdentifier << ")" << endl;
         dialogList[dialogIdentifier] = Dialog(dialogIdentifier);
         inTextDeclaration = true;
         inIdentifierDeclaration = false;
@@ -80,7 +80,7 @@ void DialogInterface::loadDialogData(const string& fullPath)
       }
       if (current == ';') {
         // Add text to the dialog
-        cout << "adding text to the dialog (" << textIdentifier << ")" << endl;
+        //cout << "adding text to the dialog (" << textIdentifier << ") => (" << currentTranslation->getTranslation(textIdentifier) << ")" << endl;
         dialogList[dialogIdentifier].addMessage(currentTranslation->getTranslation(textIdentifier));
         textIdentifier = "";
         continue;
@@ -115,9 +115,11 @@ void DialogInterface::start(const string& dialogIdentifier)
  */
 void DialogInterface::createMessage(const string& dialogIdentifier, u16 messageNumber)
 {
-  //cout << "Try to create dialog message '" << messageList[number] << "'" << endl;
+  //cout << "Dialog identifier: " << dialogIdentifier << endl;
+  cout << "Try to create dialog message '" << dialogList[dialogIdentifier].getMessage(messageNumber) << "'" << endl;
 
-  currentMessageText = new Text(dialogList[dialogIdentifier].getMessage(messageNumber));
+  currentMessageText = new Text(dialogList[dialogIdentifier].getMessage(messageNumber), 0, Game::screenPos.bottom + 100, FONT_STANDARD_48, 25);
+  //currentMessageText->setAlign(TEXT_ALIGN_CENTER);
 }
 
 /**

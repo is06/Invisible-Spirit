@@ -44,6 +44,7 @@ class Text : public Hud
     u8 currentSize;
     u8 currentSpeed;
     u16 currentDisplayChar;
+    u16 currentTextLength;
     u16 currentLineNumber;
     map<u16, u16> lineWidthList;
     f32 leftBound;

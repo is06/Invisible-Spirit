@@ -23,6 +23,8 @@ Text::Text(const string& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud()
   currentSize = 48;
   currentSpeed = speed;
   currentAlign = TEXT_ALIGN_LEFT;
+  leftBound = 0;
+  rightBound = 0;
   charList.clear();
 
   // @todo : create font outside text object to avoid useless multiple declarations
@@ -46,7 +48,11 @@ void Text::render()
 {
   Hud::render();
   if (currentSpeed > 0) {
-    speedTimer->update();
+    if (currentDisplayChar >= currentTextLength) {
+      speedTimer->stop();
+    } else {
+      speedTimer->update();
+    }
   }
   for (charIt = charList.begin(); charIt != charList.end(); charIt++) {
     charIt->render();
@@ -93,7 +99,9 @@ void Text::setPosition(const core::position2df& position)
  */
 void Text::nextChar()
 {
-  charList[currentDisplayChar].show();
+  if (currentDisplayChar < currentTextLength) {
+    charList[currentDisplayChar].show();
+  }
   currentDisplayChar++;
 }
 
@@ -104,6 +112,7 @@ void Text::updateTiles()
 {
   charList.clear();
   currentCharPos = pos;
+  currentTextLength = 0;
   const char* cs = textStr.c_str();
   u8 nextUtf8Table = 0;
   for (u16 i = 0; i < textStr.size(); i++) {
@@ -127,7 +136,9 @@ void Text::updateTiles()
           charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, (currentSpeed == 0), nextUtf8Table));
           nextUtf8Table = 0;
         }
+        currentTextLength++;
         lineWidthList[currentLineNumber] += currentSize;
+        //cout << "width (" << currentLineNumber << ") => " << currentSize << endl;
       }
     }
   }

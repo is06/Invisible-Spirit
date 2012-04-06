@@ -27,7 +27,7 @@ using namespace irr;
 MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
 {
   // Local Translations
-  sceneTranslations = new Translation("MAP_ALPHA_ZONE");
+  sceneTranslations = new Translation("MAP_ALPHA_ZONE.ist");
 
   // Level Mesh
   level->loadMesh("resource/mesh/level/alphazone.obj");
