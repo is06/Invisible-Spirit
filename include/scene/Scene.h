@@ -61,10 +61,13 @@ class Scene
     f32 startTime;
     f32 speedFactor;
 
+    gui::IGUIStaticText* debugInfo;
+
     map<ModelEntity*, bool> entityList;
     map<ModelEntity*, bool>::iterator entityListIt;
 
   private:
+    void generateDebugInfo();
 };
 
 #endif

@@ -8,6 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/3d/StaticModel.h"
 #include "../../include/Game.h"
+#include "../../include/Settings.h"
 #include "../../include/scene/Scene.h"
 #include "../../include/sound/Speaker.h"
 
@@ -53,6 +54,16 @@ void StaticModel::createNode(const core::vector3df& initPosition)
     mainNode = Game::getSceneManager()->addMeshSceneNode(mainMesh);
     mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
     mainNode->setPosition(initPosition);
+
+    if (Game::settings->getParamString("model", "texture_filter") == "anisotropic") {
+      mainNode->setMaterialFlag(video::EMF_ANISOTROPIC_FILTER, true);
+    } else if(Game::settings->getParamString("model", "texture_filter") == "trilinear") {
+      mainNode->setMaterialFlag(video::EMF_TRILINEAR_FILTER, true);
+    } else if(Game::settings->getParamString("model", "texture_filter") == "none") {
+      mainNode->setMaterialFlag(video::EMF_BILINEAR_FILTER, false);
+    } else {
+      mainNode->setMaterialFlag(video::EMF_BILINEAR_FILTER, true);
+    }
   } else {
     Game::fatalError(ERRCODE_30);
   }

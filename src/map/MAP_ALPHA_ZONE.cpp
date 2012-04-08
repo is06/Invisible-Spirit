@@ -8,11 +8,13 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/Game.h"
 #include "../../include/Keyboard.h"
+#include "../../include/Translation.h"
 #include "../../include/3d/LevelMesh.h"
+#include "../../include/3d/PlayableCharacter.h"
+#include "../../include/3d/OmniLight.h"
 #include "../../include/engine/DialogInterface.h"
 #include "../../include/sound/MusicReference.h"
 #include "../../include/sound/Speaker.h"
-#include "../../include/3d/OmniLight.h"
 
 #include "../../include/map/MAP_ALPHA_ZONE.h"
 
@@ -24,10 +26,16 @@ using namespace irr;
  */
 MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
 {
+  // Local Translations
+  sceneTranslations = new Translation("MAP_ALPHA_ZONE.ist");
+
   // Level Mesh
   level->loadMesh("resource/mesh/level/alphazone.obj");
   level->createNode(core::vector3df(0, 0, 0));
   level->loadMeshCollision();
+  level->hide();
+
+  ayron->hide();
 
   // Multi-layers music example
   //music->play("bodhum");
@@ -57,9 +65,14 @@ void MAP_ALPHA_ZONE::events()
 {
   SceneGameplay::events();
 
-  dialog->start("norya_first_start");
-  if (dialog->finished()) {
+  if (keyboard->pressed(KEY_KEY_S, EVENT_ONCE)) {
+    dialog->start("norya_first_start");
 
+    /*
+    if (dialog->finished()) {
+
+    }
+    */
   }
 
   // Object rendering
@@ -67,12 +80,12 @@ void MAP_ALPHA_ZONE::events()
   //lt->render();
 
   // Multi-layer music events
-  // When pressing W, sequence 2 (aggressive mix) is played
+  // When pressing W, sequence 1 (normal) is played
   if (keyboard->pressed(KEY_KEY_W, EVENT_ONCE)) {
     music->unmuteSequence("bodhum", 1);
     music->muteSequence("bodhum", 2);
   }
-  // When pressing X, sequence 1 (normal) is played
+  // When pressing X, sequence 2 (aggressive mix) is played
   if (keyboard->pressed(KEY_KEY_X, EVENT_ONCE)) {
     music->unmuteSequence("bodhum", 2);
     music->muteSequence("bodhum", 1);

@@ -126,7 +126,6 @@ void Hud2DElement::render()
     // Texture of 2D element
     if (texture) {
       material.setTexture(0, texture);
-
     }
 
     Game::getVideoDriver()->setMaterial(material);

@@ -9,6 +9,8 @@ http://www.is06.com. Legal code in license.txt
 #define __ICE_SHADER_CALLBACK_H__
 
 #include "../3d/Camera.h"
+#include "../scene/Scene.h"
+#include "../Game.h"
 
 using namespace irr;
 

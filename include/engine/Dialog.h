@@ -5,21 +5,28 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_SHADERS_H__
-#define __IS06_SHADERS_H__
+#ifndef __IS06_DIALOG_H__
+#define __IS06_DIALOG_H__
 
-class Shaders
+using namespace std;
+
+class Dialog
 {
   public:
-    Shaders();
-    void createMaterials(video::IGPUProgrammingServices* gpuManager);
+    Dialog();
+    Dialog(const string& identifier);
+    ~Dialog();
 
-    s32 diffuse;
-    s32 ice;
-    s32 metal;
-    s32 glass;
-    s32 verticalBlur;
-    s32 horizontalBlur;
+    void addMessage(const string& text);
+    void setIdentifier(const string& name);
+
+    string getMessage(u16 index);
+    const string& getIdentifier() const;
+
+  private:
+    u16 currentNumber;
+    string currentIdentifier;
+    map<u16, string> messageList;
 };
 
 #endif

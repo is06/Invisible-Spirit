@@ -45,6 +45,9 @@ Scene::Scene()
   dummy = new Picture(-5000, -5000, 0, 0);
 
   //shadows = new ShadowProcessor();
+
+  debugInfo = Game::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
+  debugInfo->setOverrideColor(video::SColor(255, 255, 255, 255));
 }
 
 /**
@@ -57,11 +60,24 @@ void Scene::events()
   timeElapsed = (Game::getCurrentTime() - startTime) / 1000.0f;
   //gameSave->setInteger(11, (u32)timeElapsed); // 11 = Total game time
 
+  generateDebugInfo();
+
 /*
   if (keyboard->pressed(KEY_CONTROL, EVENT_ONCE) && keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
     Game::debugOption.display.hidePostRender = true;
   }
 */
+}
+
+void Scene::generateDebugInfo()
+{
+  core::stringw debugText = "";
+  debugText += "Texture count: ";
+  debugText += Game::getVideoDriver()->getTextureCount();
+  debugText += "\nMesh count: ";
+  debugText += Game::getSceneManager()->getMeshCache()->getMeshCount();
+
+  debugInfo->setText(debugText.c_str());
 }
 
 /**
@@ -82,7 +98,7 @@ Camera* Scene::getActiveCamera()
 }
 
 /**
- *
+ * @todo
  */
 void Scene::postRender()
 {
@@ -104,7 +120,7 @@ void Scene::hudRender()
 }
 
 /**
- *
+ * @todo
  */
 void Scene::darkenNonGlowingEntities()
 {
@@ -118,7 +134,7 @@ void Scene::darkenNonGlowingEntities()
 }
 
 /**
- *
+ * @todo
  */
 void Scene::revealNonGlowingEntities()
 {
@@ -132,7 +148,7 @@ void Scene::revealNonGlowingEntities()
 }
 
 /**
- *
+ * @todo
  */
 void Scene::addToEntityList(ModelEntity* entity)
 {

@@ -73,6 +73,8 @@ void Translation::loadTextData(const string& fullPath)
       }
     }
     textFile.close();
+  } else {
+    cout << "[!!] Translation file not found: " << fullPath.c_str() << endl;
   }
 }
 
@@ -80,7 +82,7 @@ const string& Translation::getTranslation(const string& identifier) const
 {
   //cout << "'" << textData.find(identifier) << "' <-> '" << textData.end() << "'" << endl;
   if (textData.find(identifier) == textData.end()) {
-    //cout << "translation not found: '" << identifier.c_str() << "'" << endl;
+    cout << "[!!] Translation not found: '" << identifier.c_str() << "'" << endl;
     return notfound;
   } else {
     return textData.find(identifier)->second;

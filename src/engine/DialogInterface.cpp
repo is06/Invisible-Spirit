@@ -18,8 +18,13 @@ using namespace std;
  */
 DialogInterface::DialogInterface(const string& filePath, Translation* translation)
 {
+  if (!translation) {
+    Game::fatalError(ERRCODE_60);
+  }
+
   currentTranslation = translation;
-  currentMessage = NULL;
+  currentMessageNumber = 0;
+  currentMessageText = NULL;
 
   string fullPath = "resource/text/";
 
@@ -44,8 +49,8 @@ DialogInterface::DialogInterface(const string& filePath, Translation* translatio
  */
 void DialogInterface::render()
 {
-  if (currentMessage) {
-    currentMessage->render();
+  if (currentMessageText) {
+    currentMessageText->render();
   }
 }
 
@@ -54,7 +59,47 @@ void DialogInterface::render()
  */
 void DialogInterface::loadDialogData(const string& fullPath)
 {
+  fstream fileStream(fullPath.c_str(), ios::in);
 
+  if (fileStream) {
+    char current = 0;
+    string dialogIdentifier = "";
+    string textIdentifier = "";
+    bool inIdentifierDeclaration = true;
+    bool inTextDeclaration = false;
+
+    while (fileStream.get(current)) {
+      if (current == '=') {
+        // Add dialog to list
+        //cout << "create new dialog (" << dialogIdentifier << ")" << endl;
+        dialogList[dialogIdentifier] = Dialog(dialogIdentifier);
+        inTextDeclaration = true;
+        inIdentifierDeclaration = false;
+        textIdentifier = "";
+        continue;
+      }
+      if (current == ';') {
+        // Add text to the dialog
+        //cout << "adding text to the dialog (" << textIdentifier << ") => (" << currentTranslation->getTranslation(textIdentifier) << ")" << endl;
+        dialogList[dialogIdentifier].addMessage(currentTranslation->getTranslation(textIdentifier));
+        textIdentifier = "";
+        continue;
+      }
+      if (current == '\n' || current == '\r') {
+        inIdentifierDeclaration = true;
+        inTextDeclaration = false;
+        dialogIdentifier = "";
+        continue;
+      }
+
+      if (inIdentifierDeclaration) {
+        dialogIdentifier += current;
+      }
+      if (inTextDeclaration) {
+        textIdentifier += current;
+      }
+    }
+  }
 }
 
 /**
@@ -62,28 +107,19 @@ void DialogInterface::loadDialogData(const string& fullPath)
  */
 void DialogInterface::start(const string& dialogIdentifier)
 {
-  identifier = dialogIdentifier;
-  currentMessageNumber = 0;
-  createMessage(currentMessageNumber);
+  createMessage(dialogIdentifier, 0);
 }
 
 /**
  *
  */
-void DialogInterface::createMessage(u32 number)
+void DialogInterface::createMessage(const string& dialogIdentifier, u16 messageNumber)
 {
-  //cout << "Try to create dialog message '" << messageList[number] << "'" << endl;
-  //currentMessage = new Text(currentTranslation->getTranslation(messageList[number]));
-}
+  //cout << "Dialog identifier: " << dialogIdentifier << endl;
+  cout << "Try to create dialog message '" << dialogList[dialogIdentifier].getMessage(messageNumber) << "'" << endl;
 
-/**
- *
- */
-void DialogInterface::deleteCurrentMessage()
-{
-  if (currentMessage) {
-    delete currentMessage;
-  }
+  currentMessageText = new Text(dialogList[dialogIdentifier].getMessage(messageNumber), 0, Game::screenPos.bottom + 100, FONT_STANDARD_48, 25);
+  //currentMessageText->setAlign(TEXT_ALIGN_CENTER);
 }
 
 /**
@@ -91,25 +127,13 @@ void DialogInterface::deleteCurrentMessage()
  */
 void DialogInterface::nextMessage()
 {
-  currentMessageNumber++;
-  deleteCurrentMessage();
-  createMessage(currentMessageNumber);
+
 }
 
 /**
  *
  */
 void DialogInterface::goToMessage(u32 number)
-{
-  currentMessageNumber = number;
-  deleteCurrentMessage();
-  createMessage(currentMessageNumber);
-}
-
-/**
- * @todo
- */
-void DialogInterface::getMessageNumber(const string& identifier)
 {
 
 }
@@ -125,17 +149,7 @@ bool DialogInterface::finished()
 /**
  *
  */
-const string& DialogInterface::getIdentifier() const
-{
-  return identifier;
-}
-
-/**
- *
- */
 DialogInterface::~DialogInterface()
 {
-  if (currentMessage) {
-    delete currentMessage;
-  }
+
 }

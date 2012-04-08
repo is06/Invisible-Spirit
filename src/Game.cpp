@@ -16,8 +16,6 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/scene/Scene.h"
 #include "../include/scene/SceneMenu.h"
 #include "../include/scene/SceneGameplay.h"
-#include "../include/shader/DiffuseShaderCallback.h"
-#include "../include/shader/IceShaderCallback.h"
 #include "../include/ref/maps.h"
 #include "../include/Translation.h"
 
@@ -113,10 +111,10 @@ void Game::run()
       lastCycleTime = device->getTimer()->getRealTime() - loopTime;
       loopTime = device->getTimer()->getRealTime();
       speedFactor = lastCycleTime / 1000.0f;
-      if(speedFactor > 1.0f) speedFactor = 1.0f; // Limit min 1fps
-      if(speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed movements
+      if (speedFactor > 1.0f) speedFactor = 1.0f; // Limit min 1fps
+      if (speedFactor < 0.0f) speedFactor = 0.0f; // Limit max fps (infinite) negative = reversed movements
 
-      videoDriver->beginScene(true, true, video::SColor(255, 255, 255, 255));
+      videoDriver->beginScene(true, true, video::SColor(255, 0, 0, 0));
 
       // Main events
       currentScene->events();
@@ -321,8 +319,6 @@ void Game::initScreenPositions()
   screenHeight = 720;
   screenWidth = screenHeight * ratio;
 
-  cout << screenWidth << "x" << screenHeight << endl;
-
   // Screen position info
   screenPos.width = screenWidth;
   screenPos.height = screenHeight;
@@ -340,43 +336,8 @@ void Game::initScreenPositions()
  */
 void Game::initShaders()
 {
-  shaders.diffuse = 0;
-  shaders.horizontalBlur = 0;
-  shaders.verticalBlur = 0;
-
-  if (gpuManager) {
-    // Shader Diffuse (2D Elements)
-    DiffuseShaderCallback* diffuseCallback = new DiffuseShaderCallback();
-    shaders.diffuse = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/shader/diffuse.vert", "vertexMain", video::EVST_VS_1_1,
-      "resource/shader/diffuse.frag", "pixelMain", video::EPST_PS_1_1,
-      diffuseCallback, video::EMT_TRANSPARENT_ALPHA_CHANNEL
-    );
-    diffuseCallback->drop();
-
-    // Ice shader
-    IceShaderCallback* iceCallback = new IceShaderCallback();
-    shaders.ice = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/shader/ice.vert", "vertexMain", video::EVST_VS_1_1,
-      "resource/shader/ice.frag", "pixelMain", video::EPST_PS_1_1,
-      iceCallback, video::EMT_SOLID
-    );
-    iceCallback->drop();
-
-    // Horizontal Blur Shader
-    shaders.horizontalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/shader/blur.vert", "vertexMain", video::EVST_VS_1_1,
-      "resource/shader/hBlur.frag", "pixelMain", video::EPST_PS_1_1,
-      0, video::EMT_SOLID
-    );
-
-    // Vertical Blur Shader
-    shaders.verticalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/shader/blur.vert", "vertexMain", video::EVST_VS_1_1,
-      "resource/shader/vBlur.frag", "pixelMain", video::EPST_PS_1_1,
-      0, video::EMT_SOLID
-    );
-  }
+  shaders = Shaders();
+  shaders.createMaterials(gpuManager);
 }
 
 /**
@@ -577,6 +538,7 @@ void Game::fatalError(ErrorCode code)
     case ERRCODE_53: throw EngineException(code, "Non-square textures not supported", 3); break;
     case ERRCODE_54: throw EngineException(code, "Non-power of two texture size not supported", 3); break;
     case ERRCODE_55: throw EngineException(code, "GLSL not supported", 3); break;
+    case ERRCODE_60: throw EngineException(code, "No local translation object for dialog interface", 3); break;
     default: throw EngineException(code, "Internal error", 3); break;
   }
 

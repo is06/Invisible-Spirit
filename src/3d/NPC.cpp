@@ -40,10 +40,7 @@ void NPC::talk(const string& dialogIdentifier) const
  */
 void NPC::attachDialogInterface(DialogInterface* dialog)
 {
-  string identifier = dialog->getIdentifier();
   attachedDialog = dialog;
-  dialogIdentifierList[nextDialogIdentifier] = identifier;
-  nextDialogIdentifier++;
 }
 
 /**
