@@ -32,6 +32,8 @@ class Scene
     void fadeIn(f32 speed = 1.5f, FadeColor color = FADE_COLOR_BLACK);
     void fadeOut(f32 speed = 3.0f, FadeColor color = FADE_COLOR_BLACK);
 
+    const video::SColor& getBackBufferColor() const;
+
     Camera* getActiveCamera();
 
     ShadowProcessor* getShadowProcessor();
@@ -56,6 +58,8 @@ class Scene
     Translation* sceneTranslations;
 
     ShadowProcessor* shadows;
+
+    video::SColor backBufferColor;
 
     f32 timeElapsed;
     f32 startTime;

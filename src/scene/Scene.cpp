@@ -48,6 +48,8 @@ Scene::Scene()
 
   debugInfo = Game::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
   debugInfo->setOverrideColor(video::SColor(255, 255, 255, 255));
+
+  backBufferColor = video::SColor(255, 0, 0, 0);
 }
 
 /**
@@ -179,6 +181,11 @@ void Scene::fadeOut(f32 speed, FadeColor color)
 ShadowProcessor* Scene::getShadowProcessor()
 {
   return shadows;
+}
+
+const video::SColor& Scene::getBackBufferColor() const
+{
+  return backBufferColor;
 }
 
 /**

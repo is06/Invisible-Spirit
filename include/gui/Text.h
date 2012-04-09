@@ -33,6 +33,8 @@ class Text : public Hud
     void show();
     void hide();
     void setOpacity(u8 value);
+    void skip();
+    bool finished();
 
   private:
     TextFont* font;
@@ -50,6 +52,7 @@ class Text : public Hud
     f32 leftBound;
     f32 rightBound;
     TextAlignment currentAlign;
+    bool textFinished;
 
     Timer* speedTimer;
 };

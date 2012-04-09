@@ -56,7 +56,6 @@ class GameplayMenu : public Hud
     Menu* sectionMenu;
     PlayerState* stateInfo;
     GameTimeCounter* gameplayTime;
-    Keyboard* keyboard;
     //DigitCounter* moneyCounter;
 
     // Sub menus

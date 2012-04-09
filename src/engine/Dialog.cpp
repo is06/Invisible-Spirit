@@ -35,6 +35,11 @@ const string& Dialog::getIdentifier() const
   return currentIdentifier;
 }
 
+u16 Dialog::getMessageCount()
+{
+  return messageList.size();
+}
+
 string Dialog::getMessage(u16 index)
 {
   return messageList[index];

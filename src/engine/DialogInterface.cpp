@@ -7,17 +7,26 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/ref/core.h"
 #include "../../include/Game.h"
+#include "../../include/Keyboard.h"
 #include "../../include/Translation.h"
 #include "../../include/gui/Text.h"
+#include "../../include/gui/Picture.h"
 #include "../../include/engine/DialogInterface.h"
 
 using namespace std;
+using namespace irr;
 
 /**
  *
  */
-DialogInterface::DialogInterface(const string& filePath, Translation* translation)
+DialogInterface::DialogInterface(const string& filePath, Translation* translation, Keyboard* kb)
 {
+  keyboard = kb;
+
+  messageDisplaying = false;
+  messageFinished = false;
+  dialogFinished = false;
+
   if (!translation) {
     Game::fatalError(ERRCODE_60);
   }
@@ -25,6 +34,8 @@ DialogInterface::DialogInterface(const string& filePath, Translation* translatio
   currentTranslation = translation;
   currentMessageNumber = 0;
   currentMessageText = NULL;
+
+  backWindow = new Picture(0, Game::screenPos.bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
 
   string fullPath = "resource/text/";
 
@@ -49,8 +60,42 @@ DialogInterface::DialogInterface(const string& filePath, Translation* translatio
  */
 void DialogInterface::render()
 {
+  // Background of dialog
+  backWindow->render();
+
+  // Text
   if (currentMessageText) {
     currentMessageText->render();
+
+    // Dialog finished
+    if (!dialogFinished && messageFinished && currentMessageNumber >= dialogList[currentDialogIdentifier].getMessageCount() - 1) {
+      cout << "dialog finished" << endl;
+      dialogFinished = true;
+    }
+
+    if (messageDisplaying && currentMessageText->finished()) {
+      messageDisplaying = false;
+      messageFinished = true;
+      cout << "message finished" << endl;
+    }
+
+    // Display all message quickly
+    if (messageDisplaying && keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
+      cout << "skipping message" << endl;
+      currentMessageText->skip();
+      messageDisplaying = false;
+      messageFinished = true;
+    }
+
+    // Go to next message (only if entirely displayed)
+    if (messageFinished && keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
+      cout << "go to next message" << endl;
+      messageFinished = false;
+      messageDisplaying = true;
+      if (!dialogFinished) {
+        nextMessage();
+      }
+    }
   }
 }
 
@@ -107,7 +152,9 @@ void DialogInterface::loadDialogData(const string& fullPath)
  */
 void DialogInterface::start(const string& dialogIdentifier)
 {
+  currentDialogIdentifier = dialogIdentifier;
   createMessage(dialogIdentifier, 0);
+  messageDisplaying = true;
 }
 
 /**
@@ -115,11 +162,7 @@ void DialogInterface::start(const string& dialogIdentifier)
  */
 void DialogInterface::createMessage(const string& dialogIdentifier, u16 messageNumber)
 {
-  //cout << "Dialog identifier: " << dialogIdentifier << endl;
-  cout << "Try to create dialog message '" << dialogList[dialogIdentifier].getMessage(messageNumber) << "'" << endl;
-
-  currentMessageText = new Text(dialogList[dialogIdentifier].getMessage(messageNumber), 0, Game::screenPos.bottom + 100, FONT_STANDARD_48, 25);
-  //currentMessageText->setAlign(TEXT_ALIGN_CENTER);
+  currentMessageText = new Text(dialogList[dialogIdentifier].getMessage(messageNumber), -350, Game::screenPos.bottom + 100, FONT_STANDARD_48, 25);
 }
 
 /**
@@ -127,7 +170,9 @@ void DialogInterface::createMessage(const string& dialogIdentifier, u16 messageN
  */
 void DialogInterface::nextMessage()
 {
-
+  delete currentMessageText;
+  currentMessageNumber++;
+  createMessage(currentDialogIdentifier, currentMessageNumber);
 }
 
 /**
@@ -151,5 +196,5 @@ bool DialogInterface::finished()
  */
 DialogInterface::~DialogInterface()
 {
-
+  delete backWindow;
 }

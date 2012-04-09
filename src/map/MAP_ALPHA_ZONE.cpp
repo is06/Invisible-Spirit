@@ -26,6 +26,8 @@ using namespace irr;
  */
 MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
 {
+  backBufferColor = video::SColor(255, 255, 255, 255);
+
   // Local Translations
   sceneTranslations = new Translation("MAP_ALPHA_ZONE.ist");
 
@@ -51,7 +53,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
   //lt = new OmniLight();
 
   // Dialogs
-  dialog = new DialogInterface("MAP_ALPHA_ZONE.isd", sceneTranslations);
+  dialog = new DialogInterface("MAP_ALPHA_ZONE.isd", sceneTranslations, keyboard);
 
   // Glow shader example
   //glowShader = new PostRenderGlow();

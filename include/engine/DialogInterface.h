@@ -15,7 +15,7 @@ using namespace std;
 class DialogInterface
 {
   public:
-    DialogInterface(const string& filePath, Translation* translation);
+    DialogInterface(const string& filePath, Translation* translation, Keyboard* kb);
     ~DialogInterface();
 
     void render();
@@ -30,10 +30,17 @@ class DialogInterface
     void loadDialogData(const string& fullPath);
     void createMessage(const string& dialogIdentifier, u16 messageNumber=0);
 
+    bool messageDisplaying;
+    bool messageFinished;
+    bool dialogFinished;
+
     u16 currentMessageNumber;
+    string currentDialogIdentifier;
     map<string, Dialog> dialogList;
     Text* currentMessageText;
+    Picture* backWindow;
     Translation* currentTranslation;
+    Keyboard* keyboard;
 };
 
 #endif

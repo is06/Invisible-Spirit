@@ -19,6 +19,7 @@ using namespace irr;
  */
 Text::Text(const string& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud()
 {
+  textFinished = false;
   textStr = str;
   currentSize = 48;
   currentSpeed = speed;
@@ -102,7 +103,16 @@ void Text::nextChar()
   if (currentDisplayChar < currentTextLength) {
     charList[currentDisplayChar].show();
   }
+  if (!textFinished && currentDisplayChar >= (currentTextLength - 1)) {
+    textFinished = true;
+  }
   currentDisplayChar++;
+}
+
+void Text::skip()
+{
+  currentSpeed = 0;
+  show();
 }
 
 /**
@@ -113,32 +123,41 @@ void Text::updateTiles()
   charList.clear();
   currentCharPos = pos;
   currentTextLength = 0;
+  bool escapeCharacter = false;
   const char* cs = textStr.c_str();
   u8 nextUtf8Table = 0;
   for (u16 i = 0; i < textStr.size(); i++) {
-    if (cs[i] == '\n') {
-      currentLineNumber++;
-      lineWidthList[currentLineNumber] = 0;
-      currentCharPos.X = pos.X;
-      currentCharPos.Y -= (currentSize - (currentSize / 8));
+    if (escapeCharacter) {
+      if (cs[i] == 'n') {
+        currentLineNumber++;
+        lineWidthList[currentLineNumber] = 0;
+        currentCharPos.X = pos.X;
+        currentCharPos.Y -= (currentSize - (currentSize / 8));
+        escapeCharacter = false;
+      }
     } else {
-      // The first byte is 110xxxxx: this means the character is stored with two bytes (utf-8)
-      // Thanks to Christopho (https://github.com/christopho) for this trick
-      if ((cs[i] & 0xE0) == 0xC0) {
-        // Multi-byte utf-8 character found!
-        nextUtf8Table = cs[i];
+      if (cs[i] == '\\') {
+        escapeCharacter = true;
+        continue;
       } else {
-        if (!nextUtf8Table) {
-          // Standard character
-          charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, (currentSpeed == 0)));
+        // The first byte is 110xxxxx: this means the character is stored with two bytes (utf-8)
+        // Thanks to Christopho (https://github.com/christopho) for this trick
+        if ((cs[i] & 0xE0) == 0xC0) {
+          // Multi-byte utf-8 character found!
+          nextUtf8Table = cs[i];
         } else {
-          // Extended utf-8 character
-          charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, (currentSpeed == 0), nextUtf8Table));
-          nextUtf8Table = 0;
+          if (!nextUtf8Table) {
+            // Standard character
+            charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, (currentSpeed == 0)));
+          } else {
+            // Extended utf-8 character
+            charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, (currentSpeed == 0), nextUtf8Table));
+            nextUtf8Table = 0;
+          }
+          currentTextLength++;
+          lineWidthList[currentLineNumber] += currentSize;
+          //cout << "width (" << currentLineNumber << ") => " << currentSize << endl;
         }
-        currentTextLength++;
-        lineWidthList[currentLineNumber] += currentSize;
-        //cout << "width (" << currentLineNumber << ") => " << currentSize << endl;
       }
     }
   }
@@ -194,6 +213,11 @@ void Text::setOpacity(u8 value)
   for (charIt = charList.begin(); charIt != charList.end(); charIt++) {
     charIt->setOpacity(value);
   }
+}
+
+bool Text::finished()
+{
+  return textFinished;
 }
 
 /**

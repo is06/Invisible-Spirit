@@ -22,6 +22,7 @@ class Dialog
 
     string getMessage(u16 index);
     const string& getIdentifier() const;
+    u16 getMessageCount();
 
   private:
     u16 currentNumber;
