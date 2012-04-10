@@ -257,9 +257,17 @@ void Game::initIrrlichtInterfaces()
   u32 screenHeight = settings->getParamInt("display", "height");
   u8 screenDepth = settings->getParamInt("display", "depth");
 
+  video::E_DRIVER_TYPE renderer = video::EDT_SOFTWARE;
+  string rendererParam = settings->getParamString("display", "renderer");
+  if (rendererParam == "direct3d") {
+    renderer = video::EDT_DIRECT3D9;
+  } else if (rendererParam == "opengl") {
+    renderer = video::EDT_OPENGL;
+  }
+
   // Irrlicht Device creation
   device = createDevice(
-    video::EDT_OPENGL,
+    renderer,
     core::dimension2du(screenWidth, screenHeight),
     screenDepth,
     (settings->getParamInt("display", "fullscreen") == 1),
