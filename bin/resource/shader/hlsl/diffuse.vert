@@ -15,7 +15,7 @@ struct VS_OUTPUT
   float2 TexCoord: TEXCOORD0;
 };
 
-VS_OUTPUT mainVS(in float4 vPosition: POSITION, in float4 vColor: COLOR0, float2 texCoord: TEXCOORD0)
+VS_OUTPUT mainVS(in float4 vPosition: POSITION, in float2 texCoord: TEXCOORD0)
 {
   VS_OUTPUT Output;
 

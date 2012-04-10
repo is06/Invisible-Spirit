@@ -5,7 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-float4 mainPS(float4 Position : POSITION0) : COLOR0
+struct PS_OUTPUT
 {
-  return float4(1, 0, 0, 1);
+  float4 RGBColor : COLOR0;
+};
+
+sampler2D tex0;
+
+PS_OUTPUT mainPS(in float2 TexCoord: TEXCOORD0, in float4 Position: POSITION, in float4 Diffuse: COLOR0) 
+{ 
+	PS_OUTPUT Output;
+
+	float4 col = tex2D(tex0, TexCoord);
+	
+	Output.RGBColor = Diffuse * col;
+
+	return Output;
 }
