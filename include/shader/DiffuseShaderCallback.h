@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __DIFFUSE_SHADER_CALLBACK_H__
 #define __DIFFUSE_SHADER_CALLBACK_H__
 
+#include "../Game.h"
+
 using namespace irr;
 
 class DiffuseShaderCallback : public video::IShaderConstantSetCallBack
@@ -22,6 +24,12 @@ class DiffuseShaderCallback : public video::IShaderConstantSetCallBack
 
     virtual void OnSetConstants(video::IMaterialRendererServices* services, s32 userData)
     {
+      core::matrix4 worldViewProj;
+      worldViewProj = Game::getVideoDriver()->getTransform(video::ETS_PROJECTION);
+      worldViewProj *= Game::getVideoDriver()->getTransform(video::ETS_VIEW);
+      worldViewProj *= Game::getVideoDriver()->getTransform(video::ETS_WORLD);
+      services->setVertexShaderConstant("mWorldViewProj", worldViewProj.pointer(), 16);
+
       f32 vColor[4] = {
         usedMaterial->DiffuseColor.getRed() / 255.0f,
         usedMaterial->DiffuseColor.getGreen() / 255.0f,
