@@ -10,16 +10,22 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/StaticModel.h"
 
-using namespace irr;
+namespace is06
+{
+namespace model
+{
 
-class LevelMesh : public StaticModel
+class CLevelMesh : public CStaticModel
 {
   public:
-    LevelMesh();
-    ~LevelMesh();
+    CLevelMesh();
+    ~CLevelMesh();
 
     void update();
     void loadCollisionMask();
 };
+
+}
+}
 
 #endif

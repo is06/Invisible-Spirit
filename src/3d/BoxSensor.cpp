@@ -7,26 +7,34 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/BoxSensor.h"
 
+namespace is06
+{
+namespace model
+{
+
 /**
  *
  */
-BoxSensor::BoxSensor(const core::aabbox3df& initBox) : Sensor()
+CBoxSensor::CBoxSensor(const irr::core::aabbox3df& initBox) : CSensor()
 {
-  box = initBox;
+  Box = initBox;
 }
 
 /**
  *
  */
-void BoxSensor::update()
+void CBoxSensor::update()
 {
-  Sensor::update();
+  CSensor::update();
 }
 
 /**
  *
  */
-const core::aabbox3df& BoxSensor::getBox() const
+const irr::core::aabbox3df& CBoxSensor::getBox() const
 {
-  return box;
+  return Box;
+}
+
+}
 }

@@ -18,26 +18,28 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/map/MAP_ALPHA_ZONE.h"
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace map
+{
 
 /**
  * Alpha Zone constructor
  */
-MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
+MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : scene::CSceneGameplay()
 {
-  backBufferColor = video::SColor(255, 255, 255, 255);
+  BackBufferColor = irr::video::SColor(255, 255, 255, 255);
 
   // Local Translations
-  sceneTranslations = new Translation("MAP_ALPHA_ZONE.ist");
+  SceneTranslations = new engine::CTranslation("MAP_ALPHA_ZONE.ist");
 
   // Level Mesh
-  level->loadMesh("resource/mesh/level/alphazone.obj");
-  level->createNode(core::vector3df(0, 0, 0));
-  level->loadMeshCollision();
-  level->hide();
+  Level->loadMesh("resource/mesh/level/alphazone.obj");
+  Level->createNode(irr::core::vector3df(0, 0, 0));
+  Level->loadMeshCollision();
+  Level->hide();
 
-  ayron->hide();
+  Ayron->hide();
 
   // Multi-layers music example
   //music->play("bodhum");
@@ -53,7 +55,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
   //lt = new OmniLight();
 
   // Dialogs
-  dialog = new DialogInterface("MAP_ALPHA_ZONE.isd", sceneTranslations, keyboard);
+  Dialog = new engine::CDialogInterface("MAP_ALPHA_ZONE.isd", SceneTranslations, Keyboard);
 
   // Glow shader example
   //glowShader = new PostRenderGlow();
@@ -65,10 +67,10 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : SceneGameplay()
  */
 void MAP_ALPHA_ZONE::events()
 {
-  SceneGameplay::events();
+  scene::CSceneGameplay::events();
 
-  if (keyboard->pressed(KEY_KEY_S, EVENT_ONCE)) {
-    dialog->start("norya_first_start");
+  if (Keyboard->pressed(irr::KEY_KEY_S, engine::EVENT_ONCE)) {
+    Dialog->start("norya_first_start");
 
     /*
     if (dialog->finished()) {
@@ -83,14 +85,14 @@ void MAP_ALPHA_ZONE::events()
 
   // Multi-layer music events
   // When pressing W, sequence 1 (normal) is played
-  if (keyboard->pressed(KEY_KEY_W, EVENT_ONCE)) {
-    music->unmuteSequence("bodhum", 1);
-    music->muteSequence("bodhum", 2);
+  if (Keyboard->pressed(irr::KEY_KEY_W, engine::EVENT_ONCE)) {
+    Music->unmuteSequence("bodhum", 1);
+    Music->muteSequence("bodhum", 2);
   }
   // When pressing X, sequence 2 (aggressive mix) is played
-  if (keyboard->pressed(KEY_KEY_X, EVENT_ONCE)) {
-    music->unmuteSequence("bodhum", 2);
-    music->muteSequence("bodhum", 1);
+  if (Keyboard->pressed(irr::KEY_KEY_X, engine::EVENT_ONCE)) {
+    Music->unmuteSequence("bodhum", 2);
+    Music->muteSequence("bodhum", 1);
   }
 }
 
@@ -99,7 +101,7 @@ void MAP_ALPHA_ZONE::events()
  */
 void MAP_ALPHA_ZONE::postRender()
 {
-  SceneGameplay::postRender();
+  scene::CSceneGameplay::postRender();
 
   //glowShader->render();
 }
@@ -109,7 +111,7 @@ void MAP_ALPHA_ZONE::postRender()
  */
 void MAP_ALPHA_ZONE::hudRender()
 {
-  SceneGameplay::hudRender();
+  scene::CSceneGameplay::hudRender();
 }
 
 /**
@@ -118,7 +120,7 @@ void MAP_ALPHA_ZONE::hudRender()
 MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
 {
   // Level Mesh collision clear
-  level->clearMeshCollision();
+  Level->clearMeshCollision();
 
   // 3D Speaker deletion
   //delete spk;
@@ -128,4 +130,7 @@ MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
 
   // Glow shader deletion
   //delete glowShader;
+}
+
+}
 }

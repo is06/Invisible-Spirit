@@ -10,19 +10,22 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/Game.h"
 #include "../include/EventManager.h"
 
-using namespace irr;
+namespace is06
+{
+namespace engine
+{
 
 /**
  * Permet de savoir si une touche spécifique est pressée
  * @param EKEY_CODE code le code de la touche à tester
  * @param EventType type le type d'événement entre ONCE et ALWAYS
  */
-bool Keyboard::pressed(EKEY_CODE code, EventType type)
+bool CKeyboard::pressed(irr::EKEY_CODE code, engine::EEventType type)
 {
   if (type == EVENT_ONCE) {
-    return Game::getEventManager()->isKeyDownOnce(code);
+    return CGame::getEventManager()->isKeyDownOnce(code);
   } else {
-    return Game::getEventManager()->isKeyDown(code);
+    return CGame::getEventManager()->isKeyDown(code);
   }
 }
 
@@ -30,37 +33,37 @@ bool Keyboard::pressed(EKEY_CODE code, EventType type)
  * Permet de savoir si n'importe quelle touche est pressée
  * @param EventType type le type d'événement entre ONCE et ALWAYS
  */
-bool Keyboard::any(EventType type)
+bool CKeyboard::any(EEventType type)
 {
   if (type == EVENT_ONCE) {
-    return Game::getEventManager()->anyKeyDownOnce();
+    return CGame::getEventManager()->anyKeyDownOnce();
   } else {
-    return Game::getEventManager()->anyKeyDown();
+    return CGame::getEventManager()->anyKeyDown();
   }
 }
 
-s8 Keyboard::getDirectionXAxis()
+irr::s8 CKeyboard::getDirectionXAxis()
 {
-  if (Game::getEventManager()->isKeyDown(KEY_LEFT)) {
-    if (Game::getEventManager()->isKeyDown(KEY_UP)) {
-      directionAngle = 135.0f;
+  if (CGame::getEventManager()->isKeyDown(irr::KEY_LEFT)) {
+    if (CGame::getEventManager()->isKeyDown(irr::KEY_UP)) {
+      DirectionAngle = 135.0f;
       return -87;
-    } else if (Game::getEventManager()->isKeyDown(KEY_DOWN)) {
-      directionAngle = 225.0f;
+    } else if (CGame::getEventManager()->isKeyDown(irr::KEY_DOWN)) {
+      DirectionAngle = 225.0f;
       return -87;
     } else {
-      directionAngle = 180.0f;
+      DirectionAngle = 180.0f;
       return -127;
     }
-  } else if (Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
-    if (Game::getEventManager()->isKeyDown(KEY_UP)) {
-      directionAngle = 45.0f;
+  } else if (CGame::getEventManager()->isKeyDown(irr::KEY_RIGHT)) {
+    if (CGame::getEventManager()->isKeyDown(irr::KEY_UP)) {
+      DirectionAngle = 45.0f;
       return 87;
-    } else if (Game::getEventManager()->isKeyDown(KEY_DOWN)) {
-      directionAngle = 315.0f;
+    } else if (CGame::getEventManager()->isKeyDown(irr::KEY_DOWN)) {
+      DirectionAngle = 315.0f;
       return 87;
     } else {
-      directionAngle = 0.0f;
+      DirectionAngle = 0.0f;
       return 127;
     }
   } else {
@@ -68,28 +71,28 @@ s8 Keyboard::getDirectionXAxis()
   }
 }
 
-s8 Keyboard::getDirectionYAxis()
+irr::s8 CKeyboard::getDirectionYAxis()
 {
-  if (Game::getEventManager()->isKeyDown(KEY_UP)) {
-    if (Game::getEventManager()->isKeyDown(KEY_LEFT)) {
-      directionAngle = 135.0f;
+  if (CGame::getEventManager()->isKeyDown(irr::KEY_UP)) {
+    if (CGame::getEventManager()->isKeyDown(irr::KEY_LEFT)) {
+      DirectionAngle = 135.0f;
       return 87;
-    } else if (Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
-      directionAngle = 45.0f;
+    } else if (CGame::getEventManager()->isKeyDown(irr::KEY_RIGHT)) {
+      DirectionAngle = 45.0f;
       return 87;
     } else {
-      directionAngle = 90.0f;
+      DirectionAngle = 90.0f;
       return 127;
     }
-  } else if (Game::getEventManager()->isKeyDown(KEY_DOWN)) {
-    if (Game::getEventManager()->isKeyDown(KEY_LEFT)) {
-      directionAngle = 225.0f;
+  } else if (CGame::getEventManager()->isKeyDown(irr::KEY_DOWN)) {
+    if (CGame::getEventManager()->isKeyDown(irr::KEY_LEFT)) {
+      DirectionAngle = 225.0f;
       return -87;
-    } else if (Game::getEventManager()->isKeyDown(KEY_RIGHT)) {
-      directionAngle = 315.0f;
+    } else if (CGame::getEventManager()->isKeyDown(irr::KEY_RIGHT)) {
+      DirectionAngle = 315.0f;
       return -87;
     } else {
-      directionAngle = 270.0f;
+      DirectionAngle = 270.0f;
       return -127;
     }
   } else {
@@ -97,7 +100,10 @@ s8 Keyboard::getDirectionYAxis()
   }
 }
 
-f32 Keyboard::getDirectionAngle()
+irr::f32 CKeyboard::getDirectionAngle()
 {
-  return directionAngle;
+  return DirectionAngle;
+}
+
+}
 }

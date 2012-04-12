@@ -9,15 +9,17 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/Translation.h"
 #include "../include/Game.h"
 
-using namespace irr;
-using namespace std;
-
-Translation::Translation(const string& filePath)
+namespace is06
 {
-  string fullPath = "resource/text/";
-  notfound = "[not_found]";
+namespace engine
+{
 
-  switch (Game::getCurrentLocale()) {
+CTranslation::CTranslation(const std::string& filePath)
+{
+  std::string fullPath = "resource/text/";
+  Notfound = "[not_found]";
+
+  switch (CGame::getCurrentLocale()) {
     case LOCALE_FRE_FR:
     case LOCALE_FRE_BE:
     case LOCALE_FRE_CA:
@@ -33,25 +35,25 @@ Translation::Translation(const string& filePath)
   loadTextData(fullPath);
 }
 
-void Translation::loadTextData(const string& fullPath)
+void CTranslation::loadTextData(const std::string& fullPath)
 {
   //cout << "Translation file loaded : " << fullPath.c_str() << endl;
 
-  ifstream textFile(fullPath.c_str(), ios::in);
+  std::ifstream textFile(fullPath.c_str(), std::ios::in);
   if (textFile) {
     //cout << "Processing translation file..." << endl;
     char currentChar;
     bool inTextIdentifier = true;
     bool inTextValue = false;
-    string identifier = "";
-    string value = "";
+    std::string identifier = "";
+    std::string value = "";
 
     while (textFile.get(currentChar)) {
       if (currentChar == '\n' || currentChar == '\r') {
         // Nouvelle traduction
         if (identifier != "") {
           //cout << "Added translation (" << identifier.c_str() << ") = (" << value.c_str() << ")" << endl;
-          textData[identifier] = value;
+          TextData[identifier] = value;
         }
         identifier = "";
         value = "";
@@ -74,17 +76,20 @@ void Translation::loadTextData(const string& fullPath)
     }
     textFile.close();
   } else {
-    cout << "[!!] Translation file not found: " << fullPath.c_str() << endl;
+    //std::cout << "[!!] Translation file not found: " << fullPath.c_str() << std::endl;
   }
 }
 
-const string& Translation::getTranslation(const string& identifier) const
+const std::string& CTranslation::getTranslation(const std::string& identifier) const
 {
   //cout << "'" << textData.find(identifier) << "' <-> '" << textData.end() << "'" << endl;
-  if (textData.find(identifier) == textData.end()) {
-    cout << "[!!] Translation not found: '" << identifier.c_str() << "'" << endl;
-    return notfound;
+  if (TextData.find(identifier) == TextData.end()) {
+    //cout << "[!!] Translation not found: '" << identifier.c_str() << "'" << endl;
+    return Notfound;
   } else {
-    return textData.find(identifier)->second;
+    return TextData.find(identifier)->second;
   }
+}
+
+}
 }

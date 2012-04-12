@@ -10,147 +10,152 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/gui/Picture.h"
 #include "../../../include/Game.h"
 
-using namespace std;
-using namespace irr;
-
-BarCounter::BarCounter(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, BarStyle style) : Counter(init, min, max)
+namespace is06
 {
-  string texturePath = "resource/hud/bar/";
-  sub = NULL;
-  oldValue = currentValue + 1;
-  behindValue = currentValue;
-  decreaseFactor = 200.0f;
-  decreaseTimer = 0.0f;
-  initWidth = w;
-  initX = x;
-  initY = y;
-  animate = false;
-  decrease = false;
+namespace hud
+{
+
+CBarCounter::CBarCounter(irr::s32 init, irr::s32 min, irr::s32 max, irr::f32 x, irr::f32 y, irr::f32 w, irr::f32 h, EBarStyle style) : CCounter(init, min, max)
+{
+  std::string texturePath = "resource/hud/bar/";
+  Sub = NULL;
+  OldValue = CurrentValue + 1;
+  BehindValue = CurrentValue;
+  DecreaseFactor = 200.0f;
+  DecreaseTimer = 0.0f;
+  InitWidth = w;
+  InitX = x;
+  InitY = y;
+  Animate = false;
+  Decrease = false;
 
   switch (style) {
     case BAR_STYLE_LIFE:
       texturePath += "life.bmp";
-      sub = new Picture(x, y, w, h, "resource/hud/bar/life_gain.bmp");
-      sub->loadSecondTexture("resource/hud/bar/life_loss.bmp");
+      Sub = new CPicture(x, y, w, h, "resource/hud/bar/life_gain.bmp");
+      Sub->loadSecondTexture("resource/hud/bar/life_loss.bmp");
       break;
     default:
       texturePath += "default.bmp";
       break;
   }
 
-  bar = new Picture(x, y, w, h, texturePath);
+  Bar = new CPicture(x, y, w, h, texturePath);
 }
 
-void BarCounter::render()
+void CBarCounter::render()
 {
-  if (oldValue != currentValue) {
-    if (oldValue < currentValue) {
-      sub->changeTexture("resource/hud/bar/life_gain.bmp");
-      decrease = false;
+  if (OldValue != CurrentValue) {
+    if (OldValue < CurrentValue) {
+      Sub->changeTexture("resource/hud/bar/life_gain.bmp");
+      Decrease = false;
     } else {
-      sub->changeTexture("resource/hud/bar/life_loss.bmp");
-      decrease = true;
+      Sub->changeTexture("resource/hud/bar/life_loss.bmp");
+      Decrease = true;
     }
-    oldValue = currentValue;
+    OldValue = CurrentValue;
 
-    if (decrease) {
-      bar->setWidth((currentValue / 100.0f) * initWidth);
-      bar->setX(initX + (bar->getWidth() / 2.0f));
+    if (Decrease) {
+      Bar->setWidth((CurrentValue / 100.0f) * InitWidth);
+      Bar->setX(InitX + (Bar->getWidth() / 2.0f));
     } else {
-      sub->setWidth((currentValue / 100.0f) * initWidth);
-      sub->setX(initX + (bar->getWidth() / 2.0f));
+      Sub->setWidth((CurrentValue / 100.0f) * InitWidth);
+      Sub->setX(InitX + (Bar->getWidth() / 2.0f));
     }
 
-    if (sub) {
-      animate = true;
-      sub->setX(initX + (sub->getWidth() / 2.0f));
+    if (Sub) {
+      Animate = true;
+      Sub->setX(InitX + (Sub->getWidth() / 2.0f));
     }
   }
-  if (animate) {
-    if (decreaseTimer >= 100.0f) {
-      if (decrease) {
+  if (Animate) {
+    if (DecreaseTimer >= 100.0f) {
+      if (Decrease) {
         // Perte de vie
-        if (behindValue < (currentValue + (0.3f * (maxValue - currentValue)))) {
-          decreaseFactor = ((behindValue - currentValue) / (maxValue - currentValue)) * 500.0f;
+        if (BehindValue < (CurrentValue + (0.3f * (MaxValue - CurrentValue)))) {
+          DecreaseFactor = ((BehindValue - CurrentValue) / (MaxValue - CurrentValue)) * 500.0f;
         }
-        if (decreaseFactor > 0.0f) {
-          behindValue -= (decreaseFactor * Game::getSpeedFactor());
+        if (DecreaseFactor > 0.0f) {
+          BehindValue -= (DecreaseFactor * engine::CGame::getSpeedFactor());
         }
       } else {
         // Gain de vie
-        behindValue += (decreaseFactor * Game::getSpeedFactor());
+        BehindValue += (DecreaseFactor * engine::CGame::getSpeedFactor());
       }
     } else {
       // Evolution du timer
-      decreaseTimer += 100.0f * Game::getSpeedFactor();
+      DecreaseTimer += 100.0f * engine::CGame::getSpeedFactor();
     }
-    if ((s32)behindValue <= currentValue) {
+    if ((irr::s32)BehindValue <= CurrentValue) {
       // Sub arrivée au niveau du compteur
-      behindValue = currentValue;
-      animate = false;
-      decrease = false;
-      decreaseFactor = 200.0f;
-      decreaseTimer = 0.0f;
+      BehindValue = CurrentValue;
+      Animate = false;
+      Decrease = false;
+      DecreaseFactor = 200.0f;
+      DecreaseTimer = 0.0f;
     }
-    if (decrease) {
-      sub->setWidth((behindValue / 100.0f) * initWidth);
-      sub->setX(initX + (sub->getWidth() / 2.0f));
+    if (Decrease) {
+      Sub->setWidth((BehindValue / 100.0f) * InitWidth);
+      Sub->setX(InitX + (Sub->getWidth() / 2.0f));
     }
   }
 
-  bar->setY(initY);
-  sub->setY(initY);
+  Bar->setY(InitY);
+  Sub->setY(InitY);
 
-  if (sub) {
-    sub->render();
+  if (Sub) {
+    Sub->render();
   }
-  bar->render();
+  Bar->render();
 }
 
-void BarCounter::setPosition(f32 x, f32 y)
+void CBarCounter::setPosition(irr::f32 x, irr::f32 y)
 {
-  initX = x;
-  initY = y;
+  InitX = x;
+  InitY = y;
 }
 
-void BarCounter::setX(f32 value)
+void CBarCounter::setX(irr::f32 value)
 {
-  initX = value;
+  InitX = value;
 }
 
-void BarCounter::setY(f32 value)
+void CBarCounter::setY(irr::f32 value)
 {
-  initY = value;
+  InitY = value;
 }
 
-void BarCounter::hide()
+void CBarCounter::hide()
 {
-  bar->hide();
-  if (sub) {
-    sub->hide();
-  }
-}
-
-void BarCounter::show()
-{
-  bar->show();
-  if (sub) {
-    sub->show();
+  Bar->hide();
+  if (Sub) {
+    Sub->hide();
   }
 }
 
-void BarCounter::setOpacity(u8 value)
+void CBarCounter::show()
 {
-  bar->setOpacity(value);
-  if (sub) {
-    sub->setOpacity(value);
+  Bar->show();
+  if (Sub) {
+    Sub->show();
   }
 }
 
-BarCounter::~BarCounter()
+void CBarCounter::setOpacity(irr::u8 value)
 {
-  delete bar;
-  if (sub) {
-    delete sub;
+  Bar->setOpacity(value);
+  if (Sub) {
+    Sub->setOpacity(value);
   }
+}
+
+CBarCounter::~CBarCounter()
+{
+  delete Bar;
+  if (Sub) {
+    delete Sub;
+  }
+}
+
+}
 }

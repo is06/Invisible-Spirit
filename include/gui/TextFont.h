@@ -10,31 +10,36 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../enums/styles/FontStyle.h"
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace hud
+{
 
-class TextFont
+class CTextFont
 {
   public:
-    TextFont(FontStyle style);
-    ~TextFont();
+    CTextFont(EFontStyle style);
+    ~CTextFont();
 
-    video::SMaterial& getMaterial();
-    u8& getCharOffset(u8 code);
-    FontStyle getCurrentStyle();
+    irr::video::SMaterial& getMaterial();
+    irr::u8& getCharOffset(irr::u8 code);
+    EFontStyle getCurrentStyle();
 
     void resetToStandard();
-    void changeExtTexture(u8 number);
+    void changeExtTexture(irr::u8 number);
 
   private:
-    void readFontData(const string& dataFilePath);
-    void getFontDataFromStyle(FontStyle style);
-    void getTextureFromStyle(FontStyle style, u8 extTexture=0);
+    void readFontData(const std::string& dataFilePath);
+    void getFontDataFromStyle(EFontStyle style);
+    void getTextureFromStyle(EFontStyle style, irr::u8 extTexture=0);
 
-    video::ITexture* fontTexture;
-    video::SMaterial fontMaterial;
-    FontStyle currentStyle;
-    map<u32, u8> offset;
+    irr::video::ITexture* FontTexture;
+    irr::video::SMaterial FontMaterial;
+    EFontStyle CurrentStyle;
+    std::map<irr::u32, irr::u8> Offset;
 };
+
+}
+}
 
 #endif

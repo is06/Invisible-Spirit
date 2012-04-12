@@ -8,17 +8,23 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SAVE_SLOT_H__
 #define __IS06_SAVE_SLOT_H__
 
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
-class SaveSlot
+class CSaveSlot
 {
   public:
-    SaveSlot(Save* save);
-    ~SaveSlot();
+    CSaveSlot(CSave* save);
+    ~CSaveSlot();
 
   private:
-    string placeNameIdentifier;
-    u32 totalGameTime;
+    std::string PlaceNameIdentifier;
+    irr::u32 TotalGameTime;
 };
+
+}
+}
 
 #endif

@@ -12,83 +12,93 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/gui/counter/Counter.h"
 #include "../../../include/gui/counter/GameTimeCounter.h"
 
-using namespace irr;
-using namespace std;
-
-GameTimeCounter::GameTimeCounter() : Counter()
+namespace is06
 {
-  counterText = new Text("---", Game::screenPos.left + 100, Game::screenPos.bottom + 80, FONT_STANDARD_48);
+namespace hud
+{
+
+CGameTimeCounter::CGameTimeCounter() : CCounter()
+{
+  CounterText = new CText(
+    "---",
+    engine::CGame::ScreenPos.Left + 100,
+    engine::CGame::ScreenPos.Bottom + 80,
+    FONT_STANDARD_48
+  );
 }
 
-void GameTimeCounter::render()
+void CGameTimeCounter::render()
 {
-  updateValues(Game::getCurrentSave()->getInteger(21));
+  updateValues(engine::CGame::getCurrentSave()->getInteger(21));
   updateDigits();
-  counterText->render();
+  CounterText->render();
 }
 
-void GameTimeCounter::updateValues(s32 time)
+void CGameTimeCounter::updateValues(irr::s32 time)
 {
-  oss.clear();
-  oss.str("");
+  Oss.clear();
+  Oss.str("");
 
-  hours = "";
-  u32 hoursInt = time / 3600;
-  u32 hoursInMinutes = (hoursInt * 60);
+  Hours = "";
+  irr::u32 hoursInt = time / 3600;
+  irr::u32 hoursInMinutes = (hoursInt * 60);
   if (hoursInt < 10) {
-    hours += "00";
+    Hours += "00";
   } else if (hoursInt < 100) {
-    hours += "0";
+    Hours += "0";
   }
-  oss << hoursInt;
-  hours += oss.str();
+  Oss << hoursInt;
+  Hours += Oss.str();
 
-  oss.clear();
-  oss.str("");
+  Oss.clear();
+  Oss.str("");
 
-  minutes = "";
-  u32 minutesInt = (time - hoursInMinutes) / 60;
-  u32 minutesInSeconds = (minutesInt * 60);
+  Minutes = "";
+  irr::u32 minutesInt = (time - hoursInMinutes) / 60;
+  irr::u32 minutesInSeconds = (minutesInt * 60);
   if (minutesInt < 10) {
-    minutes += "0";
+    Minutes += "0";
   }
-  oss << minutesInt;
-  minutes += oss.str();
+  Oss << minutesInt;
+  Minutes += Oss.str();
 
-  oss.clear();
-  oss.str("");
+  Oss.clear();
+  Oss.str("");
 
-  seconds = "";
-  u32 secondsInt = (time - hoursInMinutes - minutesInSeconds);
+  Seconds = "";
+  irr::u32 secondsInt = (time - hoursInMinutes - minutesInSeconds);
   if (secondsInt < 10) {
-    seconds += "0";
+    Seconds += "0";
   }
-  oss << secondsInt;
-  seconds += oss.str();
+  Oss << secondsInt;
+  Seconds += Oss.str();
 }
 
-void GameTimeCounter::updateDigits()
+void CGameTimeCounter::updateDigits()
 {
   //cout << hours + ":" + minutes + ":" + seconds << endl;
-  counterText->setText(hours + ":" + minutes + ":" + seconds);
+  CounterText->setText(Hours + ":" + Minutes + ":" + Seconds);
 }
 
-void GameTimeCounter::hide()
+void CGameTimeCounter::hide()
 {
   //counterText->hide();
 }
 
-void GameTimeCounter::show()
+void CGameTimeCounter::show()
 {
   //counterText->show();
 }
 
-void GameTimeCounter::setOpacity(u8 value)
+void CGameTimeCounter::setOpacity(irr::u8 value)
 {
   //counterText->setOpacity(value);
 }
 
-GameTimeCounter::~GameTimeCounter()
+CGameTimeCounter::~CGameTimeCounter()
 {
 
+}
+
+}
 }

@@ -8,44 +8,49 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/ref/core.h"
 #include "../../../include/gui/counter/Counter.h"
 
-using namespace std;
-using namespace irr;
-
-Counter::Counter(s32 init, s32 min, s32 max)
+namespace is06
 {
-  minValue = min;
-  maxValue = max;
-  currentValue = init;
+namespace hud
+{
+
+CCounter::CCounter(irr::s32 init, irr::s32 min, irr::s32 max)
+{
+  MinValue = min;
+  MaxValue = max;
+  CurrentValue = init;
 }
 
-void Counter::addValue(s32 val)
+void CCounter::addValue(irr::s32 val)
 {
-  currentValue += val;
-  if (currentValue > maxValue) {
-    currentValue = maxValue;
+  CurrentValue += val;
+  if (CurrentValue > MaxValue) {
+    CurrentValue = MaxValue;
   }
 }
 
-void Counter::subValue(s32 val)
+void CCounter::subValue(irr::s32 val)
 {
-  currentValue -= val;
-  if (currentValue < minValue) {
-    currentValue = minValue;
+  CurrentValue -= val;
+  if (CurrentValue < MinValue) {
+    CurrentValue = MinValue;
   }
 }
 
-void Counter::setValue(s32 val)
+void CCounter::setValue(irr::s32 val)
 {
-  currentValue = val;
-  if (currentValue > maxValue) {
-    currentValue = maxValue;
+  CurrentValue = val;
+  if (CurrentValue > MaxValue) {
+    CurrentValue = MaxValue;
   }
-  if (currentValue < minValue) {
-    currentValue = minValue;
+  if (CurrentValue < MinValue) {
+    CurrentValue = MinValue;
   }
 }
 
-Counter::~Counter()
+CCounter::~CCounter()
 {
 
+}
+
+}
 }

@@ -8,13 +8,19 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MESH_ANIMATION_INFO_H__
 #define __IS06_MESH_ANIMATION_INFO_H__
 
-using namespace irr;
-
-struct MeshAnimationInfo
+namespace is06
 {
-  u32 startFrame;
-  u32 endFrame;
-  bool looped;
+namespace model
+{
+
+struct SMeshAnimationInfo
+{
+  irr::u32 StartFrame;
+  irr::u32 EndFrame;
+  bool Looped;
 };
+
+}
+}
 
 #endif

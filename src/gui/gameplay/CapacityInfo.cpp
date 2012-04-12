@@ -10,24 +10,29 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/gui/Picture.h"
 #include "../../../include/gui/Text.h"
 
-using namespace std;
-using namespace irr;
-
-CapacityInfo::CapacityInfo() : Hud()
+namespace is06
 {
-  icon = new Picture();
-  value = new Text();
+namespace hud
+{
+
+CCapacityInfo::CCapacityInfo() : CHud()
+{
+  Icon = new CPicture();
+  Value = new CText();
 }
 
-void CapacityInfo::render()
+void CCapacityInfo::render()
 {
-  Hud::render();
-  icon->render();
-  value->render();
+  CHud::render();
+  Icon->render();
+  Value->render();
 }
 
-CapacityInfo::~CapacityInfo()
+CCapacityInfo::~CCapacityInfo()
 {
-  delete icon;
-  delete value;
+  delete Icon;
+  delete Value;
+}
+
+}
 }

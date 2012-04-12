@@ -10,15 +10,21 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../scene/SceneGameplay.h"
 
-class MAP_OXYGEN : public SceneGameplay
+namespace is06
+{
+namespace map
+{
+
+class MAP_OXYGEN : public scene::CSceneGameplay
 {
   public:
     MAP_OXYGEN();
     ~MAP_OXYGEN();
 
     void events();
-
-  private:
 };
+
+}
+}
 
 #endif

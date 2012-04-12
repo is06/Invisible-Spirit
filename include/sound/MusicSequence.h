@@ -10,21 +10,26 @@ http://www.is06.com. Legal code in license.txt
 
 #include "MusicSequenceInfo.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace sound
+{
 
-class MusicSequence
+class CMusicSequence
 {
   public:
-    MusicSequence(const MusicSequenceInfo& info);
-    ~MusicSequence();
+    CMusicSequence(const SMusicSequenceInfo& info);
+    ~CMusicSequence();
 
     void play();
-    void setVolume(f32 value);
+    void setVolume(irr::f32 value);
 
   private:
-    FMOD_CHANNEL* channelPtr;
-    FMOD_SOUND* soundPtr;
+    FMOD_CHANNEL* ChannelPtr;
+    FMOD_SOUND* SoundPtr;
 };
+
+}
+}
 
 #endif

@@ -9,15 +9,20 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Game.h"
 #include "../../include/3d/DirectLight.h"
 
-using namespace irr;
-using namespace std;
-
-DirectLight::DirectLight()
+namespace is06
 {
-  camera = Game::getSceneManager()->addCameraSceneNode();
+namespace model
+{
+
+CDirectLight::CDirectLight()
+{
+  Camera = engine::CGame::getSceneManager()->addCameraSceneNode();
 }
 
-DirectLight::~DirectLight()
+CDirectLight::~CDirectLight()
 {
-  camera->remove();
+  Camera->remove();
+}
+
+}
 }

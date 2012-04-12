@@ -9,25 +9,27 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/Settings.h"
 #include "../include/SettingsGroup.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
 /**
  * Reads the settings.ini file and stores all parameters value in a map
  */
-Settings::Settings()
+CSettings::CSettings()
 {
-  fstream fileStream("settings.ini", ios::in);
+  std::fstream fileStream("settings.ini", std::ios::in);
   if (fileStream) {
     char current;
     bool inGroupNameDeclaration = false;
     bool inParamNameDeclaration = false;
     bool inParamValueExtraction = false;
     bool inComment = false;
-    string groupName = "";
-    string paramName = "";
-    string paramValue = "";
-    u32 linePosition = 0;
+    std::string groupName = "";
+    std::string paramName = "";
+    std::string paramValue = "";
+    irr::u32 linePosition = 0;
 
     while (fileStream.get(current)) {
       if (linePosition == 0 && current == '#') {
@@ -44,7 +46,7 @@ Settings::Settings()
             groupName += current;
           } else {
             // Group Creation
-            data[groupName] = new SettingsGroup(groupName);
+            Data[groupName] = new CSettingsGroup(groupName);
             inGroupNameDeclaration = false;
           }
         }
@@ -71,9 +73,9 @@ Settings::Settings()
           if (inParamValueExtraction && (current == '\n' || current == '\r')) {
             inParamNameDeclaration = false;
             inParamValueExtraction = false;
-            if (data[groupName]) {
+            if (Data[groupName]) {
               // Param Creation
-              data[groupName]->getParams()[paramName] = paramValue;
+              Data[groupName]->getParams()[paramName] = paramValue;
             }
             linePosition = -1;
           } else if (current == '\n' || current == '\r') {
@@ -113,27 +115,27 @@ Settings::Settings()
 }
 
 /**
- * Returns the string value of a parameter
- * @param const string& groupName the name of the group of parameters
- * @param const string& paramName the name of the parameter
- * @return string& a reference of the value
+ * Returns the std::string value of a parameter
+ * @param const std::string& groupName the name of the group of parameters
+ * @param const std::string& paramName the name of the parameter
+ * @return std::string& a reference of the value
  */
-string& Settings::getParamString(const string& groupName, const string& paramName)
+std::string& CSettings::getParamString(const std::string& groupName, const std::string& paramName)
 {
-  return data[groupName]->getParams()[paramName];
+  return Data[groupName]->getParams()[paramName];
 }
 
 /**
  * Returns the integer value of a parameter
- * @param const string& groupName the name of the group of parameters
- * @param const string& paramName the name of the parameter
+ * @param const std::string& groupName the name of the group of parameters
+ * @param const std::string& paramName the name of the parameter
  * @return s32 the value
  */
-s32 Settings::getParamInt(const string& groupName, const string& paramName)
+irr::s32 CSettings::getParamInt(const std::string& groupName, const std::string& paramName)
 {
-  s32 value = 0;
-  if (data[groupName]) {
-    istringstream iss(data[groupName]->getParams()[paramName]);
+  irr::s32 value = 0;
+  if (Data[groupName]) {
+    std::istringstream iss(Data[groupName]->getParams()[paramName]);
     iss >> value;
     return value;
   } else {
@@ -141,7 +143,10 @@ s32 Settings::getParamInt(const string& groupName, const string& paramName)
   }
 }
 
-Settings::~Settings()
+CSettings::~CSettings()
 {
 
+}
+
+}
 }

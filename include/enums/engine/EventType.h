@@ -8,13 +8,18 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_EVENT_TYPE_H__
 #define __IS06_EVENT_TYPE_H__
 
-/**
- * Types d'événements possibles avec les interfaces Keyboard, Mouse et Gamepad
- */
-enum EventType
+namespace is06
+{
+namespace engine
+{
+
+enum EEventType
 {
   EVENT_ALWAYS = false,
   EVENT_ONCE = true
 };
+
+}
+}
 
 #endif

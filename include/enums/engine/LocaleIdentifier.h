@@ -8,7 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENUMS_H__
 #define __IS06_ENUMS_H__
 
-enum LocaleIdentifier
+namespace is06
+{
+namespace engine
+{
+
+enum ELocaleIdentifier
 {
   LOCALE_ENG_GB,
   LOCALE_ENG_US,
@@ -23,5 +28,8 @@ enum LocaleIdentifier
   LOCALE_DUT_NL,
   LOCALE_JPN_JP
 };
+
+}
+}
 
 #endif

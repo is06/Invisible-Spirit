@@ -13,13 +13,16 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../enums/styles/MenuIcon.h"
 #include "../../../enums/styles/MenuStyle.h"
 
-using namespace std;
+namespace is06
+{
+namespace hud
+{
 
-class MenuOption : public Hud
+class CMenuOption : public CHud
 {
   public:
-    MenuOption(MenuIcon icon, const string& title = "[Option]", f32 x = 0, f32 y = 0, MenuStyle style = MENU_STYLE_STD);
-    virtual ~MenuOption();
+    CMenuOption(EMenuIcon icon, const std::string& title = "[Option]", irr::f32 x = 0, irr::f32 y = 0, EMenuStyle style = MENU_STYLE_STD);
+    virtual ~CMenuOption();
 
     virtual void render();
 
@@ -28,17 +31,20 @@ class MenuOption : public Hud
     void setSelectable(bool isSelectable);
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(irr::u8 value);
 
   protected:
-    MenuIcon currentIcon;
-    Text* currentText;
-    Window* box;
+    EMenuIcon CurrentIcon;
+    CText* Label;
+    CWindow* Box;
 
-    bool hover;
-    bool enabled;
-    bool visible;
-    bool selectable;
+    bool Hover;
+    bool Enabled;
+    bool Visible;
+    bool Selectable;
 };
+
+}
+}
 
 #endif

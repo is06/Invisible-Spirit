@@ -10,36 +10,40 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/sound/SoundManager.h"
 #include "../../include/Game.h"
 
-using namespace std;
-using namespace irr;
-
-MusicSequence::MusicSequence(const MusicSequenceInfo& info)
+namespace is06
 {
-  string filePath("resource/music/");
-  filePath += info.fileName;
+namespace sound
+{
 
-  if (info.looped) {
-    cout << info.loopStart << " -> " << info.loopEnd << endl;
-    FMOD_System_CreateStream(Game::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &soundPtr);
-    FMOD_Sound_SetLoopPoints(soundPtr, info.loopStart, FMOD_TIMEUNIT_MS, info.loopEnd, FMOD_TIMEUNIT_MS);
+CMusicSequence::CMusicSequence(const SMusicSequenceInfo& info)
+{
+  std::string filePath("resource/music/");
+  filePath += info.FileName;
+
+  if (info.Looped) {
+    FMOD_System_CreateStream(engine::CGame::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
+    FMOD_Sound_SetLoopPoints(SoundPtr, info.LoopStart, FMOD_TIMEUNIT_MS, info.LoopEnd, FMOD_TIMEUNIT_MS);
   } else {
-    FMOD_System_CreateStream(Game::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_OFF, 0, &soundPtr);
+    FMOD_System_CreateStream(engine::CGame::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_OFF, 0, &SoundPtr);
   }
 }
 
-void MusicSequence::play()
+void CMusicSequence::play()
 {
-  FMOD_System_PlaySound(Game::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, soundPtr, 0, &channelPtr);
+  FMOD_System_PlaySound(engine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
 }
 
-void MusicSequence::setVolume(f32 value)
+void CMusicSequence::setVolume(irr::f32 value)
 {
   if (value >= 0.0f && value <= 1.0f) {
-    FMOD_Channel_SetVolume(channelPtr, value);
+    FMOD_Channel_SetVolume(ChannelPtr, value);
   }
 }
 
-MusicSequence::~MusicSequence()
+CMusicSequence::~CMusicSequence()
 {
-  FMOD_Sound_Release(soundPtr);
+  FMOD_Sound_Release(SoundPtr);
+}
+
+}
 }

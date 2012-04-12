@@ -1,16 +1,21 @@
 #ifndef __IS06_OMNI_LIGHT_H__
 #define __IS06_OMNI_LIGHT_H__
 
-using namespace irr;
-using namespace std;
-
 #include "../../include/3d/Light.h"
 
-class OmniLight : public Light
+namespace is06
+{
+namespace model
+{
+
+class COmniLight : public CLight
 {
   public:
-    OmniLight();
-    ~OmniLight();
+    COmniLight();
+    ~COmniLight();
 };
+
+}
+}
 
 #endif

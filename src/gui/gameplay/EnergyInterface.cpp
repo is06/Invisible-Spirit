@@ -10,42 +10,41 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/gui/counter/BarCounter.h"
 #include "../../../include/gui/gameplay/EnergyInterface.h"
 
-using namespace std;
-
-EnergyInterface::EnergyInterface() : Hud()
+namespace is06
 {
-  hpBar = new BarCounter(100, 0, 100, (Game::screenPos.right - 170), (Game::screenPos.bottom + 30), 150, 4, BAR_STYLE_LIFE);
-  mpBar = new BarCounter(100, 0, 100, (Game::screenPos.right - 120), (Game::screenPos.bottom + 20), 100, 4, BAR_STYLE_LIFE);
+namespace hud
+{
+
+CEnergyInterface::CEnergyInterface() : CHud()
+{
+  HpBar = new CBarCounter(100, 0, 100, (engine::CGame::ScreenPos.Right - 170), (engine::CGame::ScreenPos.Bottom + 30), 150, 4, BAR_STYLE_LIFE);
 }
 
-void EnergyInterface::render()
+void CEnergyInterface::render()
 {
-  Hud::render();
-  hpBar->render();
-  mpBar->render();
+  CHud::render();
+  HpBar->render();
 }
 
-void EnergyInterface::hide()
+void CEnergyInterface::hide()
 {
-  hpBar->hide();
-  mpBar->hide();
+  HpBar->hide();
 }
 
-void EnergyInterface::show()
+void CEnergyInterface::show()
 {
-  hpBar->show();
-  mpBar->show();
+  HpBar->show();
 }
 
-void EnergyInterface::setOpacity(u8 value)
+void CEnergyInterface::setOpacity(irr::u8 value)
 {
-  hpBar->setOpacity(value);
-  mpBar->setOpacity(value);
+  HpBar->setOpacity(value);
 }
 
-EnergyInterface::~EnergyInterface()
+CEnergyInterface::~CEnergyInterface()
 {
-  delete hpBar;
-  delete mpBar;
+  delete HpBar;
 }
 
+}
+}

@@ -9,61 +9,66 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/TextChar.h"
 #include "../../include/gui/TextFont.h"
 
-using namespace std;
-using namespace irr;
-
-TextChar::TextChar(u8 code, f32& x, f32& y, u8 size, TextFont* font, bool visible, u8 extTexture) : Hud2DElement(x, y, size, size)
+namespace is06
 {
-  u32 offsetCode = code;
+namespace hud
+{
 
-  isVisible = visible;
+CTextChar::CTextChar(irr::u8 code, irr::f32& x, irr::f32& y, irr::u8 size, CTextFont* font, bool visible, irr::u8 extTexture) : CHud2DElement(x, y, size, size)
+{
+  irr::u32 offsetCode = code;
+
+  IsVisible = visible;
 
   if (extTexture) {
-    offsetCode = ((u16)extTexture * 1000) + ((u16)code);
+    offsetCode = ((irr::u16)extTexture * 1000) + ((irr::u16)code);
   }
 
   x += (size * (font->getCharOffset(offsetCode) / 100.0f) / 2);
   setPosition(x, y);
   x += (size * (font->getCharOffset(offsetCode) / 100.0f) / 2);
 
-  fontStyle = font;
+  FontStyle = font;
 
   if (!extTexture) {
-    fontStyle->resetToStandard();
+    FontStyle->resetToStandard();
   } else {
-    fontStyle->changeExtTexture(extTexture);
+    FontStyle->changeExtTexture(extTexture);
   }
 
-  material.setTexture(0, fontStyle->getMaterial().getTexture(0));
+  Material.setTexture(0, FontStyle->getMaterial().getTexture(0));
 
-  f32 space = 1.0f / 16.0f;
+  irr::f32 space = 1.0f / 16.0f;
 
-  f32 endU = ((code / 16) + 1) * space;
-  f32 endV = ((code - ((code / 16) * 16)) + 1) * space;
-  f32 startU = endU - space;
-  f32 startV = endV - space;
+  irr::f32 endU = ((code / 16) + 1) * space;
+  irr::f32 endV = ((code - ((code / 16) * 16)) + 1) * space;
+  irr::f32 startU = endU - space;
+  irr::f32 startV = endV - space;
 
-  minTextureOffset.X = startV;
-  minTextureOffset.Y = startU;
-  maxTextureOffset.X = endV;
-  maxTextureOffset.Y = endU;
+  MinTextureOffset.X = startV;
+  MinTextureOffset.Y = startU;
+  MaxTextureOffset.X = endV;
+  MaxTextureOffset.Y = endU;
 
-  vertices[0].TCoords.X = startV;
-  vertices[0].TCoords.Y = startU;
-  vertices[1].TCoords.X = endV;
-  vertices[1].TCoords.Y = startU;
-  vertices[2].TCoords.X = startV;
-  vertices[2].TCoords.Y = endU;
-  vertices[3].TCoords.X = endV;
-  vertices[3].TCoords.Y = endU;
+  Vertices[0].TCoords.X = startV;
+  Vertices[0].TCoords.Y = startU;
+  Vertices[1].TCoords.X = endV;
+  Vertices[1].TCoords.Y = startU;
+  Vertices[2].TCoords.X = startV;
+  Vertices[2].TCoords.Y = endU;
+  Vertices[3].TCoords.X = endV;
+  Vertices[3].TCoords.Y = endU;
 }
 
-void TextChar::render()
+void CTextChar::render()
 {
-  Hud2DElement::render();
+  CHud2DElement::render();
 }
 
-TextChar::~TextChar()
+CTextChar::~CTextChar()
 {
 
+}
+
+}
 }

@@ -21,31 +21,33 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Gamepad.h"
 #include "../../include/Timer.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace scene
+{
 
 /**
  * Initialize all objects and entity in this type of scene
  */
-SceneGameplay::SceneGameplay() : Scene()
+CSceneGameplay::CSceneGameplay() : CScene()
 {
-  level = new LevelMesh();
-  cam = new TPCamera();
+  Level = new model::CLevelMesh();
+  Camera = new model::CTPCamera();
 
   // Ayron info
-  ayron = new PlayableCharacter(cam);
+  Ayron = new model::CPlayableCharacter(Camera);
   //ayron->setShadowMode(SHADOW_MODE_CAST);
   // Link Ayron to Third-Person Camera
-  cam->linkEntity(ayron);
+  Camera->linkEntity(Ayron);
 
   // GUI Interfaces
-  gpInterface = new GameplayInterface();
-  enInterface = new EnergyInterface();
-  gpMenu = new GameplayMenu(globalTranslations, keyboard);
-  everySecondTimer = new Timer(1.0f, boost::bind(&SceneGameplay::everySecond, this), 9999);
+  GameplayInterface = new hud::CGameplayInterface();
+  EnergyInterface = new hud::CEnergyInterface();
+  GameplayMenu = new hud::CGameplayMenu(GlobalTranslations, Keyboard);
+  EverySecondTimer = new engine::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), 9999);
 
   // Flag for fade out
-  quitIsFading = false;
+  QuitIsFading = false;
 
   // Fade at scene start
   fadeIn(0.5f);
@@ -54,11 +56,11 @@ SceneGameplay::SceneGameplay() : Scene()
 /**
  * This function manages all events in this type of scene
  */
-void SceneGameplay::events()
+void CSceneGameplay::events()
 {
-  Scene::events();
+  CScene::events();
 
-  everySecondTimer->update();
+  EverySecondTimer->update();
 
   manageCameraControl();
   manageCharacterJumps();
@@ -66,42 +68,42 @@ void SceneGameplay::events()
   manageCharacterCollisions();
 
   // Menu
-  if (keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
-    gpMenu->toggle();
-    ayron->toggleControl();
-    cam->toggleControl();
+  if (Keyboard->pressed(irr::KEY_KEY_D, engine::EVENT_ONCE)) {
+    GameplayMenu->toggle();
+    Ayron->toggleControl();
+    Camera->toggleControl();
   }
 
-  if (gpMenu->isVisible) {
+  if (GameplayMenu->IsVisible) {
     manageMenuControl();
   }
 
   // Entities rendering
-  ayron->update();
-  cam->update();
+  Ayron->update();
+  Camera->update();
 }
 
-void SceneGameplay::everySecond()
+void CSceneGameplay::everySecond()
 {
-  gameSave->incInteger(21, 1);
+  GameSave->incInteger(21, 1);
 }
 
 /**
  * Manages camera control. Called every cycke
  */
-void SceneGameplay::manageCameraControl()
+void CSceneGameplay::manageCameraControl()
 {
-  if (cam->hasControl()) {
+  if (Camera->hasControl()) {
     // Keyboard control
-    if (keyboard->pressed(KEY_KEY_J)) {
-      cam->goLeft(speedFactor * 100);
-    } else if (keyboard->pressed(KEY_KEY_L)) {
-      cam->goRight(speedFactor * 100);
+    if (Keyboard->pressed(irr::KEY_KEY_J)) {
+      Camera->goLeft(SpeedFactor * 100);
+    } else if (Keyboard->pressed(irr::KEY_KEY_L)) {
+      Camera->goRight(SpeedFactor * 100);
     }
-    if (keyboard->pressed(KEY_KEY_I)) {
-      cam->goNear(speedFactor * 100);
-    } else if (keyboard->pressed(KEY_KEY_K)) {
-      cam->goFar(speedFactor * 100);
+    if (Keyboard->pressed(irr::KEY_KEY_I)) {
+      Camera->goNear(SpeedFactor * 100);
+    } else if (Keyboard->pressed(irr::KEY_KEY_K)) {
+      Camera->goFar(SpeedFactor * 100);
     }
 
     // Joystick control
@@ -126,20 +128,20 @@ void SceneGameplay::manageCameraControl()
 /**
  * Manages Character's jumps. Called every cycle
  */
-void SceneGameplay::manageCharacterJumps()
+void CSceneGameplay::manageCharacterJumps()
 {
-  if (ayron->hasControl()) {
-    ayron->isJumping = false;
+  if (Ayron->hasControl()) {
+    Ayron->IsJumping = false;
 
     // Keyboard
-    if (keyboard->pressed(KEY_KEY_V, EVENT_ONCE)) {
-      if (!ayron->isJumping && !ayron->isFalling) {
-        ayron->setJumpDelta(ayron->getJumpStrength());
+    if (Keyboard->pressed(irr::KEY_KEY_V, engine::EVENT_ONCE)) {
+      if (!Ayron->IsJumping && !Ayron->IsFalling) {
+        Ayron->setJumpDelta(Ayron->getJumpStrength());
       }
     }
-    if (keyboard->pressed(KEY_KEY_V)) {
-      ayron->isJumping = true;
-      ayron->jump();
+    if (Keyboard->pressed(irr::KEY_KEY_V)) {
+      Ayron->IsJumping = true;
+      Ayron->jump();
     }
 
     // Gamepad
@@ -161,28 +163,28 @@ void SceneGameplay::manageCharacterJumps()
  * This function manages Character's movements, both keyboard and gamepad
  * are functionnal. Called every cycle
  */
-void SceneGameplay::manageCharacterMovements()
+void CSceneGameplay::manageCharacterMovements()
 {
-  if (ayron->hasControl()) {
+  if (Ayron->hasControl()) {
     // Keyboard control
-    if (keyboard->pressed(KEY_UP) || keyboard->pressed(KEY_DOWN) || keyboard->pressed(KEY_LEFT) || keyboard->pressed(KEY_RIGHT)) {
+    if (Keyboard->pressed(KEY_UP) || Keyboard->pressed(KEY_DOWN) || Keyboard->pressed(KEY_LEFT) || Keyboard->pressed(KEY_RIGHT)) {
       // Character's direction from keyboard's arrows angle
-      ayron->getNode()->setRotation(core::vector3df(
-        ayron->getNode()->getRotation().X,
-        cam->getNode()->getRotation().Y - (keyboard->getDirectionAngle() + core::radToDeg(core::PI / 2)),
-        ayron->getNode()->getRotation().Z
+      Ayron->getNode()->setRotation(core::vector3df(
+        Ayron->getNode()->getRotation().X,
+        Camera->getNode()->getRotation().Y - (Keyboard->getDirectionAngle() + core::radToDeg(core::PI / 2)),
+        Ayron->getNode()->getRotation().Z
       ));
 
-      if (keyboard->pressed(KEY_LEFT)) {
-        ayron->goLeft(speedFactor * keyboard->getDirectionXAxis() * -1);
-      } else if (keyboard->pressed(KEY_RIGHT)) {
-        ayron->goRight(speedFactor * keyboard->getDirectionXAxis());
+      if (Keyboard->pressed(KEY_LEFT)) {
+        Ayron->goLeft(SpeedFactor * Keyboard->getDirectionXAxis() * -1);
+      } else if (Keyboard->pressed(KEY_RIGHT)) {
+        Ayron->goRight(SpeedFactor * Keyboard->getDirectionXAxis());
       }
 
-      if (keyboard->pressed(KEY_DOWN)) {
-        ayron->goBackward(speedFactor * keyboard->getDirectionYAxis() * -1);
-      } else if (keyboard->pressed(KEY_UP)) {
-        ayron->goForward(speedFactor * keyboard->getDirectionYAxis());
+      if (Keyboard->pressed(KEY_DOWN)) {
+        Ayron->goBackward(SpeedFactor * Keyboard->getDirectionYAxis() * -1);
+      } else if (Keyboard->pressed(KEY_UP)) {
+        Ayron->goForward(SpeedFactor * Keyboard->getDirectionYAxis());
       }
     }
 
@@ -216,31 +218,31 @@ void SceneGameplay::manageCharacterMovements()
  * This function manages Character collision with floor and wall.
  * Called every cycle
  */
-void SceneGameplay::manageCharacterCollisions()
+void CSceneGameplay::manageCharacterCollisions()
 {
   // Check if level was created
-  if (level->getMesh() == NULL) Game::fatalError(ERRCODE_45);
-  if (level->getNode() == NULL) Game::fatalError(ERRCODE_46);
-  if (level->getMainBody() == NULL) Game::fatalError(ERRCODE_47);
+  if (Level->getMesh() == NULL) engine::CGame::fatalError(debug::ERRCODE_45);
+  if (Level->getNode() == NULL) engine::CGame::fatalError(debug::ERRCODE_46);
+  if (Level->getMainBody() == NULL) engine::CGame::fatalError(debug::ERRCODE_47);
 
   // Floor collision
-  if (ayron->getFloorCollision(level) > 1.0) {
-    ayron->fall(speedFactor);
+  if (Ayron->getFloorCollision(Level) > 1.0) {
+    Ayron->fall(SpeedFactor);
   }
-  if (ayron->getFloorCollision(level) < 1.0) {
-    while (ayron->getFloorCollision(level) < 0.95) {
-      ayron->raise();
+  if (Ayron->getFloorCollision(Level) < 1.0) {
+    while (Ayron->getFloorCollision(Level) < 0.95) {
+      Ayron->raise();
     }
   }
 
   // Wall collision, this normal vector will be modified by getWallCollision functions
   core::vector3df normal;
 
-  if (ayron->getWallCollision(RAY_WALL_P, level, normal) < 1.0f
-  || ayron->getWallCollision(RAY_WALL_Q, level, normal) < 1.0f) {
-    while (ayron->getWallCollision(RAY_WALL_P, level, normal) < 0.99
-    || ayron->getWallCollision(RAY_WALL_Q, level, normal) < 0.99) {
-      ayron->moveOpposite(normal);
+  if (Ayron->getWallCollision(engine::RAY_WALL_P, Level, normal) < 1.0f
+  || Ayron->getWallCollision(engine::RAY_WALL_Q, Level, normal) < 1.0f) {
+    while (Ayron->getWallCollision(engine::RAY_WALL_P, Level, normal) < 0.99
+    || Ayron->getWallCollision(engine::RAY_WALL_Q, Level, normal) < 0.99) {
+      Ayron->moveOpposite(normal);
     }
   }
 }
@@ -248,50 +250,53 @@ void SceneGameplay::manageCharacterCollisions()
 /**
  *
  */
-void SceneGameplay::manageMenuControl()
+void CSceneGameplay::manageMenuControl()
 {
-  if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
-    if (gpMenu->getSectionMenu()->getCurrentOption() == 9) {
-      quitIsFading = true;
+  if (Keyboard->pressed(irr::KEY_SPACE, engine::EVENT_ONCE)) {
+    if (GameplayMenu->getSectionMenu()->getCurrentOption() == 9) {
+      QuitIsFading = true;
       fadeOut(0.5f);
     }
   }
-  if (quitIsFading && outFader->isReady()) {
-    Game::changeScene(SCENE_MENU);
+  if (QuitIsFading && OutFader->isReady()) {
+    engine::CGame::changeScene(SCENE_MENU);
   }
 }
 
 /**
  *
  */
-void SceneGameplay::postRender()
+void CSceneGameplay::postRender()
 {
-  Scene::postRender();
+  CScene::postRender();
 }
 
 /**
  * This functions is called after all scene object render
  * It renders HUD elements in front of camera
  */
-void SceneGameplay::hudRender()
+void CSceneGameplay::hudRender()
 {
-  Scene::hudRender();
+  CScene::hudRender();
 
   //gpInterface->render();
   //enInterface->render();
-  gpMenu->render();
+  GameplayMenu->render();
 }
 
 /**
  * Destroys all objects defined by constructor
  */
-SceneGameplay::~SceneGameplay()
+CSceneGameplay::~CSceneGameplay()
 {
-  if (level) delete level;
-  if (ayron) delete ayron;
-  if (cam) delete cam;
-  if (gpInterface) delete gpInterface;
-  if (enInterface) delete enInterface;
-  if (gpMenu) delete gpMenu;
-  if (everySecondTimer) delete everySecondTimer;
+  if (Level) delete Level;
+  if (Ayron) delete Ayron;
+  if (Camera) delete Camera;
+  if (GameplayInterface) delete GameplayInterface;
+  if (EnergyInterface) delete EnergyInterface;
+  if (GameplayMenu) delete GameplayMenu;
+  if (EverySecondTimer) delete EverySecondTimer;
+}
+
+}
 }

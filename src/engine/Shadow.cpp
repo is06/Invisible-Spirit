@@ -8,26 +8,31 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/engine/Shadow.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
 /**
  *
  */
-Shadow::Shadow(ShadowMode mode)
+CShadow::CShadow(EShadowMode mode)
 {
-  currentMode = mode;
+  CurrentMode = mode;
 }
 
-const ShadowMode& Shadow::getMode() const
+const EShadowMode& CShadow::getMode() const
 {
-  return currentMode;
+  return CurrentMode;
 }
 
 /**
  *
  */
-Shadow::~Shadow()
+CShadow::~CShadow()
 {
 
+}
+
+}
 }

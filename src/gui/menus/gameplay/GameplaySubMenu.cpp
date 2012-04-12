@@ -8,33 +8,40 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/GameplaySubMenu.h"
 
-GameplaySubMenu::GameplaySubMenu() : Hud()
+namespace is06
+{
+namespace hud
+{
+
+CGameplaySubMenu::CGameplaySubMenu() : CHud()
 {
 
 }
 
-void GameplaySubMenu::render()
+void CGameplaySubMenu::render()
 {
-  Hud::render();
+  CHud::render();
 }
 
-void GameplaySubMenu::show()
-{
-
-}
-
-void GameplaySubMenu::hide()
+void CGameplaySubMenu::show()
 {
 
 }
 
-void GameplaySubMenu::setOpacity(u8 value)
+void CGameplaySubMenu::hide()
 {
 
 }
 
-GameplaySubMenu::~GameplaySubMenu()
+void CGameplaySubMenu::setOpacity(irr::u8 value)
 {
 
 }
 
+CGameplaySubMenu::~CGameplaySubMenu()
+{
+
+}
+
+}
+}

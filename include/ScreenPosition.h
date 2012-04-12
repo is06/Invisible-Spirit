@@ -8,21 +8,29 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SCREEN_POSITION_H__
 #define __IS06_SCREEN_POSITION_H__
 
-struct ScreenPosition
+namespace is06
 {
-  f32 top;
-  f32 bottom;
-  f32 left;
-  f32 right;
-  f32 vCenter;
-  f32 hCenter;
+namespace engine
+{
 
-  u16 width;
-  u16 height;
+struct SScreenPosition
+{
+  irr::f32 Top;
+  irr::f32 Bottom;
+  irr::f32 Left;
+  irr::f32 Right;
+  irr::f32 VCenter;
+  irr::f32 HCenter;
 
-  u16 displayWidth;
-  u16 displayHeight;
-  u8 displayDepth;
+  irr::u16 Width;
+  irr::u16 Height;
+
+  irr::u16 DisplayWidth;
+  irr::u16 DisplayHeight;
+  irr::u8 DisplayDepth;
 };
+
+}
+}
 
 #endif

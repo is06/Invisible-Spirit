@@ -9,25 +9,30 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/Light.h"
 #include "../../include/Game.h"
 
-using namespace irr;
-using namespace std;
-
-Light::Light() : Entity()
+namespace is06
 {
-  video::ITexture* iconTexture = Game::getVideoDriver()->getTexture("resource/debug/icons/light.bmp");
-  node = Game::getSceneManager()->addLightSceneNode(0, core::vector3df(0,2,0), video::SColor(255,255,200,0), 10.0f);
+namespace model
+{
 
-  icon = Game::getSceneManager()->addBillboardSceneNode(0, core::dimension2df(1.0f, 1.0f), core::vector3df(0,2,0));
-  icon->setMaterialTexture(0, iconTexture);
+CLight::CLight() : engine::CEntity()
+{
+  irr::video::ITexture* iconTexture = engine::CGame::getVideoDriver()->getTexture("resource/debug/icons/light.bmp");
+  Node = engine::CGame::getSceneManager()->addLightSceneNode(0, irr::core::vector3df(0,2,0), irr::video::SColor(255,255,200,0), 10.0f);
+
+  Icon = engine::CGame::getSceneManager()->addBillboardSceneNode(0, irr::core::dimension2df(1.0f, 1.0f), irr::core::vector3df(0,2,0));
+  Icon->setMaterialTexture(0, iconTexture);
 }
 
-void Light::update()
+void CLight::update()
 {
   //Entity::update();
 }
 
-Light::~Light()
+CLight::~CLight()
 {
-  node->remove();
-  icon->remove();
+  Node->remove();
+  Icon->remove();
+}
+
+}
 }

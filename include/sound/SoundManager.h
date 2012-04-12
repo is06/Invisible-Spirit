@@ -8,16 +8,18 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SOUND_MANAGER_H__
 #define __IS06_SOUND_MANAGER_H__
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace sound
+{
 
-class SoundManager
+class CSoundManager
 {
   public:
-    SoundManager();
-    ~SoundManager();
+    CSoundManager();
+    ~CSoundManager();
 
-    void setEarsData(Camera* activeCamera);
+    void setEarsData(model::CCamera* activeCamera);
     void update();
 
     FMOD_SYSTEM* getSystem();
@@ -30,5 +32,8 @@ class SoundManager
     FMOD_VECTOR cameraForward;
     FMOD_VECTOR cameraUp;
 };
+
+}
+}
 
 #endif

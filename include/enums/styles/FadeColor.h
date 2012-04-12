@@ -8,13 +8,18 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_FADE_COLOR_H__
 #define __IS06_FADE_COLOR_H__
 
-/**
- *
- */
-enum FadeColor
+namespace is06
+{
+namespace engine
+{
+
+enum EFadeColor
 {
   FADE_COLOR_BLACK,
   FADE_COLOR_WHITE
 };
+
+}
+}
 
 #endif

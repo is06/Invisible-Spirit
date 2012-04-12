@@ -10,17 +10,22 @@ http://www.is06.com. Legal code in license.txt
 
 #include "GameplaySubMenu.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace hud
+{
 
-class DimensionMenu : public GameplaySubMenu
+class CDimensionMenu : public CGameplaySubMenu
 {
   public:
-    DimensionMenu();
-    ~DimensionMenu();
+    CDimensionMenu();
+    ~CDimensionMenu();
 
-    void render(Keyboard* keyboard);
+    void render();
 };
+
+}
+}
 
 #endif
 

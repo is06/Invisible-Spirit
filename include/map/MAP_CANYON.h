@@ -10,7 +10,12 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../scene/SceneGameplay.h"
 
-class MAP_CANYON : public SceneGameplay
+namespace is06
+{
+namespace map
+{
+
+class MAP_CANYON : public scene::CSceneGameplay
 {
   public:
     MAP_CANYON();
@@ -19,9 +24,9 @@ class MAP_CANYON : public SceneGameplay
     void events();
     void postRender();
     void hudRender();
-
-  private:
-
 };
+
+}
+}
 
 #endif

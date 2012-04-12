@@ -8,14 +8,19 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SAVE_FILE_ELEMENT_H__
 #define __IS06_SAVE_FILE_ELEMENT_H__
 
-using namespace irr;
-using namespace std;
-
-struct SaveFileElement
+namespace is06
 {
-  u32 index;
-  c8 type;
-  string value;
+namespace engine
+{
+
+struct SSaveFileElement
+{
+  irr::u32 Index;
+  irr::c8 Type;
+  std::string Value;
 };
+
+}
+}
 
 #endif

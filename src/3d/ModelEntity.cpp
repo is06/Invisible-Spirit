@@ -9,23 +9,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/ModelEntity.h"
 #include "../../include/Game.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace model
+{
 
 /**
  * Initializations
  */
-ModelEntity::ModelEntity() : Entity()
+CModelEntity::CModelEntity() : engine::CEntity()
 {
-  mainMesh = NULL;
-  mainBody = NULL;
-  attachedSpeaker = NULL;
+  MainMesh = NULL;
+  MainBody = NULL;
+  AttachedSpeaker = NULL;
 }
 
 /**
  * Rendering and event method
  */
-void ModelEntity::update()
+void CModelEntity::update()
 {
   //Entity::update();
 }
@@ -33,48 +35,51 @@ void ModelEntity::update()
 /**
  *
  */
-void ModelEntity::shaderRender()
+void CModelEntity::shaderRender()
 {
 
 }
 
 /**
  * Loads a mesh in this entity
- * @param string& meshFilePath
+ * @param std::string& meshFilePath
  */
-void ModelEntity::loadMesh(const string& meshFilePath)
+void CModelEntity::loadMesh(const std::string& meshFilePath)
 {
-  mainMesh = Game::getSceneManager()->getMesh(meshFilePath.c_str());
+  MainMesh = engine::CGame::getSceneManager()->getMesh(meshFilePath.c_str());
 }
 
 /**
  * Returns the irrlicht mesh object of the entity
  */
-scene::IMesh* ModelEntity::getMesh()
+irr::scene::IMesh* CModelEntity::getMesh()
 {
-  return mainMesh;
+  return MainMesh;
 }
 
 /**
  * Returns newton main body of this entity
  */
-NewtonBody* ModelEntity::getMainBody()
+NewtonBody* CModelEntity::getMainBody()
 {
-  return mainBody;
+  return MainBody;
 }
 
 /**
  *
  */
-void ModelEntity::attachSpeaker(Speaker* spk)
+void CModelEntity::attachSpeaker(sound::CSpeaker* speaker)
 {
-  attachedSpeaker = spk;
+  AttachedSpeaker = speaker;
 }
 
 /**
  * Destroys all objects
  */
-ModelEntity::~ModelEntity()
+CModelEntity::~CModelEntity()
 {
-  attachedSpeaker = NULL;
+  AttachedSpeaker = NULL;
+}
+
+}
 }

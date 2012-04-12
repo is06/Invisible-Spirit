@@ -10,15 +10,17 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/gui/Window.h"
 #include "../../../../include/gui/Text.h"
 
-using namespace std;
-using namespace irr;
-
-MenuOption::MenuOption(MenuIcon icon, const string& title, f32 x, f32 y, MenuStyle style) : Hud()
+namespace is06
 {
-  currentIcon = icon;
+namespace hud
+{
 
-  WindowStyle boxStyle = WIN_STYLE_STD;
-  FontStyle fontStyle = FONT_STANDARD_48;
+CMenuOption::CMenuOption(EMenuIcon icon, const std::string& title, irr::f32 x, irr::f32 y, EMenuStyle style) : CHud()
+{
+  CurrentIcon = icon;
+
+  EWindowStyle boxStyle = WIN_STYLE_STD;
+  EFontStyle fontStyle = FONT_STANDARD_48;
 
   switch (style) {
     case MENU_STYLE_STD:
@@ -35,61 +37,64 @@ MenuOption::MenuOption(MenuIcon icon, const string& title, f32 x, f32 y, MenuSty
       break;
   }
 
-  box = new Window(x + 75, y, 150, 28, 3, boxStyle);
-  currentText = new Text(title, x + 6, y, fontStyle);
+  Box = new CWindow(x + 75, y, 150, 28, 3, boxStyle);
+  Label = new CText(title, x + 6, y, fontStyle);
 
-  hover = false;
-  enabled = true;
-  visible = true;
-  selectable = true;
+  Hover = false;
+  Enabled = true;
+  Visible = true;
+  Selectable = true;
 }
 
-void MenuOption::render()
+void CMenuOption::render()
 {
-  Hud::render();
-  box->render();
-  currentText->render();
+  CHud::render();
+  Box->render();
+  Label->render();
 }
 
-void MenuOption::setHover(bool isHover)
+void CMenuOption::setHover(bool isHover)
 {
-  hover = isHover;
+  Hover = isHover;
 }
 
-void MenuOption::setEnabled(bool isEnabled)
+void CMenuOption::setEnabled(bool isEnabled)
 {
-  enabled = isEnabled;
-  if (enabled) {
+  Enabled = isEnabled;
+  if (Enabled) {
     setOpacity(255);
   } else {
     setOpacity(128);
   }
 }
 
-void MenuOption::setSelectable(bool isSelectable)
+void CMenuOption::setSelectable(bool isSelectable)
 {
-  selectable = isSelectable;
+  Selectable = isSelectable;
 }
 
-void MenuOption::show()
+void CMenuOption::show()
 {
-  visible = true;
-  currentText->show();
+  Visible = true;
+  Label->show();
 }
 
-void MenuOption::hide()
+void CMenuOption::hide()
 {
-  visible = false;
-  currentText->hide();
+  Visible = false;
+  Label->hide();
 }
 
-void MenuOption::setOpacity(u8 value)
+void CMenuOption::setOpacity(irr::u8 value)
 {
-  currentText->setOpacity(value);
+  Label->setOpacity(value);
 }
 
-MenuOption::~MenuOption()
+CMenuOption::~CMenuOption()
 {
-  delete currentText;
-  delete box;
+  delete Label;
+  delete Box;
+}
+
+}
 }

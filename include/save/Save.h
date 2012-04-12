@@ -10,38 +10,43 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../enums/engine/SceneIdentifier.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
-class Save
+class CSave
 {
   public:
-    Save();
-    ~Save();
+    CSave();
+    ~CSave();
 
-    void loadPrimitiveInfo(u8 slot);
-    void load(u8 slot);
-    void write(u8 slot);
+    void loadPrimitiveInfo(irr::u8 slot);
+    void load(irr::u8 slot);
+    void write(irr::u8 slot);
     void createNewFile();
 
-    s32& getInteger(u32 index);
-    bool& getBoolean(u32 index);
-    string& getString(u32 index);
+    irr::s32& getInteger(irr::u32 index);
+    bool& getBoolean(irr::u32 index);
+    std::string& getString(irr::u32 index);
 
-    void setInteger(u32 index, s32 value);
-    void incInteger(u32 index, s32 value);
-    void decInteger(u32 index, s32 value);
-    void setBoolean(u32 index, bool value);
-    void setString(u32 index, const string& value);
+    void setInteger(irr::u32 index, irr::s32 value);
+    void incInteger(irr::u32 index, irr::s32 value);
+    void decInteger(irr::u32 index, irr::s32 value);
+    void setBoolean(irr::u32 index, bool value);
+    void setString(irr::u32 index, const std::string& value);
 
   private:
     // Data maps
-    map<u32, s32> integerList;
-    map<u32, bool> booleanList;
-    map<u32, string> stringList;
+    std::map<irr::u32, irr::s32> IntegerList;
+    std::map<irr::u32, bool> BooleanList;
+    std::map<irr::u32, std::string> StringList;
 
     // Default values
     void setGeneralDefaultValues();
 };
+
+}
+}
 
 #endif

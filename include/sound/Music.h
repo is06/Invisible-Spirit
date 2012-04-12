@@ -11,22 +11,27 @@ http://www.is06.com. Legal code in license.txt
 #include "MusicSequence.h"
 #include "MusicSequenceInfo.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace sound
+{
 
-class Music
+class CMusic
 {
   public:
-    Music(const string& id);
-    ~Music();
+    CMusic(const std::string& id);
+    ~CMusic();
 
-    void playSequences(const map<u16, MusicSequenceInfo>& list);
-    void addSequences(const map<u16, MusicSequenceInfo>& list);
-    map<u16, MusicSequence*>& getSequenceMap();
-    MusicSequence* getSequence(u16 number);
+    void playSequences(const std::map<irr::u16, SMusicSequenceInfo>& list);
+    void addSequences(const std::map<irr::u16, SMusicSequenceInfo>& list);
+    std::map<irr::u16, CMusicSequence*>& getSequenceMap();
+    CMusicSequence* getSequence(irr::u16 number);
 
   private:
-    map<u16, MusicSequence*> sequences;
+    std::map<irr::u16, CMusicSequence*> Sequences;
 };
+
+}
+}
 
 #endif

@@ -8,17 +8,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/ref/core.h"
 #include "../../../include/gui/gameplay/IconButton.h"
 
-IconButton::IconButton(f32 x, f32 y) : Button(x, y)
+namespace is06
+{
+namespace hud
+{
+
+CIconButton::CIconButton(irr::f32 x, irr::f32 y) : CButton(x, y)
 {
 
 }
 
-void IconButton::render()
+void CIconButton::render()
 {
-  Button::render();
+  CButton::render();
 }
 
-IconButton::~IconButton()
+CIconButton::~CIconButton()
 {
 
+}
+
+}
 }

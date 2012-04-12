@@ -10,63 +10,71 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/Character.h"
 #include "../../include/3d/NPC.h"
 
+namespace is06
+{
+namespace model
+{
+
 /**
  * Initializations
  */
-NPC::NPC(const string& meshFile, const string& animationFile) : Character(meshFile, animationFile)
+CNPC::CNPC(const std::string& meshFile, const std::string& animationFile) : CCharacter(meshFile, animationFile)
 {
-  nextDialogIdentifier = 0;
-  currentTalkingDialogIdentifier = 0;
+  NextDialogIdentifier = 0;
+  CurrentTalkingDialogIdentifier = 0;
 }
 
 /**
  * Rendering and events method
  */
-void NPC::update()
+void CNPC::update()
 {
-  Character::update();
+  CCharacter::update();
 }
 
 /**
  * Execute the talk action for this NPC
  */
-void NPC::talk(const string& dialogIdentifier) const
+void CNPC::talk(const std::string& dialogIdentifier) const
 {
-  attachedDialog->start(dialogIdentifier);
+  AttachedDialog->start(dialogIdentifier);
 }
 
 /**
  * Attaches a dialog interface object to this NPC
  */
-void NPC::attachDialogInterface(DialogInterface* dialog)
+void CNPC::attachDialogInterface(engine::CDialogInterface* dialog)
 {
-  attachedDialog = dialog;
+  AttachedDialog = dialog;
 }
 
 /**
  * Get a random dialog identifier
  * @param bool avoidDoubles
- * @return const string&
+ * @return const std::string&
  */
-const string& NPC::getRandomTalkingDialogIdentifier(bool avoidDoubles)
+const std::string& CNPC::getRandomTalkingDialogIdentifier(bool avoidDoubles)
 {
-  return dialogIdentifierList[currentTalkingDialogIdentifier];
+  return DialogIdentifierList[CurrentTalkingDialogIdentifier];
 }
 
 /**
  * Get the next dialog identifier
- * @return const string&
+ * @return const std::string&
  */
-const string& NPC::getNextTalkingDialogIdentifier()
+const std::string& CNPC::getNextTalkingDialogIdentifier()
 {
-  currentTalkingDialogIdentifier++;
-  return dialogIdentifierList[currentTalkingDialogIdentifier];
+  CurrentTalkingDialogIdentifier++;
+  return DialogIdentifierList[CurrentTalkingDialogIdentifier];
 }
 
 /**
  * Destructor
  */
-NPC::~NPC()
+CNPC::~CNPC()
 {
 
+}
+
+}
 }

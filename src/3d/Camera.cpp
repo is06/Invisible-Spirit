@@ -12,127 +12,135 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
+namespace is06
+{
+namespace model
+{
+
 /**
  * Constructeur de la caméra, ajoute le noeud au gestionnaire de scène et associe rotation et target
  */
-Camera::Camera()
+CCamera::CCamera()
 {
-  controlable = true;
-  irrCam = Game::getSceneManager()->addCameraSceneNode(0, core::vector3df(0, 0, 0));
-  irrCam->bindTargetAndRotation(true);
-  irrCam->setNearValue(0.1f);
+  Controlable = true;
+  IrrCam = engine::CGame::getSceneManager()->addCameraSceneNode(0, core::vector3df(0, 0, 0));
+  IrrCam->bindTargetAndRotation(true);
+  IrrCam->setNearValue(0.1f);
 }
 
 /**
  * Fonction de mise à jour de tous les objets Camera
  */
-void Camera::update()
+void CCamera::update()
 {
 
 }
 
-void Camera::turnX(f32 speed)
+void CCamera::turnX(f32 speed)
 {
-  irrCam->setRotation(core::vector3df(
-    irrCam->getRotation().X + (speed * Game::getSpeedFactor()),
-    irrCam->getRotation().Y,
-    irrCam->getRotation().Z
+  IrrCam->setRotation(core::vector3df(
+    IrrCam->getRotation().X + (speed * engine::CGame::getSpeedFactor()),
+    IrrCam->getRotation().Y,
+    IrrCam->getRotation().Z
   ));
 }
 
-void Camera::turnY(f32 speed)
+void CCamera::turnY(f32 speed)
 {
-  irrCam->setRotation(core::vector3df(
-    irrCam->getRotation().X,
-    irrCam->getRotation().Y + (speed * Game::getSpeedFactor()),
-    irrCam->getRotation().Z
+  IrrCam->setRotation(core::vector3df(
+    IrrCam->getRotation().X,
+    IrrCam->getRotation().Y + (speed * engine::CGame::getSpeedFactor()),
+    IrrCam->getRotation().Z
   ));
 }
 
-void Camera::turnZ(f32 speed)
+void CCamera::turnZ(f32 speed)
 {
-  irrCam->setRotation(core::vector3df(
-    irrCam->getRotation().X,
-    irrCam->getRotation().Y,
-    irrCam->getRotation().Z + (speed * Game::getSpeedFactor())
+  IrrCam->setRotation(core::vector3df(
+    IrrCam->getRotation().X,
+    IrrCam->getRotation().Y,
+    IrrCam->getRotation().Z + (speed * engine::CGame::getSpeedFactor())
   ));
 }
 
-void Camera::moveX(f32 speed)
+void CCamera::moveX(f32 speed)
 {
-  irrCam->setPosition(core::vector3df(
-    getX() + (speed * Game::getSpeedFactor()),
+  IrrCam->setPosition(core::vector3df(
+    getX() + (speed * engine::CGame::getSpeedFactor()),
     getY(),
     getZ()
   ));
 }
 
-void Camera::moveY(f32 speed)
+void CCamera::moveY(f32 speed)
 {
-  irrCam->setPosition(core::vector3df(
+  IrrCam->setPosition(core::vector3df(
     getX(),
-    getY() + (speed * Game::getSpeedFactor()),
+    getY() + (speed * engine::CGame::getSpeedFactor()),
     getZ()
   ));
 }
 
-void Camera::moveZ(f32 speed)
+void CCamera::moveZ(f32 speed)
 {
-  irrCam->setPosition(core::vector3df(
+  IrrCam->setPosition(core::vector3df(
     getX(),
     getY(),
-    getZ() + (speed * Game::getSpeedFactor())
+    getZ() + (speed * engine::CGame::getSpeedFactor())
   ));
 }
 
-f32 Camera::getX()
+f32 CCamera::getX()
 {
-  return irrCam->getPosition().X;
+  return IrrCam->getPosition().X;
 }
 
-f32 Camera::getY()
+f32 CCamera::getY()
 {
-  return irrCam->getPosition().Y;
+  return IrrCam->getPosition().Y;
 }
 
-f32 Camera::getZ()
+f32 CCamera::getZ()
 {
-  return irrCam->getPosition().Z;
+  return IrrCam->getPosition().Z;
 }
 
 /**
  * Retourne le node Irrlicht associé à la caméra
  * @return ISceneNode* le noeud associé à la caméra
  */
-scene::ICameraSceneNode* Camera::getNode()
+irr::scene::ICameraSceneNode* CCamera::getNode()
 {
-  return irrCam;
+  return IrrCam;
 }
 
-const core::vector3df& Camera::getLastPosition() const
+const core::vector3df& CCamera::getLastPosition() const
 {
-  return lastPosition;
+  return LastPosition;
 }
 
-void Camera::toggleControl()
+void CCamera::toggleControl()
 {
-  if (controlable) {
-    controlable = false;
+  if (Controlable) {
+    Controlable = false;
   } else {
-    controlable = true;
+    Controlable = true;
   }
 }
 
-void Camera::setControl(bool val)
+void CCamera::setControl(bool val)
 {
-  controlable = val;
+  Controlable = val;
 }
 
 /**
  * Permet de savoir si le joueur a le contrôle sur la caméra
  * @return bool vaut vrai si le joueur a le contrôle
  */
-bool Camera::hasControl()
+bool CCamera::hasControl()
 {
-  return controlable;
+  return Controlable;
+}
+
+}
 }

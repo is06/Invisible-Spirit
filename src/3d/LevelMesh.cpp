@@ -9,36 +9,30 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/LevelMesh.h"
 #include "../../include/3d/StaticModel.h"
 
-using namespace irr;
+namespace is06
+{
+namespace model
+{
 
-/**
- * Initialise le mesh Bullet qui permet de créer la forme complexe
- */
-LevelMesh::LevelMesh() : StaticModel()
+CLevelMesh::CLevelMesh() : CStaticModel()
 {
 
 }
 
-/**
- * Fonction de mise à jour de tous les levelMesh créés
- */
-void LevelMesh::update()
+void CLevelMesh::update()
 {
-  StaticModel::update();
+  CStaticModel::update();
 }
 
-/**
- * Chargement du masque de collision du mesh Irrlicht dans le mesh Bullet
- */
-void LevelMesh::loadCollisionMask()
+void CLevelMesh::loadCollisionMask()
 {
 
 }
 
-/**
- * Détruit les objets définis par le constructeur
- */
-LevelMesh::~LevelMesh()
+CLevelMesh::~CLevelMesh()
 {
 
+}
+
+}
 }

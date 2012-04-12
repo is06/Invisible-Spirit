@@ -10,13 +10,21 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/Enemy.h"
 
-class FloorEnemy : public Enemy
+namespace is06
+{
+namespace model
+{
+
+class CFloorEnemy : public CEnemy
 {
   public:
-    FloorEnemy();
-    virtual ~FloorEnemy();
+    CFloorEnemy();
+    virtual ~CFloorEnemy();
 
     virtual void update();
 };
+
+}
+}
 
 #endif

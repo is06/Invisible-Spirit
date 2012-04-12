@@ -12,33 +12,39 @@ http://www.is06.com. Legal code in license.txt
 #include "../scene/Scene.h"
 #include "../Game.h"
 
-using namespace irr;
+namespace is06
+{
+namespace shader
+{
 
-class IceShaderCallback : public video::IShaderConstantSetCallBack
+class CIceShaderCallback : public irr::video::IShaderConstantSetCallBack
 {
   public:
-    const video::SMaterial* usedMaterial;
+    const irr::video::SMaterial* usedMaterial;
 
-    virtual void OnSetMaterial(const video::SMaterial& material)
+    virtual void OnSetMaterial(const irr::video::SMaterial& material)
     {
       usedMaterial = &material;
     }
 
-    virtual void OnSetConstants(video::IMaterialRendererServices* services, s32 userData)
+    virtual void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData)
     {
       // Inversed world matrix
-      core::matrix4 invWorld = Game::getVideoDriver()->getTransform(video::ETS_WORLD);
+      irr::core::matrix4 invWorld = engine::CGame::getVideoDriver()->getTransform(irr::video::ETS_WORLD);
       services->setVertexShaderConstant("invWorldMatrix", invWorld.pointer(), 16);
 
       // Camera position
-      core::vector3df pos = Game::getCurrentScene()->getActiveCamera()->getNode()->getAbsolutePosition();
-      services->setVertexShaderConstant("cameraPosition", reinterpret_cast<f32*>(&pos), 3);
+      irr::core::vector3df pos = engine::CGame::getCurrentScene()->getActiveCamera()->getNode()->getAbsolutePosition();
+      services->setVertexShaderConstant("cameraPosition", reinterpret_cast<irr::f32*>(&pos), 3);
 
       // Light color
-      video::SColorf col(0.0f, 1.0f, 1.0f, 0.0f);
-      services->setVertexShaderConstant("lightColor", reinterpret_cast<f32*>(&col), 4);
+      irr::video::SColorf col(0.0f, 1.0f, 1.0f, 0.0f);
+      services->setVertexShaderConstant("lightColor", reinterpret_cast<irr::f32*>(&col), 4);
     }
 };
+
+}
+}
 
 #endif
 

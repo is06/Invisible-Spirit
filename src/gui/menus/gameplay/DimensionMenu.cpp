@@ -8,17 +8,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/DimensionMenu.h"
 
-DimensionMenu::DimensionMenu() : GameplaySubMenu()
+namespace is06
+{
+namespace hud
+{
+
+CDimensionMenu::CDimensionMenu() : CGameplaySubMenu()
 {
 
 }
 
-void DimensionMenu::render(Keyboard* keyboard)
+void CDimensionMenu::render()
 {
-  GameplaySubMenu::render();
+  CGameplaySubMenu::render();
 }
 
-DimensionMenu::~DimensionMenu()
+CDimensionMenu::~CDimensionMenu()
 {
 
+}
+
+}
 }

@@ -8,17 +8,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/TalesMenu.h"
 
-TalesMenu::TalesMenu() : GameplaySubMenu()
+namespace is06
+{
+namespace hud
+{
+
+CTalesMenu::CTalesMenu() : CGameplaySubMenu()
 {
 
 }
 
-void TalesMenu::render(Keyboard* keyboard)
+void CTalesMenu::render()
 {
-  GameplaySubMenu::render();
+  CGameplaySubMenu::render();
 }
 
-TalesMenu::~TalesMenu()
+CTalesMenu::~CTalesMenu()
 {
 
+}
+
+}
 }

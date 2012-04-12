@@ -8,48 +8,50 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/sound/Music.h"
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace sound
+{
 
-Music::Music(const string& id)
+CMusic::CMusic(const std::string& id)
 {
 
 }
 
-void Music::addSequences(const map<u16, MusicSequenceInfo>& list)
+void CMusic::addSequences(const std::map<irr::u16, SMusicSequenceInfo>& list)
 {
-  map<u16, MusicSequenceInfo>::const_iterator msIt;
+  std::map<irr::u16, SMusicSequenceInfo>::const_iterator msIt;
   for (msIt = list.begin(); msIt != list.end(); msIt++) {
-    sequences[msIt->second.number] = new MusicSequence(msIt->second);
+    Sequences[msIt->second.Number] = new CMusicSequence(msIt->second);
   }
 }
 
 /**
  * Plays all the music sequences
  */
-void Music::playSequences(const map<u16, MusicSequenceInfo>& list)
+void CMusic::playSequences(const std::map<irr::u16, SMusicSequenceInfo>& list)
 {
-  map<u16, MusicSequenceInfo>::const_iterator msIt;
+  std::map<irr::u16, SMusicSequenceInfo>::const_iterator msIt;
   for (msIt = list.begin(); msIt != list.end(); msIt++) {
-    sequences[msIt->second.number]->play();
+    Sequences[msIt->second.Number]->play();
   }
 }
 
 /**
  * Returns a reference to the sequences map
  */
-map<u16, MusicSequence*>& Music::getSequenceMap()
+std::map<irr::u16, CMusicSequence*>& CMusic::getSequenceMap()
 {
-  return sequences;
+  return Sequences;
 }
 
 /**
  * Returns a pointer to a sequence specified by number
  */
-MusicSequence* Music::getSequence(u16 number)
+CMusicSequence* CMusic::getSequence(irr::u16 number)
 {
-  if (sequences[number]) {
-    return sequences[number];
+  if (Sequences[number]) {
+    return Sequences[number];
   } else {
     return NULL;
   }
@@ -58,7 +60,10 @@ MusicSequence* Music::getSequence(u16 number)
 /**
  * @todo Delete sequences
  */
-Music::~Music()
+CMusic::~CMusic()
 {
 
+}
+
+}
 }

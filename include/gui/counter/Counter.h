@@ -10,36 +10,41 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Hud.h"
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace hud
+{
 
-class Counter : public Hud
+class CCounter : public CHud
 {
   public:
-    Counter(s32 init = 0, s32 min = 0, s32 max = 1000);
-    virtual ~Counter();
+    CCounter(irr::s32 init = 0, irr::s32 min = 0, irr::s32 max = 1000);
+    virtual ~CCounter();
 
     virtual void render() = 0;
 
     virtual void hide() = 0;
     virtual void show() = 0;
-    virtual void setOpacity(u8 value) = 0;
+    virtual void setOpacity(irr::u8 value) = 0;
 
-    void addValue(s32 val);
-    void subValue(s32 val);
-    void setValue(s32 val);
+    void addValue(irr::s32 val);
+    void subValue(irr::s32 val);
+    void setValue(irr::s32 val);
 
-    void setMin(s32 val);
-    void setMax(s32 val);
+    void setMin(irr::s32 val);
+    void setMax(irr::s32 val);
 
-    s32 getValue();
-    s32 getMin();
-    s32 getMax();
+    irr::s32 getValue();
+    irr::s32 getMin();
+    irr::s32 getMax();
 
   protected:
-    s32 currentValue;
-    s32 maxValue;
-    s32 minValue;
+    irr::s32 CurrentValue;
+    irr::s32 MaxValue;
+    irr::s32 MinValue;
 };
+
+}
+}
 
 #endif

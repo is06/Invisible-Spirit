@@ -10,37 +10,43 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Dialog.h"
 
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
-class DialogInterface
+class CDialogInterface
 {
   public:
-    DialogInterface(const string& filePath, Translation* translation, Keyboard* kb);
-    ~DialogInterface();
+    CDialogInterface(const std::string& filePath, engine::CTranslation* translation, engine::CKeyboard* keyboard);
+    ~CDialogInterface();
 
     void render();
-    void start(const string& dialogIdentifier);
+    void start(const std::string& dialogIdentifier);
     void skip();
     void quit();
     void nextMessage();
-    void goToMessage(u32 number);
+    void goToMessage(irr::u32 number);
     bool finished();
 
   private:
-    void loadDialogData(const string& fullPath);
-    void createMessage(const string& dialogIdentifier, u16 messageNumber=0);
+    void loadDialogData(const std::string& fullPath);
+    void createMessage(const std::string& dialogIdentifier, irr::u16 messageNumber=0);
 
-    bool messageDisplaying;
-    bool messageFinished;
-    bool dialogFinished;
+    bool MessageDisplaying;
+    bool MessageFinished;
+    bool DialogFinished;
 
-    u16 currentMessageNumber;
-    string currentDialogIdentifier;
-    map<string, Dialog> dialogList;
-    Text* currentMessageText;
-    Picture* backWindow;
-    Translation* currentTranslation;
-    Keyboard* keyboard;
+    irr::u16 CurrentMessageNumber;
+    std::string CurrentDialogIdentifier;
+    std::map<std::string, engine::CDialog> DialogList;
+    hud::CText* CurrentMessageText;
+    hud::CPicture* BackWindow;
+    engine::CTranslation* CurrentTranslation;
+    engine::CKeyboard* Keyboard;
 };
+
+}
+}
 
 #endif

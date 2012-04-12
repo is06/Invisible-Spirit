@@ -16,10 +16,12 @@ http://www.is06.com. Legal code in license.txt
 #include "enums/debug/ErrorCode.h"
 #include "debug/GameDebugOption.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
-class Game
+class CGame
 {
   public:
     static void init();
@@ -27,37 +29,37 @@ class Game
     static void finish();
 
     static void quit();
-    static void changeScene(s32 id);
-    static void warning(ErrorCode code);
-    static void fatalError(ErrorCode code);
-    static void errorLog(const exception& e);
+    static void changeScene(irr::s32 id);
+    static void warning(is06::debug::EErrorCode code);
+    static void fatalError(is06::debug::EErrorCode code);
+    static void errorLog(const std::exception& e);
 
-    static IrrlichtDevice* getDevice();
-    static video::IVideoDriver* getVideoDriver();
-    static scene::ISceneManager* getSceneManager();
-    static gui::IGUIEnvironment* getDebugGUI();
+    static irr::IrrlichtDevice* getDevice();
+    static irr::video::IVideoDriver* getVideoDriver();
+    static irr::scene::ISceneManager* getSceneManager();
+    static irr::gui::IGUIEnvironment* getDebugGUI();
     static NewtonWorld* getNewtonWorld();
-    static EventManager* getEventManager();
-    static Translation* getGlobalTranslations();
-    static Save* getCurrentSave();
-    static Scene* getCurrentScene();
-    static SoundManager* getSoundManager();
+    static engine::CEventManager* getEventManager();
+    static engine::CTranslation* getGlobalTranslations();
+    static engine::CSave* getCurrentSave();
+    static scene::CScene* getCurrentScene();
+    static sound::CSoundManager* getSoundManager();
 
-    static f32 getFramerate();
-    static f32 getSpeedFactor();
-    static f32 getCurrentTime();
-    static LocaleIdentifier getCurrentLocale();
-    static MusicReference* getMusicReference();
+    static irr::f32 getFramerate();
+    static irr::f32 getSpeedFactor();
+    static irr::f32 getCurrentTime();
+    static engine::ELocaleIdentifier getCurrentLocale();
+    static sound::CMusicReference* getMusicReference();
 
-    static void changeScreenDisplay(u32 width=848, u32 height=480, u8 colorDepth=32);
+    static void changeScreenDisplay(irr::u32 width=848, irr::u32 height=480, irr::u8 colorDepth=32);
 
-    static Settings* settings;
-    static ScreenPosition screenPos;
-    static Shaders shaders;
-    static GameDebugOption debugOption;
+    static engine::CSettings* Settings;
+    static engine::SScreenPosition ScreenPos;
+    static shader::CShaders Shaders;
+    static debug::SGameDebugOption DebugOption;
 
   private:
-    Game();
+    CGame();
 
     // Game initializations
     static void initIrrlichtInterfaces();
@@ -77,32 +79,35 @@ class Game
     static void loadNextScene();
 
     // Irrlicht objects
-    static IrrlichtDevice* device;
-    static video::IVideoDriver* videoDriver;
-    static video::IGPUProgrammingServices* gpuManager;
-    static scene::ISceneManager* sceneManager;
-    static gui::IGUIEnvironment* debugGUI;
+    static irr::IrrlichtDevice* Device;
+    static irr::video::IVideoDriver* VideoDriver;
+    static irr::video::IGPUProgrammingServices* GpuManager;
+    static irr::scene::ISceneManager* SceneManager;
+    static irr::gui::IGUIEnvironment* DebugGUI;
 
     // Newton objects
-    static NewtonWorld* newtonWorld;
+    static NewtonWorld* GameNewtonWorld;
 
     // is06 objects
-    static EventManager* eventManager;
-    static Scene* currentScene;
-    static Translation* globalTranslations;
-    static Save* currentSave;
-    static SoundManager* soundManager;
-    static MusicReference* musicReference;
+    static engine::CEventManager* EventManager;
+    static scene::CScene* CurrentScene;
+    static engine::CTranslation* GlobalTranslations;
+    static engine::CSave* CurrentSave;
+    static sound::CSoundManager* SoundManager;
+    static sound::CMusicReference* MusicReference;
 
-    static LocaleIdentifier currentLocale;
-    static s32 nextScene;
-    static bool sceneChanged;
-    static bool screenSizeChanged;
-    static bool exit;
-    static bool independantSpeed;
-    static bool processorPriority;
-    static u8 framerate;
-    static f32 speedFactor;
+    static engine::ELocaleIdentifier CurrentLocale;
+    static irr::s32 NextScene;
+    static bool SceneChanged;
+    static bool ScreenSizeChanged;
+    static bool Exit;
+    static bool IndependantSpeed;
+    static bool ProcessorPriority;
+    static irr::u8 Framerate;
+    static irr::f32 SpeedFactor;
 };
+
+}
+}
 
 #endif

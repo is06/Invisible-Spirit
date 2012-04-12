@@ -10,88 +10,90 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/gui/menus/common/MenuOption.h"
 #include "../../../../include/gui/Picture.h"
 
-using namespace std;
-using namespace irr;
-
-Menu::Menu(f32 x, f32 y, f32 width, u8 height, MenuStyle style) : Hud()
+namespace is06
 {
-  lastInsertedIndex = 0;
-  currentOption = 0;
-  defaultOption = 0;
+namespace hud
+{
 
-  currentWidth = width;
-  currentHeight = height;
-  pos = core::position2df(x, y);
+CMenu::CMenu(irr::f32 x, irr::f32 y, irr::f32 width, irr::u8 height, EMenuStyle style) : CHud()
+{
+  LastInsertedIndex = 0;
+  CurrentOption = 0;
+  DefaultOption = 0;
 
-  loopMode = false;
+  CurrentWidth = width;
+  CurrentHeight = height;
+  Pos = irr::core::position2df(x, y);
 
-  currentStyle = style;
+  LoopMode = false;
 
-  cursor = new Picture(x - 16, y, 32, 32, "resource/hud/menus/cursor.png");
+  CurrentStyle = style;
+
+  Cursor = new CPicture(x - 16, y, 32, 32, "resource/hud/menus/cursor.png");
 }
 
-void Menu::render()
+void CMenu::render()
 {
-  Hud::render();
-  for (optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
-    optionsIt->second->render();
+  CHud::render();
+  for (OptionsIt = Options.begin(); OptionsIt != Options.end(); OptionsIt++) {
+    OptionsIt->second->render();
   }
-  cursor->render();
+  Cursor->render();
 }
 
-void Menu::addOption(MenuIcon icon, const string& title)
+void CMenu::addOption(EMenuIcon icon, const std::string& title)
 {
-  f32 posY = pos.Y + (lastInsertedIndex * -1 * 40);
-  options.insert(make_pair(lastInsertedIndex, new MenuOption(icon, title, pos.X, posY, currentStyle)));
-  lastInsertedIndex++;
+  irr::f32 posY = Pos.Y + (LastInsertedIndex * -1 * 40);
+  Options.insert(std::make_pair(LastInsertedIndex, new CMenuOption(icon, title, Pos.X, posY, CurrentStyle)));
+  LastInsertedIndex++;
 }
 
-void Menu::nextOption()
+void CMenu::nextOption()
 {
-  if (loopMode) {
-    if (currentOption > options.size()) {
-      currentOption = 0;
-      currentOption++;
-      cursor->subY(40);
+  if (LoopMode) {
+    if (CurrentOption > Options.size()) {
+      CurrentOption = 0;
+      CurrentOption++;
+      Cursor->subY(40);
     }
   } else {
-    if (currentOption < options.size() - 1) {
-      currentOption++;
-      cursor->subY(40);
+    if (CurrentOption < Options.size() - 1) {
+      CurrentOption++;
+      Cursor->subY(40);
     }
   }
 }
 
-void Menu::prevOption()
+void CMenu::prevOption()
 {
-  if (loopMode) {
-    if (currentOption <= 0) {
-      currentOption = options.size();
-      currentOption--;
-      cursor->addY(40);
+  if (LoopMode) {
+    if (CurrentOption <= 0) {
+      CurrentOption = Options.size();
+      CurrentOption--;
+      Cursor->addY(40);
     }
   } else {
-    if (currentOption > 0) {
-      currentOption--;
-      cursor->addY(40);
+    if (CurrentOption > 0) {
+      CurrentOption--;
+      Cursor->addY(40);
     }
   }
 }
 
-void Menu::firstOption()
+void CMenu::firstOption()
 {
-  currentOption = 0;
+  CurrentOption = 0;
 }
 
-void Menu::lastOption()
+void CMenu::lastOption()
 {
-  currentOption = options.size() - 1;
+  CurrentOption = Options.size() - 1;
 }
 
 /**
  * @todo
  */
-void Menu::removeOption(u16 index)
+void CMenu::removeOption(irr::u16 index)
 {
   /*
   options.erase(index);
@@ -103,41 +105,44 @@ void Menu::removeOption(u16 index)
   */
 }
 
-void Menu::show()
+void CMenu::show()
 {
-  for (optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
-    optionsIt->second->show();
+  for (OptionsIt = Options.begin(); OptionsIt != Options.end(); OptionsIt++) {
+    OptionsIt->second->show();
   }
 }
 
-void Menu::hide()
+void CMenu::hide()
 {
-  for (optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
-    optionsIt->second->hide();
+  for (OptionsIt = Options.begin(); OptionsIt != Options.end(); OptionsIt++) {
+    OptionsIt->second->hide();
   }
 }
 
-void Menu::setOpacity(u8 value)
+void CMenu::setOpacity(irr::u8 value)
 {
-  for (optionsIt = options.begin(); optionsIt != options.end(); optionsIt++) {
-    optionsIt->second->setOpacity(value);
+  for (OptionsIt = Options.begin(); OptionsIt != Options.end(); OptionsIt++) {
+    OptionsIt->second->setOpacity(value);
   }
 }
 
 /**
  * @todo
  */
-MenuOption* Menu::getOption(u16 index)
+CMenuOption* CMenu::getOption(irr::u16 index)
 {
-  return options[index];
+  return Options[index];
 }
 
-u16 Menu::getCurrentOption()
+irr::u16 CMenu::getCurrentOption()
 {
-  return currentOption;
+  return CurrentOption;
 }
 
-Menu::~Menu()
+CMenu::~CMenu()
 {
-  delete cursor;
+  delete Cursor;
+}
+
+}
 }

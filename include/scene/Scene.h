@@ -11,14 +11,18 @@ http://www.is06.com. Legal code in license.txt
 #include "../engine/ShadowProcessor.h"
 #include "../enums/styles/FadeColor.h"
 
-using namespace irr;
 using namespace std;
 
-class Scene
+namespace is06
+{
+namespace scene
+{
+
+class CScene
 {
   public:
-    Scene();
-    virtual ~Scene();
+    CScene();
+    virtual ~CScene();
 
     virtual void events() = 0;
     virtual void postRender() = 0;
@@ -26,52 +30,53 @@ class Scene
 
     void darkenNonGlowingEntities();
     void revealNonGlowingEntities();
-    void addToEntityList(ModelEntity* entity);
+    void addToEntityList(model::CModelEntity* entity);
 
-    void setSaveSlot(Save* saveSlot);
-    void fadeIn(f32 speed = 1.5f, FadeColor color = FADE_COLOR_BLACK);
-    void fadeOut(f32 speed = 3.0f, FadeColor color = FADE_COLOR_BLACK);
+    void setSaveSlot(engine::CSave* save);
+    void fadeIn(irr::f32 speed = 1.5f, engine::EFadeColor color = engine::FADE_COLOR_BLACK);
+    void fadeOut(irr::f32 speed = 3.0f, engine::EFadeColor color = engine::FADE_COLOR_BLACK);
 
-    const video::SColor& getBackBufferColor() const;
+    const irr::video::SColor& getBackBufferColor() const;
 
-    Camera* getActiveCamera();
+    model::CCamera* getActiveCamera();
 
-    ShadowProcessor* getShadowProcessor();
+    engine::CShadowProcessor* getShadowProcessor();
 
-    static bool inMapEditingMode;
+    static bool InMapEditingMode;
 
   protected:
-    gui::IGUIInOutFader* inFader;
-    gui::IGUIInOutFader* outFader;
+    irr::gui::IGUIInOutFader* InFader;
+    irr::gui::IGUIInOutFader* OutFader;
 
-    Picture* dummy;
+    hud::CPicture* Dummy;
 
-    Camera* cam;
+    model::CCamera* Camera;
     //PlayerControl* control;
     //MapEditor* mapEditor;
-    Keyboard* keyboard;
-    Gamepad* gamepad;
-    Save* gameSave;
-    DialogInterface* dialog;
-    MusicReference* music;
-    Translation* globalTranslations;
-    Translation* sceneTranslations;
+    engine::CKeyboard* Keyboard;
+    engine::CGamepad* Gamepad;
+    engine::CSave* GameSave;
+    engine::CDialogInterface* Dialog;
+    sound::CMusicReference* Music;
+    engine::CTranslation* GlobalTranslations;
+    engine::CTranslation* SceneTranslations;
 
-    ShadowProcessor* shadows;
+    engine::CShadowProcessor* Shadows;
 
-    video::SColor backBufferColor;
+    irr::video::SColor BackBufferColor;
+    irr::f32 TimeElapsed;
+    irr::f32 StartTime;
+    irr::f32 SpeedFactor;
+    irr::gui::IGUIStaticText* DebugInfo;
 
-    f32 timeElapsed;
-    f32 startTime;
-    f32 speedFactor;
-
-    gui::IGUIStaticText* debugInfo;
-
-    map<ModelEntity*, bool> entityList;
-    map<ModelEntity*, bool>::iterator entityListIt;
+    map<model::CModelEntity*, bool> EntityList;
+    map<model::CModelEntity*, bool>::iterator EntityListIt;
 
   private:
     void generateDebugInfo();
 };
+
+}
+}
 
 #endif

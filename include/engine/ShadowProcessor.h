@@ -12,28 +12,35 @@ http://www.is06.com. Legal code in license.txt
 #include "../enums/engine/ShadowMode.h"
 //#include "../shader/PostRenderShadow.h"
 
-using namespace irr;
 using namespace std;
 
-class ShadowProcessor
+namespace is06
+{
+namespace engine
+{
+
+class CShadowProcessor
 {
   public:
-    ShadowProcessor();
-    ~ShadowProcessor();
+    CShadowProcessor();
+    ~CShadowProcessor();
 
     void render();
 
-    void setEntity(scene::ISceneNode* node, ShadowMode mode);
-    void removeEntity(scene::ISceneNode* node);
+    void setEntity(irr::scene::ISceneNode* node, engine::EShadowMode mode);
+    void removeEntity(irr::scene::ISceneNode* node);
 
   private:
     void renderCastingNodes();
     void renderReceivingNodes();
 
-    map<scene::ISceneNode*, Shadow> shadows;
-    map<scene::ISceneNode*, Shadow>::iterator shadowsIt;
+    map<irr::scene::ISceneNode*, engine::CShadow> Shadows;
+    map<irr::scene::ISceneNode*, engine::CShadow>::iterator ShadowsIt;
 
-    video::ITexture* shadowMap;
+    irr::video::ITexture* ShadowMap;
 };
+
+}
+}
 
 #endif

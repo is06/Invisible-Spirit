@@ -10,11 +10,17 @@ http://www.is06.com. Legal code in license.txt
 
 #include "MusicSequenceInfo.h"
 
-using namespace irr;
-
-struct MusicInfo
+namespace is06
 {
-  map<u16, MusicSequenceInfo> sequenceInfo;
+namespace sound
+{
+
+struct SMusicInfo
+{
+  std::map<irr::u16, SMusicSequenceInfo> SequenceInfo;
 };
+
+}
+}
 
 #endif

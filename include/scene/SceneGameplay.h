@@ -10,30 +10,28 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/scene/Scene.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace scene
+{
 
-class SceneGameplay : public Scene
+class CSceneGameplay : public CScene
 {
   public:
-    SceneGameplay();
-    virtual ~SceneGameplay();
-
+    CSceneGameplay();
+    virtual ~CSceneGameplay();
     virtual void events();
     virtual void postRender();
     virtual void hudRender();
 
   protected:
-    PlayableCharacter* ayron;
-    LevelMesh* level;
-
-    GameplayInterface* gpInterface;
-    EnergyInterface* enInterface;
-    GameplayMenu* gpMenu;
-
-    WorldTimeCounter* worldTime;
-
-    Timer* everySecondTimer;
+    model::CPlayableCharacter* Ayron;
+    model::CLevelMesh* Level;
+    hud::CGameplayInterface* GameplayInterface;
+    hud::CEnergyInterface* EnergyInterface;
+    hud::CGameplayMenu* GameplayMenu;
+    hud::CWorldTimeCounter* WorldTime;
+    engine::CTimer* EverySecondTimer;
 
   private:
     void manageCameraControl();
@@ -41,10 +39,11 @@ class SceneGameplay : public Scene
     void manageCharacterMovements();
     void manageCharacterCollisions();
     void manageMenuControl();
-
     void everySecond();
-
-    bool quitIsFading;
+    bool QuitIsFading;
 };
+
+}
+}
 
 #endif

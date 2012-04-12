@@ -9,13 +9,15 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/sound/SoundManager.h"
 #include "../../include/3d/Camera.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace sound
+{
 
 /**
  *
  */
-SoundManager::SoundManager()
+CSoundManager::CSoundManager()
 {
   FMOD_System_Create(&sys);
   FMOD_System_Init(sys, 4, FMOD_INIT_NORMAL, NULL);
@@ -26,14 +28,14 @@ SoundManager::SoundManager()
  * Called by the Game main loop, this converts camera's position and rotation to
  * FMOD vector format and store them into sound manager
  */
-void SoundManager::setEarsData(Camera* activeCamera)
+void CSoundManager::setEarsData(model::CCamera* activeCamera)
 {
-  core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
+  irr::core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
   //core::vector3df rotation = activeCamera->getNode()->getRotation();
   //core::vector3df lastPosition = activeCamera->getLastPosition();
-  core::vector3df forward = activeCamera->getNode()->getTarget() - position;
+  irr::core::vector3df forward = activeCamera->getNode()->getTarget() - position;
   forward.normalize();
-  core::vector3df up = activeCamera->getNode()->getUpVector();
+  irr::core::vector3df up = activeCamera->getNode()->getUpVector();
 
   cameraPosition.x = position.X;
   cameraPosition.y = position.Y;
@@ -58,11 +60,11 @@ void SoundManager::setEarsData(Camera* activeCamera)
 /**
  *
  */
-void SoundManager::update()
+void CSoundManager::update()
 {
   FMOD_RESULT result = FMOD_System_Set3DListenerAttributes(sys, 0, &cameraPosition, NULL, &cameraForward, &cameraUp);
   if (result != FMOD_OK) {
-    cout << "[FMOD] Erreur update 3D" << endl;
+    std::cout << "[FMOD] Erreur update 3D" << std::endl;
   }
   FMOD_System_Update(sys);
 }
@@ -70,7 +72,7 @@ void SoundManager::update()
 /**
  *
  */
-FMOD_SYSTEM* SoundManager::getSystem()
+FMOD_SYSTEM* CSoundManager::getSystem()
 {
   return sys;
 }
@@ -78,8 +80,11 @@ FMOD_SYSTEM* SoundManager::getSystem()
 /**
  *
  */
-SoundManager::~SoundManager()
+CSoundManager::~CSoundManager()
 {
   FMOD_System_Close(sys);
   FMOD_System_Release(sys);
+}
+
+}
 }

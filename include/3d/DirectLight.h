@@ -10,18 +10,23 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Light.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace model
+{
 
-class DirectLight : public Light
+class CDirectLight : public CLight
 {
   public:
-    DirectLight();
-    ~DirectLight();
+    CDirectLight();
+    ~CDirectLight();
 
   private:
-    scene::ICameraSceneNode* camera;
+    irr::scene::ICameraSceneNode* Camera;
 };
+
+}
+}
 
 #endif
 

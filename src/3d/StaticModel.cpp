@@ -12,60 +12,62 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/scene/Scene.h"
 #include "../../include/sound/Speaker.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace model
+{
 
 /**
- * Constructeur
+ * Constructor
  */
-StaticModel::StaticModel() : ModelEntity()
+CStaticModel::CStaticModel() : CModelEntity()
 {
-  mainNode = NULL;
+  MainNode = NULL;
 }
 
 /**
  * Fonction de mise à jour et de rendu de toutes les entités statiques présentes dans les scènes
  */
-void StaticModel::update()
+void CStaticModel::update()
 {
-  ModelEntity::update();
+  CModelEntity::update();
 
   // Attached speaker position update
-  if (attachedSpeaker) {
-    attachedSpeaker->setPosition(mainNode->getPosition());
+  if (AttachedSpeaker) {
+    AttachedSpeaker->setPosition(MainNode->getPosition());
   }
 }
 
 /**
  * Render for shader effect
  */
-void StaticModel::shaderRender()
+void CStaticModel::shaderRender()
 {
-  mainNode->render();
+  MainNode->render();
 }
 
 /**
  * Crée le node et l'ajoute au gestionnaire de scène Irrlicht en fonction de sa position
  * @param vector3df& initPosition référence vers une position initiale du node
  */
-void StaticModel::createNode(const core::vector3df& initPosition)
+void CStaticModel::createNode(const irr::core::vector3df& initPosition)
 {
-  if (mainMesh) {
-    mainNode = Game::getSceneManager()->addMeshSceneNode(mainMesh);
-    mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
-    mainNode->setPosition(initPosition);
+  if (MainMesh) {
+    MainNode = engine::CGame::getSceneManager()->addMeshSceneNode(MainMesh);
+    MainNode->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+    MainNode->setPosition(initPosition);
 
-    if (Game::settings->getParamString("model", "texture_filter") == "anisotropic") {
-      mainNode->setMaterialFlag(video::EMF_ANISOTROPIC_FILTER, true);
-    } else if(Game::settings->getParamString("model", "texture_filter") == "trilinear") {
-      mainNode->setMaterialFlag(video::EMF_TRILINEAR_FILTER, true);
-    } else if(Game::settings->getParamString("model", "texture_filter") == "none") {
-      mainNode->setMaterialFlag(video::EMF_BILINEAR_FILTER, false);
+    if (engine::CGame::Settings->getParamString("model", "texture_filter") == "anisotropic") {
+      MainNode->setMaterialFlag(irr::video::EMF_ANISOTROPIC_FILTER, true);
+    } else if(engine::CGame::Settings->getParamString("model", "texture_filter") == "trilinear") {
+      MainNode->setMaterialFlag(irr::video::EMF_TRILINEAR_FILTER, true);
+    } else if(engine::CGame::Settings->getParamString("model", "texture_filter") == "none") {
+      MainNode->setMaterialFlag(irr::video::EMF_BILINEAR_FILTER, false);
     } else {
-      mainNode->setMaterialFlag(video::EMF_BILINEAR_FILTER, true);
+      MainNode->setMaterialFlag(irr::video::EMF_BILINEAR_FILTER, true);
     }
   } else {
-    Game::fatalError(ERRCODE_30);
+    engine::CGame::fatalError(debug::ERRCODE_30);
   }
 }
 
@@ -73,170 +75,170 @@ void StaticModel::createNode(const core::vector3df& initPosition)
  * Retourne le node Irrlicht de l'entité
  * @return ISceneNode* le noeud de l'entité
  */
-scene::IMeshSceneNode* StaticModel::getNode()
+irr::scene::IMeshSceneNode* CStaticModel::getNode()
 {
-  return mainNode;
+  return MainNode;
 }
 
 /**
  *
  */
-video::SMaterial& StaticModel::getMaterial()
+irr::video::SMaterial& CStaticModel::getMaterial()
 {
-  return mainNode->getMaterial(0);
+  return MainNode->getMaterial(0);
 }
 
 /**
  *
  */
-void StaticModel::hide()
+void CStaticModel::hide()
 {
-  mainNode->setVisible(false);
+  MainNode->setVisible(false);
 }
 
 /**
  *
  */
-void StaticModel::show()
+void CStaticModel::show()
 {
-  mainNode->setVisible(true);
+  MainNode->setVisible(true);
 }
 
 /**
  *
  */
-void StaticModel::setVisible(bool value)
+void CStaticModel::setVisible(bool value)
 {
-  mainNode->setVisible(value);
+  MainNode->setVisible(value);
 }
 
 /**
  *
  */
-void StaticModel::setGhost(bool value)
+void CStaticModel::setGhost(bool value)
 {
-  mainNode->setMaterialFlag(video::EMF_FRONT_FACE_CULLING, !value);
+  MainNode->setMaterialFlag(irr::video::EMF_FRONT_FACE_CULLING, !value);
 }
 
 /**
  *
  */
-void StaticModel::setWireFrame(bool value)
+void CStaticModel::setWireFrame(bool value)
 {
-  mainNode->setMaterialFlag(video::EMF_WIREFRAME, value);
+  MainNode->setMaterialFlag(irr::video::EMF_WIREFRAME, value);
 }
 
 /**
  *
  */
-void StaticModel::setDebugData(bool value)
+void CStaticModel::setDebugData(bool value)
 {
-  mainNode->setDebugDataVisible(value);
+  MainNode->setDebugDataVisible(value);
 }
 
 /**
  *
  */
-void StaticModel::darken()
+void CStaticModel::darken()
 {
-  mainNode->setMaterialFlag(video::EMF_LIGHTING, true);
+  MainNode->setMaterialFlag(irr::video::EMF_LIGHTING, true);
 }
 
 /**
  *
  */
-void StaticModel::undarken()
+void CStaticModel::undarken()
 {
-  mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
+  MainNode->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 }
 
 /**
  *
  */
-void StaticModel::turnX(f32 speed)
+void CStaticModel::turnX(irr::f32 speed)
 {
-  mainNode->setRotation(core::vector3df(
-    mainNode->getRotation().X + (speed * Game::getSpeedFactor()),
-    mainNode->getRotation().Y,
-    mainNode->getRotation().Z
+  MainNode->setRotation(irr::core::vector3df(
+    MainNode->getRotation().X + (speed * engine::CGame::getSpeedFactor()),
+    MainNode->getRotation().Y,
+    MainNode->getRotation().Z
   ));
 }
 
 /**
  *
  */
-void StaticModel::turnY(f32 speed)
+void CStaticModel::turnY(irr::f32 speed)
 {
-  mainNode->setRotation(core::vector3df(
-    mainNode->getRotation().X,
-    mainNode->getRotation().Y + (speed * Game::getSpeedFactor()),
-    mainNode->getRotation().Z
+  MainNode->setRotation(irr::core::vector3df(
+    MainNode->getRotation().X,
+    MainNode->getRotation().Y + (speed * engine::CGame::getSpeedFactor()),
+    MainNode->getRotation().Z
   ));
 }
 
 /**
  *
  */
-void StaticModel::turnZ(f32 speed)
+void CStaticModel::turnZ(irr::f32 speed)
 {
-  mainNode->setRotation(core::vector3df(
-    mainNode->getRotation().X,
-    mainNode->getRotation().Y,
-    mainNode->getRotation().Z + (speed * Game::getSpeedFactor())
+  MainNode->setRotation(irr::core::vector3df(
+    MainNode->getRotation().X,
+    MainNode->getRotation().Y,
+    MainNode->getRotation().Z + (speed * engine::CGame::getSpeedFactor())
   ));
 }
 
 /**
  *
  */
-void StaticModel::moveX(f32 speed)
+void CStaticModel::moveX(irr::f32 speed)
 {
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X + (speed * Game::getSpeedFactor()),
-    mainNode->getPosition().Y,
-    mainNode->getPosition().Z
+  MainNode->setPosition(irr::core::vector3df(
+    MainNode->getPosition().X + (speed * engine::CGame::getSpeedFactor()),
+    MainNode->getPosition().Y,
+    MainNode->getPosition().Z
   ));
 }
 
 /**
  *
  */
-void StaticModel::moveY(f32 speed)
+void CStaticModel::moveY(irr::f32 speed)
 {
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X,
-    mainNode->getPosition().Y + (speed * Game::getSpeedFactor()),
-    mainNode->getPosition().Z
+  MainNode->setPosition(irr::core::vector3df(
+    MainNode->getPosition().X,
+    MainNode->getPosition().Y + (speed * engine::CGame::getSpeedFactor()),
+    MainNode->getPosition().Z
   ));
 }
 
 /**
  *
  */
-void StaticModel::moveZ(f32 speed)
+void CStaticModel::moveZ(irr::f32 speed)
 {
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X,
-    mainNode->getPosition().Y,
-    mainNode->getPosition().Z + (speed * Game::getSpeedFactor())
+  MainNode->setPosition(irr::core::vector3df(
+    MainNode->getPosition().X,
+    MainNode->getPosition().Y,
+    MainNode->getPosition().Z + (speed * engine::CGame::getSpeedFactor())
   ));
 }
 
 /**
  *
  */
-void StaticModel::loadMeshCollision()
+void CStaticModel::loadMeshCollision()
 {
   bool optimize = true;
 
-  if (mainNode) {
-    NewtonCollision* treeCollision = NewtonCreateTreeCollision(Game::getNewtonWorld(), 0);
+  if (MainNode) {
+    NewtonCollision* treeCollision = NewtonCreateTreeCollision(engine::CGame::getNewtonWorld(), 0);
     NewtonTreeCollisionBeginBuild(treeCollision);
 
     // On récupère les meshBuffer, à chaque meshBuffer, on ajoute les informations à la collision
-    for (u32 i = 0; i < mainMesh->getMeshBufferCount(); i++) {
-      scene::IMeshBuffer* mb = mainMesh->getMeshBuffer(i);
-      addMeshToTreeCollision(mb->getVertexType(), mb, treeCollision, mainNode->getScale());
+    for (irr::u32 i = 0; i < MainMesh->getMeshBufferCount(); i++) {
+      irr::scene::IMeshBuffer* mb = MainMesh->getMeshBuffer(i);
+      addMeshToTreeCollision(mb->getVertexType(), mb, treeCollision, MainNode->getScale());
     }
 
     if (optimize) {
@@ -246,37 +248,37 @@ void StaticModel::loadMeshCollision()
     }
 
     // Création du Body Newton
-    f32 newtMatrix[16] = {};
-    mainBody = NewtonCreateBody(Game::getNewtonWorld(), treeCollision, newtMatrix);
-    mainNode->updateAbsolutePosition();
+    irr::f32 newtMatrix[16] = {};
+    MainBody = NewtonCreateBody(engine::CGame::getNewtonWorld(), treeCollision, newtMatrix);
+    MainNode->updateAbsolutePosition();
 
-    core::matrix4 irrMatrix = mainNode->getRelativeTransformation();
-    NewtonBodySetMatrix(mainBody, irrMatrix.pointer());
-    NewtonReleaseCollision(Game::getNewtonWorld(), treeCollision);
+    irr::core::matrix4 irrMatrix = MainNode->getRelativeTransformation();
+    NewtonBodySetMatrix(MainBody, irrMatrix.pointer());
+    NewtonReleaseCollision(engine::CGame::getNewtonWorld(), treeCollision);
   }
 }
 
 /**
  * Ajoute un polygone à une collision Newton de type Mesh
  */
-void StaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene::IMeshBuffer* meshBuffer,
-  NewtonCollision* treeCollision, core::vector3df scale)
+void CStaticModel::addMeshToTreeCollision(irr::video::E_VERTEX_TYPE vertexType, irr::scene::IMeshBuffer* meshBuffer,
+  NewtonCollision* treeCollision, irr::core::vector3df scale)
 {
   // Tableau qui peut contenir 3 vertices servant à ajouter une face à la collision
-  f32 vArray[9];
+  irr::f32 vArray[9];
   bool skipAddMesh = false;
-  video::S3DVertex* vertices;
+  irr::video::S3DVertex* vertices;
 
   // On récupère les vertices du mesh dans un tableau
   switch (vertexType) {
-    case video::EVT_STANDARD:
-      vertices = (video::S3DVertex*) meshBuffer->getVertices();
+    case irr::video::EVT_STANDARD:
+      vertices = (irr::video::S3DVertex*) meshBuffer->getVertices();
       break;
-    case video::EVT_2TCOORDS:
-      vertices = (video::S3DVertex2TCoords*) meshBuffer->getVertices();
+    case irr::video::EVT_2TCOORDS:
+      vertices = (irr::video::S3DVertex2TCoords*) meshBuffer->getVertices();
       break;
-    case video::EVT_TANGENTS:
-      vertices = (video::S3DVertexTangents*) meshBuffer->getVertices();
+    case irr::video::EVT_TANGENTS:
+      vertices = (irr::video::S3DVertexTangents*) meshBuffer->getVertices();
       break;
     default:
       // Type de vertex inconnu, on ne créé pas la collision
@@ -286,15 +288,15 @@ void StaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene:
 
   if (!skipAddMesh) {
     // On récupère tous les indices du mesh dans un tableau
-    u16* indices = meshBuffer->getIndices();
+    irr::u16* indices = meshBuffer->getIndices();
 
     // Les indices permettent de récupérer un vertex précis dans l'ordre ou il a été créé
     // On récupère les vertices par groupe de 3 pour former une face (polygone)
-    for (u32 j = 0; j < meshBuffer->getIndexCount(); j += 3) {
+    for (irr::u32 j = 0; j < meshBuffer->getIndexCount(); j += 3) {
       // On récupère les indices des trois vertices courants
-      s32 v1i = indices[j];
-      s32 v2i = indices[j + 1];
-      s32 v3i = indices[j + 2];
+      irr::s32 v1i = indices[j];
+      irr::s32 v2i = indices[j + 1];
+      irr::s32 v3i = indices[j + 2];
 
       // On récupère les vertices spécifiés par les indices et on applique à leur Position l'échelle du node
       vArray[0] = (vertices[v1i].Pos * scale.X).X;
@@ -308,7 +310,7 @@ void StaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene:
       vArray[8] = (vertices[v3i].Pos * scale.Z).Z;
 
       // On ajoute la face à la collision - params(collision, nombreDeVertices, pointeurVersTableauDeVertices, tailleDuVertexEnOctets, ID de la face)
-      NewtonTreeCollisionAddFace(treeCollision, 3, vArray, sizeof(f32) * 3, 1);
+      NewtonTreeCollisionAddFace(treeCollision, 3, vArray, sizeof(irr::f32) * 3, 1);
     }
   }
 }
@@ -316,26 +318,29 @@ void StaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene:
 /**
  *
  */
-void StaticModel::clearMeshCollision()
+void CStaticModel::clearMeshCollision()
 {
-  NewtonDestroyBody(Game::getNewtonWorld(), mainBody);
+  NewtonDestroyBody(engine::CGame::getNewtonWorld(), MainBody);
 }
 
 /**
  *
  */
-void StaticModel::setShadowMode(ShadowMode mode)
+void CStaticModel::setShadowMode(engine::EShadowMode mode)
 {
-  Game::getCurrentScene()->getShadowProcessor()->setEntity(mainNode, mode);
+  engine::CGame::getCurrentScene()->getShadowProcessor()->setEntity(MainNode, mode);
 }
 
 /**
  *
  */
-StaticModel::~StaticModel()
+CStaticModel::~CStaticModel()
 {
-  if (mainNode) {
-    mainNode->remove();
-    mainNode = NULL;
+  if (MainNode) {
+    MainNode->remove();
+    MainNode = NULL;
   }
+}
+
+}
 }

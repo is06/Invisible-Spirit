@@ -15,51 +15,52 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/scene/Scene.h"
 #include "../../include/engine/DialogInterface.h"
 
+namespace is06
+{
+namespace scene
+{
 
-using namespace irr;
-using namespace std;
-
-bool Scene::inMapEditingMode;
+bool CScene::InMapEditingMode;
 
 /**
  * Instanciate required object interfaces such as keyboard or music so we can
  * use them in all scenes
  */
-Scene::Scene()
+CScene::CScene()
 {
-  startTime = Game::getCurrentTime();
-  timeElapsed = 0.0f;
+  StartTime = engine::CGame::getCurrentTime();
+  TimeElapsed = 0.0f;
 
-  cam = NULL;
-  sceneTranslations = NULL;
-  dialog = NULL;
-  keyboard = new Keyboard();
-  gamepad = new Gamepad();
+  Camera = NULL;
+  SceneTranslations = NULL;
+  Dialog = NULL;
+  Keyboard = new engine::CKeyboard();
+  Gamepad = new engine::CGamepad();
 
-  music = Game::getMusicReference();
-  globalTranslations = Game::getGlobalTranslations();
-  inFader = Game::getDebugGUI()->addInOutFader();
-  outFader = Game::getDebugGUI()->addInOutFader();
+  Music = engine::CGame::getMusicReference();
+  GlobalTranslations = engine::CGame::getGlobalTranslations();
+  InFader = engine::CGame::getDebugGUI()->addInOutFader();
+  OutFader = engine::CGame::getDebugGUI()->addInOutFader();
 
   // Temporary picture to avoid a strange bug in hud rendering (first picture to render badly positionned)
-  dummy = new Picture(-5000, -5000, 0, 0);
+  Dummy = new hud::CPicture(-5000, -5000, 0, 0);
 
   //shadows = new ShadowProcessor();
 
-  debugInfo = Game::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
-  debugInfo->setOverrideColor(video::SColor(255, 255, 255, 255));
+  DebugInfo = engine::CGame::getDebugGUI()->addStaticText(L"", irr::core::recti(irr::core::vector2di(0, 0), irr::core::vector2di(200, 20)), false, false, 0, 0, false);
+  DebugInfo->setOverrideColor(irr::video::SColor(255, 255, 255, 255));
 
-  backBufferColor = video::SColor(255, 0, 0, 0);
+  BackBufferColor = irr::video::SColor(255, 0, 0, 0);
 }
 
 /**
  * Event test of all scenes in the game
  * (global events)
  */
-void Scene::events()
+void CScene::events()
 {
-  speedFactor = Game::getSpeedFactor();
-  timeElapsed = (Game::getCurrentTime() - startTime) / 1000.0f;
+  SpeedFactor = engine::CGame::getSpeedFactor();
+  TimeElapsed = (engine::CGame::getCurrentTime() - StartTime) / 1000.0f;
   //gameSave->setInteger(11, (u32)timeElapsed); // 11 = Total game time
 
   generateDebugInfo();
@@ -71,40 +72,40 @@ void Scene::events()
 */
 }
 
-void Scene::generateDebugInfo()
+void CScene::generateDebugInfo()
 {
-  core::stringw debugText = "";
+  irr::core::stringw debugText = "";
   debugText += "Texture count: ";
-  debugText += Game::getVideoDriver()->getTextureCount();
+  debugText += engine::CGame::getVideoDriver()->getTextureCount();
   debugText += "\nMesh count: ";
-  debugText += Game::getSceneManager()->getMeshCache()->getMeshCount();
+  debugText += engine::CGame::getSceneManager()->getMeshCache()->getMeshCount();
 
-  debugInfo->setText(debugText.c_str());
+  DebugInfo->setText(debugText.c_str());
 }
 
 /**
  * @todo
  */
-void Scene::setSaveSlot(Save* saveSlot)
+void CScene::setSaveSlot(engine::CSave* saveSlot)
 {
-  gameSave = saveSlot;
+  GameSave = saveSlot;
 }
 
 /**
  * Returns current active camera
  * @return Camera*
  */
-Camera* Scene::getActiveCamera()
+model::CCamera* CScene::getActiveCamera()
 {
-  return cam;
+  return Camera;
 }
 
 /**
  * @todo
  */
-void Scene::postRender()
+void CScene::postRender()
 {
-  dummy->render();
+  Dummy->render();
 }
 
 /**
@@ -112,100 +113,103 @@ void Scene::postRender()
  * for scenes)
  * This method can handle post render events like map editor
  */
-void Scene::hudRender()
+void CScene::hudRender()
 {
   //shadows->render();
 
-  if (dialog) {
-    dialog->render();
+  if (Dialog) {
+    Dialog->render();
   }
 }
 
 /**
  * @todo
  */
-void Scene::darkenNonGlowingEntities()
+void CScene::darkenNonGlowingEntities()
 {
-  Game::getSceneManager()->setAmbientLight(video::SColorf(0.0f, 0.0f, 0.0f));
+  engine::CGame::getSceneManager()->setAmbientLight(irr::video::SColorf(0.0f, 0.0f, 0.0f));
 
   // @todo : turn off all lights
 
-  for (entityListIt = entityList.begin(); entityListIt != entityList.end(); entityListIt++) {
-    entityListIt->first->darken();
+  for (EntityListIt = EntityList.begin(); EntityListIt != EntityList.end(); EntityListIt++) {
+    EntityListIt->first->darken();
   }
 }
 
 /**
  * @todo
  */
-void Scene::revealNonGlowingEntities()
+void CScene::revealNonGlowingEntities()
 {
-  Game::getSceneManager()->setAmbientLight(video::SColorf(1.0f, 1.0f, 1.0f));
+  engine::CGame::getSceneManager()->setAmbientLight(irr::video::SColorf(1.0f, 1.0f, 1.0f));
 
   // @todo : turn on all lights
 
-  for (entityListIt = entityList.begin(); entityListIt != entityList.end(); entityListIt++) {
-    entityListIt->first->undarken();
+  for (EntityListIt = EntityList.begin(); EntityListIt != EntityList.end(); EntityListIt++) {
+    EntityListIt->first->undarken();
   }
 }
 
 /**
  * @todo
  */
-void Scene::addToEntityList(ModelEntity* entity)
+void CScene::addToEntityList(model::CModelEntity* entity)
 {
-  entityList[entity] = false;
+  EntityList[entity] = false;
 }
 
 /**
  * @todo
  */
-void Scene::fadeIn(f32 speed, FadeColor color)
+void CScene::fadeIn(irr::f32 speed, engine::EFadeColor color)
 {
-  inFader->setColor(video::SColor(0, 0, 0, 0));
-  inFader->fadeIn(speed * 1000);
+  InFader->setColor(irr::video::SColor(0, 0, 0, 0));
+  InFader->fadeIn(speed * 1000);
 }
 
 /**
  * @todo
  */
-void Scene::fadeOut(f32 speed, FadeColor color)
+void CScene::fadeOut(irr::f32 speed, engine::EFadeColor color)
 {
-  outFader->setColor(video::SColor(0, 0, 0, 0));
-  outFader->fadeOut(speed * 1000);
+  OutFader->setColor(irr::video::SColor(0, 0, 0, 0));
+  OutFader->fadeOut(speed * 1000);
 }
 
 /**
  * @todo
  */
-ShadowProcessor* Scene::getShadowProcessor()
+engine::CShadowProcessor* CScene::getShadowProcessor()
 {
-  return shadows;
+  return Shadows;
 }
 
-const video::SColor& Scene::getBackBufferColor() const
+const irr::video::SColor& CScene::getBackBufferColor() const
 {
-  return backBufferColor;
+  return BackBufferColor;
 }
 
 /**
  * This destructor removes interfaces and flushes texture and mesh cache
  */
-Scene::~Scene()
+CScene::~CScene()
 {
-  inFader->remove();
-  outFader->remove();
+  InFader->remove();
+  OutFader->remove();
 
-  Game::getVideoDriver()->removeAllTextures();
-  Game::getSceneManager()->getMeshCache()->clear();
+  engine::CGame::getVideoDriver()->removeAllTextures();
+  engine::CGame::getSceneManager()->getMeshCache()->clear();
 
-  if (dialog) {
-    delete dialog;
+  if (Dialog) {
+    delete Dialog;
   }
 
-  delete keyboard;
-  delete gamepad;
-  delete dummy;
+  delete Keyboard;
+  delete Gamepad;
+  delete Dummy;
 
   //delete shadows;
+}
+
+}
 }

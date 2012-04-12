@@ -10,18 +10,20 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/map/MAP_CANYON.h"
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace map
+{
 
 /**
  * Constructeur de la map en cours, définition du mesh du décor, création du node et de
  * son masque de collision
  */
-MAP_CANYON::MAP_CANYON() : SceneGameplay()
+MAP_CANYON::MAP_CANYON() : scene::CSceneGameplay()
 {
-  level->loadMesh("resource/mesh/level/test2.obj");
-  level->createNode(core::vector3df(0, 0, 0));
-  level->loadMeshCollision();
+  Level->loadMesh("resource/mesh/level/test2.obj");
+  Level->createNode(irr::core::vector3df(0, 0, 0));
+  Level->loadMeshCollision();
 }
 
 /**
@@ -29,7 +31,7 @@ MAP_CANYON::MAP_CANYON() : SceneGameplay()
  */
 void MAP_CANYON::events()
 {
-  SceneGameplay::events();
+  CSceneGameplay::events();
 }
 
 /**
@@ -37,7 +39,7 @@ void MAP_CANYON::events()
  */
 void MAP_CANYON::postRender()
 {
-  SceneGameplay::postRender();
+  CSceneGameplay::postRender();
 }
 
 /**
@@ -45,7 +47,7 @@ void MAP_CANYON::postRender()
  */
 void MAP_CANYON::hudRender()
 {
-  SceneGameplay::hudRender();
+  CSceneGameplay::hudRender();
 }
 
 /**
@@ -54,4 +56,7 @@ void MAP_CANYON::hudRender()
 MAP_CANYON::~MAP_CANYON()
 {
 
+}
+
+}
 }

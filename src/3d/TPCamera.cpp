@@ -8,47 +8,49 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/3d/TPCamera.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace model
+{
 
 /**
  * Sets the third-person camera and defines its default properties
  */
-TPCamera::TPCamera() : Camera()
+CTPCamera::CTPCamera() : CCamera()
 {
-  UAxis = (3 * core::PI) / 2;
-  height = 1.8f;
-  distance = 4.0f;
+  UAxis = (3 * irr::core::PI) / 2;
+  Height = 1.8f;
+  Distance = 4.0f;
 }
 
 /**
  * Links a Character entity to the camera
  * @param Character* pointer to a character
  */
-void TPCamera::linkEntity(Character* entity)
+void CTPCamera::linkEntity(CCharacter* entity)
 {
-  linkedEntity = entity;
+  LinkedEntity = entity;
 }
 
 /**
  * Camera update method
  * This method sets the camera position relative to the character and player moves
  */
-void TPCamera::update()
+void CTPCamera::update()
 {
-  Camera::update();
+  CCamera::update();
 
-  f32 x = linkedEntity->getNode()->getPosition().X + distance * cos(UAxis);
-  f32 z = linkedEntity->getNode()->getPosition().Z + distance * sin(UAxis);
+  irr::f32 x = LinkedEntity->getNode()->getPosition().X + Distance * cos(UAxis);
+  irr::f32 z = LinkedEntity->getNode()->getPosition().Z + Distance * sin(UAxis);
 
-  irrCam->setTarget(core::vector3df(
-    linkedEntity->getNode()->getPosition().X,
-    linkedEntity->getNode()->getPosition().Y + 0.8,
-    linkedEntity->getNode()->getPosition().Z
+  IrrCam->setTarget(irr::core::vector3df(
+    LinkedEntity->getNode()->getPosition().X,
+    LinkedEntity->getNode()->getPosition().Y + 0.8,
+    LinkedEntity->getNode()->getPosition().Z
   ));
-  irrCam->setPosition(core::vector3df(
+  IrrCam->setPosition(irr::core::vector3df(
     x,
-    linkedEntity->getNode()->getPosition().Y + height,
+    LinkedEntity->getNode()->getPosition().Y + Height,
     z
   ));
 }
@@ -56,21 +58,21 @@ void TPCamera::update()
 /**
  *
  */
-void TPCamera::goLeft(f32 speed)
+void CTPCamera::goLeft(irr::f32 speed)
 {
   UAxis -= (speed / 60.0f);
   if (UAxis < 0) {
-    UAxis = 2 * core::PI;
+    UAxis = 2 * irr::core::PI;
   }
 }
 
 /**
  *
  */
-void TPCamera::goRight(f32 speed)
+void CTPCamera::goRight(irr::f32 speed)
 {
   UAxis += (speed / 60.0f);
-  if (UAxis > (2 * core::PI)) {
+  if (UAxis > (2 * irr::core::PI)) {
     UAxis = 0;
   }
 }
@@ -78,43 +80,46 @@ void TPCamera::goRight(f32 speed)
 /**
  *
  */
-void TPCamera::goFar(f32 speed)
+void CTPCamera::goFar(irr::f32 speed)
 {
-  if (height < 3.3) {
-    height += (speed / 50.0f);
+  if (Height < 3.3) {
+    Height += (speed / 50.0f);
   }
-  if (height > 3.3) {
-    height = 3.3;
+  if (Height > 3.3) {
+    Height = 3.3;
   }
-  if (distance < 5.5) {
-    distance += (speed / 50.0f);
+  if (Distance < 5.5) {
+    Distance += (speed / 50.0f);
   } else {
-    distance = 5.5;
+    Distance = 5.5;
   }
 }
 
 /**
  *
  */
-void TPCamera::goNear(f32 speed)
+void CTPCamera::goNear(irr::f32 speed)
 {
-  if (height > 0.3) {
-    height -= (speed / 50.0f);
+  if (Height > 0.3) {
+    Height -= (speed / 50.0f);
   }
-  if (height < 0.3) {
-    height = 0.3;
+  if (Height < 0.3) {
+    Height = 0.3;
   }
-  if (distance > 2.5) {
-    distance -= (speed / 50.0f);
+  if (Distance > 2.5) {
+    Distance -= (speed / 50.0f);
   } else {
-    distance = 2.5;
+    Distance = 2.5;
   }
 }
 
 /**
  *
  */
-f32 TPCamera::getDistance()
+irr::f32 CTPCamera::getDistance()
 {
-  return distance;
+  return Distance;
+}
+
+}
 }

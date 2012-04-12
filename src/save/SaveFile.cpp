@@ -9,14 +9,16 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/save/SaveFile.h"
 #include "../../include/Game.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
 /**
  * Default constructor
  * Does nothing
  */
-SaveFile::SaveFile()
+CSaveFile::CSaveFile()
 {
 
 }
@@ -24,74 +26,74 @@ SaveFile::SaveFile()
 /**
  * Creates the stream for reading
  */
-void SaveFile::prepareForRead(u8 slot)
+void CSaveFile::prepareForRead(irr::u8 slot)
 {
-  string filePath("save_");
+  std::string filePath("save_");
   filePath += slot + ".dat";
-  rs.open(filePath.c_str(), ios::in);
+  Rs.open(filePath.c_str(), std::ios::in);
 
-  if (!rs) {
-    Game::fatalError(ERRCODE_20);
+  if (!Rs) {
+    CGame::fatalError(debug::ERRCODE_20);
   }
 }
 
 /**
  * Creates the stream for writing
  */
-void SaveFile::prepareForWrite(u8 slot)
+void CSaveFile::prepareForWrite(irr::u8 slot)
 {
-  string filePath("save_");
+  std::string filePath("save_");
   filePath += slot + ".dat";
-  ws.open(filePath.c_str(), ios::out | ios::trunc);
+  Ws.open(filePath.c_str(), std::ios::out | std::ios::trunc);
 
-  if (!ws) {
-    Game::fatalError(ERRCODE_21);
+  if (!Ws) {
+    CGame::fatalError(debug::ERRCODE_21);
   }
 }
 
 /**
  * Adds an integer variable in the save file
  */
-void SaveFile::addVariable(u32 index, s32 value)
+void CSaveFile::addVariable(irr::u32 index, irr::s32 value)
 {
-  ws << index << "\ti\t" << value << "\n";
+  Ws << index << "\ti\t" << value << "\n";
 }
 
 /**
  * Adds a boolean variable in the save file
  */
-void SaveFile::addVariable(u32 index, bool value)
+void CSaveFile::addVariable(irr::u32 index, bool value)
 {
-  u8 intValue = value ? 1 : 0;
-  ws << index << "\tb\t" << intValue << "\n";
+  irr::u8 intValue = value ? 1 : 0;
+  Ws << index << "\tb\t" << intValue << "\n";
 }
 
 /**
- * Adds a string variable in the save file
+ * Adds a std::string variable in the save file
  */
-void SaveFile::addVariable(u32 index, const string& value)
+void CSaveFile::addVariable(irr::u32 index, const std::string& value)
 {
-  ws << index << "\ts\t" << value.c_str() << "\n";
+  Ws << index << "\ts\t" << value.c_str() << "\n";
 }
 
 /**
  * Reads the next variable in save file
  * @return SaveFileElement structure
  */
-SaveFileElement SaveFile::getNextElement()
+SSaveFileElement CSaveFile::getNextElement()
 {
   char currentChar = 0;
   bool inIndexDeclaration = true;
   bool inTypeDeclaration = false;
   bool inValueDeclaration = false;
-  string index("");
+  std::string index("");
   char type = 0;
-  string value("");
+  std::string value("");
 
-  SaveFileElement result;
+  SSaveFileElement result;
 
-  if (rs) {
-    while (rs.get(currentChar)) {
+  if (Rs) {
+    while (Rs.get(currentChar)) {
       if (currentChar == '\t') {
         if (inIndexDeclaration) {
           inIndexDeclaration = false;
@@ -105,10 +107,10 @@ SaveFileElement SaveFile::getNextElement()
         }
       }
       if (currentChar == '\n' || currentChar == '\r') {
-        istringstream iss(index.c_str());
-        iss >> result.index;
-        result.type = type;
-        result.value = value;
+        std::istringstream iss(index.c_str());
+        iss >> result.Index;
+        result.Type = type;
+        result.Value = value;
         break;
       }
       if (inIndexDeclaration) {
@@ -129,8 +131,11 @@ SaveFileElement SaveFile::getNextElement()
 /**
  * Closes file
  */
-SaveFile::~SaveFile()
+CSaveFile::~CSaveFile()
 {
-  rs.close();
-  ws.close();
+  Rs.close();
+  Ws.close();
+}
+
+}
 }

@@ -10,16 +10,24 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/AnimatedModel.h"
 
-class Enemy : public AnimatedModel
+namespace is06
+{
+namespace model
+{
+
+class CEnemy : public CAnimatedModel
 {
   public:
-    Enemy();
-    virtual ~Enemy();
+    CEnemy();
+    virtual ~CEnemy();
 
     virtual void update();
 
   protected:
 
 };
+
+}
+}
 
 #endif

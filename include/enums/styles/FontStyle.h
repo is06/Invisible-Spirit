@@ -8,15 +8,20 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_FONT_STYLE_H__
 #define __IS06_FONT_STYLE_H__
 
-/**
- *
- */
-enum FontStyle
+namespace is06
+{
+namespace hud
+{
+
+enum EFontStyle
 {
   // Classic style
   FONT_STANDARD_48,
 
   FONT_COUNT
 };
+
+}
+}
 
 #endif

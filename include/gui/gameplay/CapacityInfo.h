@@ -10,20 +10,25 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Hud.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace hud
+{
 
-class CapacityInfo : public Hud
+class CCapacityInfo : public CHud
 {
   public:
-    CapacityInfo();
-    ~CapacityInfo();
+    CCapacityInfo();
+    ~CCapacityInfo();
 
     void render();
 
   private:
-    Picture* icon;
-    Text* value;
+    CPicture* Icon;
+    CText* Value;
 };
+
+}
+}
 
 #endif

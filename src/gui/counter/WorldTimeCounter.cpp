@@ -10,65 +10,69 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/gui/counter/Counter.h"
 #include "../../../include/gui/counter/WorldTimeCounter.h"
 
-using namespace irr;
-using namespace std;
-
-WorldTimeCounter::WorldTimeCounter() : Counter()
+namespace is06
 {
-  counterText = new Text();
-}
-
-void WorldTimeCounter::render()
+namespace hud
 {
 
+CWorldTimeCounter::CWorldTimeCounter() : CCounter()
+{
+  CounterText = new CText();
 }
 
-void WorldTimeCounter::render(s32 totalGameTime)
+void CWorldTimeCounter::render()
+{
+
+}
+
+void CWorldTimeCounter::render(irr::s32 totalGameTime)
 {
   updateValues(totalGameTime);
   updateDigits();
 }
 
-void WorldTimeCounter::updateValues(s32 time)
+void CWorldTimeCounter::updateValues(irr::s32 time)
 {
-  hours = "";
-  u32 hoursInt = time / 60;
-  u32 hoursInMinutes = (hoursInt * 60);
+  Hours = "";
+  irr::u32 hoursInt = time / 60;
+  irr::u32 hoursInMinutes = (hoursInt * 60);
   if (hoursInt < 10) {
-    hours += "0";
+    Hours += "0";
   }
-  hours += hoursInt;
+  Hours += hoursInt;
 
-  minutes = "";
-  u32 minutesInt = (time - hoursInMinutes);
+  Minutes = "";
+  irr::u32 minutesInt = (time - hoursInMinutes);
   if (minutesInt < 10) {
-    minutes += "0";
+    Minutes += "0";
   }
-  minutes += minutesInt;
+  Minutes += minutesInt;
 }
 
-void WorldTimeCounter::updateDigits()
+void CWorldTimeCounter::updateDigits()
 {
-  counterText->setText(hours + ":" + minutes);
+  CounterText->setText(Hours + ":" + Minutes);
 }
 
-void WorldTimeCounter::hide()
-{
-
-}
-
-void WorldTimeCounter::show()
+void CWorldTimeCounter::hide()
 {
 
 }
 
-void WorldTimeCounter::setOpacity(u8 value)
+void CWorldTimeCounter::show()
 {
 
 }
 
-WorldTimeCounter::~WorldTimeCounter()
+void CWorldTimeCounter::setOpacity(irr::u8 value)
 {
 
 }
 
+CWorldTimeCounter::~CWorldTimeCounter()
+{
+
+}
+
+}
+}

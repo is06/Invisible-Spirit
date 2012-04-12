@@ -1,22 +1,27 @@
 #ifndef __IS06_LIGHT_H__
 #define __IS06_LIGHT_H__
 
-using namespace std;
-using namespace irr;
-
 #include "../../include/Entity.h"
 
-class Light : public Entity
+namespace is06
+{
+namespace model
+{
+
+class CLight : public engine::CEntity
 {
   public:
-    Light();
-    ~Light();
+    CLight();
+    ~CLight();
 
     void update();
 
   private:
-    scene::ILightSceneNode* node;
-    scene::IBillboardSceneNode* icon;
+    irr::scene::ILightSceneNode* Node;
+    irr::scene::IBillboardSceneNode* Icon;
 };
+
+}
+}
 
 #endif

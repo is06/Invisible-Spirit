@@ -8,10 +8,18 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/ref/core.h"
 #include "../include/Entity.h"
 
+namespace is06
+{
+namespace engine
+{
+
 /**
  * Constructor of all entities
  */
-Entity::Entity()
+CEntity::CEntity()
 {
 
+}
+
+}
 }

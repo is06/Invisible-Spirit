@@ -10,18 +10,20 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/map/MAP_OXYGEN.h"
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace map
+{
 
 /**
  * Constructeur de la map en cours, définition du mesh du décor, création du node et de
  * son masque de collision
  */
-MAP_OXYGEN::MAP_OXYGEN() : SceneGameplay()
+MAP_OXYGEN::MAP_OXYGEN() : scene::CSceneGameplay()
 {
-  level->loadMesh("resource/mesh/level/oxygen.obj");
-  level->createNode(core::vector3df(0, 0, 0));
-  level->loadMeshCollision();
+  Level->loadMesh("resource/mesh/level/oxygen.obj");
+  Level->createNode(irr::core::vector3df(0, 0, 0));
+  Level->loadMeshCollision();
 }
 
 /**
@@ -29,7 +31,7 @@ MAP_OXYGEN::MAP_OXYGEN() : SceneGameplay()
  */
 void MAP_OXYGEN::events()
 {
-  SceneGameplay::events();
+  scene::CSceneGameplay::events();
 }
 
 /**
@@ -40,3 +42,5 @@ MAP_OXYGEN::~MAP_OXYGEN()
 
 }
 
+}
+}

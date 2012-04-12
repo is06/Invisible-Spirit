@@ -10,9 +10,9 @@ http://www.is06.com. Legal code in license.txt
 
 struct GameDebugDisplay
 {
-  bool hidePostRender;
-  bool showWireFrame;
-  bool showIrrlichtDebugData;
+  bool HidePostRender;
+  bool ShowWireFrame;
+  bool ShowIrrlichtDebugData;
 };
 
 #endif

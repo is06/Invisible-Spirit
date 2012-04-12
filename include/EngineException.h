@@ -8,40 +8,48 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENGINE_EXCEPTION_H__
 #define __IS06_ENGINE_EXCEPTION_H__
 
-class EngineException : public exception
+namespace is06
+{
+namespace engine
+{
+
+class CEngineException : public std::exception
 {
   public:
-    EngineException(u32 code = 0, const string& message = "", s32 level = 3) throw()
+    CEngineException(irr::u32 code = 0, const std::string& message = "", irr::s32 level = 3) throw()
     {
-      _code = code;
-      _message = message;
-      _level = level;
+      Code = code;
+      Message = message;
+      Level = level;
     }
 
     virtual const char* what() const throw()
     {
-      return _message.c_str();
+      return Message.c_str();
     }
 
-    u32 getCode() const throw()
+    irr::u32 getCode() const throw()
     {
-      return _code;
+      return Code;
     }
 
-    u32 getLevel() const throw()
+    irr::u32 getLevel() const throw()
     {
-      return _level;
+      return Level;
     }
 
-    virtual ~EngineException() throw()
+    virtual ~CEngineException() throw()
     {
 
     }
 
   private:
-    u32 _code;
-    string _message;
-    s32 _level;
+    irr::u32 Code;
+    std::string Message;
+    irr::s32 Level;
 };
+
+}
+}
 
 #endif

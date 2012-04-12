@@ -11,21 +11,29 @@ http://www.is06.com. Legal code in license.txt
 #include "../../enums/gameplay/CommandIdentifier.h"
 #include "../Hud.h"
 
-class Button : public Hud
+namespace is06
+{
+namespace hud
+{
+
+class CButton : public CHud
 {
   public:
-    Button(f32 x, f32 y);
-    virtual ~Button();
+    CButton(irr::f32 x, irr::f32 y);
+    virtual ~CButton();
 
     virtual void render() = 0;
 
-    void changeCommand(CommandIdentifier newCommand);
+    void changeCommand(engine::ECommandIdentifier newCommand);
     void hide();
     void show();
-    void setOpacity(u8 value);
+    void setOpacity(irr::u8 value);
 
   protected:
-    Picture* buttonCircle;
+    CPicture* ButtonCircle;
 };
+
+}
+}
 
 #endif

@@ -10,48 +10,53 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/gui/Text.h"
 #include "../../../include/gui/counter/BarCounter.h"
 
-using namespace irr;
-using namespace std;
-
-MainStateInfo::MainStateInfo() : Hud()
+namespace is06
 {
-  label = new Text();
-  info = new Text();
-  gauge = new BarCounter(60, 0, 100, 150, 150, 150, 10, BAR_STYLE_LIFE);
+namespace hud
+{
+
+CMainStateInfo::CMainStateInfo() : CHud()
+{
+  Label = new CText();
+  Info = new CText();
+  Gauge = new CBarCounter(60, 0, 100, 150, 150, 150, 10, BAR_STYLE_LIFE);
 }
 
-void MainStateInfo::render()
+void CMainStateInfo::render()
 {
-  Hud::render();
-  label->render();
-  info->render();
-  gauge->render();
+  CHud::render();
+  Label->render();
+  Info->render();
+  Gauge->render();
 }
 
-void MainStateInfo::show()
+void CMainStateInfo::show()
 {
-  label->show();
-  info->show();
-  gauge->show();
+  Label->show();
+  Info->show();
+  Gauge->show();
 }
 
-void MainStateInfo::hide()
+void CMainStateInfo::hide()
 {
-  label->hide();
-  info->hide();
-  gauge->hide();
+  Label->hide();
+  Info->hide();
+  Gauge->hide();
 }
 
-void MainStateInfo::setOpacity(u8 value)
+void CMainStateInfo::setOpacity(irr::u8 value)
 {
-  label->setOpacity(value);
-  info->setOpacity(value);
-  gauge->setOpacity(value);
+  Label->setOpacity(value);
+  Info->setOpacity(value);
+  Gauge->setOpacity(value);
 }
 
-MainStateInfo::~MainStateInfo()
+CMainStateInfo::~CMainStateInfo()
 {
-  delete label;
-  delete info;
-  delete gauge;
+  delete Label;
+  delete Info;
+  delete Gauge;
+}
+
+}
 }

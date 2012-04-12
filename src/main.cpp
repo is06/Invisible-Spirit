@@ -17,15 +17,15 @@ int main()
 #endif
 {
   try {
-    Game::init();
-    Game::run();
-    Game::finish();
+    is06::engine::CGame::init();
+    is06::engine::CGame::run();
+    is06::engine::CGame::finish();
   } catch(const std::exception& e) {
-    cerr << "Exception: " << e.what() << endl;
+    std::cerr << "Exception: " << e.what() << std::endl;
 #ifdef _IRR_WINDOWS_
     MessageBoxA(NULL, e.what(), "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
 #endif
-    Game::errorLog(e);
+    is06::engine::CGame::errorLog(e);
   }
   return 0;
 }

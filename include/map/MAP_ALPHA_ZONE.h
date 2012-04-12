@@ -11,7 +11,12 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/scene/SceneGameplay.h"
 #include "../../include/shader/PostRenderGlow.h"
 
-class MAP_ALPHA_ZONE : public SceneGameplay
+namespace is06
+{
+namespace map
+{
+
+class MAP_ALPHA_ZONE : public scene::CSceneGameplay
 {
   public:
     MAP_ALPHA_ZONE();
@@ -22,10 +27,13 @@ class MAP_ALPHA_ZONE : public SceneGameplay
     void hudRender();
 
   private:
-    Speaker* spk;
-    OmniLight* lt;
+    sound::CSpeaker* Spk;
+    model::COmniLight* Lt;
 
-    PostRenderGlow* glowShader;
+    shader::CPostRenderGlow* GlowShader;
 };
+
+}
+}
 
 #endif

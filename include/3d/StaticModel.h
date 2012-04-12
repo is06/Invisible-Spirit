@@ -10,14 +10,16 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/ModelEntity.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace model
+{
 
-class StaticModel : public ModelEntity
+class CStaticModel : public CModelEntity
 {
   public:
-    StaticModel();
-    ~StaticModel();
+    CStaticModel();
+    ~CStaticModel();
 
     virtual void update();
     virtual void shaderRender();
@@ -31,28 +33,31 @@ class StaticModel : public ModelEntity
     void darken();
     void undarken();
 
-    void turnX(f32 speed);
-    void turnY(f32 speed);
-    void turnZ(f32 speed);
-    void moveX(f32 speed);
-    void moveY(f32 speed);
-    void moveZ(f32 speed);
+    void turnX(irr::f32 speed);
+    void turnY(irr::f32 speed);
+    void turnZ(irr::f32 speed);
+    void moveX(irr::f32 speed);
+    void moveY(irr::f32 speed);
+    void moveZ(irr::f32 speed);
 
-    video::SMaterial& getMaterial();
+    irr::video::SMaterial& getMaterial();
 
     void loadMeshCollision();
     void clearMeshCollision();
-    void createNode(const core::vector3df& initPosition);
-    scene::IMeshSceneNode* getNode();
+    void createNode(const irr::core::vector3df& initPosition);
+    irr::scene::IMeshSceneNode* getNode();
 
     // Shadows
-    void setShadowMode(ShadowMode mode = SHADOW_MODE_CAST);
+    void setShadowMode(engine::EShadowMode mode = engine::SHADOW_MODE_CAST);
 
   protected:
-    scene::IMeshSceneNode* mainNode;
+    irr::scene::IMeshSceneNode* MainNode;
 
   private:
-    void addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene::IMeshBuffer* meshBuffer, NewtonCollision* treeCollision, core::vector3df scale);
+    void addMeshToTreeCollision(irr::video::E_VERTEX_TYPE vertexType, irr::scene::IMeshBuffer* meshBuffer, NewtonCollision* treeCollision, irr::core::vector3df scale);
 };
+
+}
+}
 
 #endif

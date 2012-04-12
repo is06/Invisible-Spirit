@@ -11,18 +11,20 @@ http://www.is06.com. Legal code in license.txt
 #include "../Entity.h"
 #include "../enums/engine/ShadowMode.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace model
+{
 
-class ModelEntity : public Entity
+class CModelEntity : public engine::CEntity
 {
   public:
-    ModelEntity();
-    virtual ~ModelEntity();
+    CModelEntity();
+    virtual ~CModelEntity();
 
     virtual void update() = 0;
     virtual void shaderRender();
-    virtual void createNode(const core::vector3df& initPosition) = 0;
+    virtual void createNode(const irr::core::vector3df& initPosition) = 0;
 
     virtual void setVisible(bool value) = 0;
     virtual void hide() = 0;
@@ -33,29 +35,32 @@ class ModelEntity : public Entity
     virtual void darken() = 0;
     virtual void undarken() = 0;
 
-    virtual video::SMaterial& getMaterial() = 0;
+    virtual irr::video::SMaterial& getMaterial() = 0;
 
-    virtual void turnX(f32 speed) = 0;
-    virtual void turnY(f32 speed) = 0;
-    virtual void turnZ(f32 speed) = 0;
-    virtual void moveX(f32 speed) = 0;
-    virtual void moveY(f32 speed) = 0;
-    virtual void moveZ(f32 speed) = 0;
+    virtual void turnX(irr::f32 speed) = 0;
+    virtual void turnY(irr::f32 speed) = 0;
+    virtual void turnZ(irr::f32 speed) = 0;
+    virtual void moveX(irr::f32 speed) = 0;
+    virtual void moveY(irr::f32 speed) = 0;
+    virtual void moveZ(irr::f32 speed) = 0;
 
-    virtual void setShadowMode(ShadowMode mode = SHADOW_MODE_CAST) = 0;
+    virtual void setShadowMode(engine::EShadowMode mode = engine::SHADOW_MODE_CAST) = 0;
 
-    void loadMesh(const string& meshFilePath);
+    void loadMesh(const std::string& meshFilePath);
 
-    void attachSpeaker(Speaker* spk);
+    void attachSpeaker(sound::CSpeaker* speaker);
     void detachSpeaker();
 
-    scene::IMesh* getMesh();
+    irr::scene::IMesh* getMesh();
     NewtonBody* getMainBody();
 
   protected:
-    scene::IMesh* mainMesh;
-    NewtonBody* mainBody;
-    Speaker* attachedSpeaker;
+    irr::scene::IMesh* MainMesh;
+    NewtonBody* MainBody;
+    sound::CSpeaker* AttachedSpeaker;
 };
+
+}
+}
 
 #endif

@@ -11,25 +11,31 @@ http://www.is06.com. Legal code in license.txt
 #include "Character.h"
 #include "../engine/DialogInterface.h"
 
-using namespace std;
+namespace is06
+{
+namespace model
+{
 
-class NPC : public Character
+class CNPC : public CCharacter
 {
   public:
-    NPC(const string& meshFile, const string& animationFile);
-    ~NPC();
+    CNPC(const std::string& meshFile, const std::string& animationFile);
+    ~CNPC();
 
     void update();
-    void talk(const string& dialogIdentifier) const;
-    void attachDialogInterface(DialogInterface* dialog);
-    const string& getRandomTalkingDialogIdentifier(bool avoidDoubles = false);
-    const string& getNextTalkingDialogIdentifier();
+    void talk(const std::string& dialogIdentifier) const;
+    void attachDialogInterface(engine::CDialogInterface* dialog);
+    const std::string& getRandomTalkingDialogIdentifier(bool avoidDoubles = false);
+    const std::string& getNextTalkingDialogIdentifier();
 
   protected:
-    DialogInterface* attachedDialog;
-    map<u16, string> dialogIdentifierList;
-    u16 nextDialogIdentifier;
-    u16 currentTalkingDialogIdentifier;
+    engine::CDialogInterface* AttachedDialog;
+    std::map<irr::u16, std::string> DialogIdentifierList;
+    irr::u16 NextDialogIdentifier;
+    irr::u16 CurrentTalkingDialogIdentifier;
 };
+
+}
+}
 
 #endif

@@ -8,17 +8,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/ref/core.h"
 #include "../../../include/gui/gameplay/TextButton.h"
 
-TextButton::TextButton(f32 x, f32 y) : Button(x, y)
+namespace is06
+{
+namespace hud
+{
+
+CTextButton::CTextButton(irr::f32 x, irr::f32 y) : CButton(x, y)
 {
 
 }
 
-void TextButton::render()
+void CTextButton::render()
 {
-  Button::render();
+  CButton::render();
 }
 
-TextButton::~TextButton()
+CTextButton::~CTextButton()
 {
 
+}
+
+}
 }

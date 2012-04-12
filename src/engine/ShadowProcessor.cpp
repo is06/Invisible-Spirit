@@ -10,16 +10,18 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Settings.h"
 #include "../../include/engine/ShadowProcessor.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
 /**
  *
  */
-ShadowProcessor::ShadowProcessor()
+CShadowProcessor::CShadowProcessor()
 {
   // Render to target texture quality from settings.ini
-  u32 textureQuality = Game::settings->getParamInt("shadows", "texture_quality");
+  irr::u32 textureQuality = CGame::Settings->getParamInt("shadows", "texture_quality");
   switch (textureQuality) {
     case 1: textureQuality = 64; break;  // 4K
     default:
@@ -30,15 +32,15 @@ ShadowProcessor::ShadowProcessor()
   }
 
   // Depth texture quality from settings.ini
-  u32 depthQuality = Game::settings->getParamInt("shadows", "depth_quality");
-  video::ECOLOR_FORMAT depthTextureQuality = video::ECF_G16R16F;
+  irr::u32 depthQuality = CGame::Settings->getParamInt("shadows", "depth_quality");
+  irr::video::ECOLOR_FORMAT depthTextureQuality = irr::video::ECF_G16R16F;
   if (depthQuality == 32) {
-    depthTextureQuality = video::ECF_G32R32F;
+    depthTextureQuality = irr::video::ECF_G32R32F;
   }
 
   // Shadow map texture creation (render target)
-  shadowMap = Game::getVideoDriver()->addRenderTargetTexture(
-    core::dimension2du(textureQuality, textureQuality),
+  ShadowMap = CGame::getVideoDriver()->addRenderTargetTexture(
+    irr::core::dimension2du(textureQuality, textureQuality),
     "IS06_SHADOW_MAP",
     depthTextureQuality
   );
@@ -47,33 +49,33 @@ ShadowProcessor::ShadowProcessor()
 /**
  *
  */
-void ShadowProcessor::render()
+void CShadowProcessor::render()
 {
   // Changing render target to a texture
-  Game::getVideoDriver()->setRenderTarget(shadowMap, true, true, video::SColor(255, 255, 255, 255));
+  CGame::getVideoDriver()->setRenderTarget(ShadowMap, true, true, irr::video::SColor(255, 255, 255, 255));
 
-  for (shadowsIt = shadows.begin(); shadowsIt != shadows.end(); shadowsIt++) {
+  for (ShadowsIt = Shadows.begin(); ShadowsIt != Shadows.end(); ShadowsIt++) {
     // Considering entities that casts shadows
-    if (shadowsIt->second.getMode() == SHADOW_MODE_CAST || shadowsIt->second.getMode() == SHADOW_MODE_ALL) {
-      shadowsIt->first->render();
+    if (ShadowsIt->second.getMode() == SHADOW_MODE_CAST || ShadowsIt->second.getMode() == SHADOW_MODE_ALL) {
+      ShadowsIt->first->render();
     }
 
     // Considering entities that receives shadows
-    if (shadowsIt->second.getMode() == SHADOW_MODE_RECEIVE || shadowsIt->second.getMode() == SHADOW_MODE_ALL) {
+    if (ShadowsIt->second.getMode() == SHADOW_MODE_RECEIVE || ShadowsIt->second.getMode() == SHADOW_MODE_ALL) {
       // @todo
     }
   }
 
   // Restore render target to main display window
-  Game::getVideoDriver()->setRenderTarget(0, true, true, video::SColor(255, 0, 0, 0));
+  CGame::getVideoDriver()->setRenderTarget(0, true, true, irr::video::SColor(255, 0, 0, 0));
 }
 
-void ShadowProcessor::renderCastingNodes()
+void CShadowProcessor::renderCastingNodes()
 {
 
 }
 
-void ShadowProcessor::renderReceivingNodes()
+void CShadowProcessor::renderReceivingNodes()
 {
 
 }
@@ -81,24 +83,27 @@ void ShadowProcessor::renderReceivingNodes()
 /**
  *
  */
-void ShadowProcessor::setEntity(scene::ISceneNode* node, ShadowMode mode)
+void CShadowProcessor::setEntity(irr::scene::ISceneNode* node, EShadowMode mode)
 {
-  shadows[node] = Shadow(mode);
+  Shadows[node] = CShadow(mode);
 }
 
 /**
  *
  */
-void ShadowProcessor::removeEntity(scene::ISceneNode* node)
+void CShadowProcessor::removeEntity(irr::scene::ISceneNode* node)
 {
-  shadowsIt = shadows.find(node);
-  shadows.erase(shadowsIt);
+  ShadowsIt = Shadows.find(node);
+  Shadows.erase(ShadowsIt);
 }
 
 /**
  *
  */
-ShadowProcessor::~ShadowProcessor()
+CShadowProcessor::~CShadowProcessor()
 {
 
+}
+
+}
 }

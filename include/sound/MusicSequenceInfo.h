@@ -8,17 +8,21 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MUSIC_SEQUENCE_INFO_H__
 #define __IS06_MUSIC_SEQUENCE_INFO_H__
 
-using namespace irr;
-using namespace std;
-
-struct MusicSequenceInfo
+namespace is06
 {
-  u16 number;
-  bool looped;
-  u32 loopStart;
-  u32 loopEnd;
-  string fileName;
+namespace sound
+{
+
+struct SMusicSequenceInfo
+{
+  irr::u16 Number;
+  bool Looped;
+  irr::u32 LoopStart;
+  irr::u32 LoopEnd;
+  std::string FileName;
 };
 
-#endif
+}
+}
 
+#endif

@@ -10,24 +10,29 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Hud.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace hud
+{
 
-class MainStateInfo : public Hud
+class CMainStateInfo : public CHud
 {
   public:
-    MainStateInfo();
-    ~MainStateInfo();
+    CMainStateInfo();
+    ~CMainStateInfo();
 
     void render();
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(irr::u8 value);
 
   private:
-    Text* label;
-    Text* info;
-    BarCounter* gauge;
+    CText* Label;
+    CText* Info;
+    CBarCounter* Gauge;
 };
+
+}
+}
 
 #endif

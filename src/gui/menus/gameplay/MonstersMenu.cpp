@@ -8,17 +8,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/MonstersMenu.h"
 
-MonstersMenu::MonstersMenu() : GameplaySubMenu()
+namespace is06
+{
+namespace hud
+{
+
+CMonstersMenu::CMonstersMenu() : CGameplaySubMenu()
 {
 
 }
 
-void MonstersMenu::render(Keyboard* keyboard)
+void CMonstersMenu::render()
 {
-  GameplaySubMenu::render();
+  CGameplaySubMenu::render();
 }
 
-MonstersMenu::~MonstersMenu()
+CMonstersMenu::~CMonstersMenu()
 {
 
+}
+
+}
 }

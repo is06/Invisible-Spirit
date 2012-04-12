@@ -7,12 +7,20 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../include/Sensor.h"
 
-Sensor::Sensor() : Entity()
+namespace is06
+{
+namespace model
+{
+
+CSensor::CSensor() : engine::CEntity()
 {
 
 }
 
-void Sensor::update()
+void CSensor::update()
 {
-  //Entity::update();
+  //CEntity::update();
+}
+
+}
 }

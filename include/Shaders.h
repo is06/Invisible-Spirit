@@ -8,18 +8,26 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SHADERS_H__
 #define __IS06_SHADERS_H__
 
-class Shaders
+namespace is06
+{
+namespace shader
+{
+
+class CShaders
 {
   public:
-    Shaders();
-    void createMaterials(video::IGPUProgrammingServices* gpuManager);
+    CShaders();
+    void createMaterials(irr::video::IGPUProgrammingServices* gpuManager);
 
-    s32 diffuse;
-    s32 ice;
-    s32 metal;
-    s32 glass;
-    s32 verticalBlur;
-    s32 horizontalBlur;
+    irr::s32 Diffuse;
+    irr::s32 Ice;
+    irr::s32 Metal;
+    irr::s32 Glass;
+    irr::s32 VerticalBlur;
+    irr::s32 HorizontalBlur;
 };
+
+}
+}
 
 #endif

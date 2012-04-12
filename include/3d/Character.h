@@ -10,20 +10,28 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/AnimatedModel.h"
 
-class Character : public AnimatedModel
+namespace is06
+{
+namespace model
+{
+
+class CCharacter : public CAnimatedModel
 {
   public:
-    Character(const string& meshFile, const string& animationFile);
+    CCharacter(const std::string& meshFile, const std::string& animationFile);
 
     virtual void update();
 
-    bool isJumping;
-    bool isFalling;
-    bool isWalking;
-    bool isTalking;
+    bool IsJumping;
+    bool IsFalling;
+    bool IsWalking;
+    bool IsTalking;
 
   protected:
-    f32 jumpStrength;
+    irr::f32 JumpStrength;
 };
+
+}
+}
 
 #endif

@@ -8,13 +8,18 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_WINDOW_STYLE_H__
 #define __IS06_WINDOW_STYLE_H__
 
-/**
- *
- */
-enum WindowStyle
+namespace is06
+{
+namespace hud
+{
+
+enum EWindowStyle
 {
   WIN_STYLE_STD,
   WIN_STYLE_NONE,
 };
+
+}
+}
 
 #endif

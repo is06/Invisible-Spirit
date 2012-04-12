@@ -10,36 +10,40 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Hud.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace hud
+{
 
-class PlayerState : public Hud
+class CPlayerState : public CHud
 {
   public:
-    PlayerState();
-    ~PlayerState();
+    CPlayerState();
+    ~CPlayerState();
 
     void render();
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(irr::u8 value);
 
   private:
-    Text* playerName;
-    Text* levelLabel;
-    Text* levelInfo;
+    CText* PlayerName;
+    CText* LevelLabel;
+    CText* LevelInfo;
 
-    MainStateInfo* hpInfo;
-    MainStateInfo* mpInfo;
-    MainStateInfo* expInfo;
-    MainStateInfo* nextLevelInfo;
+    CMainStateInfo* HpInfo;
+    CMainStateInfo* ExpInfo;
+    CMainStateInfo* NextLevelInfo;
 
-    CapacityInfo* strengthInfo;
-    CapacityInfo* defenseInfo;
-    CapacityInfo* magicInfo;
-    CapacityInfo* concInfo;
-    CapacityInfo* precInfo;
-    CapacityInfo* speedInfo;
+    CCapacityInfo* StrengthInfo;
+    CCapacityInfo* DefenseInfo;
+    CCapacityInfo* MagicInfo;
+    CCapacityInfo* ConcInfo;
+    CCapacityInfo* PrecInfo;
+    CCapacityInfo* SpeedInfo;
 };
+
+}
+}
 
 #endif

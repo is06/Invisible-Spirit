@@ -10,10 +10,18 @@ http://www.is06.com. Legal code in license.txt
 
 #include "ref/core.h"
 
-class Entity
+namespace is06
+{
+namespace engine
+{
+
+class CEntity
 {
   public:
-    Entity();
+    CEntity();
 };
+
+}
+}
 
 #endif

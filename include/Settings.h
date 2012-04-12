@@ -8,21 +8,26 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SETTINGS_H__
 #define __IS06_SETTINGS_H__
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
-class Settings
+class CSettings
 {
   public:
-    Settings();
-    ~Settings();
+    CSettings();
+    ~CSettings();
 
-    string& getParamString(const string& groupName, const string& paramName);
-    s32 getParamInt(const string& groupName, const string& paramName);
+    std::string& getParamString(const std::string& groupName, const std::string& paramName);
+    irr::s32 getParamInt(const std::string& groupName, const std::string& paramName);
 
   private:
-    map<string, SettingsGroup*> data;
-    fstream fileStream;
+    std::map<std::string, CSettingsGroup*> Data;
+    std::fstream FileStream;
 };
+
+}
+}
 
 #endif

@@ -10,19 +10,21 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../gui/Hud2DElement.h"
 
-using namespace irr;
+namespace is06
+{
+namespace shader
+{
 
-class PostRenderGlow : public Hud2DElement
+class CPostRenderGlow : public hud::CHud2DElement
 {
   public:
-    PostRenderGlow();
-    ~PostRenderGlow();
+    CPostRenderGlow();
+    ~CPostRenderGlow();
 
     void render();
-
-  private:
-    //video::IRenderTarget* rt1st;
-    //video::IRenderTarget* rt2nd;
 };
+
+}
+}
 
 #endif

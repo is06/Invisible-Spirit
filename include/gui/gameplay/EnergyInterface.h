@@ -10,21 +10,29 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Hud.h"
 
-class EnergyInterface : public Hud
+namespace is06
+{
+namespace hud
+{
+
+class CEnergyInterface : public CHud
 {
   public:
-    EnergyInterface();
-    ~EnergyInterface();
+    CEnergyInterface();
+    ~CEnergyInterface();
 
     void render();
     void hide();
     void show();
-    void setOpacity(u8 value);
+    void setOpacity(irr::u8 value);
 
-    BarCounter* hpBar;
-    BarCounter* mpBar;
-    //SpiritCounter* spiritPower;
+    CBarCounter* HpBar;
+    //BarCounter* MpBar;
+    //SpiritCounter* SpiritPower;
 };
+
+}
+}
 
 #endif
 

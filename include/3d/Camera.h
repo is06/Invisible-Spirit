@@ -11,46 +11,52 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/Character.h"
 #include "../../include/Entity.h"
 
-using namespace irr;
+namespace is06
+{
+namespace model
+{
 
-class Camera : public Entity
+class CCamera : public engine::CEntity
 {
   public:
-    Camera();
+    CCamera();
 
     virtual void update() = 0;
 
-    virtual void linkEntity(Character* entityToLink) = 0;
-    virtual f32 getDistance() = 0;
+    virtual void linkEntity(CCharacter* entityToLink) = 0;
+    virtual irr::f32 getDistance() = 0;
 
-    void turnX(f32 speed);
-    void turnY(f32 speed);
-    void turnZ(f32 speed);
-    void moveX(f32 speed);
-    void moveY(f32 speed);
-    void moveZ(f32 speed);
-    f32 getX();
-    f32 getY();
-    f32 getZ();
+    void turnX(irr::f32 speed);
+    void turnY(irr::f32 speed);
+    void turnZ(irr::f32 speed);
+    void moveX(irr::f32 speed);
+    void moveY(irr::f32 speed);
+    void moveZ(irr::f32 speed);
+    irr::f32 getX();
+    irr::f32 getY();
+    irr::f32 getZ();
 
-    virtual void goLeft(f32 speed) = 0;
-    virtual void goRight(f32 speed) = 0;
-    virtual void goFar(f32 speed) = 0;
-    virtual void goNear(f32 speed) = 0;
+    virtual void goLeft(irr::f32 speed) = 0;
+    virtual void goRight(irr::f32 speed) = 0;
+    virtual void goFar(irr::f32 speed) = 0;
+    virtual void goNear(irr::f32 speed) = 0;
 
-    void setPosition(const core::vector3df& pos);
-    void setRotation(const core::vector3df& rot);
-    scene::ICameraSceneNode* getNode();
-    const core::vector3df& getLastPosition() const;
+    void setPosition(const irr::core::vector3df& pos);
+    void setRotation(const irr::core::vector3df& rot);
+    irr::scene::ICameraSceneNode* getNode();
+    const irr::core::vector3df& getLastPosition() const;
 
     void toggleControl();
     void setControl(bool val);
     bool hasControl();
 
   protected:
-    scene::ICameraSceneNode* irrCam;
-    bool controlable;
-    core::vector3df lastPosition;
+    irr::scene::ICameraSceneNode* IrrCam;
+    bool Controlable;
+    irr::core::vector3df LastPosition;
 };
+
+}
+}
 
 #endif

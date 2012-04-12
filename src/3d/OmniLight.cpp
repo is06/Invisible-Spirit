@@ -8,12 +8,20 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/3d/OmniLight.h"
 
-OmniLight::OmniLight() : Light()
+namespace is06
+{
+namespace model
+{
+
+COmniLight::COmniLight() : CLight()
 {
 
 }
 
-OmniLight::~OmniLight()
+COmniLight::~COmniLight()
 {
 
+}
+
+}
 }

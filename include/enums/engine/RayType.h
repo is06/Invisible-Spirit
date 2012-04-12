@@ -8,10 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_RAY_TYPE_H__
 #define __IS06_RAY_TYPE_H__
 
-/**
- * RayType for collision detection
- */
-enum RayType
+namespace is06
+{
+namespace engine
+{
+
+enum ERayType
 {
   RAY_WALL_P,
   RAY_WALL_Q,
@@ -20,5 +22,8 @@ enum RayType
   RAY_FLOOR_C,
   RAY_FLOOR_D
 };
+
+}
+}
 
 #endif

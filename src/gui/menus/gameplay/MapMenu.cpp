@@ -8,17 +8,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/MapMenu.h"
 
-MapMenu::MapMenu() : GameplaySubMenu()
+namespace is06
+{
+namespace hud
+{
+
+CMapMenu::CMapMenu() : CGameplaySubMenu()
 {
 
 }
 
-void MapMenu::render(Keyboard* keyboard)
+void CMapMenu::render()
 {
-  GameplaySubMenu::render();
+  CGameplaySubMenu::render();
 }
 
-MapMenu::~MapMenu()
+CMapMenu::~CMapMenu()
 {
 
+}
+
+}
 }

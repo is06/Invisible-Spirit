@@ -12,36 +12,41 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../enums/styles/WindowStyle.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace hud
+{
 
-class Window : public Hud
+class CWindow : public CHud
 {
   public:
-    Window(f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 100, f32 borderWidth = 4, WindowStyle style = WIN_STYLE_STD);
-    ~Window();
+    CWindow(irr::f32 x = 0, irr::f32 y = 0, irr::f32 w = 150, irr::f32 h = 100, irr::f32 borderWidth = 4, EWindowStyle style = WIN_STYLE_STD);
+    ~CWindow();
 
     void render();
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(irr::u8 value);
 
   private:
-    void applyStyleStd(f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 100, f32 borderWidth = 4);
+    void applyStyleStd(irr::f32 x = 0, irr::f32 y = 0, irr::f32 w = 150, irr::f32 h = 100, irr::f32 borderWidth = 4);
     void applyStyleNone();
 
-    core::position2df pos;
-    core::dimension2df size;
+    irr::core::position2df Pos;
+    irr::core::dimension2df Size;
 
-    Picture* cornerTL;
-    Picture* cornerTR;
-    Picture* cornerBL;
-    Picture* cornerBR;
-    Picture* sideTop;
-    Picture* sideLeft;
-    Picture* sideRight;
-    Picture* sideBottom;
-    Picture* center;
+    CPicture* CornerTL;
+    CPicture* CornerTR;
+    CPicture* CornerBL;
+    CPicture* CornerBR;
+    CPicture* SideTop;
+    CPicture* SideLeft;
+    CPicture* SideRight;
+    CPicture* SideBottom;
+    CPicture* Center;
 };
+
+}
+}
 
 #endif

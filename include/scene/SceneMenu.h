@@ -11,14 +11,16 @@ http://www.is06.com. Legal code in license.txt
 #include "Scene.h"
 #include "../save/SaveSlot.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace scene
+{
 
-class SceneMenu : public Scene
+class CSceneMenu : public CScene
 {
   public:
-    SceneMenu();
-    ~SceneMenu();
+    CSceneMenu();
+    ~CSceneMenu();
 
     void events();
     void postRender();
@@ -38,22 +40,24 @@ class SceneMenu : public Scene
     void retrieveSaveSlotList();
     void clearSaveSlotList();
 
-    Picture* dummy;
-    Picture* title;
-    Picture* cc;
-    Menu* mainMenu;
-    StaticModel* lightRays;
-    map<u16, core::vector3di> modeList;
-    map<u8, SaveSlot*> saveSlotList;
+    hud::CPicture* Dummy;
+    hud::CPicture* Title;
+    hud::CPicture* CreativeCommons;
+    hud::CMenu* MainMenu;
+    std::map<irr::u16, irr::core::vector3di> ModeList;
+    std::map<irr::u8, engine::CSaveSlot*> SaveSlotList;
 
-    bool newGameIsFading;
-    bool quitIsFading;
+    bool NewGameIsFading;
+    bool QuitIsFading;
 
-    bool inTitleFadeIn;
-    bool inMainMenu;
-    bool inSaveListMenu;
-    bool inOptionMenu;
-    bool inNewGameFadeOut;
+    bool InTitleFadeIn;
+    bool InMainMenu;
+    bool InSaveListMenu;
+    bool InOptionMenu;
+    bool InNewGameFadeOut;
 };
+
+}
+}
 
 #endif

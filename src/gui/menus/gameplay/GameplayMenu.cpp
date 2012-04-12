@@ -17,64 +17,63 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/gui/gameplay/PlayerState.h"
 #include "../../../../include/gui/counter/GameTimeCounter.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace hud
+{
 
 /**
  * All elements creation
  */
-GameplayMenu::GameplayMenu(Translation* trans, Keyboard* kb)
+CGameplayMenu::CGameplayMenu(engine::CTranslation* translation, engine::CKeyboard* keyboard)
 {
   // Properties
-  isVisible = false;
+  IsVisible = false;
 
   // Sub Menus pointers
-  wpMenu = NULL;
-  spMenu = NULL;
-  itMenu = NULL;
-  mpMenu = NULL;
-  stMenu = NULL;
-  dmMenu = NULL;
-  tlMenu = NULL;
-  mnMenu = NULL;
-  seMenu = NULL;
+  WpMenu = NULL;
+  SpMenu = NULL;
+  ItMenu = NULL;
+  MpMenu = NULL;
+  StMenu = NULL;
+  DmMenu = NULL;
+  TlMenu = NULL;
+  MnMenu = NULL;
+  SeMenu = NULL;
 
   // Keyboard pointer
-  keyboard = kb;
+  Keyboard = keyboard;
 
   // Translation pointer
-  globalTranslations = trans;
-
-  // Keyboard pointer
-  keyboard = kb;
+  GlobalTranslations = translation;
 
   // Black transparent background
-  background = new Picture(0, 0, 1280, 720, "resource/hud/menus/gameplay/back.png");
-  background->setOpacity(128);
+  Background = new CPicture(0, 0, 1280, 720, "resource/hud/menus/gameplay/back.png");
+  Background->setOpacity(128);
 
   // Silver title top bar
-  topBar = new Picture(0, Game::screenPos.top - 20, 1280, 40, "resource/hud/menus/gameplay/top_bar.png");
+  TopBar = new CPicture(0, engine::CGame::ScreenPos.Top - 20, 1280, 40, "resource/hud/menus/gameplay/top_bar.png");
 
   // Menu (left)
-  sectionMenu = new Menu(Game::screenPos.left + 80, Game::screenPos.top - 80, 150, 8, MENU_STYLE_TITLE);
-  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_swords"));
-  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_spirits"));
-  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_items"));
-  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_maps"));
-  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_status"));
-  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_dimensions"));
-  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_tales"));
-  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_monsters"));
-  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_settings"));
-  sectionMenu->addOption(MENU_ICON_NONE, trans->getTranslation("gameplay_menu_quit"));
+  SectionMenu = new CMenu(engine::CGame::ScreenPos.Left + 80, engine::CGame::ScreenPos.Top - 80, 150, 8, MENU_STYLE_TITLE);
+  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_swords"));
+  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_spirits"));
+  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_items"));
+  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_maps"));
+  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_status"));
+  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_dimensions"));
+  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_tales"));
+  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_monsters"));
+  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_settings"));
+  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_quit"));
 
   //sectionMenu->getOption(0)->setEnabled(false);
 
   // Player state info panel (right)
-  stateInfo = new PlayerState();
+  StateInfo = new CPlayerState();
 
   // Gameplay time
-  gameplayTime = new GameTimeCounter();
+  GameplayTime = new CGameTimeCounter();
 
   // Money TODO
   //moneyCounter = new DigitCounter();
@@ -83,64 +82,64 @@ GameplayMenu::GameplayMenu(Translation* trans, Keyboard* kb)
 /**
  * Gameplay menu render: all entities are rendered here
  */
-void GameplayMenu::render()
+void CGameplayMenu::render()
 {
-  if (isVisible) {
-    if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
-      sectionMenu->nextOption();
+  if (IsVisible) {
+    if (Keyboard->pressed(irr::KEY_DOWN, engine::EVENT_ONCE)) {
+      SectionMenu->nextOption();
     }
-    if (keyboard->pressed(KEY_UP, EVENT_ONCE)) {
-      sectionMenu->prevOption();
+    if (Keyboard->pressed(irr::KEY_UP, engine::EVENT_ONCE)) {
+      SectionMenu->prevOption();
     }
 
-    background->render();
-    topBar->render();
-    sectionMenu->render();
-    stateInfo->render();
-    gameplayTime->render();
+    Background->render();
+    TopBar->render();
+    SectionMenu->render();
+    StateInfo->render();
+    GameplayTime->render();
     //moneyCounter->render();
 
-    if (wpMenu) {
-      wpMenu->render(keyboard);
+    if (WpMenu) {
+      WpMenu->render();
     }
-    if (spMenu) {
-      spMenu->render(keyboard);
+    if (SpMenu) {
+      SpMenu->render();
     }
-    if (itMenu) {
-      itMenu->render(keyboard);
+    if (ItMenu) {
+      ItMenu->render();
     }
-    if (mpMenu) {
-      mpMenu->render(keyboard);
+    if (MpMenu) {
+      MpMenu->render();
     }
-    if (stMenu) {
-      stMenu->render(keyboard);
+    if (StMenu) {
+      StMenu->render();
     }
-    if (dmMenu) {
-      dmMenu->render(keyboard);
+    if (DmMenu) {
+      DmMenu->render();
     }
-    if (tlMenu) {
-      tlMenu->render(keyboard);
+    if (TlMenu) {
+      TlMenu->render();
     }
-    if (mnMenu) {
-      mnMenu->render(keyboard);
+    if (MnMenu) {
+      MnMenu->render();
     }
-    if (seMenu) {
-      seMenu->render(keyboard);
+    if (SeMenu) {
+      SeMenu->render();
     }
   }
 }
 
-void GameplayMenu::show()
+void CGameplayMenu::show()
 {
 
 }
 
-void GameplayMenu::hide()
+void CGameplayMenu::hide()
 {
 
 }
 
-void GameplayMenu::setOpacity(u8 value)
+void CGameplayMenu::setOpacity(irr::u8 value)
 {
 
 }
@@ -148,43 +147,35 @@ void GameplayMenu::setOpacity(u8 value)
 /**
  * Toggles visibility of the menu
  */
-void GameplayMenu::toggle()
+void CGameplayMenu::toggle()
 {
-  if (isVisible) {
-    isVisible = false;
+  if (IsVisible) {
+    IsVisible = false;
   } else {
-    isVisible = true;
+    IsVisible = true;
   }
 }
 
 /**
  *
  */
-Menu* GameplayMenu::getSectionMenu()
+CMenu* CGameplayMenu::getSectionMenu()
 {
-  return sectionMenu;
+  return SectionMenu;
 }
 
 /**
  *
  */
-void GameplayMenu::goToWeaponMenu()
+void CGameplayMenu::goToWeaponMenu()
 {
-  wpMenu = new WeaponMenu();
+  WpMenu = new CWeaponMenu();
 }
 
 /**
  *
  */
-void GameplayMenu::goToSpiritMenu()
-{
-
-}
-
-/**
- *
- */
-void GameplayMenu::goToItemMenu()
+void CGameplayMenu::goToSpiritMenu()
 {
 
 }
@@ -192,7 +183,7 @@ void GameplayMenu::goToItemMenu()
 /**
  *
  */
-void GameplayMenu::goToMapMenu()
+void CGameplayMenu::goToItemMenu()
 {
 
 }
@@ -200,7 +191,7 @@ void GameplayMenu::goToMapMenu()
 /**
  *
  */
-void GameplayMenu::goToStatusMenu()
+void CGameplayMenu::goToMapMenu()
 {
 
 }
@@ -208,7 +199,7 @@ void GameplayMenu::goToStatusMenu()
 /**
  *
  */
-void GameplayMenu::goToDimensionMenu()
+void CGameplayMenu::goToStatusMenu()
 {
 
 }
@@ -216,7 +207,7 @@ void GameplayMenu::goToDimensionMenu()
 /**
  *
  */
-void GameplayMenu::goToTalesMenu()
+void CGameplayMenu::goToDimensionMenu()
 {
 
 }
@@ -224,7 +215,7 @@ void GameplayMenu::goToTalesMenu()
 /**
  *
  */
-void GameplayMenu::goToMonstersMenu()
+void CGameplayMenu::goToTalesMenu()
 {
 
 }
@@ -232,7 +223,7 @@ void GameplayMenu::goToMonstersMenu()
 /**
  *
  */
-void GameplayMenu::goToSettingsMenu()
+void CGameplayMenu::goToMonstersMenu()
 {
 
 }
@@ -240,12 +231,23 @@ void GameplayMenu::goToSettingsMenu()
 /**
  *
  */
-GameplayMenu::~GameplayMenu()
+void CGameplayMenu::goToSettingsMenu()
 {
-  delete background;
-  delete topBar;
-  delete sectionMenu;
-  delete stateInfo;
-  delete gameplayTime;
+
+}
+
+/**
+ *
+ */
+CGameplayMenu::~CGameplayMenu()
+{
+  delete Background;
+  delete TopBar;
+  delete SectionMenu;
+  delete StateInfo;
+  delete GameplayTime;
   //delete moneyCounter;
+}
+
+}
 }

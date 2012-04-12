@@ -12,118 +12,120 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/AnimatedModel.h"
 #include "../../include/3d/StaticModel.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace model
+{
 
 /**
  * Default animated model
  */
-AnimatedModel::AnimatedModel() : ModelEntity()
+CAnimatedModel::CAnimatedModel() : CModelEntity()
 {
-  AnimatedModel("resource/mesh/character/cube.obj", "resource/mesh/character/cube.isa");
+  CAnimatedModel("resource/mesh/character/cube.obj", "resource/mesh/character/cube.isa");
 }
 
 /**
  * 3D Animated model constructor
  */
-AnimatedModel::AnimatedModel(const string& meshFile, const string& animationFile) : ModelEntity()
+CAnimatedModel::CAnimatedModel(const std::string& meshFile, const std::string& animationFile) : CModelEntity()
 {
   loadMesh(meshFile);
   loadAnimation(animationFile);
 
-  mainNode = NULL;
+  MainNode = NULL;
 }
 
 /**
  * Update function of 3D animated models
  */
-void AnimatedModel::update()
+void CAnimatedModel::update()
 {
-  ModelEntity::update();
+  CModelEntity::update();
 
   // Attached speaker position update
-  if (attachedSpeaker) {
-    attachedSpeaker->setPosition(mainNode->getPosition());
+  if (AttachedSpeaker) {
+    AttachedSpeaker->setPosition(MainNode->getPosition());
   }
 }
 
 /**
  *
  */
-void AnimatedModel::shaderRender()
+void CAnimatedModel::shaderRender()
 {
-  mainNode->render();
+  MainNode->render();
 }
 
 /**
  * Turns the model relative to the X axe
  */
-void AnimatedModel::turnX(f32 speed)
+void CAnimatedModel::turnX(irr::f32 speed)
 {
-  mainNode->setRotation(core::vector3df(
-    mainNode->getRotation().X + (speed * Game::getSpeedFactor()),
-    mainNode->getRotation().Y,
-    mainNode->getRotation().Z
+  MainNode->setRotation(irr::core::vector3df(
+    MainNode->getRotation().X + (speed * engine::CGame::getSpeedFactor()),
+    MainNode->getRotation().Y,
+    MainNode->getRotation().Z
   ));
 }
 
 /**
  * Turns the model relative to the Y axe
  */
-void AnimatedModel::turnY(f32 speed)
+void CAnimatedModel::turnY(irr::f32 speed)
 {
-  mainNode->setRotation(core::vector3df(
-    mainNode->getRotation().X,
-    mainNode->getRotation().Y + (speed * Game::getSpeedFactor()),
-    mainNode->getRotation().Z
+  MainNode->setRotation(irr::core::vector3df(
+    MainNode->getRotation().X,
+    MainNode->getRotation().Y + (speed * engine::CGame::getSpeedFactor()),
+    MainNode->getRotation().Z
   ));
 }
 
 /**
  * Turns the model relative to the Z axe
  */
-void AnimatedModel::turnZ(f32 speed)
+void CAnimatedModel::turnZ(irr::f32 speed)
 {
-  mainNode->setRotation(core::vector3df(
-    mainNode->getRotation().X,
-    mainNode->getRotation().Y,
-    mainNode->getRotation().Z + (speed * Game::getSpeedFactor())
+  MainNode->setRotation(irr::core::vector3df(
+    MainNode->getRotation().X,
+    MainNode->getRotation().Y,
+    MainNode->getRotation().Z + (speed * engine::CGame::getSpeedFactor())
   ));
 }
 
 /**
  * Move the model relative to the X axe
  */
-void AnimatedModel::moveX(f32 speed)
+void CAnimatedModel::moveX(irr::f32 speed)
 {
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X + (speed * Game::getSpeedFactor()),
-    mainNode->getPosition().Y,
-    mainNode->getPosition().Z
+  MainNode->setPosition(irr::core::vector3df(
+    MainNode->getPosition().X + (speed * engine::CGame::getSpeedFactor()),
+    MainNode->getPosition().Y,
+    MainNode->getPosition().Z
   ));
 }
 
 /**
  * Move the model relative to the Y axe
  */
-void AnimatedModel::moveY(f32 speed)
+void CAnimatedModel::moveY(irr::f32 speed)
 {
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X,
-    mainNode->getPosition().Y + (speed * Game::getSpeedFactor()),
-    mainNode->getPosition().Z
+  MainNode->setPosition(irr::core::vector3df(
+    MainNode->getPosition().X,
+    MainNode->getPosition().Y + (speed * engine::CGame::getSpeedFactor()),
+    MainNode->getPosition().Z
   ));
 }
 
 /**
  * Move the model relative to the Z axe
  */
-void AnimatedModel::moveZ(f32 speed)
+void CAnimatedModel::moveZ(irr::f32 speed)
 {
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X,
-    mainNode->getPosition().Y,
-    mainNode->getPosition().Z + (speed * Game::getSpeedFactor())
+  MainNode->setPosition(irr::core::vector3df(
+    MainNode->getPosition().X,
+    MainNode->getPosition().Y,
+    MainNode->getPosition().Z + (speed * engine::CGame::getSpeedFactor())
   ));
 }
 
@@ -131,92 +133,92 @@ void AnimatedModel::moveZ(f32 speed)
  * Creates the animated node and add it to Irrlicht's scene manager
  * @param vector3df& initPosition reference to the node initial position
  */
-void AnimatedModel::createNode(const core::vector3df& initPosition)
+void CAnimatedModel::createNode(const irr::core::vector3df& initPosition)
 {
-  mainNode = Game::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)mainMesh);
-  mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
-  mainNode->setPosition(initPosition);
+  MainNode = engine::CGame::getSceneManager()->addAnimatedMeshSceneNode((irr::scene::IAnimatedMesh*)MainMesh);
+  MainNode->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+  MainNode->setPosition(initPosition);
 }
 
 /**
  * Returns the Irrlicht node
  * @return IAnimatedMeshSceneNode* entity's node
  */
-scene::IAnimatedMeshSceneNode* AnimatedModel::getNode()
+irr::scene::IAnimatedMeshSceneNode* CAnimatedModel::getNode()
 {
-  return mainNode;
+  return MainNode;
 }
 
 /**
  * Returns Irrlicht material
  */
-video::SMaterial& AnimatedModel::getMaterial()
+irr::video::SMaterial& CAnimatedModel::getMaterial()
 {
-  return mainNode->getMaterial(0);
+  return MainNode->getMaterial(0);
 }
 
 /**
  * Hides the object
  */
-void AnimatedModel::hide()
+void CAnimatedModel::hide()
 {
-  mainNode->setVisible(false);
+  MainNode->setVisible(false);
 }
 
 /**
  * Shows the object
  */
-void AnimatedModel::show()
+void CAnimatedModel::show()
 {
-  mainNode->setVisible(true);
+  MainNode->setVisible(true);
 }
 
 /**
  * Sets the visibility of the object and disables collisions
  */
-void AnimatedModel::setVisible(bool value)
+void CAnimatedModel::setVisible(bool value)
 {
-  mainNode->setVisible(value);
+  MainNode->setVisible(value);
 }
 
 /**
  * Makes the object ghost so it will be invisible but will reacts to collisions
  */
-void AnimatedModel::setGhost(bool value)
+void CAnimatedModel::setGhost(bool value)
 {
-  mainNode->setMaterialFlag(video::EMF_FRONT_FACE_CULLING, !value);
+  MainNode->setMaterialFlag(irr::video::EMF_FRONT_FACE_CULLING, !value);
 }
 
 /**
  * Sets the wireframe mode for this model
  */
-void AnimatedModel::setWireFrame(bool value)
+void CAnimatedModel::setWireFrame(bool value)
 {
-  mainNode->setMaterialFlag(video::EMF_WIREFRAME, value);
+  MainNode->setMaterialFlag(irr::video::EMF_WIREFRAME, value);
 }
 
 /**
  * Shows irrlicht debug data for this model
  */
-void AnimatedModel::setDebugData(bool value)
+void CAnimatedModel::setDebugData(bool value)
 {
-  mainNode->setDebugDataVisible(value);
+  MainNode->setDebugDataVisible(value);
 }
 
 /**
  *
  */
-void AnimatedModel::darken()
+void CAnimatedModel::darken()
 {
-  mainNode->setMaterialFlag(video::EMF_LIGHTING, true);
+  MainNode->setMaterialFlag(irr::video::EMF_LIGHTING, true);
 }
 
 /**
  *
  */
-void AnimatedModel::undarken()
+void CAnimatedModel::undarken()
 {
-  mainNode->setMaterialFlag(video::EMF_LIGHTING, false);
+  MainNode->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 }
 
 /**
@@ -224,24 +226,24 @@ void AnimatedModel::undarken()
  * @param StaticModel* other pointer to the static object which collides with the animated model
  * @return bool true if collision
  */
-bool AnimatedModel::collidesWithStatic(StaticModel* other)
+bool CAnimatedModel::collidesWithStatic(CStaticModel* other)
 {
   NewtonBody* otherBody = other->getMainBody();
 
-  f32 mainBodyMatrix[16] = {};
-  f32 otherBodyMatrix[16] = {};
+  irr::f32 mainBodyMatrix[16] = {};
+  irr::f32 otherBodyMatrix[16] = {};
 
-  NewtonBodyGetMatrix(mainBody, mainBodyMatrix);
+  NewtonBodyGetMatrix(MainBody, mainBodyMatrix);
   NewtonBodyGetMatrix(otherBody, otherBodyMatrix);
 
-  f32 contacts[3];
-  f32 normals[3];
-  f32 penetration[3];
+  irr::f32 contacts[3];
+  irr::f32 normals[3];
+  irr::f32 penetration[3];
 
-  s32 res = NewtonCollisionCollide(
-    Game::getNewtonWorld(),
+  irr::s32 res = NewtonCollisionCollide(
+    engine::CGame::getNewtonWorld(),
     64,
-    NewtonBodyGetCollision(mainBody),
+    NewtonBodyGetCollision(MainBody),
     mainBodyMatrix,
     NewtonBodyGetCollision(otherBody),
     otherBodyMatrix,
@@ -259,89 +261,89 @@ bool AnimatedModel::collidesWithStatic(StaticModel* other)
  * floor collision
  * @return f32 (collision between 0.0f and 1.0f)
  */
-f32 AnimatedModel::getFloorCollision(StaticModel* other)
+irr::f32 CAnimatedModel::getFloorCollision(CStaticModel* other)
 {
-  f32 normals[3];
-  f32 xPoint, zPoint;
-  s32 faceId;
+  irr::f32 normals[3];
+  irr::f32 xPoint, zPoint;
+  irr::s32 faceId;
 
   //   B
   // C-+-A
   //   D
-  f32 rayA, rayB, rayC, rayD;
+  irr::f32 rayA, rayB, rayC, rayD;
 
   // A
-  xPoint = mainNode->getPosition().X - floorSensorWidth * cos(core::degToRad(mainNode->getRotation().Y));
-  zPoint = mainNode->getPosition().Z + floorSensorWidth * sin(core::degToRad(mainNode->getRotation().Y));
-  core::vector3df origin(xPoint, mainNode->getPosition().Y, zPoint);
-  core::vector3df end(xPoint, mainNode->getPosition().Y - 1.0f, zPoint);
+  xPoint = MainNode->getPosition().X - FloorSensorWidth * cos(irr::core::degToRad(MainNode->getRotation().Y));
+  zPoint = MainNode->getPosition().Z + FloorSensorWidth * sin(irr::core::degToRad(MainNode->getRotation().Y));
+  irr::core::vector3df origin(xPoint, MainNode->getPosition().Y, zPoint);
+  irr::core::vector3df end(xPoint, MainNode->getPosition().Y - 1.0f, zPoint);
   rayA = NewtonCollisionRayCast(NewtonBodyGetCollision(other->getMainBody()), &origin.X, &end.X, normals, &faceId);
   //_draw_line(origin, end);
 
   // B
-  xPoint = mainNode->getPosition().X - floorSensorWidth * cos(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
-  zPoint = mainNode->getPosition().Z + floorSensorWidth * sin(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
-  origin = core::vector3df(xPoint, mainNode->getPosition().Y, zPoint);
-  end = core::vector3df(xPoint, mainNode->getPosition().Y - 1.0f, zPoint);
+  xPoint = MainNode->getPosition().X - FloorSensorWidth * cos(irr::core::degToRad(MainNode->getRotation().Y) - (irr::core::PI / 2));
+  zPoint = MainNode->getPosition().Z + FloorSensorWidth * sin(irr::core::degToRad(MainNode->getRotation().Y) - (irr::core::PI / 2));
+  origin = irr::core::vector3df(xPoint, MainNode->getPosition().Y, zPoint);
+  end = irr::core::vector3df(xPoint, MainNode->getPosition().Y - 1.0f, zPoint);
   rayB = NewtonCollisionRayCast(NewtonBodyGetCollision(other->getMainBody()), &origin.X, &end.X, normals, &faceId);
   //_draw_line(origin, end);
 
   // C
-  xPoint = mainNode->getPosition().X - floorSensorWidth * cos(core::degToRad(mainNode->getRotation().Y) + (core::PI));
-  zPoint = mainNode->getPosition().Z + floorSensorWidth * sin(core::degToRad(mainNode->getRotation().Y) + (core::PI));
-  origin = core::vector3df(xPoint, mainNode->getPosition().Y, zPoint);
-  end = core::vector3df(xPoint, mainNode->getPosition().Y - 1.0f, zPoint);
+  xPoint = MainNode->getPosition().X - FloorSensorWidth * cos(irr::core::degToRad(MainNode->getRotation().Y) + (irr::core::PI));
+  zPoint = MainNode->getPosition().Z + FloorSensorWidth * sin(irr::core::degToRad(MainNode->getRotation().Y) + (irr::core::PI));
+  origin = irr::core::vector3df(xPoint, MainNode->getPosition().Y, zPoint);
+  end = irr::core::vector3df(xPoint, MainNode->getPosition().Y - 1.0f, zPoint);
   rayC = NewtonCollisionRayCast(NewtonBodyGetCollision(other->getMainBody()), &origin.X, &end.X, normals, &faceId);
   //_draw_line(origin, end);
 
   // D
-  xPoint = mainNode->getPosition().X - floorSensorWidth * cos(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2));
-  zPoint = mainNode->getPosition().Z + floorSensorWidth * sin(core::degToRad(mainNode->getRotation().Y) + (core::PI / 2));
-  origin = core::vector3df(xPoint, mainNode->getPosition().Y, zPoint);
-  end = core::vector3df(xPoint, mainNode->getPosition().Y - 1.0f, zPoint);
+  xPoint = MainNode->getPosition().X - FloorSensorWidth * cos(irr::core::degToRad(MainNode->getRotation().Y) + (irr::core::PI / 2));
+  zPoint = MainNode->getPosition().Z + FloorSensorWidth * sin(irr::core::degToRad(MainNode->getRotation().Y) + (irr::core::PI / 2));
+  origin = irr::core::vector3df(xPoint, MainNode->getPosition().Y, zPoint);
+  end = irr::core::vector3df(xPoint, MainNode->getPosition().Y - 1.0f, zPoint);
   rayD = NewtonCollisionRayCast(NewtonBodyGetCollision(other->getMainBody()), &origin.X, &end.X, normals, &faceId);
   //_draw_line(origin, end);
 
-  f32 minAB = core::min_(rayA, rayB);
-  f32 minCD = core::min_(rayC, rayD);
+  irr::f32 minAB = irr::core::min_(rayA, rayB);
+  irr::f32 minCD = irr::core::min_(rayC, rayD);
 
-  return core::min_(minAB, minCD);
+  return irr::core::min_(minAB, minCD);
 }
 
 /**
  * Not documented yet, sorry :/
  */
-f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vector3df& normal)
+irr::f32 CAnimatedModel::getWallCollision(engine::ERayType type, CStaticModel* other, irr::core::vector3df& normal)
 {
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
 
-  s32 faceId;
-  f32 xPoint;
-  f32 zPoint;
+  irr::s32 faceId;
+  irr::f32 xPoint;
+  irr::f32 zPoint;
 
   // xPoint and zPoint are destination points of the ray
-  if (type == RAY_WALL_P) {
+  if (type == engine::RAY_WALL_P) {
     // P Ray (left)
-    xPoint = mainNode->getPosition().X - 0.5f * cos(core::degToRad(mainNode->getRotation().Y));
-    zPoint = mainNode->getPosition().Z + 0.5f * sin(core::degToRad(mainNode->getRotation().Y));
+    xPoint = MainNode->getPosition().X - 0.5f * cos(irr::core::degToRad(MainNode->getRotation().Y));
+    zPoint = MainNode->getPosition().Z + 0.5f * sin(irr::core::degToRad(MainNode->getRotation().Y));
   } else {
     // Q Ray (right)
-    xPoint = mainNode->getPosition().X - 0.5f * cos(core::degToRad(mainNode->getRotation().Y) + core::PI);
-    zPoint = mainNode->getPosition().Z + 0.5f * sin(core::degToRad(mainNode->getRotation().Y) + core::PI);
+    xPoint = MainNode->getPosition().X - 0.5f * cos(irr::core::degToRad(MainNode->getRotation().Y) + irr::core::PI);
+    zPoint = MainNode->getPosition().Z + 0.5f * sin(irr::core::degToRad(MainNode->getRotation().Y) + irr::core::PI);
   }
 
-  core::vector3df origin = core::vector3df(
+  irr::core::vector3df origin = irr::core::vector3df(
     xPoint,
-    mainNode->getPosition().Y,
+    MainNode->getPosition().Y,
     zPoint
   );
 
-  xPoint = xPoint - 1.0f * cos(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
-  zPoint = zPoint + 1.0f * sin(core::degToRad(mainNode->getRotation().Y) - (core::PI / 2));
+  xPoint = xPoint - 1.0f * cos(irr::core::degToRad(MainNode->getRotation().Y) - (irr::core::PI / 2));
+  zPoint = zPoint + 1.0f * sin(irr::core::degToRad(MainNode->getRotation().Y) - (irr::core::PI / 2));
 
-  core::vector3df end = core::vector3df(
+  irr::core::vector3df end = irr::core::vector3df(
     xPoint,
-    mainNode->getPosition().Y,
+    MainNode->getPosition().Y,
     zPoint
   );
 
@@ -351,7 +353,7 @@ f32 AnimatedModel::getWallCollision(RayType type, StaticModel* other, core::vect
 /**
  * @todo Under construction
  */
-bool AnimatedModel::collidesWithAnimated(AnimatedModel* other)
+bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
 {
   return false;
 }
@@ -360,7 +362,7 @@ bool AnimatedModel::collidesWithAnimated(AnimatedModel* other)
  * @todo Under construction
  * @todo manage event type
  */
-bool AnimatedModel::collidesWithPlaneSensor(PlaneSensor* sensor, EventType type)
+bool CAnimatedModel::collidesWithPlaneSensor(CPlaneSensor* sensor, engine::EEventType type)
 {
   return false;
 }
@@ -368,18 +370,18 @@ bool AnimatedModel::collidesWithPlaneSensor(PlaneSensor* sensor, EventType type)
 /**
  * Returns true if the object is in the box sensor
  */
-bool AnimatedModel::isInBoxSensor(BoxSensor* sensor, EventType type)
+bool CAnimatedModel::isInBoxSensor(CBoxSensor* sensor, engine::EEventType type)
 {
-  bool inside = sensor->getBox().isPointInside(mainNode->getPosition());
-  if (type == EVENT_ONCE) {
-    if (!sensorOnce[sensor]) {
+  bool inside = sensor->getBox().isPointInside(MainNode->getPosition());
+  if (type == engine::EVENT_ONCE) {
+    if (!SensorOnce[sensor]) {
       if (inside) {
-        sensorOnce[sensor] = true;
+        SensorOnce[sensor] = true;
         return true;
       }
     } else {
       if (!inside) {
-        sensorOnce[sensor] = false;
+        SensorOnce[sensor] = false;
       }
     }
     return false;
@@ -390,9 +392,9 @@ bool AnimatedModel::isInBoxSensor(BoxSensor* sensor, EventType type)
 
 /**
  * Loads the animation data file specified in parameter
- * @param string the animation data file name path
+ * @param std::string the animation data file name path
  */
-void AnimatedModel::loadAnimation(const string& fileName)
+void CAnimatedModel::loadAnimation(const std::string& fileName)
 {
   fstream fileStream(fileName.c_str(), ios::in);
 
@@ -403,10 +405,10 @@ void AnimatedModel::loadAnimation(const string& fileName)
     bool inAnimLoopedDeclaration = false;
 
     char current = 0;
-    s32 nr = 0;
-    string animNumber("");
-    string startFrame("");
-    string endFrame("");
+    irr::s32 nr = 0;
+    std::string animNumber("");
+    std::string startFrame("");
+    std::string endFrame("");
     bool looped = true;
 
     while (fileStream.get(current)) {
@@ -428,10 +430,10 @@ void AnimatedModel::loadAnimation(const string& fileName)
       }
       if (current == ';') {
         inAnimLoopedDeclaration = false;
-        nr = (s32)atoi(animNumber.c_str());
-        animationList[nr].startFrame = (s32)atoi(startFrame.c_str());
-        animationList[nr].endFrame = (s32)atoi(endFrame.c_str());
-        animationList[nr].looped = looped;
+        nr = (irr::s32)atoi(animNumber.c_str());
+        AnimationList[nr].StartFrame = (irr::s32)atoi(startFrame.c_str());
+        AnimationList[nr].EndFrame = (irr::s32)atoi(endFrame.c_str());
+        AnimationList[nr].Looped = looped;
 
         animNumber = "";
         startFrame = "";
@@ -463,19 +465,19 @@ void AnimatedModel::loadAnimation(const string& fileName)
 /**
  * Sets the current animation
  */
-void AnimatedModel::setCurrentAnimation(s32 id, f32 speed)
+void CAnimatedModel::setCurrentAnimation(irr::s32 id, irr::f32 speed)
 {
-  currentAnimationId = id;
-  currentAnimationSpeed = speed;
+  CurrentAnimationId = id;
+  CurrentAnimationSpeed = speed;
 
-  MeshAnimationInfo anim = animationList[id];
+  model::SMeshAnimationInfo anim = AnimationList[id];
 
-  u32 startFrame = anim.startFrame;
-  u32 endFrame = anim.endFrame;
+  irr::u32 startFrame = anim.StartFrame;
+  irr::u32 endFrame = anim.EndFrame;
 
-  mainNode->setCurrentFrame(startFrame);
-  mainNode->setFrameLoop(startFrame, endFrame);
-  mainNode->setLoopMode(anim.looped);
+  MainNode->setCurrentFrame(startFrame);
+  MainNode->setFrameLoop(startFrame, endFrame);
+  MainNode->setLoopMode(anim.Looped);
 
   playAnimation();
 }
@@ -483,58 +485,61 @@ void AnimatedModel::setCurrentAnimation(s32 id, f32 speed)
 /**
  * Pauses the current animation (speed = 0.0f)
  */
-void AnimatedModel::pauseAnimation()
+void CAnimatedModel::pauseAnimation()
 {
-  mainNode->setAnimationSpeed(0.0f);
+  MainNode->setAnimationSpeed(0.0f);
 }
 
 /**
  * Plays the current animation at current speed
  */
-void AnimatedModel::playAnimation()
+void CAnimatedModel::playAnimation()
 {
-  mainNode->setAnimationSpeed(currentAnimationSpeed);
+  MainNode->setAnimationSpeed(CurrentAnimationSpeed);
 }
 
 /**
  * Sets the current animation speed
  */
-void AnimatedModel::setAnimationSpeed(f32 value)
+void CAnimatedModel::setAnimationSpeed(irr::f32 value)
 {
-  mainNode->setAnimationSpeed(value);
+  MainNode->setAnimationSpeed(value);
 }
 
 /**
  * Returns true if the current animation is finished
  */
-bool AnimatedModel::currentAnimationFinished()
+bool CAnimatedModel::currentAnimationFinished()
 {
-  return animationFinished(currentAnimationId);
+  return animationFinished(CurrentAnimationId);
 }
 
 /**
  * Returns true if a specific animation is finished
  */
-bool AnimatedModel::animationFinished(s32 id)
+bool CAnimatedModel::animationFinished(irr::s32 id)
 {
-  return (mainNode->getFrameNr() == animationList[id].endFrame);
+  return (MainNode->getFrameNr() == AnimationList[id].EndFrame);
 }
 
 /**
  *
  */
-void AnimatedModel::setShadowMode(ShadowMode mode)
+void CAnimatedModel::setShadowMode(engine::EShadowMode mode)
 {
-  Game::getCurrentScene()->getShadowProcessor()->setEntity(mainNode, mode);
+  engine::CGame::getCurrentScene()->getShadowProcessor()->setEntity(MainNode, mode);
 }
 
 /**
  * Destructor, removes the main node
  */
-AnimatedModel::~AnimatedModel()
+CAnimatedModel::~CAnimatedModel()
 {
-  if (mainNode) {
-    mainNode->remove();
-    mainNode = NULL;
+  if (MainNode) {
+    MainNode->remove();
+    MainNode = NULL;
   }
+}
+
+}
 }

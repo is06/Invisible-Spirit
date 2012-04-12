@@ -10,64 +10,70 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Hud.h"
 
-using namespace irr;
+namespace is06
+{
+namespace hud
+{
 
-class Hud2DElement : public Hud
+class CHud2DElement : public CHud
 {
   public:
-    Hud2DElement(f32 x, f32 y, f32 w, f32 h);
-    virtual ~Hud2DElement();
+    CHud2DElement(irr::f32 x, irr::f32 y, irr::f32 w, irr::f32 h);
+    virtual ~CHud2DElement();
 
     virtual void render() = 0;
 
-    void setSize(f32 w, f32 h);
-    void setPosition(f32 x, f32 y);
-    void setTextureOffset(const core::vector2df& min, const core::vector2df& max);
+    void setSize(irr::f32 w, irr::f32 h);
+    void setPosition(irr::f32 x, irr::f32 y);
+    void setTextureOffset(const irr::core::vector2df& min, const irr::core::vector2df& max);
 
-    void addX(f32 val);
-    void addY(f32 val);
-    void subX(f32 val);
-    void subY(f32 val);
-    void setX(f32 val);
-    void setY(f32 val);
+    void addX(irr::f32 val);
+    void addY(irr::f32 val);
+    void subX(irr::f32 val);
+    void subY(irr::f32 val);
+    void setX(irr::f32 val);
+    void setY(irr::f32 val);
 
-    f32 getX();
-    f32 getY();
-    f32 getWidth();
-    f32 getHeight();
+    irr::f32 getX();
+    irr::f32 getY();
+    irr::f32 getWidth();
+    irr::f32 getHeight();
 
-    void setWidth(f32 val);
-    void setHeight(f32 val);
+    void setWidth(irr::f32 val);
+    void setHeight(irr::f32 val);
 
     void hide();
     void show();
-    void setOpacity(u8 value);
-    void diffuse(video::SColor color);
+    void setOpacity(irr::u8 value);
+    void diffuse(irr::video::SColor color);
 
-    void startUVAnimation(f32 uSpeed, f32 vSpeed);
+    void startUVAnimation(irr::f32 uSpeed, irr::f32 vSpeed);
     void stopUVAnimation();
 
   protected:
     void drawPolygons();
 
-    video::ITexture* texture;
-    video::SMaterial material;
-    video::S3DVertex vertices[4];
+    irr::video::ITexture* Texture;
+    irr::video::SMaterial Material;
+    irr::video::S3DVertex Vertices[4];
 
-    core::dimension2df size;
-    core::position2df pos;
-    core::vector2df animSpeed;
-    core::vector2df minTextureOffset;
-    core::vector2df maxTextureOffset;
+    irr::core::dimension2df Size;
+    irr::core::position2df Pos;
+    irr::core::vector2df AnimSpeed;
+    irr::core::vector2df MinTextureOffset;
+    irr::core::vector2df MaxTextureOffset;
 
-    bool isVisible;
-    u8 opacity;
+    bool IsVisible;
+    irr::u8 Opacity;
 
-    const static f32 FAR = 0.1f;
-    const static f32 COEFF = 4954.94f;
+    const static irr::f32 FAR = 0.1f;
+    const static irr::f32 COEFF = 4954.94f;
 
-    static u16 indices[];
-    static core::matrix4 mat;
+    static irr::u16 Indices[];
+    static irr::core::matrix4 Mat;
 };
+
+}
+}
 
 #endif

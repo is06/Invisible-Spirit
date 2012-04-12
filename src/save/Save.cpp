@@ -10,13 +10,15 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/save/SaveFile.h"
 #include "../../include/Game.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
 /**
  * Default constructor
  */
-Save::Save()
+CSave::CSave()
 {
 
 }
@@ -24,25 +26,25 @@ Save::Save()
 /**
  * @todo
  */
-void Save::loadPrimitiveInfo(u8 slot)
+void CSave::loadPrimitiveInfo(irr::u8 slot)
 {
-  SaveFile* saveFile = new SaveFile();
+  CSaveFile* saveFile = new CSaveFile();
   saveFile->prepareForRead(slot);
 
-  SaveFileElement element;
+  SSaveFileElement element;
 
-  for (u32 i = 0; i < 65535; i++) {
+  for (irr::u32 i = 0; i < 65535; i++) {
     element = saveFile->getNextElement();
-    if (element.type == 'i') {
-      //istringstream iss(element.value.c_str());
+    if (element.Type == 'i') {
+      //istd::stringstream iss(element.value.c_str());
       //iss >> integerList[i];
-    } else if (element.type == 'b') {
+    } else if (element.Type == 'b') {
       //s32 intValue = -1;
-      //istringstream iss(element.value.c_str());
+      //istd::stringstream iss(element.value.c_str());
       //iss >> intValue;
       //booleanList[i] = (intValue == 1);
-    } else if (element.type == 's') {
-      //stringList[i] = element.value;
+    } else if (element.Type == 's') {
+      //std::stringList[i] = element.value;
     }
   }
 }
@@ -50,25 +52,25 @@ void Save::loadPrimitiveInfo(u8 slot)
 /**
  *
  */
-void Save::load(u8 slot)
+void CSave::load(irr::u8 slot)
 {
-  SaveFile* saveFile = new SaveFile();
+  CSaveFile* saveFile = new CSaveFile();
   saveFile->prepareForRead(slot);
 
-  SaveFileElement element;
+  SSaveFileElement element;
 
-  for (u32 i = 0; i < 65535; i++) {
+  for (irr::u32 i = 0; i < 65535; i++) {
     element = saveFile->getNextElement();
-    if (element.type == 'i') {
-      istringstream iss(element.value.c_str());
-      iss >> integerList[i];
-    } else if (element.type == 'b') {
-      s32 intValue = -1;
-      istringstream iss(element.value.c_str());
+    if (element.Type == 'i') {
+      std::istringstream iss(element.Value.c_str());
+      iss >> IntegerList[i];
+    } else if (element.Type == 'b') {
+      irr::s32 intValue = -1;
+      std::istringstream iss(element.Value.c_str());
       iss >> intValue;
-      booleanList[i] = (intValue == 1);
-    } else if (element.type == 's') {
-      stringList[i] = element.value;
+      BooleanList[i] = (intValue == 1);
+    } else if (element.Type == 's') {
+      StringList[i] = element.Value;
     }
   }
 
@@ -78,18 +80,18 @@ void Save::load(u8 slot)
 /**
  *
  */
-void Save::write(u8 slot)
+void CSave::write(irr::u8 slot)
 {
-  SaveFile* saveFile = new SaveFile();
+  CSaveFile* saveFile = new CSaveFile();
   saveFile->prepareForWrite(slot);
 
-  for (u32 i = 0; i < 65535; i++) {
-    if (integerList.find(i) != integerList.end()) {
-      saveFile->addVariable(i, integerList[i]);
-    } else if (booleanList.find(i) != booleanList.end()) {
-      saveFile->addVariable(i, booleanList[i]);
-    } else if (stringList.find(i) != stringList.end()) {
-      saveFile->addVariable(i, stringList[i]);
+  for (irr::u32 i = 0; i < 65535; i++) {
+    if (IntegerList.find(i) != IntegerList.end()) {
+      saveFile->addVariable(i, IntegerList[i]);
+    } else if (BooleanList.find(i) != BooleanList.end()) {
+      saveFile->addVariable(i, BooleanList[i]);
+    } else if (StringList.find(i) != StringList.end()) {
+      saveFile->addVariable(i, StringList[i]);
     }
   }
 
@@ -101,86 +103,89 @@ void Save::write(u8 slot)
  * of data are initialized here, like the start map or character HP...
  * It changes the current map of the game so the player can start to play.
  */
-void Save::createNewFile()
+void CSave::createNewFile()
 {
   setGeneralDefaultValues();
-  Game::changeScene(integerList[11]);
+  CGame::changeScene(IntegerList[11]);
 }
 
 /**
  *
  */
-s32& Save::getInteger(u32 index)
+irr::s32& CSave::getInteger(irr::u32 index)
 {
-  return integerList[index];
+  return IntegerList[index];
 }
 
 /**
  *
  */
-bool& Save::getBoolean(u32 index)
+bool& CSave::getBoolean(irr::u32 index)
 {
-  return booleanList[index];
+  return BooleanList[index];
 }
 
 /**
  *
  */
-string& Save::getString(u32 index)
+std::string& CSave::getString(irr::u32 index)
 {
-  return stringList[index];
+  return StringList[index];
 }
 
-void Save::setInteger(u32 index, s32 value)
+void CSave::setInteger(irr::u32 index, irr::s32 value)
 {
-  integerList[index] = value;
+  IntegerList[index] = value;
 }
 
-void Save::incInteger(u32 index, s32 value)
+void CSave::incInteger(irr::u32 index, irr::s32 value)
 {
-  integerList[index] += value;
+  IntegerList[index] += value;
 }
 
-void Save::decInteger(u32 index, s32 value)
+void CSave::decInteger(irr::u32 index, irr::s32 value)
 {
-  integerList[index] -= value;
+  IntegerList[index] -= value;
 }
 
-void Save::setBoolean(u32 index, bool value)
+void CSave::setBoolean(irr::u32 index, bool value)
 {
-  booleanList[index] = value;
+  BooleanList[index] = value;
 }
 
-void Save::setString(u32 index, const string& value)
+void CSave::setString(irr::u32 index, const std::string& value)
 {
-  stringList[index] = value;
+  StringList[index] = value;
 }
 
 /**
  *
  */
-void Save::setGeneralDefaultValues()
+void CSave::setGeneralDefaultValues()
 {
   // Primitive Info
-  integerList[1] = -1; // Slot number (-1 = No slot number)
+  IntegerList[1] = -1; // Slot number (-1 = No slot number)
 
   // Map info
-  integerList[11] = SCENE_MAP_ALPHA_ZONE; // Current map id
-  stringList[12] = "Alpha Zone (Debug)"; // Current map name
+  IntegerList[11] = SCENE_MAP_ALPHA_ZONE; // Current map id
+  StringList[12] = "Alpha Zone (Debug)"; // Current map name
 
   // Time info
-  integerList[21] = 0; // Total game time, in seconds
-  integerList[22] = 1337; // World time, from 0 to 1439, 720 = 12pm
+  IntegerList[21] = 0; // Total game time, in seconds
+  IntegerList[22] = 1337; // World time, from 0 to 1439, 720 = 12pm
 
   // Player info
-  integerList[101] = 180; // HP
-  integerList[102] = 180; // Max HP
+  IntegerList[101] = 180; // HP
+  IntegerList[102] = 180; // Max HP
 }
 
 /**
  *
  */
-Save::~Save()
+CSave::~CSave()
 {
 
+}
+
+}
 }

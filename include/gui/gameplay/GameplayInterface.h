@@ -10,19 +10,27 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Hud.h"
 
-class GameplayInterface : public Hud
+namespace is06
+{
+namespace hud
+{
+
+class CGameplayInterface : public CHud
 {
   public:
-    GameplayInterface();
-    ~GameplayInterface();
+    CGameplayInterface();
+    ~CGameplayInterface();
 
     void render();
     void hide();
     void show();
-    void setOpacity(u8 value);
+    void setOpacity(irr::u8 value);
 
-    ButtonsInterface* buttons;
-    EnergyInterface* energy;
+    CButtonsInterface* Buttons;
+    CEnergyInterface* Energy;
 };
+
+}
+}
 
 #endif

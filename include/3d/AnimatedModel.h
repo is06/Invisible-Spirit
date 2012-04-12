@@ -15,15 +15,17 @@ http://www.is06.com. Legal code in license.txt
 #include "MeshAnimationInfo.h"
 #include "BoxSensor.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace model
+{
 
-class AnimatedModel : public ModelEntity
+class CAnimatedModel : public CModelEntity
 {
   public:
-    AnimatedModel();
-    AnimatedModel(const string& meshFile, const string& animationFile);
-    virtual ~AnimatedModel();
+    CAnimatedModel();
+    CAnimatedModel(const std::string& meshFile, const std::string& animationFile);
+    virtual ~CAnimatedModel();
 
     virtual void update();
     virtual void shaderRender();
@@ -38,48 +40,51 @@ class AnimatedModel : public ModelEntity
     void undarken();
 
     // Movements
-    void turnX(f32 speed);
-    void turnY(f32 speed);
-    void turnZ(f32 speed);
-    void moveX(f32 speed);
-    void moveY(f32 speed);
-    void moveZ(f32 speed);
+    void turnX(irr::f32 speed);
+    void turnY(irr::f32 speed);
+    void turnZ(irr::f32 speed);
+    void moveX(irr::f32 speed);
+    void moveY(irr::f32 speed);
+    void moveZ(irr::f32 speed);
 
-    video::SMaterial& getMaterial();
-    void createNode(const core::vector3df& initPosition);
-    scene::IAnimatedMeshSceneNode* getNode();
+    irr::video::SMaterial& getMaterial();
+    void createNode(const irr::core::vector3df& initPosition);
+    irr::scene::IAnimatedMeshSceneNode* getNode();
 
     // Collision detection
-    bool collidesWithStatic(StaticModel* other);
-    bool collidesWithAnimated(AnimatedModel* other);
-    bool collidesWithPlaneSensor(PlaneSensor* sensor, EventType type = EVENT_ALWAYS);
-    bool isInBoxSensor(BoxSensor* sensor, EventType type = EVENT_ALWAYS);
-    f32 getFloorCollision(StaticModel* other);
-    f32 getWallCollision(RayType type, StaticModel* other, core::vector3df& normal);
+    bool collidesWithStatic(model::CStaticModel* other);
+    bool collidesWithAnimated(model::CAnimatedModel* other);
+    bool collidesWithPlaneSensor(model::CPlaneSensor* sensor, engine::EEventType type = engine::EVENT_ALWAYS);
+    bool isInBoxSensor(model::CBoxSensor* sensor, engine::EEventType type = engine::EVENT_ALWAYS);
+    irr::f32 getFloorCollision(model::CStaticModel* other);
+    irr::f32 getWallCollision(engine::ERayType type, model::CStaticModel* other, irr::core::vector3df& normal);
 
     // Animations
-    void loadAnimation(const string& fileName);
-    void setCurrentAnimation(s32 id, f32 speed = 30.0f);
+    void loadAnimation(const std::string& fileName);
+    void setCurrentAnimation(irr::s32 id, irr::f32 speed = 30.0f);
     void pauseAnimation();
     void playAnimation();
-    void setAnimationSpeed(f32 value);
+    void setAnimationSpeed(irr::f32 value);
     bool currentAnimationFinished();
-    bool animationFinished(s32 id);
+    bool animationFinished(irr::s32 id);
 
     // Shadows
-    void setShadowMode(ShadowMode mode = SHADOW_MODE_CAST);
+    void setShadowMode(engine::EShadowMode mode = engine::SHADOW_MODE_CAST);
 
   protected:
-    f32 floorSensorWidth;
-    f32 wallSensorWidth;
+    irr::f32 FloorSensorWidth;
+    irr::f32 WallSensorWidth;
 
-    scene::IAnimatedMeshSceneNode* mainNode;
+    irr::scene::IAnimatedMeshSceneNode* MainNode;
 
   private:
-    s32 currentAnimationId;
-    f32 currentAnimationSpeed;
-    map<s32, MeshAnimationInfo> animationList;
-    map<Sensor*, bool> sensorOnce;
+    irr::s32 CurrentAnimationId;
+    irr::f32 CurrentAnimationSpeed;
+    std::map<irr::s32, model::SMeshAnimationInfo> AnimationList;
+    std::map<model::CSensor*, bool> SensorOnce;
 };
+
+}
+}
 
 #endif

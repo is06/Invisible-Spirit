@@ -10,58 +10,59 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/gui/Text.h"
 #include "../../../include/gui/gameplay/MainStateInfo.h"
 
-using namespace irr;
-using namespace std;
-
-PlayerState::PlayerState()
+namespace is06
 {
-  playerName = new Text("Ayron", 0, 0);
-  levelLabel = new Text("niv.", 0, -24);
-  levelInfo = new Text("1", 100, -24);
+namespace hud
+{
 
-  hpInfo = new MainStateInfo();
+CPlayerState::CPlayerState()
+{
+  PlayerName = new CText("Ayron", 0, 0);
+  LevelLabel = new CText("niv.", 0, -24);
+  LevelInfo = new CText("1", 100, -24);
+
+  HpInfo = new CMainStateInfo();
 }
 
-void PlayerState::render()
+void CPlayerState::render()
 {
-  playerName->render();
-  levelLabel->render();
-  levelInfo->render();
-
-  hpInfo->render();
+  PlayerName->render();
+  LevelLabel->render();
+  LevelInfo->render();
+  HpInfo->render();
 }
 
-void PlayerState::show()
+void CPlayerState::show()
 {
-  playerName->show();
-  levelLabel->show();
-  levelInfo->show();
-
-  hpInfo->show();
+  PlayerName->show();
+  LevelLabel->show();
+  LevelInfo->show();
+  HpInfo->show();
 }
 
-void PlayerState::hide()
+void CPlayerState::hide()
 {
-  playerName->hide();
-  levelLabel->hide();
-  levelInfo->hide();
-
-  hpInfo->hide();
+  PlayerName->hide();
+  LevelLabel->hide();
+  LevelInfo->hide();
+  HpInfo->hide();
 }
 
-void PlayerState::setOpacity(u8 value)
+void CPlayerState::setOpacity(irr::u8 value)
 {
-  playerName->setOpacity(value);
-  levelLabel->setOpacity(value);
-  levelInfo->setOpacity(value);
-  hpInfo->setOpacity(value);
+  PlayerName->setOpacity(value);
+  LevelLabel->setOpacity(value);
+  LevelInfo->setOpacity(value);
+  HpInfo->setOpacity(value);
 }
 
-PlayerState::~PlayerState()
+CPlayerState::~CPlayerState()
 {
-  delete playerName;
-  delete levelLabel;
-  delete levelInfo;
+  delete PlayerName;
+  delete LevelLabel;
+  delete LevelInfo;
+  delete HpInfo;
+}
 
-  delete hpInfo;
+}
 }

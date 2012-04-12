@@ -8,17 +8,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/StatusMenu.h"
 
-StatusMenu::StatusMenu() : GameplaySubMenu()
+namespace is06
+{
+namespace hud
+{
+
+CStatusMenu::CStatusMenu() : CGameplaySubMenu()
 {
 
 }
 
-void StatusMenu::render(Keyboard* keyboard)
+void CStatusMenu::render()
 {
-  GameplaySubMenu::render();
+  CGameplaySubMenu::render();
 }
 
-StatusMenu::~StatusMenu()
+CStatusMenu::~CStatusMenu()
 {
 
+}
+
+}
 }

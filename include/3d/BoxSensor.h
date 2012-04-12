@@ -10,17 +10,23 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Sensor.h"
 
-using namespace irr;
+namespace is06
+{
+namespace model
+{
 
-class BoxSensor : public Sensor
+class CBoxSensor : public CSensor
 {
   public:
-    BoxSensor(const core::aabbox3df& initBox);
+    CBoxSensor(const irr::core::aabbox3df& initBox);
     void update();
-    const core::aabbox3df& getBox() const;
+    const irr::core::aabbox3df& getBox() const;
 
   private:
-    core::aabbox3df box;
+    irr::core::aabbox3df Box;
 };
+
+}
+}
 
 #endif

@@ -13,33 +13,35 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/Picture.h"
 #include "../../include/engine/DialogInterface.h"
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace engine
+{
 
 /**
  *
  */
-DialogInterface::DialogInterface(const string& filePath, Translation* translation, Keyboard* kb)
+CDialogInterface::CDialogInterface(const std::string& filePath, CTranslation* translation, CKeyboard* keyboard)
 {
-  keyboard = kb;
+  Keyboard = keyboard;
 
-  messageDisplaying = false;
-  messageFinished = false;
-  dialogFinished = false;
+  MessageDisplaying = false;
+  MessageFinished = false;
+  DialogFinished = false;
 
   if (!translation) {
-    Game::fatalError(ERRCODE_60);
+    CGame::fatalError(debug::ERRCODE_60);
   }
 
-  currentTranslation = translation;
-  currentMessageNumber = 0;
-  currentMessageText = NULL;
+  CurrentTranslation = translation;
+  CurrentMessageNumber = 0;
+  CurrentMessageText = NULL;
 
-  backWindow = new Picture(0, Game::screenPos.bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
+  BackWindow = new hud::CPicture(0, CGame::ScreenPos.Bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
 
-  string fullPath = "resource/text/";
+  std::string fullPath = "resource/text/";
 
-  switch (Game::getCurrentLocale()) {
+  switch (CGame::getCurrentLocale()) {
     case LOCALE_FRE_FR:
     case LOCALE_FRE_BE:
     case LOCALE_FRE_CA:
@@ -58,41 +60,37 @@ DialogInterface::DialogInterface(const string& filePath, Translation* translatio
 /**
  *
  */
-void DialogInterface::render()
+void CDialogInterface::render()
 {
   // Background of dialog
-  backWindow->render();
+  BackWindow->render();
 
   // Text
-  if (currentMessageText) {
-    currentMessageText->render();
+  if (CurrentMessageText) {
+    CurrentMessageText->render();
 
     // Dialog finished
-    if (!dialogFinished && messageFinished && currentMessageNumber >= dialogList[currentDialogIdentifier].getMessageCount() - 1) {
-      cout << "dialog finished" << endl;
-      dialogFinished = true;
+    if (!DialogFinished && MessageFinished && CurrentMessageNumber >= DialogList[CurrentDialogIdentifier].getMessageCount() - 1) {
+      DialogFinished = true;
     }
 
-    if (messageDisplaying && currentMessageText->finished()) {
-      messageDisplaying = false;
-      messageFinished = true;
-      cout << "message finished" << endl;
+    if (MessageDisplaying && CurrentMessageText->finished()) {
+      MessageDisplaying = false;
+      MessageFinished = true;
     }
 
     // Display all message quickly
-    if (messageDisplaying && keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
-      cout << "skipping message" << endl;
-      currentMessageText->skip();
-      messageDisplaying = false;
-      messageFinished = true;
+    if (MessageDisplaying && Keyboard->pressed(irr::KEY_SPACE, EVENT_ONCE)) {
+      CurrentMessageText->skip();
+      MessageDisplaying = false;
+      MessageFinished = true;
     }
 
     // Go to next message (only if entirely displayed)
-    if (messageFinished && keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
-      cout << "go to next message" << endl;
-      messageFinished = false;
-      messageDisplaying = true;
-      if (!dialogFinished) {
+    if (MessageFinished && Keyboard->pressed(irr::KEY_SPACE, EVENT_ONCE)) {
+      MessageFinished = false;
+      MessageDisplaying = true;
+      if (!DialogFinished) {
         nextMessage();
       }
     }
@@ -102,14 +100,14 @@ void DialogInterface::render()
 /**
  * @todo
  */
-void DialogInterface::loadDialogData(const string& fullPath)
+void CDialogInterface::loadDialogData(const std::string& fullPath)
 {
-  fstream fileStream(fullPath.c_str(), ios::in);
+  std::fstream fileStream(fullPath.c_str(), std::ios::in);
 
   if (fileStream) {
     char current = 0;
-    string dialogIdentifier = "";
-    string textIdentifier = "";
+    std::string dialogIdentifier = "";
+    std::string textIdentifier = "";
     bool inIdentifierDeclaration = true;
     bool inTextDeclaration = false;
 
@@ -117,7 +115,7 @@ void DialogInterface::loadDialogData(const string& fullPath)
       if (current == '=') {
         // Add dialog to list
         //cout << "create new dialog (" << dialogIdentifier << ")" << endl;
-        dialogList[dialogIdentifier] = Dialog(dialogIdentifier);
+        DialogList[dialogIdentifier] = CDialog(dialogIdentifier);
         inTextDeclaration = true;
         inIdentifierDeclaration = false;
         textIdentifier = "";
@@ -126,7 +124,7 @@ void DialogInterface::loadDialogData(const string& fullPath)
       if (current == ';') {
         // Add text to the dialog
         //cout << "adding text to the dialog (" << textIdentifier << ") => (" << currentTranslation->getTranslation(textIdentifier) << ")" << endl;
-        dialogList[dialogIdentifier].addMessage(currentTranslation->getTranslation(textIdentifier));
+        DialogList[dialogIdentifier].addMessage(CurrentTranslation->getTranslation(textIdentifier));
         textIdentifier = "";
         continue;
       }
@@ -150,35 +148,41 @@ void DialogInterface::loadDialogData(const string& fullPath)
 /**
  *
  */
-void DialogInterface::start(const string& dialogIdentifier)
+void CDialogInterface::start(const std::string& dialogIdentifier)
 {
-  currentDialogIdentifier = dialogIdentifier;
+  CurrentDialogIdentifier = dialogIdentifier;
   createMessage(dialogIdentifier, 0);
-  messageDisplaying = true;
+  MessageDisplaying = true;
 }
 
 /**
  *
  */
-void DialogInterface::createMessage(const string& dialogIdentifier, u16 messageNumber)
+void CDialogInterface::createMessage(const std::string& dialogIdentifier, irr::u16 messageNumber)
 {
-  currentMessageText = new Text(dialogList[dialogIdentifier].getMessage(messageNumber), -350, Game::screenPos.bottom + 100, FONT_STANDARD_48, 25);
+  CurrentMessageText = new hud::CText(
+    DialogList[dialogIdentifier].getMessage(messageNumber),
+    -350,
+    CGame::ScreenPos.Bottom + 100,
+    hud::FONT_STANDARD_48,
+    25
+  );
 }
 
 /**
  *
  */
-void DialogInterface::nextMessage()
+void CDialogInterface::nextMessage()
 {
-  delete currentMessageText;
-  currentMessageNumber++;
-  createMessage(currentDialogIdentifier, currentMessageNumber);
+  delete CurrentMessageText;
+  CurrentMessageNumber++;
+  createMessage(CurrentDialogIdentifier, CurrentMessageNumber);
 }
 
 /**
  *
  */
-void DialogInterface::goToMessage(u32 number)
+void CDialogInterface::goToMessage(irr::u32 number)
 {
 
 }
@@ -186,7 +190,7 @@ void DialogInterface::goToMessage(u32 number)
 /**
  * @todo
  */
-bool DialogInterface::finished()
+bool CDialogInterface::finished()
 {
   return false;
 }
@@ -194,7 +198,10 @@ bool DialogInterface::finished()
 /**
  *
  */
-DialogInterface::~DialogInterface()
+CDialogInterface::~CDialogInterface()
 {
-  delete backWindow;
+  delete BackWindow;
+}
+
+}
 }

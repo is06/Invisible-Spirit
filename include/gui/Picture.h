@@ -10,19 +10,24 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Hud2DElement.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace hud
+{
 
-class Picture : public Hud2DElement
+class CPicture : public CHud2DElement
 {
   public:
-    Picture(f32 x = 0, f32 y = 0, f32 w = 32, f32 h = 32, const string& filePath = "resource/hud/default.bmp");
-    ~Picture();
+    CPicture(irr::f32 x = 0, irr::f32 y = 0, irr::f32 w = 32, irr::f32 h = 32, const std::string& filePath = "resource/hud/default.bmp");
+    ~CPicture();
 
     void render();
-    void loadSecondTexture(const string& filePath);
-    void changeTexture(const string& filePath);
+    void loadSecondTexture(const std::string& filePath);
+    void changeTexture(const std::string& filePath);
 };
+
+}
+}
 
 #endif
 

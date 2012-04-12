@@ -10,30 +10,36 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Counter.h"
 
-using namespace std;
+namespace is06
+{
+namespace hud
+{
 
-class GameTimeCounter : public Counter
+class CGameTimeCounter : public CCounter
 {
   public:
-    GameTimeCounter();
-    ~GameTimeCounter();
+    CGameTimeCounter();
+    ~CGameTimeCounter();
 
     void render();
-    void render(s32 totalGameTime);
+    void render(irr::s32 totalGameTime);
     void hide();
     void show();
-    void setOpacity(u8 value);
+    void setOpacity(irr::u8 value);
 
   private:
-    string seconds;
-    string minutes;
-    string hours;
-    ostringstream oss;
+    std::string Seconds;
+    std::string Minutes;
+    std::string Hours;
+    std::ostringstream Oss;
 
-    Text* counterText;
+    CText* CounterText;
 
-    void updateValues(s32 time);
+    void updateValues(irr::s32 time);
     void updateDigits();
 };
+
+}
+}
 
 #endif

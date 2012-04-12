@@ -9,13 +9,21 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/save/Save.h"
 #include "../../include/save/SaveSlot.h"
 
-SaveSlot::SaveSlot(Save* save)
+namespace is06
 {
-  placeNameIdentifier = save->getString(12);
-  totalGameTime = save->getInteger(21);
+namespace engine
+{
+
+CSaveSlot::CSaveSlot(CSave* save)
+{
+  PlaceNameIdentifier = save->getString(12);
+  TotalGameTime = save->getInteger(21);
 }
 
-SaveSlot::~SaveSlot()
+CSaveSlot::~CSaveSlot()
 {
 
+}
+
+}
 }

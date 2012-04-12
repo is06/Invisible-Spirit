@@ -10,11 +10,19 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Entity.h"
 
-class Sensor : public Entity
+namespace is06
+{
+namespace model
+{
+
+class CSensor : public engine::CEntity
 {
   public:
-    Sensor();
+    CSensor();
     virtual void update() = 0;
 };
+
+}
+}
 
 #endif

@@ -9,16 +9,18 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/TextFont.h"
 #include "../../include/Game.h"
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace hud
+{
 
 /**
  * Constructor, defines current font style and get the appropriate texture
  * @param FontStyle style
  */
-TextFont::TextFont(FontStyle style)
+CTextFont::CTextFont(EFontStyle style)
 {
-  currentStyle = style;
+  CurrentStyle = style;
   getFontDataFromStyle(style);
   getTextureFromStyle(style);
 }
@@ -27,9 +29,9 @@ TextFont::TextFont(FontStyle style)
  * Returns the font Irrlicht material structure
  * @return video::SMaterial& reference to the font material
  */
-video::SMaterial& TextFont::getMaterial()
+irr::video::SMaterial& CTextFont::getMaterial()
 {
-  return fontMaterial;
+  return FontMaterial;
 }
 
 /**
@@ -37,38 +39,37 @@ video::SMaterial& TextFont::getMaterial()
  * @param u8 code decimal code of the character
  * @return u8& reference to the offset value
  */
-u8& TextFont::getCharOffset(u8 code)
+irr::u8& CTextFont::getCharOffset(irr::u8 code)
 {
-  return offset[code];
+  return Offset[code];
 }
 
 /**
  * Reset current character table to standard (one-byte character)
  */
-void TextFont::resetToStandard()
+void CTextFont::resetToStandard()
 {
-  getTextureFromStyle(currentStyle);
+  getTextureFromStyle(CurrentStyle);
 }
 
 /**
  * Loads another texture in order to get multi-byte character (UTF-8)
  * @param u8 number the number of the table (example: 195 for latin acutes characters)
  */
-void TextFont::changeExtTexture(u8 number)
+void CTextFont::changeExtTexture(irr::u8 number)
 {
-  getTextureFromStyle(currentStyle, number);
+  getTextureFromStyle(CurrentStyle, number);
 }
 
 /**
  * Reads font characters size and offset
- * @param const string& dataFilePath the path of the font data file
+ * @param const std::string& dataFilePath the path of the font data file
  */
-void TextFont::readFontData(const string& dataFilePath)
+void CTextFont::readFontData(const std::string& dataFilePath)
 {
-  cout << "reading font data..." << endl;
-  fstream fileStream(dataFilePath.c_str(), ios::in);
-  string currentCode;
-  string currentWidth;
+  std::fstream fileStream(dataFilePath.c_str(), std::ios::in);
+  std::string currentCode;
+  std::string currentWidth;
   char currentChar;
   bool inReadingCode = true;
   bool inReadingWidth = false;
@@ -90,7 +91,7 @@ void TextFont::readFontData(const string& dataFilePath)
 
       // New line
       if (currentChar == '\n') {
-        offset[atoi(currentCode.c_str())] = atoi(currentWidth.c_str());
+        Offset[atoi(currentCode.c_str())] = atoi(currentWidth.c_str());
         currentCode = "";
         currentWidth = "";
         inReadingCode = true;
@@ -104,21 +105,21 @@ void TextFont::readFontData(const string& dataFilePath)
  * Returns current font style
  * @return FontStyle the current style
  */
-FontStyle TextFont::getCurrentStyle()
+EFontStyle CTextFont::getCurrentStyle()
 {
-  return currentStyle;
+  return CurrentStyle;
 }
 
-void TextFont::getFontDataFromStyle(FontStyle style)
+void CTextFont::getFontDataFromStyle(EFontStyle style)
 {
-  string filePath = "resource/hud/font/";
+  std::string filePath = "resource/hud/font/";
 
   switch (style) {
     case FONT_STANDARD_48: filePath += "standard_48"; break;
     default: filePath += "standard_48"; break;
   }
 
-  string dataPath = filePath + ".isf";
+  std::string dataPath = filePath + ".isf";
   readFontData(dataPath);
 }
 
@@ -128,35 +129,38 @@ void TextFont::getFontDataFromStyle(FontStyle style)
  * @param FontStyle style
  * @param u8 extTexture the number of the table (example: 195 for latin acutes characters)
  */
-void TextFont::getTextureFromStyle(FontStyle style, u8 extTexture)
+void CTextFont::getTextureFromStyle(EFontStyle style, irr::u8 extTexture)
 {
-  string filePath = "resource/hud/font/";
+  std::string filePath = "resource/hud/font/";
 
   switch (style) {
     case FONT_STANDARD_48: filePath += "standard_48"; break;
     default: filePath += "standard_48"; break;
   }
 
-  string texturePath = filePath;
+  std::string texturePath = filePath;
   if (extTexture) {
-    s32 textureNumber = extTexture;
+    irr::s32 textureNumber = extTexture;
     texturePath += "_";
-    ostringstream oss;
+    std::stringstream oss;
     oss << textureNumber;
     texturePath += oss.str();
   }
 
   texturePath += ".png";
 
-  fontTexture = Game::getVideoDriver()->getTexture(texturePath.c_str());
-  fontMaterial.setTexture(0, fontTexture);
-  fontMaterial.Lighting = false;
+  FontTexture = engine::CGame::getVideoDriver()->getTexture(texturePath.c_str());
+  FontMaterial.setTexture(0, FontTexture);
+  FontMaterial.Lighting = false;
 }
 
 /**
  * Destructor
  */
-TextFont::~TextFont()
+CTextFont::~CTextFont()
 {
-  fontTexture = NULL;
+  FontTexture = NULL;
+}
+
+}
 }

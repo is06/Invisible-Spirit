@@ -10,12 +10,15 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/Game.h"
 #include "../include/EventManager.h"
 
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
 /**
  * Constructeur de l'interface, ne fait rien de particulier
  */
-Gamepad::Gamepad()
+CGamepad::CGamepad()
 {
 
 }
@@ -24,72 +27,72 @@ Gamepad::Gamepad()
  * Retourne la force d'inclinaison du joystick gauche de la manette
  * @return u8 un entier de la valeur d'inclinaison
  */
-u8 Gamepad::getLeftJoystickForce()
+irr::u8 CGamepad::getLeftJoystickForce()
 {
-  return Game::getEventManager()->getLeftJoystickForce();
+  return CGame::getEventManager()->getLeftJoystickForce();
 }
 
 /**
  * Retourne l'angle d'inclinaison du joystick gauche de la manette
  * @return f32 l'angle en degrés
  */
-f32 Gamepad::getLeftJoystickAngle()
+irr::f32 CGamepad::getLeftJoystickAngle()
 {
-  return Game::getEventManager()->getLeftJoystickAngle();
+  return CGame::getEventManager()->getLeftJoystickAngle();
 }
 
 /**
  * Retourn la valeur de l'axe X du joystick gauche de la manette
  * @return s8 un entier de la valeur de l'axe entre -128 (gauche) et 127 (droite)
  */
-s8 Gamepad::getLeftJoystickXAxis()
+irr::s8 CGamepad::getLeftJoystickXAxis()
 {
-  return Game::getEventManager()->getLeftJoystickXAxis();
+  return CGame::getEventManager()->getLeftJoystickXAxis();
 }
 
 /**
  * Retourn la valeur de l'axe Y du joystick gauche de la manette
  * @return s8 un entier de la valeur de l'axe entre -128 (bas) et 127 (haut)
  */
-s8 Gamepad::getLeftJoystickYAxis()
+irr::s8 CGamepad::getLeftJoystickYAxis()
 {
-  return Game::getEventManager()->getLeftJoystickYAxis();
+  return CGame::getEventManager()->getLeftJoystickYAxis();
 }
 
 /**
  * Retourne la force d'inclinaison du joystick droit de la manette
  * @return u8 un entier de la valeur d'inclinaison
  */
-u8 Gamepad::getRightJoystickForce()
+irr::u8 CGamepad::getRightJoystickForce()
 {
-  return Game::getEventManager()->getRightJoystickForce();
+  return CGame::getEventManager()->getRightJoystickForce();
 }
 
 /**
  * Retourne l'angle d'inclinaison du joystick droit de la manette
  * @return f32 l'angle en degrés
  */
-f32 Gamepad::getRightJoystickAngle()
+irr::f32 CGamepad::getRightJoystickAngle()
 {
-  return Game::getEventManager()->getRightJoystickAngle();
+  return CGame::getEventManager()->getRightJoystickAngle();
 }
 
 /**
  * Retourn la valeur de l'axe X du joystick droit de la manette
  * @return s8 un entier de la valeur de l'axe entre -128 (gauche) et 127 (droite)
  */
-s8 Gamepad::getRightJoystickXAxis()
+irr::s8 CGamepad::getRightJoystickXAxis()
 {
-  return Game::getEventManager()->getRightJoystickXAxis();
+  return CGame::getEventManager()->getRightJoystickXAxis();
 }
 
 /**
  * Retourn la valeur de l'axe Y du joystick droit de la manette
  * @return s8 un entier de la valeur de l'axe entre -128 (bas) et 127 (haut)
  */
-s8 Gamepad::getRightJoystickYAxis()
+irr::s8 CGamepad::getRightJoystickYAxis()
 {
-  return Game::getEventManager()->getRightJoystickYAxis();
+  return CGame::getEventManager()->getRightJoystickYAxis();
 }
 
 /**
@@ -97,22 +100,22 @@ s8 Gamepad::getRightJoystickYAxis()
  * @param u16 buttons la combinaison (addition) de un ou plusieurs boutons spécifiés dans l'enum GamepadButton
  * @return bool si la combinaison spécifiée est bien pressée
  */
-bool Gamepad::buttonPressed(u16 buttons, EventType type)
+bool CGamepad::buttonPressed(irr::u16 buttons, EEventType type)
 {
   if (type == EVENT_ONCE) {
-    if (!buttonOnce[buttons]) {
-      if (Game::getEventManager()->getPressedButtons() == buttons) {
-        buttonOnce[buttons] = true;
+    if (!ButtonOnce[buttons]) {
+      if (CGame::getEventManager()->getPressedButtons() == buttons) {
+        ButtonOnce[buttons] = true;
         return true;
       }
     } else {
-      if (Game::getEventManager()->getPressedButtons() != buttons) {
-        buttonOnce[buttons] = false;
+      if (CGame::getEventManager()->getPressedButtons() != buttons) {
+        ButtonOnce[buttons] = false;
       }
     }
     return false;
   } else {
-    return (Game::getEventManager()->getPressedButtons() == buttons);
+    return (CGame::getEventManager()->getPressedButtons() == buttons);
   }
 }
 
@@ -121,21 +124,24 @@ bool Gamepad::buttonPressed(u16 buttons, EventType type)
  * @param GamepadDirection direction la direction spécifiée dans l'enum GamepadDirection
  * @return bool si la direction spécifiée est bien appuyée
  */
-bool Gamepad::dirPressed(GamepadDirection direction, EventType type)
+bool CGamepad::dirPressed(EGamepadDirection direction, EEventType type)
 {
   if (type == EVENT_ONCE) {
-    if (!directionOnce[direction]) {
-      if ((s32)Game::getEventManager()->getPovValue() == direction) {
-        directionOnce[direction] = true;
+    if (!DirectionOnce[direction]) {
+      if ((irr::s32)CGame::getEventManager()->getPovValue() == direction) {
+        DirectionOnce[direction] = true;
         return true;
       }
     } else {
-      if ((s32)Game::getEventManager()->getPovValue() != direction) {
-        directionOnce[direction] = false;
+      if ((irr::s32)CGame::getEventManager()->getPovValue() != direction) {
+        DirectionOnce[direction] = false;
       }
     }
     return false;
   } else {
-    return ((s32)Game::getEventManager()->getPovValue() == direction);
+    return ((irr::s32)CGame::getEventManager()->getPovValue() == direction);
   }
+}
+
+}
 }

@@ -10,27 +10,32 @@ http://www.is06.com. Legal code in license.txt
 
 #include "SaveFileElement.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
-class SaveFile
+class CSaveFile
 {
   public:
-    SaveFile();
-    ~SaveFile();
+    CSaveFile();
+    ~CSaveFile();
 
-    void prepareForRead(u8 slot);
-    void prepareForWrite(u8 slot);
+    void prepareForRead(irr::u8 slot);
+    void prepareForWrite(irr::u8 slot);
 
-    void addVariable(u32 index, s32 value);
-    void addVariable(u32 index, bool value);
-    void addVariable(u32 index, const string& value);
+    void addVariable(irr::u32 index, irr::s32 value);
+    void addVariable(irr::u32 index, bool value);
+    void addVariable(irr::u32 index, const std::string& value);
 
-    SaveFileElement getNextElement();
+    SSaveFileElement getNextElement();
 
   private:
-    ifstream rs;
-    ofstream ws;
+    std::ifstream Rs;
+    std::ofstream Ws;
 };
+
+}
+}
 
 #endif

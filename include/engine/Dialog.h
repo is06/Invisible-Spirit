@@ -8,26 +8,32 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_DIALOG_H__
 #define __IS06_DIALOG_H__
 
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
-class Dialog
+class CDialog
 {
   public:
-    Dialog();
-    Dialog(const string& identifier);
-    ~Dialog();
+    CDialog();
+    CDialog(const std::string& identifier);
+    ~CDialog();
 
-    void addMessage(const string& text);
-    void setIdentifier(const string& name);
+    void addMessage(const std::string& text);
+    void setIdentifier(const std::string& name);
 
-    string getMessage(u16 index);
-    const string& getIdentifier() const;
-    u16 getMessageCount();
+    std::string getMessage(irr::u16 index);
+    const std::string& getIdentifier() const;
+    irr::u16 getMessageCount();
 
   private:
-    u16 currentNumber;
-    string currentIdentifier;
-    map<u16, string> messageList;
+    irr::u16 CurrentNumber;
+    std::string CurrentIdentifier;
+    std::map<irr::u16, std::string> MessageList;
 };
+
+}
+}
 
 #endif

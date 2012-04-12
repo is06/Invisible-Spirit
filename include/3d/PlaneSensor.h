@@ -10,19 +10,24 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Sensor.h"
 
-using namespace irr;
+namespace is06
+{
+namespace model
+{
 
-class PlaneSensor : public Sensor
+class CPlaneSensor : public CSensor
 {
   public:
-    PlaneSensor(const core::plane3df& initPlane);
+    CPlaneSensor(const irr::core::plane3df& initPlane);
     void update();
 
-    const core::plane3df& getPlane() const;
+    const irr::core::plane3df& getPlane() const;
 
   private:
-    core::plane3df plane;
+    irr::core::plane3df Plane;
 };
 
-#endif
+}
+}
 
+#endif

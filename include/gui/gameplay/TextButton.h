@@ -10,16 +10,24 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Button.h"
 
-class TextButton : public Button
+namespace is06
+{
+namespace hud
+{
+
+class CTextButton : public CButton
 {
   public:
-    TextButton(f32 x, f32 y);
-    ~TextButton();
+    CTextButton(irr::f32 x, irr::f32 y);
+    ~CTextButton();
 
     void render();
 
   protected:
-    Text* text;
+    CText* Label;
 };
+
+}
+}
 
 #endif

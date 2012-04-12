@@ -10,18 +10,26 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../Hud.h"
 
-class GameplaySubMenu : public Hud {
+namespace is06
+{
+namespace hud
+{
+
+class CGameplaySubMenu : public CHud {
   public:
-    GameplaySubMenu();
-    ~GameplaySubMenu();
+    CGameplaySubMenu();
+    ~CGameplaySubMenu();
 
     virtual void render();
     virtual void show();
     virtual void hide();
-    virtual void setOpacity(u8 value);
+    virtual void setOpacity(irr::u8 value);
 
   protected:
 
 };
+
+}
+}
 
 #endif

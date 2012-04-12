@@ -8,106 +8,131 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_CLASSES_H__
 #define __IS06_CLASSES_H__
 
-// Main classes
-class Game;
-class EngineException;
-class EventManager;
-class Settings;
-class SettingsGroup;
-class Timer;
-class Translation;
-class Entity;
-class Save;
-class SaveSlot;
-class SaveFile;
-class Keyboard;
-class Mouse;
-class Gamepad;
+namespace is06
+{
 
 // Engine classes
-class DialogInterface;
+namespace engine
+{
+  class CGame;
+  class CEngineException;
+  class CEventManager;
+  class CSettings;
+  class CSettingsGroup;
+  class CTimer;
+  class CTranslation;
+  class CEntity;
+  class CSave;
+  class CSaveSlot;
+  class CSaveFile;
+  class CKeyboard;
+  class CMouse;
+  class CGamepad;
+  class CDialogInterface;
+}
 
 // Debug classes
-class MapEditor;
-class ColorProperty;
+namespace debug
+{
+  class CMapEditor;
+  class CColorProperty;
+}
 
-// Scnees
-class Scene;
-class SceneGameplay;
-class SceneMenu;
+// Scenes
+namespace scene
+{
+  class CScene;
+  class CSceneGameplay;
+  class CSceneMenu;
+}
 
-// GUI
-class Hud;
-class Hud2DElement;
-class Counter;
-class BarCounter;
-class DigitCounter;
-class GameTimeCounter;
-class WorldTimeCounter;
-class TargetLifeMeter;
-class IconCounter;
-class Picture;
-class Animation;
-class Text;
-class TextChar;
-class TextFont;
-class Window;
-class GameplayInterface;
-class EnergyInterface;
-class ButtonsInterface;
-class Button;
-class TextButton;
-class IconButton;
-class IconTextButton;
-class Menu;
-class MenuOption;
-class GameplayMenu;
-class DimensionMenu;
-class ItemMenu;
-class MapMenu;
-class MonstersMenu;
-class SettingsMenu;
-class SpiritMenu;
-class StatusMenu;
-class TalesMenu;
-class WeaponMenu;
-class MainStateInfo;
-class CapacityInfo;
-class PlayerState;
+// HUD
+namespace hud
+{
+  class CHud;
+  class CHud2DElement;
+  class CCounter;
+  class CBarCounter;
+  class CDigitCounter;
+  class CGameTimeCounter;
+  class CWorldTimeCounter;
+  class CTargetLifeMeter;
+  class CIconCounter;
+  class CPicture;
+  class CAnimation;
+  class CText;
+  class CTextChar;
+  class CTextFont;
+  class CWindow;
+  class CGameplayInterface;
+  class CEnergyInterface;
+  class CButtonsInterface;
+  class CButton;
+  class CTextButton;
+  class CIconButton;
+  class CIconTextButton;
+  class CMenu;
+  class CMenuOption;
+  class CGameplayMenu;
+  class CDimensionMenu;
+  class CItemMenu;
+  class CMapMenu;
+  class CMonstersMenu;
+  class CSettingsMenu;
+  class CSpiritMenu;
+  class CStatusMenu;
+  class CTalesMenu;
+  class CWeaponMenu;
+  class CMainStateInfo;
+  class CCapacityInfo;
+  class CPlayerState;
+}
 
-// 3D
-class ModelEntity;
-class AnimatedModel;
-class StaticModel;
-class LevelMesh;
-class Camera;
-class TPCamera;
-class Light;
-class DirectLight;
-class OmniLight;
-class Sensor;
-class PlaneSensor;
-class BoxSensor;
+// 3D Model
+namespace model
+{
+  // General
+  class CModelEntity;
+  class CAnimatedModel;
+  class CStaticModel;
+  class CLevelMesh;
+  class CCamera;
+  class CTPCamera;
+  class CLight;
+  class CDirectLight;
+  class COmniLight;
+  class CSensor;
+  class CPlaneSensor;
+  class CBoxSensor;
 
-// Characters
-class Character;
-class PlayableCharacter;
-class NPC;
+  // Characters
+  class CCharacter;
+  class CPlayableCharacter;
+  class CNPC;
 
-// Enemies
-class Enemy;
-class FloorEnemy;
-class AirEnemy;
+  // Enemies
+  class CEnemy;
+  class CFloorEnemy;
+  class CAirEnemy;
+}
 
 // Shaders
-class DiffuseShaderCallback;
-class PostRenderSurface;
+namespace shader
+{
+  class CDiffuseShaderCallback;
+  class CPostRenderSurface;
+}
 
 // Sound
-class SoundManager;
-class Speaker;
-class MusicReference;
-class Music;
-class MusicSequence;
+namespace sound
+{
+  class CSoundManager;
+  class CSpeaker;
+  class CMusicReference;
+  class CMusic;
+  class CMusicSequence;
+}
+
+}
 
 #endif

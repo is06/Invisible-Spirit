@@ -10,22 +10,25 @@ http://www.is06.com. Legal code in license.txt
 
 #include "enums/engine/EventType.h"
 
-using namespace irr;
+namespace is06
+{
+namespace engine
+{
 
-/**
- * Cette classe d'interface permet d'exploiter le clavier dans les scènes
- */
-class Keyboard
+class CKeyboard
 {
   public:
-    bool pressed(EKEY_CODE code, EventType type = EVENT_ALWAYS);
-    bool any(EventType type = EVENT_ALWAYS);
-    s8 getDirectionXAxis();
-    s8 getDirectionYAxis();
-    f32 getDirectionAngle();
+    bool pressed(irr::EKEY_CODE code, EEventType type = EVENT_ALWAYS);
+    bool any(EEventType type = EVENT_ALWAYS);
+    irr::s8 getDirectionXAxis();
+    irr::s8 getDirectionYAxis();
+    irr::f32 getDirectionAngle();
 
   private:
-    f32 directionAngle;
+    irr::f32 DirectionAngle;
 };
+
+}
+}
 
 #endif

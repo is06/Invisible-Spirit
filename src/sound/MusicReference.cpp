@@ -9,14 +9,16 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/sound/Music.h"
 #include "../../include/sound/MusicReference.h"
 
-using namespace std;
-using namespace irr;
-
-MusicReference::MusicReference()
+namespace is06
 {
-  currentMusic = NULL;
+namespace sound
+{
 
-  fstream fileStream("resource/music/list.ism", ios::in);
+CMusicReference::CMusicReference()
+{
+  CurrentMusic = NULL;
+
+  std::fstream fileStream("resource/music/list.ism", std::ios::in);
   if (fileStream) {
     bool inMusicNameDeclaration = true;
     bool inSeqNumbDeclaration = false;
@@ -26,12 +28,12 @@ MusicReference::MusicReference()
     bool inSeqFileDeclaration = false;
 
     char current = 0;
-    string musicName("");
-    string sequenceNumber("");
+    std::string musicName("");
+    std::string sequenceNumber("");
     bool sequenceLooped = true;
-    string sequenceLoopStart("");
-    string sequenceLoopEnd("");
-    string sequenceFileName("");
+    std::string sequenceLoopStart("");
+    std::string sequenceLoopEnd("");
+    std::string sequenceFileName("");
 
     while (fileStream.get(current)) {
       if (current == '=') {
@@ -64,9 +66,9 @@ MusicReference::MusicReference()
         inSeqFileDeclaration = false;
         inSeqNumbDeclaration = true;
 
-        u16 sequenceNumberInt;
-        u32 loopStartInt;
-        u32 loopEndInt;
+        irr::u16 sequenceNumberInt;
+        irr::u32 loopStartInt;
+        irr::u32 loopEndInt;
         std::istringstream iss(sequenceNumber);
         iss >> sequenceNumberInt;
         iss.clear();
@@ -76,11 +78,11 @@ MusicReference::MusicReference()
         iss.str(sequenceLoopEnd);
         iss >> loopEndInt;
 
-        musicList[musicName].sequenceInfo[sequenceNumberInt].number = sequenceNumberInt;
-        musicList[musicName].sequenceInfo[sequenceNumberInt].looped = sequenceLooped;
-        musicList[musicName].sequenceInfo[sequenceNumberInt].loopStart = loopStartInt;
-        musicList[musicName].sequenceInfo[sequenceNumberInt].loopEnd = loopEndInt;
-        musicList[musicName].sequenceInfo[sequenceNumberInt].fileName = sequenceFileName;
+        MusicList[musicName].SequenceInfo[sequenceNumberInt].Number = sequenceNumberInt;
+        MusicList[musicName].SequenceInfo[sequenceNumberInt].Looped = sequenceLooped;
+        MusicList[musicName].SequenceInfo[sequenceNumberInt].LoopStart = loopStartInt;
+        MusicList[musicName].SequenceInfo[sequenceNumberInt].LoopEnd = loopEndInt;
+        MusicList[musicName].SequenceInfo[sequenceNumberInt].FileName = sequenceFileName;
 
         sequenceNumber = "";
         sequenceLoopStart = "";
@@ -120,42 +122,45 @@ MusicReference::MusicReference()
   }
 }
 
-void MusicReference::play(const string& id)
+void CMusicReference::play(const std::string& id)
 {
-  currentId = id;
+  CurrentId = id;
 
-  if (!currentMusic) {
-    currentMusic = new Music(id);
-    currentMusic->addSequences(musicList[id].sequenceInfo);
-    currentMusic->playSequences(musicList[id].sequenceInfo);
+  if (!CurrentMusic) {
+    CurrentMusic = new CMusic(id);
+    CurrentMusic->addSequences(MusicList[id].SequenceInfo);
+    CurrentMusic->playSequences(MusicList[id].SequenceInfo);
   }
 }
 
-void MusicReference::muteSequence(const string& id, u16 number)
+void CMusicReference::muteSequence(const std::string& id, irr::u16 number)
 {
-  if (currentMusic->getSequence(number)) {
-    currentMusic->getSequence(number)->setVolume(0.0f);
+  if (CurrentMusic->getSequence(number)) {
+    CurrentMusic->getSequence(number)->setVolume(0.0f);
   }
 }
 
-void MusicReference::unmuteSequence(const string& id, u16 number)
+void CMusicReference::unmuteSequence(const std::string& id, irr::u16 number)
 {
-  if (currentMusic->getSequence(number)) {
-    currentMusic->getSequence(number)->setVolume(1.0f);
+  if (CurrentMusic->getSequence(number)) {
+    CurrentMusic->getSequence(number)->setVolume(1.0f);
   }
 }
 
-void MusicReference::stop()
+void CMusicReference::stop()
 {
 
 }
 
-Music* MusicReference::getCurrentMusic()
+CMusic* CMusicReference::getCurrentMusic()
 {
-  return currentMusic;
+  return CurrentMusic;
 }
 
-MusicReference::~MusicReference()
+CMusicReference::~CMusicReference()
 {
 
+}
+
+}
 }

@@ -9,13 +9,12 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/Picture.h"
 #include "../../include/Game.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace hud
+{
 
-/**
- * Création à l'aide de coordonnées directes
- */
-Picture::Picture(f32 x, f32 y, f32 w, f32 h, const string& filePath) : Hud2DElement(x, y, w, h)
+CPicture::CPicture(irr::f32 x, irr::f32 y, irr::f32 w, irr::f32 h, const std::string& filePath) : CHud2DElement(x, y, w, h)
 {
   changeTexture(filePath);
 }
@@ -23,28 +22,31 @@ Picture::Picture(f32 x, f32 y, f32 w, f32 h, const string& filePath) : Hud2DElem
 /**
  * Rendu de l'élément d'interface
  */
-void Picture::render()
+void CPicture::render()
 {
-  Hud2DElement::render();
+  CHud2DElement::render();
 }
 
-void Picture::loadSecondTexture(const string& filePath)
+void CPicture::loadSecondTexture(const std::string& filePath)
 {
-  video::ITexture* second = Game::getVideoDriver()->getTexture(filePath.c_str());
+  irr::video::ITexture* second = engine::CGame::getVideoDriver()->getTexture(filePath.c_str());
   if (second) {
-    material.setTexture(1, second);
+    Material.setTexture(1, second);
   }
 }
 
-void Picture::changeTexture(const string& filePath)
+void CPicture::changeTexture(const std::string& filePath)
 {
-  texture = Game::getVideoDriver()->getTexture(filePath.c_str());
-  if (texture) {
-    material.setTexture(0, texture);
+  Texture = engine::CGame::getVideoDriver()->getTexture(filePath.c_str());
+  if (Texture) {
+    Material.setTexture(0, Texture);
   }
 }
 
-Picture::~Picture()
+CPicture::~CPicture()
 {
 
+}
+
+}
 }

@@ -8,24 +8,30 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/ref/core.h"
 #include "../include/SettingsGroup.h"
 
-using namespace irr;
-
-SettingsGroup::SettingsGroup(const string& newName)
+namespace is06
 {
-  setName(newName);
+namespace engine
+{
+
+CSettingsGroup::CSettingsGroup(const std::string& name)
+{
+  setName(name);
 }
 
-void SettingsGroup::setName(const string& newName)
+void CSettingsGroup::setName(const std::string& name)
 {
-  name = newName;
+  Name = name;
 }
 
-map<string, string>& SettingsGroup::getParams()
+std::map<std::string, std::string>& CSettingsGroup::getParams()
 {
-  return params;
+  return Params;
 }
 
-string& SettingsGroup::getName()
+std::string& CSettingsGroup::getName()
 {
-  return name;
+  return Name;
+}
+
+}
 }

@@ -9,39 +9,46 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_BAR_COUNTER_H__
 
 #include "Counter.h"
-
 #include "../../enums/styles/BarStyle.h"
 
-class BarCounter : public Counter
+namespace is06
+{
+namespace hud
+{
+
+class CBarCounter : public CCounter
 {
   public:
-    BarCounter(s32 init = 0, s32 min = 0, s32 max = 1000, f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 10, BarStyle style = BAR_STYLE_DEFAULT);
-    virtual ~BarCounter();
+    CBarCounter(irr::s32 init = 0, irr::s32 min = 0, irr::s32 max = 1000, irr::f32 x = 0, irr::f32 y = 0, irr::f32 w = 150, irr::f32 h = 10, EBarStyle style = BAR_STYLE_DEFAULT);
+    virtual ~CBarCounter();
 
     virtual void render();
 
     virtual void hide();
     virtual void show();
-    virtual void setOpacity(u8 value);
+    virtual void setOpacity(irr::u8 value);
 
-    void setPosition(f32 x, f32 y);
-    void setX(f32 value);
-    void setY(f32 value);
+    void setPosition(irr::f32 x, irr::f32 y);
+    void setX(irr::f32 value);
+    void setY(irr::f32 value);
 
   protected:
-    Picture* bar;
-    Picture* sub;
+    CPicture* Bar;
+    CPicture* Sub;
 
-    s32 oldValue;
-    f32 behindValue;
-    f32 initWidth;
-    f32 initX;
-    f32 initY;
-    f32 decreaseFactor;
-    f32 decreaseTimer;
+    irr::s32 OldValue;
+    irr::f32 BehindValue;
+    irr::f32 InitWidth;
+    irr::f32 InitX;
+    irr::f32 InitY;
+    irr::f32 DecreaseFactor;
+    irr::f32 DecreaseTimer;
 
-    bool animate;
-    bool decrease;
+    bool Animate;
+    bool Decrease;
 };
+
+}
+}
 
 #endif

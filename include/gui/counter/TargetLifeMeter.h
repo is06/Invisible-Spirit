@@ -11,19 +11,27 @@ http://www.is06.com. Legal code in license.txt
 #include "../../enums/gameplay/CommandIdentifier.h"
 #include "../Hud.h"
 
-class TargetLifeMeter : public Hud
+namespace is06
+{
+namespace hud
+{
+
+class CTargetLifeMeter : public CHud
 {
   public:
-    TargetLifeMeter(s32 init, s32 min, s32 max);
-    ~TargetLifeMeter();
+    CTargetLifeMeter(irr::s32 init, irr::s32 min, irr::s32 max);
+    ~CTargetLifeMeter();
 
-    void render(const core::vector3df& targetPosition);
-    void updateValue(const s32& value);
+    void render(const irr::core::vector3df& targetPosition);
+    void updateValue(const irr::s32& value);
 
   private:
-    Picture* barBack;
-    BarCounter* counter;
-    Text* label;
+    CPicture* BarBack;
+    CBarCounter* Gauge;
+    CText* Label;
 };
+
+}
+}
 
 #endif

@@ -7,29 +7,34 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/PlaneSensor.h"
 
-using namespace irr;
+namespace is06
+{
+namespace model
+{
 
 /**
  *
  */
-PlaneSensor::PlaneSensor(const core::plane3df& initPlane) : Sensor()
+CPlaneSensor::CPlaneSensor(const irr::core::plane3df& initPlane) : CSensor()
 {
-  plane = initPlane;
+  Plane = initPlane;
 }
 
 /**
  *
  */
-void PlaneSensor::update()
+void CPlaneSensor::update()
 {
-  Sensor::update();
+  CSensor::update();
 }
 
 /**
  *
  */
-const core::plane3df& PlaneSensor::getPlane() const
+const irr::core::plane3df& CPlaneSensor::getPlane() const
 {
-  return plane;
+  return Plane;
 }
 
+}
+}

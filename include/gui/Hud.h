@@ -10,19 +10,27 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Entity.h"
 
-class Hud : public Entity
+namespace is06
+{
+namespace hud
+{
+
+class CHud : public engine::CEntity
 {
   public:
-    Hud();
-    virtual ~Hud();
+    CHud();
+    virtual ~CHud();
 
     virtual void render() = 0;
 
-    virtual void setOpacity(u8 value) = 0;
+    virtual void setOpacity(irr::u8 value) = 0;
     virtual void show() = 0;
     virtual void hide() = 0;
 
   protected:
 };
+
+}
+}
 
 #endif

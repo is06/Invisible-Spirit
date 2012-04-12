@@ -9,17 +9,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/AnimatedModel.h"
 #include "../../include/3d/Enemy.h"
 
-Enemy::Enemy() : AnimatedModel()
+namespace is06
+{
+namespace model
+{
+
+CEnemy::CEnemy() : CAnimatedModel()
 {
 
 }
 
-void Enemy::update()
+void CEnemy::update()
 {
-  AnimatedModel::update();
+  CAnimatedModel::update();
 }
 
-Enemy::~Enemy()
+CEnemy::~CEnemy()
 {
 
+}
+
+}
 }

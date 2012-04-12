@@ -9,37 +9,39 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/Timer.h"
 #include "../include/Game.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
 /**
  * @param f32 end duration
  * @param VoidCallback method to call
  * @param s32 loopLimit number of calls (-1 = infinite)
  */
-Timer::Timer(f32 end, VoidCallback callback, s32 loopLimit)
+CTimer::CTimer(f32 end, TVoidCallback callback, s32 loopLimit)
 {
-  running = true;
+  Running = true;
   reinit(end, callback, loopLimit);
 }
 
 /**
  *
  */
-void Timer::update()
+void CTimer::update()
 {
-  if (running && currentLoop < currentLoopLimit) {
-    currentTime += (Game::getSpeedFactor());
-    if (currentTime >= endTime) {
+  if (Running && CurrentLoop < CurrentLoopLimit) {
+    CurrentTime += (CGame::getSpeedFactor());
+    if (CurrentTime >= EndTime) {
       bool called = true;
       // Appel du callback
-      endCall();
+      EndCall();
       if (called) {
-        if (currentLoopLimit > 0) {
-          currentLoop++;
-          currentTime = 0.0f;
-        } else if (currentLoopLimit == -1) {
-          currentTime = 0.0f;
+        if (CurrentLoopLimit > 0) {
+          CurrentLoop++;
+          CurrentTime = 0.0f;
+        } else if (CurrentLoopLimit == -1) {
+          CurrentTime = 0.0f;
         } else {
           stop();
         }
@@ -51,25 +53,25 @@ void Timer::update()
 /**
  *
  */
-void Timer::start()
+void CTimer::start()
 {
-  running = true;
+  Running = true;
 }
 
 /**
  *
  */
-void Timer::stop()
+void CTimer::stop()
 {
-  running = false;
+  Running = false;
 }
 
 /**
  *
  */
-void Timer::reset()
+void CTimer::reset()
 {
-  currentTime = 0.0f;
+  CurrentTime = 0.0f;
 }
 
 /**
@@ -77,28 +79,31 @@ void Timer::reset()
  * @param VoidCallback method to call
  * @param s32 loopLimit number of calls (-1 = infinite)
  */
-void Timer::reinit(f32 end, VoidCallback callback, s32 loopLimit)
+void CTimer::reinit(f32 end, TVoidCallback callback, s32 loopLimit)
 {
-  endCall = callback;
-  currentTime = 0.0f;
-  endTime = end;
-  currentLoop = 0;
-  currentLoopLimit = loopLimit;
+  EndCall = callback;
+  CurrentTime = 0.0f;
+  EndTime = end;
+  CurrentLoop = 0;
+  CurrentLoopLimit = loopLimit;
   start();
 }
 
 /**
  *
  */
-void Timer::setTime(f32 val)
+void CTimer::setTime(f32 val)
 {
-  currentTime = val;
+  CurrentTime = val;
 }
 
 /**
  *
  */
-f32 Timer::getTime()
+f32 CTimer::getTime()
 {
-  return currentTime;
+  return CurrentTime;
+}
+
+}
 }

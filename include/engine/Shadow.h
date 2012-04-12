@@ -10,20 +10,25 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../enums/engine/ShadowMode.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
-class Shadow
+class CShadow
 {
   public:
-    Shadow(ShadowMode mode = SHADOW_MODE_CAST);
-    ~Shadow();
+    CShadow(engine::EShadowMode mode = SHADOW_MODE_CAST);
+    ~CShadow();
 
-    const ShadowMode& getMode() const;
+    const engine::EShadowMode& getMode() const;
 
   private:
-    ShadowMode currentMode;
+    engine::EShadowMode CurrentMode;
 };
+
+}
+}
 
 #endif
 

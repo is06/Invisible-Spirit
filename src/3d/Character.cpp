@@ -9,25 +9,31 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/Character.h"
 #include "../../include/3d/AnimatedModel.h"
 
-using namespace irr;
+namespace is06
+{
+namespace model
+{
 
 /**
  * Constructeur
  */
-Character::Character(const string& meshFile, const string& animationFile) : AnimatedModel(meshFile, animationFile)
+CCharacter::CCharacter(const std::string& meshFile, const std::string& animationFile) : CAnimatedModel(meshFile, animationFile)
 {
-  isJumping = false;
-  isFalling = true;
-  isWalking = false;
-  isTalking = false;
+  IsJumping = false;
+  IsFalling = true;
+  IsWalking = false;
+  IsTalking = false;
 
-  jumpStrength = 0.0f;
+  JumpStrength = 0.0f;
 }
 
 /**
  * Fonction de mise à jour de tous les personnages
  */
-void Character::update()
+void CCharacter::update()
 {
-  AnimatedModel::update();
+  CAnimatedModel::update();
+}
+
+}
 }

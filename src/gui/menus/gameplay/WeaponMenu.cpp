@@ -8,17 +8,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/WeaponMenu.h"
 
-WeaponMenu::WeaponMenu() : GameplaySubMenu()
+namespace is06
+{
+namespace hud
+{
+
+CWeaponMenu::CWeaponMenu() : CGameplaySubMenu()
 {
 
 }
 
-void WeaponMenu::render(Keyboard* keyboard)
+void CWeaponMenu::render()
 {
-  GameplaySubMenu::render();
+  CGameplaySubMenu::render();
 }
 
-WeaponMenu::~WeaponMenu()
+CWeaponMenu::~CWeaponMenu()
 {
 
+}
+
+}
 }

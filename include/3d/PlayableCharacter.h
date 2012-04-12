@@ -10,44 +10,52 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/Character.h"
 
-class PlayableCharacter : public Character
+namespace is06
+{
+namespace model
+{
+
+class CPlayableCharacter : public CCharacter
 {
   public:
-    PlayableCharacter(Camera* cam);
+    CPlayableCharacter(CCamera* cam);
 
     void update();
 
     // Player moves
-    void goLeft(f32 speed);
-    void goRight(f32 speed);
-    void goForward(f32 speed);
-    void goBackward(f32 speed);
+    void goLeft(irr::f32 speed);
+    void goRight(irr::f32 speed);
+    void goForward(irr::f32 speed);
+    void goBackward(irr::f32 speed);
 
     // Gravity
-    void fall(f32 factor);
+    void fall(irr::f32 factor);
     void raise();
     void jump();
-    void setJumpDelta(f32 value);
-    f32 getJumpDelta();
-    f32 getJumpStrength();
+    void setJumpDelta(irr::f32 value);
+    irr::f32 getJumpDelta();
+    irr::f32 getJumpStrength();
 
     // Wall collisions
-    void moveOpposite(const core::vector3df& normal);
+    void moveOpposite(const irr::core::vector3df& normal);
 
     // Player control
     void toggleControl();
     bool hasControl();
 
   private:
-    void updateCoords(f32 deltaU, f32 speed);
+    void updateCoords(irr::f32 deltaU, irr::f32 speed);
 
-    Camera* linkedCam;
+    CCamera* LinkedCam;
 
-    bool controlable;
-    f32 jumpDelta;
-    f32 fallDelta;
-    f32 gravity;
-    f32 jumpStrength;
+    bool Controlable;
+    irr::f32 JumpDelta;
+    irr::f32 FallDelta;
+    irr::f32 Gravity;
+    irr::f32 JumpStrength;
 };
+
+}
+}
 
 #endif

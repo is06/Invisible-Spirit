@@ -8,10 +8,15 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_COMMAND_IDENTIFIER_H__
 #define __IS06_COMMAND_IDENTIFIER_H__
 
+namespace is06
+{
+namespace engine
+{
+
 /**
  * Liste des commandes associables à un bouton d'interface joueur
  */
-enum CommandIdentifier
+enum ECommandIdentifier
 {
   CMD_FIRE,
   CMD_FIRE2,
@@ -20,5 +25,8 @@ enum CommandIdentifier
   CMD_ICE2,
   CMD_ICE3
 };
+
+}
+}
 
 #endif

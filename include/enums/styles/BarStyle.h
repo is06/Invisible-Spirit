@@ -8,13 +8,18 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_BAR_STYLE_H__
 #define __IS06_BAR_STYLE_H__
 
-/**
- *
- */
-enum BarStyle
+namespace is06
+{
+namespace hud
+{
+
+enum EBarStyle
 {
   BAR_STYLE_DEFAULT,
   BAR_STYLE_LIFE
 };
+
+}
+}
 
 #endif

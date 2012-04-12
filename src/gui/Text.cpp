@@ -11,70 +11,69 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/TextChar.h"
 #include "../../include/Timer.h"
 
-using namespace std;
-using namespace irr;
-
-/**
- *
- */
-Text::Text(const string& str, f32 x, f32 y, FontStyle style, u8 speed) : Hud()
+namespace is06
 {
-  textFinished = false;
-  textStr = str;
-  currentSize = 48;
-  currentSpeed = speed;
-  currentAlign = TEXT_ALIGN_LEFT;
-  leftBound = 0;
-  rightBound = 0;
-  charList.clear();
+namespace hud
+{
+
+CText::CText(const std::string& str, f32 x, f32 y, EFontStyle style, u8 speed) : CHud()
+{
+  TextFinished = false;
+  TextStr = str;
+  CurrentSize = 48;
+  CurrentSpeed = speed;
+  CurrentAlign = TEXT_ALIGN_LEFT;
+  LeftBound = 0;
+  RightBound = 0;
+  CharList.clear();
 
   // @todo : create font outside text object to avoid useless multiple declarations
-  font = new TextFont(style);
-  currentCharPos = pos = core::dimension2df(x, y);
-  currentDisplayChar = 0;
+  Font = new CTextFont(style);
+  CurrentCharPos = Pos = irr::core::dimension2df(x, y);
+  CurrentDisplayChar = 0;
   updateTiles();
-  currentLineNumber = 0;
-  lineWidthList[0] = 0;
+  CurrentLineNumber = 0;
+  LineWidthList[0] = 0;
 
-  speedTimer = NULL;
-  if (currentSpeed > 0) {
-    speedTimer = new Timer(currentSpeed / 512.0f, boost::bind(&Text::nextChar, this), str.size());
+  SpeedTimer = NULL;
+  if (CurrentSpeed > 0) {
+    SpeedTimer = new engine::CTimer(CurrentSpeed / 512.0f, boost::bind(&CText::nextChar, this), str.size());
   }
 }
 
 /**
  *
  */
-void Text::render()
+void CText::render()
 {
-  Hud::render();
-  if (currentSpeed > 0) {
-    if (currentDisplayChar >= currentTextLength) {
-      speedTimer->stop();
+  CHud::render();
+  if (CurrentSpeed > 0) {
+    if (CurrentDisplayChar >= CurrentTextLength) {
+      SpeedTimer->stop();
     } else {
-      speedTimer->update();
+      SpeedTimer->update();
     }
   }
-  for (charIt = charList.begin(); charIt != charList.end(); charIt++) {
-    charIt->render();
+  for (CharIt = CharList.begin(); CharIt != CharList.end(); CharIt++) {
+    CharIt->render();
   }
 }
 
 /**
  *
  */
-void Text::setSize(u8 size)
+void CText::setSize(u8 size)
 {
-  currentSize = size;
+  CurrentSize = size;
   updateTiles();
 }
 
 /**
  *
  */
-void Text::setText(const string& str)
+void CText::setText(const std::string& str)
 {
-  textStr = str;
+  TextStr = str;
   updateTiles();
 }
 
@@ -82,57 +81,57 @@ void Text::setText(const string& str)
  * Sets text position
  * @param const core::position2df& position the new text position
  */
-void Text::setPosition(const core::position2df& position)
+void CText::setPosition(const core::position2df& position)
 {
   // Compute delta position => setting position of each character
-  core::position2df delta = position - pos;
+  irr::core::position2df delta = position - Pos;
   // Modify Text container position
-  pos = position;
+  Pos = position;
 
   // Modify every character positions
-  for (charIt = charList.begin(); charIt != charList.end(); charIt++) {
-    charIt->setPosition(charIt->getX() + delta.X, charIt->getY() + delta.Y);
+  for (CharIt = CharList.begin(); CharIt != CharList.end(); CharIt++) {
+    CharIt->setPosition(CharIt->getX() + delta.X, CharIt->getY() + delta.Y);
   }
 }
 
 /**
  * Shows the next character
  */
-void Text::nextChar()
+void CText::nextChar()
 {
-  if (currentDisplayChar < currentTextLength) {
-    charList[currentDisplayChar].show();
+  if (CurrentDisplayChar < CurrentTextLength) {
+    CharList[CurrentDisplayChar].show();
   }
-  if (!textFinished && currentDisplayChar >= (currentTextLength - 1)) {
-    textFinished = true;
+  if (!TextFinished && CurrentDisplayChar >= (CurrentTextLength - 1)) {
+    TextFinished = true;
   }
-  currentDisplayChar++;
+  CurrentDisplayChar++;
 }
 
-void Text::skip()
+void CText::skip()
 {
-  currentSpeed = 0;
+  CurrentSpeed = 0;
   show();
 }
 
 /**
  * Create character list by updating every tiles
  */
-void Text::updateTiles()
+void CText::updateTiles()
 {
-  charList.clear();
-  currentCharPos = pos;
-  currentTextLength = 0;
+  CharList.clear();
+  CurrentCharPos = Pos;
+  CurrentTextLength = 0;
   bool escapeCharacter = false;
-  const char* cs = textStr.c_str();
-  u8 nextUtf8Table = 0;
-  for (u16 i = 0; i < textStr.size(); i++) {
+  const char* cs = TextStr.c_str();
+  irr::u8 nextUtf8Table = 0;
+  for (irr::u16 i = 0; i < TextStr.size(); i++) {
     if (escapeCharacter) {
       if (cs[i] == 'n') {
-        currentLineNumber++;
-        lineWidthList[currentLineNumber] = 0;
-        currentCharPos.X = pos.X;
-        currentCharPos.Y -= (currentSize - (currentSize / 8));
+        CurrentLineNumber++;
+        LineWidthList[CurrentLineNumber] = 0;
+        CurrentCharPos.X = Pos.X;
+        CurrentCharPos.Y -= (CurrentSize - (CurrentSize / 8));
         escapeCharacter = false;
       }
     } else {
@@ -148,14 +147,14 @@ void Text::updateTiles()
         } else {
           if (!nextUtf8Table) {
             // Standard character
-            charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, (currentSpeed == 0)));
+            CharList.push_back(CTextChar(cs[i], CurrentCharPos.X, CurrentCharPos.Y, CurrentSize, Font, (CurrentSpeed == 0)));
           } else {
             // Extended utf-8 character
-            charList.push_back(TextChar(cs[i], currentCharPos.X, currentCharPos.Y, currentSize, font, (currentSpeed == 0), nextUtf8Table));
+            CharList.push_back(CTextChar(cs[i], CurrentCharPos.X, CurrentCharPos.Y, CurrentSize, Font, (CurrentSpeed == 0), nextUtf8Table));
             nextUtf8Table = 0;
           }
-          currentTextLength++;
-          lineWidthList[currentLineNumber] += currentSize;
+          CurrentTextLength++;
+          LineWidthList[CurrentLineNumber] += CurrentSize;
           //cout << "width (" << currentLineNumber << ") => " << currentSize << endl;
         }
       }
@@ -168,22 +167,22 @@ void Text::updateTiles()
  * @param f32 left left bound X coordinate
  * @param f32 right right bound X coordinate
  */
-void Text::setSideBounds(f32 left, f32 right)
+void CText::setSideBounds(irr::f32 left, irr::f32 right)
 {
-  leftBound = left;
-  rightBound = right;
+  LeftBound = left;
+  RightBound = right;
 }
 
 /**
  * Aligns the text in its container
  */
-void Text::setAlign(TextAlignment align)
+void CText::setAlign(ETextAlignment align)
 {
-  currentAlign = align;
+  CurrentAlign = align;
 
   switch (align) {
     case TEXT_ALIGN_LEFT:
-      setPosition(core::dimension2df(leftBound, pos.Y));
+      setPosition(irr::core::dimension2df(LeftBound, Pos.Y));
       break;
     case TEXT_ALIGN_RIGHT:
       //setPosition(core::dimension2df((rightBound - width), pos.Y));
@@ -194,39 +193,42 @@ void Text::setAlign(TextAlignment align)
   }
 }
 
-void Text::show()
+void CText::show()
 {
-  for (charIt = charList.begin(); charIt != charList.end(); charIt++) {
-    charIt->show();
+  for (CharIt = CharList.begin(); CharIt != CharList.end(); CharIt++) {
+    CharIt->show();
   }
 }
 
-void Text::hide()
+void CText::hide()
 {
-  for (charIt = charList.begin(); charIt != charList.end(); charIt++) {
-    charIt->hide();
+  for (CharIt = CharList.begin(); CharIt != CharList.end(); CharIt++) {
+    CharIt->hide();
   }
 }
 
-void Text::setOpacity(u8 value)
+void CText::setOpacity(u8 value)
 {
-  for (charIt = charList.begin(); charIt != charList.end(); charIt++) {
-    charIt->setOpacity(value);
+  for (CharIt = CharList.begin(); CharIt != CharList.end(); CharIt++) {
+    CharIt->setOpacity(value);
   }
 }
 
-bool Text::finished()
+bool CText::finished()
 {
-  return textFinished;
+  return TextFinished;
 }
 
 /**
  *
  */
-Text::~Text()
+CText::~CText()
 {
-  delete font;
-  if (speedTimer) {
-    delete speedTimer;
+  delete Font;
+  if (SpeedTimer) {
+    delete SpeedTimer;
   }
+}
+
+}
 }

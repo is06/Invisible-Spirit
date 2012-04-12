@@ -13,48 +13,53 @@ http://www.is06.com. Legal code in license.txt
 #include "../enums/styles/FontStyle.h"
 #include "../enums/styles/TextAlignment.h"
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace hud
+{
 
-class Text : public Hud
+class CText : public CHud
 {
   public:
-    Text(const string& str = "[Text]", f32 x = 0, f32 y = 0, FontStyle style = FONT_STANDARD_48, u8 speed = 0);
-    ~Text();
+    CText(const std::string& str = "[Text]", irr::f32 x = 0, irr::f32 y = 0, hud::EFontStyle style = hud::FONT_STANDARD_48, irr::u8 speed = 0);
+    ~CText();
 
     void render();
-    void setSize(u8 size);
-    void setText(const string& str);
-    void setPosition(const core::position2df& position);
+    void setSize(irr::u8 size);
+    void setText(const std::string& str);
+    void setPosition(const irr::core::position2df& position);
     void nextChar();
     void updateTiles();
-    void setSideBounds(f32 left, f32 right);
-    void setAlign(TextAlignment align);
+    void setSideBounds(irr::f32 left, irr::f32 right);
+    void setAlign(ETextAlignment align);
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(irr::u8 value);
     void skip();
     bool finished();
 
   private:
-    TextFont* font;
-    core::position2df pos;
-    core::position2df currentCharPos;
-    string textStr;
-    vector<TextChar> charList;
-    vector<TextChar>::iterator charIt;
-    u8 currentSize;
-    u8 currentSpeed;
-    u16 currentDisplayChar;
-    u16 currentTextLength;
-    u16 currentLineNumber;
-    map<u16, u16> lineWidthList;
-    f32 leftBound;
-    f32 rightBound;
-    TextAlignment currentAlign;
-    bool textFinished;
+    CTextFont* Font;
+    irr::core::position2df Pos;
+    irr::core::position2df CurrentCharPos;
+    std::string TextStr;
+    std::vector<CTextChar> CharList;
+    std::vector<CTextChar>::iterator CharIt;
+    irr::u8 CurrentSize;
+    irr::u8 CurrentSpeed;
+    irr::u16 CurrentDisplayChar;
+    irr::u16 CurrentTextLength;
+    irr::u16 CurrentLineNumber;
+    std::map<irr::u16, irr::u16> LineWidthList;
+    irr::f32 LeftBound;
+    irr::f32 RightBound;
+    hud::ETextAlignment CurrentAlign;
+    bool TextFinished;
 
-    Timer* speedTimer;
+    engine::CTimer* SpeedTimer;
 };
+
+}
+}
 
 #endif

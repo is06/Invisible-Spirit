@@ -8,21 +8,26 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_TRANSLATION_H__
 #define __IS06_TRANSLATION_H__
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace engine
+{
 
-class Translation
+class CTranslation
 {
   public:
-    Translation(const string& filePath);
+    CTranslation(const std::string& filePath);
 
-    const string& getTranslation(const string& identifier) const;
+    const std::string& getTranslation(const std::string& identifier) const;
 
   private:
-    void loadTextData(const string& fullPath);
-    string notfound;
+    void loadTextData(const std::string& fullPath);
+    std::string Notfound;
 
-    map<string, string> textData;
+    std::map<std::string, std::string> TextData;
 };
+
+}
+}
 
 #endif

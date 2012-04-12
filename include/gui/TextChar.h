@@ -10,19 +10,24 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Hud2DElement.h"
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace hud
+{
 
-class TextChar : public Hud2DElement
+class CTextChar : public CHud2DElement
 {
   public:
-    TextChar(u8 code, f32& x, f32& y, u8 size, TextFont* font, bool visible = true, u8 extTexture=0);
-    ~TextChar();
+    CTextChar(irr::u8 code, irr::f32& x, irr::f32& y, irr::u8 size, CTextFont* font, bool visible = true, irr::u8 extTexture=0);
+    ~CTextChar();
 
     void render();
 
   private:
-    TextFont* fontStyle;
+    CTextFont* FontStyle;
 };
+
+}
+}
 
 #endif

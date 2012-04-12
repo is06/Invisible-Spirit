@@ -10,26 +10,34 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/Camera.h"
 
-class TPCamera : public Camera
+namespace is06
+{
+namespace model
+{
+
+class CTPCamera : public CCamera
 {
   public:
-    TPCamera();
+    CTPCamera();
 
     void update();
 
-    void goLeft(f32 speed);
-    void goRight(f32 speed);
-    void goFar(f32 speed);
-    void goNear(f32 speed);
+    void goLeft(irr::f32 speed);
+    void goRight(irr::f32 speed);
+    void goFar(irr::f32 speed);
+    void goNear(irr::f32 speed);
 
-    void linkEntity(Character* entity);
-    f32 getDistance();
+    void linkEntity(CCharacter* entity);
+    irr::f32 getDistance();
 
   private:
-    Character* linkedEntity;
-    f32 UAxis;
-    f32 height;
-    f32 distance;
+    CCharacter* LinkedEntity;
+    irr::f32 UAxis;
+    irr::f32 Height;
+    irr::f32 Distance;
 };
+
+}
+}
 
 #endif

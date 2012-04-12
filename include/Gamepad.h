@@ -11,33 +11,38 @@ http://www.is06.com. Legal code in license.txt
 #include "enums/control/GamepadDirection.h"
 #include "enums/engine/EventType.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace engine
+{
 
-typedef map<u16, bool> GamepadButtonMap;
-typedef map<GamepadDirection, bool> GamepadDirectionMap;
+typedef std::map<irr::u16, bool> GamepadButtonMap;
+typedef std::map<EGamepadDirection, bool> GamepadDirectionMap;
 
-class Gamepad
+class CGamepad
 {
   public:
-    Gamepad();
+    CGamepad();
 
-    u8 getLeftJoystickForce();
-    f32 getLeftJoystickAngle();
-    s8 getLeftJoystickXAxis();
-    s8 getLeftJoystickYAxis();
+    irr::u8 getLeftJoystickForce();
+    irr::f32 getLeftJoystickAngle();
+    irr::s8 getLeftJoystickXAxis();
+    irr::s8 getLeftJoystickYAxis();
 
-    u8 getRightJoystickForce();
-    f32 getRightJoystickAngle();
-    s8 getRightJoystickXAxis();
-    s8 getRightJoystickYAxis();
+    irr::u8 getRightJoystickForce();
+    irr::f32 getRightJoystickAngle();
+    irr::s8 getRightJoystickXAxis();
+    irr::s8 getRightJoystickYAxis();
 
-    bool buttonPressed(u16 buttons, EventType type = EVENT_ALWAYS);
-    bool dirPressed(GamepadDirection direction, EventType type = EVENT_ALWAYS);
+    bool buttonPressed(irr::u16 buttons, engine::EEventType type = engine::EVENT_ALWAYS);
+    bool dirPressed(EGamepadDirection direction, engine::EEventType type = engine::EVENT_ALWAYS);
 
   private:
-    GamepadButtonMap buttonOnce;
-    GamepadDirectionMap directionOnce;
+    GamepadButtonMap ButtonOnce;
+    GamepadDirectionMap DirectionOnce;
 };
+
+}
+}
 
 #endif

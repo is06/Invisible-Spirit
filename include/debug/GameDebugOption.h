@@ -10,9 +10,17 @@ http://www.is06.com. Legal code in license.txt
 
 #include "GameDebugDisplay.h"
 
-struct GameDebugOption
+namespace is06
 {
-  GameDebugDisplay display;
+namespace debug
+{
+
+struct SGameDebugOption
+{
+  GameDebugDisplay Display;
 };
+
+}
+}
 
 #endif

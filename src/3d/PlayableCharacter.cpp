@@ -10,57 +10,59 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/Camera.h"
 #include "../../include/3d/Character.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace model
+{
 
 /**
  * PlayableCharacter entity constructor: defines which mesh to load and set the initial direction
  * @param Camera* cam pointer to a Camera to link to PlayableCharacter
  */
-PlayableCharacter::PlayableCharacter(Camera* cam) : Character("resource/mesh/character/cube.obj", "resource/mesh/character/cube.isa")
+CPlayableCharacter::CPlayableCharacter(CCamera* cam) : CCharacter("resource/mesh/character/cube.obj", "resource/mesh/character/cube.isa")
 {
-  controlable = true;
-  jumpDelta = 0.0f;
-  fallDelta = 0.0f;
-  gravity = 0.1f;
-  jumpStrength = 0.15f;
+  Controlable = true;
+  JumpDelta = 0.0f;
+  FallDelta = 0.0f;
+  Gravity = 0.1f;
+  JumpStrength = 0.15f;
 
-  floorSensorWidth = 0.4f;
-  wallSensorWidth = 0.5f;
+  FloorSensorWidth = 0.4f;
+  WallSensorWidth = 0.5f;
 
   // Loading mesh
-  createNode(core::vector3df(-3, 1, -4));
-  linkedCam = cam;
+  createNode(irr::core::vector3df(-3, 1, -4));
+  LinkedCam = cam;
 
   // Start direction
-  mainNode->setRotation(core::vector3df(
-    mainNode->getRotation().X,
-    cam->getNode()->getRotation().Y - core::radToDeg(core::PI),
-    mainNode->getRotation().Z
+  MainNode->setRotation(irr::core::vector3df(
+    MainNode->getRotation().X,
+    cam->getNode()->getRotation().Y - irr::core::radToDeg(irr::core::PI),
+    MainNode->getRotation().Z
   ));
 }
 
 /**
  * Update function, called every cycle
  */
-void PlayableCharacter::update()
+void CPlayableCharacter::update()
 {
-  Character::update();
+  CCharacter::update();
 }
 
 /**
  * Called while PlayableCharacter's floor raycast is NOT in collision with the floor
  */
-void PlayableCharacter::fall(f32 factor)
+void CPlayableCharacter::fall(irr::f32 factor)
 {
-  if (!isJumping) {
-    if (fallDelta < jumpStrength) {
-      fallDelta += (factor * gravity);
+  if (!IsJumping) {
+    if (FallDelta < JumpStrength) {
+      FallDelta += (factor * Gravity);
     }
-    mainNode->setPosition(core::vector3df(
-      mainNode->getPosition().X,
-      mainNode->getPosition().Y - fallDelta,
-      mainNode->getPosition().Z
+    MainNode->setPosition(irr::core::vector3df(
+      MainNode->getPosition().X,
+      MainNode->getPosition().Y - FallDelta,
+      MainNode->getPosition().Z
     ));
   }
 }
@@ -68,35 +70,35 @@ void PlayableCharacter::fall(f32 factor)
 /**
  * Called while PlayableCharacter's floor raycast is in collision with the floor
  */
-void PlayableCharacter::raise()
+void CPlayableCharacter::raise()
 {
-  if (isFalling) {
+  if (IsFalling) {
     // PlayableCharacter is hitting the floor
-    fallDelta = 0.0f;
-    isFalling = false;
+    FallDelta = 0.0f;
+    IsFalling = false;
   }
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X,
-    mainNode->getPosition().Y + 0.005,
-    mainNode->getPosition().Z
+  MainNode->setPosition(irr::core::vector3df(
+    MainNode->getPosition().X,
+    MainNode->getPosition().Y + 0.005,
+    MainNode->getPosition().Z
   ));
 }
 
 /**
  * Called when the player wants PlayableCharacter to jump
  */
-void PlayableCharacter::jump()
+void CPlayableCharacter::jump()
 {
-  if (isJumping) {
-    jumpDelta -= gravity;
-    if (jumpDelta <= 0) {
-      isJumping = false;
-      isFalling = true;
+  if (IsJumping) {
+    JumpDelta -= Gravity;
+    if (JumpDelta <= 0) {
+      IsJumping = false;
+      IsFalling = true;
     }
-    mainNode->setPosition(core::vector3df(
-      mainNode->getPosition().X,
-      mainNode->getPosition().Y + jumpDelta,
-      mainNode->getPosition().Z
+    MainNode->setPosition(irr::core::vector3df(
+      MainNode->getPosition().X,
+      MainNode->getPosition().Y + JumpDelta,
+      MainNode->getPosition().Z
     ));
   }
 }
@@ -104,39 +106,39 @@ void PlayableCharacter::jump()
 /**
  *
  */
-void PlayableCharacter::setJumpDelta(f32 value)
+void CPlayableCharacter::setJumpDelta(irr::f32 value)
 {
-  jumpDelta = value;
+  JumpDelta = value;
 }
 
 /**
  *
  */
-f32 PlayableCharacter::getJumpDelta()
+irr::f32 CPlayableCharacter::getJumpDelta()
 {
-  return jumpDelta;
+  return JumpDelta;
 }
 
 /**
  *
  */
-f32 PlayableCharacter::getJumpStrength()
+irr::f32 CPlayableCharacter::getJumpStrength()
 {
-  return jumpStrength;
+  return JumpStrength;
 }
 
 /**
  * Applies an opposite force to PlayableCharacter in order to stop it against a wall
  * Function still under development
  */
-void PlayableCharacter::moveOpposite(const core::vector3df& normal)
+void CPlayableCharacter::moveOpposite(const irr::core::vector3df& normal)
 {
-  f32 angle = (atan2(normal.X, normal.Z) * -1) + (core::PI / 2);
+  irr::f32 angle = (atan2(normal.X, normal.Z) * -1) + (irr::core::PI / 2);
 
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X + (cos(angle) * (0.05f / 1024.0f)),
-    mainNode->getPosition().Y,
-    mainNode->getPosition().Z + (sin(angle) * (0.05f / 1024.0f))
+  MainNode->setPosition(irr::core::vector3df(
+    MainNode->getPosition().X + (cos(angle) * (0.05f / 1024.0f)),
+    MainNode->getPosition().Y,
+    MainNode->getPosition().Z + (sin(angle) * (0.05f / 1024.0f))
   ));
 }
 
@@ -144,7 +146,7 @@ void PlayableCharacter::moveOpposite(const core::vector3df& normal)
  * Move PlayableCharacter to the left from camera
  * @param f32 speed movement speed
  */
-void PlayableCharacter::goLeft(f32 speed)
+void CPlayableCharacter::goLeft(irr::f32 speed)
 {
   updateCoords(0, speed);
 }
@@ -153,27 +155,27 @@ void PlayableCharacter::goLeft(f32 speed)
  * Move PlayableCharacter to the right from camera
  * @param f32 speed movement speed
  */
-void PlayableCharacter::goRight(f32 speed)
+void CPlayableCharacter::goRight(irr::f32 speed)
 {
-  updateCoords(core::PI, speed);
+  updateCoords(irr::core::PI, speed);
 }
 
 /**
  * Move PlayableCharacter forward from camera
  * @param f32 speed movement speed
  */
-void PlayableCharacter::goForward(f32 speed)
+void CPlayableCharacter::goForward(irr::f32 speed)
 {
-  updateCoords((core::PI / 2), speed);
+  updateCoords((irr::core::PI / 2), speed);
 }
 
 /**
  * Move PlayableCharacter backward from camera
  * @param f32 speed movement speed
  */
-void PlayableCharacter::goBackward(f32 speed)
+void CPlayableCharacter::goBackward(irr::f32 speed)
 {
-  updateCoords((3 * core::PI / 2), speed);
+  updateCoords((3 * irr::core::PI / 2), speed);
 }
 
 /**
@@ -181,30 +183,33 @@ void PlayableCharacter::goBackward(f32 speed)
  * @param f32 deltaU direction value
  * @param f32 speed speed value
  */
-void PlayableCharacter::updateCoords(f32 deltaU, f32 speed)
+void CPlayableCharacter::updateCoords(irr::f32 deltaU, irr::f32 speed)
 {
-  f32 x = cos(core::degToRad(linkedCam->getNode()->getRotation().Y) + deltaU);
-  f32 z = sin(core::degToRad(linkedCam->getNode()->getRotation().Y) + deltaU);
-  mainNode->setPosition(core::vector3df(
-    mainNode->getPosition().X + ((x * -1) * (speed / 32.0f)),
-    mainNode->getPosition().Y,
-    mainNode->getPosition().Z + (z * (speed / 32.0f))
+  irr::f32 x = cos(irr::core::degToRad(LinkedCam->getNode()->getRotation().Y) + deltaU);
+  irr::f32 z = sin(irr::core::degToRad(LinkedCam->getNode()->getRotation().Y) + deltaU);
+  MainNode->setPosition(irr::core::vector3df(
+    MainNode->getPosition().X + ((x * -1) * (speed / 32.0f)),
+    MainNode->getPosition().Y,
+    MainNode->getPosition().Z + (z * (speed / 32.0f))
   ));
 }
 
-void PlayableCharacter::toggleControl()
+void CPlayableCharacter::toggleControl()
 {
-  if (controlable) {
-    controlable = false;
+  if (Controlable) {
+    Controlable = false;
   } else {
-    controlable = true;
+    Controlable = true;
   }
 }
 
 /**
  * Returns true if the player has control
  */
-bool PlayableCharacter::hasControl()
+bool CPlayableCharacter::hasControl()
 {
-  return controlable;
+  return Controlable;
+}
+
+}
 }

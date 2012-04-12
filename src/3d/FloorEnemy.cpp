@@ -9,17 +9,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/FloorEnemy.h"
 #include "../../include/3d/Enemy.h"
 
-FloorEnemy::FloorEnemy() : Enemy()
+namespace is06
+{
+namespace model
+{
+
+CFloorEnemy::CFloorEnemy() : CEnemy()
 {
 
 }
 
-void FloorEnemy::update()
+void CFloorEnemy::update()
 {
-  Enemy::update();
+  CEnemy::update();
 }
 
-FloorEnemy::~FloorEnemy()
+CFloorEnemy::~CFloorEnemy()
 {
 
+}
+
+}
 }

@@ -19,20 +19,22 @@ http://www.is06.com. Legal code in license.txt
 #include "TalesMenu.h"
 #include "WeaponMenu.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace hud
+{
 
-class GameplayMenu : public Hud
+class CGameplayMenu : public CHud
 {
   public:
-    GameplayMenu(Translation* trans, Keyboard* kb);
-    ~GameplayMenu();
+    CGameplayMenu(engine::CTranslation* translation, engine::CKeyboard* keyboard);
+    ~CGameplayMenu();
 
     void render();
     void toggle();
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(irr::u8 value);
 
     void goToWeaponMenu();
     void goToSpiritMenu();
@@ -44,30 +46,33 @@ class GameplayMenu : public Hud
     void goToMonstersMenu();
     void goToSettingsMenu();
 
-    Menu* getSectionMenu();
+    CMenu* getSectionMenu();
 
-    bool isVisible;
+    bool IsVisible;
 
   private:
-    Keyboard* keyboard;
-    Translation* globalTranslations;
-    Picture* background;
-    Picture* topBar;
-    Menu* sectionMenu;
-    PlayerState* stateInfo;
-    GameTimeCounter* gameplayTime;
+    engine::CKeyboard* Keyboard;
+    engine::CTranslation* GlobalTranslations;
+    CPicture* Background;
+    CPicture* TopBar;
+    CMenu* SectionMenu;
+    CPlayerState* StateInfo;
+    CGameTimeCounter* GameplayTime;
     //DigitCounter* moneyCounter;
 
     // Sub menus
-    WeaponMenu* wpMenu;
-    SpiritMenu* spMenu;
-    ItemMenu* itMenu;
-    MapMenu* mpMenu;
-    StatusMenu* stMenu;
-    DimensionMenu* dmMenu;
-    TalesMenu* tlMenu;
-    MonstersMenu* mnMenu;
-    SettingsMenu* seMenu;
+    CWeaponMenu* WpMenu;
+    CSpiritMenu* SpMenu;
+    CItemMenu* ItMenu;
+    CMapMenu* MpMenu;
+    CStatusMenu* StMenu;
+    CDimensionMenu* DmMenu;
+    CTalesMenu* TlMenu;
+    CMonstersMenu* MnMenu;
+    CSettingsMenu* SeMenu;
 };
+
+}
+}
 
 #endif

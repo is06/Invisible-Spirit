@@ -8,44 +8,52 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/ref/core.h"
 #include "../../include/engine/Dialog.h"
 
-Dialog::Dialog()
+namespace is06
+{
+namespace engine
+{
+
+CDialog::CDialog()
 {
 
 }
 
-Dialog::Dialog(const string& identifier)
+CDialog::CDialog(const std::string& identifier)
 {
-  currentIdentifier = identifier;
-  currentNumber = 0;
+  CurrentIdentifier = identifier;
+  CurrentNumber = 0;
 }
 
-void Dialog::addMessage(const string& text)
+void CDialog::addMessage(const std::string& text)
 {
-  messageList[currentNumber] = text;
-  currentNumber++;
+  MessageList[CurrentNumber] = text;
+  CurrentNumber++;
 }
 
-void Dialog::setIdentifier(const string& name)
+void CDialog::setIdentifier(const std::string& name)
 {
-  currentIdentifier = name;
+  CurrentIdentifier = name;
 }
 
-const string& Dialog::getIdentifier() const
+const std::string& CDialog::getIdentifier() const
 {
-  return currentIdentifier;
+  return CurrentIdentifier;
 }
 
-u16 Dialog::getMessageCount()
+irr::u16 CDialog::getMessageCount()
 {
-  return messageList.size();
+  return MessageList.size();
 }
 
-string Dialog::getMessage(u16 index)
+std::string CDialog::getMessage(irr::u16 index)
 {
-  return messageList[index];
+  return MessageList[index];
 }
 
-Dialog::~Dialog()
+CDialog::~CDialog()
 {
 
+}
+
+}
 }

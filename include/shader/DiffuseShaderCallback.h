@@ -10,34 +10,40 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../Game.h"
 
-using namespace irr;
+namespace is06
+{
+namespace shader
+{
 
-class DiffuseShaderCallback : public video::IShaderConstantSetCallBack
+class CDiffuseShaderCallback : public irr::video::IShaderConstantSetCallBack
 {
   public:
-    const video::SMaterial* usedMaterial;
+    const irr::video::SMaterial* UsedMaterial;
 
-    virtual void OnSetMaterial(const video::SMaterial& material)
+    virtual void OnSetMaterial(const irr::video::SMaterial& material)
     {
-      usedMaterial = &material;
+      UsedMaterial = &material;
     }
 
-    virtual void OnSetConstants(video::IMaterialRendererServices* services, s32 userData)
+    virtual void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData)
     {
-      core::matrix4 worldViewProj;
-      worldViewProj = Game::getVideoDriver()->getTransform(video::ETS_PROJECTION);
-      worldViewProj *= Game::getVideoDriver()->getTransform(video::ETS_VIEW);
-      worldViewProj *= Game::getVideoDriver()->getTransform(video::ETS_WORLD);
+      irr::core::matrix4 worldViewProj;
+      worldViewProj = engine::CGame::getVideoDriver()->getTransform(irr::video::ETS_PROJECTION);
+      worldViewProj *= engine::CGame::getVideoDriver()->getTransform(irr::video::ETS_VIEW);
+      worldViewProj *= engine::CGame::getVideoDriver()->getTransform(irr::video::ETS_WORLD);
       services->setVertexShaderConstant("mWorldViewProj", worldViewProj.pointer(), 16);
 
-      f32 vColor[4] = {
-        usedMaterial->DiffuseColor.getRed() / 255.0f,
-        usedMaterial->DiffuseColor.getGreen() / 255.0f,
-        usedMaterial->DiffuseColor.getBlue() / 255.0f,
-        usedMaterial->DiffuseColor.getAlpha() / 255.0f
+      irr::f32 vColor[4] = {
+        UsedMaterial->DiffuseColor.getRed() / 255.0f,
+        UsedMaterial->DiffuseColor.getGreen() / 255.0f,
+        UsedMaterial->DiffuseColor.getBlue() / 255.0f,
+        UsedMaterial->DiffuseColor.getAlpha() / 255.0f
       };
       services->setVertexShaderConstant("vColor", vColor, 4);
     }
 };
+
+}
+}
 
 #endif

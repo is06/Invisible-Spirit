@@ -13,22 +13,24 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../enums/styles/MenuStyle.h"
 #include "../../../enums/styles/MenuIcon.h"
 
-using namespace std;
-using namespace irr;
+namespace is06
+{
+namespace hud
+{
 
-class Menu : public Hud
+class CMenu : public CHud
 {
   public:
-    Menu(f32 x = 0, f32 y = 0, f32 width = 150, u8 height = 8, MenuStyle style = MENU_STYLE_STD);
-    virtual ~Menu();
+    CMenu(irr::f32 x = 0, irr::f32 y = 0, irr::f32 width = 150, irr::u8 height = 8, EMenuStyle style = MENU_STYLE_STD);
+    virtual ~CMenu();
 
     virtual void render();
 
-    void addOption(MenuIcon icon = MENU_ICON_NONE, const string& title = "[Option]");
-    void removeOption(u16 index);
-    MenuOption* getOption(u16 index);
+    void addOption(EMenuIcon icon = MENU_ICON_NONE, const std::string& title = "[Option]");
+    void removeOption(irr::u16 index);
+    CMenuOption* getOption(irr::u16 index);
 
-    u16 getCurrentOption();
+    irr::u16 getCurrentOption();
 
     void nextOption();
     void prevOption();
@@ -36,24 +38,26 @@ class Menu : public Hud
     void lastOption();
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(irr::u8 value);
 
   protected:
-    Picture* cursor;
+    CPicture* Cursor;
 
-    map<u16, MenuOption*> options;
-    map<u16, MenuOption*>::iterator optionsIt;
-    u16 lastInsertedIndex;
-    u16 defaultOption;
-    u16 currentOption;
+    std::map<irr::u16, CMenuOption*> Options;
+    std::map<irr::u16, CMenuOption*>::iterator OptionsIt;
+    irr::u16 LastInsertedIndex;
+    irr::u16 DefaultOption;
+    irr::u16 CurrentOption;
+    irr::core::position2df Pos;
+    irr::f32 CurrentWidth;
+    irr::u8 CurrentHeight;
 
-    core::position2df pos;
-    f32 currentWidth;
-    u8 currentHeight;
+    EMenuStyle CurrentStyle;
 
-    MenuStyle currentStyle;
-
-    bool loopMode;
+    bool LoopMode;
 };
+
+}
+}
 
 #endif

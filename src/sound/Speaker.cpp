@@ -10,99 +10,104 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Game.h"
 #include "../../include/sound/SoundManager.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace sound
+{
 
 /**
  *
  */
-Speaker::Speaker(StreamIdentifier, const core::vector3df& initPos, const string& text, f32 radius) : Entity()
+CSpeaker::CSpeaker(StreamIdentifier, const irr::core::vector3df& initPos, const std::string& text, irr::f32 radius) : engine::CEntity()
 {
-  video::ITexture* iconTexture = Game::getVideoDriver()->getTexture("resource/debug/icons/speaker.bmp");
+  irr::video::ITexture* iconTexture = engine::CGame::getVideoDriver()->getTexture("resource/debug/icons/speaker.bmp");
 
-  icon = Game::getSceneManager()->addBillboardSceneNode(0, core::dimension2df(1.0f, 1.0f), initPos);
-  icon->setMaterialTexture(0, iconTexture);
+  Icon = engine::CGame::getSceneManager()->addBillboardSceneNode(0, irr::core::dimension2df(1.0f, 1.0f), initPos);
+  Icon->setMaterialTexture(0, iconTexture);
 
   //@TODO: text
   //gui::IGUIFont* font = Game::getDebugGUI()->addFont();
   //textBB = Game::getSceneManager()->addBillboardTextSceneNode(0, text, 0, core::dimension2df(1.0f, 1.0f), core::vector3df(initPos.X, initPos.Y + 1.0f, initPos.Z));
 
-  position.x = initPos.X;
-  position.y = initPos.Y;
-  position.z = initPos.Z;
+  Position.x = initPos.X;
+  Position.y = initPos.Y;
+  Position.z = initPos.Z;
 
   // Sound stream creation
-  FMOD_System_CreateStream(Game::getSoundManager()->getSystem(), "sp_a2_laser_chaining_l3.mp3", FMOD_3D | FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &soundPtr);
+  FMOD_System_CreateStream(engine::CGame::getSoundManager()->getSystem(), "sp_a2_laser_chaining_l3.mp3", FMOD_3D | FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
 
   // Setting 3D position
-  FMOD_Channel_Set3DAttributes(channelPtr, &position, NULL);
+  FMOD_Channel_Set3DAttributes(ChannelPtr, &Position, NULL);
 
   // Play
   play();
 }
 
-void Speaker::update()
+void CSpeaker::update()
 {
   //Entity::render();
 }
 
-const FMOD_VECTOR& Speaker::getPosition() const
+const FMOD_VECTOR& CSpeaker::getPosition() const
 {
-  return position;
+  return Position;
 }
 
-core::vector3df Speaker::getPositionVector()
+irr::core::vector3df CSpeaker::getPositionVector()
 {
-  return core::vector3df(
-    position.x,
-    position.y,
-    position.z
+  return irr::core::vector3df(
+    Position.x,
+    Position.y,
+    Position.z
   );
 }
 
-void Speaker::setPosition(const FMOD_VECTOR& newPos)
+void CSpeaker::setPosition(const FMOD_VECTOR& position)
 {
-  position = newPos;
+  Position = position;
 }
 
-void Speaker::setPosition(const core::vector3df& newPos)
+void CSpeaker::setPosition(const irr::core::vector3df& position)
 {
-  position.x = newPos.X;
-  position.y = newPos.Y;
-  position.z = newPos.Z;
+  Position.x = position.X;
+  Position.y = position.Y;
+  Position.z = position.Z;
 }
 
-void Speaker::play()
+void CSpeaker::play()
 {
-  FMOD_System_PlaySound(Game::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, soundPtr, 0, &channelPtr);
-  FMOD_Channel_SetPaused(channelPtr, false);
+  FMOD_System_PlaySound(engine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
+  FMOD_Channel_SetPaused(ChannelPtr, false);
 }
 
-void Speaker::pause()
+void CSpeaker::pause()
 {
-  FMOD_Channel_SetPaused(channelPtr, true);
+  FMOD_Channel_SetPaused(ChannelPtr, true);
 }
 
-void Speaker::resume()
+void CSpeaker::resume()
 {
-  FMOD_Channel_SetPaused(channelPtr, false);
+  FMOD_Channel_SetPaused(ChannelPtr, false);
 }
 
-void Speaker::stop()
+void CSpeaker::stop()
 {
-  FMOD_Channel_Stop(channelPtr);
+  FMOD_Channel_Stop(ChannelPtr);
 }
 
-void Speaker::setVolume(f32 val)
+void CSpeaker::setVolume(irr::f32 val)
 {
 
 }
 
-Speaker::~Speaker()
+CSpeaker::~CSpeaker()
 {
-  icon->remove();
+  Icon->remove();
   //textBB->remove();
 
   stop();
-  FMOD_Sound_Release(soundPtr);
+  FMOD_Sound_Release(SoundPtr);
+}
+
+}
 }

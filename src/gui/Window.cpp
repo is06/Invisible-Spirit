@@ -9,16 +9,15 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/Window.h"
 #include "../../include/gui/Picture.h"
 
-using namespace irr;
-using namespace std;
-
-/**
- *
- */
-Window::Window(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, WindowStyle style) : Hud()
+namespace is06
 {
-  pos = core::position2df(x, y);
-  size = core::dimension2df(w, h);
+namespace hud
+{
+
+CWindow::CWindow(irr::f32 x, irr::f32 y, irr::f32 w, irr::f32 h, irr::f32 borderWidth, EWindowStyle style) : CHud()
+{
+  Pos = irr::core::position2df(x, y);
+  Size = irr::core::dimension2df(w, h);
 
   switch (style) {
     case WIN_STYLE_STD: applyStyleStd(x, y, w, h, borderWidth); break;
@@ -29,121 +28,124 @@ Window::Window(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, WindowStyle style) :
 /**
  *
  */
-void Window::applyStyleStd(f32 x, f32 y, f32 w, f32 h, f32 borderWidth)
+void CWindow::applyStyleStd(irr::f32 x, irr::f32 y, irr::f32 w, irr::f32 h, irr::f32 borderWidth)
 {
-  string texturePath = "resource/hud/window/window1.bmp";
+  std::string texturePath = "resource/hud/window/window1.bmp";
 
-  f32 sideW = w - borderWidth;
-  f32 sideH = h - borderWidth;
-  f32 sideWMin = x + (w / 2) * -1;
-  f32 sideWMax = x + (w / 2);
-  f32 sideHMin = y + (h / 2) * -1;
-  f32 sideHMax = y + (h / 2);
+  irr::f32 sideW = w - borderWidth;
+  irr::f32 sideH = h - borderWidth;
+  irr::f32 sideWMin = x + (w / 2) * -1;
+  irr::f32 sideWMax = x + (w / 2);
+  irr::f32 sideHMin = y + (h / 2) * -1;
+  irr::f32 sideHMax = y + (h / 2);
 
-  cornerTL = new Picture(sideWMin, sideHMin, borderWidth, borderWidth, texturePath);
-  cornerTR = new Picture(sideWMax, sideHMin, borderWidth, borderWidth, texturePath);
-  cornerBL = new Picture(sideWMin, sideHMax, borderWidth, borderWidth, texturePath);
-  cornerBR = new Picture(sideWMax, sideHMax, borderWidth, borderWidth, texturePath);
+  CornerTL = new CPicture(sideWMin, sideHMin, borderWidth, borderWidth, texturePath);
+  CornerTR = new CPicture(sideWMax, sideHMin, borderWidth, borderWidth, texturePath);
+  CornerBL = new CPicture(sideWMin, sideHMax, borderWidth, borderWidth, texturePath);
+  CornerBR = new CPicture(sideWMax, sideHMax, borderWidth, borderWidth, texturePath);
 
-  cornerBL->setTextureOffset(core::vector2df(0.0f, 0.0f), core::vector2df(0.0625f, 0.0625f));
-  cornerBR->setTextureOffset(core::vector2df(0.9375f, 0.0f), core::vector2df(1.0f, 0.0625f));
-  cornerTL->setTextureOffset(core::vector2df(0.0f, 0.9375f), core::vector2df(0.0625f, 1.0f));
-  cornerTR->setTextureOffset(core::vector2df(0.9375f, 0.9375f), core::vector2df(1.0f, 1.0f));
+  CornerBL->setTextureOffset(irr::core::vector2df(0.0f, 0.0f), irr::core::vector2df(0.0625f, 0.0625f));
+  CornerBR->setTextureOffset(irr::core::vector2df(0.9375f, 0.0f), irr::core::vector2df(1.0f, 0.0625f));
+  CornerTL->setTextureOffset(irr::core::vector2df(0.0f, 0.9375f), irr::core::vector2df(0.0625f, 1.0f));
+  CornerTR->setTextureOffset(irr::core::vector2df(0.9375f, 0.9375f), irr::core::vector2df(1.0f, 1.0f));
 
-  sideTop = new Picture(x, sideHMax, sideW, borderWidth, texturePath);
-  sideLeft = new Picture(sideWMin, y, borderWidth, sideH, texturePath);
-  sideRight = new Picture(sideWMax, y, borderWidth, sideH, texturePath);
-  sideBottom = new Picture(x, sideHMin, sideW, borderWidth, texturePath);
+  SideTop = new CPicture(x, sideHMax, sideW, borderWidth, texturePath);
+  SideLeft = new CPicture(sideWMin, y, borderWidth, sideH, texturePath);
+  SideRight = new CPicture(sideWMax, y, borderWidth, sideH, texturePath);
+  SideBottom = new CPicture(x, sideHMin, sideW, borderWidth, texturePath);
 
-  sideTop->setTextureOffset(core::vector2df(0.0625f, 0.0f), core::vector2df(0.9375f, 0.0625f));
-  sideLeft->setTextureOffset(core::vector2df(0.0f, 0.0625f), core::vector2df(0.0625f, 0.9375f));
-  sideRight->setTextureOffset(core::vector2df(0.9375f, 0.0625f), core::vector2df(1.0f, 0.9375f));
-  sideBottom->setTextureOffset(core::vector2df(0.0625f, 0.9375f), core::vector2df(0.9375f, 1.0f));
+  SideTop->setTextureOffset(irr::core::vector2df(0.0625f, 0.0f), irr::core::vector2df(0.9375f, 0.0625f));
+  SideLeft->setTextureOffset(irr::core::vector2df(0.0f, 0.0625f), irr::core::vector2df(0.0625f, 0.9375f));
+  SideRight->setTextureOffset(irr::core::vector2df(0.9375f, 0.0625f), irr::core::vector2df(1.0f, 0.9375f));
+  SideBottom->setTextureOffset(irr::core::vector2df(0.0625f, 0.9375f), irr::core::vector2df(0.9375f, 1.0f));
 
-  center = new Picture(x, y, sideW, sideH, texturePath);
-  center->setTextureOffset(core::vector2df(0.0625f, 0.0625f), core::vector2df(0.9375f, 0.9375f));
+  Center = new CPicture(x, y, sideW, sideH, texturePath);
+  Center->setTextureOffset(irr::core::vector2df(0.0625f, 0.0625f), irr::core::vector2df(0.9375f, 0.9375f));
 }
 
 /**
  *
  */
-void Window::applyStyleNone()
+void CWindow::applyStyleNone()
 {
-  center = NULL;
+  Center = NULL;
 }
 
 /**
  *
  */
-void Window::render()
+void CWindow::render()
 {
-  Hud::render();
-  if (center) {
-    cornerTL->render();
-    cornerTR->render();
-    cornerBL->render();
-    cornerBR->render();
-    sideTop->render();
-    sideLeft->render();
-    sideRight->render();
-    sideBottom->render();
-    center->render();
+  CHud::render();
+  if (Center) {
+    CornerTL->render();
+    CornerTR->render();
+    CornerBL->render();
+    CornerBR->render();
+    SideTop->render();
+    SideLeft->render();
+    SideRight->render();
+    SideBottom->render();
+    Center->render();
   }
 }
 
-void Window::show()
+void CWindow::show()
 {
-  cornerTL->show();
-  cornerTR->show();
-  cornerBL->show();
-  cornerBR->show();
-  sideTop->show();
-  sideLeft->show();
-  sideRight->show();
-  sideBottom->show();
-  center->show();
+  CornerTL->show();
+  CornerTR->show();
+  CornerBL->show();
+  CornerBR->show();
+  SideTop->show();
+  SideLeft->show();
+  SideRight->show();
+  SideBottom->show();
+  Center->show();
 }
 
-void Window::hide()
+void CWindow::hide()
 {
-  cornerTL->hide();
-  cornerTR->hide();
-  cornerBL->hide();
-  cornerBR->hide();
-  sideTop->hide();
-  sideLeft->hide();
-  sideRight->hide();
-  sideBottom->hide();
-  center->hide();
+  CornerTL->hide();
+  CornerTR->hide();
+  CornerBL->hide();
+  CornerBR->hide();
+  SideTop->hide();
+  SideLeft->hide();
+  SideRight->hide();
+  SideBottom->hide();
+  Center->hide();
 }
 
-void Window::setOpacity(u8 value)
+void CWindow::setOpacity(irr::u8 value)
 {
-  cornerTL->setOpacity(value);
-  cornerTR->setOpacity(value);
-  cornerBL->setOpacity(value);
-  cornerBR->setOpacity(value);
-  sideTop->setOpacity(value);
-  sideLeft->setOpacity(value);
-  sideRight->setOpacity(value);
-  sideBottom->setOpacity(value);
-  center->setOpacity(value);
+  CornerTL->setOpacity(value);
+  CornerTR->setOpacity(value);
+  CornerBL->setOpacity(value);
+  CornerBR->setOpacity(value);
+  SideTop->setOpacity(value);
+  SideLeft->setOpacity(value);
+  SideRight->setOpacity(value);
+  SideBottom->setOpacity(value);
+  Center->setOpacity(value);
 }
 
 /**
  *
  */
-Window::~Window()
+CWindow::~CWindow()
 {
-  if (center) {
-    delete cornerTL;
-    delete cornerTR;
-    delete cornerBL;
-    delete cornerBR;
-    delete sideTop;
-    delete sideLeft;
-    delete sideRight;
-    delete sideBottom;
-    delete center;
+  if (Center) {
+    delete CornerTL;
+    delete CornerTR;
+    delete CornerBL;
+    delete CornerBR;
+    delete SideTop;
+    delete SideLeft;
+    delete SideRight;
+    delete SideBottom;
+    delete Center;
   }
+}
+
+}
 }

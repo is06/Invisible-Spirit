@@ -9,247 +9,252 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/gui/Hud2DElement.h"
 #include "../../include/Game.h"
 
-using namespace irr;
-using namespace std;
-
-u16 Hud2DElement::indices[] = {2, 1, 3, 2, 0, 1};
-core::matrix4 Hud2DElement::mat;
-
-Hud2DElement::Hud2DElement(f32 x, f32 y, f32 w, f32 h) : Hud()
+namespace is06
 {
-  texture = NULL;
-  opacity = 255;
+namespace hud
+{
+
+irr::u16 CHud2DElement::Indices[] = {2, 1, 3, 2, 0, 1};
+irr::core::matrix4 CHud2DElement::Mat;
+
+CHud2DElement::CHud2DElement(irr::f32 x, irr::f32 y, irr::f32 w, irr::f32 h) : CHud()
+{
+  Texture = NULL;
+  Opacity = 255;
 
   // Visible on start
-  isVisible = true;
+  IsVisible = true;
 
   // Animation Texture
-  animSpeed = core::vector2df(0.0f, 0.0f);
+  AnimSpeed = irr::core::vector2df(0.0f, 0.0f);
 
   // Dimensions, position
-  size = core::dimension2df(w, h);
-  pos = core::position2df(x, y);
+  Size = irr::core::dimension2df(w, h);
+  Pos = irr::core::position2df(x, y);
 
   // Material
-  material.Lighting = false;
-  material.DiffuseColor.setAlpha(opacity);
+  Material.Lighting = false;
+  Material.DiffuseColor.setAlpha(Opacity);
 
   // Diffuse effect
   /*
-  material.DiffuseColor.setRed(255);
-  material.DiffuseColor.setGreen(255);
-  material.DiffuseColor.setBlue(255);
+  Material.DiffuseColor.setRed(255);
+  Material.DiffuseColor.setGreen(255);
+  Material.DiffuseColor.setBlue(255);
   */
 
   // Wireframe effect (debug purpose?)
-  //material.Wireframe = true;
+  //Material.Wireframe = true;
 
   // Diffuse shader
-  material.MaterialType = (video::E_MATERIAL_TYPE)Game::shaders.diffuse;
+  Material.MaterialType = (irr::video::E_MATERIAL_TYPE)engine::CGame::Shaders.Diffuse;
 
   //material.setFlag(video::EMF_ANISOTROPIC_FILTER, true);
-  material.setTexture(0, NULL);
+  Material.setTexture(0, NULL);
 
   // Disable filtering clamp
-  material.TextureLayer[0].TextureWrapU = video::ETC_CLAMP_TO_EDGE;
-  material.TextureLayer[0].TextureWrapV = video::ETC_CLAMP_TO_EDGE;
+  Material.TextureLayer[0].TextureWrapU = irr::video::ETC_CLAMP_TO_EDGE;
+  Material.TextureLayer[0].TextureWrapV = irr::video::ETC_CLAMP_TO_EDGE;
 
-  minTextureOffset.X = 0.0f;
-  minTextureOffset.Y = 0.0f;
-  maxTextureOffset.X = 1.0f;
-  maxTextureOffset.Y = 1.0f;
+  MinTextureOffset.X = 0.0f;
+  MinTextureOffset.Y = 0.0f;
+  MaxTextureOffset.X = 1.0f;
+  MaxTextureOffset.Y = 1.0f;
 
   // Vertices creation
-  vertices[0] = video::S3DVertex(
+  Vertices[0] = irr::video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF * -1), (y / COEFF) + (h / 2 / COEFF), FAR,
     1, 1, 0,
-    video::SColor(255,255,255,255),
-    minTextureOffset.X, minTextureOffset.Y);
-  vertices[1] = video::S3DVertex(
+    irr::video::SColor(255,255,255,255),
+    MinTextureOffset.X, MinTextureOffset.Y);
+  Vertices[1] = irr::video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF), (y / COEFF) + (h / 2 / COEFF), FAR,
     1, 0, 0,
-    video::SColor(255,255,255,255),
-    maxTextureOffset.X, minTextureOffset.Y);
-  vertices[2] = video::S3DVertex(
+    irr::video::SColor(255,255,255,255),
+    MaxTextureOffset.X, MinTextureOffset.Y);
+  Vertices[2] = irr::video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF * -1), (y / COEFF) + (h / 2 / COEFF * -1), FAR,
     0, 1, 1,
-    video::SColor(255,255,255,255),
-    minTextureOffset.X, maxTextureOffset.Y);
-  vertices[3] = video::S3DVertex(
+    irr::video::SColor(255,255,255,255),
+    MinTextureOffset.X, MaxTextureOffset.Y);
+  Vertices[3] = irr::video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF), (y / COEFF) + (h / 2 / COEFF * -1), FAR,
     0, 0, 1,
-    video::SColor(255,255,255,255),
-    maxTextureOffset.X, maxTextureOffset.Y);
+    irr::video::SColor(255,255,255,255),
+    MaxTextureOffset.X, MaxTextureOffset.Y);
 }
 
-void Hud2DElement::render()
+void CHud2DElement::render()
 {
   // Déplacement et taille
-  vertices[0].Pos.X = (pos.X / COEFF) + (size.Width / 2 / COEFF * -1);
-  vertices[0].Pos.Y = (pos.Y / COEFF) + (size.Height / 2 / COEFF);
-  vertices[1].Pos.X = (pos.X / COEFF) + (size.Width / 2 / COEFF);
-  vertices[1].Pos.Y = (pos.Y / COEFF) + (size.Height / 2 / COEFF);
-  vertices[2].Pos.X = (pos.X / COEFF) + (size.Width / 2 / COEFF * -1);
-  vertices[2].Pos.Y = (pos.Y / COEFF) + (size.Height / 2 / COEFF * -1);
-  vertices[3].Pos.X = (pos.X / COEFF) + (size.Width / 2 / COEFF);
-  vertices[3].Pos.Y = (pos.Y / COEFF) + (size.Height / 2 / COEFF * -1);
+  Vertices[0].Pos.X = (Pos.X / COEFF) + (Size.Width / 2 / COEFF * -1);
+  Vertices[0].Pos.Y = (Pos.Y / COEFF) + (Size.Height / 2 / COEFF);
+  Vertices[1].Pos.X = (Pos.X / COEFF) + (Size.Width / 2 / COEFF);
+  Vertices[1].Pos.Y = (Pos.Y / COEFF) + (Size.Height / 2 / COEFF);
+  Vertices[2].Pos.X = (Pos.X / COEFF) + (Size.Width / 2 / COEFF * -1);
+  Vertices[2].Pos.Y = (Pos.Y / COEFF) + (Size.Height / 2 / COEFF * -1);
+  Vertices[3].Pos.X = (Pos.X / COEFF) + (Size.Width / 2 / COEFF);
+  Vertices[3].Pos.Y = (Pos.Y / COEFF) + (Size.Height / 2 / COEFF * -1);
 
   // Offset de texture
-  vertices[0].TCoords.X = minTextureOffset.X;
-  vertices[0].TCoords.Y = minTextureOffset.Y;
-  vertices[1].TCoords.X = maxTextureOffset.X;
-  vertices[1].TCoords.Y = minTextureOffset.Y;
-  vertices[2].TCoords.X = minTextureOffset.X;
-  vertices[2].TCoords.Y = maxTextureOffset.Y;
-  vertices[3].TCoords.X = maxTextureOffset.X;
-  vertices[3].TCoords.Y = maxTextureOffset.Y;
+  Vertices[0].TCoords.X = MinTextureOffset.X;
+  Vertices[0].TCoords.Y = MinTextureOffset.Y;
+  Vertices[1].TCoords.X = MaxTextureOffset.X;
+  Vertices[1].TCoords.Y = MinTextureOffset.Y;
+  Vertices[2].TCoords.X = MinTextureOffset.X;
+  Vertices[2].TCoords.Y = MaxTextureOffset.Y;
+  Vertices[3].TCoords.X = MaxTextureOffset.X;
+  Vertices[3].TCoords.Y = MaxTextureOffset.Y;
 
   // Animation UV
-  if (animSpeed.X != 0.0f || animSpeed.Y != 0.0f) {
-    vertices[0].TCoords.X += animSpeed.X;
-    vertices[0].TCoords.Y += animSpeed.Y;
-    vertices[1].TCoords.X += animSpeed.X;
-    vertices[1].TCoords.Y += animSpeed.Y;
-    vertices[2].TCoords.X += animSpeed.X;
-    vertices[2].TCoords.Y += animSpeed.Y;
-    vertices[3].TCoords.X += animSpeed.X;
-    vertices[3].TCoords.Y += animSpeed.Y;
+  if (AnimSpeed.X != 0.0f || AnimSpeed.Y != 0.0f) {
+    Vertices[0].TCoords.X += AnimSpeed.X;
+    Vertices[0].TCoords.Y += AnimSpeed.Y;
+    Vertices[1].TCoords.X += AnimSpeed.X;
+    Vertices[1].TCoords.Y += AnimSpeed.Y;
+    Vertices[2].TCoords.X += AnimSpeed.X;
+    Vertices[2].TCoords.Y += AnimSpeed.Y;
+    Vertices[3].TCoords.X += AnimSpeed.X;
+    Vertices[3].TCoords.Y += AnimSpeed.Y;
   }
 
   // Draws vertices of 2D element only if visible
-  if (isVisible) {
+  if (IsVisible) {
     // Opacity
-    if (opacity < 255) {
-      material.DiffuseColor.setAlpha(opacity);
+    if (Opacity < 255) {
+      Material.DiffuseColor.setAlpha(Opacity);
     }
 
     // Texture of 2D element
-    if (texture) {
-      material.setTexture(0, texture);
+    if (Texture) {
+      Material.setTexture(0, Texture);
     }
 
-    Game::getVideoDriver()->setMaterial(material);
-    Game::getVideoDriver()->setTransform(video::ETS_VIEW, mat);
-    Game::getVideoDriver()->drawIndexedTriangleList(vertices, 4, indices, 2);
-    Game::getVideoDriver()->setTransform(video::ETS_WORLD, mat);
+    engine::CGame::getVideoDriver()->setMaterial(Material);
+    engine::CGame::getVideoDriver()->setTransform(irr::video::ETS_VIEW, Mat);
+    engine::CGame::getVideoDriver()->drawIndexedTriangleList(Vertices, 4, Indices, 2);
+    engine::CGame::getVideoDriver()->setTransform(irr::video::ETS_WORLD, Mat);
   }
 }
 
 /**
  * Change la taille de l'élément d'interface (déforme la texture)
  */
-void Hud2DElement::setSize(f32 w, f32 h)
+void CHud2DElement::setSize(irr::f32 w, irr::f32 h)
 {
-  size.Width = w;
-  size.Height = h;
+  Size.Width = w;
+  Size.Height = h;
 }
 
-void Hud2DElement::setPosition(f32 x, f32 y)
+void CHud2DElement::setPosition(irr::f32 x, irr::f32 y)
 {
-  pos.X = x;
-  pos.Y = y;
+  Pos.X = x;
+  Pos.Y = y;
 }
 
-void Hud2DElement::setTextureOffset(const core::vector2df& min, const core::vector2df& max)
+void CHud2DElement::setTextureOffset(const irr::core::vector2df& min, const irr::core::vector2df& max)
 {
-  minTextureOffset = min;
-  maxTextureOffset = max;
+  MinTextureOffset = min;
+  MaxTextureOffset = max;
 }
 
-void Hud2DElement::addX(f32 val)
+void CHud2DElement::addX(irr::f32 val)
 {
-  pos.X += val;
+  Pos.X += val;
 }
 
-void Hud2DElement::subX(f32 val)
+void CHud2DElement::subX(irr::f32 val)
 {
-  pos.X -= val;
+  Pos.X -= val;
 }
 
-void Hud2DElement::setX(f32 val)
+void CHud2DElement::setX(irr::f32 val)
 {
-  pos.X = val;
+  Pos.X = val;
 }
 
-void Hud2DElement::addY(f32 val)
+void CHud2DElement::addY(irr::f32 val)
 {
-  pos.Y += val;
+  Pos.Y += val;
 }
 
-void Hud2DElement::subY(f32 val)
+void CHud2DElement::subY(irr::f32 val)
 {
-  pos.Y -= val;
+  Pos.Y -= val;
 }
 
-void Hud2DElement::setY(f32 val)
+void CHud2DElement::setY(irr::f32 val)
 {
-  pos.Y = val;
+  Pos.Y = val;
 }
 
-void Hud2DElement::setWidth(f32 val)
+void CHud2DElement::setWidth(irr::f32 val)
 {
-  size.Width = val;
+  Size.Width = val;
 }
 
-void Hud2DElement::setHeight(f32 val)
+void CHud2DElement::setHeight(irr::f32 val)
 {
-  size.Height = val;
+  Size.Height = val;
 }
 
-f32 Hud2DElement::getX()
+irr::f32 CHud2DElement::getX()
 {
-  return pos.X;
+  return Pos.X;
 }
 
-f32 Hud2DElement::getY()
+irr::f32 CHud2DElement::getY()
 {
-  return pos.Y;
+  return Pos.Y;
 }
 
-f32 Hud2DElement::getWidth()
+irr::f32 CHud2DElement::getWidth()
 {
-  return size.Width;
+  return Size.Width;
 }
 
-f32 Hud2DElement::getHeight()
+irr::f32 CHud2DElement::getHeight()
 {
-  return size.Height;
+  return Size.Height;
 }
 
-void Hud2DElement::startUVAnimation(f32 uSpeed, f32 vSpeed)
+void CHud2DElement::startUVAnimation(irr::f32 uSpeed, irr::f32 vSpeed)
 {
-  animSpeed.X = uSpeed;
-  animSpeed.Y = vSpeed;
+  AnimSpeed.X = uSpeed;
+  AnimSpeed.Y = vSpeed;
 }
 
-void Hud2DElement::stopUVAnimation()
+void CHud2DElement::stopUVAnimation()
 {
-  animSpeed.X = 0.0f;
-  animSpeed.Y = 0.0f;
+  AnimSpeed.X = 0.0f;
+  AnimSpeed.Y = 0.0f;
 }
 
-void Hud2DElement::hide()
+void CHud2DElement::hide()
 {
-  isVisible = false;
+  IsVisible = false;
 }
 
-void Hud2DElement::show()
+void CHud2DElement::show()
 {
-  isVisible = true;
+  IsVisible = true;
 }
 
-void Hud2DElement::setOpacity(u8 value)
+void CHud2DElement::setOpacity(irr::u8 value)
 {
-  opacity = value;
+  Opacity = value;
 }
 
-void Hud2DElement::diffuse(video::SColor color)
+void CHud2DElement::diffuse(irr::video::SColor color)
 {
-  opacity = color.getAlpha();
-  material.DiffuseColor = color;
+  Opacity = color.getAlpha();
+  Material.DiffuseColor = color;
 }
 
-Hud2DElement::~Hud2DElement()
+CHud2DElement::~CHud2DElement()
 {
-  texture = NULL;
+  Texture = NULL;
+}
+
+}
 }

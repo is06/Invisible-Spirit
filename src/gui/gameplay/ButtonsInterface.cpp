@@ -12,53 +12,59 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/gui/gameplay/IconButton.h"
 #include "../../../include/gui/gameplay/IconTextButton.h"
 
-using namespace std;
-
-ButtonsInterface::ButtonsInterface() : Hud()
+namespace is06
 {
-  menu = new TextButton(Game::screenPos.left + 70, Game::screenPos.bottom + 110);
-  defense = new IconButton(Game::screenPos.left + 30, Game::screenPos.bottom + 70);
-  jump = new IconButton(Game::screenPos.left + 110, Game::screenPos.bottom + 70);
-  command = new IconTextButton(Game::screenPos.left + 70, Game::screenPos.bottom + 30);
+namespace hud
+{
+
+CButtonsInterface::CButtonsInterface() : CHud()
+{
+  Menu = new CTextButton(engine::CGame::ScreenPos.Left + 70, engine::CGame::ScreenPos.Bottom + 110);
+  Defense = new CIconButton(engine::CGame::ScreenPos.Left + 30, engine::CGame::ScreenPos.Bottom + 70);
+  Jump = new CIconButton(engine::CGame::ScreenPos.Left + 110, engine::CGame::ScreenPos.Bottom + 70);
+  Command = new CIconTextButton(engine::CGame::ScreenPos.Left + 70, engine::CGame::ScreenPos.Bottom + 30);
 }
 
-void ButtonsInterface::render()
+void CButtonsInterface::render()
 {
-  Hud::render();
-  menu->render();
-  defense->render();
-  jump->render();
-  command->render();
+  CHud::render();
+  Menu->render();
+  Defense->render();
+  Jump->render();
+  Command->render();
 }
 
-void ButtonsInterface::hide()
+void CButtonsInterface::hide()
 {
-  menu->hide();
-  defense->hide();
-  jump->hide();
-  command->hide();
+  Menu->hide();
+  Defense->hide();
+  Jump->hide();
+  Command->hide();
 }
 
-void ButtonsInterface::show()
+void CButtonsInterface::show()
 {
-  menu->show();
-  defense->show();
-  jump->show();
-  command->show();
+  Menu->show();
+  Defense->show();
+  Jump->show();
+  Command->show();
 }
 
-void ButtonsInterface::setOpacity(u8 value)
+void CButtonsInterface::setOpacity(irr::u8 value)
 {
-  menu->setOpacity(value);
-  defense->setOpacity(value);
-  jump->setOpacity(value);
-  command->setOpacity(value);
+  Menu->setOpacity(value);
+  Defense->setOpacity(value);
+  Jump->setOpacity(value);
+  Command->setOpacity(value);
 }
 
-ButtonsInterface::~ButtonsInterface()
+CButtonsInterface::~CButtonsInterface()
 {
-  delete menu;
-  delete defense;
-  delete jump;
-  delete command;
+  delete Menu;
+  delete Defense;
+  delete Jump;
+  delete Command;
+}
+
+}
 }

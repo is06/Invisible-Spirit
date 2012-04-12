@@ -8,20 +8,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/ref/core.h"
 #include "../../../include/gui/gameplay/IconTextButton.h"
 
-IconTextButton::IconTextButton(f32 x, f32 y) : Button(x, y)
+namespace is06
+{
+namespace hud
+{
+
+CIconTextButton::CIconTextButton(irr::f32 x, irr::f32 y) : CButton(x, y)
 {
   //text = new Text(textMsg);
   //icon = new Picture(40, 40, x - 2, y + 2, "resource/hud/default.bmp");
 }
 
-void IconTextButton::render()
+void CIconTextButton::render()
 {
-  Button::render();
+  CButton::render();
   //text->render();
   //icon->render();
 }
 
-void Button::changeCommand(CommandIdentifier newCommand)
+void CIconTextButton::changeCommand(engine::ECommandIdentifier newCommand)
 {
   switch (newCommand) {
     default:
@@ -30,8 +35,11 @@ void Button::changeCommand(CommandIdentifier newCommand)
   }
 }
 
-IconTextButton::~IconTextButton()
+CIconTextButton::~CIconTextButton()
 {
   //delete text;
   //delete icon;
+}
+
+}
 }

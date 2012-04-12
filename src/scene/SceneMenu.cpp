@@ -17,49 +17,40 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Keyboard.h"
 #include "../../include/save/Save.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace scene
+{
 
 /**
  * Init common elements
  */
-SceneMenu::SceneMenu() : Scene()
+CSceneMenu::CSceneMenu() : CScene()
 {
-  newGameIsFading = false;
-  quitIsFading = false;
+  NewGameIsFading = false;
+  QuitIsFading = false;
 
-  inTitleFadeIn = false;
-  inMainMenu = true;
-  inSaveListMenu = false;
-  inOptionMenu = false;
-  inNewGameFadeOut = false;
+  InTitleFadeIn = false;
+  InMainMenu = true;
+  InSaveListMenu = false;
+  InOptionMenu = false;
+  InNewGameFadeOut = false;
 
   initModeList();
 
-  cam = new TPCamera();
-  cam->setControl(false);
+  Camera = new model::CTPCamera();
+  Camera->setControl(false);
 
-  cam->getNode()->setPosition(core::vector3df(0,1,-2700));
-  cam->getNode()->setTarget(core::vector3df(0,100,0));
-  cam->getNode()->setFarValue(10000.0f);
+  Camera->getNode()->setPosition(irr::core::vector3df(0,1,-2700));
+  Camera->getNode()->setTarget(irr::core::vector3df(0,100,0));
+  Camera->getNode()->setFarValue(10000.0f);
 
-  mainMenu = new Menu(Game::screenPos.left + 100, -100, 150, 8, MENU_STYLE_TITLE);
-  mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_launch_demo"));
-  //mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_load_game"));
-  //mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_option"));
-  mainMenu->addOption(MENU_ICON_NONE, globalTranslations->getTranslation("main_menu_quit"));
+  MainMenu = new hud::CMenu(engine::CGame::ScreenPos.Left + 100, -100, 150, 8, hud::MENU_STYLE_TITLE);
+  MainMenu->addOption(hud::MENU_ICON_NONE, GlobalTranslations->getTranslation("main_menu_launch_demo"));
+  MainMenu->addOption(hud::MENU_ICON_NONE, GlobalTranslations->getTranslation("main_menu_quit"));
 
-  title = new Picture(Game::screenPos.right - 413, 100, 826, 101, "resource/texture/menus/title/main.png");
-  cc = new Picture(Game::screenPos.left + 300, Game::screenPos.bottom + 50, 420, 44, "resource/texture/menus/title/cc.png");
-
-  lightRays = new StaticModel();
-  lightRays->loadMesh("resource/mesh/menus/title/rays.obj");
-  lightRays->createNode(core::vector3df(0,1000,0));
-  if (lightRays->getNode()) {
-    lightRays->getNode()->setMaterialFlag(video::EMF_BACK_FACE_CULLING, false);
-    lightRays->getNode()->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL);
-    lightRays->getNode()->setScale(core::vector3df(300.0f, 300.0f, 300.0f));
-  }
+  Title = new hud::CPicture(engine::CGame::ScreenPos.Right - 413, 100, 826, 101, "resource/texture/menus/title/main.png");
+  CreativeCommons = new hud::CPicture(engine::CGame::ScreenPos.Left + 300, engine::CGame::ScreenPos.Bottom + 50, 420, 44, "resource/texture/menus/title/cc.png");
 
   fadeIn(0.5f);
 }
@@ -67,26 +58,20 @@ SceneMenu::SceneMenu() : Scene()
 /**
  * Common events
  */
-void SceneMenu::events()
+void CSceneMenu::events()
 {
-  Scene::events();
-
-  // Light rays rotation
-  lightRays->update();
-  if (lightRays->getNode()) {
-    lightRays->turnY(5);
-  }
+  CScene::events();
 
   // Camera movement
-  if (cam->getZ() < 3500) {
-    cam->moveZ(2);
+  if (Camera->getZ() < 3500) {
+    Camera->moveZ(2);
   }
 
-  if (inMainMenu) {
+  if (InMainMenu) {
     manageMainMenu();
-  } else if (inSaveListMenu) {
+  } else if (InSaveListMenu) {
     manageSaveListMenu();
-  } else if (inOptionMenu) {
+  } else if (InOptionMenu) {
     manageOptionMenu();
   }
 }
@@ -94,41 +79,41 @@ void SceneMenu::events()
 /**
  *
  */
-void SceneMenu::postRender()
+void CSceneMenu::postRender()
 {
-  Scene::postRender();
+  CScene::postRender();
 }
 
 /**
  * Hud render
  */
-void SceneMenu::hudRender()
+void CSceneMenu::hudRender()
 {
-  Scene::hudRender();
+  CScene::hudRender();
 
-  mainMenu->render();
-  title->render();
-  cc->render();
+  MainMenu->render();
+  Title->render();
+  CreativeCommons->render();
 }
 
 /**
  * Main Menu events
  */
-void SceneMenu::manageMainMenu()
+void CSceneMenu::manageMainMenu()
 {
-  if (!quitIsFading && !newGameIsFading) {
-    if (keyboard->pressed(KEY_DOWN, EVENT_ONCE)) {
-      mainMenu->nextOption();
+  if (!QuitIsFading && !NewGameIsFading) {
+    if (Keyboard->pressed(irr::KEY_DOWN, engine::EVENT_ONCE)) {
+      MainMenu->nextOption();
     }
-    if (keyboard->pressed(KEY_UP, EVENT_ONCE)) {
-      mainMenu->prevOption();
+    if (Keyboard->pressed(irr::KEY_UP, engine::EVENT_ONCE)) {
+      MainMenu->prevOption();
     }
-    if (keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
-      switch (mainMenu->getCurrentOption()) {
+    if (Keyboard->pressed(irr::KEY_SPACE, engine::EVENT_ONCE)) {
+      switch (MainMenu->getCurrentOption()) {
         case 0:
           // Fade Out and boolean to go to gameplay (demo)
           fadeOut(0.5f);
-          newGameIsFading = true;
+          NewGameIsFading = true;
           break;
           /*
         case 1:
@@ -141,20 +126,20 @@ void SceneMenu::manageMainMenu()
         case 1:
           // Fade Out and boolean to quit the game
           fadeOut(0.5f);
-          quitIsFading = true;
+          QuitIsFading = true;
           break;
         default: break;
       }
     }
   } else {
-    if (outFader->isReady()) {
-      if (newGameIsFading) {
+    if (OutFader->isReady()) {
+      if (NewGameIsFading) {
         // New Game
-        Game::getCurrentSave()->createNewFile();
+        engine::CGame::getCurrentSave()->createNewFile();
       }
-      if (quitIsFading) {
+      if (QuitIsFading) {
         // Quit to OS
-        Game::quit();
+        engine::CGame::quit();
       }
     }
   }
@@ -163,10 +148,10 @@ void SceneMenu::manageMainMenu()
 /**
  * Get in Save List menu
  */
-void SceneMenu::createSaveListMenu()
+void CSceneMenu::createSaveListMenu()
 {
-  inMainMenu = false;
-  inSaveListMenu = true;
+  InMainMenu = false;
+  InSaveListMenu = true;
 
   retrieveSaveSlotList();
 }
@@ -174,7 +159,7 @@ void SceneMenu::createSaveListMenu()
 /**
  * Save List menu events
  */
-void SceneMenu::manageSaveListMenu()
+void CSceneMenu::manageSaveListMenu()
 {
 
 }
@@ -182,25 +167,25 @@ void SceneMenu::manageSaveListMenu()
 /**
  * Quit Save List menu
  */
-void SceneMenu::destroySaveListMenu()
+void CSceneMenu::destroySaveListMenu()
 {
-  inMainMenu = true;
-  inSaveListMenu = false;
+  InMainMenu = true;
+  InSaveListMenu = false;
 }
 
 /**
  * Get in Option menu
  */
-void SceneMenu::createOptionMenu()
+void CSceneMenu::createOptionMenu()
 {
-  inMainMenu = false;
-  inOptionMenu = true;
+  InMainMenu = false;
+  InOptionMenu = true;
 }
 
 /**
  * Option menu events
  */
-void SceneMenu::manageOptionMenu()
+void CSceneMenu::manageOptionMenu()
 {
 
 }
@@ -208,59 +193,60 @@ void SceneMenu::manageOptionMenu()
 /**
  * Quit Option menu
  */
-void SceneMenu::destroyOptionMenu()
+void CSceneMenu::destroyOptionMenu()
 {
-  inMainMenu = true;
-  inOptionMenu = false;
+  InMainMenu = true;
+  InOptionMenu = false;
 }
 
 /**
  * @todo
  */
-void SceneMenu::retrieveSaveSlotList()
+void CSceneMenu::retrieveSaveSlotList()
 {
   clearSaveSlotList();
-  for (u8 i = 0; i <= 255; i++) {
-    Save* save = new Save();
+  for (irr::u8 i = 0; i <= 255; i++) {
+    engine::CSave* save = new engine::CSave();
     save->loadPrimitiveInfo(i);
-    saveSlotList[i] = new SaveSlot(save);
+    SaveSlotList[i] = new engine::CSaveSlot(save);
   }
 }
 
 /**
  * @todo
  */
-void SceneMenu::clearSaveSlotList()
+void CSceneMenu::clearSaveSlotList()
 {
-  for (u8 i = 0; i <= 255; i++) {
-    saveSlotList[i] = NULL;
+  for (irr::u8 i = 0; i <= 255; i++) {
+    SaveSlotList[i] = NULL;
   }
 }
 
 /**
  * Init supported video mode list
  */
-void SceneMenu::initModeList()
+void CSceneMenu::initModeList()
 {
-  video::IVideoModeList* vml = Game::getDevice()->getVideoModeList();
+  irr::video::IVideoModeList* vml = engine::CGame::getDevice()->getVideoModeList();
+  irr::s32 videoModeCount = vml->getVideoModeCount();
+  irr::s32 colorDepth;
+  irr::core::dimension2du vres;
 
-  s32 videoModeCount = vml->getVideoModeCount();
-  s32 colorDepth;
-  core::dimension2du vres;
-
-  for (s32 i = 0; i < videoModeCount; i++) {
+  for (irr::s32 i = 0; i < videoModeCount; i++) {
     vres = vml->getVideoModeResolution(i);
     colorDepth = vml->getVideoModeDepth(i);
 
-    modeList[i] = core::vector3di(vres.Width, vres.Height, colorDepth);
+    ModeList[i] = irr::core::vector3di(vres.Width, vres.Height, colorDepth);
   }
 }
 
-SceneMenu::~SceneMenu()
+CSceneMenu::~CSceneMenu()
 {
-  delete lightRays;
-  delete title;
-  delete cc;
-  delete mainMenu;
-  delete cam;
+  delete Title;
+  delete CreativeCommons;
+  delete MainMenu;
+  delete Camera;
+}
+
+}
 }

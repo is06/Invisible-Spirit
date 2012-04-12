@@ -8,17 +8,25 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/ref/core.h"
 #include "../../../../include/gui/menus/gameplay/SettingsMenu.h"
 
-SettingsMenu::SettingsMenu() : GameplaySubMenu()
+namespace is06
+{
+namespace hud
+{
+
+CSettingsMenu::CSettingsMenu() : CGameplaySubMenu()
 {
 
 }
 
-void SettingsMenu::render(Keyboard* keyboard)
+void CSettingsMenu::render()
 {
-  GameplaySubMenu::render();
+  CGameplaySubMenu::render();
 }
 
-SettingsMenu::~SettingsMenu()
+CSettingsMenu::~CSettingsMenu()
 {
 
+}
+
+}
 }

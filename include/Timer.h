@@ -4,12 +4,17 @@
 using namespace irr;
 using namespace std;
 
-typedef boost::function<void()> VoidCallback;
+namespace is06
+{
+namespace engine
+{
 
-class Timer
+typedef boost::function<void()> TVoidCallback;
+
+class CTimer
 {
   public:
-    Timer(f32 end, VoidCallback callback, s32 loopLimit = 1);
+    CTimer(f32 end, TVoidCallback callback, s32 loopLimit = 1);
 
     void update();
 
@@ -17,19 +22,22 @@ class Timer
     inline void stop();
     inline void reset();
 
-    void reinit(f32 end, VoidCallback callback, s32 loopLimit = 1);
+    void reinit(f32 end, TVoidCallback callback, s32 loopLimit = 1);
 
     inline void setTime(f32 val);
     inline f32 getTime();
 
   private:
-    bool running;
-    s32 currentLoopLimit;
-    s32 currentLoop;
-    f32 currentTime;
-    f32 endTime;
+    bool Running;
+    s32 CurrentLoopLimit;
+    s32 CurrentLoop;
+    f32 CurrentTime;
+    f32 EndTime;
 
-    VoidCallback endCall;
+    TVoidCallback EndCall;
 };
+
+}
+}
 
 #endif

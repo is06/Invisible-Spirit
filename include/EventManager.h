@@ -8,66 +8,72 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_EVENT_MANAGER_H__
 #define __IS06_EVENT_MANAGER_H__
 
-using namespace irr;
+namespace is06
+{
+namespace engine
+{
 
 /**
  * Cette classe gère les événements du jeu (clavier, souris...)
  */
-class EventManager : public IEventReceiver
+class CEventManager : public irr::IEventReceiver
 {
   public:
-    EventManager();
-    bool isKeyDown(EKEY_CODE code);
-    bool isKeyDownOnce(EKEY_CODE code);
+    CEventManager();
+    bool isKeyDown(irr::EKEY_CODE code);
+    bool isKeyDownOnce(irr::EKEY_CODE code);
     bool anyKeyDown();
     bool anyKeyDownOnce();
     bool click();
     bool mouseRelease();
     bool mouseDown();
-    const core::position2di& getMousePosition() const;
+    const irr::core::position2di& getMousePosition() const;
 
-    u8 getLeftJoystickForce();
-    f32 getLeftJoystickAngle();
-    s8 getLeftJoystickXAxis();
-    s8 getLeftJoystickYAxis();
+    irr::u8 getLeftJoystickForce();
+    irr::f32 getLeftJoystickAngle();
+    irr::s8 getLeftJoystickXAxis();
+    irr::s8 getLeftJoystickYAxis();
 
-    u8 getRightJoystickForce();
-    f32 getRightJoystickAngle();
-    s8 getRightJoystickXAxis();
-    s8 getRightJoystickYAxis();
+    irr::u8 getRightJoystickForce();
+    irr::f32 getRightJoystickAngle();
+    irr::s8 getRightJoystickXAxis();
+    irr::s8 getRightJoystickYAxis();
 
-    u16 getPressedButtons();
-    u32 getPovValue();
+    irr::u16 getPressedButtons();
+    irr::u32 getPovValue();
 
-    const SEvent::SGUIEvent& getGUIEvent();
+    const irr::SEvent::SGUIEvent& getGUIEvent();
 
-    bool OnEvent(const SEvent& event);
+    bool OnEvent(const irr::SEvent& event);
 
   private:
-    bool keyDown[KEY_KEY_CODES_COUNT];
-    bool keyOnce[KEY_KEY_CODES_COUNT];
-    bool anyDown;
-    bool anyOnce;
-    bool mouseLeftDown;
-    bool mouseLeftOnce;
-    bool mouseRightDown;
-    bool mouseRightOnce;
+    bool KeyDown[irr::KEY_KEY_CODES_COUNT];
+    bool KeyOnce[irr::KEY_KEY_CODES_COUNT];
+    bool AnyDown;
+    bool AnyOnce;
+    bool MouseLeftDown;
+    bool MouseLeftOnce;
+    bool MouseRightDown;
+    bool MouseRightOnce;
 
-    SEvent::SGUIEvent guiEvent;
+    irr::SEvent::SGUIEvent GuiEvent;
 
-    f32 leftJoystickAngle;
-    u8 leftJoystickForce;
-    s16 leftJoystickXAxis;
-    s16 leftJoystickYAxis;
+    irr::f32 LeftJoystickAngle;
+    irr::u8 LeftJoystickForce;
+    irr::s16 LeftJoystickXAxis;
+    irr::s16 LeftJoystickYAxis;
 
-    f32 rightJoystickAngle;
-    u8 rightJoystickForce;
-    s16 rightJoystickXAxis;
-    s16 rightJoystickYAxis;
+    irr::f32 RightJoystickAngle;
+    irr::u8 RightJoystickForce;
+    irr::s16 RightJoystickXAxis;
+    irr::s16 RightJoystickYAxis;
 
-    u16 buttonStates;
-    u32 povValue;
-    core::position2di mousePosition;
+    irr::u16 ButtonStates;
+    irr::u32 PovValue;
+    irr::core::position2di MousePosition;
 };
+
+}
+}
 
 #endif

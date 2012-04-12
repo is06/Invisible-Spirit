@@ -12,37 +12,42 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../enums/sound/StreamIdentifier.h"
 
-using namespace irr;
-using namespace std;
+namespace is06
+{
+namespace sound
+{
 
-class Speaker : public Entity
+class CSpeaker : public engine::CEntity
 {
   public:
-    Speaker(StreamIdentifier stream, const core::vector3df& initPos, const string& text = "speaker", f32 radius = 10.0f);
-    ~Speaker();
+    CSpeaker(StreamIdentifier stream, const irr::core::vector3df& initPos, const std::string& text = "speaker", irr::f32 radius = 10.0f);
+    ~CSpeaker();
 
     void update();
 
     const FMOD_VECTOR& getPosition() const;
-    core::vector3df getPositionVector();
+    irr::core::vector3df getPositionVector();
 
     void setPosition(const FMOD_VECTOR& newPos);
-    void setPosition(const core::vector3df& newPos);
+    void setPosition(const irr::core::vector3df& newPos);
 
     void play();
     void stop();
     void pause();
     void resume();
-    void setVolume(f32 val);
+    void setVolume(irr::f32 val);
 
   private:
-    scene::IBillboardSceneNode* icon;
-    scene::IBillboardTextSceneNode* textBB;
+    irr::scene::IBillboardSceneNode* Icon;
+    irr::scene::IBillboardTextSceneNode* TextBB;
 
-    FMOD_CHANNEL* channelPtr;
-    FMOD_SOUND* soundPtr;
+    FMOD_CHANNEL* ChannelPtr;
+    FMOD_SOUND* SoundPtr;
 
-    FMOD_VECTOR position;
+    FMOD_VECTOR Position;
 };
+
+}
+}
 
 #endif

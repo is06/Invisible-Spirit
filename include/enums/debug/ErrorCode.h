@@ -8,7 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ERROR_CODE_H__
 #define __IS06_ERROR_CODE_H__
 
-enum ErrorCode
+namespace is06
+{
+namespace debug
+{
+
+enum EErrorCode
 {
   // Map errors
   ERRCODE_10, // Unknown map id
@@ -41,5 +46,8 @@ enum ErrorCode
 
   ERRCODE_COUNT
 };
+
+}
+}
 
 #endif
