@@ -8,29 +8,33 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_DIALOG_H__
 #define __IS06_DIALOG_H__
 
+using namespace irr;
+using namespace std;
+
 namespace is06
 {
 namespace engine
 {
 
+//! A single dialog which can contains several messages
 class CDialog
 {
   public:
     CDialog();
-    CDialog(const std::string& identifier);
+    CDialog(const string& identifier);
     ~CDialog();
 
-    void addMessage(const std::string& text);
-    void setIdentifier(const std::string& name);
+    void addMessage(const string& text);
+    void setIdentifier(const string& name);
 
-    std::string getMessage(irr::u16 index);
-    const std::string& getIdentifier() const;
-    irr::u16 getMessageCount();
+    const string& getMessage(u16 index);
+    const string& getIdentifier() const;
+    u16 getMessageCount();
 
   private:
-    irr::u16 CurrentNumber;
-    std::string CurrentIdentifier;
-    std::map<irr::u16, std::string> MessageList;
+    u16 CurrentNumber;
+    string CurrentIdentifier;
+    TStringMap16 MessageList;
 };
 
 }

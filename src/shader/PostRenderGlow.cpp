@@ -5,11 +5,11 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/ref/core.h"
+#include "../../include/engine/core.h"
+#include "../../include/engine/Game.h"
+#include "../../include/engine/Settings.h"
 #include "../../include/shader/PostRenderGlow.h"
-#include "../../include/scene/Scene.h"
-#include "../../include/Game.h"
-#include "../../include/Settings.h"
+#include "../../include/screen/Scene.h"
 
 namespace is06
 {
@@ -21,7 +21,7 @@ CPostRenderGlow::CPostRenderGlow() : CHud2DElement(0, 0, engine::CGame::ScreenPo
   Texture = 0;
 
   // Render to target texture quality
-  irr::u32 texture_quality = engine::CGame::Settings->getParamInt("glow", "texture_quality");
+  u32 texture_quality = engine::CGame::Settings->getParamInt("glow", "texture_quality");
   switch (texture_quality) {
     case 1: texture_quality = 64; break;  // 16KB
     default:
@@ -31,10 +31,10 @@ CPostRenderGlow::CPostRenderGlow() : CHud2DElement(0, 0, engine::CGame::ScreenPo
     case 5: texture_quality = 1024; break; // 4MB
   }
 
-  irr::u32 depth_quality = engine::CGame::Settings->getParamInt("glow", "depth_quality");
-  irr::video::ECOLOR_FORMAT textureColorFormat = irr::video::ECF_R5G6B5;
+  u32 depth_quality = engine::CGame::Settings->getParamInt("glow", "depth_quality");
+  video::ECOLOR_FORMAT textureColorFormat = video::ECF_R5G6B5;
   if (depth_quality == 32) {
-    textureColorFormat = irr::video::ECF_R8G8B8;
+    textureColorFormat = video::ECF_R8G8B8;
   }
 
   MinTextureOffset.X = 0.0f;
@@ -43,7 +43,7 @@ CPostRenderGlow::CPostRenderGlow() : CHud2DElement(0, 0, engine::CGame::ScreenPo
   MaxTextureOffset.Y = 0.0f;
 
   Material.AntiAliasing = false;
-  Texture = engine::CGame::getVideoDriver()->addRenderTargetTexture(irr::core::dimension2du(512, 512), "GlowRTT", textureColorFormat);
+  Texture = engine::CGame::getVideoDriver()->addRenderTargetTexture(core::dimension2du(512, 512), "GlowRTT", textureColorFormat);
   Material.setTexture(0, Texture);
 }
 
@@ -56,22 +56,22 @@ CPostRenderGlow::CPostRenderGlow() : CHud2DElement(0, 0, engine::CGame::ScreenPo
 void CPostRenderGlow::render()
 {
   // Perform first pass (horizontal blur)
-  Material.MaterialType = (irr::video::E_MATERIAL_TYPE)engine::CGame::Shaders.HorizontalBlur;
+  Material.MaterialType = (video::E_MATERIAL_TYPE)engine::CGame::Shaders.HorizontalBlur;
   CHud2DElement::render();
 
   if (Texture) {
-    engine::CGame::getVideoDriver()->setRenderTarget(Texture, true, true, irr::video::SColor(255, 255, 255, 255));
+    engine::CGame::getVideoDriver()->setRenderTarget(Texture, true, true, video::SColor(255, 255, 255, 255));
     // Darken non glowing entities
     engine::CGame::getCurrentScene()->darkenNonGlowingEntities();
     // Draw the whole scene
     engine::CGame::getSceneManager()->drawAll();
     // Perform second pass (vertical blur)
-    Material.MaterialType = (irr::video::E_MATERIAL_TYPE)engine::CGame::Shaders.VerticalBlur;
+    Material.MaterialType = (video::E_MATERIAL_TYPE)engine::CGame::Shaders.VerticalBlur;
     CHud2DElement::render();
     // Restore lighting material of all darkened entities
     engine::CGame::getCurrentScene()->revealNonGlowingEntities();
     // Reset render target to main display viewport
-    engine::CGame::getVideoDriver()->setRenderTarget(irr::video::ERT_FRAME_BUFFER, false, true, 0);
+    engine::CGame::getVideoDriver()->setRenderTarget(video::ERT_FRAME_BUFFER, false, true, 0);
   }
 }
 

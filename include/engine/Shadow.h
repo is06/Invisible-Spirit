@@ -8,13 +8,14 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SHADOW_H__
 #define __IS06_SHADOW_H__
 
-#include "../enums/engine/ShadowMode.h"
+#include "ShadowMode.h"
 
 namespace is06
 {
 namespace engine
 {
 
+//! A reprensentation of a shadow comportement attached to a 3D entity
 class CShadow
 {
   public:

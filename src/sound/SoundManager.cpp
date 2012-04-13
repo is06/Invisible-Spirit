@@ -5,9 +5,9 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/ref/core.h"
+#include "../../include/engine/core.h"
+#include "../../include/model/Camera.h"
 #include "../../include/sound/SoundManager.h"
-#include "../../include/3d/Camera.h"
 
 namespace is06
 {
@@ -30,12 +30,12 @@ CSoundManager::CSoundManager()
  */
 void CSoundManager::setEarsData(model::CCamera* activeCamera)
 {
-  irr::core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
+  core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
   //core::vector3df rotation = activeCamera->getNode()->getRotation();
   //core::vector3df lastPosition = activeCamera->getLastPosition();
-  irr::core::vector3df forward = activeCamera->getNode()->getTarget() - position;
+  core::vector3df forward = activeCamera->getNode()->getTarget() - position;
   forward.normalize();
-  irr::core::vector3df up = activeCamera->getNode()->getUpVector();
+  core::vector3df up = activeCamera->getNode()->getUpVector();
 
   cameraPosition.x = position.X;
   cameraPosition.y = position.Y;
@@ -64,7 +64,7 @@ void CSoundManager::update()
 {
   FMOD_RESULT result = FMOD_System_Set3DListenerAttributes(sys, 0, &cameraPosition, NULL, &cameraForward, &cameraUp);
   if (result != FMOD_OK) {
-    std::cout << "[FMOD] Erreur update 3D" << std::endl;
+    cout << "[FMOD] Erreur update 3D" << endl;
   }
   FMOD_System_Update(sys);
 }

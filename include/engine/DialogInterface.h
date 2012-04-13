@@ -10,36 +10,40 @@ http://www.is06.com. Legal code in license.txt
 
 #include "Dialog.h"
 
+using namespace irr;
+using namespace std;
+
 namespace is06
 {
 namespace engine
 {
 
+//! Interface for dialogs that can be used in scenes and maps
 class CDialogInterface
 {
   public:
-    CDialogInterface(const std::string& filePath, engine::CTranslation* translation, engine::CKeyboard* keyboard);
+    CDialogInterface(const string& filePath, engine::CTranslation* translation, engine::CKeyboard* keyboard);
     ~CDialogInterface();
 
     void render();
-    void start(const std::string& dialogIdentifier);
+    void start(const string& dialogIdentifier);
     void skip();
     void quit();
     void nextMessage();
-    void goToMessage(irr::u32 number);
+    void goToMessage(u32 number);
     bool finished();
 
   private:
-    void loadDialogData(const std::string& fullPath);
-    void createMessage(const std::string& dialogIdentifier, irr::u16 messageNumber=0);
+    void loadDialogData(const string& fullPath);
+    void createMessage(const string& dialogIdentifier, u16 messageNumber=0);
 
     bool MessageDisplaying;
     bool MessageFinished;
     bool DialogFinished;
 
-    irr::u16 CurrentMessageNumber;
-    std::string CurrentDialogIdentifier;
-    std::map<std::string, engine::CDialog> DialogList;
+    u16 CurrentMessageNumber;
+    string CurrentDialogIdentifier;
+    hud::TDialogMap DialogList;
     hud::CText* CurrentMessageText;
     hud::CPicture* BackWindow;
     engine::CTranslation* CurrentTranslation;

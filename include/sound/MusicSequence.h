@@ -15,6 +15,7 @@ namespace is06
 namespace sound
 {
 
+//! A music sequence element
 class CMusicSequence
 {
   public:
@@ -22,7 +23,7 @@ class CMusicSequence
     ~CMusicSequence();
 
     void play();
-    void setVolume(irr::f32 value);
+    void setVolume(f32 value);
 
   private:
     FMOD_CHANNEL* ChannelPtr;

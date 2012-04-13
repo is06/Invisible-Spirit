@@ -5,13 +5,13 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/ref/core.h"
-#include "../../include/Game.h"
-#include "../../include/Keyboard.h"
-#include "../../include/Translation.h"
-#include "../../include/gui/Text.h"
-#include "../../include/gui/Picture.h"
+#include "../../include/engine/core.h"
+#include "../../include/engine/Game.h"
+#include "../../include/engine/Keyboard.h"
+#include "../../include/engine/Translation.h"
 #include "../../include/engine/DialogInterface.h"
+#include "../../include/hud/Text.h"
+#include "../../include/hud/Picture.h"
 
 namespace is06
 {
@@ -21,7 +21,7 @@ namespace engine
 /**
  *
  */
-CDialogInterface::CDialogInterface(const std::string& filePath, CTranslation* translation, CKeyboard* keyboard)
+CDialogInterface::CDialogInterface(const string& filePath, CTranslation* translation, CKeyboard* keyboard)
 {
   Keyboard = keyboard;
 
@@ -39,7 +39,7 @@ CDialogInterface::CDialogInterface(const std::string& filePath, CTranslation* tr
 
   BackWindow = new hud::CPicture(0, CGame::ScreenPos.Bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
 
-  std::string fullPath = "resource/text/";
+  string fullPath = "resource/text/";
 
   switch (CGame::getCurrentLocale()) {
     case LOCALE_FRE_FR:
@@ -80,14 +80,14 @@ void CDialogInterface::render()
     }
 
     // Display all message quickly
-    if (MessageDisplaying && Keyboard->pressed(irr::KEY_SPACE, EVENT_ONCE)) {
+    if (MessageDisplaying && Keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
       CurrentMessageText->skip();
       MessageDisplaying = false;
       MessageFinished = true;
     }
 
     // Go to next message (only if entirely displayed)
-    if (MessageFinished && Keyboard->pressed(irr::KEY_SPACE, EVENT_ONCE)) {
+    if (MessageFinished && Keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
       MessageFinished = false;
       MessageDisplaying = true;
       if (!DialogFinished) {
@@ -100,14 +100,14 @@ void CDialogInterface::render()
 /**
  * @todo
  */
-void CDialogInterface::loadDialogData(const std::string& fullPath)
+void CDialogInterface::loadDialogData(const string& fullPath)
 {
-  std::fstream fileStream(fullPath.c_str(), std::ios::in);
+  fstream fileStream(fullPath.c_str(), ios::in);
 
   if (fileStream) {
     char current = 0;
-    std::string dialogIdentifier = "";
-    std::string textIdentifier = "";
+    string dialogIdentifier = "";
+    string textIdentifier = "";
     bool inIdentifierDeclaration = true;
     bool inTextDeclaration = false;
 
@@ -148,7 +148,7 @@ void CDialogInterface::loadDialogData(const std::string& fullPath)
 /**
  *
  */
-void CDialogInterface::start(const std::string& dialogIdentifier)
+void CDialogInterface::start(const string& dialogIdentifier)
 {
   CurrentDialogIdentifier = dialogIdentifier;
   createMessage(dialogIdentifier, 0);
@@ -158,7 +158,7 @@ void CDialogInterface::start(const std::string& dialogIdentifier)
 /**
  *
  */
-void CDialogInterface::createMessage(const std::string& dialogIdentifier, irr::u16 messageNumber)
+void CDialogInterface::createMessage(const string& dialogIdentifier, u16 messageNumber)
 {
   CurrentMessageText = new hud::CText(
     DialogList[dialogIdentifier].getMessage(messageNumber),
@@ -182,7 +182,7 @@ void CDialogInterface::nextMessage()
 /**
  *
  */
-void CDialogInterface::goToMessage(irr::u32 number)
+void CDialogInterface::goToMessage(u32 number)
 {
 
 }

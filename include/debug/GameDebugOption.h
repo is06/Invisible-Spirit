@@ -17,7 +17,7 @@ namespace debug
 
 struct SGameDebugOption
 {
-  GameDebugDisplay Display;
+  SGameDebugDisplay Display;
 };
 
 }

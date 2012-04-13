@@ -5,7 +5,7 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/ref/core.h"
+#include "../../include/engine/core.h"
 #include "../../include/sound/Music.h"
 #include "../../include/sound/MusicReference.h"
 
@@ -18,7 +18,7 @@ CMusicReference::CMusicReference()
 {
   CurrentMusic = NULL;
 
-  std::fstream fileStream("resource/music/list.ism", std::ios::in);
+  fstream fileStream("resource/music/list.ism", ios::in);
   if (fileStream) {
     bool inMusicNameDeclaration = true;
     bool inSeqNumbDeclaration = false;
@@ -28,12 +28,12 @@ CMusicReference::CMusicReference()
     bool inSeqFileDeclaration = false;
 
     char current = 0;
-    std::string musicName("");
-    std::string sequenceNumber("");
+    string musicName("");
+    string sequenceNumber("");
     bool sequenceLooped = true;
-    std::string sequenceLoopStart("");
-    std::string sequenceLoopEnd("");
-    std::string sequenceFileName("");
+    string sequenceLoopStart("");
+    string sequenceLoopEnd("");
+    string sequenceFileName("");
 
     while (fileStream.get(current)) {
       if (current == '=') {
@@ -66,10 +66,10 @@ CMusicReference::CMusicReference()
         inSeqFileDeclaration = false;
         inSeqNumbDeclaration = true;
 
-        irr::u16 sequenceNumberInt;
-        irr::u32 loopStartInt;
-        irr::u32 loopEndInt;
-        std::istringstream iss(sequenceNumber);
+        u16 sequenceNumberInt;
+        u32 loopStartInt;
+        u32 loopEndInt;
+        istringstream iss(sequenceNumber);
         iss >> sequenceNumberInt;
         iss.clear();
         iss.str(sequenceLoopStart);
@@ -122,7 +122,7 @@ CMusicReference::CMusicReference()
   }
 }
 
-void CMusicReference::play(const std::string& id)
+void CMusicReference::play(const string& id)
 {
   CurrentId = id;
 
@@ -133,14 +133,14 @@ void CMusicReference::play(const std::string& id)
   }
 }
 
-void CMusicReference::muteSequence(const std::string& id, irr::u16 number)
+void CMusicReference::muteSequence(const string& id, u16 number)
 {
   if (CurrentMusic->getSequence(number)) {
     CurrentMusic->getSequence(number)->setVolume(0.0f);
   }
 }
 
-void CMusicReference::unmuteSequence(const std::string& id, irr::u16 number)
+void CMusicReference::unmuteSequence(const string& id, u16 number)
 {
   if (CurrentMusic->getSequence(number)) {
     CurrentMusic->getSequence(number)->setVolume(1.0f);

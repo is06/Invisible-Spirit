@@ -8,13 +8,14 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_POST_RENDER_GLOW_H__
 #define __IS06_POST_RENDER_GLOW_H__
 
-#include "../gui/Hud2DElement.h"
+#include "../hud/Hud2DElement.h"
 
 namespace is06
 {
 namespace shader
 {
 
+//! Aligned screen quad for post render in order to simulated a light glowing effect
 class CPostRenderGlow : public hud::CHud2DElement
 {
   public:

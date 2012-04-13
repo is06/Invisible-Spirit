@@ -5,10 +5,10 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/ref/core.h"
+#include "../../include/engine/core.h"
+#include "../../include/engine/Game.h"
 #include "../../include/sound/MusicSequence.h"
 #include "../../include/sound/SoundManager.h"
-#include "../../include/Game.h"
 
 namespace is06
 {
@@ -17,7 +17,7 @@ namespace sound
 
 CMusicSequence::CMusicSequence(const SMusicSequenceInfo& info)
 {
-  std::string filePath("resource/music/");
+  string filePath("resource/music/");
   filePath += info.FileName;
 
   if (info.Looped) {
@@ -33,7 +33,7 @@ void CMusicSequence::play()
   FMOD_System_PlaySound(engine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
 }
 
-void CMusicSequence::setVolume(irr::f32 value)
+void CMusicSequence::setVolume(f32 value)
 {
   if (value >= 0.0f && value <= 1.0f) {
     FMOD_Channel_SetVolume(ChannelPtr, value);

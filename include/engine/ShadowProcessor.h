@@ -9,8 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_SHADOW_PROCESSOR_H__
 
 #include "Shadow.h"
-#include "../enums/engine/ShadowMode.h"
-//#include "../shader/PostRenderShadow.h"
+#include "ShadowMode.h"
 
 using namespace std;
 
@@ -19,6 +18,7 @@ namespace is06
 namespace engine
 {
 
+//! Interface for creating shadow maps
 class CShadowProcessor
 {
   public:
@@ -27,17 +27,17 @@ class CShadowProcessor
 
     void render();
 
-    void setEntity(irr::scene::ISceneNode* node, engine::EShadowMode mode);
-    void removeEntity(irr::scene::ISceneNode* node);
+    void setEntity(scene::ISceneNode* node, engine::EShadowMode mode);
+    void removeEntity(scene::ISceneNode* node);
 
   private:
     void renderCastingNodes();
     void renderReceivingNodes();
 
-    map<irr::scene::ISceneNode*, engine::CShadow> Shadows;
-    map<irr::scene::ISceneNode*, engine::CShadow>::iterator ShadowsIt;
+    map<scene::ISceneNode*, engine::CShadow> Shadows;
+    map<scene::ISceneNode*, engine::CShadow>::iterator ShadowsIt;
 
-    irr::video::ITexture* ShadowMap;
+    video::ITexture* ShadowMap;
 };
 
 }

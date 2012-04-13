@@ -13,13 +13,14 @@ namespace is06
 namespace sound
 {
 
+//! Structure for sequence information like loop bounds
 struct SMusicSequenceInfo
 {
-  irr::u16 Number;
+  u16 Number;
   bool Looped;
-  irr::u32 LoopStart;
-  irr::u32 LoopEnd;
-  std::string FileName;
+  u32 LoopStart;
+  u32 LoopEnd;
+  string FileName;
 };
 
 }

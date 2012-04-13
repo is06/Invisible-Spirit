@@ -12,3 +12,5 @@ bin/Debug
 bin/Release
 obj/
 work/
+
+/doc

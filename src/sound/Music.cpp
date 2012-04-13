@@ -5,7 +5,7 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/ref/core.h"
+#include "../../include/engine/core.h"
 #include "../../include/sound/Music.h"
 
 namespace is06
@@ -13,14 +13,14 @@ namespace is06
 namespace sound
 {
 
-CMusic::CMusic(const std::string& id)
+CMusic::CMusic(const string& id)
 {
 
 }
 
-void CMusic::addSequences(const std::map<irr::u16, SMusicSequenceInfo>& list)
+void CMusic::addSequences(const map<u16, SMusicSequenceInfo>& list)
 {
-  std::map<irr::u16, SMusicSequenceInfo>::const_iterator msIt;
+  map<u16, SMusicSequenceInfo>::const_iterator msIt;
   for (msIt = list.begin(); msIt != list.end(); msIt++) {
     Sequences[msIt->second.Number] = new CMusicSequence(msIt->second);
   }
@@ -29,9 +29,9 @@ void CMusic::addSequences(const std::map<irr::u16, SMusicSequenceInfo>& list)
 /**
  * Plays all the music sequences
  */
-void CMusic::playSequences(const std::map<irr::u16, SMusicSequenceInfo>& list)
+void CMusic::playSequences(const map<u16, SMusicSequenceInfo>& list)
 {
-  std::map<irr::u16, SMusicSequenceInfo>::const_iterator msIt;
+  map<u16, SMusicSequenceInfo>::const_iterator msIt;
   for (msIt = list.begin(); msIt != list.end(); msIt++) {
     Sequences[msIt->second.Number]->play();
   }
@@ -40,7 +40,7 @@ void CMusic::playSequences(const std::map<irr::u16, SMusicSequenceInfo>& list)
 /**
  * Returns a reference to the sequences map
  */
-std::map<irr::u16, CMusicSequence*>& CMusic::getSequenceMap()
+map<u16, CMusicSequence*>& CMusic::getSequenceMap()
 {
   return Sequences;
 }
@@ -48,7 +48,7 @@ std::map<irr::u16, CMusicSequence*>& CMusic::getSequenceMap()
 /**
  * Returns a pointer to a sequence specified by number
  */
-CMusicSequence* CMusic::getSequence(irr::u16 number)
+CMusicSequence* CMusic::getSequence(u16 number)
 {
   if (Sequences[number]) {
     return Sequences[number];

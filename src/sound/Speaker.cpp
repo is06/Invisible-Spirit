@@ -5,9 +5,9 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/ref/core.h"
+#include "../../include/engine/core.h"
+#include "../../include/engine/Game.h"
 #include "../../include/sound/Speaker.h"
-#include "../../include/Game.h"
 #include "../../include/sound/SoundManager.h"
 
 namespace is06
@@ -18,11 +18,11 @@ namespace sound
 /**
  *
  */
-CSpeaker::CSpeaker(StreamIdentifier, const irr::core::vector3df& initPos, const std::string& text, irr::f32 radius) : engine::CEntity()
+CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text, f32 radius) : engine::CEntity()
 {
-  irr::video::ITexture* iconTexture = engine::CGame::getVideoDriver()->getTexture("resource/debug/icons/speaker.bmp");
+  video::ITexture* iconTexture = engine::CGame::getVideoDriver()->getTexture("resource/debug/icons/speaker.bmp");
 
-  Icon = engine::CGame::getSceneManager()->addBillboardSceneNode(0, irr::core::dimension2df(1.0f, 1.0f), initPos);
+  Icon = engine::CGame::getSceneManager()->addBillboardSceneNode(0, core::dimension2df(1.0f, 1.0f), initPos);
   Icon->setMaterialTexture(0, iconTexture);
 
   //@TODO: text
@@ -34,7 +34,7 @@ CSpeaker::CSpeaker(StreamIdentifier, const irr::core::vector3df& initPos, const 
   Position.z = initPos.Z;
 
   // Sound stream creation
-  FMOD_System_CreateStream(engine::CGame::getSoundManager()->getSystem(), "sp_a2_laser_chaining_l3.mp3", FMOD_3D | FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
+  FMOD_System_CreateStream(engine::CGame::getSoundManager()->getSystem(), streamFile.c_str(), FMOD_3D | FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
 
   // Setting 3D position
   FMOD_Channel_Set3DAttributes(ChannelPtr, &Position, NULL);
@@ -53,9 +53,9 @@ const FMOD_VECTOR& CSpeaker::getPosition() const
   return Position;
 }
 
-irr::core::vector3df CSpeaker::getPositionVector()
+core::vector3df CSpeaker::getPositionVector()
 {
-  return irr::core::vector3df(
+  return core::vector3df(
     Position.x,
     Position.y,
     Position.z
@@ -67,7 +67,7 @@ void CSpeaker::setPosition(const FMOD_VECTOR& position)
   Position = position;
 }
 
-void CSpeaker::setPosition(const irr::core::vector3df& position)
+void CSpeaker::setPosition(const core::vector3df& position)
 {
   Position.x = position.X;
   Position.y = position.Y;
@@ -95,7 +95,7 @@ void CSpeaker::stop()
   FMOD_Channel_Stop(ChannelPtr);
 }
 
-void CSpeaker::setVolume(irr::f32 val)
+void CSpeaker::setVolume(f32 val)
 {
 
 }

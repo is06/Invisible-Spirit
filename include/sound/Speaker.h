@@ -8,38 +8,37 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SPEAKER_H__
 #define __IS06_SPEAKER_H__
 
-#include "../Entity.h"
-
-#include "../enums/sound/StreamIdentifier.h"
+#include "../engine/Entity.h"
 
 namespace is06
 {
 namespace sound
 {
 
+//! 3D sound speaker entity that can be attached to a 3D graphical entity
 class CSpeaker : public engine::CEntity
 {
   public:
-    CSpeaker(StreamIdentifier stream, const irr::core::vector3df& initPos, const std::string& text = "speaker", irr::f32 radius = 10.0f);
+    CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text = "speaker", f32 radius = 10.0f);
     ~CSpeaker();
 
     void update();
 
     const FMOD_VECTOR& getPosition() const;
-    irr::core::vector3df getPositionVector();
+    core::vector3df getPositionVector();
 
     void setPosition(const FMOD_VECTOR& newPos);
-    void setPosition(const irr::core::vector3df& newPos);
+    void setPosition(const core::vector3df& newPos);
 
     void play();
     void stop();
     void pause();
     void resume();
-    void setVolume(irr::f32 val);
+    void setVolume(f32 val);
 
   private:
-    irr::scene::IBillboardSceneNode* Icon;
-    irr::scene::IBillboardTextSceneNode* TextBB;
+    scene::IBillboardSceneNode* Icon;
+    scene::IBillboardTextSceneNode* TextBB;
 
     FMOD_CHANNEL* ChannelPtr;
     FMOD_SOUND* SoundPtr;

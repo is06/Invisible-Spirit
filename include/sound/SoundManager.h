@@ -13,6 +13,7 @@ namespace is06
 namespace sound
 {
 
+//! The 3D sound manager for sound effects in space
 class CSoundManager
 {
   public:

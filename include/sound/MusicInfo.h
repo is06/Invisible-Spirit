@@ -15,9 +15,10 @@ namespace is06
 namespace sound
 {
 
+//! Structure for music sequence information
 struct SMusicInfo
 {
-  std::map<irr::u16, SMusicSequenceInfo> SequenceInfo;
+  map<u16, SMusicSequenceInfo> SequenceInfo;
 };
 
 }

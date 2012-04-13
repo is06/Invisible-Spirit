@@ -8,12 +8,20 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_GAME_DEBUG_DISPLAY_H__
 #define __IS06_GAME_DEBUG_DISPLAY_H__
 
-struct GameDebugDisplay
+namespace is06
+{
+namespace debug
+{
+
+struct SGameDebugDisplay
 {
   bool HidePostRender;
   bool ShowWireFrame;
   bool ShowIrrlichtDebugData;
 };
+
+}
+}
 
 #endif
 

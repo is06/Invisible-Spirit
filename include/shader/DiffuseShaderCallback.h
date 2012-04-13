@@ -8,32 +8,33 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __DIFFUSE_SHADER_CALLBACK_H__
 #define __DIFFUSE_SHADER_CALLBACK_H__
 
-#include "../Game.h"
+#include "../engine/Game.h"
 
 namespace is06
 {
 namespace shader
 {
 
-class CDiffuseShaderCallback : public irr::video::IShaderConstantSetCallBack
+//! This class passes parameters to vertex and fragment programs to set up the shader diffuse material
+class CDiffuseShaderCallback : public video::IShaderConstantSetCallBack
 {
   public:
-    const irr::video::SMaterial* UsedMaterial;
+    const video::SMaterial* UsedMaterial;
 
-    virtual void OnSetMaterial(const irr::video::SMaterial& material)
+    virtual void OnSetMaterial(const video::SMaterial& material)
     {
       UsedMaterial = &material;
     }
 
-    virtual void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData)
+    virtual void OnSetConstants(video::IMaterialRendererServices* services, s32 userData)
     {
-      irr::core::matrix4 worldViewProj;
-      worldViewProj = engine::CGame::getVideoDriver()->getTransform(irr::video::ETS_PROJECTION);
-      worldViewProj *= engine::CGame::getVideoDriver()->getTransform(irr::video::ETS_VIEW);
-      worldViewProj *= engine::CGame::getVideoDriver()->getTransform(irr::video::ETS_WORLD);
+      core::matrix4 worldViewProj;
+      worldViewProj = engine::CGame::getVideoDriver()->getTransform(video::ETS_PROJECTION);
+      worldViewProj *= engine::CGame::getVideoDriver()->getTransform(video::ETS_VIEW);
+      worldViewProj *= engine::CGame::getVideoDriver()->getTransform(video::ETS_WORLD);
       services->setVertexShaderConstant("mWorldViewProj", worldViewProj.pointer(), 16);
 
-      irr::f32 vColor[4] = {
+      f32 vColor[4] = {
         UsedMaterial->DiffuseColor.getRed() / 255.0f,
         UsedMaterial->DiffuseColor.getGreen() / 255.0f,
         UsedMaterial->DiffuseColor.getBlue() / 255.0f,

@@ -16,19 +16,20 @@ namespace is06
 namespace sound
 {
 
+//! A multi-layer music element that can contains one or more sequences
 class CMusic
 {
   public:
-    CMusic(const std::string& id);
+    CMusic(const string& id);
     ~CMusic();
 
-    void playSequences(const std::map<irr::u16, SMusicSequenceInfo>& list);
-    void addSequences(const std::map<irr::u16, SMusicSequenceInfo>& list);
-    std::map<irr::u16, CMusicSequence*>& getSequenceMap();
-    CMusicSequence* getSequence(irr::u16 number);
+    void playSequences(const map<u16, SMusicSequenceInfo>& list);
+    void addSequences(const map<u16, SMusicSequenceInfo>& list);
+    map<u16, CMusicSequence*>& getSequenceMap();
+    CMusicSequence* getSequence(u16 number);
 
   private:
-    std::map<irr::u16, CMusicSequence*> Sequences;
+    map<u16, CMusicSequence*> Sequences;
 };
 
 }

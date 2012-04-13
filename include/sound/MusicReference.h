@@ -15,24 +15,25 @@ namespace is06
 namespace sound
 {
 
+//! Interface for playing music in scenes or maps
 class CMusicReference
 {
   public:
     CMusicReference();
     ~CMusicReference();
 
-    void play(const std::string& id);
+    void play(const string& id);
     void stop();
 
-    void muteSequence(const std::string& id, irr::u16 number);
-    void unmuteSequence(const std::string& id, irr::u16 number);
+    void muteSequence(const string& id, u16 number);
+    void unmuteSequence(const string& id, u16 number);
 
     CMusic* getCurrentMusic();
 
   private:
-    std::string CurrentId;
+    string CurrentId;
     CMusic* CurrentMusic;
-    std::map<std::string, SMusicInfo> MusicList;
+    map<string, SMusicInfo> MusicList;
 };
 
 }
