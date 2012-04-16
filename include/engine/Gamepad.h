@@ -16,9 +16,12 @@ namespace is06
 namespace nEngine
 {
 
+//! Boolean gamepad buttons map indexed by u16
 typedef map<u16, bool> TGamepadButtonMap;
+//! Boolean gamepad directions map indexed by EGamepadDirection
 typedef map<EGamepadDirection, bool> TGamepadDirectionMap;
 
+//! Interface for gamepad controls
 class CGamepad
 {
   public:

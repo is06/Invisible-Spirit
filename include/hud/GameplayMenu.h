@@ -25,6 +25,8 @@ namespace nHud
 {
 namespace nMenu
 {
+
+//! The main gameplay menu
 class CGameplayMenu : public CHud
 {
   public:

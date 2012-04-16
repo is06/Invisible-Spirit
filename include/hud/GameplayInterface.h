@@ -15,6 +15,7 @@ namespace is06
 namespace nHud
 {
 
+//! The whole HUD gameplay interface (buttons, energy...)
 class CGameplayInterface : public CHud
 {
   public:

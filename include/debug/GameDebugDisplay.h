@@ -13,6 +13,7 @@ namespace is06
 namespace nDebug
 {
 
+//! Display debug parameters
 struct SGameDebugDisplay
 {
   bool HidePostRender;

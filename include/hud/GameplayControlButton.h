@@ -13,9 +13,6 @@ namespace is06
 namespace nHud
 {
 
-/**
- *
- */
 enum EGameplayControlButtons
 {
   CB_BUTTON_COMMAND,

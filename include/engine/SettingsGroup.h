@@ -13,6 +13,7 @@ namespace is06
 namespace nEngine
 {
 
+//! SettingsGroup element class containing params
 class CSettingsGroup
 {
   public:

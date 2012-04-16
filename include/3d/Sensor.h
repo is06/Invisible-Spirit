@@ -15,6 +15,7 @@ namespace is06
 namespace n3D
 {
 
+//! Main abstract class for all sensors
 class CSensor : public nEngine::CEntity
 {
   public:

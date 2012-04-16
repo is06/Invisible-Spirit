@@ -16,6 +16,8 @@ namespace nHud
 {
 namespace nMenu
 {
+
+//! The dimensions sub-menu
 class CDimensionMenu : public CGameplaySubMenu
 {
   public:

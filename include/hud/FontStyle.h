@@ -13,6 +13,7 @@ namespace is06
 namespace nHud
 {
 
+//! Fonts enumeration
 enum EFontStyle
 {
   // Classic style

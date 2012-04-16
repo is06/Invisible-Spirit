@@ -15,6 +15,7 @@ namespace is06
 namespace nHud
 {
 
+//! A total game time counter in the main gameplay menu
 class CGameTimeCounter : public CCounter
 {
   public:

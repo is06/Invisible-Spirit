@@ -15,6 +15,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Keyboard interface
 class CKeyboard
 {
   public:

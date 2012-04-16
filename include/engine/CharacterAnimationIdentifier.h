@@ -13,6 +13,7 @@ namespace is06
 namespace nEngine
 {
 
+//! 3D character animation enumeration
 enum ECharacterAnimationIdentifier
 {
   ANIM_STAND,

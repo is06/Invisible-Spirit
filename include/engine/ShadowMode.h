@@ -13,6 +13,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Enumeration for shadow type to apply to a 3D entity
 enum EShadowMode
 {
   SHADOW_MODE_NONE,

@@ -16,6 +16,7 @@ namespace is06
 namespace nHud
 {
 
+//! Graphical representation of a button in the HUD gameplay interface
 class CButton : public CHud
 {
   public:

@@ -13,6 +13,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Fading screen color enumeration
 enum EFadeColor
 {
   FADE_COLOR_BLACK,

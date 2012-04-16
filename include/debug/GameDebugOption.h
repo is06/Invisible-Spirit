@@ -15,6 +15,7 @@ namespace is06
 namespace nDebug
 {
 
+//! Debug parameters
 struct SGameDebugOption
 {
   SGameDebugDisplay Display;

@@ -13,6 +13,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Settings interface containing groups
 class CSettings
 {
   public:

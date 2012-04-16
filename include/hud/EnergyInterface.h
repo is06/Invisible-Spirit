@@ -15,6 +15,7 @@ namespace is06
 namespace nHud
 {
 
+//! The HUD energy interface
 class CEnergyInterface : public CHud
 {
   public:

@@ -13,6 +13,7 @@ namespace is06
 namespace nDebug
 {
 
+//! Error code enumeration
 enum EErrorCode
 {
   // Map errors

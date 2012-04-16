@@ -13,6 +13,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Localization identifier enumeration
 enum ELocaleIdentifier
 {
   LOCALE_ENG_GB,

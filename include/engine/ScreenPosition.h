@@ -13,6 +13,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Screen display and position information
 struct SScreenPosition
 {
   f32 Top;

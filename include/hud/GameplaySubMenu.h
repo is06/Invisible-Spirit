@@ -17,6 +17,7 @@ namespace nHud
 namespace nMenu
 {
 
+//! The base class for all gameplay sub-menus
 class CGameplaySubMenu : public CHud {
   public:
     CGameplaySubMenu();

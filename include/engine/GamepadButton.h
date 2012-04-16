@@ -13,9 +13,7 @@ namespace is06
 namespace nEngine
 {
 
-/**
- * Liste des commandes boutons disponibles sur l'interface Gamepad
- */
+//! Gamepad buttons mapping enumeration
 enum EGamepadButton
 {
   GP_BUTTON_A = 1,

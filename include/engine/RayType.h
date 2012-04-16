@@ -13,6 +13,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Ray type enumeration for wall and floor collisions
 enum ERayType
 {
   RAY_WALL_P,

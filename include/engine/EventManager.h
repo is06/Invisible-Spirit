@@ -13,9 +13,7 @@ namespace is06
 namespace nEngine
 {
 
-/**
- * Cette classe gère les événements du jeu (clavier, souris...)
- */
+//! Interface for event management
 class CEventManager : public IEventReceiver
 {
   public:

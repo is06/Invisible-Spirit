@@ -9,6 +9,7 @@ namespace is06
 namespace nEngine
 {
 
+//! A simple implementation of a timer
 class CTimer
 {
   public:

@@ -13,6 +13,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Translation interface
 class CTranslation
 {
   public:

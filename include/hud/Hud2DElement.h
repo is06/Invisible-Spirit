@@ -15,6 +15,7 @@ namespace is06
 namespace nHud
 {
 
+//! A simili-2D HUD element (3D screen-aligned quad), also used for post render effects
 class CHud2DElement : public CHud
 {
   public:

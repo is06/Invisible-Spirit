@@ -13,9 +13,7 @@ namespace is06
 namespace nEngine
 {
 
-/**
- * Liste des commandes associables à un bouton d'interface joueur
- */
+//! Enumeration for commands to bind to a button
 enum ECommandIdentifier
 {
   CMD_FIRE,

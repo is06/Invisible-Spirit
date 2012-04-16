@@ -15,6 +15,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Main general abstract class for all entities in the game
 class CEntity
 {
   public:

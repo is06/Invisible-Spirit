@@ -13,9 +13,7 @@ namespace is06
 namespace nEngine
 {
 
-/**
- * Types de collision pour associer à un body Newton
- */
+//! Collision type enumeration
 enum ECollisionType
 {
   COLLISION_CHARACTER,

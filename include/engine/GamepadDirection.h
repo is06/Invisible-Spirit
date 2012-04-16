@@ -13,6 +13,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Gamepad direction mapping enumeration
 enum EGamepadDirection
 {
   GP_DIR_TOP = 0,

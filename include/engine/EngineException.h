@@ -13,6 +13,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Main exception class
 class CEngineException : public exception
 {
   public:
