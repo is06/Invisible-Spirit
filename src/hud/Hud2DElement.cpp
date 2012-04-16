@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 u16 CHud2DElement::Indices[] = {2, 1, 3, 2, 0, 1};
@@ -47,7 +47,7 @@ CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h) : CHud()
   //Material.Wireframe = true;
 
   // Diffuse shader
-  Material.MaterialType = (video::E_MATERIAL_TYPE)engine::CGame::Shaders.Diffuse;
+  Material.MaterialType = (video::E_MATERIAL_TYPE)nEngine::CGame::Shaders.Diffuse;
 
   //material.setFlag(video::EMF_ANISOTROPIC_FILTER, true);
   Material.setTexture(0, NULL);
@@ -130,10 +130,10 @@ void CHud2DElement::render()
       Material.setTexture(0, Texture);
     }
 
-    engine::CGame::getVideoDriver()->setMaterial(Material);
-    engine::CGame::getVideoDriver()->setTransform(video::ETS_VIEW, Mat);
-    engine::CGame::getVideoDriver()->drawIndexedTriangleList(Vertices, 4, Indices, 2);
-    engine::CGame::getVideoDriver()->setTransform(video::ETS_WORLD, Mat);
+    nEngine::CGame::getVideoDriver()->setMaterial(Material);
+    nEngine::CGame::getVideoDriver()->setTransform(video::ETS_VIEW, Mat);
+    nEngine::CGame::getVideoDriver()->drawIndexedTriangleList(Vertices, 4, Indices, 2);
+    nEngine::CGame::getVideoDriver()->setTransform(video::ETS_WORLD, Mat);
   }
 }
 

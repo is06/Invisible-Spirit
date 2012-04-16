@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 CMenu::CMenu(f32 x, f32 y, f32 width, u8 height, EMenuStyle style) : CHud()

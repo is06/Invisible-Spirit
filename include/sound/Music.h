@@ -13,7 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace sound
+namespace nSound
 {
 
 //! A multi-layer music element that can contains one or more sequences

@@ -13,7 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 CText::CText(const string& str, f32 x, f32 y, EFontStyle style, u8 speed) : CHud()
@@ -37,7 +37,7 @@ CText::CText(const string& str, f32 x, f32 y, EFontStyle style, u8 speed) : CHud
 
   SpeedTimer = NULL;
   if (CurrentSpeed > 0) {
-    SpeedTimer = new engine::CTimer(CurrentSpeed / 512.0f, boost::bind(&CText::nextChar, this), str.size());
+    SpeedTimer = new nEngine::CTimer(CurrentSpeed / 512.0f, boost::bind(&CText::nextChar, this), str.size());
   }
 }
 

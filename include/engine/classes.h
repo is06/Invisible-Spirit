@@ -12,7 +12,7 @@ namespace is06
 {
 
 // Engine classes
-namespace engine
+namespace nEngine
 {
   class CGame;
   class CEngineException;
@@ -33,14 +33,14 @@ namespace engine
 }
 
 // Debug classes
-namespace debug
+namespace nDebug
 {
   class CMapEditor;
   class CColorProperty;
 }
 
 // Scenes
-namespace screen
+namespace nScene
 {
   class CScene;
   class CSceneGameplay;
@@ -48,7 +48,7 @@ namespace screen
 }
 
 // HUD
-namespace hud
+namespace nHud
 {
   class CHud;
   class CHud2DElement;
@@ -79,7 +79,7 @@ namespace hud
   class CPlayerState;
 
   //! Menu and sub-menu interfaces
-  namespace menu
+  namespace nMenu
   {
     class CGameplayMenu;
     class CDimensionMenu;
@@ -95,7 +95,7 @@ namespace hud
 }
 
 // 3D Model
-namespace model
+namespace n3D
 {
   // General
   class CModelEntity;
@@ -123,14 +123,14 @@ namespace model
 }
 
 // Shaders
-namespace shader
+namespace nShader
 {
   class CDiffuseShaderCallback;
   class CPostRenderSurface;
 }
 
 // Sound
-namespace sound
+namespace nSound
 {
   class CSoundManager;
   class CSpeaker;

@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace sound
+namespace nSound
 {
 
 //! Interface for playing music in scenes or maps

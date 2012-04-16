@@ -14,22 +14,22 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 CGameTimeCounter::CGameTimeCounter() : CCounter()
 {
   CounterText = new CText(
     "---",
-    engine::CGame::ScreenPos.Left + 100,
-    engine::CGame::ScreenPos.Bottom + 80,
+    nEngine::CGame::ScreenPos.Left + 100,
+    nEngine::CGame::ScreenPos.Bottom + 80,
     FONT_STANDARD_48
   );
 }
 
 void CGameTimeCounter::render()
 {
-  updateValues(engine::CGame::getCurrentSave()->getInteger(21));
+  updateValues(nEngine::CGame::getCurrentSave()->getInteger(21));
   updateDigits();
   CounterText->render();
 }

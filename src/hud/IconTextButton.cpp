@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 CIconTextButton::CIconTextButton(f32 x, f32 y) : CButton(x, y)
@@ -26,7 +26,7 @@ void CIconTextButton::render()
   //icon->render();
 }
 
-void CIconTextButton::changeCommand(engine::ECommandIdentifier newCommand)
+void CIconTextButton::changeCommand(nEngine::ECommandIdentifier newCommand)
 {
   switch (newCommand) {
     default:

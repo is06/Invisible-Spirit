@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 CWindow::CWindow(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, EWindowStyle style) : CHud()

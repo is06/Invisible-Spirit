@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace sound
+namespace nSound
 {
 
 CMusicSequence::CMusicSequence(const SMusicSequenceInfo& info)
@@ -21,16 +21,16 @@ CMusicSequence::CMusicSequence(const SMusicSequenceInfo& info)
   filePath += info.FileName;
 
   if (info.Looped) {
-    FMOD_System_CreateStream(engine::CGame::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
+    FMOD_System_CreateStream(nEngine::CGame::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
     FMOD_Sound_SetLoopPoints(SoundPtr, info.LoopStart, FMOD_TIMEUNIT_MS, info.LoopEnd, FMOD_TIMEUNIT_MS);
   } else {
-    FMOD_System_CreateStream(engine::CGame::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_OFF, 0, &SoundPtr);
+    FMOD_System_CreateStream(nEngine::CGame::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_OFF, 0, &SoundPtr);
   }
 }
 
 void CMusicSequence::play()
 {
-  FMOD_System_PlaySound(engine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
+  FMOD_System_PlaySound(nEngine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
 }
 
 void CMusicSequence::setVolume(f32 value)

@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 //! Visual representation of a single save slot in the save slot selection menu

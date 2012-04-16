@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 /**
@@ -103,9 +103,9 @@ void CSave::write(u8 slot)
  * of data are initialized here, like the start map or character HP...
  * It changes the current map of the game so the player can start to play.
  */
-void CSave::createNewFile()
+void CSave::createNewFile(nEngine::EDifficultyLevel difficultyLevel)
 {
-  setGeneralDefaultValues();
+  setGeneralDefaultValues(difficultyLevel);
   CGame::changeScene(IntegerList[11]);
 }
 
@@ -161,13 +161,14 @@ void CSave::setString(u32 index, const string& value)
 /**
  *
  */
-void CSave::setGeneralDefaultValues()
+void CSave::setGeneralDefaultValues(nEngine::EDifficultyLevel difficultyLevel)
 {
   // Primitive Info
   IntegerList[1] = -1; // Slot number (-1 = No slot number)
+  IntegerList[2] = difficultyLevel; // Difficulty Level
 
   // Map info
-  IntegerList[11] = screen::SCENE_MAP_ALPHA_ZONE; // Current map id
+  IntegerList[11] = nScene::SCENE_MAP_ALPHA_ZONE; // Current map id
   StringList[12] = "Alpha Zone (Debug)"; // Current map name
 
   // Time info

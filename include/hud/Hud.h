@@ -12,11 +12,11 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 //! Abstract main class for all hud elements
-class CHud : public engine::CEntity
+class CHud : public nEngine::CEntity
 {
   public:
     CHud();

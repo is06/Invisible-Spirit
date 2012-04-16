@@ -6,13 +6,13 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/engine/Shaders.h"
+#include "../../include/shader/Shaders.h"
 #include "../../include/shader/DiffuseShaderCallback.h"
 #include "../../include/shader/IceShaderCallback.h"
 
 namespace is06
 {
-namespace shader
+namespace nShader
 {
 
 CShaders::CShaders()
@@ -28,7 +28,7 @@ CShaders::CShaders()
 void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
 {
   string directory = "glsl";
-  if (engine::CGame::getVideoDriver()->getDriverType() == video::EDT_DIRECT3D9) {
+  if (nEngine::CGame::getVideoDriver()->getDriverType() == video::EDT_DIRECT3D9) {
     directory = "hlsl";
   }
 

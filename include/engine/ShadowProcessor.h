@@ -15,7 +15,7 @@ using namespace std;
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 //! Interface for creating shadow maps
@@ -27,15 +27,15 @@ class CShadowProcessor
 
     void render();
 
-    void setEntity(scene::ISceneNode* node, engine::EShadowMode mode);
+    void setEntity(scene::ISceneNode* node, nEngine::EShadowMode mode);
     void removeEntity(scene::ISceneNode* node);
 
   private:
     void renderCastingNodes();
     void renderReceivingNodes();
 
-    map<scene::ISceneNode*, engine::CShadow> Shadows;
-    map<scene::ISceneNode*, engine::CShadow>::iterator ShadowsIt;
+    map<scene::ISceneNode*, nEngine::CShadow> Shadows;
+    map<scene::ISceneNode*, nEngine::CShadow>::iterator ShadowsIt;
 
     video::ITexture* ShadowMap;
 };

@@ -9,6 +9,7 @@ Legend:
 Primitive info
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯
   1 [s]: Slot name (not used for the moment)
+  2 [i]: Difficulty Level (1, 2, 3)
 
 Map info
 ¯¯¯¯¯¯¯¯

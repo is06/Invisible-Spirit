@@ -19,15 +19,15 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
-namespace menu
+namespace nMenu
 {
 
 /**
  * All elements creation
  */
-CGameplayMenu::CGameplayMenu(engine::CTranslation* translation, engine::CKeyboard* keyboard)
+CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CKeyboard* keyboard)
 {
   // Properties
   Visible = false;
@@ -54,10 +54,10 @@ CGameplayMenu::CGameplayMenu(engine::CTranslation* translation, engine::CKeyboar
   Background->setOpacity(128);
 
   // Silver title top bar
-  TopBar = new CPicture(0, engine::CGame::ScreenPos.Top - 20, 1280, 40, "resource/hud/menus/gameplay/top_bar.png");
+  TopBar = new CPicture(0, nEngine::CGame::ScreenPos.Top - 20, 1280, 40, "resource/hud/menus/gameplay/top_bar.png");
 
   // Menu (left)
-  SectionMenu = new CMenu(engine::CGame::ScreenPos.Left + 80, engine::CGame::ScreenPos.Top - 80, 150, 8, MENU_STYLE_TITLE);
+  SectionMenu = new CMenu(nEngine::CGame::ScreenPos.Left + 80, nEngine::CGame::ScreenPos.Top - 80, 150, 8, MENU_STYLE_TITLE);
   SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_swords"));
   SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_spirits"));
   SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_items"));
@@ -87,10 +87,10 @@ CGameplayMenu::CGameplayMenu(engine::CTranslation* translation, engine::CKeyboar
 void CGameplayMenu::render()
 {
   if (Visible) {
-    if (Keyboard->pressed(KEY_DOWN, engine::EVENT_ONCE)) {
+    if (Keyboard->pressed(KEY_DOWN, nEngine::EVENT_ONCE)) {
       SectionMenu->nextOption();
     }
-    if (Keyboard->pressed(KEY_UP, engine::EVENT_ONCE)) {
+    if (Keyboard->pressed(KEY_UP, nEngine::EVENT_ONCE)) {
       SectionMenu->prevOption();
     }
 

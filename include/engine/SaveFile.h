@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 //! Save file interface for reading and writing into the save file

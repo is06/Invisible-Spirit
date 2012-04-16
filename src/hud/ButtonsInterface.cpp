@@ -14,15 +14,15 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 CButtonsInterface::CButtonsInterface() : CHud()
 {
-  Menu = new CTextButton(engine::CGame::ScreenPos.Left + 70, engine::CGame::ScreenPos.Bottom + 110);
-  Defense = new CIconButton(engine::CGame::ScreenPos.Left + 30, engine::CGame::ScreenPos.Bottom + 70);
-  Jump = new CIconButton(engine::CGame::ScreenPos.Left + 110, engine::CGame::ScreenPos.Bottom + 70);
-  Command = new CIconTextButton(engine::CGame::ScreenPos.Left + 70, engine::CGame::ScreenPos.Bottom + 30);
+  Menu = new CTextButton(nEngine::CGame::ScreenPos.Left + 70, nEngine::CGame::ScreenPos.Bottom + 110);
+  Defense = new CIconButton(nEngine::CGame::ScreenPos.Left + 30, nEngine::CGame::ScreenPos.Bottom + 70);
+  Jump = new CIconButton(nEngine::CGame::ScreenPos.Left + 110, nEngine::CGame::ScreenPos.Bottom + 70);
+  Command = new CIconTextButton(nEngine::CGame::ScreenPos.Left + 70, nEngine::CGame::ScreenPos.Bottom + 30);
 }
 
 void CButtonsInterface::render()

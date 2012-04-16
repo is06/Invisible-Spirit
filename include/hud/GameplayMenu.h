@@ -21,14 +21,14 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
-namespace menu
+namespace nMenu
 {
 class CGameplayMenu : public CHud
 {
   public:
-    CGameplayMenu(engine::CTranslation* translation, engine::CKeyboard* keyboard);
+    CGameplayMenu(nEngine::CTranslation* translation, nEngine::CKeyboard* keyboard);
     ~CGameplayMenu();
 
     void render();
@@ -52,8 +52,8 @@ class CGameplayMenu : public CHud
     bool isVisible();
 
   private:
-    engine::CKeyboard* Keyboard;
-    engine::CTranslation* GlobalTranslations;
+    nEngine::CKeyboard* Keyboard;
+    nEngine::CTranslation* GlobalTranslations;
     CPicture* Background;
     CPicture* TopBar;
     CMenu* SectionMenu;

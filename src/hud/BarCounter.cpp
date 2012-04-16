@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 CBarCounter::CBarCounter(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, EBarStyle style) : CCounter(init, min, max)
@@ -76,15 +76,15 @@ void CBarCounter::render()
           DecreaseFactor = ((BehindValue - CurrentValue) / (MaxValue - CurrentValue)) * 500.0f;
         }
         if (DecreaseFactor > 0.0f) {
-          BehindValue -= (DecreaseFactor * engine::CGame::getSpeedFactor());
+          BehindValue -= (DecreaseFactor * nEngine::CGame::getSpeedFactor());
         }
       } else {
         // Gain de vie
-        BehindValue += (DecreaseFactor * engine::CGame::getSpeedFactor());
+        BehindValue += (DecreaseFactor * nEngine::CGame::getSpeedFactor());
       }
     } else {
       // Evolution du timer
-      DecreaseTimer += 100.0f * engine::CGame::getSpeedFactor();
+      DecreaseTimer += 100.0f * nEngine::CGame::getSpeedFactor();
     }
     if ((s32)BehindValue <= CurrentValue) {
       // Sub arrivée au niveau du compteur

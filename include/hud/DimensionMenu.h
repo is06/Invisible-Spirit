@@ -12,9 +12,9 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
-namespace menu
+namespace nMenu
 {
 class CDimensionMenu : public CGameplaySubMenu
 {

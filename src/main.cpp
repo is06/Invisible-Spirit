@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/engine/EngineException.h"
 
 using namespace is06;
-using namespace engine;
+using namespace nEngine;
 
 #ifdef _IRR_WINDOWS_
 #include <windows.h>

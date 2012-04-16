@@ -8,11 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SAVE_H__
 #define __IS06_SAVE_H__
 
-#include "../screen/SceneIdentifier.h"
+#include "../scene/SceneIdentifier.h"
+#include "../engine/DifficultyLevel.h"
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 //! Class for storing variables and using them in scenes or maps
@@ -25,7 +26,7 @@ class CSave
     void loadPrimitiveInfo(u8 slot);
     void load(u8 slot);
     void write(u8 slot);
-    void createNewFile();
+    void createNewFile(nEngine::EDifficultyLevel difficultyLevel);
 
     s32& getInteger(u32 index);
     bool& getBoolean(u32 index);
@@ -44,7 +45,7 @@ class CSave
     map<u32, string> StringList;
 
     // Default values
-    void setGeneralDefaultValues();
+    void setGeneralDefaultValues(nEngine::EDifficultyLevel difficultyLevel);
 };
 
 }

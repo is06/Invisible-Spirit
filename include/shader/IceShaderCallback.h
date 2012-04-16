@@ -8,13 +8,13 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __ICE_SHADER_CALLBACK_H__
 #define __ICE_SHADER_CALLBACK_H__
 
-#include "../model/Camera.h"
-#include "../screen/Scene.h"
+#include "../3d/Camera.h"
+#include "../scene/Scene.h"
 #include "../engine/Game.h"
 
 namespace is06
 {
-namespace shader
+namespace nShader
 {
 
 //! This class passes parameters to vertex and fragment programs to set up the shader ice-looking material
@@ -31,11 +31,11 @@ class CIceShaderCallback : public video::IShaderConstantSetCallBack
     virtual void OnSetConstants(video::IMaterialRendererServices* services, s32 userData)
     {
       // Inversed world matrix
-      core::matrix4 invWorld = engine::CGame::getVideoDriver()->getTransform(video::ETS_WORLD);
+      core::matrix4 invWorld = nEngine::CGame::getVideoDriver()->getTransform(video::ETS_WORLD);
       services->setVertexShaderConstant("invWorldMatrix", invWorld.pointer(), 16);
 
       // Camera position
-      core::vector3df pos = engine::CGame::getCurrentScene()->getActiveCamera()->getNode()->getAbsolutePosition();
+      core::vector3df pos = nEngine::CGame::getCurrentScene()->getActiveCamera()->getNode()->getAbsolutePosition();
       services->setVertexShaderConstant("cameraPosition", reinterpret_cast<f32*>(&pos), 3);
 
       // Light color

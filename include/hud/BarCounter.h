@@ -13,7 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 //! A graphical horizontal bar counter with animation behaviors

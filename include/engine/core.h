@@ -36,10 +36,10 @@ namespace is06
   //! Boost void function callback type
   typedef boost::function<void()> TVoidCallback;
 
-  namespace hud
+  namespace nHud
   {
     //! A CDialog map indexed by strings
-    typedef map<string, engine::CDialog> TDialogMap;
+    typedef map<string, nEngine::CDialog> TDialogMap;
   }
 }
 

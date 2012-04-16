@@ -12,11 +12,11 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace shader
+namespace nShader
 {
 
 //! Aligned screen quad for post render in order to simulated a light glowing effect
-class CPostRenderGlow : public hud::CHud2DElement
+class CPostRenderGlow : public nHud::CHud2DElement
 {
   public:
     CPostRenderGlow();

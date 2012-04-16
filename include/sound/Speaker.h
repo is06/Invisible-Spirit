@@ -12,11 +12,11 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace sound
+namespace nSound
 {
 
 //! 3D sound speaker entity that can be attached to a 3D graphical entity
-class CSpeaker : public engine::CEntity
+class CSpeaker : public nEngine::CEntity
 {
   public:
     CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text = "speaker", f32 radius = 10.0f);

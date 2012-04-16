@@ -6,7 +6,7 @@ using namespace std;
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 class CTimer

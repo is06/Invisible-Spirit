@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 /**
@@ -20,7 +20,7 @@ namespace engine
  * @param EKEY_CODE code le code de la touche à tester
  * @param EventType type le type d'événement entre ONCE et ALWAYS
  */
-bool CKeyboard::pressed(EKEY_CODE code, engine::EEventType type)
+bool CKeyboard::pressed(EKEY_CODE code, nEngine::EEventType type)
 {
   if (type == EVENT_ONCE) {
     return CGame::getEventManager()->isKeyDownOnce(code);

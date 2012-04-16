@@ -12,12 +12,12 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 CEnergyInterface::CEnergyInterface() : CHud()
 {
-  HpBar = new CBarCounter(100, 0, 100, (engine::CGame::ScreenPos.Right - 170), (engine::CGame::ScreenPos.Bottom + 30), 150, 4, BAR_STYLE_LIFE);
+  HpBar = new CBarCounter(100, 0, 100, (nEngine::CGame::ScreenPos.Right - 170), (nEngine::CGame::ScreenPos.Bottom + 30), 150, 4, BAR_STYLE_LIFE);
 }
 
 void CEnergyInterface::render()

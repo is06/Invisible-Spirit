@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 /**
@@ -33,7 +33,7 @@ void CSaveFile::prepareForRead(u8 slot)
   Rs.open(filePath.c_str(), ios::in);
 
   if (!Rs) {
-    CGame::fatalError(debug::ERRCODE_20);
+    CGame::fatalError(nDebug::ERRCODE_20);
   }
 }
 
@@ -47,7 +47,7 @@ void CSaveFile::prepareForWrite(u8 slot)
   Ws.open(filePath.c_str(), ios::out | ios::trunc);
 
   if (!Ws) {
-    CGame::fatalError(debug::ERRCODE_21);
+    CGame::fatalError(nDebug::ERRCODE_21);
   }
 }
 

@@ -13,7 +13,7 @@ using namespace std;
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 //! A single dialog which can contains several messages

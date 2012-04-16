@@ -15,14 +15,14 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/Save.h"
 #include "../../include/sound/SoundManager.h"
 #include "../../include/sound/MusicReference.h"
-#include "../../include/screen/Scene.h"
-#include "../../include/screen/SceneMenu.h"
-#include "../../include/screen/SceneGameplay.h"
-#include "../../include/level/MAP_ALPHA_ZONE.h"
+#include "../../include/scene/Scene.h"
+#include "../../include/scene/SceneMenu.h"
+#include "../../include/scene/SceneGameplay.h"
+#include "../../include/map/MAP_ALPHA_ZONE.h"
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 IrrlichtDevice* CGame::Device;
@@ -31,14 +31,14 @@ video::IGPUProgrammingServices* CGame::GpuManager;
 scene::ISceneManager* CGame::SceneManager;
 gui::IGUIEnvironment* CGame::DebugGUI;
 NewtonWorld* CGame::GameNewtonWorld;
-screen::CScene* CGame::CurrentScene;
-engine::CEventManager* CGame::EventManager;
-engine::CTranslation* CGame::GlobalTranslations;
-engine::CSave* CGame::CurrentSave;
-sound::CSoundManager* CGame::SoundManager;
-sound::CMusicReference* CGame::MusicReference;
+nScene::CScene* CGame::CurrentScene;
+nEngine::CEventManager* CGame::EventManager;
+nEngine::CTranslation* CGame::GlobalTranslations;
+nEngine::CSave* CGame::CurrentSave;
+nSound::CSoundManager* CGame::SoundManager;
+nSound::CMusicReference* CGame::MusicReference;
 s32 CGame::NextScene;
-engine::ELocaleIdentifier CGame::CurrentLocale;
+nEngine::ELocaleIdentifier CGame::CurrentLocale;
 bool CGame::SceneChanged;
 bool CGame::ScreenSizeChanged;
 bool CGame::Exit;
@@ -51,19 +51,19 @@ f32 CGame::SpeedFactor;
 /**
  * \section usecase Use case
  * \code
- * engine::CGame::Settings->getParamString("display", "renderer");
+ * nEngine::CGame::Settings->getParamString("display", "renderer");
  * \endcode
  */
-engine::CSettings* CGame::Settings;
+nEngine::CSettings* CGame::Settings;
 
 //! Screen position information
-engine::SScreenPosition CGame::ScreenPos;
+nEngine::SScreenPosition CGame::ScreenPos;
 
 //! Shaders interface
-shader::CShaders CGame::Shaders;
+nShader::CShaders CGame::Shaders;
 
 //! Debug options information
-debug::SGameDebugOption CGame::DebugOption;
+nDebug::SGameDebugOption CGame::DebugOption;
 
 //! All initializations
 void CGame::init()
@@ -223,7 +223,7 @@ NewtonWorld* CGame::getNewtonWorld()
 //! Access to the current scene
 /** \return CScene*
 */
-screen::CScene* CGame::getCurrentScene()
+nScene::CScene* CGame::getCurrentScene()
 {
   return CurrentScene;
 }
@@ -334,7 +334,7 @@ void CGame::initScreenPositions()
 //! Initializes shader custom material values
 void CGame::initShaders()
 {
-  Shaders = shader::CShaders();
+  Shaders = nShader::CShaders();
   Shaders.createMaterials(GpuManager);
 }
 
@@ -349,7 +349,7 @@ void CGame::initLocale()
   }
   */
 
-  GlobalTranslations = new engine::CTranslation("global.ist");
+  GlobalTranslations = new nEngine::CTranslation("global.ist");
 }
 
 //!
@@ -363,8 +363,8 @@ void CGame::initDebugOptions()
 //!
 void CGame::initSoundLayer()
 {
-  SoundManager = new sound::CSoundManager();
-  MusicReference = new sound::CMusicReference();
+  SoundManager = new nSound::CSoundManager();
+  MusicReference = new nSound::CMusicReference();
 }
 
 //!
@@ -372,7 +372,7 @@ void CGame::initScenes()
 {
   Exit = false;
   SceneChanged = true;
-  NextScene = screen::SCENE_MENU;
+  NextScene = nScene::SCENE_MENU;
 }
 
 //!
@@ -399,13 +399,13 @@ void CGame::initSaveSystem()
 void CGame::checkGraphicalCapabilities()
 {
   if (!VideoDriver->queryFeature(video::EVDF_VERTEX_SHADER_1_1)) {
-    fatalError(debug::ERRCODE_50);
+    fatalError(nDebug::ERRCODE_50);
   }
   if (!VideoDriver->queryFeature(video::EVDF_PIXEL_SHADER_1_1)) {
-    fatalError(debug::ERRCODE_51);
+    fatalError(nDebug::ERRCODE_51);
   }
   if (!VideoDriver->queryFeature(video::EVDF_RENDER_TO_TARGET)) {
-    fatalError(debug::ERRCODE_52);
+    fatalError(nDebug::ERRCODE_52);
   }
 }
 
@@ -458,10 +458,10 @@ void CGame::loadNextScene()
 {
   delete CurrentScene;
   switch (NextScene) {
-    case screen::SCENE_MENU: CurrentScene = new screen::CSceneMenu(); break;
-    case screen::SCENE_MAP_ALPHA_ZONE: CurrentScene = new level::MAP_ALPHA_ZONE(); break;
+    case nScene::SCENE_MENU: CurrentScene = new nScene::CSceneMenu(); break;
+    case nScene::SCENE_MAP_ALPHA_ZONE: CurrentScene = new nMap::MAP_ALPHA_ZONE(); break;
 
-    default: fatalError(debug::ERRCODE_10); break;
+    default: fatalError(nDebug::ERRCODE_10); break;
   }
 
   CurrentScene->setSaveSlot(CurrentSave);
@@ -469,34 +469,34 @@ void CGame::loadNextScene()
 }
 
 //! Writes a warning in the console
-void CGame::warning(debug::EErrorCode code)
+void CGame::warning(nDebug::EErrorCode code)
 {
   switch (code) {
-    case debug::ERRCODE_21: throw engine::CEngineException(code, "Unable to write save file", 2); break;
-    default: throw engine::CEngineException(code, "Unknown warning", 2); break;
+    case nDebug::ERRCODE_21: throw nEngine::CEngineException(code, "Unable to write save file", 2); break;
+    default: throw nEngine::CEngineException(code, "Unknown warning", 2); break;
   }
 }
 
 //! Launches an error to error.log file by its code number
 /** \param EErrorCode the code number
 */
-void CGame::fatalError(debug::EErrorCode code)
+void CGame::fatalError(nDebug::EErrorCode code)
 {
   switch (code) {
-    case debug::ERRCODE_10: throw engine::CEngineException(code, "Unknown map id", 3); break;
-    case debug::ERRCODE_20: throw engine::CEngineException(code, "Unable to open save file", 3); break;
-    case debug::ERRCODE_30: throw engine::CEngineException(code, "Mesh file not found", 3); break;
-    case debug::ERRCODE_45: throw engine::CEngineException(code, "Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor", 3); break;
-    case debug::ERRCODE_46: throw engine::CEngineException(code, "Level Mesh need an Irrlicht node, use createNode method in scene constructor", 3); break;
-    case debug::ERRCODE_47: throw engine::CEngineException(code, "Level Mesh need a Newton body, use loadMeshCollision method in scene constructor", 3); break;
-    case debug::ERRCODE_50: throw engine::CEngineException(code, "Vertex Shaders 2.0 not supported", 3); break;
-    case debug::ERRCODE_51: throw engine::CEngineException(code, "Pixels Shaders 2.0 not supported", 3); break;
-    case debug::ERRCODE_52: throw engine::CEngineException(code, "Render to target not supported", 3); break;
-    case debug::ERRCODE_53: throw engine::CEngineException(code, "Non-square textures not supported", 3); break;
-    case debug::ERRCODE_54: throw engine::CEngineException(code, "Non-power of two texture size not supported", 3); break;
-    case debug::ERRCODE_55: throw engine::CEngineException(code, "GLSL not supported", 3); break;
-    case debug::ERRCODE_60: throw engine::CEngineException(code, "No local translation object for dialog interface", 3); break;
-    default: throw engine::CEngineException(code, "Internal error", 3); break;
+    case nDebug::ERRCODE_10: throw nEngine::CEngineException(code, "Unknown map id", 3); break;
+    case nDebug::ERRCODE_20: throw nEngine::CEngineException(code, "Unable to open save file", 3); break;
+    case nDebug::ERRCODE_30: throw nEngine::CEngineException(code, "Mesh file not found", 3); break;
+    case nDebug::ERRCODE_45: throw nEngine::CEngineException(code, "Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor", 3); break;
+    case nDebug::ERRCODE_46: throw nEngine::CEngineException(code, "Level Mesh need an Irrlicht node, use createNode method in scene constructor", 3); break;
+    case nDebug::ERRCODE_47: throw nEngine::CEngineException(code, "Level Mesh need a Newton body, use loadMeshCollision method in scene constructor", 3); break;
+    case nDebug::ERRCODE_50: throw nEngine::CEngineException(code, "Vertex Shaders 2.0 not supported", 3); break;
+    case nDebug::ERRCODE_51: throw nEngine::CEngineException(code, "Pixels Shaders 2.0 not supported", 3); break;
+    case nDebug::ERRCODE_52: throw nEngine::CEngineException(code, "Render to target not supported", 3); break;
+    case nDebug::ERRCODE_53: throw nEngine::CEngineException(code, "Non-square textures not supported", 3); break;
+    case nDebug::ERRCODE_54: throw nEngine::CEngineException(code, "Non-power of two texture size not supported", 3); break;
+    case nDebug::ERRCODE_55: throw nEngine::CEngineException(code, "GLSL not supported", 3); break;
+    case nDebug::ERRCODE_60: throw nEngine::CEngineException(code, "No local translation object for dialog interface", 3); break;
+    default: throw nEngine::CEngineException(code, "Internal error", 3); break;
   }
 
 }
@@ -540,13 +540,13 @@ CSave* CGame::getCurrentSave()
 //! Returns a pointer to the Invisible Spirit Sound Manager
 /** \return CSoundManager*
 */
-sound::CSoundManager* CGame::getSoundManager()
+nSound::CSoundManager* CGame::getSoundManager()
 {
   return SoundManager;
 }
 
 //! Returns the music interface
-sound::CMusicReference* CGame::getMusicReference()
+nSound::CMusicReference* CGame::getMusicReference()
 {
   return MusicReference;
 }

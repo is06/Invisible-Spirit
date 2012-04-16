@@ -12,20 +12,20 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 //! A reprensentation of a shadow comportement attached to a 3D entity
 class CShadow
 {
   public:
-    CShadow(engine::EShadowMode mode = SHADOW_MODE_CAST);
+    CShadow(nEngine::EShadowMode mode = SHADOW_MODE_CAST);
     ~CShadow();
 
-    const engine::EShadowMode& getMode() const;
+    const nEngine::EShadowMode& getMode() const;
 
   private:
-    engine::EShadowMode CurrentMode;
+    nEngine::EShadowMode CurrentMode;
 };
 
 }

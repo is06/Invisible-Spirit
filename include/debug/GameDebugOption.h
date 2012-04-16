@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace debug
+namespace nDebug
 {
 
 struct SGameDebugOption

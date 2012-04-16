@@ -15,14 +15,14 @@ using namespace std;
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 //! Interface for dialogs that can be used in scenes and maps
 class CDialogInterface
 {
   public:
-    CDialogInterface(const string& filePath, engine::CTranslation* translation, engine::CKeyboard* keyboard);
+    CDialogInterface(const string& filePath, nEngine::CTranslation* translation, nEngine::CKeyboard* keyboard);
     ~CDialogInterface();
 
     void render();
@@ -43,11 +43,11 @@ class CDialogInterface
 
     u16 CurrentMessageNumber;
     string CurrentDialogIdentifier;
-    hud::TDialogMap DialogList;
-    hud::CText* CurrentMessageText;
-    hud::CPicture* BackWindow;
-    engine::CTranslation* CurrentTranslation;
-    engine::CKeyboard* Keyboard;
+    nHud::TDialogMap DialogList;
+    nHud::CText* CurrentMessageText;
+    nHud::CPicture* BackWindow;
+    nEngine::CTranslation* CurrentTranslation;
+    nEngine::CKeyboard* Keyboard;
 };
 
 }

@@ -15,7 +15,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 CTargetLifeMeter::CTargetLifeMeter(s32 init, s32 min, s32 max)

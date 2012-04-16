@@ -13,7 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 class CButton : public CHud
@@ -24,7 +24,7 @@ class CButton : public CHud
 
     virtual void render() = 0;
 
-    void changeCommand(engine::ECommandIdentifier newCommand);
+    void changeCommand(nEngine::ECommandIdentifier newCommand);
     void hide();
     void show();
     void setOpacity(u8 value);

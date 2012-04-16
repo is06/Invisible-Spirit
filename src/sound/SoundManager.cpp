@@ -6,12 +6,12 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/model/Camera.h"
+#include "../../include/3d/Camera.h"
 #include "../../include/sound/SoundManager.h"
 
 namespace is06
 {
-namespace sound
+namespace nSound
 {
 
 /**
@@ -28,7 +28,7 @@ CSoundManager::CSoundManager()
  * Called by the Game main loop, this converts camera's position and rotation to
  * FMOD vector format and store them into sound manager
  */
-void CSoundManager::setEarsData(model::CCamera* activeCamera)
+void CSoundManager::setEarsData(n3D::CCamera* activeCamera)
 {
   core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
   //core::vector3df rotation = activeCamera->getNode()->getRotation();

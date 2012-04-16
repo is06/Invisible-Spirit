@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 CPicture::CPicture(f32 x, f32 y, f32 w, f32 h, const string& filePath) : CHud2DElement(x, y, w, h)
@@ -29,7 +29,7 @@ void CPicture::render()
 
 void CPicture::loadSecondTexture(const string& filePath)
 {
-  video::ITexture* second = engine::CGame::getVideoDriver()->getTexture(filePath.c_str());
+  video::ITexture* second = nEngine::CGame::getVideoDriver()->getTexture(filePath.c_str());
   if (second) {
     Material.setTexture(1, second);
   }
@@ -37,7 +37,7 @@ void CPicture::loadSecondTexture(const string& filePath)
 
 void CPicture::changeTexture(const string& filePath)
 {
-  Texture = engine::CGame::getVideoDriver()->getTexture(filePath.c_str());
+  Texture = nEngine::CGame::getVideoDriver()->getTexture(filePath.c_str());
   if (Texture) {
     Material.setTexture(0, Texture);
   }

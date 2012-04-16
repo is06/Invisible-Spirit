@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 CSaveSlot::CSaveSlot(CSave* save)

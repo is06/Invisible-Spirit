@@ -13,7 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 typedef map<u16, bool> TGamepadButtonMap;
@@ -34,8 +34,8 @@ class CGamepad
     s8 getRightJoystickXAxis();
     s8 getRightJoystickYAxis();
 
-    bool buttonPressed(u16 buttons, engine::EEventType type = engine::EVENT_ALWAYS);
-    bool dirPressed(EGamepadDirection direction, engine::EEventType type = engine::EVENT_ALWAYS);
+    bool buttonPressed(u16 buttons, nEngine::EEventType type = nEngine::EVENT_ALWAYS);
+    bool dirPressed(EGamepadDirection direction, nEngine::EEventType type = nEngine::EVENT_ALWAYS);
 
   private:
     TGamepadButtonMap ButtonOnce;

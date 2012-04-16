@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 /**
@@ -149,7 +149,7 @@ void CTextFont::getTextureFromStyle(EFontStyle style, u8 extTexture)
 
   texturePath += ".png";
 
-  FontTexture = engine::CGame::getVideoDriver()->getTexture(texturePath.c_str());
+  FontTexture = nEngine::CGame::getVideoDriver()->getTexture(texturePath.c_str());
   FontMaterial.setTexture(0, FontTexture);
   FontMaterial.Lighting = false;
 }

@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace hud
+namespace nHud
 {
 
 class CIconTextButton : public CButton
@@ -23,7 +23,7 @@ class CIconTextButton : public CButton
 
     void render();
 
-    void changeCommand(engine::ECommandIdentifier newCommand);
+    void changeCommand(nEngine::ECommandIdentifier newCommand);
 
   protected:
     CPicture* Icon;

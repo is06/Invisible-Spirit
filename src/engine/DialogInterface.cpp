@@ -15,7 +15,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace engine
+namespace nEngine
 {
 
 /**
@@ -30,14 +30,14 @@ CDialogInterface::CDialogInterface(const string& filePath, CTranslation* transla
   DialogFinished = false;
 
   if (!translation) {
-    CGame::fatalError(debug::ERRCODE_60);
+    CGame::fatalError(nDebug::ERRCODE_60);
   }
 
   CurrentTranslation = translation;
   CurrentMessageNumber = 0;
   CurrentMessageText = NULL;
 
-  BackWindow = new hud::CPicture(0, CGame::ScreenPos.Bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
+  BackWindow = new nHud::CPicture(0, CGame::ScreenPos.Bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
 
   string fullPath = "resource/text/";
 
@@ -160,11 +160,11 @@ void CDialogInterface::start(const string& dialogIdentifier)
  */
 void CDialogInterface::createMessage(const string& dialogIdentifier, u16 messageNumber)
 {
-  CurrentMessageText = new hud::CText(
+  CurrentMessageText = new nHud::CText(
     DialogList[dialogIdentifier].getMessage(messageNumber),
     -350,
     CGame::ScreenPos.Bottom + 100,
-    hud::FONT_STANDARD_48,
+    nHud::FONT_STANDARD_48,
     25
   );
 }

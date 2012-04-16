@@ -12,17 +12,17 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace sound
+namespace nSound
 {
 
 /**
  *
  */
-CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text, f32 radius) : engine::CEntity()
+CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text, f32 radius) : nEngine::CEntity()
 {
-  video::ITexture* iconTexture = engine::CGame::getVideoDriver()->getTexture("resource/debug/icons/speaker.bmp");
+  video::ITexture* iconTexture = nEngine::CGame::getVideoDriver()->getTexture("resource/debug/icons/speaker.bmp");
 
-  Icon = engine::CGame::getSceneManager()->addBillboardSceneNode(0, core::dimension2df(1.0f, 1.0f), initPos);
+  Icon = nEngine::CGame::getSceneManager()->addBillboardSceneNode(0, core::dimension2df(1.0f, 1.0f), initPos);
   Icon->setMaterialTexture(0, iconTexture);
 
   //@TODO: text
@@ -34,7 +34,7 @@ CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, con
   Position.z = initPos.Z;
 
   // Sound stream creation
-  FMOD_System_CreateStream(engine::CGame::getSoundManager()->getSystem(), streamFile.c_str(), FMOD_3D | FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
+  FMOD_System_CreateStream(nEngine::CGame::getSoundManager()->getSystem(), streamFile.c_str(), FMOD_3D | FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
 
   // Setting 3D position
   FMOD_Channel_Set3DAttributes(ChannelPtr, &Position, NULL);
@@ -76,7 +76,7 @@ void CSpeaker::setPosition(const core::vector3df& position)
 
 void CSpeaker::play()
 {
-  FMOD_System_PlaySound(engine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
+  FMOD_System_PlaySound(nEngine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
   FMOD_Channel_SetPaused(ChannelPtr, false);
 }
 
