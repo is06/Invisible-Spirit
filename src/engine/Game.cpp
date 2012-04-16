@@ -18,7 +18,18 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/scene/Scene.h"
 #include "../../include/scene/SceneMenu.h"
 #include "../../include/scene/SceneGameplay.h"
+
 #include "../../include/map/MAP_ALPHA_ZONE.h"
+
+#include "../../include/map/MAP_DUNGEON_1.h"
+#include "../../include/map/MAP_DUNGEON_2.h"
+#include "../../include/map/MAP_DUNGEON_3.h"
+#include "../../include/map/MAP_DUNGEON_4.h"
+#include "../../include/map/MAP_DUNGEON_5.h"
+#include "../../include/map/MAP_DUNGEON_6.h"
+#include "../../include/map/MAP_DUNGEON_7.h"
+#include "../../include/map/MAP_DUNGEON_8.h"
+#include "../../include/map/MAP_DUNGEON_9.h"
 
 namespace is06
 {
@@ -458,8 +469,24 @@ void CGame::loadNextScene()
 {
   delete CurrentScene;
   switch (NextScene) {
+    // Menus
     case nScene::SCENE_MENU: CurrentScene = new nScene::CSceneMenu(); break;
+
+    // Debug
     case nScene::SCENE_MAP_ALPHA_ZONE: CurrentScene = new nMap::MAP_ALPHA_ZONE(); break;
+
+    // Countries
+
+    // Dungeons
+    case nScene::SCENE_MAP_DUNGEON_1: CurrentScene = new nMap::MAP_DUNGEON_1(); break;
+    case nScene::SCENE_MAP_DUNGEON_2: CurrentScene = new nMap::MAP_DUNGEON_2(); break;
+    case nScene::SCENE_MAP_DUNGEON_3: CurrentScene = new nMap::MAP_DUNGEON_3(); break;
+    case nScene::SCENE_MAP_DUNGEON_4: CurrentScene = new nMap::MAP_DUNGEON_4(); break;
+    case nScene::SCENE_MAP_DUNGEON_5: CurrentScene = new nMap::MAP_DUNGEON_5(); break;
+    case nScene::SCENE_MAP_DUNGEON_6: CurrentScene = new nMap::MAP_DUNGEON_6(); break;
+    case nScene::SCENE_MAP_DUNGEON_7: CurrentScene = new nMap::MAP_DUNGEON_7(); break;
+    case nScene::SCENE_MAP_DUNGEON_8: CurrentScene = new nMap::MAP_DUNGEON_8(); break;
+    case nScene::SCENE_MAP_DUNGEON_9: CurrentScene = new nMap::MAP_DUNGEON_9(); break;
 
     default: fatalError(nDebug::ERRCODE_10); break;
   }

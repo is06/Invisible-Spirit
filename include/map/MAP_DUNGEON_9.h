@@ -5,31 +5,24 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAPS_H__
-#define __IS06_MAPS_H__
+#ifndef __IS06_MAP_DUNGEON_9__
+#define __IS06_MAP_DUNGEON_9__
+
+#include "../scene/SceneDungeon.h"
 
 namespace is06
 {
 namespace nMap
 {
 
-// Debug
-class MAP_ALPHA_ZONE;
+class MAP_DUNGEON_9 : public nScene::CSceneDungeon
+{
+  public:
+    MAP_DUNGEON_9();
+    ~MAP_DUNGEON_9();
 
-// Countries
-
-// Insides
-
-// Dungeons
-class MAP_DUNGEON_1;
-class MAP_DUNGEON_2;
-class MAP_DUNGEON_3;
-class MAP_DUNGEON_4;
-class MAP_DUNGEON_5;
-class MAP_DUNGEON_6;
-class MAP_DUNGEON_7;
-class MAP_DUNGEON_8;
-class MAP_DUNGEON_9;
+    void events();
+};
 
 }
 }
