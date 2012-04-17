@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/Settings.h"
 #include "../../include/engine/ShadowProcessor.h"
 
+using namespace irr;
+
 namespace is06
 {
 namespace nEngine
@@ -57,6 +59,9 @@ void CShadowProcessor::render()
   for (ShadowsIt = Shadows.begin(); ShadowsIt != Shadows.end(); ShadowsIt++) {
     // Considering entities that casts shadows
     if (ShadowsIt->second.getMode() == SHADOW_MODE_CAST || ShadowsIt->second.getMode() == SHADOW_MODE_ALL) {
+      ShadowsIt->first->setMaterialType((video::E_MATERIAL_TYPE)CGame::Shaders.ShadowMapPass1);
+      ShadowsIt->first->render();
+      ShadowsIt->first->setMaterialType((video::E_MATERIAL_TYPE)CGame::Shaders.ShadowMapPass2);
       ShadowsIt->first->render();
     }
 

@@ -9,6 +9,10 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/shader/Shaders.h"
 #include "../../include/shader/DiffuseShaderCallback.h"
 #include "../../include/shader/IceShaderCallback.h"
+#include "../../include/shader/DepthShaderCallback.h"
+#include "../../include/shader/ShadowShaderCallback.h"
+
+using namespace irr;
 
 namespace is06
 {
@@ -70,6 +74,26 @@ void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
       vertexProgram.c_str(), "mainVS", video::EVST_VS_1_1,
       pixelProgram.c_str(), "mainPS", video::EPST_PS_1_1,
       0, video::EMT_SOLID
+    );
+
+    // Shadow map pass 1 (depth buffer emulation)
+    CDepthShaderCallback* depthCallback = new CDepthShaderCallback();
+    vertexProgram = "resource/shader/" + directory + "/shadow_map_pass1.vert";
+    pixelProgram = "resource/shader/" + directory + "/shadow_map_pass1.frag";
+    ShadowMapPass1 = gpuManager->addHighLevelShaderMaterialFromFiles(
+      vertexProgram.c_str(), "mainVS", video::EVST_VS_2_0,
+      pixelProgram.c_str(), "mainPS", video::EPST_PS_2_0,
+      depthCallback, video::EMT_SOLID
+    );
+
+    // Shadow map pass 2
+    CShadowShaderCallback* shadowCallback = new CShadowShaderCallback();
+    vertexProgram = "resource/shader/" + directory + "/shadow_map_pass2.vert";
+    pixelProgram = "resource/shader/" + directory + "/shadow_map_pass2.frag";
+    ShadowMapPass2 = gpuManager->addHighLevelShaderMaterialFromFiles(
+      vertexProgram.c_str(), "mainVS", video::EVST_VS_2_0,
+      pixelProgram.c_str(), "mainPS", video::EPST_PS_2_0,
+      shadowCallback, video::EMT_SOLID
     );
   }
 }

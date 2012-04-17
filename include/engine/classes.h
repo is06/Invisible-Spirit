@@ -126,7 +126,9 @@ namespace n3D
 namespace nShader
 {
   class CDiffuseShaderCallback;
-  class CPostRenderSurface;
+  class CPostRenderGlow;
+  class CDepthShaderCallback;
+  class CShadowShaderCallback;
 }
 
 // Sound
