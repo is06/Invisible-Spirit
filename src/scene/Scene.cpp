@@ -34,8 +34,7 @@ CScene::CScene()
   Camera = NULL;
   SceneTranslations = NULL;
   Dialog = NULL;
-  Keyboard = new nEngine::CKeyboard();
-  Gamepad = new nEngine::CGamepad();
+  Control = new nEngine::CPlayerControl();
 
   Music = nEngine::CGame::getMusicReference();
   GlobalTranslations = nEngine::CGame::getGlobalTranslations();

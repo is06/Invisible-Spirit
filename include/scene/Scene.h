@@ -9,6 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_SCENE_H__
 
 #include "../engine/ShadowProcessor.h"
+#include "../engine/PlayerControl.h"
 #include "../engine/FadeColor.h"
 
 namespace is06
@@ -49,10 +50,7 @@ class CScene
     nHud::CPicture* Dummy;
 
     n3D::CCamera* Camera;
-    //PlayerControl* control;
-    //MapEditor* mapEditor;
-    nEngine::CKeyboard* Keyboard;
-    nEngine::CGamepad* Gamepad;
+    nEngine::CPlayerControl* Control;
     nEngine::CSave* GameSave;
     nEngine::CDialogInterface* Dialog;
     nSound::CMusicReference* Music;

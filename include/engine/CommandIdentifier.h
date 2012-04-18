@@ -13,15 +13,20 @@ namespace is06
 namespace nEngine
 {
 
-//! Enumeration for commands to bind to a button
+//! Enumeration for player control
 enum ECommandIdentifier
 {
-  CMD_FIRE,
-  CMD_FIRE2,
-  CMD_FIRE3,
-  CMD_ICE,
-  CMD_ICE2,
-  CMD_ICE3
+  COMMAND_MENU_UP,
+  COMMAND_MENU_DOWN,
+  COMMAND_MENU_LEFT,
+  COMMAND_MENU_RIGHT,
+  COMMAND_MENU_OK,
+  COMMAND_MENU_BACK,
+
+  COMMAND_PLAYER_JUMP,
+  COMMAND_PLAYER_GUARD,
+
+  COMMAND_COUNT
 };
 
 }

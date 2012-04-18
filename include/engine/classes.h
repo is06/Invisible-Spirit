@@ -25,6 +25,7 @@ namespace nEngine
   class CSave;
   class CSaveSlot;
   class CSaveFile;
+  class CPlayerControl;
   class CKeyboard;
   class CMouse;
   class CGamepad;
