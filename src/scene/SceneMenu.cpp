@@ -92,13 +92,13 @@ void CSceneMenu::hudRender()
 void CSceneMenu::manageMainMenu()
 {
   if (!QuitIsFading && !NewGameIsFading) {
-    if (Keyboard->pressed(KEY_DOWN, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::COMMAND_MENU_DOWN, nEngine::EVENT_ONCE)) {
       MainMenu->nextOption();
     }
-    if (Keyboard->pressed(KEY_UP, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::COMMAND_MENU_UP, nEngine::EVENT_ONCE)) {
       MainMenu->prevOption();
     }
-    if (Keyboard->pressed(KEY_SPACE, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::COMMAND_MENU_OK, nEngine::EVENT_ONCE)) {
       switch (MainMenu->getCurrentOption()) {
         case 0:
           // Fade Out and boolean to go to gameplay (demo)

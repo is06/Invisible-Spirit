@@ -54,7 +54,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   //lt = new OmniLight();
 
   // Dialogs
-  Dialog = new nEngine::CDialogInterface("MAP_ALPHA_ZONE.isd", SceneTranslations, Keyboard);
+  Dialog = new nEngine::CDialogInterface("MAP_ALPHA_ZONE.isd", SceneTranslations, Control);
 
   // Glow shader example
   //glowShader = new PostRenderGlow();
@@ -68,7 +68,7 @@ void MAP_ALPHA_ZONE::events()
 {
   nScene::CSceneGameplay::events();
 
-  if (Keyboard->pressed(KEY_KEY_S, nEngine::EVENT_ONCE)) {
+  if (Control->commandEntered(nEngine::COMMAND_DIALOG_ACTION, nEngine::EVENT_ONCE)) {
     Dialog->start("norya_first_start");
 
     /*
@@ -84,6 +84,7 @@ void MAP_ALPHA_ZONE::events()
 
   // Multi-layer music events
   // When pressing W, sequence 1 (normal) is played
+  /*
   if (Keyboard->pressed(KEY_KEY_W, nEngine::EVENT_ONCE)) {
     Music->unmuteSequence("bodhum", 1);
     Music->muteSequence("bodhum", 2);
@@ -93,6 +94,7 @@ void MAP_ALPHA_ZONE::events()
     Music->unmuteSequence("bodhum", 2);
     Music->muteSequence("bodhum", 1);
   }
+  */
 }
 
 /**

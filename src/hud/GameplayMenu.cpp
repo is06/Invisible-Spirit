@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/core.h"
 #include "../../include/engine/Game.h"
 #include "../../include/engine/Save.h"
-#include "../../include/engine/Keyboard.h"
+#include "../../include/engine/PlayerControl.h"
 #include "../../include/engine/Translation.h"
 #include "../../include/hud/GameplayMenu.h"
 #include "../../include/hud/Menu.h"
@@ -27,7 +27,7 @@ namespace nMenu
 /**
  * All elements creation
  */
-CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CKeyboard* keyboard)
+CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CPlayerControl* control)
 {
   // Properties
   Visible = false;
@@ -43,8 +43,8 @@ CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CKeybo
   MnMenu = NULL;
   SeMenu = NULL;
 
-  // Keyboard pointer
-  Keyboard = keyboard;
+  // Player control pointer
+  Control = control;
 
   // Translation pointer
   GlobalTranslations = translation;
@@ -87,10 +87,10 @@ CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CKeybo
 void CGameplayMenu::render()
 {
   if (Visible) {
-    if (Keyboard->pressed(KEY_DOWN, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::COMMAND_MENU_DOWN, nEngine::EVENT_ONCE)) {
       SectionMenu->nextOption();
     }
-    if (Keyboard->pressed(KEY_UP, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::COMMAND_MENU_UP, nEngine::EVENT_ONCE)) {
       SectionMenu->prevOption();
     }
 

@@ -30,7 +30,7 @@ namespace nMenu
 class CGameplayMenu : public CHud
 {
   public:
-    CGameplayMenu(nEngine::CTranslation* translation, nEngine::CKeyboard* keyboard);
+    CGameplayMenu(nEngine::CTranslation* translation, nEngine::CPlayerControl* control);
     ~CGameplayMenu();
 
     void render();
@@ -54,7 +54,7 @@ class CGameplayMenu : public CHud
     bool isVisible();
 
   private:
-    nEngine::CKeyboard* Keyboard;
+    nEngine::CPlayerControl* Control;
     nEngine::CTranslation* GlobalTranslations;
     CPicture* Background;
     CPicture* TopBar;

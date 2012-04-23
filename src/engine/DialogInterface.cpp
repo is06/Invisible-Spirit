@@ -7,7 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/Game.h"
-#include "../../include/engine/Keyboard.h"
+#include "../../include/engine/PlayerControl.h"
 #include "../../include/engine/Translation.h"
 #include "../../include/engine/DialogInterface.h"
 #include "../../include/hud/Text.h"
@@ -21,9 +21,9 @@ namespace nEngine
 /**
  *
  */
-CDialogInterface::CDialogInterface(const string& filePath, CTranslation* translation, CKeyboard* keyboard)
+CDialogInterface::CDialogInterface(const string& filePath, CTranslation* translation, CPlayerControl* control)
 {
-  Keyboard = keyboard;
+  Control = control;
 
   MessageDisplaying = false;
   MessageFinished = false;
@@ -80,14 +80,14 @@ void CDialogInterface::render()
     }
 
     // Display all message quickly
-    if (MessageDisplaying && Keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
+    if (MessageDisplaying && Control->commandEntered(COMMAND_DIALOG_ACTION, EVENT_ONCE)) {
       CurrentMessageText->skip();
       MessageDisplaying = false;
       MessageFinished = true;
     }
 
     // Go to next message (only if entirely displayed)
-    if (MessageFinished && Keyboard->pressed(KEY_SPACE, EVENT_ONCE)) {
+    if (MessageFinished && Control->commandEntered(COMMAND_DIALOG_ACTION, EVENT_ONCE)) {
       MessageFinished = false;
       MessageDisplaying = true;
       if (!DialogFinished) {

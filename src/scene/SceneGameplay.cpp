@@ -43,7 +43,7 @@ CSceneGameplay::CSceneGameplay() : CScene()
   // GUI Interfaces
   GameplayInterface = new nHud::CGameplayInterface();
   EnergyInterface = new nHud::CEnergyInterface();
-  GameplayMenu = new nHud::nMenu::CGameplayMenu(GlobalTranslations, Keyboard);
+  GameplayMenu = new nHud::nMenu::CGameplayMenu(GlobalTranslations, Control);
   EverySecondTimer = new nEngine::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), 9999);
 
   // Flag for fade out
@@ -68,7 +68,7 @@ void CSceneGameplay::events()
   manageCharacterCollisions();
 
   // Menu
-  if (Keyboard->pressed(KEY_KEY_D, nEngine::EVENT_ONCE)) {
+  if (Control->commandEntered(nEngine::COMMAND_OPEN_MENU, nEngine::EVENT_ONCE)) {
     GameplayMenu->toggle();
     Ayron->toggleControl();
     Camera->toggleControl();
@@ -95,6 +95,7 @@ void CSceneGameplay::manageCameraControl()
 {
   if (Camera->hasControl()) {
     // Keyboard control
+    /*
     if (Keyboard->pressed(KEY_KEY_J)) {
       Camera->goLeft(SpeedFactor * 100);
     } else if (Keyboard->pressed(KEY_KEY_L)) {
@@ -105,6 +106,7 @@ void CSceneGameplay::manageCameraControl()
     } else if (Keyboard->pressed(KEY_KEY_K)) {
       Camera->goFar(SpeedFactor * 100);
     }
+    */
 
     // Joystick control
     /*
@@ -134,6 +136,7 @@ void CSceneGameplay::manageCharacterJumps()
     Ayron->setJumping(false);
 
     // Keyboard
+    /*
     if (Keyboard->pressed(KEY_KEY_V, nEngine::EVENT_ONCE)) {
       if (!Ayron->isJumping() && !Ayron->isFalling()) {
         Ayron->setJumpDelta(Ayron->getJumpStrength());
@@ -143,6 +146,7 @@ void CSceneGameplay::manageCharacterJumps()
       Ayron->setJumping(true);
       Ayron->jump();
     }
+    */
 
     // Gamepad
     /*
@@ -167,6 +171,7 @@ void CSceneGameplay::manageCharacterMovements()
 {
   if (Ayron->hasControl()) {
     // Keyboard control
+    /*
     if (Keyboard->pressed(KEY_UP) || Keyboard->pressed(KEY_DOWN) || Keyboard->pressed(KEY_LEFT) || Keyboard->pressed(KEY_RIGHT)) {
       // Character's direction from keyboard's arrows angle
       Ayron->getNode()->setRotation(core::vector3df(
@@ -187,6 +192,7 @@ void CSceneGameplay::manageCharacterMovements()
         Ayron->goForward(SpeedFactor * Keyboard->getDirectionYAxis());
       }
     }
+    */
 
     // Joystick control
     /*
@@ -252,7 +258,7 @@ void CSceneGameplay::manageCharacterCollisions()
  */
 void CSceneGameplay::manageMenuControl()
 {
-  if (Keyboard->pressed(KEY_SPACE, nEngine::EVENT_ONCE)) {
+  if (Control->commandEntered(nEngine::COMMAND_MENU_OK, nEngine::EVENT_ONCE)) {
     if (GameplayMenu->getSectionMenu()->getCurrentOption() == 9) {
       QuitIsFading = true;
       fadeOut(0.5f);

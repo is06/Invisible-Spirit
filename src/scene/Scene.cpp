@@ -203,8 +203,7 @@ CScene::~CScene()
     delete Dialog;
   }
 
-  delete Keyboard;
-  delete Gamepad;
+  delete Control;
   delete Dummy;
 
   //delete shadows;

@@ -22,7 +22,7 @@ namespace nEngine
 class CDialogInterface
 {
   public:
-    CDialogInterface(const string& filePath, nEngine::CTranslation* translation, nEngine::CKeyboard* keyboard);
+    CDialogInterface(const string& filePath, nEngine::CTranslation* translation, nEngine::CPlayerControl* control);
     ~CDialogInterface();
 
     void render();
@@ -47,7 +47,7 @@ class CDialogInterface
     nHud::CText* CurrentMessageText;
     nHud::CPicture* BackWindow;
     nEngine::CTranslation* CurrentTranslation;
-    nEngine::CKeyboard* Keyboard;
+    nEngine::CPlayerControl* Control;
 };
 
 }
