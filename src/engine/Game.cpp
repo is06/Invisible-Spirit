@@ -20,6 +20,15 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/scene/SceneGameplay.h"
 
 #include "../../include/map/MAP_ALPHA_ZONE.h"
+#include "../../include/map/MAP_DUNGEON_1.h"
+#include "../../include/map/MAP_DUNGEON_2.h"
+#include "../../include/map/MAP_DUNGEON_3.h"
+#include "../../include/map/MAP_DUNGEON_4.h"
+#include "../../include/map/MAP_DUNGEON_5.h"
+#include "../../include/map/MAP_DUNGEON_6.h"
+#include "../../include/map/MAP_DUNGEON_7.h"
+#include "../../include/map/MAP_DUNGEON_8.h"
+#include "../../include/map/MAP_DUNGEON_9.h"
 
 namespace is06
 {
@@ -384,13 +393,13 @@ void CGame::initControls()
   Device->activateJoysticks(joystickInfo);
 }
 
-//!
+//! Creates the Newton world object
 void CGame::initPhysics()
 {
   GameNewtonWorld = NewtonCreate();
 }
 
-//!
+//! Creates an empty save memory slot
 void CGame::initSaveSystem()
 {
   CurrentSave = new CSave();
@@ -468,7 +477,6 @@ void CGame::loadNextScene()
     // Countries
 
     // Dungeons
-    /*
     case nScene::SCENE_MAP_DUNGEON_1: CurrentScene = new nMap::MAP_DUNGEON_1(); break;
     case nScene::SCENE_MAP_DUNGEON_2: CurrentScene = new nMap::MAP_DUNGEON_2(); break;
     case nScene::SCENE_MAP_DUNGEON_3: CurrentScene = new nMap::MAP_DUNGEON_3(); break;
@@ -478,7 +486,6 @@ void CGame::loadNextScene()
     case nScene::SCENE_MAP_DUNGEON_7: CurrentScene = new nMap::MAP_DUNGEON_7(); break;
     case nScene::SCENE_MAP_DUNGEON_8: CurrentScene = new nMap::MAP_DUNGEON_8(); break;
     case nScene::SCENE_MAP_DUNGEON_9: CurrentScene = new nMap::MAP_DUNGEON_9(); break;
-    */
 
     default: fatalError(nDebug::ERRCODE_10); break;
   }
