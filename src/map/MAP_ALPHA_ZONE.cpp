@@ -33,7 +33,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   SceneTranslations = new nEngine::CTranslation("MAP_ALPHA_ZONE.ist");
 
   // Level Mesh
-  Level->loadMesh("resource/mesh/map/alphazone.obj");
+  Level->loadMesh("resource/mesh/level/alphazone.obj");
   Level->createNode(core::vector3df(0, 0, 0));
   Level->loadMeshCollision();
   Level->hide();
@@ -68,7 +68,7 @@ void MAP_ALPHA_ZONE::events()
 {
   nScene::CSceneGameplay::events();
 
-  if (Control->commandEntered(nEngine::COMMAND_DIALOG_ACTION, nEngine::EVENT_ONCE)) {
+  if (Control->commandEntered(nEngine::COMMAND_PLAYER_GUARD, nEngine::EVENT_ONCE)) {
     Dialog->start("norya_first_start");
 
     /*
