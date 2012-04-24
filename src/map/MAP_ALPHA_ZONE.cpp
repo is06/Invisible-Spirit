@@ -36,9 +36,9 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   Level->loadMesh("resource/mesh/level/alphazone.obj");
   Level->createNode(core::vector3df(0, 0, 0));
   Level->loadMeshCollision();
-  Level->hide();
 
-  Ayron->hide();
+  //Level->hide();
+  //Ayron->hide();
 
   // Multi-layers music example
   //music->play("bodhum");

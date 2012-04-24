@@ -36,9 +36,11 @@ CSceneGameplay::CSceneGameplay() : CScene()
 
   // Ayron info
   Ayron = new n3D::CPlayableCharacter(Camera);
-  //ayron->setShadowMode(SHADOW_MODE_CAST);
+  //Lumi = new n3D::CPlayableCharacter(Camera, MODEL_LUMI);
+  //Ayron->setShadowMode(SHADOW_MODE_CAST);
   // Link Ayron to Third-Person Camera
   Camera->linkEntity(Ayron);
+  //Camera->linkEntity(Lumi);
 
   // GUI Interfaces
   GameplayInterface = new nHud::CGameplayInterface();
@@ -88,142 +90,69 @@ void CSceneGameplay::everySecond()
   GameSave->incInteger(21, 1);
 }
 
-/**
- * Manages camera control. Called every cycke
- */
+//! Manages camera control. Called every cycle
 void CSceneGameplay::manageCameraControl()
 {
   if (Camera->hasControl()) {
-    // Keyboard control
-    /*
-    if (Keyboard->pressed(KEY_KEY_J)) {
-      Camera->goLeft(SpeedFactor * 100);
-    } else if (Keyboard->pressed(KEY_KEY_L)) {
-      Camera->goRight(SpeedFactor * 100);
+    if (Control->getCameraXAxis() < -35) {
+      Camera->goLeft(SpeedFactor * Control->getCameraXAxis() * -1);
+    } else if (Control->getCameraXAxis() > 35) {
+      Camera->goRight(SpeedFactor * Control->getCameraXAxis());
     }
-    if (Keyboard->pressed(KEY_KEY_I)) {
-      Camera->goNear(SpeedFactor * 100);
-    } else if (Keyboard->pressed(KEY_KEY_K)) {
-      Camera->goFar(SpeedFactor * 100);
+    if (Control->getCameraYAxis() > 35) {
+      Camera->goNear(SpeedFactor * Control->getCameraYAxis());
+    } else if (Control->getCameraYAxis() < -35) {
+      Camera->goFar(SpeedFactor * Control->getCameraYAxis() * -1);
     }
-    */
-
-    // Joystick control
-    /*
-    if (fabs(gamepad->getRightJoystickXAxis()) > 35
-    || fabs(gamepad->getRightJoystickYAxis()) > 35) {
-      if (gamepad->getRightJoystickXAxis() < -35) {
-        cam->goLeft(speedFactor * gamepad->getRightJoystickXAxis() * -1);
-      } else if (gamepad->getRightJoystickXAxis() > 35) {
-        cam->goRight(speedFactor * gamepad->getRightJoystickXAxis());
-      }
-      if (gamepad->getRightJoystickYAxis() > 35) {
-        cam->goNear(speedFactor * gamepad->getRightJoystickYAxis());
-      } else if (gamepad->getRightJoystickYAxis() < -35) {
-        cam->goFar(speedFactor * gamepad->getRightJoystickYAxis() * -1);
-      }
-    }
-    */
   }
 }
 
-/**
- * Manages Character's jumps. Called every cycle
- */
+//! Manages Character's jumps. Called every cycle
 void CSceneGameplay::manageCharacterJumps()
 {
   if (Ayron->hasControl()) {
     Ayron->setJumping(false);
 
-    // Keyboard
-    /*
-    if (Keyboard->pressed(KEY_KEY_V, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::COMMAND_PLAYER_JUMP, nEngine::EVENT_ONCE)) {
       if (!Ayron->isJumping() && !Ayron->isFalling()) {
         Ayron->setJumpDelta(Ayron->getJumpStrength());
       }
     }
-    if (Keyboard->pressed(KEY_KEY_V)) {
+    if (Control->commandEntered(nEngine::COMMAND_PLAYER_JUMP)) {
       Ayron->setJumping(true);
       Ayron->jump();
     }
-    */
-
-    // Gamepad
-    /*
-    if (gamepad->buttonPressed(GP_BUTTON_B, EVENT_ONCE)) {
-      if (!ayron->isJumping && !ayron->isFalling) {
-        ayron->setJumpDelta(ayron->getJumpStrength());
-      }
-    }
-    if (gamepad->buttonPressed(GP_BUTTON_B)) {
-      ayron->isJumping = true;
-      ayron->jump();
-    }
-    */
   }
 }
 
-/**
- * This function manages Character's movements, both keyboard and gamepad
- * are functionnal. Called every cycle
- */
+//! This function manages Character's movements. Called every cycle
 void CSceneGameplay::manageCharacterMovements()
 {
   if (Ayron->hasControl()) {
-    // Keyboard control
-    /*
-    if (Keyboard->pressed(KEY_UP) || Keyboard->pressed(KEY_DOWN) || Keyboard->pressed(KEY_LEFT) || Keyboard->pressed(KEY_RIGHT)) {
-      // Character's direction from keyboard's arrows angle
+    // Character's Movements
+    if (Control->getPlayerXAxis() > 35) {
+      Ayron->goRight(SpeedFactor * Control->getPlayerXAxis());
+    } else if (Control->getPlayerXAxis() < -35) {
+      Ayron->goLeft(SpeedFactor * Control->getPlayerXAxis() * -1);
+    }
+    if (Control->getPlayerYAxis() > 35) {
+      Ayron->goForward(SpeedFactor * Control->getPlayerYAxis());
+    } else if (Control->getPlayerYAxis() < -35) {
+      Ayron->goBackward(SpeedFactor * Control->getPlayerYAxis() * -1);
+    }
+
+    if (Control->getPlayerDirection() != 0.0f) {
+      // Character's direction from angle
       Ayron->getNode()->setRotation(core::vector3df(
         Ayron->getNode()->getRotation().X,
-        Camera->getNode()->getRotation().Y - (Keyboard->getDirectionAngle() + core::radToDeg(core::PI / 2)),
+        Camera->getNode()->getRotation().Y - (Control->getPlayerDirection() + core::radToDeg(core::PI / 2)),
         Ayron->getNode()->getRotation().Z
       ));
-
-      if (Keyboard->pressed(KEY_LEFT)) {
-        Ayron->goLeft(SpeedFactor * Keyboard->getDirectionXAxis() * -1);
-      } else if (Keyboard->pressed(KEY_RIGHT)) {
-        Ayron->goRight(SpeedFactor * Keyboard->getDirectionXAxis());
-      }
-
-      if (Keyboard->pressed(KEY_DOWN)) {
-        Ayron->goBackward(SpeedFactor * Keyboard->getDirectionYAxis() * -1);
-      } else if (Keyboard->pressed(KEY_UP)) {
-        Ayron->goForward(SpeedFactor * Keyboard->getDirectionYAxis());
-      }
     }
-    */
-
-    // Joystick control
-    /*
-    if (fabs(gamepad->getLeftJoystickXAxis()) > 35 || fabs(gamepad->getLeftJoystickYAxis()) > 35) {
-      // Character's direction from joystick's angle
-      ayron->getNode()->setRotation(core::vector3df(
-        ayron->getNode()->getRotation().X,
-        cam->getNode()->getRotation().Y - (gamepad->getLeftJoystickAngle() + core::radToDeg(core::PI / 2)),
-        ayron->getNode()->getRotation().Z
-      ));
-
-      if (gamepad->getLeftJoystickXAxis() < -35) {
-        ayron->goLeft(speedFactor * gamepad->getLeftJoystickXAxis() * -1);
-      } else if (gamepad->getLeftJoystickXAxis() > 35) {
-        ayron->goRight(speedFactor * gamepad->getLeftJoystickXAxis());
-      }
-
-      if (gamepad->getLeftJoystickYAxis() < -35) {
-        ayron->goBackward(speedFactor * gamepad->getLeftJoystickYAxis() * -1);
-      } else if (gamepad->getLeftJoystickYAxis() > 35) {
-        ayron->goForward(speedFactor * gamepad->getLeftJoystickYAxis());
-      }
-    }
-    */
   }
 }
 
-/**
- * This function manages Character collision with floor and wall.
- * Called every cycle
- */
+//! This function manages Character collision with floor and wall. Called every cycle
 void CSceneGameplay::manageCharacterCollisions()
 {
   // Check if level was created

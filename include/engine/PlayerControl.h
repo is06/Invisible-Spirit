@@ -25,10 +25,11 @@ class CPlayerControl
     bool commandEntered(ECommandIdentifier command, EEventType eventType=EVENT_ALWAYS);
 
     f32 getPlayerDirection();
-    f32 getPlayerSpeed();
+    f32 getPlayerXAxis();
+    f32 getPlayerYAxis();
 
-    f32 getCameraDirection();
-    f32 getCameraSpeed();
+    f32 getCameraXAxis();
+    f32 getCameraYAxis();
 
   private:
     CKeyboard* Keyboard;
