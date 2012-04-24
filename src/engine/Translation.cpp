@@ -14,6 +14,7 @@ namespace is06
 namespace nEngine
 {
 
+//! Constructor
 CTranslation::CTranslation(const string& filePath)
 {
   string fullPath = "resource/text/";
@@ -35,6 +36,7 @@ CTranslation::CTranslation(const string& filePath)
   loadTextData(fullPath);
 }
 
+//! Loads all text data from file according to the current locale
 void CTranslation::loadTextData(const string& fullPath)
 {
   //cout << "Translation file loaded : " << fullPath.c_str() << endl;
@@ -80,6 +82,7 @@ void CTranslation::loadTextData(const string& fullPath)
   }
 }
 
+//! Returns a specific string translation
 const string& CTranslation::getTranslation(const string& identifier) const
 {
   //cout << "'" << textData.find(identifier) << "' <-> '" << textData.end() << "'" << endl;

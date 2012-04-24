@@ -15,10 +15,10 @@ namespace is06
 namespace nEngine
 {
 
+//! Tests if a specific key is pressed
 /**
- * Permet de savoir si une touche spécifique est pressée
- * @param EKEY_CODE code le code de la touche à tester
- * @param EventType type le type d'événement entre ONCE et ALWAYS
+ * \param EKEY_CODE code
+ * \param EventType type
  */
 bool CKeyboard::pressed(EKEY_CODE code, nEngine::EEventType type)
 {
@@ -29,9 +29,9 @@ bool CKeyboard::pressed(EKEY_CODE code, nEngine::EEventType type)
   }
 }
 
+//! Tests if any key is pressed
 /**
- * Permet de savoir si n'importe quelle touche est pressée
- * @param EventType type le type d'événement entre ONCE et ALWAYS
+ * \param EventType type
  */
 bool CKeyboard::any(EEventType type)
 {
@@ -42,6 +42,7 @@ bool CKeyboard::any(EEventType type)
   }
 }
 
+//! Returns the joystick equivalent of the X axis from the arrows
 s8 CKeyboard::getDirectionXAxis()
 {
   if (CGame::getEventManager()->isKeyDown(KEY_LEFT)) {
@@ -71,6 +72,7 @@ s8 CKeyboard::getDirectionXAxis()
   }
 }
 
+//! Returns the joystick equivalent of the Y axis from the arrows
 s8 CKeyboard::getDirectionYAxis()
 {
   if (CGame::getEventManager()->isKeyDown(KEY_UP)) {
@@ -100,6 +102,7 @@ s8 CKeyboard::getDirectionYAxis()
   }
 }
 
+//! Returns the joystick equivalent of the direction angle from the arrows
 f32 CKeyboard::getDirectionAngle()
 {
   return DirectionAngle;

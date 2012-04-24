@@ -59,17 +59,29 @@ f32 CGame::SpeedFactor;
 
 //! Settings interface
 /**
- * \section usecase Use case
+ * \section settings_usecase Settings use case
  * \code
- * nEngine::CGame::Settings->getParamString("display", "renderer");
+ * string rendererName = nEngine::CGame::Settings->getParamString("display", "renderer");
  * \endcode
  */
 nEngine::CSettings* CGame::Settings;
 
 //! Screen position information
+/**
+ * \section screenpos_usecase ScreenPos use case
+ * \code
+ * f32 topEdge = nEngine::CGame::ScreenPos.Top;
+ * \endcode
+ */
 nEngine::SScreenPosition CGame::ScreenPos;
 
 //! Shaders interface
+/**
+ * \section shaders_usecase Shaders use case
+ * \code
+ * Material.MaterialType = (video::E_MATERIAL_TYPE)nEngine::CGame::Shaders.HorizontalBlur;
+ * \endcode
+ */
 nShader::CShaders CGame::Shaders;
 
 //! Debug options information
@@ -191,56 +203,63 @@ void CGame::run()
 }
 
 //! Access to the Irrlicht device
-/** \return IrrlichtDevice*
-*/
+/**
+ * \return IrrlichtDevice*
+ */
 IrrlichtDevice* CGame::getDevice()
 {
   return Device;
 }
 
 //! Access to the Irrlicht video driver
-/** \return IVideoDriver*
-*/
+/**
+ * \return IVideoDriver*
+ */
 video::IVideoDriver* CGame::getVideoDriver()
 {
   return VideoDriver;
 }
 
 //! Access to the Irrlicht scene manager
-/** \return ISceneManager*
-*/
+/**
+ * \return ISceneManager*
+ */
 scene::ISceneManager* CGame::getSceneManager()
 {
   return SceneManager;
 }
 
 //! Access to the Debug GUI interface
-/** \return IGUIEnvironment*
-*/
+/**
+ * \return IGUIEnvironment*
+ */
 gui::IGUIEnvironment* CGame::getDebugGUI()
 {
   return DebugGUI;
 }
 
 //! Access to the Newton world entity
-/** \return NewtonWorld*
-*/
+/**
+ * \return NewtonWorld*
+ */
 NewtonWorld* CGame::getNewtonWorld()
 {
   return GameNewtonWorld;
 }
 
 //! Access to the current scene
-/** \return CScene*
-*/
+/**
+ * \return CScene*
+ */
 nScene::CScene* CGame::getCurrentScene()
 {
   return CurrentScene;
 }
 
 //! Access to the Event manager
-/** \return CEventManager*
-*/
+/**
+ * \return CEventManager*
+ */
 CEventManager* CGame::getEventManager()
 {
   return EventManager;
@@ -293,7 +312,7 @@ void CGame::initIrrlichtInterfaces()
   checkGraphicalCapabilities();
 }
 
-//!
+//! Sets some rendering behavior information like framerate or if the game must leave some CPU to the other programs
 void CGame::initRenderSystem()
 {
   // Render speed
@@ -433,16 +452,18 @@ void CGame::changeScreenDisplay(u32 width, u32 height, u8 colorDepth)
 }
 
 //! Returns constant framerate target value
-/** \return f32
-*/
+/**
+ * \return f32
+ */
 f32 CGame::getFramerate()
 {
   return Framerate;
 }
 
 //! Returns the speed factor, used to perform computation on movements and time
-/** \return f32
-*/
+/**
+ * \return f32
+ */
 f32 CGame::getSpeedFactor()
 {
   return SpeedFactor;
@@ -455,8 +476,9 @@ f32 CGame::getCurrentTime()
 }
 
 //! Changes the current scene by passing its id
-/** \param s32 the scene id
-*/
+/**
+ * \param s32 the scene id
+ */
 void CGame::changeScene(s32 id)
 {
   NextScene = id;
@@ -504,8 +526,9 @@ void CGame::warning(nDebug::EErrorCode code)
 }
 
 //! Launches an error to error.log file by its code number
-/** \param EErrorCode the code number
-*/
+/**
+ * \param EErrorCode the code number
+ */
 void CGame::fatalError(nDebug::EErrorCode code)
 {
   switch (code) {
@@ -528,8 +551,9 @@ void CGame::fatalError(nDebug::EErrorCode code)
 }
 
 //! Writes an error message in error.log file
-/** \param EngineException& to write
-*/
+/**
+ * \param EngineException& to write
+ */
 void CGame::errorLog(const exception& e)
 {
   ofstream errorLogFile("error.log", ios::out | ios::app);
@@ -540,32 +564,36 @@ void CGame::errorLog(const exception& e)
 }
 
 //! Get the current locale defined in configuration file
-/** \return ELocaleIdentifier
-*/
+/**
+ * \return ELocaleIdentifier
+ */
 ELocaleIdentifier CGame::getCurrentLocale()
 {
   return CurrentLocale;
 }
 
 //! Returns a pointer to the global translation interface
-/** \return CTranslation*
-*/
+/**
+ * \return CTranslation*
+ */
 CTranslation* CGame::getGlobalTranslations()
 {
   return GlobalTranslations;
 }
 
 //! Returns a pointer to the current save slot
-/** \return CSave*
-*/
+/**
+ * \return CSave*
+ */
 CSave* CGame::getCurrentSave()
 {
   return CurrentSave;
 }
 
 //! Returns a pointer to the Invisible Spirit Sound Manager
-/** \return CSoundManager*
-*/
+/**
+ * \return CSoundManager*
+ */
 nSound::CSoundManager* CGame::getSoundManager()
 {
   return SoundManager;

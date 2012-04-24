@@ -14,9 +14,7 @@ namespace is06
 namespace nEngine
 {
 
-/**
- * Reads the settings.ini file and stores all parameters value in a map
- */
+//! Reads the settings.ini file and stores all parameters value in a map
 CSettings::CSettings()
 {
   fstream fileStream("settings.ini", ios::in);
@@ -114,22 +112,22 @@ CSettings::CSettings()
   fileStream.close();
 }
 
+//! Returns the string value of a parameter
 /**
- * Returns the string value of a parameter
- * @param const string& groupName the name of the group of parameters
- * @param const string& paramName the name of the parameter
- * @return string& a reference of the value
+ * \param const string& groupName the name of the group of parameters
+ * \param const string& paramName the name of the parameter
+ * \return string& a reference of the value
  */
 string& CSettings::getParamString(const string& groupName, const string& paramName)
 {
   return Data[groupName]->getParams()[paramName];
 }
 
+//! Returns the integer value of a parameter
 /**
- * Returns the integer value of a parameter
- * @param const string& groupName the name of the group of parameters
- * @param const string& paramName the name of the parameter
- * @return s32 the value
+ * \param const string& groupName the name of the group of parameters
+ * \param const string& paramName the name of the parameter
+ * \return s32 the value
  */
 s32 CSettings::getParamInt(const string& groupName, const string& paramName)
 {
@@ -143,6 +141,7 @@ s32 CSettings::getParamInt(const string& groupName, const string& paramName)
   }
 }
 
+//! Destructor, does nothing
 CSettings::~CSettings()
 {
 

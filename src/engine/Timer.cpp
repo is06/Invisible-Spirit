@@ -14,10 +14,11 @@ namespace is06
 namespace nEngine
 {
 
+//! Constructor
 /**
- * @param f32 end duration
- * @param VoidCallback method to call
- * @param s32 loopLimit number of calls (-1 = infinite)
+ * \param f32 end duration
+ * \param VoidCallback method to call
+ * \param s32 loopLimit number of calls (-1 = infinite)
  */
 CTimer::CTimer(f32 end, TVoidCallback callback, s32 loopLimit)
 {
@@ -25,9 +26,7 @@ CTimer::CTimer(f32 end, TVoidCallback callback, s32 loopLimit)
   reinit(end, callback, loopLimit);
 }
 
-/**
- *
- */
+//! The update methods that must be called in the scene event loop
 void CTimer::update()
 {
   if (Running && CurrentLoop < CurrentLoopLimit) {
@@ -50,10 +49,11 @@ void CTimer::update()
   }
 }
 
+//! Resets the timer with different parameters and starts it
 /**
- * @param f32 end duration
- * @param VoidCallback method to call
- * @param s32 loopLimit number of calls (-1 = infinite)
+ * \param f32 end duration
+ * \param VoidCallback method to call
+ * \param s32 loopLimit number of calls (-1 = infinite)
  */
 void CTimer::reinit(f32 end, TVoidCallback callback, s32 loopLimit)
 {

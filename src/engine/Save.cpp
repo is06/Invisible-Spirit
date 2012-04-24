@@ -15,17 +15,12 @@ namespace is06
 namespace nEngine
 {
 
-/**
- * Default constructor
- */
+//! Default constructor
 CSave::CSave()
 {
 
 }
 
-/**
- * @todo
- */
 void CSave::loadPrimitiveInfo(u8 slot)
 {
   CSaveFile* saveFile = new CSaveFile();
@@ -49,9 +44,7 @@ void CSave::loadPrimitiveInfo(u8 slot)
   }
 }
 
-/**
- *
- */
+//! Loads all game save variable from a file
 void CSave::load(u8 slot)
 {
   CSaveFile* saveFile = new CSaveFile();
@@ -77,9 +70,7 @@ void CSave::load(u8 slot)
   delete saveFile;
 }
 
-/**
- *
- */
+//! Writes the current game save to a file
 void CSave::write(u8 slot)
 {
   CSaveFile* saveFile = new CSaveFile();
@@ -98,9 +89,9 @@ void CSave::write(u8 slot)
   delete saveFile;
 }
 
+//! This function creates a brand new file for the player
 /**
- * This function creates a brand new file for the player, every memorized pieces
- * of data are initialized here, like the start map or character HP...
+ * Every memorized pieces of data are initialized here, like the start map or character HP...
  * It changes the current map of the game so the player can start to play.
  */
 void CSave::createNewFile(nEngine::EDifficultyLevel difficultyLevel)
@@ -109,58 +100,55 @@ void CSave::createNewFile(nEngine::EDifficultyLevel difficultyLevel)
   CGame::changeScene(IntegerList[11]);
 }
 
-/**
- *
- */
+//! Gets an integer value from the game save
 s32& CSave::getInteger(u32 index)
 {
   return IntegerList[index];
 }
 
-/**
- *
- */
+//! Gets a boolean (or flag) value from the game save
 bool& CSave::getBoolean(u32 index)
 {
   return BooleanList[index];
 }
 
-/**
- *
- */
+//! Gets a string value from the game save
 string& CSave::getString(u32 index)
 {
   return StringList[index];
 }
 
+//! Changes an integer value to the game save
 void CSave::setInteger(u32 index, s32 value)
 {
   IntegerList[index] = value;
 }
 
+//! Increments an integer value
 void CSave::incInteger(u32 index, s32 value)
 {
   IntegerList[index] += value;
 }
 
+//! Decrements an integer value
 void CSave::decInteger(u32 index, s32 value)
 {
   IntegerList[index] -= value;
 }
 
+//! Changes a boolean (or flag) value to the game save
 void CSave::setBoolean(u32 index, bool value)
 {
   BooleanList[index] = value;
 }
 
+//! Changes a string value to the game save
 void CSave::setString(u32 index, const string& value)
 {
   StringList[index] = value;
 }
 
-/**
- *
- */
+//! Sets all general default value in the game save when the player starts a new game
 void CSave::setGeneralDefaultValues(nEngine::EDifficultyLevel difficultyLevel)
 {
   // Primitive Info
@@ -180,9 +168,7 @@ void CSave::setGeneralDefaultValues(nEngine::EDifficultyLevel difficultyLevel)
   IntegerList[102] = 180; // Max HP
 }
 
-/**
- *
- */
+//! Destructor, does nothing
 CSave::~CSave()
 {
 

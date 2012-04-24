@@ -18,8 +18,12 @@ namespace is06
 namespace nEngine
 {
 
+//! Constructor
 /**
- *
+ * \section constr_usecase Constructor use case
+ * \code
+ * Dialog = new nEngine::CDialogInterface("MAP_ALPHA_ZONE.isd", SceneTranslations, Control);
+ * \endcode
  */
 CDialogInterface::CDialogInterface(const string& filePath, CTranslation* translation, CPlayerControl* control)
 {
@@ -57,9 +61,7 @@ CDialogInterface::CDialogInterface(const string& filePath, CTranslation* transla
   loadDialogData(fullPath);
 }
 
-/**
- *
- */
+//! Rendering function, must be called on every cycle
 void CDialogInterface::render()
 {
   // Background of dialog
@@ -97,9 +99,7 @@ void CDialogInterface::render()
   }
 }
 
-/**
- * @todo
- */
+//! Loads dialog data from an .isd file
 void CDialogInterface::loadDialogData(const string& fullPath)
 {
   fstream fileStream(fullPath.c_str(), ios::in);
@@ -145,8 +145,12 @@ void CDialogInterface::loadDialogData(const string& fullPath)
   }
 }
 
+//! Starts a specific dialog in a scene
 /**
- *
+ * \section start_usecase Start use case
+ * \code
+ * Dialog->start("norya_first_start");
+ * \endcode
  */
 void CDialogInterface::start(const string& dialogIdentifier)
 {
@@ -155,9 +159,7 @@ void CDialogInterface::start(const string& dialogIdentifier)
   MessageDisplaying = true;
 }
 
-/**
- *
- */
+//! Creates and displays a message from the dialog onto the screen
 void CDialogInterface::createMessage(const string& dialogIdentifier, u16 messageNumber)
 {
   CurrentMessageText = new nHud::CText(
@@ -169,9 +171,7 @@ void CDialogInterface::createMessage(const string& dialogIdentifier, u16 message
   );
 }
 
-/**
- *
- */
+//! Go to the next message in this dialog
 void CDialogInterface::nextMessage()
 {
   delete CurrentMessageText;
@@ -179,25 +179,21 @@ void CDialogInterface::nextMessage()
   createMessage(CurrentDialogIdentifier, CurrentMessageNumber);
 }
 
-/**
- *
- */
+//! Go to a specific message in this dialog
 void CDialogInterface::goToMessage(u32 number)
 {
-
+  delete CurrentMessageText;
+  CurrentMessageNumber = number;
+  createMessage(CurrentDialogIdentifier, CurrentMessageNumber);
 }
 
-/**
- * @todo
- */
+//! Returns true if the current dialog is finished
 bool CDialogInterface::finished()
 {
   return false;
 }
 
-/**
- *
- */
+//! Destructor
 CDialogInterface::~CDialogInterface()
 {
   delete BackWindow;

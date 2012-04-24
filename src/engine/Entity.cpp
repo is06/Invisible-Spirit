@@ -13,9 +13,7 @@ namespace is06
 namespace nEngine
 {
 
-/**
- * Constructor of all entities
- */
+//! Constructor of all entities
 CEntity::CEntity()
 {
 

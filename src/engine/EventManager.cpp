@@ -13,9 +13,7 @@ namespace is06
 namespace nEngine
 {
 
-/**
- * Initializes arrays for key listening
- */
+//! Initializes arrays for key listening
 CEventManager::CEventManager() : IEventReceiver()
 {
   for (u32 i = 0; i < KEY_KEY_CODES_COUNT; i++) {
@@ -27,10 +25,10 @@ CEventManager::CEventManager() : IEventReceiver()
   AnyOnce = false;
 }
 
+//! When an Irrlicht event occurs
 /**
- * When an Irrlicht event occurs
- * @param SEvent& event event object
- * @return bool true if an event occurs
+ * \param SEvent& event event object
+ * \return bool true if an event occurs
  */
 bool CEventManager::OnEvent(const SEvent& event)
 {
@@ -147,20 +145,20 @@ bool CEventManager::OnEvent(const SEvent& event)
   return false;
 }
 
+//! Tests if a specific key is pressed
 /**
- * Tests if a specific key is pressed
- * @param EKEY_CODE code the key code to test
- * @return bool true if key is pressed
+ * \param EKEY_CODE code the key code to test
+ * \return bool true if key is pressed
  */
 bool CEventManager::isKeyDown(EKEY_CODE code)
 {
   return KeyDown[code];
 }
 
+//! Tests if a specific key is pressed but only one time until key is released
 /**
- * Tests if a specific key is pressed but only one time until key is released
- * @param EKEY_CODE code the key code to test
- * @return bool true if key just has been pressed
+ * \param EKEY_CODE code the key code to test
+ * \return bool true if key just has been pressed
  */
 bool CEventManager::isKeyDownOnce(EKEY_CODE code)
 {
@@ -177,18 +175,18 @@ bool CEventManager::isKeyDownOnce(EKEY_CODE code)
   return false;
 }
 
+//! Tests if any key is pressed
 /**
- * Tests if any key is pressed
- * @return bool true if any key is pressed
+ * \return bool true if any key is pressed
  */
 bool CEventManager::anyKeyDown()
 {
   return AnyDown;
 }
 
+//! Tests if any key is pressed but only one time until key is released
 /**
- * Tests if any key is pressed but only one time until key is released
- * @return bool true if any key just has been pressed
+ * \return bool true if any key just has been pressed
  */
 bool CEventManager::anyKeyDownOnce()
 {
@@ -205,98 +203,65 @@ bool CEventManager::anyKeyDownOnce()
   return false;
 }
 
+//! Returns the SGUIEvent object of the manager
 /**
- * Returns the SGUIEvent object of the manager
- * @return SGUIEvent&
+ * \return SGUIEvent&
  */
 const SEvent::SGUIEvent& CEventManager::getGUIEvent()
 {
   return GuiEvent;
 }
 
-/**
- * @todo
- */
 u8 CEventManager::getLeftJoystickForce()
 {
   return LeftJoystickForce;
 }
 
-/**
- * @todo
- */
 f32 CEventManager::getLeftJoystickAngle()
 {
   return LeftJoystickAngle;
 }
 
-/**
- * @todo
- */
 s8 CEventManager::getLeftJoystickXAxis()
 {
   return (s8)LeftJoystickXAxis;
 }
 
-/**
- * @todo
- */
 s8 CEventManager::getLeftJoystickYAxis()
 {
   return (s8)LeftJoystickYAxis;
 }
 
-/**
- * @todo
- */
 u8 CEventManager::getRightJoystickForce()
 {
   return RightJoystickForce;
 }
 
-/**
- * @todo
- */
 f32 CEventManager::getRightJoystickAngle()
 {
   return RightJoystickAngle;
 }
 
-/**
- * @todo
- */
 s8 CEventManager::getRightJoystickXAxis()
 {
   return (s8)RightJoystickXAxis;
 }
 
-/**
- * @todo
- */
 s8 CEventManager::getRightJoystickYAxis()
 {
   return (s8)RightJoystickYAxis;
 }
 
-/**
- * @todo
- */
 u16 CEventManager::getPressedButtons()
 {
   return ButtonStates;
 }
 
-/**
- * @todo
- */
 u32 CEventManager::getPovValue()
 {
   return PovValue;
 }
 
-/**
- * @todo
- */
 bool CEventManager::click()
 {
   if (!MouseLeftOnce) {
@@ -312,9 +277,6 @@ bool CEventManager::click()
   return false;
 }
 
-/**
- * @todo
- */
 const core::position2di& CEventManager::getMousePosition() const
 {
   return MousePosition;

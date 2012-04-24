@@ -15,90 +15,88 @@ namespace is06
 namespace nEngine
 {
 
-/**
- * Constructeur de l'interface, ne fait rien de particulier
- */
+//! Constructor
 CGamepad::CGamepad()
 {
 
 }
 
+//! Returns the left joystick strength
 /**
- * Retourne la force d'inclinaison du joystick gauche de la manette
- * @return u8 un entier de la valeur d'inclinaison
+ * \return u8
  */
 u8 CGamepad::getLeftJoystickForce()
 {
   return CGame::getEventManager()->getLeftJoystickForce();
 }
 
+//! Returns the left joystick angle
 /**
- * Retourne l'angle d'inclinaison du joystick gauche de la manette
- * @return f32 l'angle en degrés
+ * \return f32 in degrees
  */
 f32 CGamepad::getLeftJoystickAngle()
 {
   return CGame::getEventManager()->getLeftJoystickAngle();
 }
 
+//! Returns the X axis value of the left joystick
 /**
- * Retourn la valeur de l'axe X du joystick gauche de la manette
- * @return s8 un entier de la valeur de l'axe entre -128 (gauche) et 127 (droite)
+ * \return s8 between -128 (left) and 127 (right)
  */
 s8 CGamepad::getLeftJoystickXAxis()
 {
   return CGame::getEventManager()->getLeftJoystickXAxis();
 }
 
+//! Returns the Y axis value of the left joystick
 /**
- * Retourn la valeur de l'axe Y du joystick gauche de la manette
- * @return s8 un entier de la valeur de l'axe entre -128 (bas) et 127 (haut)
+ * \return s8 between -128 (down) and 127 (up)
  */
 s8 CGamepad::getLeftJoystickYAxis()
 {
   return CGame::getEventManager()->getLeftJoystickYAxis();
 }
 
+//! Returns the right joystick strength
 /**
- * Retourne la force d'inclinaison du joystick droit de la manette
- * @return u8 un entier de la valeur d'inclinaison
+ * \return u8
  */
 u8 CGamepad::getRightJoystickForce()
 {
   return CGame::getEventManager()->getRightJoystickForce();
 }
 
+//! Returns the right joystick angle
 /**
- * Retourne l'angle d'inclinaison du joystick droit de la manette
- * @return f32 l'angle en degrés
+ * \return f32 in degrees
  */
 f32 CGamepad::getRightJoystickAngle()
 {
   return CGame::getEventManager()->getRightJoystickAngle();
 }
 
+//! Returns the X axis value of the right joystick
 /**
- * Retourn la valeur de l'axe X du joystick droit de la manette
- * @return s8 un entier de la valeur de l'axe entre -128 (gauche) et 127 (droite)
+ * \return s8 between -128 (left) and 127 (right)
  */
 s8 CGamepad::getRightJoystickXAxis()
 {
   return CGame::getEventManager()->getRightJoystickXAxis();
 }
 
+//! Returns the X axis value of the right joystick
 /**
- * Retourn la valeur de l'axe Y du joystick droit de la manette
- * @return s8 un entier de la valeur de l'axe entre -128 (bas) et 127 (haut)
+ * \return s8 between -128 (down) and 127 (up)
  */
 s8 CGamepad::getRightJoystickYAxis()
 {
   return CGame::getEventManager()->getRightJoystickYAxis();
 }
 
+//! Tests if a button-combination is currently pressed
 /**
- * Détermine si une combinaison de boutons de la manette est actuellement pressée
- * @param u16 buttons la combinaison (addition) de un ou plusieurs boutons spécifiés dans l'enum GamepadButton
- * @return bool si la combinaison spécifiée est bien pressée
+ * \param u16 buttons specified in EGamepadButton enumeration
+ * \return bool
  */
 bool CGamepad::buttonPressed(u16 buttons, EEventType type)
 {
@@ -119,10 +117,10 @@ bool CGamepad::buttonPressed(u16 buttons, EEventType type)
   }
 }
 
+//! Test if a direction in the D-pad is pressed
 /**
- * Détermine si une direction précise est appuyée sur la croix directionnelle de la manette
- * @param GamepadDirection direction la direction spécifiée dans l'enum GamepadDirection
- * @return bool si la direction spécifiée est bien appuyée
+ * \param EGamepadDirection direction
+ * \return bool
  */
 bool CGamepad::dirPressed(EGamepadDirection direction, EEventType type)
 {

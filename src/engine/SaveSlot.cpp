@@ -14,12 +14,14 @@ namespace is06
 namespace nEngine
 {
 
+//! Constructor
 CSaveSlot::CSaveSlot(CSave* save)
 {
   PlaceNameIdentifier = save->getString(12);
   TotalGameTime = save->getInteger(21);
 }
 
+//! Destructor
 CSaveSlot::~CSaveSlot()
 {
 

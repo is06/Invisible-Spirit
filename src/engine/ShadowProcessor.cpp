@@ -17,9 +17,7 @@ namespace is06
 namespace nEngine
 {
 
-/**
- *
- */
+//! Constructor
 CShadowProcessor::CShadowProcessor()
 {
   // Render to target texture quality from settings.ini
@@ -48,9 +46,6 @@ CShadowProcessor::CShadowProcessor()
   );
 }
 
-/**
- *
- */
 void CShadowProcessor::render()
 {
   // Changing render target to a texture
@@ -85,26 +80,18 @@ void CShadowProcessor::renderReceivingNodes()
 
 }
 
-/**
- *
- */
 void CShadowProcessor::setEntity(scene::ISceneNode* node, EShadowMode mode)
 {
   Shadows[node] = CShadow(mode);
 }
 
-/**
- *
- */
 void CShadowProcessor::removeEntity(scene::ISceneNode* node)
 {
   ShadowsIt = Shadows.find(node);
   Shadows.erase(ShadowsIt);
 }
 
-/**
- *
- */
+//! Destructor, does nothing
 CShadowProcessor::~CShadowProcessor()
 {
 

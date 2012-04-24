@@ -13,21 +13,25 @@ namespace is06
 namespace nEngine
 {
 
+//! Constructor
 CSettingsGroup::CSettingsGroup(const string& name)
 {
   setName(name);
 }
 
+//! Changes the name of the group
 void CSettingsGroup::setName(const string& name)
 {
   Name = name;
 }
 
+//! Returns all params (strings) for this group
 map<string, string>& CSettingsGroup::getParams()
 {
   return Params;
 }
 
+//! Returns the name of the settings group
 string& CSettingsGroup::getName()
 {
   return Name;

@@ -14,18 +14,13 @@ namespace is06
 namespace nEngine
 {
 
-/**
- * Default constructor
- * Does nothing
- */
+//! Default constructor, does nothing
 CSaveFile::CSaveFile()
 {
 
 }
 
-/**
- * Creates the stream for reading
- */
+//! Creates the stream for reading
 void CSaveFile::prepareForRead(u8 slot)
 {
   string filePath("save_");
@@ -37,9 +32,7 @@ void CSaveFile::prepareForRead(u8 slot)
   }
 }
 
-/**
- * Creates the stream for writing
- */
+//! Creates the stream for writing
 void CSaveFile::prepareForWrite(u8 slot)
 {
   string filePath("save_");
@@ -51,34 +44,28 @@ void CSaveFile::prepareForWrite(u8 slot)
   }
 }
 
-/**
- * Adds an integer variable in the save file
- */
+//! Adds an integer variable in the save file
 void CSaveFile::addVariable(u32 index, s32 value)
 {
   Ws << index << "\ti\t" << value << "\n";
 }
 
-/**
- * Adds a boolean variable in the save file
- */
+//! Adds a boolean variable in the save file
 void CSaveFile::addVariable(u32 index, bool value)
 {
   u8 intValue = value ? 1 : 0;
   Ws << index << "\tb\t" << intValue << "\n";
 }
 
-/**
- * Adds a string variable in the save file
- */
+//! Adds a string variable in the save file
 void CSaveFile::addVariable(u32 index, const string& value)
 {
   Ws << index << "\ts\t" << value.c_str() << "\n";
 }
 
+//! Reads the next variable in save file
 /**
- * Reads the next variable in save file
- * @return SaveFileElement structure
+ * \return SaveFileElement structure
  */
 SSaveFileElement CSaveFile::getNextElement()
 {
@@ -128,9 +115,7 @@ SSaveFileElement CSaveFile::getNextElement()
   return result;
 }
 
-/**
- * Closes file
- */
+//! Closes file
 CSaveFile::~CSaveFile()
 {
   Rs.close();
