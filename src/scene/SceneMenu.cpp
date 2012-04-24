@@ -25,6 +25,8 @@ namespace nScene
 //! Init common elements
 CSceneMenu::CSceneMenu() : CScene()
 {
+  BackBufferColor = video::SColor(255, 255, 255, 255);
+
   NewGameIsFading = false;
   QuitIsFading = false;
 
@@ -39,16 +41,16 @@ CSceneMenu::CSceneMenu() : CScene()
   Camera = new n3D::CTPCamera();
   Camera->setControl(false);
 
-  Camera->getNode()->setPosition(core::vector3df(0,1,-2700));
-  Camera->getNode()->setTarget(core::vector3df(0,100,0));
+  Camera->getNode()->setPosition(core::vector3df(0.0f, 1.0f, -2700.0f));
+  Camera->getNode()->setTarget(core::vector3df(0.0f, 100.0f, 0.0f));
   Camera->getNode()->setFarValue(10000.0f);
 
-  MainMenu = new nHud::CMenu(nEngine::CGame::ScreenPos.Left + 100, -100, 150, 8, nHud::MENU_STYLE_TITLE);
+  MainMenu = new nHud::CMenu(nEngine::CGame::ScreenPos.Left + 100.0f, -100.0f, 150.0f, 8, nHud::MENU_STYLE_TITLE);
   MainMenu->addOption(nHud::MENU_ICON_NONE, GlobalTranslations->getTranslation("main_menu_launch_demo"));
   MainMenu->addOption(nHud::MENU_ICON_NONE, GlobalTranslations->getTranslation("main_menu_quit"));
 
-  Title = new nHud::CPicture(nEngine::CGame::ScreenPos.Right - 413, 100, 826, 101, "resource/texture/menus/title/main.png");
-  CreativeCommons = new nHud::CPicture(nEngine::CGame::ScreenPos.Left + 300, nEngine::CGame::ScreenPos.Bottom + 50, 420, 44, "resource/texture/menus/title/cc.png");
+  Title = new nHud::CPicture(nEngine::CGame::ScreenPos.Right - 413.0f, 100.0f, 826.0f, 101.0f, "resource/texture/menus/title/main.png");
+  CreativeCommons = new nHud::CPicture(nEngine::CGame::ScreenPos.Left + 300.0f, nEngine::CGame::ScreenPos.Bottom + 50.0f, 420.0f, 44.0f, "resource/texture/menus/title/cc.png");
 
   fadeIn(0.5f);
 }
@@ -59,8 +61,8 @@ void CSceneMenu::events()
   CScene::events();
 
   // Camera movement
-  if (Camera->getZ() < 3500) {
-    Camera->moveZ(2);
+  if (Camera->getZ() < 3500.0f) {
+    Camera->moveZ(2.0f);
   }
 
   if (InMainMenu) {

@@ -27,14 +27,12 @@ namespace nMap
  */
 MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
 {
-  BackBufferColor = video::SColor(255, 255, 255, 255);
-
   // Local Translations
   SceneTranslations = new nEngine::CTranslation("MAP_ALPHA_ZONE.ist");
 
   // Level Mesh
   Level->loadMesh("resource/mesh/level/alphazone.obj");
-  Level->createNode(core::vector3df(0, 0, 0));
+  Level->createNode(core::vector3df(0.0f, 0.0f, 0.0f));
   Level->loadMeshCollision();
 
   //Level->hide();
