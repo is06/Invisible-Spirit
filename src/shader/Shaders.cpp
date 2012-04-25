@@ -37,7 +37,11 @@ void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
   }
 
   if (gpuManager) {
+    string vertexProgram = "";
+    string pixelProgram = "";
+
     // Shader Diffuse (2D Elements)
+    /*
     CDiffuseShaderCallback* diffuseCallback = new CDiffuseShaderCallback();
     string vertexProgram = "resource/shader/" + directory + "/diffuse.vert";
     string pixelProgram = "resource/shader/" + directory + "/diffuse.frag";
@@ -58,6 +62,7 @@ void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
       iceCallback, video::EMT_SOLID
     );
     iceCallback->drop();
+    */
 
     // Horizontal Blur Shader
     vertexProgram = "resource/shader/" + directory + "/blur.vert";
@@ -77,6 +82,7 @@ void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
     );
 
     // Shadow map pass 1 (depth buffer emulation)
+    /*
     CDepthShaderCallback* depthCallback = new CDepthShaderCallback();
     vertexProgram = "resource/shader/" + directory + "/shadow_map_pass1.vert";
     pixelProgram = "resource/shader/" + directory + "/shadow_map_pass1.frag";
@@ -95,6 +101,7 @@ void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
       pixelProgram.c_str(), "mainPS", video::EPST_PS_2_0,
       shadowCallback, video::EMT_SOLID
     );
+    */
   }
 }
 
