@@ -32,7 +32,7 @@ CBarCounter::CBarCounter(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h,
   switch (style) {
     case BAR_STYLE_LIFE:
       texturePath += "life.bmp";
-      Sub = new CPicture(x, y, w, h, "resource/hud/bar/life_gain.bmp");
+      Sub = new CPicture(x, y, w, h, "resource/hud/bar/life_gain.bmp", false);
       Sub->loadSecondTexture("resource/hud/bar/life_loss.bmp");
       break;
     default:
@@ -40,7 +40,7 @@ CBarCounter::CBarCounter(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h,
       break;
   }
 
-  Bar = new CPicture(x, y, w, h, texturePath);
+  Bar = new CPicture(x, y, w, h, texturePath, false);
 }
 
 void CBarCounter::render()
