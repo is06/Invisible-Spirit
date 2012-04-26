@@ -16,6 +16,10 @@ namespace nDebug
 //! Error code enumeration
 enum EErrorCode
 {
+  // Irrlicht errors
+  ERRCODE_01, // Irrlicht device not created
+  ERRCODE_02, // Video driver not created
+
   // Map errors
   ERRCODE_10, // Unknown map id
 
@@ -39,7 +43,8 @@ enum EErrorCode
   ERRCODE_53, // Non-square textures not supported
   ERRCODE_54, // Non-power of two texture size not supported
   ERRCODE_55, // GLSL not supported
-  ERRCODE_56, // Multi Render to Target not supported
+  ERRCODE_56, // HLSL not supported
+  ERRCODE_57, // Multi Render to Target not supported
 
   // Text errors
   ERRCODE_60, // No local translation object for dialog interface
