@@ -19,7 +19,7 @@ namespace nHud
 class CHud2DElement : public CHud
 {
   public:
-    CHud2DElement(f32 x, f32 y, f32 w, f32 h);
+    CHud2DElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending=false);
     virtual ~CHud2DElement();
 
     virtual void render() = 0;

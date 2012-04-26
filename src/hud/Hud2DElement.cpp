@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/Game.h"
+#include "../../include/engine/Settings.h"
 #include "../../include/hud/Hud2DElement.h"
 
 using namespace irr;
@@ -19,7 +20,7 @@ namespace nHud
 u16 CHud2DElement::Indices[] = {2, 1, 3, 2, 0, 1};
 core::matrix4 CHud2DElement::Mat;
 
-CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h) : CHud()
+CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : CHud()
 {
   Texture = NULL;
   Opacity = 255;
@@ -38,27 +39,29 @@ CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h) : CHud()
   Material.Lighting = false;
   Material.DiffuseColor.setAlpha(Opacity);
 
-  // Diffuse effect
-  /*
-  Material.DiffuseColor.setRed(255);
-  Material.DiffuseColor.setGreen(255);
-  Material.DiffuseColor.setBlue(255);
-  */
+  if (alphaBlending) {
+    // Alpha blending (alpha channel + alpha vertex)
+    Material.MaterialType = video::EMT_ONETEXTURE_BLEND;
+    Material.MaterialTypeParam = video::pack_texureBlendFunc(
+      video::EBF_SRC_ALPHA,
+      video::EBF_ONE_MINUS_SRC_ALPHA,
+      video::EMFN_MODULATE_1X,
+      video::EAS_TEXTURE | video::EAS_VERTEX_COLOR
+    );
+  } else {
+    // Alpha vertex
+    Material.MaterialType = video::EMT_TRANSPARENT_VERTEX_ALPHA;
+  }
 
-  // Wireframe effect (debug purpose?)
-  //Material.Wireframe = true;
+  // Texture filtering
+  if (nEngine::CGame::Settings->getParamString("text", "texture_filter") == "anisotropic") {
+    Material.setFlag(video::EMF_ANISOTROPIC_FILTER, true);
+  } else if (nEngine::CGame::Settings->getParamString("text", "texture_filter") == "trilinear") {
+    Material.setFlag(video::EMF_TRILINEAR_FILTER, true);
+  } else if (nEngine::CGame::Settings->getParamString("text", "texture_filter") == "none") {
+    Material.setFlag(video::EMF_BILINEAR_FILTER, false);
+  }
 
-  // Diffuse shader
-  Material.MaterialType = video::EMT_ONETEXTURE_BLEND;
-  Material.MaterialTypeParam = video::pack_texureBlendFunc(
-    video::EBF_SRC_ALPHA,
-    video::EBF_ONE_MINUS_SRC_ALPHA,
-    video::EMFN_MODULATE_1X,
-    video::EAS_TEXTURE | video::EAS_VERTEX_COLOR
-  );
-
-
-  //material.setFlag(video::EMF_ANISOTROPIC_FILTER, true);
   Material.setTexture(0, NULL);
 
   // Disable filtering clamp
@@ -140,6 +143,7 @@ void CHud2DElement::render()
     Vertices[2].Color.setAlpha(Opacity);
     Vertices[3].Color.setAlpha(Opacity);
 
+    // Rendering
     nEngine::CGame::getVideoDriver()->setMaterial(Material);
     nEngine::CGame::getVideoDriver()->setTransform(video::ETS_VIEW, Mat);
     nEngine::CGame::getVideoDriver()->drawIndexedTriangleList(Vertices, 4, Indices, 2);
@@ -147,9 +151,6 @@ void CHud2DElement::render()
   }
 }
 
-/**
- * Change la taille de l'élément d'interface (déforme la texture)
- */
 void CHud2DElement::setSize(f32 w, f32 h)
 {
   Size.Width = w;

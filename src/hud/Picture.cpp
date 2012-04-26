@@ -14,7 +14,7 @@ namespace is06
 namespace nHud
 {
 
-CPicture::CPicture(f32 x, f32 y, f32 w, f32 h, const string& filePath) : CHud2DElement(x, y, w, h)
+CPicture::CPicture(f32 x, f32 y, f32 w, f32 h, const string& filePath, bool useAlphaBlending) : CHud2DElement(x, y, w, h, useAlphaBlending)
 {
   changeTexture(filePath);
 }
