@@ -30,6 +30,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/map/MAP_DUNGEON_8.h"
 #include "../../include/map/MAP_DUNGEON_9.h"
 
+using namespace irr;
+
 namespace is06
 {
 namespace nEngine
@@ -274,6 +276,9 @@ void CGame::quit()
 //! Irrlicht interfaces initialization
 void CGame::initIrrlichtInterfaces()
 {
+  Device = NULL;
+  VideoDriver = NULL;
+
   // Custom Event Manager
   EventManager = new CEventManager();
 
@@ -300,10 +305,21 @@ void CGame::initIrrlichtInterfaces()
     (Settings->getParamInt("display", "vsync") == 1),
     EventManager
   );
+
+  if (!Device) {
+    fatalError(nDebug::ERRCODE_01);
+  }
+
   Device->setWindowCaption(L"Invisible Spirit 0.1 release 9");
 
   // Other interfaces
   VideoDriver = Device->getVideoDriver();
+  VideoDriver->getDriverType();
+
+  if (!VideoDriver) {
+    fatalError(nDebug::ERRCODE_02);
+  }
+
   GpuManager = VideoDriver->getGPUProgrammingServices();
   SceneManager = Device->getSceneManager();
   DebugGUI = Device->getGUIEnvironment();
@@ -427,12 +443,29 @@ void CGame::initSaveSystem()
 //! Check for mandatory graphical capabilities
 void CGame::checkGraphicalCapabilities()
 {
-  if (!VideoDriver->queryFeature(video::EVDF_VERTEX_SHADER_1_1)) {
-    fatalError(nDebug::ERRCODE_50);
+  if (VideoDriver->getDriverType() == video::EDT_DIRECT3D9) {
+    // DirectX 9 requirements
+    // HLSL
+    if (!VideoDriver->queryFeature(video::EVDF_HLSL)) {
+      fatalError(nDebug::ERRCODE_56);
+    }
+    // Pixel Shader 2.0
+    if (!VideoDriver->queryFeature(video::EVDF_VERTEX_SHADER_3_0)) {
+      fatalError(nDebug::ERRCODE_50);
+    }
+    // Vertex Shader 2.0
+    if (!VideoDriver->queryFeature(video::EVDF_PIXEL_SHADER_3_0)) {
+      fatalError(nDebug::ERRCODE_51);
+    }
+  } else if (VideoDriver->getDriverType() == video::EDT_OPENGL) {
+    // OpenGL requirements
+    // GLSL
+    if (!VideoDriver->queryFeature(video::EVDF_ARB_GLSL)) {
+      fatalError(nDebug::ERRCODE_55);
+    }
   }
-  if (!VideoDriver->queryFeature(video::EVDF_PIXEL_SHADER_1_1)) {
-    fatalError(nDebug::ERRCODE_51);
-  }
+
+  // Render to target textures
   if (!VideoDriver->queryFeature(video::EVDF_RENDER_TO_TARGET)) {
     fatalError(nDebug::ERRCODE_52);
   }
@@ -532,18 +565,21 @@ void CGame::warning(nDebug::EErrorCode code)
 void CGame::fatalError(nDebug::EErrorCode code)
 {
   switch (code) {
+    case nDebug::ERRCODE_01: throw nEngine::CEngineException(code, "Irrlicht device not created", 3); break;
+    case nDebug::ERRCODE_02: throw nEngine::CEngineException(code, "Video driver not created", 3); break;
     case nDebug::ERRCODE_10: throw nEngine::CEngineException(code, "Unknown map id", 3); break;
     case nDebug::ERRCODE_20: throw nEngine::CEngineException(code, "Unable to open save file", 3); break;
     case nDebug::ERRCODE_30: throw nEngine::CEngineException(code, "Mesh file not found", 3); break;
     case nDebug::ERRCODE_45: throw nEngine::CEngineException(code, "Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor", 3); break;
     case nDebug::ERRCODE_46: throw nEngine::CEngineException(code, "Level Mesh need an Irrlicht node, use createNode method in scene constructor", 3); break;
     case nDebug::ERRCODE_47: throw nEngine::CEngineException(code, "Level Mesh need a Newton body, use loadMeshCollision method in scene constructor", 3); break;
-    case nDebug::ERRCODE_50: throw nEngine::CEngineException(code, "Vertex Shaders 2.0 not supported", 3); break;
-    case nDebug::ERRCODE_51: throw nEngine::CEngineException(code, "Pixels Shaders 2.0 not supported", 3); break;
+    case nDebug::ERRCODE_50: throw nEngine::CEngineException(code, "Vertex Shaders 3.0 not supported", 3); break;
+    case nDebug::ERRCODE_51: throw nEngine::CEngineException(code, "Pixels Shaders 3.0 not supported", 3); break;
     case nDebug::ERRCODE_52: throw nEngine::CEngineException(code, "Render to target not supported", 3); break;
     case nDebug::ERRCODE_53: throw nEngine::CEngineException(code, "Non-square textures not supported", 3); break;
     case nDebug::ERRCODE_54: throw nEngine::CEngineException(code, "Non-power of two texture size not supported", 3); break;
     case nDebug::ERRCODE_55: throw nEngine::CEngineException(code, "GLSL not supported", 3); break;
+    case nDebug::ERRCODE_56: throw nEngine::CEngineException(code, "HLSL not supported", 3); break;
     case nDebug::ERRCODE_60: throw nEngine::CEngineException(code, "No local translation object for dialog interface", 3); break;
     default: throw nEngine::CEngineException(code, "Internal error", 3); break;
   }
