@@ -9,6 +9,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/Game.h"
 #include "../../include/hud/Hud2DElement.h"
 
+using namespace irr;
+
 namespace is06
 {
 namespace nHud
@@ -47,7 +49,14 @@ CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h) : CHud()
   //Material.Wireframe = true;
 
   // Diffuse shader
-  Material.MaterialType = (video::E_MATERIAL_TYPE)nEngine::CGame::Shaders.Diffuse;
+  Material.MaterialType = video::EMT_ONETEXTURE_BLEND;
+  Material.MaterialTypeParam = video::pack_texureBlendFunc(
+    video::EBF_SRC_ALPHA,
+    video::EBF_ONE_MINUS_SRC_ALPHA,
+    video::EMFN_MODULATE_1X,
+    video::EAS_TEXTURE | video::EAS_VERTEX_COLOR
+  );
+
 
   //material.setFlag(video::EMF_ANISOTROPIC_FILTER, true);
   Material.setTexture(0, NULL);
@@ -120,15 +129,16 @@ void CHud2DElement::render()
 
   // Draws vertices of 2D element only if visible
   if (Visible) {
-    // Opacity
-    if (Opacity < 255) {
-      Material.DiffuseColor.setAlpha(Opacity);
-    }
-
     // Texture of 2D element
     if (Texture) {
       Material.setTexture(0, Texture);
     }
+
+    // Opacity
+    Vertices[0].Color.setAlpha(Opacity);
+    Vertices[1].Color.setAlpha(Opacity);
+    Vertices[2].Color.setAlpha(Opacity);
+    Vertices[3].Color.setAlpha(Opacity);
 
     nEngine::CGame::getVideoDriver()->setMaterial(Material);
     nEngine::CGame::getVideoDriver()->setTransform(video::ETS_VIEW, Mat);
