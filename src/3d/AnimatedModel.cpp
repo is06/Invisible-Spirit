@@ -7,10 +7,13 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/Game.h"
+#include "../../include/engine/Settings.h"
 #include "../../include/scene/Scene.h"
 #include "../../include/sound/Speaker.h"
 #include "../../include/3d/AnimatedModel.h"
 #include "../../include/3d/StaticModel.h"
+
+using namespace irr;
 
 namespace is06
 {
@@ -137,6 +140,7 @@ void CAnimatedModel::createNode(const core::vector3df& initPosition)
 {
   MainNode = nEngine::CGame::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)MainMesh);
   MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
+  MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (nEngine::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled"));
   MainNode->setPosition(initPosition);
 }
 

@@ -12,6 +12,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/scene/Scene.h"
 #include "../../include/sound/Speaker.h"
 
+using namespace irr;
+
 namespace is06
 {
 namespace n3D
@@ -55,6 +57,7 @@ void CStaticModel::createNode(const core::vector3df& initPosition)
   if (MainMesh) {
     MainNode = nEngine::CGame::getSceneManager()->addMeshSceneNode(MainMesh);
     MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
+    MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (nEngine::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled"));
     MainNode->setPosition(initPosition);
 
     if (nEngine::CGame::Settings->getParamString("model", "texture_filter") == "anisotropic") {
