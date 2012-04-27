@@ -296,21 +296,20 @@ void CGame::initIrrlichtInterfaces()
   }
 
   // Irrlicht Device creation
-  Device = createDevice(
-    renderer,
-    core::dimension2du(screenWidth, screenHeight),
-    screenDepth,
-    (Settings->getParamInt("display", "fullscreen") == 1),
-    true,
-    (Settings->getParamInt("display", "vsync") == 1),
-    EventManager
-  );
+  SIrrlichtCreationParameters deviceParameters;
+  deviceParameters.AntiAlias = Settings->getParamInt("display", "anti_aliasing");
+  deviceParameters.Bits = screenDepth;
+  deviceParameters.DriverType = renderer;
+  deviceParameters.EventReceiver = EventManager;
+  deviceParameters.Fullscreen = (Settings->getParamInt("display", "fullscreen") == 1);
+  deviceParameters.Stencilbuffer = false;
+  deviceParameters.Vsync = (Settings->getParamInt("display", "vsync") == 1);
+  deviceParameters.WindowSize = core::dimension2du(screenWidth, screenHeight);
+  Device = createDeviceEx(deviceParameters);
 
   if (!Device) {
     fatalError(nDebug::ERRCODE_01);
   }
-
-  Device->setWindowCaption(L"Invisible Spirit 0.1 release 9");
 
   // Other interfaces
   VideoDriver = Device->getVideoDriver();
