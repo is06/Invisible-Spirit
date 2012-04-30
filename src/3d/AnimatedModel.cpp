@@ -20,28 +20,20 @@ namespace is06
 namespace n3D
 {
 
-/**
- * Default animated model
- */
 CAnimatedModel::CAnimatedModel() : CModelEntity()
 {
-  CAnimatedModel("resource/mesh/character/cube.obj", "resource/mesh/character/cube.isa");
+
 }
 
-/**
- * 3D Animated model constructor
- */
+
 CAnimatedModel::CAnimatedModel(const string& meshFile, const string& animationFile) : CModelEntity()
 {
   loadMesh(meshFile);
   loadAnimation(animationFile);
-
-  MainNode = NULL;
+  createNode(core::vector3df(0, 1, 0));
 }
 
-/**
- * Update function of 3D animated models
- */
+//! Update function of 3D animated models
 void CAnimatedModel::update()
 {
   CModelEntity::update();
@@ -52,17 +44,12 @@ void CAnimatedModel::update()
   }
 }
 
-/**
- *
- */
 void CAnimatedModel::shaderRender()
 {
   MainNode->render();
 }
 
-/**
- * Turns the model relative to the X axe
- */
+//! Turns the model relative to the X axis
 void CAnimatedModel::turnX(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -72,9 +59,7 @@ void CAnimatedModel::turnX(f32 speed)
   ));
 }
 
-/**
- * Turns the model relative to the Y axe
- */
+//! Turns the model relative to the Y axis
 void CAnimatedModel::turnY(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -84,9 +69,7 @@ void CAnimatedModel::turnY(f32 speed)
   ));
 }
 
-/**
- * Turns the model relative to the Z axe
- */
+//! Turns the model relative to the Z axis
 void CAnimatedModel::turnZ(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -97,7 +80,7 @@ void CAnimatedModel::turnZ(f32 speed)
 }
 
 /**
- * Move the model relative to the X axe
+ * Move the model relative to the X axis
  */
 void CAnimatedModel::moveX(f32 speed)
 {
@@ -108,9 +91,7 @@ void CAnimatedModel::moveX(f32 speed)
   ));
 }
 
-/**
- * Move the model relative to the Y axe
- */
+//! Move the model relative to the Y axis
 void CAnimatedModel::moveY(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -120,9 +101,7 @@ void CAnimatedModel::moveY(f32 speed)
   ));
 }
 
-/**
- * Move the model relative to the Z axe
- */
+//! Move the model relative to the Z axis
 void CAnimatedModel::moveZ(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -139,9 +118,14 @@ void CAnimatedModel::moveZ(f32 speed)
 void CAnimatedModel::createNode(const core::vector3df& initPosition)
 {
   MainNode = nEngine::CGame::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)MainMesh);
-  MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
-  MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (nEngine::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled"));
-  MainNode->setPosition(initPosition);
+
+  if (MainNode) {
+    MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
+    MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (nEngine::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled"));
+    MainNode->setPosition(initPosition);
+  } else {
+    nEngine::CGame::fatalError(nDebug::ERRCODE_30);
+  }
 }
 
 /**

@@ -9,6 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_PLAYABLE_CHARACTER_H__
 
 #include "../../include/3d/Character.h"
+#include "../../include/engine/PlayableCharacterType.h"
 
 namespace is06
 {
@@ -19,7 +20,7 @@ namespace n3D
 class CPlayableCharacter : public CCharacter
 {
   public:
-    CPlayableCharacter(CCamera* cam);
+    CPlayableCharacter(CCamera* cam, nEngine::EPlayableCharacterType type=nEngine::EPCT_AYRON);
 
     void update();
 

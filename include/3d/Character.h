@@ -19,6 +19,7 @@ namespace n3D
 class CCharacter : public CAnimatedModel
 {
   public:
+    CCharacter();
     CCharacter(const string& meshFile, const string& animationFile);
 
     virtual void update();

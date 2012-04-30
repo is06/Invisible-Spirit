@@ -19,19 +19,9 @@ namespace n3D
  * PlayableCharacter entity constructor: defines which mesh to load and set the initial direction
  * @param Camera* cam pointer to a Camera to link to PlayableCharacter
  */
-CPlayableCharacter::CPlayableCharacter(CCamera* cam) : CCharacter("resource/mesh/character/cube.obj", "resource/mesh/character/cube.isa")
+CPlayableCharacter::CPlayableCharacter(CCamera* cam, nEngine::EPlayableCharacterType type) : CCharacter("resource/mesh/character/ayron.b3d", "resource/mesh/character/ayron.isa")
 {
-  Controlable = true;
-  JumpDelta = 0.0f;
-  FallDelta = 0.0f;
-  Gravity = 0.1f;
-  JumpStrength = 0.15f;
-
-  FloorSensorWidth = 0.4f;
-  WallSensorWidth = 0.5f;
-
-  // Loading mesh
-  createNode(core::vector3df(-3, 1, -4));
+  // Linking third-person camera
   LinkedCam = cam;
 
   // Start direction
@@ -40,6 +30,15 @@ CPlayableCharacter::CPlayableCharacter(CCamera* cam) : CCharacter("resource/mesh
     cam->getNode()->getRotation().Y - core::radToDeg(core::PI),
     MainNode->getRotation().Z
   ));
+
+  // Properties
+  Controlable = true;
+  JumpDelta = 0.0f;
+  FallDelta = 0.0f;
+  Gravity = 0.1f;
+  JumpStrength = 0.15f;
+  FloorSensorWidth = 0.4f;
+  WallSensorWidth = 0.5f;
 }
 
 /**

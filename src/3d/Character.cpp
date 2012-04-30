@@ -14,9 +14,11 @@ namespace is06
 namespace n3D
 {
 
-/**
- * Constructeur
- */
+CCharacter::CCharacter() : CAnimatedModel()
+{
+
+}
+
 CCharacter::CCharacter(const string& meshFile, const string& animationFile) : CAnimatedModel(meshFile, animationFile)
 {
   Jumping = false;
