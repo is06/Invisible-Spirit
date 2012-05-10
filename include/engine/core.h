@@ -36,6 +36,12 @@ namespace is06
   //! Boost void function callback type
   typedef boost::function<void()> TVoidCallback;
 
+  namespace nEngine
+  {
+    const f32 PI_D2 = core::PI / 2.0f;
+    const f32 PI_M3D2 = 3.0f * core::PI / 2.0f;
+  }
+
   namespace nHud
   {
     //! A CDialog map indexed by strings

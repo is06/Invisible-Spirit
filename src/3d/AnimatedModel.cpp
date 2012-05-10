@@ -326,8 +326,8 @@ f32 CAnimatedModel::getWallCollision(nEngine::ERayType type, CStaticModel* other
     zPoint
   );
 
-  xPoint = xPoint - 1.0f * cos(core::degToRad(MainNode->getRotation().Y) - (core::PI / 2));
-  zPoint = zPoint + 1.0f * sin(core::degToRad(MainNode->getRotation().Y) - (core::PI / 2));
+  xPoint = xPoint - 1.0f * cos(core::degToRad(MainNode->getRotation().Y) - nEngine::PI_D2);
+  zPoint = zPoint + 1.0f * sin(core::degToRad(MainNode->getRotation().Y) - nEngine::PI_D2);
 
   core::vector3df end = core::vector3df(
     xPoint,

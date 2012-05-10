@@ -141,14 +141,12 @@ void CSceneGameplay::manageCharacterMovements()
       Ayron->goBackward(SpeedFactor * Control->getPlayerYAxis() * -1);
     }
 
-    if (Control->getPlayerDirection() != 0.0f) {
-      // Character's direction from angle
-      Ayron->getNode()->setRotation(core::vector3df(
-        Ayron->getNode()->getRotation().X,
-        Camera->getNode()->getRotation().Y - (Control->getPlayerDirection() + core::radToDeg(core::PI / 2)),
-        Ayron->getNode()->getRotation().Z
-      ));
-    }
+    // Character's direction from angle
+    Ayron->getNode()->setRotation(core::vector3df(
+      Ayron->getNode()->getRotation().X,
+      Camera->getNode()->getRotation().Y - (Control->getPlayerDirection() + core::radToDeg(nEngine::PI_D2)),
+      Ayron->getNode()->getRotation().Z
+    ));
   }
 }
 

@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/Camera.h"
 #include "../../include/3d/Character.h"
 
+using namespace irr;
+
 namespace is06
 {
 namespace n3D
@@ -30,6 +32,8 @@ CPlayableCharacter::CPlayableCharacter(CCamera* cam, nEngine::EPlayableCharacter
     cam->getNode()->getRotation().Y - core::radToDeg(core::PI),
     MainNode->getRotation().Z
   ));
+
+  MainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
 
   // Properties
   Controlable = true;
@@ -132,7 +136,7 @@ f32 CPlayableCharacter::getJumpStrength()
  */
 void CPlayableCharacter::moveOpposite(const core::vector3df& normal)
 {
-  f32 angle = (atan2(normal.X, normal.Z) * -1) + (core::PI / 2);
+  f32 angle = (atan2(normal.X, normal.Z) * -1) + (nEngine::PI_D2);
 
   MainNode->setPosition(core::vector3df(
     MainNode->getPosition().X + (cos(angle) * (0.05f / 1024.0f)),
@@ -165,7 +169,7 @@ void CPlayableCharacter::goRight(f32 speed)
  */
 void CPlayableCharacter::goForward(f32 speed)
 {
-  updateCoords((core::PI / 2), speed);
+  updateCoords((nEngine::PI_D2), speed);
 }
 
 /**
@@ -174,7 +178,7 @@ void CPlayableCharacter::goForward(f32 speed)
  */
 void CPlayableCharacter::goBackward(f32 speed)
 {
-  updateCoords((3 * core::PI / 2), speed);
+  updateCoords(nEngine::PI_M3D2, speed);
 }
 
 /**
