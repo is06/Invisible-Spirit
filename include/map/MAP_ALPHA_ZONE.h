@@ -8,8 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MAP_ALPHA_ZONE__
 #define __IS06_MAP_ALPHA_ZONE__
 
-#include "../scene/SceneGameplay.h"
-#include "../shader/PostRenderGlow.h"
+#include "../scene/CSceneGameplay.h"
+#include "../shader/CPostRenderGlow.h"
 
 namespace is06
 {

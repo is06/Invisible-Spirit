@@ -6,8 +6,8 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../include/engine/core.h"
-#include "../include/engine/Game.h"
-#include "../include/engine/EngineException.h"
+#include "../include/engine/CGame.h"
+#include "../include/engine/CEngineException.h"
 
 using namespace is06;
 using namespace nEngine;

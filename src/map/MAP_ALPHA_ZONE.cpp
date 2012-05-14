@@ -6,15 +6,15 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/engine/Game.h"
-#include "../../include/engine/Keyboard.h"
-#include "../../include/engine/Translation.h"
-#include "../../include/3d/LevelMesh.h"
-#include "../../include/3d/PlayableCharacter.h"
-#include "../../include/3d/OmniLight.h"
-#include "../../include/engine/DialogInterface.h"
-#include "../../include/sound/MusicReference.h"
-#include "../../include/sound/Speaker.h"
+#include "../../include/engine/CGame.h"
+#include "../../include/engine/CKeyboard.h"
+#include "../../include/engine/CTranslation.h"
+#include "../../include/3d/CLevelMesh.h"
+#include "../../include/3d/CPlayableCharacter.h"
+#include "../../include/3d/COmniLight.h"
+#include "../../include/engine/CDialogInterface.h"
+#include "../../include/sound/CMusicReference.h"
+#include "../../include/sound/CSpeaker.h"
 #include "../../include/map/MAP_ALPHA_ZONE.h"
 
 namespace is06

@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MAP_DUNGEON_6__
 #define __IS06_MAP_DUNGEON_6__
 
-#include "../scene/SceneDungeon.h"
+#include "../scene/CSceneDungeon.h"
 
 namespace is06
 {
