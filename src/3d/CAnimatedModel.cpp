@@ -124,7 +124,7 @@ void CAnimatedModel::createNode(const core::vector3df& initPosition)
     MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (nEngine::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled"));
     MainNode->setPosition(initPosition);
   } else {
-    nEngine::CGame::fatalError(nDebug::ERRCODE_30);
+    nEngine::CGame::fatalError(nDebug::EEC_CODE_30);
   }
 }
 
@@ -310,7 +310,7 @@ f32 CAnimatedModel::getWallCollision(nEngine::ERayType type, CStaticModel* other
   f32 zPoint;
 
   // xPoint and zPoint are destination points of the ray
-  if (type == nEngine::RAY_WALL_P) {
+  if (type == nEngine::ERT_WALL_P) {
     // P Ray (left)
     xPoint = MainNode->getPosition().X - 0.5f * cos(core::degToRad(MainNode->getRotation().Y));
     zPoint = MainNode->getPosition().Z + 0.5f * sin(core::degToRad(MainNode->getRotation().Y));
@@ -361,7 +361,7 @@ bool CAnimatedModel::collidesWithPlaneSensor(CPlaneSensor* sensor, nEngine::EEve
 bool CAnimatedModel::isInBoxSensor(CBoxSensor* sensor, nEngine::EEventType type)
 {
   bool inside = sensor->getBox().isPointInside(MainNode->getPosition());
-  if (type == nEngine::EVENT_ONCE) {
+  if (type == nEngine::EET_ONCE) {
     if (!SensorOnce[sensor]) {
       if (inside) {
         SensorOnce[sensor] = true;

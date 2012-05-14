@@ -22,7 +22,7 @@ namespace nEngine
  */
 bool CKeyboard::pressed(EKEY_CODE code, nEngine::EEventType type)
 {
-  if (type == EVENT_ONCE) {
+  if (type == EET_ONCE) {
     return CGame::getEventManager()->isKeyDownOnce(code);
   } else {
     return CGame::getEventManager()->isKeyDown(code);
@@ -35,7 +35,7 @@ bool CKeyboard::pressed(EKEY_CODE code, nEngine::EEventType type)
  */
 bool CKeyboard::any(EEventType type)
 {
-  if (type == EVENT_ONCE) {
+  if (type == EET_ONCE) {
     return CGame::getEventManager()->anyKeyDownOnce();
   } else {
     return CGame::getEventManager()->anyKeyDown();

@@ -16,8 +16,8 @@ namespace nEngine
 //! Enumeration for event type
 enum EEventType
 {
-  EVENT_ALWAYS = false,
-  EVENT_ONCE = true
+  EET_ALWAYS = false,
+  EET_ONCE = true
 };
 
 }

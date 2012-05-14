@@ -32,8 +32,8 @@ class CScene
     void addToEntityList(n3D::CModelEntity* entity);
 
     void setSaveSlot(nEngine::CSave* save);
-    void fadeIn(f32 speed = 1.5f, nEngine::EFadeColor color = nEngine::FADE_COLOR_BLACK);
-    void fadeOut(f32 speed = 3.0f, nEngine::EFadeColor color = nEngine::FADE_COLOR_BLACK);
+    void fadeIn(f32 speed = 1.5f, nEngine::EFadeColor color = nEngine::EFC_BLACK);
+    void fadeOut(f32 speed = 3.0f, nEngine::EFadeColor color = nEngine::EFC_BLACK);
 
     const video::SColor& getBackBufferColor() const;
 

@@ -15,10 +15,10 @@ namespace nHud
 
 enum EMenuIcon
 {
-  MENU_ICON_NONE,
-  MENU_ICON_BLANK,
-  MENU_ICON_SWORD,
-  MENU_ICON_SHIELD
+  EMI_NONE,
+  EMI_BLANK,
+  EMI_SWORD,
+  EMI_SHIELD
 };
 
 }

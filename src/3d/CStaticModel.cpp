@@ -71,7 +71,7 @@ void CStaticModel::createNode(const core::vector3df& initPosition)
       MainNode->setMaterialFlag(video::EMF_BILINEAR_FILTER, true);
     }
   } else {
-    nEngine::CGame::fatalError(nDebug::ERRCODE_30);
+    nEngine::CGame::fatalError(nDebug::EEC_CODE_30);
   }
 }
 

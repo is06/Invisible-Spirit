@@ -20,12 +20,12 @@ namespace nHud
 class CMenu : public CHud
 {
   public:
-    CMenu(f32 x = 0, f32 y = 0, f32 width = 150, u8 height = 8, EMenuStyle style = MENU_STYLE_STD);
+    CMenu(f32 x = 0, f32 y = 0, f32 width = 150, u8 height = 8, EMenuStyle style = EMS_STD);
     virtual ~CMenu();
 
     virtual void render();
 
-    void addOption(EMenuIcon icon = MENU_ICON_NONE, const string& title = "[Option]");
+    void addOption(EMenuIcon icon = EMI_NONE, const string& title = "[Option]");
     void removeOption(u16 index);
     CMenuOption* getOption(u16 index);
 

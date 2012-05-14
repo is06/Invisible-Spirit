@@ -21,7 +21,7 @@ namespace nHud
 class CText : public CHud
 {
   public:
-    CText(const string& str = "[Text]", f32 x = 0, f32 y = 0, nHud::EFontStyle style = nHud::FONT_STANDARD_48, u8 speed = 0);
+    CText(const string& str = "[Text]", f32 x = 0, f32 y = 0, nHud::EFontStyle style = nHud::EFS_STANDARD_48, u8 speed = 0);
     ~CText();
 
     void render();

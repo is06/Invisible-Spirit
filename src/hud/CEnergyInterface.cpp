@@ -17,7 +17,7 @@ namespace nHud
 
 CEnergyInterface::CEnergyInterface() : CHud()
 {
-  HpBar = new CBarCounter(100, 0, 100, (nEngine::CGame::ScreenPos.Right - 170), (nEngine::CGame::ScreenPos.Bottom + 30), 150, 4, BAR_STYLE_LIFE);
+  HpBar = new CBarCounter(100, 0, 100, (nEngine::CGame::ScreenPos.Right - 170), (nEngine::CGame::ScreenPos.Bottom + 30), 150, 4, EBS_LIFE);
 }
 
 void CEnergyInterface::render()

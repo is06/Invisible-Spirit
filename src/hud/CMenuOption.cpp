@@ -19,21 +19,21 @@ CMenuOption::CMenuOption(EMenuIcon icon, const string& title, f32 x, f32 y, EMen
 {
   Icon = icon;
 
-  EWindowStyle boxStyle = WIN_STYLE_STD;
-  EFontStyle fontStyle = FONT_STANDARD_48;
+  EWindowStyle boxStyle = EWS_STD;
+  EFontStyle fontStyle = EFS_STANDARD_48;
 
   switch (style) {
-    case MENU_STYLE_STD:
-      boxStyle = WIN_STYLE_STD;
-      fontStyle = FONT_STANDARD_48;
+    case EMS_STD:
+      boxStyle = EWS_STD;
+      fontStyle = EFS_STANDARD_48;
       break;
-    case MENU_STYLE_TITLE:
-      boxStyle = WIN_STYLE_NONE;
-      fontStyle = FONT_STANDARD_48;
+    case EMS_TITLE:
+      boxStyle = EWS_NONE;
+      fontStyle = EFS_STANDARD_48;
       break;
     default:
-      boxStyle = WIN_STYLE_NONE;
-      fontStyle = FONT_STANDARD_48;
+      boxStyle = EWS_NONE;
+      fontStyle = EFS_STANDARD_48;
       break;
   }
 

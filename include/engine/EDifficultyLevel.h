@@ -16,9 +16,9 @@ namespace nEngine
 //! Difficulty level list
 enum EDifficultyLevel
 {
-  DIFFICULTY_BEGINNER = 1,
-  DIFFICULTY_MEDIUM = 2,
-  DIFFICULTY_EXPERT = 3
+  EDL_BEGINNER = 1,
+  EDL_MEDIUM = 2,
+  EDL_EXPERT = 3
 };
 
 }

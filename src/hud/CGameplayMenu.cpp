@@ -57,17 +57,17 @@ CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CPlaye
   TopBar = new CPicture(0, nEngine::CGame::ScreenPos.Top - 20, 1280, 40, "resource/hud/menus/gameplay/top_bar.png");
 
   // Menu (left)
-  SectionMenu = new CMenu(nEngine::CGame::ScreenPos.Left + 80, nEngine::CGame::ScreenPos.Top - 80, 150, 8, MENU_STYLE_TITLE);
-  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_swords"));
-  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_spirits"));
-  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_items"));
-  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_maps"));
-  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_status"));
-  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_dimensions"));
-  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_tales"));
-  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_monsters"));
-  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_settings"));
-  SectionMenu->addOption(MENU_ICON_NONE, GlobalTranslations->getTranslation("gameplay_menu_quit"));
+  SectionMenu = new CMenu(nEngine::CGame::ScreenPos.Left + 80, nEngine::CGame::ScreenPos.Top - 80, 150, 8, EMS_TITLE);
+  SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_swords"));
+  SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_spirits"));
+  SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_items"));
+  SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_maps"));
+  SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_status"));
+  SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_dimensions"));
+  SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_tales"));
+  SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_monsters"));
+  SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_settings"));
+  SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_quit"));
 
   //sectionMenu->getOption(0)->setEnabled(false);
 
@@ -87,10 +87,10 @@ CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CPlaye
 void CGameplayMenu::render()
 {
   if (Visible) {
-    if (Control->commandEntered(nEngine::COMMAND_MENU_DOWN, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::ECI_MENU_DOWN, nEngine::EET_ONCE)) {
       SectionMenu->nextOption();
     }
-    if (Control->commandEntered(nEngine::COMMAND_MENU_UP, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::ECI_MENU_UP, nEngine::EET_ONCE)) {
       SectionMenu->prevOption();
     }
 

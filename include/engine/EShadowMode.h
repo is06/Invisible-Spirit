@@ -16,10 +16,10 @@ namespace nEngine
 //! Enumeration for shadow type to apply to a 3D entity
 enum EShadowMode
 {
-  SHADOW_MODE_NONE,
-  SHADOW_MODE_CAST,
-  SHADOW_MODE_RECEIVE,
-  SHADOW_MODE_ALL
+  ESM_NONE,
+  ESM_CAST,
+  ESM_RECEIVE,
+  ESM_ALL
 };
 
 }

@@ -22,7 +22,7 @@ CText::CText(const string& str, f32 x, f32 y, EFontStyle style, u8 speed) : CHud
   TextStr = str;
   CurrentSize = 48;
   CurrentSpeed = speed;
-  CurrentAlign = TEXT_ALIGN_LEFT;
+  CurrentAlign = ETA_LEFT;
   LeftBound = 0;
   RightBound = 0;
   CharList.clear();
@@ -181,13 +181,13 @@ void CText::setAlign(ETextAlignment align)
   CurrentAlign = align;
 
   switch (align) {
-    case TEXT_ALIGN_LEFT:
+    case ETA_LEFT:
       setPosition(core::dimension2df(LeftBound, Pos.Y));
       break;
-    case TEXT_ALIGN_RIGHT:
+    case ETA_RIGHT:
       //setPosition(core::dimension2df((rightBound - width), pos.Y));
       break;
-    case TEXT_ALIGN_CENTER:
+    case ETA_CENTER:
       //setPosition(core::dimension2df((((leftBound + rightBound) / 2.0f) - (width / 2.0f)), pos.Y));
       break;
   }

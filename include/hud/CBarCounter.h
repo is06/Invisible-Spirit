@@ -20,7 +20,7 @@ namespace nHud
 class CBarCounter : public CCounter
 {
   public:
-    CBarCounter(s32 init = 0, s32 min = 0, s32 max = 1000, f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 10, EBarStyle style = BAR_STYLE_DEFAULT);
+    CBarCounter(s32 init = 0, s32 min = 0, s32 max = 1000, f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 10, EBarStyle style = EBS_DEFAULT);
     virtual ~CBarCounter();
 
     virtual void render();

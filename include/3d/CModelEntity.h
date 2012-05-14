@@ -45,7 +45,7 @@ class CModelEntity : public nEngine::CEntity
     virtual void moveY(f32 speed) = 0;
     virtual void moveZ(f32 speed) = 0;
 
-    virtual void setShadowMode(nEngine::EShadowMode mode = nEngine::SHADOW_MODE_CAST) = 0;
+    virtual void setShadowMode(nEngine::EShadowMode mode = nEngine::ESM_CAST) = 0;
 
     void loadMesh(const string& meshFilePath);
 

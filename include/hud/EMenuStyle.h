@@ -15,10 +15,10 @@ namespace nHud
 
 enum EMenuStyle
 {
-  MENU_STYLE_STD,
-  MENU_STYLE_TITLE,
-  MENU_STYLE_HOME,
-  MENU_STYLE_EQUIPMENT
+  EMS_STD,
+  EMS_TITLE,
+  EMS_HOME,
+  EMS_EQUIPMENT
 };
 
 }

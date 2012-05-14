@@ -21,10 +21,10 @@ CTranslation::CTranslation(const string& filePath)
   Notfound = "[not_found]";
 
   switch (CGame::getCurrentLocale()) {
-    case LOCALE_FRE_FR:
-    case LOCALE_FRE_BE:
-    case LOCALE_FRE_CA:
-    case LOCALE_FRE_CH:
+    case ELI_FRE_FR:
+    case ELI_FRE_BE:
+    case ELI_FRE_CA:
+    case ELI_FRE_CH:
       fullPath += "fre-FR";
       break;
     default:

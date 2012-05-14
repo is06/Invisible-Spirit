@@ -34,7 +34,7 @@ CDialogInterface::CDialogInterface(const string& filePath, CTranslation* transla
   DialogFinished = false;
 
   if (!translation) {
-    CGame::fatalError(nDebug::ERRCODE_60);
+    CGame::fatalError(nDebug::EEC_CODE_60);
   }
 
   CurrentTranslation = translation;
@@ -46,10 +46,10 @@ CDialogInterface::CDialogInterface(const string& filePath, CTranslation* transla
   string fullPath = "resource/text/";
 
   switch (CGame::getCurrentLocale()) {
-    case LOCALE_FRE_FR:
-    case LOCALE_FRE_BE:
-    case LOCALE_FRE_CA:
-    case LOCALE_FRE_CH:
+    case ELI_FRE_FR:
+    case ELI_FRE_BE:
+    case ELI_FRE_CA:
+    case ELI_FRE_CH:
       fullPath += "fre-FR";
       break;
     default:
@@ -82,14 +82,14 @@ void CDialogInterface::render()
     }
 
     // Display all message quickly
-    if (MessageDisplaying && Control->commandEntered(COMMAND_DIALOG_ACTION, EVENT_ONCE)) {
+    if (MessageDisplaying && Control->commandEntered(ECI_DIALOG_ACTION, EET_ONCE)) {
       CurrentMessageText->skip();
       MessageDisplaying = false;
       MessageFinished = true;
     }
 
     // Go to next message (only if entirely displayed)
-    if (MessageFinished && Control->commandEntered(COMMAND_DIALOG_ACTION, EVENT_ONCE)) {
+    if (MessageFinished && Control->commandEntered(ECI_DIALOG_ACTION, EET_ONCE)) {
       MessageFinished = false;
       MessageDisplaying = true;
       if (!DialogFinished) {
@@ -166,7 +166,7 @@ void CDialogInterface::createMessage(const string& dialogIdentifier, u16 message
     DialogList[dialogIdentifier].getMessage(messageNumber),
     -350,
     CGame::ScreenPos.Bottom + 100,
-    nHud::FONT_STANDARD_48,
+    nHud::EFS_STANDARD_48,
     25
   );
 }

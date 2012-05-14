@@ -19,7 +19,7 @@ CMainStateInfo::CMainStateInfo() : CHud()
 {
   Label = new CText();
   Info = new CText();
-  Gauge = new CBarCounter(60, 0, 100, 150, 150, 150, 10, BAR_STYLE_LIFE);
+  Gauge = new CBarCounter(60, 0, 100, 150, 150, 150, 10, EBS_LIFE);
 }
 
 void CMainStateInfo::render()

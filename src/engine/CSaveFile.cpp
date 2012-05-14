@@ -28,7 +28,7 @@ void CSaveFile::prepareForRead(u8 slot)
   Rs.open(filePath.c_str(), ios::in);
 
   if (!Rs) {
-    CGame::fatalError(nDebug::ERRCODE_20);
+    CGame::fatalError(nDebug::EEC_CODE_20);
   }
 }
 
@@ -40,7 +40,7 @@ void CSaveFile::prepareForWrite(u8 slot)
   Ws.open(filePath.c_str(), ios::out | ios::trunc);
 
   if (!Ws) {
-    CGame::fatalError(nDebug::ERRCODE_21);
+    CGame::fatalError(nDebug::EEC_CODE_21);
   }
 }
 

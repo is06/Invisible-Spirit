@@ -100,7 +100,7 @@ s8 CGamepad::getRightJoystickYAxis()
  */
 bool CGamepad::buttonPressed(u16 buttons, EEventType type)
 {
-  if (type == EVENT_ONCE) {
+  if (type == EET_ONCE) {
     if (!ButtonOnce[buttons]) {
       if (CGame::getEventManager()->getPressedButtons() == buttons) {
         ButtonOnce[buttons] = true;
@@ -124,7 +124,7 @@ bool CGamepad::buttonPressed(u16 buttons, EEventType type)
  */
 bool CGamepad::dirPressed(EGamepadDirection direction, EEventType type)
 {
-  if (type == EVENT_ONCE) {
+  if (type == EET_ONCE) {
     if (!DirectionOnce[direction]) {
       if ((s32)CGame::getEventManager()->getPovValue() == direction) {
         DirectionOnce[direction] = true;

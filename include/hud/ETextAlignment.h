@@ -15,9 +15,9 @@ namespace nHud
 
 enum ETextAlignment
 {
-  TEXT_ALIGN_LEFT,
-  TEXT_ALIGN_RIGHT,
-  TEXT_ALIGN_CENTER
+  ETA_LEFT,
+  ETA_RIGHT,
+  ETA_CENTER
 };
 
 }

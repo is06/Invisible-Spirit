@@ -16,18 +16,18 @@ namespace nEngine
 //! Localization identifier enumeration
 enum ELocaleIdentifier
 {
-  LOCALE_ENG_GB,
-  LOCALE_ENG_US,
-  LOCALE_FRE_FR,
-  LOCALE_FRE_CA,
-  LOCALE_FRE_BE,
-  LOCALE_FRE_CH,
-  LOCALE_GER_DE,
-  LOCALE_CAT_ES,
-  LOCALE_ITA_IT,
-  LOCALE_POR_PT,
-  LOCALE_DUT_NL,
-  LOCALE_JPN_JP
+  ELI_ENG_GB,
+  ELI_ENG_US,
+  ELI_FRE_FR,
+  ELI_FRE_CA,
+  ELI_FRE_BE,
+  ELI_FRE_CH,
+  ELI_GER_DE,
+  ELI_CAT_ES,
+  ELI_ITA_IT,
+  ELI_POR_PT,
+  ELI_DUT_NL,
+  ELI_JPN_JP
 };
 
 }

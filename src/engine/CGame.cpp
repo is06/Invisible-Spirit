@@ -308,7 +308,7 @@ void CGame::initIrrlichtInterfaces()
   Device = createDeviceEx(deviceParameters);
 
   if (!Device) {
-    fatalError(nDebug::ERRCODE_01);
+    fatalError(nDebug::EEC_CODE_01);
   }
 
   // Other interfaces
@@ -316,7 +316,7 @@ void CGame::initIrrlichtInterfaces()
   VideoDriver->getDriverType();
 
   if (!VideoDriver) {
-    fatalError(nDebug::ERRCODE_02);
+    fatalError(nDebug::EEC_CODE_02);
   }
 
   GpuManager = VideoDriver->getGPUProgrammingServices();
@@ -386,10 +386,10 @@ void CGame::initShaders()
 void CGame::initLocale()
 {
   //string textLocale = settings->getParamstring("regional", "locale");
-  CurrentLocale = LOCALE_FRE_FR;
+  CurrentLocale = ELI_FRE_FR;
   /*
   if (textLocale == "eng-GB") {
-    currentLocale = LOCALE_ENG_GB;
+    currentLocale = ELI_ENG_GB;
   }
   */
 
@@ -416,7 +416,7 @@ void CGame::initScenes()
 {
   Exit = false;
   SceneChanged = true;
-  NextScene = nScene::SCENE_MAP_ALPHA_ZONE;
+  NextScene = nScene::ESI_MAP_ALPHA_ZONE;
 }
 
 //!
@@ -446,27 +446,27 @@ void CGame::checkGraphicalCapabilities()
     // DirectX 9 requirements
     // HLSL
     if (!VideoDriver->queryFeature(video::EVDF_HLSL)) {
-      fatalError(nDebug::ERRCODE_56);
+      fatalError(nDebug::EEC_CODE_56);
     }
     // Pixel Shader 2.0
-    if (!VideoDriver->queryFeature(video::EVDF_VERTEX_SHADER_3_0)) {
-      fatalError(nDebug::ERRCODE_50);
+    if (!VideoDriver->queryFeature(video::EVDF_VERTEX_SHADER_2_0)) {
+      fatalError(nDebug::EEC_CODE_50);
     }
     // Vertex Shader 2.0
-    if (!VideoDriver->queryFeature(video::EVDF_PIXEL_SHADER_3_0)) {
-      fatalError(nDebug::ERRCODE_51);
+    if (!VideoDriver->queryFeature(video::EVDF_PIXEL_SHADER_2_0)) {
+      fatalError(nDebug::EEC_CODE_51);
     }
   } else if (VideoDriver->getDriverType() == video::EDT_OPENGL) {
     // OpenGL requirements
     // GLSL
     if (!VideoDriver->queryFeature(video::EVDF_ARB_GLSL)) {
-      fatalError(nDebug::ERRCODE_55);
+      fatalError(nDebug::EEC_CODE_55);
     }
   }
 
   // Render to target textures
   if (!VideoDriver->queryFeature(video::EVDF_RENDER_TO_TARGET)) {
-    fatalError(nDebug::ERRCODE_52);
+    fatalError(nDebug::EEC_CODE_52);
   }
 }
 
@@ -523,25 +523,25 @@ void CGame::loadNextScene()
   delete CurrentScene;
   switch (NextScene) {
     // Menus
-    case nScene::SCENE_MENU: CurrentScene = new nScene::CSceneMenu(); break;
+    case nScene::ESI_MENU: CurrentScene = new nScene::CSceneMenu(); break;
 
     // Debug
-    case nScene::SCENE_MAP_ALPHA_ZONE: CurrentScene = new nMap::MAP_ALPHA_ZONE(); break;
+    case nScene::ESI_MAP_ALPHA_ZONE: CurrentScene = new nMap::MAP_ALPHA_ZONE(); break;
 
     // Countries
 
     // Dungeons
-    case nScene::SCENE_MAP_DUNGEON_1: CurrentScene = new nMap::MAP_DUNGEON_1(); break;
-    case nScene::SCENE_MAP_DUNGEON_2: CurrentScene = new nMap::MAP_DUNGEON_2(); break;
-    case nScene::SCENE_MAP_DUNGEON_3: CurrentScene = new nMap::MAP_DUNGEON_3(); break;
-    case nScene::SCENE_MAP_DUNGEON_4: CurrentScene = new nMap::MAP_DUNGEON_4(); break;
-    case nScene::SCENE_MAP_DUNGEON_5: CurrentScene = new nMap::MAP_DUNGEON_5(); break;
-    case nScene::SCENE_MAP_DUNGEON_6: CurrentScene = new nMap::MAP_DUNGEON_6(); break;
-    case nScene::SCENE_MAP_DUNGEON_7: CurrentScene = new nMap::MAP_DUNGEON_7(); break;
-    case nScene::SCENE_MAP_DUNGEON_8: CurrentScene = new nMap::MAP_DUNGEON_8(); break;
-    case nScene::SCENE_MAP_DUNGEON_9: CurrentScene = new nMap::MAP_DUNGEON_9(); break;
+    case nScene::ESI_MAP_DUNGEON_1: CurrentScene = new nMap::MAP_DUNGEON_1(); break;
+    case nScene::ESI_MAP_DUNGEON_2: CurrentScene = new nMap::MAP_DUNGEON_2(); break;
+    case nScene::ESI_MAP_DUNGEON_3: CurrentScene = new nMap::MAP_DUNGEON_3(); break;
+    case nScene::ESI_MAP_DUNGEON_4: CurrentScene = new nMap::MAP_DUNGEON_4(); break;
+    case nScene::ESI_MAP_DUNGEON_5: CurrentScene = new nMap::MAP_DUNGEON_5(); break;
+    case nScene::ESI_MAP_DUNGEON_6: CurrentScene = new nMap::MAP_DUNGEON_6(); break;
+    case nScene::ESI_MAP_DUNGEON_7: CurrentScene = new nMap::MAP_DUNGEON_7(); break;
+    case nScene::ESI_MAP_DUNGEON_8: CurrentScene = new nMap::MAP_DUNGEON_8(); break;
+    case nScene::ESI_MAP_DUNGEON_9: CurrentScene = new nMap::MAP_DUNGEON_9(); break;
 
-    default: fatalError(nDebug::ERRCODE_10); break;
+    default: fatalError(nDebug::EEC_CODE_10); break;
   }
 
   CurrentScene->setSaveSlot(CurrentSave);
@@ -552,7 +552,7 @@ void CGame::loadNextScene()
 void CGame::warning(nDebug::EErrorCode code)
 {
   switch (code) {
-    case nDebug::ERRCODE_21: throw nEngine::CEngineException(code, "Unable to write save file", 2); break;
+    case nDebug::EEC_CODE_21: throw nEngine::CEngineException(code, "Unable to write save file", 2); break;
     default: throw nEngine::CEngineException(code, "Unknown warning", 2); break;
   }
 }
@@ -564,22 +564,22 @@ void CGame::warning(nDebug::EErrorCode code)
 void CGame::fatalError(nDebug::EErrorCode code)
 {
   switch (code) {
-    case nDebug::ERRCODE_01: throw nEngine::CEngineException(code, "Irrlicht device not created", 3); break;
-    case nDebug::ERRCODE_02: throw nEngine::CEngineException(code, "Video driver not created", 3); break;
-    case nDebug::ERRCODE_10: throw nEngine::CEngineException(code, "Unknown map id", 3); break;
-    case nDebug::ERRCODE_20: throw nEngine::CEngineException(code, "Unable to open save file", 3); break;
-    case nDebug::ERRCODE_30: throw nEngine::CEngineException(code, "Mesh file not found", 3); break;
-    case nDebug::ERRCODE_45: throw nEngine::CEngineException(code, "Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor", 3); break;
-    case nDebug::ERRCODE_46: throw nEngine::CEngineException(code, "Level Mesh need an Irrlicht node, use createNode method in scene constructor", 3); break;
-    case nDebug::ERRCODE_47: throw nEngine::CEngineException(code, "Level Mesh need a Newton body, use loadMeshCollision method in scene constructor", 3); break;
-    case nDebug::ERRCODE_50: throw nEngine::CEngineException(code, "Vertex Shaders 3.0 not supported", 3); break;
-    case nDebug::ERRCODE_51: throw nEngine::CEngineException(code, "Pixels Shaders 3.0 not supported", 3); break;
-    case nDebug::ERRCODE_52: throw nEngine::CEngineException(code, "Render to target not supported", 3); break;
-    case nDebug::ERRCODE_53: throw nEngine::CEngineException(code, "Non-square textures not supported", 3); break;
-    case nDebug::ERRCODE_54: throw nEngine::CEngineException(code, "Non-power of two texture size not supported", 3); break;
-    case nDebug::ERRCODE_55: throw nEngine::CEngineException(code, "GLSL not supported", 3); break;
-    case nDebug::ERRCODE_56: throw nEngine::CEngineException(code, "HLSL not supported", 3); break;
-    case nDebug::ERRCODE_60: throw nEngine::CEngineException(code, "No local translation object for dialog interface", 3); break;
+    case nDebug::EEC_CODE_01: throw nEngine::CEngineException(code, "Irrlicht device not created", 3); break;
+    case nDebug::EEC_CODE_02: throw nEngine::CEngineException(code, "Video driver not created", 3); break;
+    case nDebug::EEC_CODE_10: throw nEngine::CEngineException(code, "Unknown map id", 3); break;
+    case nDebug::EEC_CODE_20: throw nEngine::CEngineException(code, "Unable to open save file", 3); break;
+    case nDebug::EEC_CODE_30: throw nEngine::CEngineException(code, "Mesh file not found", 3); break;
+    case nDebug::EEC_CODE_45: throw nEngine::CEngineException(code, "Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor", 3); break;
+    case nDebug::EEC_CODE_46: throw nEngine::CEngineException(code, "Level Mesh need an Irrlicht node, use createNode method in scene constructor", 3); break;
+    case nDebug::EEC_CODE_47: throw nEngine::CEngineException(code, "Level Mesh need a Newton body, use loadMeshCollision method in scene constructor", 3); break;
+    case nDebug::EEC_CODE_50: throw nEngine::CEngineException(code, "Vertex Shaders 3.0 not supported", 3); break;
+    case nDebug::EEC_CODE_51: throw nEngine::CEngineException(code, "Pixels Shaders 3.0 not supported", 3); break;
+    case nDebug::EEC_CODE_52: throw nEngine::CEngineException(code, "Render to target not supported", 3); break;
+    case nDebug::EEC_CODE_53: throw nEngine::CEngineException(code, "Non-square textures not supported", 3); break;
+    case nDebug::EEC_CODE_54: throw nEngine::CEngineException(code, "Non-power of two texture size not supported", 3); break;
+    case nDebug::EEC_CODE_55: throw nEngine::CEngineException(code, "GLSL not supported", 3); break;
+    case nDebug::EEC_CODE_56: throw nEngine::CEngineException(code, "HLSL not supported", 3); break;
+    case nDebug::EEC_CODE_60: throw nEngine::CEngineException(code, "No local translation object for dialog interface", 3); break;
     default: throw nEngine::CEngineException(code, "Internal error", 3); break;
   }
 

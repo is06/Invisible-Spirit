@@ -22,7 +22,7 @@ class CPlayerControl
     CPlayerControl();
     ~CPlayerControl();
 
-    bool commandEntered(ECommandIdentifier command, EEventType eventType=EVENT_ALWAYS);
+    bool commandEntered(ECommandIdentifier command, EEventType eventType=EET_ALWAYS);
 
     f32 getPlayerDirection();
     f32 getPlayerXAxis();
@@ -35,7 +35,7 @@ class CPlayerControl
     CKeyboard* Keyboard;
     CGamepad* Gamepad;
 
-    bool CommandOnce[COMMAND_COUNT];
+    bool CommandOnce[ECI_COUNT];
 };
 
 }

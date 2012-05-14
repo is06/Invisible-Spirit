@@ -16,8 +16,8 @@ namespace nHud
 //! CBarCounter styles
 enum EBarStyle
 {
-  BAR_STYLE_DEFAULT,
-  BAR_STYLE_LIFE
+  EBS_DEFAULT,
+  EBS_LIFE
 };
 
 }

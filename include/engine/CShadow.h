@@ -19,7 +19,7 @@ namespace nEngine
 class CShadow
 {
   public:
-    CShadow(nEngine::EShadowMode mode = SHADOW_MODE_CAST);
+    CShadow(nEngine::EShadowMode mode = ESM_CAST);
     ~CShadow();
 
     const nEngine::EShadowMode& getMode() const;

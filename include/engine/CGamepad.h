@@ -37,8 +37,8 @@ class CGamepad
     s8 getRightJoystickXAxis();
     s8 getRightJoystickYAxis();
 
-    bool buttonPressed(u16 buttons, nEngine::EEventType type = nEngine::EVENT_ALWAYS);
-    bool dirPressed(EGamepadDirection direction, nEngine::EEventType type = nEngine::EVENT_ALWAYS);
+    bool buttonPressed(u16 buttons, nEngine::EEventType type = nEngine::EET_ALWAYS);
+    bool dirPressed(EGamepadDirection direction, nEngine::EEventType type = nEngine::EET_ALWAYS);
 
   private:
     TGamepadButtonMap ButtonOnce;

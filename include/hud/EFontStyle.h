@@ -17,9 +17,9 @@ namespace nHud
 enum EFontStyle
 {
   // Classic style
-  FONT_STANDARD_48,
+  EFS_STANDARD_48,
 
-  FONT_COUNT
+  EFS_COUNT
 };
 
 }

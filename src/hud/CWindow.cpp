@@ -20,7 +20,7 @@ CWindow::CWindow(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, EWindowStyle style
   Size = core::dimension2df(w, h);
 
   switch (style) {
-    case WIN_STYLE_STD: applyStyleStd(x, y, w, h, borderWidth); break;
+    case EWS_STD: applyStyleStd(x, y, w, h, borderWidth); break;
     default: applyStyleNone(); break;
   }
 }

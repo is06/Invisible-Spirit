@@ -32,36 +32,36 @@ bool CPlayerControl::commandEntered(ECommandIdentifier command, EEventType event
   bool value = false;
 
   switch (command) {
-    case COMMAND_MENU_LEFT:
-      value = (Keyboard->pressed(KEY_LEFT, eventType) || Gamepad->buttonPressed(GP_DIR_LEFT, eventType));
+    case ECI_MENU_LEFT:
+      value = (Keyboard->pressed(KEY_LEFT, eventType) || Gamepad->buttonPressed(EGD_LEFT, eventType));
       break;
-    case COMMAND_MENU_RIGHT:
-      value = (Keyboard->pressed(KEY_RIGHT, eventType) || Gamepad->buttonPressed(GP_DIR_RIGHT, eventType));
+    case ECI_MENU_RIGHT:
+      value = (Keyboard->pressed(KEY_RIGHT, eventType) || Gamepad->buttonPressed(EGD_RIGHT, eventType));
       break;
-    case COMMAND_MENU_DOWN:
-      value = (Keyboard->pressed(KEY_DOWN, eventType) || Gamepad->buttonPressed(GP_DIR_BOTTOM, eventType));
+    case ECI_MENU_DOWN:
+      value = (Keyboard->pressed(KEY_DOWN, eventType) || Gamepad->buttonPressed(EGD_BOTTOM, eventType));
       break;
-    case COMMAND_MENU_UP:
-      value = (Keyboard->pressed(KEY_UP, eventType) || Gamepad->buttonPressed(GP_DIR_TOP, eventType));
+    case ECI_MENU_UP:
+      value = (Keyboard->pressed(KEY_UP, eventType) || Gamepad->buttonPressed(EGD_TOP, eventType));
       break;
-    case COMMAND_MENU_OK:
-    case COMMAND_DIALOG_ACTION:
-      value = (Keyboard->pressed(KEY_SPACE, eventType) || Gamepad->buttonPressed(GP_BUTTON_A, eventType));
+    case ECI_MENU_OK:
+    case ECI_DIALOG_ACTION:
+      value = (Keyboard->pressed(KEY_SPACE, eventType) || Gamepad->buttonPressed(EGB_A, eventType));
       break;
-    case COMMAND_OPEN_MENU:
-      value = (Keyboard->pressed(KEY_KEY_D, eventType) || Gamepad->buttonPressed(GP_BUTTON_Y, eventType));
+    case ECI_OPEN_MENU:
+      value = (Keyboard->pressed(KEY_KEY_D, eventType) || Gamepad->buttonPressed(EGB_Y, eventType));
       break;
-    case COMMAND_PLAYER_JUMP:
-    case COMMAND_MENU_BACK:
-      value = (Keyboard->pressed(KEY_KEY_V, eventType) || Gamepad->buttonPressed(GP_BUTTON_B, eventType));
+    case ECI_PLAYER_JUMP:
+    case ECI_MENU_BACK:
+      value = (Keyboard->pressed(KEY_KEY_V, eventType) || Gamepad->buttonPressed(EGB_B, eventType));
       break;
-    case COMMAND_PLAYER_GUARD:
-      value = (Keyboard->pressed(KEY_KEY_X, eventType) || Gamepad->buttonPressed(GP_BUTTON_X, eventType));
+    case ECI_PLAYER_GUARD:
+      value = (Keyboard->pressed(KEY_KEY_X, eventType) || Gamepad->buttonPressed(EGB_X, eventType));
       break;
-    case COMMAND_PLAYER_ATTACK:
-      value = (Keyboard->pressed(KEY_KEY_C, eventType) || Gamepad->buttonPressed(GP_BUTTON_A, eventType));
+    case ECI_PLAYER_ATTACK:
+      value = (Keyboard->pressed(KEY_KEY_C, eventType) || Gamepad->buttonPressed(EGB_A, eventType));
       break;
-    case COMMAND_COUNT:
+    case ECI_COUNT:
       break;
   }
 

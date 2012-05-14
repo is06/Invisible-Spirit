@@ -16,14 +16,14 @@ namespace nEngine
 //! Gamepad direction mapping enumeration
 enum EGamepadDirection
 {
-  GP_DIR_TOP = 0,
-  GP_DIR_TOP_RIGHT = 4500,
-  GP_DIR_RIGHT = 9000,
-  GP_DIR_BOTTOM_RIGHT = 13500,
-  GP_DIR_BOTTOM = 18000,
-  GP_DIR_BOTTOM_LEFT = 22500,
-  GP_DIR_LEFT = 27000,
-  GP_DIR_TOP_LEFT = 31500
+  EGD_TOP = 0,
+  EGD_TOP_RIGHT = 4500,
+  EGD_RIGHT = 9000,
+  EGD_BOTTOM_RIGHT = 13500,
+  EGD_BOTTOM = 18000,
+  EGD_BOTTOM_LEFT = 22500,
+  EGD_LEFT = 27000,
+  EGD_TOP_LEFT = 31500
 };
 
 }

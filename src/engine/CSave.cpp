@@ -156,7 +156,7 @@ void CSave::setGeneralDefaultValues(nEngine::EDifficultyLevel difficultyLevel)
   IntegerList[2] = difficultyLevel; // Difficulty Level
 
   // Map info
-  IntegerList[11] = nScene::SCENE_MAP_ALPHA_ZONE; // Current map id
+  IntegerList[11] = nScene::ESI_MAP_ALPHA_ZONE; // Current map id
   StringList[12] = "Alpha Zone (Debug)"; // Current map name
 
   // Time info

@@ -55,8 +55,8 @@ class CAnimatedModel : public CModelEntity
     // Collision detection
     bool collidesWithStatic(n3D::CStaticModel* other);
     bool collidesWithAnimated(n3D::CAnimatedModel* other);
-    bool collidesWithPlaneSensor(n3D::CPlaneSensor* sensor, nEngine::EEventType type = nEngine::EVENT_ALWAYS);
-    bool isInBoxSensor(n3D::CBoxSensor* sensor, nEngine::EEventType type = nEngine::EVENT_ALWAYS);
+    bool collidesWithPlaneSensor(n3D::CPlaneSensor* sensor, nEngine::EEventType type = nEngine::EET_ALWAYS);
+    bool isInBoxSensor(n3D::CBoxSensor* sensor, nEngine::EEventType type = nEngine::EET_ALWAYS);
     f32 getFloorCollision(n3D::CStaticModel* other);
     f32 getWallCollision(nEngine::ERayType type, n3D::CStaticModel* other, core::vector3df& normal);
 
@@ -70,7 +70,7 @@ class CAnimatedModel : public CModelEntity
     bool animationFinished(s32 id);
 
     // Shadows
-    void setShadowMode(nEngine::EShadowMode mode = nEngine::SHADOW_MODE_CAST);
+    void setShadowMode(nEngine::EShadowMode mode = nEngine::ESM_CAST);
 
   protected:
     f32 FloorSensorWidth;

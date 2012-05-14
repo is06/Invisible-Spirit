@@ -16,8 +16,8 @@ namespace nEngine
 //! Fading screen color enumeration
 enum EFadeColor
 {
-  FADE_COLOR_BLACK,
-  FADE_COLOR_WHITE
+  EFC_BLACK,
+  EFC_WHITE
 };
 
 }

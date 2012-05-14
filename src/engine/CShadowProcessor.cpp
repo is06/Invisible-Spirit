@@ -53,7 +53,7 @@ void CShadowProcessor::render()
 
   for (ShadowsIt = Shadows.begin(); ShadowsIt != Shadows.end(); ShadowsIt++) {
     // Considering entities that casts shadows
-    if (ShadowsIt->second.getMode() == SHADOW_MODE_CAST || ShadowsIt->second.getMode() == SHADOW_MODE_ALL) {
+    if (ShadowsIt->second.getMode() == ESM_CAST || ShadowsIt->second.getMode() == ESM_ALL) {
       ShadowsIt->first->setMaterialType((video::E_MATERIAL_TYPE)CGame::Shaders.ShadowMapPass1);
       ShadowsIt->first->render();
       ShadowsIt->first->setMaterialType((video::E_MATERIAL_TYPE)CGame::Shaders.ShadowMapPass2);
@@ -61,7 +61,7 @@ void CShadowProcessor::render()
     }
 
     // Considering entities that receives shadows
-    if (ShadowsIt->second.getMode() == SHADOW_MODE_RECEIVE || ShadowsIt->second.getMode() == SHADOW_MODE_ALL) {
+    if (ShadowsIt->second.getMode() == ESM_RECEIVE || ShadowsIt->second.getMode() == ESM_ALL) {
       // @todo
     }
   }

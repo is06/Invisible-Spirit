@@ -16,16 +16,16 @@ namespace nEngine
 //! Gamepad buttons mapping enumeration
 enum EGamepadButton
 {
-  GP_BUTTON_A = 1,
-  GP_BUTTON_B = 2,
-  GP_BUTTON_X = 4,
-  GP_BUTTON_Y = 8,
-  GP_BUTTON_LB = 16,
-  GP_BUTTON_RB = 32,
-  GP_BUTTON_BACK = 64,
-  GP_BUTTON_START = 128,
-  GP_BUTTON_LSTICK = 256,
-  GP_BUTTON_RSTICK = 512
+  EGB_A = 1,
+  EGB_B = 2,
+  EGB_X = 4,
+  EGB_Y = 8,
+  EGB_LB = 16,
+  EGB_RB = 32,
+  EGB_BACK = 64,
+  EGB_START = 128,
+  EGB_LSTICK = 256,
+  EGB_RSTICK = 512
 };
 
 }

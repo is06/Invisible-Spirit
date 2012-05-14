@@ -19,8 +19,8 @@ namespace nEngine
 class CKeyboard
 {
   public:
-    bool pressed(EKEY_CODE code, EEventType type = EVENT_ALWAYS);
-    bool any(EEventType type = EVENT_ALWAYS);
+    bool pressed(EKEY_CODE code, EEventType type = EET_ALWAYS);
+    bool any(EEventType type = EET_ALWAYS);
     s8 getDirectionXAxis();
     s8 getDirectionYAxis();
     f32 getDirectionAngle();

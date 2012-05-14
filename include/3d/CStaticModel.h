@@ -49,7 +49,7 @@ class CStaticModel : public CModelEntity
     scene::IMeshSceneNode* getNode();
 
     // Shadows
-    void setShadowMode(nEngine::EShadowMode mode = nEngine::SHADOW_MODE_CAST);
+    void setShadowMode(nEngine::EShadowMode mode = nEngine::ESM_CAST);
 
   protected:
     scene::IMeshSceneNode* MainNode;

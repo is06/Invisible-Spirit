@@ -20,8 +20,8 @@ namespace nHud
 
 CTargetLifeMeter::CTargetLifeMeter(s32 init, s32 min, s32 max)
 {
-  Label = new CText("Cible", 0, 0, FONT_STANDARD_48, 0);
-  Gauge = new CBarCounter(init, min, max, 0, 0, 150, 10, BAR_STYLE_LIFE);
+  Label = new CText("Cible", 0, 0, EFS_STANDARD_48, 0);
+  Gauge = new CBarCounter(init, min, max, 0, 0, 150, 10, EBS_LIFE);
   BarBack = new CPicture();
 }
 

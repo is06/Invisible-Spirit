@@ -45,9 +45,9 @@ CSceneMenu::CSceneMenu() : CScene()
   Camera->getNode()->setTarget(core::vector3df(0.0f, 100.0f, 0.0f));
   Camera->getNode()->setFarValue(10000.0f);
 
-  MainMenu = new nHud::CMenu(nEngine::CGame::ScreenPos.Left + 100.0f, -100.0f, 150.0f, 8, nHud::MENU_STYLE_TITLE);
-  MainMenu->addOption(nHud::MENU_ICON_NONE, GlobalTranslations->getTranslation("main_menu_launch_demo"));
-  MainMenu->addOption(nHud::MENU_ICON_NONE, GlobalTranslations->getTranslation("main_menu_quit"));
+  MainMenu = new nHud::CMenu(nEngine::CGame::ScreenPos.Left + 100.0f, -100.0f, 150.0f, 8, nHud::EMS_TITLE);
+  MainMenu->addOption(nHud::EMI_NONE, GlobalTranslations->getTranslation("main_menu_launch_demo"));
+  MainMenu->addOption(nHud::EMI_NONE, GlobalTranslations->getTranslation("main_menu_quit"));
 
   Title = new nHud::CPicture(nEngine::CGame::ScreenPos.Right - 413.0f, 100.0f, 826.0f, 101.0f, "resource/texture/menus/title/main.png");
   CreativeCommons = new nHud::CPicture(nEngine::CGame::ScreenPos.Left + 300.0f, nEngine::CGame::ScreenPos.Bottom + 50.0f, 420.0f, 44.0f, "resource/texture/menus/title/cc.png");
@@ -94,13 +94,13 @@ void CSceneMenu::hudRender()
 void CSceneMenu::manageMainMenu()
 {
   if (!QuitIsFading && !NewGameIsFading) {
-    if (Control->commandEntered(nEngine::COMMAND_MENU_DOWN, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::ECI_MENU_DOWN, nEngine::EET_ONCE)) {
       MainMenu->nextOption();
     }
-    if (Control->commandEntered(nEngine::COMMAND_MENU_UP, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::ECI_MENU_UP, nEngine::EET_ONCE)) {
       MainMenu->prevOption();
     }
-    if (Control->commandEntered(nEngine::COMMAND_MENU_OK, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::ECI_MENU_OK, nEngine::EET_ONCE)) {
       switch (MainMenu->getCurrentOption()) {
         case 0:
           // Fade Out and boolean to go to gameplay (demo)
@@ -127,7 +127,7 @@ void CSceneMenu::manageMainMenu()
     if (OutFader->isReady()) {
       if (NewGameIsFading) {
         // New Game
-        nEngine::CGame::getCurrentSave()->createNewFile(nEngine::DIFFICULTY_MEDIUM);
+        nEngine::CGame::getCurrentSave()->createNewFile(nEngine::EDL_MEDIUM);
       }
       if (QuitIsFading) {
         // Quit to OS

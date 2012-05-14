@@ -19,7 +19,7 @@ namespace nHud
 class CWindow : public CHud
 {
   public:
-    CWindow(f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 100, f32 borderWidth = 4, EWindowStyle style = WIN_STYLE_STD);
+    CWindow(f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 100, f32 borderWidth = 4, EWindowStyle style = EWS_STD);
     ~CWindow();
 
     void render();

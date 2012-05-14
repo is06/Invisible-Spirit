@@ -71,7 +71,7 @@ void CSceneGameplay::events()
   manageCharacterCollisions();
 
   // Menu
-  if (Control->commandEntered(nEngine::COMMAND_OPEN_MENU, nEngine::EVENT_ONCE)) {
+  if (Control->commandEntered(nEngine::ECI_OPEN_MENU, nEngine::EET_ONCE)) {
     GameplayMenu->toggle();
     Ayron->toggleControl();
     Camera->toggleControl();
@@ -114,12 +114,12 @@ void CSceneGameplay::manageCharacterJumps()
   if (Ayron->hasControl()) {
     Ayron->setJumping(false);
 
-    if (Control->commandEntered(nEngine::COMMAND_PLAYER_JUMP, nEngine::EVENT_ONCE)) {
+    if (Control->commandEntered(nEngine::ECI_PLAYER_JUMP, nEngine::EET_ONCE)) {
       if (!Ayron->isJumping() && !Ayron->isFalling()) {
         Ayron->setJumpDelta(Ayron->getJumpStrength());
       }
     }
-    if (Control->commandEntered(nEngine::COMMAND_PLAYER_JUMP)) {
+    if (Control->commandEntered(nEngine::ECI_PLAYER_JUMP)) {
       Ayron->setJumping(true);
       Ayron->jump();
     }
@@ -155,9 +155,9 @@ void CSceneGameplay::manageCharacterMovements()
 void CSceneGameplay::manageCharacterCollisions()
 {
   // Check if level was created
-  if (Level->getMesh() == NULL) nEngine::CGame::fatalError(nDebug::ERRCODE_45);
-  if (Level->getNode() == NULL) nEngine::CGame::fatalError(nDebug::ERRCODE_46);
-  if (Level->getMainBody() == NULL) nEngine::CGame::fatalError(nDebug::ERRCODE_47);
+  if (Level->getMesh() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_45);
+  if (Level->getNode() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_46);
+  if (Level->getMainBody() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_47);
 
   // Floor collision
   if (Ayron->getFloorCollision(Level) > 1.0) {
@@ -172,10 +172,10 @@ void CSceneGameplay::manageCharacterCollisions()
   // Wall collision, this normal vector will be modified by getWallCollision functions
   core::vector3df normal;
 
-  if (Ayron->getWallCollision(nEngine::RAY_WALL_P, Level, normal) < 1.0f
-  || Ayron->getWallCollision(nEngine::RAY_WALL_Q, Level, normal) < 1.0f) {
-    while (Ayron->getWallCollision(nEngine::RAY_WALL_P, Level, normal) < 0.99
-    || Ayron->getWallCollision(nEngine::RAY_WALL_Q, Level, normal) < 0.99) {
+  if (Ayron->getWallCollision(nEngine::ERT_WALL_P, Level, normal) < 1.0f
+  || Ayron->getWallCollision(nEngine::ERT_WALL_Q, Level, normal) < 1.0f) {
+    while (Ayron->getWallCollision(nEngine::ERT_WALL_P, Level, normal) < 0.99
+    || Ayron->getWallCollision(nEngine::ERT_WALL_Q, Level, normal) < 0.99) {
       Ayron->moveOpposite(normal);
     }
   }
@@ -186,14 +186,14 @@ void CSceneGameplay::manageCharacterCollisions()
  */
 void CSceneGameplay::manageMenuControl()
 {
-  if (Control->commandEntered(nEngine::COMMAND_MENU_OK, nEngine::EVENT_ONCE)) {
+  if (Control->commandEntered(nEngine::ECI_MENU_OK, nEngine::EET_ONCE)) {
     if (GameplayMenu->getSectionMenu()->getCurrentOption() == 9) {
       QuitIsFading = true;
       fadeOut(0.5f);
     }
   }
   if (QuitIsFading && OutFader->isReady()) {
-    nEngine::CGame::changeScene(SCENE_MENU);
+    nEngine::CGame::changeScene(ESI_MENU);
   }
 }
 

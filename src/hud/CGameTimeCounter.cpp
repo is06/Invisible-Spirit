@@ -23,7 +23,7 @@ CGameTimeCounter::CGameTimeCounter() : CCounter()
     "---",
     nEngine::CGame::ScreenPos.Left + 100,
     nEngine::CGame::ScreenPos.Bottom + 80,
-    FONT_STANDARD_48
+    EFS_STANDARD_48
   );
 }
 

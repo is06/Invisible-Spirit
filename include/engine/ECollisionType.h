@@ -16,8 +16,8 @@ namespace nEngine
 //! Collision type enumeration
 enum ECollisionType
 {
-  COLLISION_CHARACTER,
-  COLLISION_MESH
+  ECT_CHARACTER,
+  ECT_MESH
 };
 
 }

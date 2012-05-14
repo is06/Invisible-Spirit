@@ -20,7 +20,7 @@ namespace nHud
 class CMenuOption : public CHud
 {
   public:
-    CMenuOption(EMenuIcon icon, const string& title = "[Option]", f32 x = 0, f32 y = 0, EMenuStyle style = MENU_STYLE_STD);
+    CMenuOption(EMenuIcon icon, const string& title = "[Option]", f32 x = 0, f32 y = 0, EMenuStyle style = EMS_STD);
     virtual ~CMenuOption();
 
     virtual void render();

@@ -69,7 +69,7 @@ void MAP_ALPHA_ZONE::events()
 {
   nScene::CSceneGameplay::events();
 
-  if (Control->commandEntered(nEngine::COMMAND_PLAYER_GUARD, nEngine::EVENT_ONCE)) {
+  if (Control->commandEntered(nEngine::ECI_PLAYER_GUARD, nEngine::EET_ONCE)) {
     Dialog->start("norya_first_start");
 
     /*
