@@ -57,6 +57,9 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   // Glow shader example
   //glowShader = new PostRenderGlow();
   //addToEntityList(level);
+
+  // Hud
+  MiniMap->setMap(nHud::EMMI_ALPHA_ZONE);
 }
 
 /**

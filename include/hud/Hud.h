@@ -21,9 +21,7 @@ class CHud : public nEngine::CEntity
   public:
     CHud();
     virtual ~CHud();
-
     virtual void render() = 0;
-
     virtual void setOpacity(u8 value) = 0;
     virtual void show() = 0;
     virtual void hide() = 0;

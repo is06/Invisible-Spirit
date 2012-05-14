@@ -9,6 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_SCENE_GAMEPLAY_H__
 
 #include "Scene.h"
+#include "../hud/MiniMap.h"
 #include "../hud/GameplayMenu.h"
 
 namespace is06
@@ -30,6 +31,7 @@ class CSceneGameplay : public CScene
     n3D::CLevelMesh* Level;
     nHud::CGameplayInterface* GameplayInterface;
     nHud::CEnergyInterface* EnergyInterface;
+    nHud::CMiniMap* MiniMap;
     nHud::CWorldTimeCounter* WorldTime;
     nHud::nMenu::CGameplayMenu* GameplayMenu;
     nEngine::CTimer* EverySecondTimer;

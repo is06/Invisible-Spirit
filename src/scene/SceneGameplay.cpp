@@ -45,6 +45,7 @@ CSceneGameplay::CSceneGameplay() : CScene()
   // GUI Interfaces
   GameplayInterface = new nHud::CGameplayInterface();
   EnergyInterface = new nHud::CEnergyInterface();
+  MiniMap = new nHud::CMiniMap(Ayron);
   GameplayMenu = new nHud::nMenu::CGameplayMenu(GlobalTranslations, Control);
   EverySecondTimer = new nEngine::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), 9999);
 
@@ -212,8 +213,9 @@ void CSceneGameplay::hudRender()
 {
   CScene::hudRender();
 
-  //gpInterface->render();
-  //enInterface->render();
+  //GameplayInterface->render();
+  //EnergyInterface->render();
+  MiniMap->render();
   GameplayMenu->render();
 }
 
@@ -227,6 +229,7 @@ CSceneGameplay::~CSceneGameplay()
   if (Camera) delete Camera;
   if (GameplayInterface) delete GameplayInterface;
   if (EnergyInterface) delete EnergyInterface;
+  if (MiniMap) delete MiniMap;
   if (GameplayMenu) delete GameplayMenu;
   if (EverySecondTimer) delete EverySecondTimer;
 }
