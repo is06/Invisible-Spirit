@@ -17,6 +17,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/sound/CSpeaker.h"
 #include "../../include/map/MAP_ALPHA_ZONE.h"
 
+using namespace irr;
+
 namespace is06
 {
 namespace nMap
@@ -60,6 +62,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
 
   // Hud
   MiniMap->setMap(nHud::EMMI_ALPHA_ZONE);
+  MiniMap->setWorldSize(60.0f);
 }
 
 /**

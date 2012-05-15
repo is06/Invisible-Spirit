@@ -6,6 +6,7 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/CGame.h"
+#include "../../include/engine/CEventManager.h"
 #include "../../include/hud/CMiniMapArrow.h"
 
 using namespace irr;
@@ -17,15 +18,33 @@ namespace nHud
 
 CMiniMapArrow::CMiniMapArrow(video::SColor color) : CHud()
 {
+  AbsoluteTransformation = core::matrix4();
+  AbsoluteTransformation.makeIdentity();
+
   Visible = true;
 
   Material.DiffuseColor = color;
   Material.Wireframe = false;
   Material.Lighting = false;
 
-  Vertices[0] = video::S3DVertex(0, 0, 10, 1, 1, 0, color, 0, 0);
-  Vertices[1] = video::S3DVertex(0, 10, 0, 1, 1, 0, color, 0, 0);
-  Vertices[2] = video::S3DVertex(10, 0, 0, 1, 1, 0, color, 0, 0);
+  Vertices[0] = video::S3DVertex(
+    core::vector3df(-0.0014f, 0.0027f, 0.1f), // Position
+    core::vector3df(1.0f, 1.0f, 0.0f), // Normal
+    color, // Color
+    core::vector2df(0.0f, 0.0f) // Texture coords
+  );
+  Vertices[1] = video::S3DVertex(
+    core::vector3df(0.0014f, 0.0027f, 0.1f), // Position
+    core::vector3df(1.0f, 0.0f, 0.0f), // Normal
+    color, // Color
+    core::vector2df(0.0f, 0.0f) // Texture coords
+  );
+  Vertices[2] = video::S3DVertex(
+    core::vector3df(0.0f, -0.0027f, 0.1f), // Position
+    core::vector3df(0.0f, 1.0f, 1.0f), // Normal
+    color, // Color
+    core::vector2df(0.0f, 0.0f) // Texture coords
+  );
 
   Indices[0] = 0;
   Indices[1] = 1;
@@ -35,6 +54,26 @@ CMiniMapArrow::CMiniMapArrow(video::SColor color) : CHud()
 void CMiniMapArrow::render()
 {
   core::matrix4 mat;
+  mat.makeIdentity();
+
+  if (nEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD7)) {
+    Vertices[0].Pos.X += 0.00001f;
+    Vertices[1].Pos.X -= 0.00001f;
+  }
+  if (nEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD8)) {
+    Vertices[0].Pos.Y += 0.00001f;
+    Vertices[1].Pos.Y += 0.00001f;
+    Vertices[2].Pos.Y -= 0.00001f;
+  }
+  if (nEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD4)) {
+    Vertices[0].Pos.X -= 0.00001f;
+    Vertices[1].Pos.X += 0.00001f;
+  }
+  if (nEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD5)) {
+    Vertices[0].Pos.Y -= 0.00001f;
+    Vertices[1].Pos.Y -= 0.00001f;
+    Vertices[2].Pos.Y += 0.00001f;
+  }
 
   Material.DiffuseColor.setAlpha(Opacity);
 
@@ -63,12 +102,14 @@ void CMiniMapArrow::setOpacity(u8 value)
 
 void CMiniMapArrow::setPosition(f32 x, f32 y)
 {
-  AbsoluteTransformation.setTranslation(core::vector3df(x, 0.0f, y));
+  AbsoluteTransformation.setTranslation(core::vector3df(x, y, 0.0f));
 }
 
+//! Rotates the arrow according to a Y axis rotation value
 void CMiniMapArrow::setRotation(f32 value)
 {
-  AbsoluteTransformation.setRotationDegrees(core::vector3df(0.0f, value, 0.0f));
+  value *= -1;
+  AbsoluteTransformation.setRotationDegrees(core::vector3df(0.0f, 0.0f, value));
 }
 
 CMiniMapArrow::~CMiniMapArrow()
