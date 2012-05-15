@@ -62,7 +62,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
 
   // Hud
   MiniMap->setMap(nHud::EMMI_ALPHA_ZONE);
-  MiniMap->setWorldSize(60.0f);
+  MiniMap->setWorldSize(120.0f);
 }
 
 /**
@@ -72,15 +72,15 @@ void MAP_ALPHA_ZONE::events()
 {
   nScene::CSceneGameplay::events();
 
+  /*
   if (Control->commandEntered(nEngine::ECI_PLAYER_GUARD, nEngine::EET_ONCE)) {
     Dialog->start("norya_first_start");
-
-    /*
-    if (dialog->finished()) {
-
-    }
-    */
   }
+
+  if (dialog->finished()) {
+
+  }
+  */
 
   // Object rendering
   //spk->render();

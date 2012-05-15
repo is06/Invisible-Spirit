@@ -31,12 +31,11 @@ void CMiniMap::setMap(EMiniMapIdentifier id)
   string fileName = "";
 
   switch (id) {
-    case EMMI_ALPHA_ZONE: fileName = "debug/alpha_zone"; break;
     default: fileName = "global/default"; break;
   }
 
   Map = new CPicture(Position.X, Position.Y, 250, 250, "resource/hud/minimap/" + fileName + ".png", true);
-  Map->setOpacity(127);
+  Map->setOpacity(230);
 
   // Entrance
   EntrancePosition = new CMiniMapArrow(video::SColor(255, 255, 0, 0));
@@ -104,8 +103,8 @@ void CMiniMap::setWorldSize(f32 size)
 core::vector2df CMiniMap::getMapCoordinates(const core::vector2df& worldCoords)
 {
   return core::vector2df(
-    (Position.X / COEFF) + (worldCoords.X / COEFF),
-    (Position.Y / COEFF) + (worldCoords.Y / COEFF)
+    (Position.X / COEFF) + ((worldCoords.X / COEFF) * (250.0f / WorldSize)),
+    (Position.Y / COEFF) + ((worldCoords.Y / COEFF) * (250.0f / WorldSize))
   );
 }
 
