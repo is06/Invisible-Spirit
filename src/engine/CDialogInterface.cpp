@@ -65,7 +65,7 @@ CDialogInterface::CDialogInterface(const string& filePath, CTranslation* transla
 void CDialogInterface::render()
 {
   // Background of dialog
-  BackWindow->render();
+  //BackWindow->render();
 
   // Text
   if (CurrentMessageText) {

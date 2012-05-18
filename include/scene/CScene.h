@@ -68,8 +68,12 @@ class CScene
     map<n3D::CModelEntity*, bool> EntityList;
     map<n3D::CModelEntity*, bool>::iterator EntityListIt;
 
+    void setSkyBox(const string& textureName);
+
   private:
     void generateDebugInfo();
+
+    scene::ISceneNode* SkyBox;
 };
 
 }

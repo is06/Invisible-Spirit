@@ -63,6 +63,8 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   // Hud
   MiniMap->setMap(nHud::EMMI_ALPHA_ZONE);
   MiniMap->setWorldSize(120.0f);
+
+  setSkyBox("test");
 }
 
 /**

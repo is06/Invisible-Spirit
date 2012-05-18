@@ -26,9 +26,7 @@ namespace is06
 namespace nScene
 {
 
-/**
- * Initialize all objects and entity in this type of scene
- */
+//! Initialize all objects and entity in this type of scene
 CSceneGameplay::CSceneGameplay() : CScene()
 {
   Level = new n3D::CLevelMesh();
@@ -56,9 +54,7 @@ CSceneGameplay::CSceneGameplay() : CScene()
   fadeIn(0.5f);
 }
 
-/**
- * This function manages all events in this type of scene
- */
+//! This function manages all events in this type of scene
 void CSceneGameplay::events()
 {
   CScene::events();
@@ -86,9 +82,10 @@ void CSceneGameplay::events()
   Camera->update();
 }
 
+//! Called every second by a timer
 void CSceneGameplay::everySecond()
 {
-  GameSave->incInteger(21, 1);
+  GameSave->incInteger(21, 1); // 21 = Total game time (in seconds)
 }
 
 //! Manages camera control. Called every cycle
@@ -186,9 +183,7 @@ void CSceneGameplay::manageCharacterCollisions()
   }
 }
 
-/**
- *
- */
+//! Manages menu control
 void CSceneGameplay::manageMenuControl()
 {
   if (Control->commandEntered(nEngine::ECI_MENU_OK, nEngine::EET_ONCE)) {
@@ -202,18 +197,13 @@ void CSceneGameplay::manageMenuControl()
   }
 }
 
-/**
- *
- */
+//! Post render (shaders...)
 void CSceneGameplay::postRender()
 {
   CScene::postRender();
 }
 
-/**
- * This functions is called after all scene object render
- * It renders HUD elements in front of camera
- */
+//! This functions is called after all scene object render. It renders HUD elements in front of camera
 void CSceneGameplay::hudRender()
 {
   CScene::hudRender();
@@ -224,9 +214,7 @@ void CSceneGameplay::hudRender()
   GameplayMenu->render();
 }
 
-/**
- * Destroys all objects defined by constructor
- */
+//! Destroys all objects defined by constructor
 CSceneGameplay::~CSceneGameplay()
 {
   if (Level) delete Level;

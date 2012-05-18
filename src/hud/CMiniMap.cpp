@@ -21,7 +21,7 @@ CMiniMap::CMiniMap(n3D::CPlayableCharacter* player) : CHud()
   AttachedPlayer = player;
   Position = core::vector2df(
     nEngine::CGame::ScreenPos.Right - 150.0f,
-    nEngine::CGame::ScreenPos.Top - 150.0f
+    nEngine::CGame::ScreenPos.Bottom + 150.0f
   );
 }
 

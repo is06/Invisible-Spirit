@@ -43,6 +43,7 @@ class CSceneGameplay : public CScene
     void manageCharacterCollisions();
     void manageMenuControl();
     void everySecond();
+
     bool QuitIsFading;
 };
 
