@@ -27,8 +27,11 @@ class CSceneGameplay : public CScene
     virtual void hudRender();
 
   protected:
+    void loadMapSection(const string& mapName, const string& sectionName, core::vector3df position);
+    void unloadUnusedMapSection();
+
     n3D::CPlayableCharacter* Ayron;
-    n3D::CLevelMesh* Level;
+    n3D::CLevelMesh* Level[2];
     nHud::CGameplayInterface* GameplayInterface;
     nHud::CEnergyInterface* EnergyInterface;
     nHud::CMiniMap* MiniMap;
@@ -43,6 +46,7 @@ class CSceneGameplay : public CScene
     void manageCharacterCollisions();
     void manageMenuControl();
     void everySecond();
+    void switchLevelMeshes();
 
     bool QuitIsFading;
 };

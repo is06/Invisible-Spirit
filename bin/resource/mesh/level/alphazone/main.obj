@@ -1,6 +1,6 @@
 # Blender3D v248 OBJ File: alphazone.blend
 # www.blender3d.org
-mtllib alphazone.mtl
+mtllib main.mtl
 v -4.000000 -0.000000 -9.999999
 v -4.000000 0.000000 10.000000
 v -11.999998 -0.000000 -10.000004

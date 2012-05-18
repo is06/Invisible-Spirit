@@ -29,7 +29,9 @@ namespace nScene
 //! Initialize all objects and entity in this type of scene
 CSceneGameplay::CSceneGameplay() : CScene()
 {
-  Level = new n3D::CLevelMesh();
+  Level[0] = NULL;
+  Level[1] = NULL;
+
   Camera = new n3D::CTPCamera();
 
   // Ayron info
@@ -157,16 +159,16 @@ void CSceneGameplay::manageCharacterMovements()
 void CSceneGameplay::manageCharacterCollisions()
 {
   // Check if level was created
-  if (Level->getMesh() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_45);
-  if (Level->getNode() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_46);
-  if (Level->getMainBody() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_47);
+  if (Level[0]->getMesh() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_45);
+  if (Level[0]->getNode() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_46);
+  if (Level[0]->getMainBody() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_47);
 
   // Floor collision
-  if (Ayron->getFloorCollision(Level) > 1.0) {
+  if (Ayron->getFloorCollision(Level[0]) > 1.0) {
     Ayron->fall(SpeedFactor);
   }
-  if (Ayron->getFloorCollision(Level) < 1.0) {
-    while (Ayron->getFloorCollision(Level) < 0.95) {
+  if (Ayron->getFloorCollision(Level[0]) < 1.0) {
+    while (Ayron->getFloorCollision(Level[0]) < 0.95) {
       Ayron->raise();
     }
   }
@@ -174,10 +176,10 @@ void CSceneGameplay::manageCharacterCollisions()
   // Wall collision, this normal vector will be modified by getWallCollision functions
   core::vector3df normal;
 
-  if (Ayron->getWallCollision(nEngine::ERT_WALL_P, Level, normal) < 1.0f
-  || Ayron->getWallCollision(nEngine::ERT_WALL_Q, Level, normal) < 1.0f) {
-    while (Ayron->getWallCollision(nEngine::ERT_WALL_P, Level, normal) < 0.99
-    || Ayron->getWallCollision(nEngine::ERT_WALL_Q, Level, normal) < 0.99) {
+  if (Ayron->getWallCollision(nEngine::ERT_WALL_P, Level[0], normal) < 1.0f
+  || Ayron->getWallCollision(nEngine::ERT_WALL_Q, Level[0], normal) < 1.0f) {
+    while (Ayron->getWallCollision(nEngine::ERT_WALL_P, Level[0], normal) < 0.99
+    || Ayron->getWallCollision(nEngine::ERT_WALL_Q, Level[0], normal) < 0.99) {
       Ayron->moveOpposite(normal);
     }
   }
@@ -214,10 +216,40 @@ void CSceneGameplay::hudRender()
   GameplayMenu->render();
 }
 
+void CSceneGameplay::switchLevelMeshes()
+{
+  n3D::CLevelMesh* tmp;
+  tmp = Level[1];
+  Level[1] = Level[0];
+  Level[0] = tmp;
+}
+
+void CSceneGameplay::loadMapSection(const string& mapName, const string& sectionName, core::vector3df position)
+{
+  if (Level[0] != NULL) {
+    switchLevelMeshes();
+  }
+
+  Level[0] = new n3D::CLevelMesh();
+  Level[0]->loadMesh("resource/mesh/level/" + mapName + "/" + sectionName + ".obj");
+  Level[0]->createNode(position);
+  Level[0]->loadMeshCollision();
+
+  unloadUnusedMapSection();
+}
+
+void CSceneGameplay::unloadUnusedMapSection()
+{
+  if (Level[1]) {
+    delete Level[1];
+  }
+}
+
 //! Destroys all objects defined by constructor
 CSceneGameplay::~CSceneGameplay()
 {
-  if (Level) delete Level;
+  if (Level[0]) delete Level[0];
+  if (Level[1]) delete Level[1];
   if (Ayron) delete Ayron;
   if (Camera) delete Camera;
   if (GameplayInterface) delete GameplayInterface;

@@ -32,10 +32,8 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   // Local Translations
   SceneTranslations = new nEngine::CTranslation("MAP_ALPHA_ZONE.ist");
 
-  // Level Mesh
-  Level->loadMesh("resource/mesh/level/alphazone.obj");
-  Level->createNode(core::vector3df(0.0f, 0.0f, 0.0f));
-  Level->loadMeshCollision();
+  // Map Section Mesh
+  loadMapSection("alphazone", "main", core::vector3df(0.0f, 0.0f, 0.0f));
 
   //Level->hide();
   //Ayron->hide();
@@ -127,7 +125,7 @@ void MAP_ALPHA_ZONE::hudRender()
 MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
 {
   // Level Mesh collision clear
-  Level->clearMeshCollision();
+  Level[0]->clearMeshCollision();
 
   // 3D Speaker deletion
   //delete spk;

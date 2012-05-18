@@ -24,10 +24,7 @@ namespace nScene
 
 bool CScene::InMapEditingMode;
 
-/**
- * Instanciate required object interfaces such as keyboard or music so we can
- * use them in all scenes
- */
+//! Instanciate required object interfaces such as keyboard or music so we can use them in all scenes
 CScene::CScene()
 {
   StartTime = nEngine::CGame::getCurrentTime();
@@ -55,10 +52,7 @@ CScene::CScene()
   BackBufferColor = video::SColor(255, 0, 0, 0);
 }
 
-/**
- * Event test of all scenes in the game
- * (global events)
- */
+//! Event test of all scenes in the game (global events)
 void CScene::events()
 {
   SpeedFactor = nEngine::CGame::getSpeedFactor();
@@ -93,9 +87,9 @@ void CScene::setSaveSlot(nEngine::CSave* saveSlot)
   GameSave = saveSlot;
 }
 
+//! Returns current active camera
 /**
- * Returns current active camera
- * @return Camera*
+ * \return Camera*
  */
 n3D::CCamera* CScene::getActiveCamera()
 {
@@ -110,11 +104,7 @@ void CScene::postRender()
   Dummy->render();
 }
 
-/**
- * This method is called every cycle after the event test method (or main loop
- * for scenes)
- * This method can handle post render events like map editor
- */
+//! This method is called every cycle after the event test method (or main loop for scenes). This method can handle post render events like map editor
 void CScene::hudRender()
 {
   //shadows->render();
@@ -212,9 +202,7 @@ void CScene::setSkyBox(const string& textureName)
   );
 }
 
-/**
- * This destructor removes interfaces and flushes texture and mesh cache
- */
+//! This destructor removes interfaces and flushes texture and mesh cache
 CScene::~CScene()
 {
   InFader->remove();
