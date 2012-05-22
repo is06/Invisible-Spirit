@@ -11,6 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../engine/CShadowProcessor.h"
 #include "../engine/CPlayerControl.h"
 #include "../engine/EFadeColor.h"
+#include "../engine/ECinemascopeAnimType.h"
 
 namespace is06
 {
@@ -44,36 +45,49 @@ class CScene
     static bool InMapEditingMode;
 
   protected:
+    // Faders
     gui::IGUIInOutFader* InFader;
     gui::IGUIInOutFader* OutFader;
 
+    // 2D elements
     nHud::CPicture* Dummy;
 
+    // 3D entities
     n3D::CCamera* Camera;
+
+    // Interfaces
     nEngine::CPlayerControl* Control;
     nEngine::CSave* GameSave;
     nEngine::CDialogInterface* Dialog;
     nSound::CMusicReference* Music;
     nEngine::CTranslation* GlobalTranslations;
     nEngine::CTranslation* SceneTranslations;
-
     nEngine::CShadowProcessor* Shadows;
 
+    // Primitive data
     video::SColor BackBufferColor;
     f32 TimeElapsed;
     f32 StartTime;
     f32 SpeedFactor;
     gui::IGUIStaticText* DebugInfo;
 
+    // A map for post processing effects
     map<n3D::CModelEntity*, bool> EntityList;
     map<n3D::CModelEntity*, bool>::iterator EntityListIt;
 
+    // Methods
     void setSkyBox(const string& textureName);
+    void setCinemascope(bool active, nEngine::ECinemascopeAnimType animType);
 
   private:
-    void generateDebugInfo();
+    // 2D Elements
+    nHud::CQuad* Cinemascope[2];
 
+    // 3D Entities
     scene::ISceneNode* SkyBox;
+
+    // Methods
+    void generateDebugInfo();
 };
 
 }

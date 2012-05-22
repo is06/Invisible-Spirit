@@ -5,32 +5,30 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_LOCALE_IDENTIFIER_H__
-#define __IS06_LOCALE_IDENTIFIER_H__
+#ifndef __IS06_QUAD_H__
+#define __IS06_QUAD_H__
+
+#include "../hud/CHud2DElement.h"
+
+using namespace irr;
 
 namespace is06
 {
-namespace nEngine
+namespace nHud
 {
 
-//! Localization identifier enumeration
-enum ELocaleIdentifier
+class CQuad : public CHud2DElement
 {
-  ELI_ENG_GB,
-  ELI_ENG_US,
-  ELI_FRE_FR,
-  ELI_FRE_CA,
-  ELI_FRE_BE,
-  ELI_FRE_CH,
-  ELI_GER_DE,
-  ELI_CAT_ES,
-  ELI_ITA_IT,
-  ELI_POR_PT,
-  ELI_DUT_NL,
-  ELI_JPN_JP
+  public:
+    CQuad(f32 x, f32 y, f32 w, f32 h, video::SColor color);
+    ~CQuad();
+
+  private:
+
 };
 
 }
 }
 
 #endif
+

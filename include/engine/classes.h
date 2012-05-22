@@ -53,6 +53,8 @@ namespace nHud
 {
   class CHud;
   class CHud2DElement;
+  class CTriangle;
+  class CQuad;
   class CCounter;
   class CBarCounter;
   class CDigitCounter;
@@ -78,6 +80,7 @@ namespace nHud
   class CMainStateInfo;
   class CCapacityInfo;
   class CPlayerState;
+  class CMiniMap;
 
   //! Menu and sub-menu interfaces
   namespace nMenu

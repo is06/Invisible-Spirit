@@ -38,7 +38,7 @@ void CMiniMap::setMap(EMiniMapIdentifier id)
   Map->setOpacity(230);
 
   // Entrance
-  EntrancePosition = new CMiniMapArrow(video::SColor(255, 255, 0, 0));
+  EntrancePosition = new CTriangle(video::SColor(255, 255, 0, 0));
   EntrancePosition->setRotation(AttachedPlayer->getNode()->getRotation().Y);
   core::vector2df playerCoords = getMapCoordinates(core::vector2df(
     AttachedPlayer->getNode()->getPosition().X,
@@ -47,7 +47,7 @@ void CMiniMap::setMap(EMiniMapIdentifier id)
   EntrancePosition->setPosition(playerCoords.X, playerCoords.Y);
 
   // Player
-  PlayerPosition = new CMiniMapArrow(video::SColor(255, 255, 255, 0));
+  PlayerPosition = new CTriangle(video::SColor(255, 255, 255, 0));
 }
 
 //! Renders all mimi map elements

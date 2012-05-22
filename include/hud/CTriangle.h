@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MINI_MAP_ARROW_H__
-#define __IS06_MINI_MAP_ARROW_H__
+#ifndef __IS06_TRIANGLE_H__
+#define __IS06_TRIANGLE_H__
 
 #include "../hud/CHud.h"
 
@@ -17,11 +17,11 @@ namespace is06
 namespace nHud
 {
 
-class CMiniMapArrow : public CHud
+class CTriangle : public CHud
 {
   public:
-    CMiniMapArrow(video::SColor color);
-    ~CMiniMapArrow();
+    CTriangle(video::SColor color);
+    ~CTriangle();
 
     void render();
     void hide();
