@@ -35,15 +35,10 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   // Map Section Mesh
   loadMapSection("alphazone", "main", core::vector3df(0.0f, 0.0f, 0.0f));
 
-  //Level->hide();
-  //Ayron->hide();
-
   // Multi-layers music example
   //music->play("bodhum");
   //music->unmuteSequence("bodhum", 1);
   //music->muteSequence("bodhum", 2);
-
-  //music->play("boss");
 
   // 3D Speaker example
   //spk = new Speaker(STREAM_TEST, core::vector3df(0,1,0), "hola", 10);
@@ -62,6 +57,8 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   MiniMap->setMap(nHud::EMMI_ALPHA_ZONE);
   MiniMap->setWorldSize(120.0f);
 
+  // Simple Skybox
+  // TODO: Dynamic skybox with day/light system
   setSkyBox("test");
 }
 
@@ -72,12 +69,17 @@ void MAP_ALPHA_ZONE::events()
 {
   nScene::CSceneGameplay::events();
 
+  // Cinemascope mode (black stripes)
+  setCinemascope(true, nEngine::ECAT_SLIDE);
+
+  // Dialogs interface
   /*
+  // Start a dialog
   if (Control->commandEntered(nEngine::ECI_PLAYER_GUARD, nEngine::EET_ONCE)) {
     Dialog->start("norya_first_start");
   }
-
-  if (dialog->finished()) {
+  // Trigger when a dialog finishes
+  if (Dialog->finished()) {
 
   }
   */

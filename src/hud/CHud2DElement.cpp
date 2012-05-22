@@ -77,22 +77,22 @@ CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : C
   Vertices[0] = video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF * -1), (y / COEFF) + (h / 2 / COEFF), FAR,
     1, 1, 0,
-    video::SColor(255,255,255,255),
+    Material.DiffuseColor,
     MinTextureOffset.X, MinTextureOffset.Y);
   Vertices[1] = video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF), (y / COEFF) + (h / 2 / COEFF), FAR,
     1, 0, 0,
-    video::SColor(255,255,255,255),
+    Material.DiffuseColor,
     MaxTextureOffset.X, MinTextureOffset.Y);
   Vertices[2] = video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF * -1), (y / COEFF) + (h / 2 / COEFF * -1), FAR,
     0, 1, 1,
-    video::SColor(255,255,255,255),
+    Material.DiffuseColor,
     MinTextureOffset.X, MaxTextureOffset.Y);
   Vertices[3] = video::S3DVertex(
     (x / COEFF) + (w / 2 / COEFF), (y / COEFF) + (h / 2 / COEFF * -1), FAR,
     0, 0, 1,
-    video::SColor(255,255,255,255),
+    Material.DiffuseColor,
     MaxTextureOffset.X, MaxTextureOffset.Y);
 }
 
@@ -137,11 +137,12 @@ void CHud2DElement::render()
       Material.setTexture(0, Texture);
     }
 
-    // Opacity
-    Vertices[0].Color.setAlpha(Opacity);
-    Vertices[1].Color.setAlpha(Opacity);
-    Vertices[2].Color.setAlpha(Opacity);
-    Vertices[3].Color.setAlpha(Opacity);
+    for (int i = 0; i <= 3; i++) {
+      // Color
+      Vertices[i].Color = Material.DiffuseColor;
+      // Opacity
+      Vertices[i].Color.setAlpha(Opacity);
+    }
 
     // Rendering
     nEngine::CGame::getVideoDriver()->setMaterial(Material);

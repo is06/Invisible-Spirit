@@ -23,6 +23,8 @@ class CQuad : public CHud2DElement
     CQuad(f32 x, f32 y, f32 w, f32 h, video::SColor color);
     ~CQuad();
 
+    void render();
+
   private:
 
 };

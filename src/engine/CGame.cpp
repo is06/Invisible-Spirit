@@ -416,7 +416,7 @@ void CGame::initScenes()
 {
   Exit = false;
   SceneChanged = true;
-  NextScene = nScene::ESI_MENU;
+  NextScene = nScene::ESI_MAP_ALPHA_ZONE;
 }
 
 //!

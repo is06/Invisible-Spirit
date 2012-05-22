@@ -13,6 +13,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/CSave.h"
 #include "../../include/3d/CModelEntity.h"
 #include "../../include/hud/CPicture.h"
+#include "../../include/hud/CQuad.h"
 #include "../../include/scene/CScene.h"
 
 using namespace irr;
@@ -43,6 +44,10 @@ CScene::CScene()
 
   // Temporary picture to avoid a strange bug in hud rendering (first picture to render badly positionned)
   Dummy = new nHud::CPicture(-5000, -5000, 0, 0);
+
+  // Cinemascope elements
+  Cinemascope[0] = new nHud::CQuad(0, (nEngine::CGame::ScreenPos.Top - 44), 1280, 88, video::SColor(255, 0, 0, 0));
+  Cinemascope[1] = new nHud::CQuad(0, (nEngine::CGame::ScreenPos.Bottom + 44), 1280, 88, video::SColor(255, 0, 0, 0));
 
   //shadows = new ShadowProcessor();
 
@@ -109,6 +114,11 @@ void CScene::hudRender()
 {
   //shadows->render();
 
+  // Cinemascope stripes render
+  Cinemascope[0]->render();
+  Cinemascope[1]->render();
+
+  // Dialogs render
   if (Dialog) {
     Dialog->render();
   }
@@ -202,6 +212,12 @@ void CScene::setSkyBox(const string& textureName)
   );
 }
 
+//! Sets the cinemascope mode
+void CScene::setCinemascope(bool active, nEngine::ECinemascopeAnimType animType)
+{
+
+}
+
 //! This destructor removes interfaces and flushes texture and mesh cache
 CScene::~CScene()
 {
@@ -220,7 +236,10 @@ CScene::~CScene()
   }
 
   delete Control;
+
   delete Dummy;
+  delete Cinemascope[0];
+  delete Cinemascope[1];
 
   //delete shadows;
 }
