@@ -39,7 +39,6 @@ class CCinemascopeMode : public CHud
     bool SlidingOut;
     f32 FadeValue;
     f32 FadeSpeed;
-    f32 SlideValue;
     f32 SlideSpeed;
 };
 

@@ -46,6 +46,7 @@ class CHud2DElement : public CHud
     void hide();
     void show();
     void setOpacity(u8 value);
+    u8 getOpacity();
     void diffuse(video::SColor color);
 
     void startUVAnimation(f32 uSpeed, f32 vSpeed);

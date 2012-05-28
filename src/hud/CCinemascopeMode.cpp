@@ -24,6 +24,7 @@ CCinemascopeMode::CCinemascopeMode() : CHud()
   SlidingOut = false;
 
   FadeSpeed = 0.0f;
+  FadeValue = 0.0f;
   FadingIn = false;
   FadingOut = false;
 
@@ -57,9 +58,28 @@ void CCinemascopeMode::render(f32 speedFactor)
   }
 
   if (FadingIn) {
-
+    Bars[0]->setY(nEngine::CGame::ScreenPos.Top - 44);
+    Bars[1]->setY(nEngine::CGame::ScreenPos.Bottom + 44);
+    if (FadeValue < 255.0f) {
+      FadeValue += (speedFactor * FadeSpeed);
+    } else {
+      FadeValue = 255.0f;
+      FadingIn = false;
+    }
+    cout << FadeValue << endl;
+    Bars[0]->setOpacity((u8)FadeValue);
+    Bars[1]->setOpacity((u8)FadeValue);
   } else if (FadingOut) {
-
+    if (FadeValue > 0.0f) {
+      FadeValue -= (speedFactor * FadeSpeed);
+    } else {
+      FadeValue = 0.0f;
+      FadingOut = false;
+      Bars[0]->setY(nEngine::CGame::ScreenPos.Top + 44);
+      Bars[1]->setY(nEngine::CGame::ScreenPos.Bottom - 44);
+    }
+    Bars[0]->setOpacity((u8)FadeValue);
+    Bars[1]->setOpacity((u8)FadeValue);
   }
 
   Bars[0]->render();

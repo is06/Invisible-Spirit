@@ -257,6 +257,11 @@ void CHud2DElement::setOpacity(u8 value)
   Opacity = value;
 }
 
+u8 CHud2DElement::getOpacity()
+{
+  return Opacity;
+}
+
 void CHud2DElement::diffuse(video::SColor color)
 {
   Opacity = color.getAlpha();

@@ -76,7 +76,7 @@ void CSceneGameplay::events()
   }
 
   if (Control->commandEntered(nEngine::ECI_PLAYER_GUARD, nEngine::EET_ONCE)) {
-    Cinemascope->slideIn(500.0f);
+    Cinemascope->fadeIn(500.0f);
   }
 
   if (GameplayMenu->isVisible()) {
