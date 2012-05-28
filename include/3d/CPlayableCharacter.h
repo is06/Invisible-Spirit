@@ -20,9 +20,11 @@ namespace n3D
 class CPlayableCharacter : public CCharacter
 {
   public:
-    CPlayableCharacter(CCamera* cam, nEngine::EPlayableCharacterType type=nEngine::EPCT_AYRON);
+    CPlayableCharacter(CCamera* cam);
 
     void update();
+
+    void setCharacter(nEngine::EPlayableCharacterType type = nEngine::EPCT_AYRON);
 
     // Player moves
     void goLeft(f32 speed);
@@ -43,6 +45,7 @@ class CPlayableCharacter : public CCharacter
 
     // Player control
     void toggleControl();
+    void setControl(bool active);
     bool hasControl();
 
   private:

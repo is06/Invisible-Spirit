@@ -20,9 +20,9 @@ class CCharacter : public CAnimatedModel
 {
   public:
     CCharacter();
-    CCharacter(const string& meshFile, const string& animationFile);
 
     virtual void update();
+    void setCharacterModel(const string& characterId);
     void setJumping(bool value);
     void setFalling(bool value);
     void setWalking(bool value);

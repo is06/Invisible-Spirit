@@ -34,18 +34,16 @@ CSceneGameplay::CSceneGameplay() : CScene()
 
   Camera = new n3D::CTPCamera();
 
-  // Ayron info
-  Ayron = new n3D::CPlayableCharacter(Camera);
-  //Lumi = new n3D::CPlayableCharacter(Camera, MODEL_LUMI);
-  //Ayron->setShadowMode(SHADOW_MODE_CAST);
-  // Link Ayron to Third-Person Camera
-  Camera->linkEntity(Ayron);
-  //Camera->linkEntity(Lumi);
+  // Hero info
+  Hero = new n3D::CPlayableCharacter(Camera);
+  //Hero->setShadowMode(SHADOW_MODE_CAST);
+  // Link Hero to Third-Person Camera
+  Camera->linkEntity(Hero);
 
   // GUI Interfaces
   GameplayInterface = new nHud::CGameplayInterface();
   EnergyInterface = new nHud::CEnergyInterface();
-  MiniMap = new nHud::CMiniMap(Ayron);
+  MiniMap = new nHud::CMiniMap(Hero);
   GameplayMenu = new nHud::nMenu::CGameplayMenu(GlobalTranslations, Control);
   EverySecondTimer = new nEngine::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), 9999);
 
@@ -71,7 +69,7 @@ void CSceneGameplay::events()
   // Menu
   if (Control->commandEntered(nEngine::ECI_OPEN_MENU, nEngine::EET_ONCE)) {
     GameplayMenu->toggle();
-    Ayron->toggleControl();
+    Hero->toggleControl();
     Camera->toggleControl();
   }
 
@@ -84,7 +82,7 @@ void CSceneGameplay::events()
   }
 
   // Entities rendering
-  Ayron->update();
+  Hero->update();
   Camera->update();
 }
 
@@ -114,17 +112,17 @@ void CSceneGameplay::manageCameraControl()
 //! Manages Character's jumps. Called every cycle
 void CSceneGameplay::manageCharacterJumps()
 {
-  if (Ayron->hasControl()) {
-    Ayron->setJumping(false);
+  if (Hero->hasControl()) {
+    Hero->setJumping(false);
 
     if (Control->commandEntered(nEngine::ECI_PLAYER_JUMP, nEngine::EET_ONCE)) {
-      if (!Ayron->isJumping() && !Ayron->isFalling()) {
-        Ayron->setJumpDelta(Ayron->getJumpStrength());
+      if (!Hero->isJumping() && !Hero->isFalling()) {
+        Hero->setJumpDelta(Hero->getJumpStrength());
       }
     }
     if (Control->commandEntered(nEngine::ECI_PLAYER_JUMP)) {
-      Ayron->setJumping(true);
-      Ayron->jump();
+      Hero->setJumping(true);
+      Hero->jump();
     }
   }
 }
@@ -132,17 +130,17 @@ void CSceneGameplay::manageCharacterJumps()
 //! This function manages Character's movements. Called every cycle
 void CSceneGameplay::manageCharacterMovements()
 {
-  if (Ayron->hasControl()) {
+  if (Hero->hasControl()) {
     // Character's Movements
     if (Control->getPlayerXAxis() > 35) {
-      Ayron->goRight(SpeedFactor * Control->getPlayerXAxis());
+      Hero->goRight(SpeedFactor * Control->getPlayerXAxis());
     } else if (Control->getPlayerXAxis() < -35) {
-      Ayron->goLeft(SpeedFactor * Control->getPlayerXAxis() * -1);
+      Hero->goLeft(SpeedFactor * Control->getPlayerXAxis() * -1);
     }
     if (Control->getPlayerYAxis() > 35) {
-      Ayron->goForward(SpeedFactor * Control->getPlayerYAxis());
+      Hero->goForward(SpeedFactor * Control->getPlayerYAxis());
     } else if (Control->getPlayerYAxis() < -35) {
-      Ayron->goBackward(SpeedFactor * Control->getPlayerYAxis() * -1);
+      Hero->goBackward(SpeedFactor * Control->getPlayerYAxis() * -1);
     }
 
     // Character's direction from angle
@@ -150,10 +148,10 @@ void CSceneGameplay::manageCharacterMovements()
     || Control->getPlayerYAxis() > 35
     || Control->getPlayerXAxis() < -35
     || Control->getPlayerYAxis() < -35) {
-      Ayron->getNode()->setRotation(core::vector3df(
-        Ayron->getNode()->getRotation().X,
+      Hero->getNode()->setRotation(core::vector3df(
+        Hero->getNode()->getRotation().X,
         Camera->getNode()->getRotation().Y - (Control->getPlayerDirection() + core::radToDeg(nEngine::PI_D2)),
-        Ayron->getNode()->getRotation().Z
+        Hero->getNode()->getRotation().Z
       ));
     }
   }
@@ -168,23 +166,23 @@ void CSceneGameplay::manageCharacterCollisions()
   if (Level[0]->getMainBody() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_47);
 
   // Floor collision
-  if (Ayron->getFloorCollision(Level[0]) > 1.0) {
-    Ayron->fall(SpeedFactor);
+  if (Hero->getFloorCollision(Level[0]) > 1.0) {
+    Hero->fall(SpeedFactor);
   }
-  if (Ayron->getFloorCollision(Level[0]) < 1.0) {
-    while (Ayron->getFloorCollision(Level[0]) < 0.95) {
-      Ayron->raise();
+  if (Hero->getFloorCollision(Level[0]) < 1.0) {
+    while (Hero->getFloorCollision(Level[0]) < 0.95) {
+      Hero->raise();
     }
   }
 
   // Wall collision, this normal vector will be modified by getWallCollision functions
   core::vector3df normal;
 
-  if (Ayron->getWallCollision(nEngine::ERT_WALL_P, Level[0], normal) < 1.0f
-  || Ayron->getWallCollision(nEngine::ERT_WALL_Q, Level[0], normal) < 1.0f) {
-    while (Ayron->getWallCollision(nEngine::ERT_WALL_P, Level[0], normal) < 0.99
-    || Ayron->getWallCollision(nEngine::ERT_WALL_Q, Level[0], normal) < 0.99) {
-      Ayron->moveOpposite(normal);
+  if (Hero->getWallCollision(nEngine::ERT_WALL_P, Level[0], normal) < 1.0f
+  || Hero->getWallCollision(nEngine::ERT_WALL_Q, Level[0], normal) < 1.0f) {
+    while (Hero->getWallCollision(nEngine::ERT_WALL_P, Level[0], normal) < 0.99
+    || Hero->getWallCollision(nEngine::ERT_WALL_Q, Level[0], normal) < 0.99) {
+      Hero->moveOpposite(normal);
     }
   }
 }
@@ -254,7 +252,7 @@ CSceneGameplay::~CSceneGameplay()
 {
   if (Level[0]) delete Level[0];
   if (Level[1]) delete Level[1];
-  if (Ayron) delete Ayron;
+  if (Hero) delete Hero;
   if (Camera) delete Camera;
   if (GameplayInterface) delete GameplayInterface;
   if (EnergyInterface) delete EnergyInterface;

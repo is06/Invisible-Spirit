@@ -29,7 +29,7 @@ bool CScene::InMapEditingMode;
 CScene::CScene()
 {
   StartTime = nEngine::CGame::getCurrentTime();
-  TimeElapsed = 0.0f;
+  SceneTime = 0.0f;
 
   Camera = NULL;
   SceneTranslations = NULL;
@@ -60,7 +60,7 @@ CScene::CScene()
 void CScene::events()
 {
   SpeedFactor = nEngine::CGame::getSpeedFactor();
-  TimeElapsed = (nEngine::CGame::getCurrentTime() - StartTime) / 1000.0f;
+  SceneTime = (nEngine::CGame::getCurrentTime() - StartTime) / 1000.0f;
   //gameSave->setInteger(11, (u32)timeElapsed); // 11 = Total game time
 
   generateDebugInfo();

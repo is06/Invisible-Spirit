@@ -26,14 +26,6 @@ CAnimatedModel::CAnimatedModel() : CModelEntity()
 
 }
 
-//! Constructor with mesh and animation file parameters
-CAnimatedModel::CAnimatedModel(const string& meshFile, const string& animationFile) : CModelEntity()
-{
-  loadMesh(meshFile);
-  loadAnimation(animationFile);
-  createNode(core::vector3df(0, 1, 0));
-}
-
 //! Update function of 3D animated models
 void CAnimatedModel::update()
 {
@@ -49,6 +41,13 @@ void CAnimatedModel::update()
 void CAnimatedModel::shaderRender()
 {
   MainNode->render();
+}
+
+void CAnimatedModel::createModel(const string& meshFile, const string& animationFile)
+{
+  loadMesh(meshFile);
+  loadAnimation(animationFile);
+  createNode(core::vector3df(0, 1, 0));
 }
 
 //! Turns the model relative to the X axis

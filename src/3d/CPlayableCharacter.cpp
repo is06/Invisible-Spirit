@@ -21,21 +21,10 @@ namespace n3D
 /**
  * \param Camera* cam pointer to a Camera to link to PlayableCharacter
  */
-CPlayableCharacter::CPlayableCharacter(CCamera* cam, nEngine::EPlayableCharacterType type) : CCharacter("resource/mesh/character/ayron.b3d", "resource/mesh/character/ayron.isa")
+CPlayableCharacter::CPlayableCharacter(CCamera* cam) : CCharacter()
 {
   // Linking third-person camera
   LinkedCam = cam;
-
-  // Start direction
-  MainNode->setRotation(core::vector3df(
-    MainNode->getRotation().X,
-    cam->getNode()->getRotation().Y - core::radToDeg(core::PI),
-    MainNode->getRotation().Z
-  ));
-
-  //MainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
-
-  MainNode->animateJoints();
 
   // Properties
   Controlable = true;
@@ -45,6 +34,32 @@ CPlayableCharacter::CPlayableCharacter(CCamera* cam, nEngine::EPlayableCharacter
   JumpStrength = 0.15f;
   FloorSensorWidth = 0.4f;
   WallSensorWidth = 0.5f;
+}
+
+void CPlayableCharacter::setCharacter(nEngine::EPlayableCharacterType type)
+{
+  // 3D Model type
+  string modelId;
+  switch (type) {
+    case nEngine::EPCT_AYRON:
+      modelId = "ayron";
+      break;
+    default:
+      modelId = "default";
+      break;
+  }
+  CCharacter::setCharacterModel(modelId);
+
+  // Start direction
+  MainNode->setRotation(core::vector3df(
+    MainNode->getRotation().X,
+    LinkedCam->getNode()->getRotation().Y - core::radToDeg(core::PI),
+    MainNode->getRotation().Z
+  ));
+
+  //MainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
+
+  MainNode->animateJoints();
 }
 
 //! Update function, called every cycle
@@ -186,6 +201,11 @@ void CPlayableCharacter::toggleControl()
   } else {
     Controlable = true;
   }
+}
+
+void CPlayableCharacter::setControl(bool active)
+{
+  Controlable = active;
 }
 
 //! Returns true if the player has control

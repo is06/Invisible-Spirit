@@ -20,9 +20,10 @@ namespace n3D
 class CNPC : public CCharacter
 {
   public:
-    CNPC(const string& meshFile, const string& animationFile);
+    CNPC();
     ~CNPC();
 
+    void setCharacter(const string& characterId);
     void update();
     void talk(const string& dialogIdentifier) const;
     void attachDialogInterface(nEngine::CDialogInterface* dialog);

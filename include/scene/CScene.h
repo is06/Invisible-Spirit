@@ -67,7 +67,7 @@ class CScene
 
     // Primitive data
     video::SColor BackBufferColor;
-    f32 TimeElapsed;
+    f32 SceneTime;
     f32 StartTime;
     f32 SpeedFactor;
     gui::IGUIStaticText* DebugInfo;

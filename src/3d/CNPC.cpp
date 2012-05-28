@@ -16,10 +16,15 @@ namespace n3D
 {
 
 //! Initializations
-CNPC::CNPC(const string& meshFile, const string& animationFile) : CCharacter(meshFile, animationFile)
+CNPC::CNPC() : CCharacter()
 {
   NextDialogIdentifier = 0;
   CurrentTalkingDialogIdentifier = 0;
+}
+
+void CNPC::setCharacter(const string& characterId)
+{
+  CCharacter::setCharacterModel(characterId);
 }
 
 //! Rendering and events method

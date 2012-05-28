@@ -16,17 +16,20 @@ namespace n3D
 
 CCharacter::CCharacter() : CAnimatedModel()
 {
-
-}
-
-CCharacter::CCharacter(const string& meshFile, const string& animationFile) : CAnimatedModel(meshFile, animationFile)
-{
   Jumping = false;
   Falling = true;
   Walking = false;
   Talking = false;
 
   JumpStrength = 0.0f;
+}
+
+void CCharacter::setCharacterModel(const string& characterId)
+{
+  string modelPath = "";
+  string animationPath = "";
+
+  CAnimatedModel::createModel(modelPath, animationPath);
 }
 
 void CCharacter::setJumping(bool value)

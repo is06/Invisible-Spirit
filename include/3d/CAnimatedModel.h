@@ -25,12 +25,12 @@ class CAnimatedModel : public CModelEntity
 {
   public:
     CAnimatedModel();
-    CAnimatedModel(const string& meshFile, const string& animationFile);
     virtual ~CAnimatedModel();
 
     virtual void update();
     virtual void shaderRender();
 
+    void createModel(const string& meshFile, const string& animationFile);
     void setVisible(bool value);
     void hide();
     void show();
