@@ -41,9 +41,6 @@ CText::CText(const string& str, f32 x, f32 y, EFontStyle style, u8 speed) : CHud
   }
 }
 
-/**
- *
- */
 void CText::render()
 {
   CHud::render();
@@ -59,27 +56,21 @@ void CText::render()
   }
 }
 
-/**
- *
- */
 void CText::setSize(u8 size)
 {
   CurrentSize = size;
   updateTiles();
 }
 
-/**
- *
- */
 void CText::setText(const string& str)
 {
   TextStr = str;
   updateTiles();
 }
 
+//! Sets text position
 /**
- * Sets text position
- * @param const core::position2df& position the new text position
+ * \param const core::position2df& position the new text position
  */
 void CText::setPosition(const core::position2df& position)
 {
@@ -94,9 +85,7 @@ void CText::setPosition(const core::position2df& position)
   }
 }
 
-/**
- * Shows the next character
- */
+//! Shows the next character
 void CText::nextChar()
 {
   if (CurrentDisplayChar < CurrentTextLength) {
@@ -114,9 +103,7 @@ void CText::skip()
   show();
 }
 
-/**
- * Create character list by updating every tiles
- */
+//! Create character list by updating every tiles
 void CText::updateTiles()
 {
   CharList.clear();
@@ -162,10 +149,10 @@ void CText::updateTiles()
   }
 }
 
+//! Sets left and right bounds for text container
 /**
- * Sets left and right bounds for text container
- * @param f32 left left bound X coordinate
- * @param f32 right right bound X coordinate
+ * \param f32 left left bound X coordinate
+ * \param f32 right right bound X coordinate
  */
 void CText::setSideBounds(f32 left, f32 right)
 {
@@ -173,9 +160,7 @@ void CText::setSideBounds(f32 left, f32 right)
   RightBound = right;
 }
 
-/**
- * Aligns the text in its container
- */
+//! Aligns the text in its container
 void CText::setAlign(ETextAlignment align)
 {
   CurrentAlign = align;
@@ -219,9 +204,6 @@ bool CText::finished()
   return TextFinished;
 }
 
-/**
- *
- */
 CText::~CText()
 {
   delete Font;

@@ -19,17 +19,12 @@ namespace is06
 namespace n3D
 {
 
-/**
- * Constructor
- */
+//! Constructor
 CStaticModel::CStaticModel() : CModelEntity()
 {
   MainNode = NULL;
 }
 
-/**
- * Fonction de mise à jour et de rendu de toutes les entités statiques présentes dans les scènes
- */
 void CStaticModel::update()
 {
   CModelEntity::update();
@@ -40,18 +35,12 @@ void CStaticModel::update()
   }
 }
 
-/**
- * Render for shader effect
- */
+//! Render for shader effect
 void CStaticModel::shaderRender()
 {
   MainNode->render();
 }
 
-/**
- * Crée le node et l'ajoute au gestionnaire de scène Irrlicht en fonction de sa position
- * @param vector3df& initPosition référence vers une position initiale du node
- */
 void CStaticModel::createNode(const core::vector3df& initPosition)
 {
   if (MainMesh) {
@@ -75,90 +64,56 @@ void CStaticModel::createNode(const core::vector3df& initPosition)
   }
 }
 
-/**
- * Retourne le node Irrlicht de l'entité
- * @return ISceneNode* le noeud de l'entité
- */
 scene::IMeshSceneNode* CStaticModel::getNode()
 {
   return MainNode;
 }
 
-/**
- *
- */
 video::SMaterial& CStaticModel::getMaterial()
 {
   return MainNode->getMaterial(0);
 }
 
-/**
- *
- */
 void CStaticModel::hide()
 {
   MainNode->setVisible(false);
 }
 
-/**
- *
- */
 void CStaticModel::show()
 {
   MainNode->setVisible(true);
 }
 
-/**
- *
- */
 void CStaticModel::setVisible(bool value)
 {
   MainNode->setVisible(value);
 }
 
-/**
- *
- */
 void CStaticModel::setGhost(bool value)
 {
   MainNode->setMaterialFlag(video::EMF_FRONT_FACE_CULLING, !value);
 }
 
-/**
- *
- */
 void CStaticModel::setWireFrame(bool value)
 {
   MainNode->setMaterialFlag(video::EMF_WIREFRAME, value);
 }
 
-/**
- *
- */
 void CStaticModel::setDebugData(bool value)
 {
   MainNode->setDebugDataVisible(value);
 }
 
-/**
- *
- */
 void CStaticModel::darken()
 {
   MainNode->setMaterialFlag(video::EMF_LIGHTING, true);
 }
 
-/**
- *
- */
 void CStaticModel::undarken()
 {
   MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
 }
 
-/**
- *
- */
 void CStaticModel::turnX(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -168,9 +123,6 @@ void CStaticModel::turnX(f32 speed)
   ));
 }
 
-/**
- *
- */
 void CStaticModel::turnY(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -180,9 +132,6 @@ void CStaticModel::turnY(f32 speed)
   ));
 }
 
-/**
- *
- */
 void CStaticModel::turnZ(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -192,9 +141,6 @@ void CStaticModel::turnZ(f32 speed)
   ));
 }
 
-/**
- *
- */
 void CStaticModel::moveX(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -204,9 +150,6 @@ void CStaticModel::moveX(f32 speed)
   ));
 }
 
-/**
- *
- */
 void CStaticModel::moveY(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -216,9 +159,6 @@ void CStaticModel::moveY(f32 speed)
   ));
 }
 
-/**
- *
- */
 void CStaticModel::moveZ(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -228,9 +168,6 @@ void CStaticModel::moveZ(f32 speed)
   ));
 }
 
-/**
- *
- */
 void CStaticModel::loadMeshCollision()
 {
   bool optimize = true;
@@ -262,9 +199,6 @@ void CStaticModel::loadMeshCollision()
   }
 }
 
-/**
- * Ajoute un polygone à une collision Newton de type Mesh
- */
 void CStaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene::IMeshBuffer* meshBuffer,
   NewtonCollision* treeCollision, core::vector3df scale)
 {
@@ -319,25 +253,16 @@ void CStaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene
   }
 }
 
-/**
- *
- */
 void CStaticModel::clearMeshCollision()
 {
   NewtonDestroyBody(nEngine::CGame::getNewtonWorld(), MainBody);
 }
 
-/**
- *
- */
 void CStaticModel::setShadowMode(nEngine::EShadowMode mode)
 {
   nEngine::CGame::getCurrentScene()->getShadowProcessor()->setEntity(MainNode, mode);
 }
 
-/**
- *
- */
 CStaticModel::~CStaticModel()
 {
   if (MainNode) {

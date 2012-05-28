@@ -25,9 +25,6 @@ CWindow::CWindow(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, EWindowStyle style
   }
 }
 
-/**
- *
- */
 void CWindow::applyStyleStd(f32 x, f32 y, f32 w, f32 h, f32 borderWidth)
 {
   string texturePath = "resource/hud/window/window1.bmp";
@@ -63,17 +60,11 @@ void CWindow::applyStyleStd(f32 x, f32 y, f32 w, f32 h, f32 borderWidth)
   Center->setTextureOffset(core::vector2df(0.0625f, 0.0625f), core::vector2df(0.9375f, 0.9375f));
 }
 
-/**
- *
- */
 void CWindow::applyStyleNone()
 {
   Center = NULL;
 }
 
-/**
- *
- */
 void CWindow::render()
 {
   CHud::render();
@@ -129,9 +120,6 @@ void CWindow::setOpacity(u8 value)
   Center->setOpacity(value);
 }
 
-/**
- *
- */
 CWindow::~CWindow()
 {
   if (Center) {

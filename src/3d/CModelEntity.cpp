@@ -14,9 +14,7 @@ namespace is06
 namespace n3D
 {
 
-/**
- * Initializations
- */
+//! Initializations
 CModelEntity::CModelEntity() : nEngine::CEntity()
 {
   MainMesh = NULL;
@@ -24,58 +22,44 @@ CModelEntity::CModelEntity() : nEngine::CEntity()
   AttachedSpeaker = NULL;
 }
 
-/**
- * Rendering and event method
- */
+//! Rendering and event method
 void CModelEntity::update()
 {
   //Entity::update();
 }
 
-/**
- *
- */
 void CModelEntity::shaderRender()
 {
 
 }
 
+//! Loads a mesh in this entity
 /**
- * Loads a mesh in this entity
- * @param string& meshFilePath
+ * \param string& meshFilePath
  */
 void CModelEntity::loadMesh(const string& meshFilePath)
 {
   MainMesh = nEngine::CGame::getSceneManager()->getMesh(meshFilePath.c_str());
 }
 
-/**
- * Returns the irrlicht mesh object of the entity
- */
+//! Returns the irrlicht mesh object of the entity
 scene::IMesh* CModelEntity::getMesh()
 {
   return MainMesh;
 }
 
-/**
- * Returns newton main body of this entity
- */
+//! Returns newton main body of this entity
 NewtonBody* CModelEntity::getMainBody()
 {
   return MainBody;
 }
 
-/**
- *
- */
 void CModelEntity::attachSpeaker(nSound::CSpeaker* speaker)
 {
   AttachedSpeaker = speaker;
 }
 
-/**
- * Destroys all objects
- */
+//! Destroys all objects
 CModelEntity::~CModelEntity()
 {
   AttachedSpeaker = NULL;

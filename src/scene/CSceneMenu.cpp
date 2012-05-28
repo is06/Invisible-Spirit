@@ -74,7 +74,6 @@ void CSceneMenu::events()
   }
 }
 
-//!
 void CSceneMenu::postRender()
 {
   CScene::postRender();
@@ -159,35 +158,26 @@ void CSceneMenu::destroySaveListMenu()
   InSaveListMenu = false;
 }
 
-/**
- * Get in Option menu
- */
+//! Get in Option menu
 void CSceneMenu::createOptionMenu()
 {
   InMainMenu = false;
   InOptionMenu = true;
 }
 
-/**
- * Option menu events
- */
+//! Option menu events
 void CSceneMenu::manageOptionMenu()
 {
 
 }
 
-/**
- * Quit Option menu
- */
+//! Quit Option menu
 void CSceneMenu::destroyOptionMenu()
 {
   InMainMenu = true;
   InOptionMenu = false;
 }
 
-/**
- * @todo
- */
 void CSceneMenu::retrieveSaveSlotList()
 {
   clearSaveSlotList();
@@ -198,9 +188,6 @@ void CSceneMenu::retrieveSaveSlotList()
   }
 }
 
-/**
- * @todo
- */
 void CSceneMenu::clearSaveSlotList()
 {
   for (u8 i = 0; i <= 255; i++) {
@@ -208,9 +195,7 @@ void CSceneMenu::clearSaveSlotList()
   }
 }
 
-/**
- * Init supported video mode list
- */
+//! Init supported video mode list
 void CSceneMenu::initModeList()
 {
   video::IVideoModeList* vml = nEngine::CGame::getDevice()->getVideoModeList();

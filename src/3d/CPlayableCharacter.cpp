@@ -17,9 +17,9 @@ namespace is06
 namespace n3D
 {
 
+//! PlayableCharacter entity constructor: defines which mesh to load and set the initial direction
 /**
- * PlayableCharacter entity constructor: defines which mesh to load and set the initial direction
- * @param Camera* cam pointer to a Camera to link to PlayableCharacter
+ * \param Camera* cam pointer to a Camera to link to PlayableCharacter
  */
 CPlayableCharacter::CPlayableCharacter(CCamera* cam, nEngine::EPlayableCharacterType type) : CCharacter("resource/mesh/character/ayron.b3d", "resource/mesh/character/ayron.isa")
 {
@@ -47,17 +47,13 @@ CPlayableCharacter::CPlayableCharacter(CCamera* cam, nEngine::EPlayableCharacter
   WallSensorWidth = 0.5f;
 }
 
-/**
- * Update function, called every cycle
- */
+//! Update function, called every cycle
 void CPlayableCharacter::update()
 {
   CCharacter::update();
 }
 
-/**
- * Called while PlayableCharacter's floor raycast is NOT in collision with the floor
- */
+//! Called while PlayableCharacter's floor raycast is NOT in collision with the floor
 void CPlayableCharacter::fall(f32 factor)
 {
   if (!Jumping) {
@@ -72,9 +68,7 @@ void CPlayableCharacter::fall(f32 factor)
   }
 }
 
-/**
- * Called while PlayableCharacter's floor raycast is in collision with the floor
- */
+//! Called while PlayableCharacter's floor raycast is in collision with the floor
 void CPlayableCharacter::raise()
 {
   if (Falling) {
@@ -89,9 +83,7 @@ void CPlayableCharacter::raise()
   ));
 }
 
-/**
- * Called when the player wants PlayableCharacter to jump
- */
+//! Called when the player wants PlayableCharacter to jump
 void CPlayableCharacter::jump()
 {
   if (Jumping) {
@@ -108,34 +100,22 @@ void CPlayableCharacter::jump()
   }
 }
 
-/**
- *
- */
 void CPlayableCharacter::setJumpDelta(f32 value)
 {
   JumpDelta = value;
 }
 
-/**
- *
- */
 f32 CPlayableCharacter::getJumpDelta()
 {
   return JumpDelta;
 }
 
-/**
- *
- */
 f32 CPlayableCharacter::getJumpStrength()
 {
   return JumpStrength;
 }
 
-/**
- * Applies an opposite force to PlayableCharacter in order to stop it against a wall
- * Function still under development
- */
+//! Applies an opposite force to PlayableCharacter in order to stop it against a wall
 void CPlayableCharacter::moveOpposite(const core::vector3df& normal)
 {
   f32 angle = (atan2(normal.X, normal.Z) * -1) + (nEngine::PI_D2);
@@ -147,46 +127,46 @@ void CPlayableCharacter::moveOpposite(const core::vector3df& normal)
   ));
 }
 
+//! Move PlayableCharacter to the left from camera
 /**
- * Move PlayableCharacter to the left from camera
- * @param f32 speed movement speed
+ * \param f32 speed movement speed
  */
 void CPlayableCharacter::goLeft(f32 speed)
 {
   updateCoords(0, speed);
 }
 
+//! Move PlayableCharacter to the right from camera
 /**
- * Move PlayableCharacter to the right from camera
- * @param f32 speed movement speed
+ * \param f32 speed movement speed
  */
 void CPlayableCharacter::goRight(f32 speed)
 {
   updateCoords(core::PI, speed);
 }
 
+//! Move PlayableCharacter forward from camera
 /**
- * Move PlayableCharacter forward from camera
- * @param f32 speed movement speed
+ * \param f32 speed movement speed
  */
 void CPlayableCharacter::goForward(f32 speed)
 {
   updateCoords((nEngine::PI_D2), speed);
 }
 
+//! Move PlayableCharacter backward from camera
 /**
- * Move PlayableCharacter backward from camera
- * @param f32 speed movement speed
+ * \param f32 speed movement speed
  */
 void CPlayableCharacter::goBackward(f32 speed)
 {
   updateCoords(nEngine::PI_M3D2, speed);
 }
 
+//! Update PlayableCharacter's coordinates when the player wants to move him
 /**
- * Update PlayableCharacter's coordinates when the player wants to move him
- * @param f32 deltaU direction value
- * @param f32 speed speed value
+ * \param f32 deltaU direction value
+ * \param f32 speed speed value
  */
 void CPlayableCharacter::updateCoords(f32 deltaU, f32 speed)
 {
@@ -208,9 +188,7 @@ void CPlayableCharacter::toggleControl()
   }
 }
 
-/**
- * Returns true if the player has control
- */
+//! Returns true if the player has control
 bool CPlayableCharacter::hasControl()
 {
   return Controlable;

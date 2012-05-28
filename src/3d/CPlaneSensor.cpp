@@ -12,25 +12,16 @@ namespace is06
 namespace n3D
 {
 
-/**
- *
- */
 CPlaneSensor::CPlaneSensor(const core::plane3df& initPlane) : CSensor()
 {
   Plane = initPlane;
 }
 
-/**
- *
- */
 void CPlaneSensor::update()
 {
   CSensor::update();
 }
 
-/**
- *
- */
 const core::plane3df& CPlaneSensor::getPlane() const
 {
   return Plane;

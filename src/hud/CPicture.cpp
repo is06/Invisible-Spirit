@@ -19,9 +19,6 @@ CPicture::CPicture(f32 x, f32 y, f32 w, f32 h, const string& filePath, bool useA
   changeTexture(filePath);
 }
 
-/**
- * Rendu de l'élément d'interface
- */
 void CPicture::render()
 {
   CHud2DElement::render();

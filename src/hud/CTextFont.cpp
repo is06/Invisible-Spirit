@@ -14,9 +14,9 @@ namespace is06
 namespace nHud
 {
 
+//! Constructor, defines current font style and get the appropriate texture
 /**
- * Constructor, defines current font style and get the appropriate texture
- * @param FontStyle style
+ * \param FontStyle style
  */
 CTextFont::CTextFont(EFontStyle style)
 {
@@ -25,45 +25,43 @@ CTextFont::CTextFont(EFontStyle style)
   getTextureFromStyle(style);
 }
 
+//! Returns the font Irrlicht material structure
 /**
- * Returns the font Irrlicht material structure
- * @return video::SMaterial& reference to the font material
+ * \return video::SMaterial& reference to the font material
  */
 video::SMaterial& CTextFont::getMaterial()
 {
   return FontMaterial;
 }
 
+//! Returns the offset of the specified character
 /**
- * Returns the offset of the specified character
- * @param u8 code decimal code of the character
- * @return u8& reference to the offset value
+ * \param u8 code decimal code of the character
+ * \return u8& reference to the offset value
  */
 u8& CTextFont::getCharOffset(u8 code)
 {
   return Offset[code];
 }
 
-/**
- * Reset current character table to standard (one-byte character)
- */
+//! Reset current character table to standard (one-byte character)
 void CTextFont::resetToStandard()
 {
   getTextureFromStyle(CurrentStyle);
 }
 
+//! Loads another texture in order to get multi-byte character (UTF-8)
 /**
- * Loads another texture in order to get multi-byte character (UTF-8)
- * @param u8 number the number of the table (example: 195 for latin acutes characters)
+ * \param u8 number the number of the table (example: 195 for latin acutes characters)
  */
 void CTextFont::changeExtTexture(u8 number)
 {
   getTextureFromStyle(CurrentStyle, number);
 }
 
+//! Reads font characters size and offset
 /**
- * Reads font characters size and offset
- * @param const string& dataFilePath the path of the font data file
+ * \param const string& dataFilePath the path of the font data file
  */
 void CTextFont::readFontData(const string& dataFilePath)
 {
@@ -101,9 +99,9 @@ void CTextFont::readFontData(const string& dataFilePath)
   }
 }
 
+//! Returns current font style
 /**
- * Returns current font style
- * @return FontStyle the current style
+ * \return FontStyle the current style
  */
 EFontStyle CTextFont::getCurrentStyle()
 {
@@ -123,11 +121,10 @@ void CTextFont::getFontDataFromStyle(EFontStyle style)
   readFontData(dataPath);
 }
 
+//! Changes current character texture from a style and eventually an extended texture for multi-byte characters (UTF-8)
 /**
- * Changes current character texture from a style and eventually an extended texture
- * for multi-byte characters (UTF-8)
- * @param FontStyle style
- * @param u8 extTexture the number of the table (example: 195 for latin acutes characters)
+ * \param FontStyle style
+ * \param u8 extTexture the number of the table (example: 195 for latin acutes characters)
  */
 void CTextFont::getTextureFromStyle(EFontStyle style, u8 extTexture)
 {
@@ -154,9 +151,7 @@ void CTextFont::getTextureFromStyle(EFontStyle style, u8 extTexture)
   FontMaterial.Lighting = false;
 }
 
-/**
- * Destructor
- */
+//! Destructor
 CTextFont::~CTextFont()
 {
   FontTexture = NULL;

@@ -20,12 +20,13 @@ namespace is06
 namespace n3D
 {
 
+//! Default constructor
 CAnimatedModel::CAnimatedModel() : CModelEntity()
 {
 
 }
 
-
+//! Constructor with mesh and animation file parameters
 CAnimatedModel::CAnimatedModel(const string& meshFile, const string& animationFile) : CModelEntity()
 {
   loadMesh(meshFile);
@@ -44,6 +45,7 @@ void CAnimatedModel::update()
   }
 }
 
+//! Shader render method
 void CAnimatedModel::shaderRender()
 {
   MainNode->render();
@@ -79,9 +81,7 @@ void CAnimatedModel::turnZ(f32 speed)
   ));
 }
 
-/**
- * Move the model relative to the X axis
- */
+//! Move the model relative to the X axis
 void CAnimatedModel::moveX(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -111,9 +111,9 @@ void CAnimatedModel::moveZ(f32 speed)
   ));
 }
 
+//! Creates the animated node and add it to Irrlicht's scene manager
 /**
- * Creates the animated node and add it to Irrlicht's scene manager
- * @param vector3df& initPosition reference to the node initial position
+ * \param vector3df& initPosition reference to the node initial position
  */
 void CAnimatedModel::createNode(const core::vector3df& initPosition)
 {
@@ -128,66 +128,52 @@ void CAnimatedModel::createNode(const core::vector3df& initPosition)
   }
 }
 
+//! Returns the Irrlicht node
 /**
- * Returns the Irrlicht node
- * @return IAnimatedMeshSceneNode* entity's node
+ * \return IAnimatedMeshSceneNode* entity's node
  */
 scene::IAnimatedMeshSceneNode* CAnimatedModel::getNode()
 {
   return MainNode;
 }
 
-/**
- * Returns Irrlicht material
- */
+//! Returns Irrlicht material
 video::SMaterial& CAnimatedModel::getMaterial()
 {
   return MainNode->getMaterial(0);
 }
 
-/**
- * Hides the object
- */
+//! Hides the object
 void CAnimatedModel::hide()
 {
   MainNode->setVisible(false);
 }
 
-/**
- * Shows the object
- */
+//! Shows the object
 void CAnimatedModel::show()
 {
   MainNode->setVisible(true);
 }
 
-/**
- * Sets the visibility of the object and disables collisions
- */
+//! Sets the visibility of the object and disables collisions
 void CAnimatedModel::setVisible(bool value)
 {
   MainNode->setVisible(value);
 }
 
-/**
- * Makes the object ghost so it will be invisible but will reacts to collisions
- */
+//! Makes the object ghost so it will be invisible but will reacts to collisions
 void CAnimatedModel::setGhost(bool value)
 {
   MainNode->setMaterialFlag(video::EMF_FRONT_FACE_CULLING, !value);
 }
 
-/**
- * Sets the wireframe mode for this model
- */
+//! Sets the wireframe mode for this model
 void CAnimatedModel::setWireFrame(bool value)
 {
   MainNode->setMaterialFlag(video::EMF_WIREFRAME, value);
 }
 
-/**
- * Shows irrlicht debug data for this model
- */
+//! Shows irrlicht debug data for this model
 void CAnimatedModel::setDebugData(bool value)
 {
   MainNode->setDebugDataVisible(value);
@@ -209,10 +195,10 @@ void CAnimatedModel::undarken()
   MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
 }
 
+//! Returns true if the animated model collides with a static model defined by other
 /**
- * Returns true if the animated model collides with a static model defined by other
- * @param StaticModel* other pointer to the static object which collides with the animated model
- * @return bool true if collision
+ * \param StaticModel* other pointer to the static object which collides with the animated model
+ * \return bool true if collision
  */
 bool CAnimatedModel::collidesWithStatic(CStaticModel* other)
 {
@@ -244,10 +230,9 @@ bool CAnimatedModel::collidesWithStatic(CStaticModel* other)
   return (res > 0);
 }
 
+//! Casts 4 rays from the center of the chacter to the bottom and returns the minimum value of floor collision
 /**
- * Casts 4 rays from the center of the chacter to the bottom and returns the minimum value of
- * floor collision
- * @return f32 (collision between 0.0f and 1.0f)
+ * \return f32 (collision between 0.0f and 1.0f)
  */
 f32 CAnimatedModel::getFloorCollision(CStaticModel* other)
 {
@@ -298,9 +283,6 @@ f32 CAnimatedModel::getFloorCollision(CStaticModel* other)
   return core::min_(minAB, minCD);
 }
 
-/**
- * Not documented yet, sorry :/
- */
 f32 CAnimatedModel::getWallCollision(nEngine::ERayType type, CStaticModel* other, core::vector3df& normal)
 {
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
@@ -338,26 +320,17 @@ f32 CAnimatedModel::getWallCollision(nEngine::ERayType type, CStaticModel* other
   return NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, &normal.X, &faceId);
 }
 
-/**
- * @todo Under construction
- */
 bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
 {
   return false;
 }
 
-/**
- * @todo Under construction
- * @todo manage event type
- */
 bool CAnimatedModel::collidesWithPlaneSensor(CPlaneSensor* sensor, nEngine::EEventType type)
 {
   return false;
 }
 
-/**
- * Returns true if the object is in the box sensor
- */
+//! Returns true if the object is in the box sensor
 bool CAnimatedModel::isInBoxSensor(CBoxSensor* sensor, nEngine::EEventType type)
 {
   bool inside = sensor->getBox().isPointInside(MainNode->getPosition());
@@ -378,9 +351,9 @@ bool CAnimatedModel::isInBoxSensor(CBoxSensor* sensor, nEngine::EEventType type)
   }
 }
 
+//! Loads the animation data file specified in parameter
 /**
- * Loads the animation data file specified in parameter
- * @param string the animation data file name path
+ * \param string the animation data file name path
  */
 void CAnimatedModel::loadAnimation(const string& fileName)
 {
@@ -450,9 +423,7 @@ void CAnimatedModel::loadAnimation(const string& fileName)
   }
 }
 
-/**
- * Sets the current animation
- */
+//! Sets the current animation
 void CAnimatedModel::setCurrentAnimation(s32 id, f32 speed)
 {
   CurrentAnimationId = id;
@@ -470,57 +441,42 @@ void CAnimatedModel::setCurrentAnimation(s32 id, f32 speed)
   playAnimation();
 }
 
-/**
- * Pauses the current animation (speed = 0.0f)
- */
+//! Pauses the current animation (speed = 0.0f)
 void CAnimatedModel::pauseAnimation()
 {
   MainNode->setAnimationSpeed(0.0f);
 }
 
-/**
- * Plays the current animation at current speed
- */
+//! Plays the current animation at current speed
 void CAnimatedModel::playAnimation()
 {
   MainNode->setAnimationSpeed(CurrentAnimationSpeed);
 }
 
-/**
- * Sets the current animation speed
- */
+//! Sets the current animation speed
 void CAnimatedModel::setAnimationSpeed(f32 value)
 {
   MainNode->setAnimationSpeed(value);
 }
 
-/**
- * Returns true if the current animation is finished
- */
+//! Returns true if the current animation is finished
 bool CAnimatedModel::currentAnimationFinished()
 {
   return animationFinished(CurrentAnimationId);
 }
 
-/**
- * Returns true if a specific animation is finished
- */
+//! Returns true if a specific animation is finished
 bool CAnimatedModel::animationFinished(s32 id)
 {
   return (MainNode->getFrameNr() == AnimationList[id].EndFrame);
 }
 
-/**
- *
- */
 void CAnimatedModel::setShadowMode(nEngine::EShadowMode mode)
 {
   nEngine::CGame::getCurrentScene()->getShadowProcessor()->setEntity(MainNode, mode);
 }
 
-/**
- * Destructor, removes the main node
- */
+//! Destructor, removes the main node
 CAnimatedModel::~CAnimatedModel()
 {
   if (MainNode) {

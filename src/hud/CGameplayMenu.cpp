@@ -24,9 +24,7 @@ namespace nHud
 namespace nMenu
 {
 
-/**
- * All elements creation
- */
+//! All elements creation
 CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CPlayerControl* control)
 {
   // Properties
@@ -81,9 +79,7 @@ CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CPlaye
   //moneyCounter = new DigitCounter();
 }
 
-/**
- * Gameplay menu render: all entities are rendered here
- */
+//! Gameplay menu render: all entities are rendered here
 void CGameplayMenu::render()
 {
   if (Visible) {
@@ -99,7 +95,6 @@ void CGameplayMenu::render()
     SectionMenu->render();
     StateInfo->render();
     GameplayTime->render();
-    //moneyCounter->render();
 
     if (WpMenu) {
       WpMenu->render();
@@ -146,9 +141,7 @@ void CGameplayMenu::setOpacity(u8 value)
 
 }
 
-/**
- * Toggles visibility of the menu
- */
+//! Toggles visibility of the menu
 void CGameplayMenu::toggle()
 {
   if (Visible) {
@@ -158,97 +151,61 @@ void CGameplayMenu::toggle()
   }
 }
 
-/**
- *
- */
 bool CGameplayMenu::isVisible()
 {
   return Visible;
 }
 
-/**
- *
- */
 CMenu* CGameplayMenu::getSectionMenu()
 {
   return SectionMenu;
 }
 
-/**
- *
- */
 void CGameplayMenu::goToWeaponMenu()
 {
   WpMenu = new CWeaponMenu();
 }
 
-/**
- *
- */
 void CGameplayMenu::goToSpiritMenu()
 {
 
 }
 
-/**
- *
- */
 void CGameplayMenu::goToItemMenu()
 {
 
 }
 
-/**
- *
- */
 void CGameplayMenu::goToMapMenu()
 {
 
 }
 
-/**
- *
- */
 void CGameplayMenu::goToStatusMenu()
 {
 
 }
 
-/**
- *
- */
 void CGameplayMenu::goToDimensionMenu()
 {
 
 }
 
-/**
- *
- */
 void CGameplayMenu::goToTalesMenu()
 {
 
 }
 
-/**
- *
- */
 void CGameplayMenu::goToMonstersMenu()
 {
 
 }
 
-/**
- *
- */
 void CGameplayMenu::goToSettingsMenu()
 {
 
 }
 
-/**
- *
- */
 CGameplayMenu::~CGameplayMenu()
 {
   delete Background;
@@ -256,7 +213,6 @@ CGameplayMenu::~CGameplayMenu()
   delete SectionMenu;
   delete StateInfo;
   delete GameplayTime;
-  //delete moneyCounter;
 }
 
 }

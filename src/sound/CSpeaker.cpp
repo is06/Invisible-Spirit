@@ -15,9 +15,6 @@ namespace is06
 namespace nSound
 {
 
-/**
- *
- */
 CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text, f32 radius) : nEngine::CEntity()
 {
   video::ITexture* iconTexture = nEngine::CGame::getVideoDriver()->getTexture("resource/debug/icons/speaker.bmp");

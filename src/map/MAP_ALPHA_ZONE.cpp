@@ -24,9 +24,7 @@ namespace is06
 namespace nMap
 {
 
-/**
- * Alpha Zone constructor
- */
+//! Alpha Zone constructor
 MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
 {
   // Local Translations
@@ -65,9 +63,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   Cinemascope->slideIn(1.0f);
 }
 
-/**
- * Alpha Zone events
- */
+//! Alpha Zone events
 void MAP_ALPHA_ZONE::events()
 {
   nScene::CSceneGameplay::events();
@@ -103,9 +99,7 @@ void MAP_ALPHA_ZONE::events()
   */
 }
 
-/**
- * Post-rendering (example: glow shader)
- */
+//! Post-rendering (example: glow shader)
 void MAP_ALPHA_ZONE::postRender()
 {
   nScene::CSceneGameplay::postRender();
@@ -113,17 +107,13 @@ void MAP_ALPHA_ZONE::postRender()
   //glowShader->render();
 }
 
-/**
- * Player HUD render
- */
+//! Player HUD render
 void MAP_ALPHA_ZONE::hudRender()
 {
   nScene::CSceneGameplay::hudRender();
 }
 
-/**
- * Delete all created pointers
- */
+//! Delete all created pointers
 MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
 {
   // Level Mesh collision clear

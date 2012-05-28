@@ -13,9 +13,7 @@ namespace is06
 namespace n3D
 {
 
-/**
- * Sets the third-person camera and defines its default properties
- */
+//! Sets the third-person camera and defines its default properties
 CTPCamera::CTPCamera() : CCamera()
 {
   UAxis = (3 * core::PI) / 2;
@@ -23,19 +21,16 @@ CTPCamera::CTPCamera() : CCamera()
   Distance = 4.0f;
 }
 
+//! Links a Character entity to the camera
 /**
- * Links a Character entity to the camera
- * @param Character* pointer to a character
+ * \param Character* pointer to a character
  */
 void CTPCamera::linkEntity(CCharacter* entity)
 {
   LinkedEntity = entity;
 }
 
-/**
- * Camera update method
- * This method sets the camera position relative to the character and player moves
- */
+//! This method sets the camera position relative to the character and player moves
 void CTPCamera::update()
 {
   CCamera::update();
@@ -55,9 +50,6 @@ void CTPCamera::update()
   ));
 }
 
-/**
- *
- */
 void CTPCamera::goLeft(f32 speed)
 {
   UAxis -= (speed / 60.0f);
@@ -66,9 +58,6 @@ void CTPCamera::goLeft(f32 speed)
   }
 }
 
-/**
- *
- */
 void CTPCamera::goRight(f32 speed)
 {
   UAxis += (speed / 60.0f);
@@ -77,9 +66,6 @@ void CTPCamera::goRight(f32 speed)
   }
 }
 
-/**
- *
- */
 void CTPCamera::goFar(f32 speed)
 {
   if (Height < 3.3) {
@@ -95,9 +81,6 @@ void CTPCamera::goFar(f32 speed)
   }
 }
 
-/**
- *
- */
 void CTPCamera::goNear(f32 speed)
 {
   if (Height > 0.3) {
@@ -113,9 +96,6 @@ void CTPCamera::goNear(f32 speed)
   }
 }
 
-/**
- *
- */
 f32 CTPCamera::getDistance()
 {
   return Distance;

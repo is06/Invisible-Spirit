@@ -26,9 +26,7 @@ void CMusic::addSequences(const map<u16, SMusicSequenceInfo>& list)
   }
 }
 
-/**
- * Plays all the music sequences
- */
+//! Plays all the music sequences
 void CMusic::playSequences(const map<u16, SMusicSequenceInfo>& list)
 {
   map<u16, SMusicSequenceInfo>::const_iterator msIt;
@@ -37,17 +35,13 @@ void CMusic::playSequences(const map<u16, SMusicSequenceInfo>& list)
   }
 }
 
-/**
- * Returns a reference to the sequences map
- */
+//! Returns a reference to the sequences map
 map<u16, CMusicSequence*>& CMusic::getSequenceMap()
 {
   return Sequences;
 }
 
-/**
- * Returns a pointer to a sequence specified by number
- */
+//! Returns a pointer to a sequence specified by number
 CMusicSequence* CMusic::getSequence(u16 number)
 {
   if (Sequences[number]) {
@@ -57,9 +51,6 @@ CMusicSequence* CMusic::getSequence(u16 number)
   }
 }
 
-/**
- * @todo Delete sequences
- */
 CMusic::~CMusic()
 {
 

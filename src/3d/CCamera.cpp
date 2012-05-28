@@ -17,9 +17,6 @@ namespace is06
 namespace n3D
 {
 
-/**
- * Constructeur de la caméra, ajoute le noeud au gestionnaire de scène et associe rotation et target
- */
 CCamera::CCamera()
 {
   Controlable = true;
@@ -28,9 +25,6 @@ CCamera::CCamera()
   IrrCam->setNearValue(0.1f);
 }
 
-/**
- * Fonction de mise à jour de tous les objets Camera
- */
 void CCamera::update()
 {
 
@@ -105,10 +99,6 @@ f32 CCamera::getZ()
   return IrrCam->getPosition().Z;
 }
 
-/**
- * Retourne le node Irrlicht associé à la caméra
- * @return ISceneNode* le noeud associé à la caméra
- */
 scene::ICameraSceneNode* CCamera::getNode()
 {
   return IrrCam;
@@ -133,10 +123,6 @@ void CCamera::setControl(bool val)
   Controlable = val;
 }
 
-/**
- * Permet de savoir si le joueur a le contrôle sur la caméra
- * @return bool vaut vrai si le joueur a le contrôle
- */
 bool CCamera::hasControl()
 {
   return Controlable;

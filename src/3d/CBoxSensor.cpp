@@ -12,25 +12,16 @@ namespace is06
 namespace n3D
 {
 
-/**
- *
- */
 CBoxSensor::CBoxSensor(const core::aabbox3df& initBox) : CSensor()
 {
   Box = initBox;
 }
 
-/**
- *
- */
 void CBoxSensor::update()
 {
   CSensor::update();
 }
 
-/**
- *
- */
 const core::aabbox3df& CBoxSensor::getBox() const
 {
   return Box;

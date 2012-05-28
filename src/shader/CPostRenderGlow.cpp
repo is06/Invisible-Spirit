@@ -47,8 +47,8 @@ CPostRenderGlow::CPostRenderGlow() : CHud2DElement(0, 0, nEngine::CGame::ScreenP
   Material.setTexture(0, Texture);
 }
 
+//! Render post render quad (Hud2DElement) two times (one for each shader pass)
 /**
- * Render post render quad (Hud2DElement) two times (one for each shader pass)
  * Calling render of parent class results in an execution of both vertex and fragment shader
  * First pass : horizontal blur
  * Second pass : vertical blur

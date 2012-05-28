@@ -90,9 +90,6 @@ void CMenu::lastOption()
   CurrentOption = Options.size() - 1;
 }
 
-/**
- * @todo
- */
 void CMenu::removeOption(u16 index)
 {
   /*
@@ -126,9 +123,6 @@ void CMenu::setOpacity(u8 value)
   }
 }
 
-/**
- * @todo
- */
 CMenuOption* CMenu::getOption(u16 index)
 {
   return Options[index];

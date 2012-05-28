@@ -14,9 +14,6 @@ namespace is06
 namespace nSound
 {
 
-/**
- *
- */
 CSoundManager::CSoundManager()
 {
   FMOD_System_Create(&sys);
@@ -24,10 +21,7 @@ CSoundManager::CSoundManager()
   FMOD_System_Set3DSettings(sys, 1.0f, 1.0f, 1.0f);
 }
 
-/**
- * Called by the Game main loop, this converts camera's position and rotation to
- * FMOD vector format and store them into sound manager
- */
+//! Called by the Game main loop, this converts camera's position and rotation to FMOD vector format and store them into sound manager
 void CSoundManager::setEarsData(n3D::CCamera* activeCamera)
 {
   core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
@@ -57,9 +51,6 @@ void CSoundManager::setEarsData(n3D::CCamera* activeCamera)
 */
 }
 
-/**
- *
- */
 void CSoundManager::update()
 {
   FMOD_RESULT result = FMOD_System_Set3DListenerAttributes(sys, 0, &cameraPosition, NULL, &cameraForward, &cameraUp);
@@ -69,17 +60,11 @@ void CSoundManager::update()
   FMOD_System_Update(sys);
 }
 
-/**
- *
- */
 FMOD_SYSTEM* CSoundManager::getSystem()
 {
   return sys;
 }
 
-/**
- *
- */
 CSoundManager::~CSoundManager()
 {
   FMOD_System_Close(sys);

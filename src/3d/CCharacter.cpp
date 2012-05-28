@@ -69,9 +69,6 @@ bool CCharacter::isTalking()
   return Talking;
 }
 
-/**
- * Fonction de mise à jour de tous les personnages
- */
 void CCharacter::update()
 {
   CAnimatedModel::update();

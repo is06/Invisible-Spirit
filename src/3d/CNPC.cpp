@@ -15,52 +15,44 @@ namespace is06
 namespace n3D
 {
 
-/**
- * Initializations
- */
+//! Initializations
 CNPC::CNPC(const string& meshFile, const string& animationFile) : CCharacter(meshFile, animationFile)
 {
   NextDialogIdentifier = 0;
   CurrentTalkingDialogIdentifier = 0;
 }
 
-/**
- * Rendering and events method
- */
+//! Rendering and events method
 void CNPC::update()
 {
   CCharacter::update();
 }
 
-/**
- * Execute the talk action for this NPC
- */
+//! Execute the talk action for this NPC
 void CNPC::talk(const string& dialogIdentifier) const
 {
   AttachedDialog->start(dialogIdentifier);
 }
 
-/**
- * Attaches a dialog interface object to this NPC
- */
+//! Attaches a dialog interface object to this NPC
 void CNPC::attachDialogInterface(nEngine::CDialogInterface* dialog)
 {
   AttachedDialog = dialog;
 }
 
+//! Get a random dialog identifier
 /**
- * Get a random dialog identifier
- * @param bool avoidDoubles
- * @return const string&
+ * \param bool avoidDoubles
+ * \return const string&
  */
 const string& CNPC::getRandomTalkingDialogIdentifier(bool avoidDoubles)
 {
   return DialogIdentifierList[CurrentTalkingDialogIdentifier];
 }
 
+//! Get the next dialog identifier
 /**
- * Get the next dialog identifier
- * @return const string&
+ * \return const string&
  */
 const string& CNPC::getNextTalkingDialogIdentifier()
 {
@@ -68,9 +60,7 @@ const string& CNPC::getNextTalkingDialogIdentifier()
   return DialogIdentifierList[CurrentTalkingDialogIdentifier];
 }
 
-/**
- * Destructor
- */
+//! Destructor
 CNPC::~CNPC()
 {
 
