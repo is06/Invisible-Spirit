@@ -1,4 +1,5 @@
 ﻿Project Invisible Spirit Compilation instructions
+-------------------
 
 Invisible Spirit requires several libraries in order to be compilated :
 

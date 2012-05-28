@@ -33,7 +33,9 @@ CPlayableCharacter::CPlayableCharacter(CCamera* cam, nEngine::EPlayableCharacter
     MainNode->getRotation().Z
   ));
 
-  MainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
+  //MainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
+
+  MainNode->animateJoints();
 
   // Properties
   Controlable = true;

@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../engine/CShadowProcessor.h"
 #include "../engine/CPlayerControl.h"
 #include "../engine/EFadeColor.h"
-#include "../engine/ECinemascopeAnimType.h"
+#include "../hud/CCinemascopeMode.h"
 
 namespace is06
 {
@@ -51,6 +51,7 @@ class CScene
 
     // 2D elements
     nHud::CPicture* Dummy;
+    nHud::CCinemascopeMode* Cinemascope;
 
     // 3D entities
     n3D::CCamera* Camera;
@@ -77,12 +78,8 @@ class CScene
 
     // Methods
     void setSkyBox(const string& textureName);
-    void setCinemascope(bool active, nEngine::ECinemascopeAnimType animType);
 
   private:
-    // 2D Elements
-    nHud::CQuad* Cinemascope[2];
-
     // 3D Entities
     scene::ISceneNode* SkyBox;
 

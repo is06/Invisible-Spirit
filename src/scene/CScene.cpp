@@ -46,8 +46,7 @@ CScene::CScene()
   Dummy = new nHud::CPicture(-5000, -5000, 0, 0);
 
   // Cinemascope elements
-  Cinemascope[0] = new nHud::CQuad(0, (nEngine::CGame::ScreenPos.Top - 44), 1280, 88, video::SColor(255, 0, 0, 0));
-  Cinemascope[1] = new nHud::CQuad(0, (nEngine::CGame::ScreenPos.Bottom + 44), 1280, 88, video::SColor(255, 0, 0, 0));
+  Cinemascope = new nHud::CCinemascopeMode();
 
   //shadows = new ShadowProcessor();
 
@@ -106,17 +105,18 @@ n3D::CCamera* CScene::getActiveCamera()
  */
 void CScene::postRender()
 {
-  Dummy->render();
+
 }
 
 //! This method is called every cycle after the event test method (or main loop for scenes). This method can handle post render events like map editor
 void CScene::hudRender()
 {
+  Dummy->render();
+
   //shadows->render();
 
   // Cinemascope stripes render
-  Cinemascope[0]->render();
-  Cinemascope[1]->render();
+  Cinemascope->render(SpeedFactor);
 
   // Dialogs render
   if (Dialog) {
@@ -212,12 +212,6 @@ void CScene::setSkyBox(const string& textureName)
   );
 }
 
-//! Sets the cinemascope mode
-void CScene::setCinemascope(bool active, nEngine::ECinemascopeAnimType animType)
-{
-
-}
-
 //! This destructor removes interfaces and flushes texture and mesh cache
 CScene::~CScene()
 {
@@ -238,8 +232,7 @@ CScene::~CScene()
   delete Control;
 
   delete Dummy;
-  delete Cinemascope[0];
-  delete Cinemascope[1];
+  delete Cinemascope;
 
   //delete shadows;
 }

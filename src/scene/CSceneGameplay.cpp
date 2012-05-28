@@ -75,6 +75,10 @@ void CSceneGameplay::events()
     Camera->toggleControl();
   }
 
+  if (Control->commandEntered(nEngine::ECI_PLAYER_GUARD, nEngine::EET_ONCE)) {
+    Cinemascope->slideIn(500.0f);
+  }
+
   if (GameplayMenu->isVisible()) {
     manageMenuControl();
   }

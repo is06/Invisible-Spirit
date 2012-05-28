@@ -60,6 +60,9 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   // Simple Skybox
   // TODO: Dynamic skybox with day/light system
   setSkyBox("test");
+
+  // Cinemascope mode (black stripes)
+  Cinemascope->slideIn(1.0f);
 }
 
 /**
@@ -68,9 +71,6 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
 void MAP_ALPHA_ZONE::events()
 {
   nScene::CSceneGameplay::events();
-
-  // Cinemascope mode (black stripes)
-  setCinemascope(true, nEngine::ECAT_SLIDE);
 
   // Dialogs interface
   /*
