@@ -325,13 +325,13 @@ bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
   return false;
 }
 
-bool CAnimatedModel::collidesWithPlaneSensor(CPlaneSensor* sensor, nEngine::EEventType type)
+bool CAnimatedModel::collidesWithSensor(CPlaneSensor* sensor, nEngine::EEventType type)
 {
   return false;
 }
 
 //! Returns true if the object is in the box sensor
-bool CAnimatedModel::isInBoxSensor(CBoxSensor* sensor, nEngine::EEventType type)
+bool CAnimatedModel::collidesWithSensor(CBoxSensor* sensor, nEngine::EEventType type)
 {
   bool inside = sensor->getBox().isPointInside(MainNode->getPosition());
   if (type == nEngine::EET_ONCE) {
