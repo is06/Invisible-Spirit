@@ -27,6 +27,9 @@ namespace nMap
 //! Alpha Zone constructor
 MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
 {
+  // Main Player
+  Hero->setCharacter(nEngine::EPCT_AYRON);
+
   // Local Translations
   SceneTranslations = new nEngine::CTranslation("MAP_ALPHA_ZONE.ist");
 

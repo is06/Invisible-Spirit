@@ -26,8 +26,8 @@ CCharacter::CCharacter() : CAnimatedModel()
 
 void CCharacter::setCharacterModel(const string& characterId)
 {
-  string modelPath = "";
-  string animationPath = "";
+  string modelPath = "resource/mesh/character/" + characterId + ".b3d";
+  string animationPath = "resource/mesh/character/" + characterId + ".isa";
 
   CAnimatedModel::createModel(modelPath, animationPath);
 }

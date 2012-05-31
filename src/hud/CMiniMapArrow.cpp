@@ -7,7 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/CGame.h"
 #include "../../include/engine/CEventManager.h"
-#include "../../include/hud/CTriangle.h"
+#include "../../include/hud/CMiniMapArrow.h"
 
 using namespace irr;
 
@@ -16,7 +16,7 @@ namespace is06
 namespace nHud
 {
 
-CTriangle::CTriangle(video::SColor color) : CHud()
+CMiniMapArrow::CMiniMapArrow(video::SColor color) : CHud()
 {
   AbsoluteTransformation = core::matrix4();
   AbsoluteTransformation.makeIdentity();
@@ -51,7 +51,7 @@ CTriangle::CTriangle(video::SColor color) : CHud()
   Indices[2] = 2;
 }
 
-void CTriangle::render()
+void CMiniMapArrow::render()
 {
   core::matrix4 mat;
   mat.makeIdentity();
@@ -85,34 +85,34 @@ void CTriangle::render()
   }
 }
 
-void CTriangle::show()
+void CMiniMapArrow::show()
 {
   Visible = true;
 }
 
-void CTriangle::hide()
+void CMiniMapArrow::hide()
 {
   Visible = false;
 }
 
-void CTriangle::setOpacity(u8 value)
+void CMiniMapArrow::setOpacity(u8 value)
 {
   Opacity = value;
 }
 
-void CTriangle::setPosition(f32 x, f32 y)
+void CMiniMapArrow::setPosition(f32 x, f32 y)
 {
   AbsoluteTransformation.setTranslation(core::vector3df(x, y, 0.0f));
 }
 
 //! Rotates the arrow according to a Y axis rotation value
-void CTriangle::setRotation(f32 value)
+void CMiniMapArrow::setRotation(f32 value)
 {
   value *= -1;
   AbsoluteTransformation.setRotationDegrees(core::vector3df(0.0f, 0.0f, value));
 }
 
-CTriangle::~CTriangle()
+CMiniMapArrow::~CMiniMapArrow()
 {
 
 }

@@ -23,7 +23,8 @@ namespace n3D
 //! Default constructor
 CAnimatedModel::CAnimatedModel() : CModelEntity()
 {
-
+  MainNode = NULL;
+  MainBody = NULL;
 }
 
 //! Update function of 3D animated models
@@ -481,6 +482,9 @@ CAnimatedModel::~CAnimatedModel()
   if (MainNode) {
     MainNode->remove();
     MainNode = NULL;
+  }
+  if (MainBody) {
+    delete MainBody;
   }
 }
 

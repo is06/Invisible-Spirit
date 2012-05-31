@@ -9,7 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_MINI_MAP_H__
 
 #include "EMiniMapIdentifier.h"
-#include "CTriangle.h"
+#include "CMiniMapArrow.h"
 #include "CHud.h"
 #include "CPicture.h"
 
@@ -40,8 +40,8 @@ class CMiniMap : public CHud
     f32 WorldSize;
 
     CPicture* Map;
-    CTriangle* PlayerPosition;
-    CTriangle* EntrancePosition;
+    CMiniMapArrow* PlayerPosition;
+    CMiniMapArrow* EntrancePosition;
 
     n3D::CPlayableCharacter* AttachedPlayer;
     std::vector<n3D::CModelEntity*> AttachedEntities;
