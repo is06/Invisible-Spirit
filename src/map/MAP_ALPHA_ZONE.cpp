@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/CLevelMesh.h"
 #include "../../include/3d/CPlayableCharacter.h"
 #include "../../include/3d/COmniLight.h"
+#include "../../include/3d/CPlaneSensor.h"
 #include "../../include/engine/CDialogInterface.h"
 #include "../../include/sound/CMusicReference.h"
 #include "../../include/sound/CSpeaker.h"
@@ -63,13 +64,19 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   setSkyBox("test");
 
   // Cinemascope mode (black stripes)
-  Cinemascope->slideIn(1.0f);
+  //Cinemascope->slideIn(1.0f);
+
+  ToDungeonSensor = new n3D::CPlaneSensor(core::plane3df(-1.0f, 1.0f, 10.0f, 1.0f, 0.0f, 10.0f));
 }
 
 //! Alpha Zone events
 void MAP_ALPHA_ZONE::events()
 {
   nScene::CSceneGameplay::events();
+
+  if (Hero->collidesWithSensor(ToDungeonSensor)) {
+    nEngine::CGame::changeScene(nScene::ESI_MAP_DUNGEON_1);
+  }
 
   // Dialogs interface
   /*
@@ -130,6 +137,8 @@ MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
 
   // Glow shader deletion
   //delete glowShader;
+
+  delete ToDungeonSensor;
 }
 
 }

@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/sound/CSpeaker.h"
 #include "../../include/3d/CAnimatedModel.h"
 #include "../../include/3d/CStaticModel.h"
+#include "../../include/3d/CPlaneSensor.h"
 
 using namespace irr;
 
@@ -327,6 +328,10 @@ bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
 
 bool CAnimatedModel::collidesWithSensor(CPlaneSensor* sensor, nEngine::EEventType type)
 {
+  f32 distance = MainNode->getPosition().getDistanceFrom(sensor->getPlane().Normal);
+
+  cout << distance << endl;
+
   return false;
 }
 
