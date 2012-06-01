@@ -24,7 +24,8 @@ class CSettings
     s32 getParamInt(const string& groupName, const string& paramName);
 
   private:
-    map<string, CSettingsGroup*> Data;
+    map<string, CSettingsGroup> Data;
+    map<string, CSettingsGroup>::iterator DataIt;
     fstream FileStream;
 };
 

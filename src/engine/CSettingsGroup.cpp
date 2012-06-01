@@ -16,6 +16,7 @@ namespace nEngine
 //! Constructor
 CSettingsGroup::CSettingsGroup(const string& name)
 {
+  Default = "";
   setName(name);
 }
 
@@ -25,16 +26,30 @@ void CSettingsGroup::setName(const string& name)
   Name = name;
 }
 
-//! Returns all params (strings) for this group
-map<string, string>& CSettingsGroup::getParams()
+void CSettingsGroup::addParam(const string& name, const string& value)
 {
-  return Params;
+  Params.insert(pair<string, string>(name, value));
+}
+
+string& CSettingsGroup::getParam(const string& name)
+{
+  ParamsIt = Params.find(name);
+  if (ParamsIt != Params.end()) {
+    return ParamsIt->second;
+  } else {
+    return Default;
+  }
 }
 
 //! Returns the name of the settings group
-string& CSettingsGroup::getName()
+const string& CSettingsGroup::getName() const
 {
   return Name;
+}
+
+string& CSettingsGroup::getDefault()
+{
+  return Default;
 }
 
 }

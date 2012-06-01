@@ -44,7 +44,7 @@ CSettings::CSettings()
             groupName += current;
           } else {
             // Group Creation
-            Data[groupName] = new CSettingsGroup(groupName);
+            Data.insert(pair<string, CSettingsGroup>(groupName, CSettingsGroup(groupName)));
             inGroupNameDeclaration = false;
           }
         }
@@ -71,9 +71,11 @@ CSettings::CSettings()
           if (inParamValueExtraction && (current == '\n' || current == '\r')) {
             inParamNameDeclaration = false;
             inParamValueExtraction = false;
-            if (Data[groupName]) {
-              // Param Creation
-              Data[groupName]->getParams()[paramName] = paramValue;
+            // Find settings group
+            DataIt = Data.find(groupName);
+            if (DataIt != Data.end()) {
+              // Group found -> param creation
+              DataIt->second.addParam(paramName, paramValue);
             }
             linePosition = -1;
           } else if (current == '\n' || current == '\r') {
@@ -120,7 +122,12 @@ CSettings::CSettings()
  */
 string& CSettings::getParamString(const string& groupName, const string& paramName)
 {
-  return Data[groupName]->getParams()[paramName];
+  DataIt = Data.find(groupName);
+  if (DataIt != Data.end()) {
+    return DataIt->second.getParam(paramName);
+  } else {
+    return DataIt->second.getDefault();
+  }
 }
 
 //! Returns the integer value of a parameter
@@ -132,8 +139,9 @@ string& CSettings::getParamString(const string& groupName, const string& paramNa
 s32 CSettings::getParamInt(const string& groupName, const string& paramName)
 {
   s32 value = 0;
-  if (Data[groupName]) {
-    istringstream iss(Data[groupName]->getParams()[paramName]);
+  DataIt = Data.find(groupName);
+  if (DataIt != Data.end()) {
+    istringstream iss(DataIt->second.getParam(paramName));
     iss >> value;
     return value;
   } else {

@@ -20,13 +20,16 @@ class CSettingsGroup
     CSettingsGroup(const string& newName);
 
     void setName(const string& newName);
-    string& getName();
-
-    map<string, string>& getParams();
+    void addParam(const string& name, const string& value);
+    const string& getName() const;
+    string& getParam(const string& name);
+    string& getDefault();
 
   private:
     string Name;
+    string Default;
     map<string, string> Params;
+    map<string, string>::iterator ParamsIt;
 };
 
 }
