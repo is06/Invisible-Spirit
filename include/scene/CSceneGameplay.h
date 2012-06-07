@@ -27,7 +27,7 @@ class CSceneGameplay : public CScene
     virtual void hudRender();
 
   protected:
-    void loadMapSection(const string& mapName, const string& sectionName, core::vector3df position);
+    void loadMapSection(const string& mapName, const string& sectionName, const core::vector3df& position);
     void unloadUnusedMapSection();
 
     n3D::CPlayableCharacter* Hero;

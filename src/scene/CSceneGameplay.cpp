@@ -226,7 +226,7 @@ void CSceneGameplay::switchLevelMeshes()
   Level[0] = tmp;
 }
 
-void CSceneGameplay::loadMapSection(const string& mapName, const string& sectionName, core::vector3df position)
+void CSceneGameplay::loadMapSection(const string& mapName, const string& sectionName, const core::vector3df& position)
 {
   if (Level[0] != NULL) {
     switchLevelMeshes();
