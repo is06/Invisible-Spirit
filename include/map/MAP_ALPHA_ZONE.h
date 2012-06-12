@@ -8,6 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MAP_ALPHA_ZONE__
 #define __IS06_MAP_ALPHA_ZONE__
 
+#include "../3d/CTeleporter.h"
 #include "../scene/CSceneGameplay.h"
 #include "../shader/CPostRenderGlow.h"
 
@@ -31,7 +32,7 @@ class MAP_ALPHA_ZONE : public nScene::CSceneGameplay
     nSound::CSpeaker* Spk;
     n3D::COmniLight* Lt;
     nShader::CPostRenderGlow* GlowShader;
-    n3D::CPlaneSensor* ToDungeonSensor;
+    n3D::CTeleporter* ToDungeonSensor;
 };
 
 }

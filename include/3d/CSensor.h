@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../engine/CEntity.h"
 
+using namespace irr;
+
 namespace is06
 {
 namespace n3D
@@ -19,8 +21,15 @@ namespace n3D
 class CSensor : public nEngine::CEntity
 {
   public:
-    CSensor();
-    virtual void update() = 0;
+    CSensor(f32 width, f32 height, f32 depth, const core::vector3df& position);
+    virtual void update();
+
+    void setSize(f32 width, f32 height, f32 depth, const core::vector3df& position);
+
+    const core::aabbox3df& getBox();
+
+  protected:
+    core::aabbox3df Box;
 };
 
 }

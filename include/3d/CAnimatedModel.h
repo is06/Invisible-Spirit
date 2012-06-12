@@ -13,7 +13,6 @@ http://www.is06.com. Legal code in license.txt
 #include "../engine/ECharacterAnimationIdentifier.h"
 #include "CModelEntity.h"
 #include "SMeshAnimationInfo.h"
-#include "CBoxSensor.h"
 
 namespace is06
 {
@@ -55,8 +54,7 @@ class CAnimatedModel : public CModelEntity
     // Collision detection
     bool collidesWithStatic(n3D::CStaticModel* other);
     bool collidesWithAnimated(n3D::CAnimatedModel* other);
-    bool collidesWithSensor(n3D::CPlaneSensor* sensor, nEngine::EEventType type = nEngine::EET_ONCE);
-    bool collidesWithSensor(n3D::CBoxSensor* sensor, nEngine::EEventType type = nEngine::EET_ONCE);
+    bool collidesWithSensor(n3D::CSensor* sensor, nEngine::EEventType type = nEngine::EET_ONCE);
     f32 getFloorCollision(n3D::CStaticModel* other);
     f32 getWallCollision(nEngine::ERayType type, n3D::CStaticModel* other, core::vector3df& normal);
 

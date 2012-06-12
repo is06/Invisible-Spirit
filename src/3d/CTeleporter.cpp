@@ -5,26 +5,34 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/3d/CBoxSensor.h"
+#include "../../include/3d/CTeleporter.h"
+
+using namespace irr;
 
 namespace is06
 {
 namespace n3D
 {
 
-CBoxSensor::CBoxSensor(const core::aabbox3df& initBox) : CSensor()
+CTeleporter::CTeleporter(f32 width, f32 height, f32 depth, const core::vector3df& position, nScene::ESceneIdentifier destination)
+: CSensor(width, height, depth, position)
 {
-  Box = initBox;
+  Destination = destination;
 }
 
-void CBoxSensor::update()
+void CTeleporter::update()
 {
   CSensor::update();
 }
 
-const core::aabbox3df& CBoxSensor::getBox() const
+void CTeleporter::setDestination(nScene::ESceneIdentifier id)
 {
-  return Box;
+  Destination = id;
+}
+
+CTeleporter::~CTeleporter()
+{
+
 }
 
 }

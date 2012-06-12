@@ -5,9 +5,11 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_BOX_SENSOR_H__
-#define __IS06_BOX_SENSOR_H__
+#ifndef __IS06_TELEPORTER_H__
+#define __IS06_TELEPORTER_H__
 
+#include "../scene/ESceneIdentifier.h"
+#include "EPlaneSensorType.h"
 #include "CSensor.h"
 
 namespace is06
@@ -15,16 +17,18 @@ namespace is06
 namespace n3D
 {
 
-//! A concrete but invisible box sensor with collision and presence detection functions
-class CBoxSensor : public CSensor
+class CTeleporter : public CSensor
 {
   public:
-    CBoxSensor(const core::aabbox3df& initBox);
+    CTeleporter(f32 width, f32 height, f32 depth, const core::vector3df& position, nScene::ESceneIdentifier destination);
+    ~CTeleporter();
+
     void update();
-    const core::aabbox3df& getBox() const;
+
+    void setDestination(nScene::ESceneIdentifier id);
 
   private:
-    core::aabbox3df Box;
+    nScene::ESceneIdentifier Destination;
 };
 
 }

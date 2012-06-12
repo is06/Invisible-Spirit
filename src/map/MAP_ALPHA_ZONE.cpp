@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/CLevelMesh.h"
 #include "../../include/3d/CPlayableCharacter.h"
 #include "../../include/3d/COmniLight.h"
-#include "../../include/3d/CPlaneSensor.h"
+#include "../../include/3d/CTeleporter.h"
 #include "../../include/engine/CDialogInterface.h"
 #include "../../include/sound/CMusicReference.h"
 #include "../../include/sound/CSpeaker.h"
@@ -66,7 +66,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   // Cinemascope mode (black stripes)
   //Cinemascope->slideIn(1.0f);
 
-  ToDungeonSensor = new n3D::CPlaneSensor(core::plane3df(-1.0f, 1.0f, 10.0f, 1.0f, 0.0f, 10.0f));
+  ToDungeonSensor = new n3D::CTeleporter(10.0f, 10.0f, 1.0f, core::vector3df(0.0f, 0.0f, 0.0f), nScene::ESI_MAP_DUNGEON_1);
 }
 
 //! Alpha Zone events

@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/sound/CSpeaker.h"
 #include "../../include/3d/CAnimatedModel.h"
 #include "../../include/3d/CStaticModel.h"
-#include "../../include/3d/CPlaneSensor.h"
+#include "../../include/3d/CSensor.h"
 
 using namespace irr;
 
@@ -326,17 +326,8 @@ bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
   return false;
 }
 
-bool CAnimatedModel::collidesWithSensor(CPlaneSensor* sensor, nEngine::EEventType type)
-{
-  f32 distance = MainNode->getPosition().getDistanceFrom(sensor->getPlane().Normal);
-
-  cout << distance << endl;
-
-  return false;
-}
-
 //! Returns true if the object is in the box sensor
-bool CAnimatedModel::collidesWithSensor(CBoxSensor* sensor, nEngine::EEventType type)
+bool CAnimatedModel::collidesWithSensor(CSensor* sensor, nEngine::EEventType type)
 {
   bool inside = sensor->getBox().isPointInside(MainNode->getPosition());
   if (type == nEngine::EET_ONCE) {

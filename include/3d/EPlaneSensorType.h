@@ -5,27 +5,18 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_PLANE_SENSOR_H__
-#define __IS06_PLANE_SENSOR_H__
-
-#include "CSensor.h"
+#ifndef __IS06_PLANE_SENSOR_TYPE_H__
+#define __IS06_PLANE_SENSOR_TYPE_H__
 
 namespace is06
 {
 namespace n3D
 {
 
-//! A concrete but invisible plane sensor with collision detection functions
-class CPlaneSensor : public CSensor
+enum EPlaneSensorType
 {
-  public:
-    CPlaneSensor(const core::plane3df& initPlane);
-    void update();
-
-    const core::plane3df& getPlane() const;
-
-  private:
-    core::plane3df Plane;
+  EPST_VERTICAL,
+  EPST_HORIZONTAL
 };
 
 }
