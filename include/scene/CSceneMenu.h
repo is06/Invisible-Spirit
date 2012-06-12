@@ -40,7 +40,6 @@ class CSceneMenu : public CScene
     void retrieveSaveSlotList();
     void clearSaveSlotList();
 
-    nHud::CPicture* Dummy;
     nHud::CPicture* Title;
     nHud::CPicture* CreativeCommons;
     nHud::CMenu* MainMenu;

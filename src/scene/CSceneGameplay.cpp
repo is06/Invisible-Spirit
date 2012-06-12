@@ -27,7 +27,9 @@ namespace nScene
 {
 
 //! Initialize all objects and entity in this type of scene
-CSceneGameplay::CSceneGameplay() : CScene()
+CSceneGameplay::CSceneGameplay() : CScene(),
+  Hero(NULL), GameplayInterface(NULL), EnergyInterface(NULL), MiniMap(NULL),
+  GameplayMenu(NULL), EverySecondTimer(NULL)
 {
   Level[0] = NULL;
   Level[1] = NULL;
