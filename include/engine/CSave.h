@@ -10,6 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../scene/ESceneIdentifier.h"
 #include "../engine/EDifficultyLevel.h"
+#include "../engine/ETrophyIdentifier.h"
 
 namespace is06
 {
@@ -37,6 +38,8 @@ class CSave
     void decInteger(u32 index, s32 value);
     void setBoolean(u32 index, bool value);
     void setString(u32 index, const string& value);
+
+    void earnTrophy(ETrophyIdentifier trophy);
 
   private:
     // Data maps

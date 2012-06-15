@@ -148,6 +148,12 @@ void CSave::setString(u32 index, const string& value)
   StringList[index] = value;
 }
 
+//! When the player gets a new trophy!
+void CSave::earnTrophy(ETrophyIdentifier trophy)
+{
+  BooleanList[trophy] = true;
+}
+
 //! Sets all general default value in the game save when the player starts a new game
 void CSave::setGeneralDefaultValues(nEngine::EDifficultyLevel difficultyLevel)
 {
