@@ -9,6 +9,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/CGame.h"
 #include "../../include/engine/CSettings.h"
 #include "../../include/engine/CShadowProcessor.h"
+#include "../../include/scene/CScene.h"
+#include "../../include/hud/CPicture.h"
 
 using namespace irr;
 
@@ -18,7 +20,28 @@ namespace nEngine
 {
 
 //! Constructor
-CShadowProcessor::CShadowProcessor()
+CShadowProcessor::CShadowProcessor(n3D::CCamera* mainCamera)
+{
+  DepthMap = NULL;
+
+  setMainCamera(mainCamera);
+  createDepthRenderTargetTexture();
+
+  DepthMapHud = new nHud::CPicture(128, 128, 0, 0);
+  DepthMapHud->setRenderTarget(DepthMap);
+}
+
+void CShadowProcessor::addDirectLight(n3D::CDirectLight* light)
+{
+  Lights.push_back(light);
+}
+
+void CShadowProcessor::setMainCamera(n3D::CCamera* camera)
+{
+  MainCamera = camera;
+}
+
+void CShadowProcessor::createDepthRenderTargetTexture()
 {
   // Render to target texture quality from settings.ini
   u32 textureQuality = CGame::Settings->getParamInt("shadows", "texture_quality");
@@ -38,63 +61,27 @@ CShadowProcessor::CShadowProcessor()
     depthTextureQuality = video::ECF_G32R32F;
   }
 
-  // Shadow map texture creation (render target)
-  ShadowMap = CGame::getVideoDriver()->addRenderTargetTexture(
-    core::dimension2du(textureQuality, textureQuality),
-    "IS06_SHADOW_MAP",
-    depthTextureQuality
-  );
+  DepthMap = CGame::getVideoDriver()->addRenderTargetTexture(core::dimension2du(depthQuality, depthQuality), "RTT9", depthTextureQuality);
 }
 
 void CShadowProcessor::render()
 {
-  // Changing render target to a texture
-  CGame::getVideoDriver()->setRenderTarget(ShadowMap, true, true, video::SColor(255, 255, 255, 255));
-
-  for (ShadowsIt = Shadows.begin(); ShadowsIt != Shadows.end(); ShadowsIt++) {
-    // Considering entities that casts shadows
-    if (ShadowsIt->second.getMode() == ESM_CAST || ShadowsIt->second.getMode() == ESM_ALL) {
-      ShadowsIt->first->setMaterialType((video::E_MATERIAL_TYPE)CGame::Shaders.ShadowMapPass1);
-      ShadowsIt->first->render();
-      ShadowsIt->first->setMaterialType((video::E_MATERIAL_TYPE)CGame::Shaders.ShadowMapPass2);
-      ShadowsIt->first->render();
-    }
-
-    // Considering entities that receives shadows
-    if (ShadowsIt->second.getMode() == ESM_RECEIVE || ShadowsIt->second.getMode() == ESM_ALL) {
-      // @todo
-    }
-  }
-
-  // Restore render target to main display window
-  CGame::getVideoDriver()->setRenderTarget(0, true, true, video::SColor(255, 0, 0, 0));
+  drawDepthOnTexture();
 }
 
-void CShadowProcessor::renderCastingNodes()
+void CShadowProcessor::drawDepthOnTexture()
 {
+  CGame::getVideoDriver()->setRenderTarget(DepthMap, true, true, video::SColor(255,255,255,255));
 
-}
+  DepthMapHud->render();
 
-void CShadowProcessor::renderReceivingNodes()
-{
-
-}
-
-void CShadowProcessor::setEntity(scene::ISceneNode* node, EShadowMode mode)
-{
-  Shadows[node] = CShadow(mode);
-}
-
-void CShadowProcessor::removeEntity(scene::ISceneNode* node)
-{
-  ShadowsIt = Shadows.find(node);
-  Shadows.erase(ShadowsIt);
+  CGame::getVideoDriver()->setRenderTarget(0, true, true, CGame::getCurrentScene()->getBackBufferColor());
 }
 
 //! Destructor, does nothing
 CShadowProcessor::~CShadowProcessor()
 {
-
+  delete DepthMapHud;
 }
 
 }

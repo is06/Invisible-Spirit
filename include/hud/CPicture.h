@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 
 #include "CHud2DElement.h"
 
+using namespace irr;
+
 namespace is06
 {
 namespace nHud
@@ -24,6 +26,7 @@ class CPicture : public CHud2DElement
     void render();
     void loadSecondTexture(const string& filePath);
     void changeTexture(const string& filePath);
+    void setRenderTarget(video::ITexture* renderTargetTexture);
 };
 
 }

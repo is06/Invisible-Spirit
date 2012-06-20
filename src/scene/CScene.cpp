@@ -48,7 +48,7 @@ CScene::CScene()
   // Cinemascope elements
   Cinemascope = new nHud::CCinemascopeMode();
 
-  //shadows = new ShadowProcessor();
+  ShadowProcessor = new nEngine::CShadowProcessor(Camera);
 
   DebugInfo = nEngine::CGame::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
   DebugInfo->setOverrideColor(video::SColor(255, 255, 255, 255));
@@ -113,7 +113,8 @@ void CScene::hudRender()
 {
   Dummy->render();
 
-  //shadows->render();
+  // Shadows by shadow mapping
+  ShadowProcessor->render();
 
   // Cinemascope stripes render
   Cinemascope->render(SpeedFactor);
@@ -183,7 +184,7 @@ void CScene::fadeOut(f32 speed, nEngine::EFadeColor color)
  */
 nEngine::CShadowProcessor* CScene::getShadowProcessor()
 {
-  return Shadows;
+  return ShadowProcessor;
 }
 
 const video::SColor& CScene::getBackBufferColor() const
@@ -234,7 +235,7 @@ CScene::~CScene()
   delete Dummy;
   delete Cinemascope;
 
-  //delete shadows;
+  delete ShadowProcessor;
 }
 
 }

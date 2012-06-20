@@ -187,6 +187,7 @@ void CPlayableCharacter::updateCoords(f32 deltaU, f32 speed)
 {
   f32 x = cos(core::degToRad(LinkedCam->getNode()->getRotation().Y) + deltaU);
   f32 z = sin(core::degToRad(LinkedCam->getNode()->getRotation().Y) + deltaU);
+
   MainNode->setPosition(core::vector3df(
     MainNode->getPosition().X + ((x * -1) * (speed / 32.0f)),
     MainNode->getPosition().Y,

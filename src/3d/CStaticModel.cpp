@@ -260,7 +260,7 @@ void CStaticModel::clearMeshCollision()
 
 void CStaticModel::setShadowMode(nEngine::EShadowMode mode)
 {
-  nEngine::CGame::getCurrentScene()->getShadowProcessor()->setEntity(MainNode, mode);
+  // TODO
 }
 
 CStaticModel::~CStaticModel()

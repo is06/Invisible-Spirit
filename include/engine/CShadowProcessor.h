@@ -22,22 +22,24 @@ namespace nEngine
 class CShadowProcessor
 {
   public:
-    CShadowProcessor();
+    CShadowProcessor(n3D::CCamera* mainCamera);
     ~CShadowProcessor();
 
     void render();
 
-    void setEntity(scene::ISceneNode* node, nEngine::EShadowMode mode);
-    void removeEntity(scene::ISceneNode* node);
+    void addDirectLight(n3D::CDirectLight* light);
+    void setMainCamera(n3D::CCamera* camera);
 
   private:
-    void renderCastingNodes();
-    void renderReceivingNodes();
+    void createDepthRenderTargetTexture();
+    void drawDepthOnTexture();
 
-    map<scene::ISceneNode*, nEngine::CShadow> Shadows;
-    map<scene::ISceneNode*, nEngine::CShadow>::iterator ShadowsIt;
+    vector<n3D::CDirectLight*> Lights;
+    vector<n3D::CDirectLight*>::iterator LightsIt;
 
-    video::ITexture* ShadowMap;
+    n3D::CCamera* MainCamera;
+    video::ITexture* DepthMap;
+    nHud::CPicture* DepthMapHud;
 };
 
 }

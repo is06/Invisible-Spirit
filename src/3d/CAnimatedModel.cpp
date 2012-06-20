@@ -469,7 +469,7 @@ bool CAnimatedModel::animationFinished(s32 id)
 
 void CAnimatedModel::setShadowMode(nEngine::EShadowMode mode)
 {
-  nEngine::CGame::getCurrentScene()->getShadowProcessor()->setEntity(MainNode, mode);
+  // TODO
 }
 
 //! Destructor, removes the main node

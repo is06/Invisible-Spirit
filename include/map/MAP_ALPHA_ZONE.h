@@ -33,6 +33,8 @@ class MAP_ALPHA_ZONE : public nScene::CSceneGameplay
     n3D::COmniLight* Lt;
     nShader::CPostRenderGlow* GlowShader;
     n3D::CTeleporter* ToDungeonSensor;
+
+    n3D::CDirectLight* DLight;
 };
 
 }

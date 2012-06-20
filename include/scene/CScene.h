@@ -63,7 +63,7 @@ class CScene
     nSound::CMusicReference* Music;
     nEngine::CTranslation* GlobalTranslations;
     nEngine::CTranslation* SceneTranslations;
-    nEngine::CShadowProcessor* Shadows;
+    nEngine::CShadowProcessor* ShadowProcessor;
 
     // Primitive data
     video::SColor BackBufferColor;

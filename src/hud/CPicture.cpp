@@ -40,6 +40,14 @@ void CPicture::changeTexture(const string& filePath)
   }
 }
 
+void CPicture::setRenderTarget(video::ITexture* renderTargetTexture)
+{
+  Texture = renderTargetTexture;
+  if (Texture) {
+    Material.setTexture(0, Texture);
+  }
+}
+
 CPicture::~CPicture()
 {
 
