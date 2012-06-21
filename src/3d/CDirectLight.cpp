@@ -19,6 +19,13 @@ CDirectLight::CDirectLight()
   Camera = nEngine::CGame::getSceneManager()->addCameraSceneNode();
 }
 
+CDirectLight* CDirectLight::create()
+{
+  // TODO: Add to shadow processor (factory design pattern)
+  CDirectLight* obj = new CDirectLight();
+  return obj;
+}
+
 CDirectLight::~CDirectLight()
 {
   Camera->remove();

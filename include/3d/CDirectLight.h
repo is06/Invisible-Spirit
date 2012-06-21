@@ -22,6 +22,8 @@ class CDirectLight : public CLight
     CDirectLight();
     ~CDirectLight();
 
+    static CDirectLight* create();
+
   private:
     scene::ICameraSceneNode* Camera;
 };

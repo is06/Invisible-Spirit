@@ -46,10 +46,14 @@ void CStaticModel::createNode(const core::vector3df& initPosition)
   if (MainMesh) {
     MainNode = nEngine::CGame::getSceneManager()->addMeshSceneNode(MainMesh);
     MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
-    //MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (nEngine::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled"));
-    MainNode->getMaterial(0).AntiAliasing = video::EAAM_LINE_SMOOTH;
+    if (nEngine::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled") {
+      MainNode->getMaterial(0).AntiAliasing = video::EAAM_LINE_SMOOTH;
+    }
+
+    // Initial position
     MainNode->setPosition(initPosition);
 
+    // Texture filtering
     if (nEngine::CGame::Settings->getParamString("model", "texture_filter") == "anisotropic") {
       MainNode->setMaterialFlag(video::EMF_ANISOTROPIC_FILTER, true);
     } else if(nEngine::CGame::Settings->getParamString("model", "texture_filter") == "trilinear") {

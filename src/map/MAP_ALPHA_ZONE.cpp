@@ -57,7 +57,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   //addToEntityList(level);
 
   // Direct Light
-  DLight = new n3D::CDirectLight();
+  DLight = n3D::CDirectLight::create();
   ShadowProcessor->addDirectLight(DLight);
 
   // Hud

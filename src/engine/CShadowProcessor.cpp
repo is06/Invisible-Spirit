@@ -56,9 +56,9 @@ void CShadowProcessor::createDepthRenderTargetTexture()
 
   // Depth texture quality from settings.ini
   u32 depthQuality = CGame::Settings->getParamInt("shadows", "depth_quality");
-  video::ECOLOR_FORMAT depthTextureQuality = video::ECF_G16R16F;
+  video::ECOLOR_FORMAT depthTextureQuality = video::ECF_R5G6B5;
   if (depthQuality == 32) {
-    depthTextureQuality = video::ECF_G32R32F;
+    depthTextureQuality = video::ECF_R8G8B8;
   }
 
   DepthMap = CGame::getVideoDriver()->addRenderTargetTexture(core::dimension2du(depthQuality, depthQuality), "RTT9", depthTextureQuality);
@@ -75,7 +75,7 @@ void CShadowProcessor::drawDepthOnTexture()
 
   DepthMapHud->render();
 
-  CGame::getVideoDriver()->setRenderTarget(0, true, true, CGame::getCurrentScene()->getBackBufferColor());
+  CGame::getVideoDriver()->setRenderTarget(video::ERT_FRAME_BUFFER, false, true, CGame::getCurrentScene()->getBackBufferColor());
 }
 
 //! Destructor, does nothing
