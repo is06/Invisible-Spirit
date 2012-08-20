@@ -11,14 +11,14 @@ http://www.is06.com. Legal code in license.txt
 #include <irrlicht/irrlicht.h>
 #include <newton/Newton.h>
 #include <fmodex/fmod.h>
+#include <boost/function.hpp>
+#include <boost/bind.hpp>
 #include <iostream>
 #include <sstream>
 #include <fstream>
 #include <map>
 #include <vector>
 #include <cmath>
-#include <boost/function.hpp>
-#include <boost/bind.hpp>
 #include "classes.h"
 #include "maps.h"
 

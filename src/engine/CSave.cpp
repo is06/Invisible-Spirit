@@ -71,7 +71,7 @@ void CSave::load(u8 slot)
 }
 
 //! Writes the current game save to a file
-void CSave::write(u8 slot)
+void CSave::save(u8 slot)
 {
   CSaveFile* saveFile = new CSaveFile();
   saveFile->prepareForWrite(slot);
@@ -94,7 +94,7 @@ void CSave::write(u8 slot)
  * Every memorized pieces of data are initialized here, like the start map or character HP...
  * It changes the current map of the game so the player can start to play.
  */
-void CSave::createNewFile(nEngine::EDifficultyLevel difficultyLevel)
+void CSave::newGame(nEngine::EDifficultyLevel difficultyLevel)
 {
   setGeneralDefaultValues(difficultyLevel);
   CGame::changeScene(IntegerList[11]);

@@ -126,7 +126,7 @@ void CSceneMenu::manageMainMenu()
     if (OutFader->isReady()) {
       if (NewGameIsFading) {
         // New Game
-        nEngine::CGame::getCurrentSave()->createNewFile(nEngine::EDL_MEDIUM);
+        nEngine::CGame::getCurrentSave()->newGame(nEngine::EDL_MEDIUM);
       }
       if (QuitIsFading) {
         // Quit to OS

@@ -68,68 +68,6 @@ void CPlayableCharacter::update()
   CCharacter::update();
 }
 
-//! Called while PlayableCharacter's floor raycast is NOT in collision with the floor
-void CPlayableCharacter::fall(f32 factor)
-{
-  if (!Jumping) {
-    if (FallDelta < JumpStrength) {
-      FallDelta += (factor * Gravity);
-    }
-    MainNode->setPosition(core::vector3df(
-      MainNode->getPosition().X,
-      MainNode->getPosition().Y - FallDelta,
-      MainNode->getPosition().Z
-    ));
-  }
-}
-
-//! Called while PlayableCharacter's floor raycast is in collision with the floor
-void CPlayableCharacter::raise()
-{
-  if (Falling) {
-    // PlayableCharacter is hitting the floor
-    FallDelta = 0.0f;
-    Falling = false;
-  }
-  MainNode->setPosition(core::vector3df(
-    MainNode->getPosition().X,
-    MainNode->getPosition().Y + 0.005,
-    MainNode->getPosition().Z
-  ));
-}
-
-//! Called when the player wants PlayableCharacter to jump
-void CPlayableCharacter::jump()
-{
-  if (Jumping) {
-    JumpDelta -= Gravity;
-    if (JumpDelta <= 0) {
-      Jumping = false;
-      Falling = true;
-    }
-    MainNode->setPosition(core::vector3df(
-      MainNode->getPosition().X,
-      MainNode->getPosition().Y + JumpDelta,
-      MainNode->getPosition().Z
-    ));
-  }
-}
-
-void CPlayableCharacter::setJumpDelta(f32 value)
-{
-  JumpDelta = value;
-}
-
-f32 CPlayableCharacter::getJumpDelta()
-{
-  return JumpDelta;
-}
-
-f32 CPlayableCharacter::getJumpStrength()
-{
-  return JumpStrength;
-}
-
 //! Applies an opposite force to PlayableCharacter in order to stop it against a wall
 void CPlayableCharacter::moveOpposite(const core::vector3df& normal)
 {

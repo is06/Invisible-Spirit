@@ -32,6 +32,73 @@ void CCharacter::setCharacterModel(const string& characterId)
   CAnimatedModel::createModel(modelPath, animationPath);
 }
 
+//! Called while PlayableCharacter's floor raycast is NOT in collision with the floor
+void CCharacter::fall(f32 factor)
+{
+  if (!Jumping) {
+    if (FallDelta < JumpStrength) {
+      FallDelta += (factor * Gravity);
+    }
+    MainNode->setPosition(core::vector3df(
+      MainNode->getPosition().X,
+      MainNode->getPosition().Y - FallDelta,
+      MainNode->getPosition().Z
+    ));
+  }
+}
+
+//! Called while PlayableCharacter's floor raycast is in collision with the floor
+void CCharacter::raise()
+{
+  if (Falling) {
+    // PlayableCharacter is hitting the floor
+    FallDelta = 0.0f;
+    Falling = false;
+  }
+  MainNode->setPosition(core::vector3df(
+    MainNode->getPosition().X,
+    MainNode->getPosition().Y + 0.005,
+    MainNode->getPosition().Z
+  ));
+}
+
+//! Called when the player wants PlayableCharacter to jump
+void CCharacter::jump()
+{
+  if (Jumping) {
+    JumpDelta -= Gravity;
+    if (JumpDelta <= 0) {
+      Jumping = false;
+      Falling = true;
+    }
+    MainNode->setPosition(core::vector3df(
+      MainNode->getPosition().X,
+      MainNode->getPosition().Y + JumpDelta,
+      MainNode->getPosition().Z
+    ));
+  }
+}
+
+void CCharacter::setJumpDelta(f32 value)
+{
+  JumpDelta = value;
+}
+
+f32 CCharacter::getJumpDelta()
+{
+  return JumpDelta;
+}
+
+void CCharacter::setJumpStrength(f32 value)
+{
+  JumpStrength = value;
+}
+
+f32 CCharacter::getJumpStrength()
+{
+  return JumpStrength;
+}
+
 void CCharacter::setJumping(bool value)
 {
   Jumping = value;

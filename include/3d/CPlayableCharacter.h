@@ -32,14 +32,6 @@ class CPlayableCharacter : public CCharacter
     void goForward(f32 speed);
     void goBackward(f32 speed);
 
-    // Gravity
-    void fall(f32 factor);
-    void raise();
-    void jump();
-    void setJumpDelta(f32 value);
-    f32 getJumpDelta();
-    f32 getJumpStrength();
-
     // Wall collisions
     void moveOpposite(const core::vector3df& normal);
 
@@ -54,10 +46,6 @@ class CPlayableCharacter : public CCharacter
     CCamera* LinkedCam;
 
     bool Controlable;
-    f32 JumpDelta;
-    f32 FallDelta;
-    f32 Gravity;
-    f32 JumpStrength;
 };
 
 }

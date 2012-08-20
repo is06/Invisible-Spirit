@@ -26,8 +26,8 @@ class CSave
 
     void loadPrimitiveInfo(u8 slot);
     void load(u8 slot);
-    void write(u8 slot);
-    void createNewFile(nEngine::EDifficultyLevel difficultyLevel);
+    void save(u8 slot);
+    void newGame(nEngine::EDifficultyLevel difficultyLevel);
 
     s32& getInteger(u32 index);
     bool& getBoolean(u32 index);
