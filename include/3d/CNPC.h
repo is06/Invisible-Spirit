@@ -29,6 +29,7 @@ class CNPC : public CCharacter
     void attachDialogInterface(nEngine::CDialogInterface* dialog);
     const string& getRandomTalkingDialogIdentifier(bool avoidDoubles = false);
     const string& getNextTalkingDialogIdentifier();
+    f32 getDistanceFrom(n3D::CCharacter* character);
 
   protected:
     nEngine::CDialogInterface* AttachedDialog;

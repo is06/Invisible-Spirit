@@ -11,6 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "CScene.h"
 #include "../hud/CMiniMap.h"
 #include "../hud/CGameplayMenu.h"
+#include "../engine/CNPCInterface.h"
 
 namespace is06
 {
@@ -38,12 +39,14 @@ class CSceneGameplay : public CScene
     nHud::CWorldTimeCounter* WorldTime;
     nHud::nMenu::CGameplayMenu* GameplayMenu;
     nEngine::CTimer* EverySecondTimer;
+    nEngine::CNPCInterface* NPCInterface;
 
   private:
     void manageCameraControl();
     void manageCharacterJumps();
     void manageCharacterMovements();
     void manageCharacterCollisions();
+    void manageCharacterNPCInteraction();
     void manageMenuControl();
     void everySecond();
     void switchLevelMeshes();

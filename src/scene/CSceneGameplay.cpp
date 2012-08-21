@@ -65,6 +65,7 @@ void CSceneGameplay::events()
   manageCharacterJumps();
   manageCharacterMovements();
   manageCharacterCollisions();
+  manageCharacterNPCInteraction();
 
   // Menu
   if (Control->commandEntered(nEngine::ECI_OPEN_MENU, nEngine::EET_ONCE)) {
@@ -183,6 +184,17 @@ void CSceneGameplay::manageCharacterCollisions()
     while (Hero->getWallCollision(nEngine::ERT_WALL_P, Level[0], normal) < 0.99
     || Hero->getWallCollision(nEngine::ERT_WALL_Q, Level[0], normal) < 0.99) {
       Hero->moveOpposite(normal);
+    }
+  }
+}
+
+//! Manages interactions between Hero and NPCs
+void CSceneGameplay::manageCharacterNPCInteraction()
+{
+  n3D::CNPC* npc = NPCInterface->getNearestNPC(Hero);
+  if (npc->getDistanceFrom(Hero) < 1.0f) {
+    if (Control->commandEntered(nEngine::ECI_DIALOG_ACTION, nEngine::EET_ONCE)) {
+      npc->talk("npc_dialog_identifier_lambda");
     }
   }
 }

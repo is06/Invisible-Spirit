@@ -30,11 +30,11 @@ class MAP_ALPHA_ZONE : public nScene::CSceneGameplay
 
   private:
     nSound::CSpeaker* Spk;
-    n3D::COmniLight* Lt;
     nShader::CPostRenderGlow* GlowShader;
+    n3D::COmniLight* Lt;
     n3D::CTeleporter* ToDungeonSensor;
-
     n3D::CDirectLight* DLight;
+    n3D::CNPC* NPC1;
 };
 
 }

@@ -65,6 +65,12 @@ const string& CNPC::getNextTalkingDialogIdentifier()
   return DialogIdentifierList[CurrentTalkingDialogIdentifier];
 }
 
+//! TODO
+f32 CNPC::getDistanceFrom(n3D::CCharacter* character)
+{
+  return 0.0f;
+}
+
 //! Destructor
 CNPC::~CNPC()
 {

@@ -31,6 +31,7 @@ namespace nEngine
   class CGamepad;
   class CDialog;
   class CDialogInterface;
+  class CNPCInterface;
 }
 
 // Debug classes

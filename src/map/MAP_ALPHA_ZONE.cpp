@@ -14,6 +14,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/COmniLight.h"
 #include "../../include/3d/CDirectLight.h"
 #include "../../include/3d/CTeleporter.h"
+#include "../../include/3d/CNPC.h"
 #include "../../include/engine/CDialogInterface.h"
 #include "../../include/sound/CMusicReference.h"
 #include "../../include/sound/CSpeaker.h"
@@ -72,12 +73,20 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   //Cinemascope->slideIn(1.0f);
 
   //ToDungeonSensor = new n3D::CTeleporter(10.0f, 10.0f, 1.0f, core::vector3df(0.0f, 0.0f, 0.0f), nScene::ESI_MAP_DUNGEON_1);
+
+  // NPC creation
+  NPC1 = new n3D::CNPC();
+  // Add NPC to the interface -> Hero will be able to speak to the NPC
+  NPCInterface->addNPC(NPC1);
 }
 
 //! Alpha Zone events
 void MAP_ALPHA_ZONE::events()
 {
   nScene::CSceneGameplay::events();
+
+
+
 
   /*
   if (Hero->collidesWithSensor(ToDungeonSensor)) {
@@ -135,6 +144,8 @@ MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
 {
   // Level Mesh collision clear
   Level[0]->clearMeshCollision();
+
+  delete NPC1;
 
   // 3D Speaker deletion
   //delete spk;
