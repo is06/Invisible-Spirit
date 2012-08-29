@@ -73,13 +73,13 @@ void CSceneGameplay::events()
     Hero->toggleControl();
     Camera->toggleControl();
   }
-
-  if (Control->commandEntered(nEngine::ECI_PLAYER_GUARD, nEngine::EET_ONCE)) {
-    Cinemascope->fadeIn(500.0f);
-  }
-
   if (GameplayMenu->isVisible()) {
     manageMenuControl();
+  }
+
+  // Cinemascope mode
+  if (Control->commandEntered(nEngine::ECI_PLAYER_GUARD, nEngine::EET_ONCE)) {
+    Cinemascope->fadeIn(500.0f);
   }
 
   // Entities rendering
@@ -192,9 +192,11 @@ void CSceneGameplay::manageCharacterCollisions()
 void CSceneGameplay::manageCharacterNPCInteraction()
 {
   n3D::CNPC* npc = NPCInterface->getNearestNPC(Hero);
-  if (npc->getDistanceFrom(Hero) < 1.0f) {
-    if (Control->commandEntered(nEngine::ECI_DIALOG_ACTION, nEngine::EET_ONCE)) {
-      npc->talk("npc_dialog_identifier_lambda");
+  if (npc) {
+    if (npc->getDistanceFrom(Hero) < 1.0f) {
+      if (Control->commandEntered(nEngine::ECI_DIALOG_ACTION, nEngine::EET_ONCE)) {
+        npc->talk("npc_dialog_identifier_lambda");
+      }
     }
   }
 }

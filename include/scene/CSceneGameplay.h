@@ -42,13 +42,14 @@ class CSceneGameplay : public CScene
     nEngine::CNPCInterface* NPCInterface;
 
   private:
+    virtual void everySecond();
+
     void manageCameraControl();
     void manageCharacterJumps();
     void manageCharacterMovements();
     void manageCharacterCollisions();
     void manageCharacterNPCInteraction();
     void manageMenuControl();
-    void everySecond();
     void switchLevelMeshes();
 
     bool QuitIsFading;

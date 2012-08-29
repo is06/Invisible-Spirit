@@ -40,24 +40,24 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   loadMapSection("alphazone", "main", core::vector3df(0.0f, 0.0f, 0.0f));
 
   // Multi-layers music example
-  //music->play("bodhum");
-  //music->unmuteSequence("bodhum", 1);
-  //music->muteSequence("bodhum", 2);
+  Music->play("bodhum");
+  Music->unmuteSequence("bodhum", 1);
+  Music->muteSequence("bodhum", 2);
 
   // 3D Speaker example
-  //spk = new Speaker(STREAM_TEST, core::vector3df(0,1,0), "hola", 10);
+  Spk = new nSound::CSpeaker("path/to/a/file", core::vector3df(0,1,0), "speaker_debug_text", 10);
 
   // Omni Light example
-  //lt = new OmniLight();
+  Lt = new n3D::COmniLight();
 
-  // Dialogs
+  // Scene dialog loading
   Dialog = new nEngine::CDialogInterface("MAP_ALPHA_ZONE.isd", SceneTranslations, Control);
 
   // Glow shader example
-  //glowShader = new PostRenderGlow();
-  //addToEntityList(level);
+  GlowShader = new nShader::CPostRenderGlow();
+  addToEntityList(Level[0]);
 
-  // Direct Light
+  // Direct Light (spot with shadow map system, work in progress)
   DLight = n3D::CDirectLight::create();
   ShadowProcessor->addDirectLight(DLight);
 
@@ -70,9 +70,11 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   setSkyBox("test");
 
   // Cinemascope mode (black stripes)
-  //Cinemascope->slideIn(1.0f);
+  Cinemascope->slideIn(1.0f);
 
-  //ToDungeonSensor = new n3D::CTeleporter(10.0f, 10.0f, 1.0f, core::vector3df(0.0f, 0.0f, 0.0f), nScene::ESI_MAP_DUNGEON_1);
+  // Teleporter example
+  // This teleporter moves the hero to another map (dungeon 1)
+  ToDungeonSensor = new n3D::CTeleporter(10.0f, 10.0f, 1.0f, core::vector3df(0.0f, 0.0f, 0.0f), nScene::ESI_MAP_DUNGEON_1);
 
   // NPC creation
   NPC1 = new n3D::CNPC();

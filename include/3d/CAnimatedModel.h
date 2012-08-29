@@ -33,7 +33,6 @@ class CAnimatedModel : public CModelEntity
     void setVisible(bool value);
     void hide();
     void show();
-    void setGhost(bool value);
     void setWireFrame(bool value);
     void setDebugData(bool value);
     void darken();

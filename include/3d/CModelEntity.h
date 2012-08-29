@@ -30,7 +30,6 @@ class CModelEntity : public nEngine::CEntity
     virtual void setVisible(bool value) = 0;
     virtual void hide() = 0;
     virtual void show() = 0;
-    virtual void setGhost(bool value) = 0;
     virtual void setWireFrame(bool value) = 0;
     virtual void setDebugData(bool value) = 0;
     virtual void darken() = 0;

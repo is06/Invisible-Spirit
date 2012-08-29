@@ -45,6 +45,11 @@ void CAnimatedModel::shaderRender()
   MainNode->render();
 }
 
+//! Loads mesh and creates Irrlicht node
+/**
+ * \param string meshFile the path to a mesh file
+ * \param string animationFile the path to a *.isa animation file
+ */
 void CAnimatedModel::createModel(const string& meshFile, const string& animationFile)
 {
   loadMesh(meshFile);
@@ -53,6 +58,9 @@ void CAnimatedModel::createModel(const string& meshFile, const string& animation
 }
 
 //! Turns the model relative to the X axis
+/**
+ * \param f32 speed
+ */
 void CAnimatedModel::turnX(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -63,6 +71,9 @@ void CAnimatedModel::turnX(f32 speed)
 }
 
 //! Turns the model relative to the Y axis
+/**
+ * \param f32 speed
+ */
 void CAnimatedModel::turnY(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -73,6 +84,9 @@ void CAnimatedModel::turnY(f32 speed)
 }
 
 //! Turns the model relative to the Z axis
+/**
+ * \param f32 speed
+ */
 void CAnimatedModel::turnZ(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -83,6 +97,9 @@ void CAnimatedModel::turnZ(f32 speed)
 }
 
 //! Move the model relative to the X axis
+/**
+ * \param f32 speed
+ */
 void CAnimatedModel::moveX(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -93,6 +110,9 @@ void CAnimatedModel::moveX(f32 speed)
 }
 
 //! Move the model relative to the Y axis
+/**
+ * \param f32 speed
+ */
 void CAnimatedModel::moveY(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -103,6 +123,9 @@ void CAnimatedModel::moveY(f32 speed)
 }
 
 //! Move the model relative to the Z axis
+/**
+ * \param f32 speed
+ */
 void CAnimatedModel::moveZ(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -139,6 +162,9 @@ scene::IAnimatedMeshSceneNode* CAnimatedModel::getNode()
 }
 
 //! Returns Irrlicht material
+/**
+ * \return SMaterial& the Irrlicht node material
+ */
 video::SMaterial& CAnimatedModel::getMaterial()
 {
   return MainNode->getMaterial(0);
@@ -157,15 +183,12 @@ void CAnimatedModel::show()
 }
 
 //! Sets the visibility of the object and disables collisions
+/**
+ * \param bool true to show the object, false to hide it
+ */
 void CAnimatedModel::setVisible(bool value)
 {
   MainNode->setVisible(value);
-}
-
-//! Makes the object ghost so it will be invisible but will reacts to collisions
-void CAnimatedModel::setGhost(bool value)
-{
-  MainNode->setMaterialFlag(video::EMF_FRONT_FACE_CULLING, !value);
 }
 
 //! Sets the wireframe mode for this model
