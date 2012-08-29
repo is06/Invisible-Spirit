@@ -16,10 +16,8 @@ namespace is06
 namespace nShader
 {
 
-CPostRenderGlow::CPostRenderGlow() : CHud2DElement(0, 0, nEngine::CGame::ScreenPos.Width, nEngine::CGame::ScreenPos.Height)
+CPostRenderGlow::CPostRenderGlow() : CPostRenderShader()
 {
-  Texture = 0;
-
   // Render to target texture quality
   u32 texture_quality = nEngine::CGame::Settings->getParamInt("glow", "texture_quality");
   switch (texture_quality) {
@@ -36,11 +34,6 @@ CPostRenderGlow::CPostRenderGlow() : CHud2DElement(0, 0, nEngine::CGame::ScreenP
   if (depth_quality == 32) {
     textureColorFormat = video::ECF_R8G8B8;
   }
-
-  MinTextureOffset.X = 0.0f;
-  MinTextureOffset.Y = 1.0f;
-  MaxTextureOffset.X = 1.0f;
-  MaxTextureOffset.Y = 0.0f;
 
   Material.AntiAliasing = false;
   Texture = nEngine::CGame::getVideoDriver()->addRenderTargetTexture(core::dimension2du(512, 512), "GlowRTT", textureColorFormat);

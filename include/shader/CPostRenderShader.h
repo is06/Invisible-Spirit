@@ -5,10 +5,11 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_POST_RENDER_GLOW_H__
-#define __IS06_POST_RENDER_GLOW_H__
+#ifndef __IS06_POST_RENDER_SHADER_H__
+#define __IS06_POST_RENDER_SHADER_H__
 
-#include "CPostRenderShader.h"
+#include "EShaderEffect.h"
+#include "../hud/CHud2DElement.h"
 
 namespace is06
 {
@@ -16,16 +17,23 @@ namespace nShader
 {
 
 //! Aligned screen quad for post render in order to simulated a light glowing effect
-class CPostRenderGlow : public CPostRenderShader
+class CPostRenderShader : public nHud::CHud2DElement
 {
   public:
-    CPostRenderGlow();
-    ~CPostRenderGlow();
+    CPostRenderShader();
+    ~CPostRenderShader();
 
-    void render();
+    virtual void render();
+    void addEntityForEffect(n3D::CModelEntity* entity, EShaderEffect effect);
+
+  protected:
+    // A map for post processing effects
+    map<n3D::CModelEntity*, bool> EntityList;
+    map<n3D::CModelEntity*, bool>::iterator EntityListIt;
 };
 
 }
 }
 
 #endif
+

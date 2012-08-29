@@ -72,10 +72,6 @@ class CScene
     f32 SpeedFactor;
     gui::IGUIStaticText* DebugInfo;
 
-    // A map for post processing effects
-    map<n3D::CModelEntity*, bool> EntityList;
-    map<n3D::CModelEntity*, bool>::iterator EntityListIt;
-
     // Methods
     void setSkyBox(const string& textureName);
 

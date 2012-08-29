@@ -133,10 +133,11 @@ void CScene::darkenNonGlowingEntities()
   nEngine::CGame::getSceneManager()->setAmbientLight(video::SColorf(0.0f, 0.0f, 0.0f));
 
   // @todo : turn off all lights
-
+  /*
   for (EntityListIt = EntityList.begin(); EntityListIt != EntityList.end(); EntityListIt++) {
     EntityListIt->first->darken();
   }
+  */
 }
 
 /**
@@ -147,10 +148,11 @@ void CScene::revealNonGlowingEntities()
   nEngine::CGame::getSceneManager()->setAmbientLight(video::SColorf(1.0f, 1.0f, 1.0f));
 
   // @todo : turn on all lights
-
+  /*
   for (EntityListIt = EntityList.begin(); EntityListIt != EntityList.end(); EntityListIt++) {
     EntityListIt->first->undarken();
   }
+  */
 }
 
 /**
@@ -158,7 +160,7 @@ void CScene::revealNonGlowingEntities()
  */
 void CScene::addToEntityList(n3D::CModelEntity* entity)
 {
-  EntityList[entity] = false;
+  //EntityList[entity] = false;
 }
 
 /**

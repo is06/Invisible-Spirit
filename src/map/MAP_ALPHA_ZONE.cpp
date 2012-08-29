@@ -55,7 +55,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
 
   // Glow shader example
   GlowShader = new nShader::CPostRenderGlow();
-  addToEntityList(Level[0]);
+  GlowShader->addEntityForEffect(Level[0], nShader::ESE_DARKEN);
 
   // Direct Light (spot with shadow map system, work in progress)
   DLight = n3D::CDirectLight::create();
