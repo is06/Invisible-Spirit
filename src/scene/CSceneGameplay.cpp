@@ -29,10 +29,9 @@ namespace nScene
 //! Initialize all objects and entity in this type of scene
 CSceneGameplay::CSceneGameplay() : CScene()
 {
-  Level[0] = NULL;
-  Level[1] = NULL;
-
   Camera = new n3D::CTPCamera();
+
+  MapSections = new nEngine::CMapSectionInterface();
 
   // Hero info
   Hero = new n3D::CPlayableCharacter(Camera);
@@ -162,16 +161,18 @@ void CSceneGameplay::manageCharacterMovements()
 void CSceneGameplay::manageCharacterCollisions()
 {
   // Check if level was created
+  /*
   if (Level[0]->getMesh() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_45);
   if (Level[0]->getNode() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_46);
   if (Level[0]->getMainBody() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_47);
+  */
 
   // Floor collision
-  if (Hero->getFloorCollision(Level[0]) > 1.0) {
+  if (Hero->getFloorCollision(MapSections->getSection(0)) > 1.0) {
     Hero->fall(SpeedFactor);
   }
-  if (Hero->getFloorCollision(Level[0]) < 1.0) {
-    while (Hero->getFloorCollision(Level[0]) < 0.95) {
+  if (Hero->getFloorCollision(MapSections->getSection(0)) < 1.0) {
+    while (Hero->getFloorCollision(MapSections->getSection(0)) < 0.95) {
       Hero->raise();
     }
   }
@@ -179,10 +180,10 @@ void CSceneGameplay::manageCharacterCollisions()
   // Wall collision, this normal vector will be modified by getWallCollision functions
   core::vector3df normal;
 
-  if (Hero->getWallCollision(nEngine::ERT_WALL_P, Level[0], normal) < 1.0f
-  || Hero->getWallCollision(nEngine::ERT_WALL_Q, Level[0], normal) < 1.0f) {
-    while (Hero->getWallCollision(nEngine::ERT_WALL_P, Level[0], normal) < 0.99
-    || Hero->getWallCollision(nEngine::ERT_WALL_Q, Level[0], normal) < 0.99) {
+  if (Hero->getWallCollision(nEngine::ERT_WALL_P, MapSections->getSection(0), normal) < 1.0f
+  || Hero->getWallCollision(nEngine::ERT_WALL_Q, MapSections->getSection(0), normal) < 1.0f) {
+    while (Hero->getWallCollision(nEngine::ERT_WALL_P, MapSections->getSection(0), normal) < 0.99
+    || Hero->getWallCollision(nEngine::ERT_WALL_Q, MapSections->getSection(0), normal) < 0.99) {
       Hero->moveOpposite(normal);
     }
   }
@@ -232,40 +233,10 @@ void CSceneGameplay::hudRender()
   GameplayMenu->render();
 }
 
-void CSceneGameplay::switchLevelMeshes()
-{
-  n3D::CLevelMesh* tmp;
-  tmp = Level[1];
-  Level[1] = Level[0];
-  Level[0] = tmp;
-}
-
-void CSceneGameplay::loadMapSection(const string& mapName, const string& sectionName, const core::vector3df& position)
-{
-  if (Level[0] != NULL) {
-    switchLevelMeshes();
-  }
-
-  Level[0] = new n3D::CLevelMesh();
-  Level[0]->loadMesh("resource/mesh/level/" + mapName + "/" + sectionName + ".obj");
-  Level[0]->createNode(position);
-  Level[0]->loadMeshCollision();
-
-  unloadUnusedMapSection();
-}
-
-void CSceneGameplay::unloadUnusedMapSection()
-{
-  if (Level[1]) {
-    delete Level[1];
-  }
-}
-
 //! Destroys all objects defined by constructor
 CSceneGameplay::~CSceneGameplay()
 {
-  if (Level[0]) delete Level[0];
-  if (Level[1]) delete Level[1];
+  if (MapSections) delete MapSections;
   if (Hero) delete Hero;
   if (Camera) delete Camera;
   if (GameplayInterface) delete GameplayInterface;

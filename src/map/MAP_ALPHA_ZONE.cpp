@@ -37,7 +37,8 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   SceneTranslations = new nEngine::CTranslation("MAP_ALPHA_ZONE.ist");
 
   // Map Section Mesh
-  loadMapSection("alphazone", "main", core::vector3df(0.0f, 0.0f, 0.0f));
+  MapSections->loadSection("alphazone", "main", core::vector3df(0.0f, 0.0f, 0.0f));
+  //loadMapSection("alphazone", "main", core::vector3df(0.0f, 0.0f, 0.0f));
 
   // Multi-layers music example
   Music->play("bodhum");
@@ -55,7 +56,7 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
 
   // Glow shader example
   GlowShader = new nShader::CPostRenderGlow();
-  GlowShader->addEntityForEffect(Level[0], nShader::ESE_DARKEN);
+  GlowShader->addEntityForEffect(MapSections->getSection(0), nShader::ESE_DARKEN);
 
   // Direct Light (spot with shadow map system, work in progress)
   DLight = n3D::CDirectLight::create();
@@ -131,8 +132,7 @@ void MAP_ALPHA_ZONE::events()
 void MAP_ALPHA_ZONE::postRender()
 {
   nScene::CSceneGameplay::postRender();
-
-  //glowShader->render();
+  GlowShader->render();
 }
 
 //! Player HUD render
@@ -145,20 +145,13 @@ void MAP_ALPHA_ZONE::hudRender()
 MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
 {
   // Level Mesh collision clear
-  Level[0]->clearMeshCollision();
+  MapSections->clearMeshCollision(0);
 
   delete NPC1;
-
-  // 3D Speaker deletion
-  //delete spk;
-
-  // Omni Light deletion
-  //delete lt;
-
-  // Glow shader deletion
-  //delete glowShader;
-
-  //delete ToDungeonSensor;
+  delete Spk;
+  delete Lt;
+  delete GlowShader;
+  delete ToDungeonSensor;
 }
 
 }
