@@ -25,11 +25,13 @@ class CPostRenderShader : public nHud::CHud2DElement
 
     virtual void render();
     void addEntityForEffect(n3D::CModelEntity* entity, EShaderEffect effect);
+    void applyEffectsToEntities();
+    void removeEffectsToEntities();
 
   protected:
     // A map for post processing effects
-    map<n3D::CModelEntity*, bool> EntityList;
-    map<n3D::CModelEntity*, bool>::iterator EntityListIt;
+    map<n3D::CModelEntity*, EShaderEffect> EntityList;
+    map<n3D::CModelEntity*, EShaderEffect>::iterator EntityListIt;
 };
 
 }

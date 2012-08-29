@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
+#include "../../include/3d/CModelEntity.h"
 #include "../../include/shader/CPostRenderShader.h"
 
 namespace is06
@@ -31,7 +32,37 @@ void CPostRenderShader::render()
 
 void CPostRenderShader::addEntityForEffect(n3D::CModelEntity* entity, EShaderEffect effect)
 {
+  EntityList[entity] = effect;
+}
 
+void CPostRenderShader::applyEffectsToEntities()
+{
+  for (EntityListIt = EntityList.begin(); EntityListIt != EntityList.end(); EntityListIt++) {
+    switch (EntityListIt->second) {
+      case ESE_DARKEN:
+        // @todo : turn off all lights
+        nEngine::CGame::getSceneManager()->setAmbientLight(video::SColorf(0.0f, 0.0f, 0.0f));
+        EntityListIt->first->darken();
+        break;
+      default:
+        break;
+    }
+  }
+}
+
+void CPostRenderShader::removeEffectsToEntities()
+{
+  for (EntityListIt = EntityList.begin(); EntityListIt != EntityList.end(); EntityListIt++) {
+    switch (EntityListIt->second) {
+      case ESE_DARKEN:
+        // @todo : turn on all lights
+        nEngine::CGame::getSceneManager()->setAmbientLight(video::SColorf(1.0f, 1.0f, 1.0f));
+        EntityListIt->first->undarken();
+        break;
+      default:
+        break;
+    }
+  }
 }
 
 CPostRenderShader::~CPostRenderShader()

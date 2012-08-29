@@ -55,14 +55,14 @@ void CPostRenderGlow::render()
   if (Texture) {
     nEngine::CGame::getVideoDriver()->setRenderTarget(Texture, true, true, video::SColor(255, 255, 255, 255));
     // Darken non glowing entities
-    nEngine::CGame::getCurrentScene()->darkenNonGlowingEntities();
+    applyEffectsToEntities();
     // Draw the whole scene
     nEngine::CGame::getSceneManager()->drawAll();
     // Perform second pass (vertical blur)
     Material.MaterialType = (video::E_MATERIAL_TYPE)nEngine::CGame::Shaders.VerticalBlur;
     CHud2DElement::render();
     // Restore lighting material of all darkened entities
-    nEngine::CGame::getCurrentScene()->revealNonGlowingEntities();
+    removeEffectsToEntities();
     // Reset render target to main display viewport
     nEngine::CGame::getVideoDriver()->setRenderTarget(video::ERT_FRAME_BUFFER, false, true, 0);
   }

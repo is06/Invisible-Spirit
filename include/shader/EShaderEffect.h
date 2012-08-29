@@ -15,6 +15,7 @@ namespace nShader
 
 enum EShaderEffect
 {
+  ESE_NONE,
   ESE_DARKEN,
 
   ESE_COUNT
