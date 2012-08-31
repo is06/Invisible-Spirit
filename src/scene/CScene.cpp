@@ -34,7 +34,7 @@ CScene::CScene()
   Camera = NULL;
   SceneTranslations = NULL;
   Dialog = NULL;
-  SkyBox = NULL;
+  Sky = NULL;
   Control = new nEngine::CPlayerControl();
 
   Music = nEngine::CGame::getMusicReference();
@@ -158,23 +158,7 @@ const video::SColor& CScene::getBackBufferColor() const
 
 void CScene::setSkyBox(const string& textureName)
 {
-  video::IVideoDriver* driver = nEngine::CGame::getVideoDriver();
 
-  string up = "resource/texture/map/sky/" + textureName + "/up.jpg";
-  string dn = "resource/texture/map/sky/" + textureName + "/dn.jpg";
-  string lf = "resource/texture/map/sky/" + textureName + "/lf.jpg";
-  string rt = "resource/texture/map/sky/" + textureName + "/rt.jpg";
-  string ft = "resource/texture/map/sky/" + textureName + "/ft.jpg";
-  string bk = "resource/texture/map/sky/" + textureName + "/bk.jpg";
-
-  SkyBox = nEngine::CGame::getSceneManager()->addSkyBoxSceneNode(
-    driver->getTexture(up.c_str()),
-    driver->getTexture(dn.c_str()),
-    driver->getTexture(lf.c_str()),
-    driver->getTexture(rt.c_str()),
-    driver->getTexture(ft.c_str()),
-    driver->getTexture(bk.c_str())
-  );
 }
 
 //! This destructor removes interfaces and flushes texture and mesh cache
@@ -189,9 +173,8 @@ CScene::~CScene()
   if (Dialog) {
     delete Dialog;
   }
-  if (SkyBox) {
-    SkyBox->remove();
-    SkyBox = NULL;
+  if (Sky) {
+    delete Sky;
   }
 
   delete Control;

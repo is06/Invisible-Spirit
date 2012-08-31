@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../engine/CPlayerControl.h"
 #include "../engine/EFadeColor.h"
 #include "../hud/CCinemascopeMode.h"
+#include "../3d/CSky.h"
 
 namespace is06
 {
@@ -51,6 +52,7 @@ class CScene
 
     // 3D entities
     n3D::CCamera* Camera;
+    n3D::CSky* Sky;
 
     // Interfaces
     nEngine::CPlayerControl* Control;
@@ -72,9 +74,6 @@ class CScene
     void setSkyBox(const string& textureName);
 
   private:
-    // 3D Entities
-    scene::ISceneNode* SkyBox;
-
     // Methods
     void generateDebugInfo();
 };

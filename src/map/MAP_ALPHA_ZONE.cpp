@@ -38,7 +38,6 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
 
   // Map Section Mesh
   MapSections->loadSection("alphazone", "main", core::vector3df(0.0f, 0.0f, 0.0f));
-  //loadMapSection("alphazone", "main", core::vector3df(0.0f, 0.0f, 0.0f));
 
   // Multi-layers music example
   Music->play("bodhum");
@@ -66,9 +65,8 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   MiniMap->setMap(nHud::EMMI_ALPHA_ZONE);
   MiniMap->setWorldSize(120.0f);
 
-  // Simple Skybox
-  // TODO: Dynamic skybox with day/light system
-  setSkyBox("test");
+  // Sky (3d box)
+  Sky = new n3D::CSky("test");
 
   // Cinemascope mode (black stripes)
   Cinemascope->slideIn(1.0f);
