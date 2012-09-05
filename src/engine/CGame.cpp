@@ -19,6 +19,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/scene/CSceneMenu.h"
 #include "../../include/scene/CSceneGameplay.h"
 
+#include "../../include/map/MAP_DEBUG.h"
 #include "../../include/map/MAP_ALPHA_ZONE.h"
 #include "../../include/map/MAP_DUNGEON_1.h"
 #include "../../include/map/MAP_DUNGEON_2.h"
@@ -288,10 +289,9 @@ void CGame::initIrrlichtInterfaces()
   u8 screenDepth = Settings->getParamInt("display", "depth");
 
   video::E_DRIVER_TYPE renderer = video::EDT_SOFTWARE;
-  string rendererParam = Settings->getParamString("display", "renderer");
-  if (rendererParam == "direct3d") {
+  if (Settings->getParamString("display", "renderer") == "direct3d") {
     renderer = video::EDT_DIRECT3D9;
-  } else if (rendererParam == "opengl") {
+  } else if (Settings->getParamString("display", "renderer") == "opengl") {
     renderer = video::EDT_OPENGL;
   }
 
@@ -372,7 +372,6 @@ void CGame::initScreenPositions()
   ScreenPos.Bottom = (screenHeight / 2.0f) * -1;
   ScreenPos.Left = (screenWidth / 2.0f) * -1;
   ScreenPos.Right = (screenWidth / 2.0f);
-
 }
 
 //! Initializes shader custom material values
@@ -416,7 +415,7 @@ void CGame::initScenes()
 {
   Exit = false;
   SceneChanged = true;
-  NextScene = nScene::ESI_MAP_ALPHA_ZONE;
+  NextScene = nScene::ESI_MAP_DEBUG;
 }
 
 //!
@@ -527,6 +526,7 @@ void CGame::loadNextScene()
 
     // Debug
     case nScene::ESI_MAP_ALPHA_ZONE: CurrentScene = new nMap::MAP_ALPHA_ZONE(); break;
+    case nScene::ESI_MAP_DEBUG: CurrentScene = new nMap::MAP_DEBUG(); break;
 
     // Countries
 

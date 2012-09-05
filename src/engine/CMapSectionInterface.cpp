@@ -16,7 +16,8 @@ namespace nEngine
 
 CMapSectionInterface::CMapSectionInterface()
 {
-
+  Level[0] = NULL;
+  Level[1] = NULL;
 }
 
 void CMapSectionInterface::loadSection(const string& mapName, const string& sectionName, const core::vector3df& position)
