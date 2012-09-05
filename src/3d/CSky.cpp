@@ -24,7 +24,7 @@ CSky::CSky(const string& textureName) : nEngine::CEntity()
   string ft = "resource/texture/map/sky/" + textureName + "/ft.jpg";
   string bk = "resource/texture/map/sky/" + textureName + "/bk.jpg";
 
-  SkyBox = nEngine::CGame::getSceneManager()->addSkyBoxSceneNode(
+  Layers[0] = nEngine::CGame::getSceneManager()->addSkyBoxSceneNode(
     driver->getTexture(up.c_str()),
     driver->getTexture(dn.c_str()),
     driver->getTexture(lf.c_str()),
@@ -32,6 +32,31 @@ CSky::CSky(const string& textureName) : nEngine::CEntity()
     driver->getTexture(ft.c_str()),
     driver->getTexture(bk.c_str())
   );
+}
+
+void CSky::update()
+{
+
+}
+
+void CSky::setLayer(u8 index, const string& textureName)
+{
+
+}
+
+void CSky::setFrontLayerOpacity(u8 level)
+{
+
+}
+
+void CSky::setRotationSpeed(u8 index, f32 speed)
+{
+
+}
+
+CSky::~CSky()
+{
+  Layers[0]->remove();
 }
 
 }
