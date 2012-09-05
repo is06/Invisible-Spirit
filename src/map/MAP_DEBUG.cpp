@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/3d/CPlayableCharacter.h"
+#include "../../include/3d/CLevelMesh.h"
 #include "../../include/map/MAP_DEBUG.h"
 
 using namespace irr;
@@ -20,13 +21,16 @@ MAP_DEBUG::MAP_DEBUG() : nScene::CSceneGameplay()
 {
   // MANDATORY : Main Player
   Hero->setCharacter(nEngine::EPCT_AYRON);
+  Hero->hide();
 
   // MANDATORY : Map Section Mesh
   MapSections->loadSection("alphazone", "main", core::vector3df(0.0f, 0.0f, 0.0f));
+  MapSections->getSection(0)->hide();
 
   // MANDATORY : Mini-map
   MiniMap->setMap(nHud::EMMI_ALPHA_ZONE);
   MiniMap->setWorldSize(120.0f);
+  MiniMap->hide();
 }
 
 void MAP_DEBUG::events()
