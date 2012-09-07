@@ -19,18 +19,7 @@ namespace nMap
 
 MAP_DEBUG::MAP_DEBUG() : nScene::CSceneGameplay()
 {
-  // MANDATORY : Main Player
-  Hero->setCharacter(nEngine::EPCT_AYRON);
-  Hero->hide();
 
-  // MANDATORY : Map Section Mesh
-  MapSections->loadSection("alphazone", "main", core::vector3df(0.0f, 0.0f, 0.0f));
-  MapSections->getSection(0)->hide();
-
-  // MANDATORY : Mini-map
-  MiniMap->setMap(nHud::EMMI_ALPHA_ZONE);
-  MiniMap->setWorldSize(120.0f);
-  MiniMap->hide();
 }
 
 void MAP_DEBUG::events()

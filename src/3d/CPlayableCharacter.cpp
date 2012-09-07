@@ -48,18 +48,17 @@ void CPlayableCharacter::setCharacter(nEngine::EPlayableCharacterType type)
       modelId = "default";
       break;
   }
+
   CCharacter::setCharacterModel(modelId);
 
   // Start direction
-  MainNode->setRotation(core::vector3df(
-    MainNode->getRotation().X,
-    LinkedCam->getNode()->getRotation().Y - core::radToDeg(core::PI),
-    MainNode->getRotation().Z
-  ));
+  if (MainNode != NULL) {
+    updateDirectionFromAngle(1.0f);
 
-  //MainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
+    //MainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
 
-  MainNode->animateJoints();
+    //MainNode->animateJoints();
+  }
 }
 
 //! Update function, called every cycle
@@ -73,11 +72,13 @@ void CPlayableCharacter::moveOpposite(const core::vector3df& normal)
 {
   f32 angle = (atan2(normal.X, normal.Z) * -1) + (nEngine::PI_D2);
 
-  MainNode->setPosition(core::vector3df(
-    MainNode->getPosition().X + (cos(angle) * (0.05f / 1024.0f)),
-    MainNode->getPosition().Y,
-    MainNode->getPosition().Z + (sin(angle) * (0.05f / 1024.0f))
-  ));
+  if (MainNode != NULL) {
+    MainNode->setPosition(core::vector3df(
+      MainNode->getPosition().X + (cos(angle) * (0.05f / 1024.0f)),
+      MainNode->getPosition().Y,
+      MainNode->getPosition().Z + (sin(angle) * (0.05f / 1024.0f))
+    ));
+  }
 }
 
 //! Move PlayableCharacter to the left from camera
@@ -116,6 +117,17 @@ void CPlayableCharacter::goBackward(f32 speed)
   updateCoords(nEngine::PI_M3D2, speed);
 }
 
+void CPlayableCharacter::updateDirectionFromAngle(f32 angle)
+{
+  if (MainNode != NULL) {
+    MainNode->setRotation(core::vector3df(
+      MainNode->getRotation().X,
+      LinkedCam->getNode()->getRotation().Y - (angle + core::radToDeg(nEngine::PI_D2)),
+      MainNode->getRotation().Z
+    ));
+  }
+}
+
 //! Update PlayableCharacter's coordinates when the player wants to move him
 /**
  * \param f32 deltaU direction value
@@ -126,11 +138,13 @@ void CPlayableCharacter::updateCoords(f32 deltaU, f32 speed)
   f32 x = cos(core::degToRad(LinkedCam->getNode()->getRotation().Y) + deltaU);
   f32 z = sin(core::degToRad(LinkedCam->getNode()->getRotation().Y) + deltaU);
 
-  MainNode->setPosition(core::vector3df(
-    MainNode->getPosition().X + ((x * -1) * (speed / 32.0f)),
-    MainNode->getPosition().Y,
-    MainNode->getPosition().Z + (z * (speed / 32.0f))
-  ));
+  if (MainNode != NULL) {
+    MainNode->setPosition(core::vector3df(
+      MainNode->getPosition().X + ((x * -1) * (speed / 32.0f)),
+      MainNode->getPosition().Y,
+      MainNode->getPosition().Z + (z * (speed / 32.0f))
+    ));
+  }
 }
 
 void CPlayableCharacter::toggleControl()

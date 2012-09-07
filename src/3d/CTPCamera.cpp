@@ -16,6 +16,7 @@ namespace n3D
 //! Sets the third-person camera and defines its default properties
 CTPCamera::CTPCamera() : CCamera()
 {
+  LinkedEntity = NULL;
   UAxis = (3 * core::PI) / 2;
   Height = 1.8f;
   Distance = 4.0f;
@@ -35,19 +36,21 @@ void CTPCamera::update()
 {
   CCamera::update();
 
-  f32 x = LinkedEntity->getNode()->getPosition().X + Distance * cos(UAxis);
-  f32 z = LinkedEntity->getNode()->getPosition().Z + Distance * sin(UAxis);
+  if (LinkedEntity->getNode() != NULL) {
+    f32 x = LinkedEntity->getNode()->getPosition().X + Distance * cos(UAxis);
+    f32 z = LinkedEntity->getNode()->getPosition().Z + Distance * sin(UAxis);
 
-  IrrCam->setTarget(core::vector3df(
-    LinkedEntity->getNode()->getPosition().X,
-    LinkedEntity->getNode()->getPosition().Y + 0.8,
-    LinkedEntity->getNode()->getPosition().Z
-  ));
-  IrrCam->setPosition(core::vector3df(
-    x,
-    LinkedEntity->getNode()->getPosition().Y + Height,
-    z
-  ));
+    IrrCam->setTarget(core::vector3df(
+      LinkedEntity->getNode()->getPosition().X,
+      LinkedEntity->getNode()->getPosition().Y + 0.8,
+      LinkedEntity->getNode()->getPosition().Z
+    ));
+    IrrCam->setPosition(core::vector3df(
+      x,
+      LinkedEntity->getNode()->getPosition().Y + Height,
+      z
+    ));
+  }
 }
 
 void CTPCamera::goLeft(f32 speed)

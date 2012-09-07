@@ -22,6 +22,7 @@ class CMapSectionInterface
 
     void loadSection(const string& mapName, const string& sectionName, const core::vector3df& position);
     void unloadUnusedSection();
+    bool hasSections();
     void clearMeshCollision(u8 sectionIndex);
     void swapLevelMeshes();
 

@@ -51,7 +51,11 @@ scene::IMesh* CModelEntity::getMesh()
 //! Returns newton main body of this entity
 NewtonBody* CModelEntity::getMainBody()
 {
-  return MainBody;
+  if (MainBody) {
+    return MainBody;
+  } else {
+    return NULL;
+  }
 }
 
 void CModelEntity::attachSpeaker(nSound::CSpeaker* speaker)

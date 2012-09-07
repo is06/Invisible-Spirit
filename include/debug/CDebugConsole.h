@@ -22,8 +22,14 @@ class CDebugConsole
     ~CDebugConsole();
 
     void render();
+    void executeCurrentCommand();
 
   private:
+    void manageSceneInterface(const vector<string>& elements);
+    s32 stringToInt(const string& str);
+
+    void execute_scene_set_light_color(u8 alpha, u8 red, u8 green, u8 blue);
+
     gui::IGUIEditBox* CommandTextInput;
 };
 

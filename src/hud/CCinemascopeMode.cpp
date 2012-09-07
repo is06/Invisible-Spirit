@@ -28,8 +28,8 @@ CCinemascopeMode::CCinemascopeMode() : CHud()
   FadingIn = false;
   FadingOut = false;
 
-  Bars[0] = new CQuad(0, (nEngine::CGame::ScreenPos.Top + 44), 1280, 88, video::SColor(255, 0, 0, 0));
-  Bars[1] = new CQuad(0, (nEngine::CGame::ScreenPos.Bottom - 44), 1280, 88, video::SColor(255, 0, 0, 0));
+  Bars[0] = new CQuad(0, (nEngine::CGame::ScreenPos.Hud.Top + 44), 1280, 88, video::SColor(255, 0, 0, 0));
+  Bars[1] = new CQuad(0, (nEngine::CGame::ScreenPos.Hud.Bottom - 44), 1280, 88, video::SColor(255, 0, 0, 0));
 }
 
 void CCinemascopeMode::render()
@@ -42,14 +42,14 @@ void CCinemascopeMode::render(f32 speedFactor)
   CHud::render();
 
   if (SlidingIn) {
-    if (Bars[0]->getY() > (nEngine::CGame::ScreenPos.Top - 44)) {
+    if (Bars[0]->getY() > (nEngine::CGame::ScreenPos.Hud.Top - 44)) {
       Bars[0]->subY(speedFactor * SlideSpeed);
       Bars[1]->addY(speedFactor * SlideSpeed);
     } else {
       SlidingIn = false;
     }
   } else if (SlidingOut) {
-    if (Bars[0]->getY() < (nEngine::CGame::ScreenPos.Top + 44)) {
+    if (Bars[0]->getY() < (nEngine::CGame::ScreenPos.Hud.Top + 44)) {
       Bars[0]->addY(speedFactor * SlideSpeed);
       Bars[1]->subY(speedFactor * SlideSpeed);
     } else {
@@ -58,8 +58,8 @@ void CCinemascopeMode::render(f32 speedFactor)
   }
 
   if (FadingIn) {
-    Bars[0]->setY(nEngine::CGame::ScreenPos.Top - 44);
-    Bars[1]->setY(nEngine::CGame::ScreenPos.Bottom + 44);
+    Bars[0]->setY(nEngine::CGame::ScreenPos.Hud.Top - 44);
+    Bars[1]->setY(nEngine::CGame::ScreenPos.Hud.Bottom + 44);
     if (FadeValue < 255.0f) {
       FadeValue += (speedFactor * FadeSpeed);
     } else {
@@ -75,8 +75,8 @@ void CCinemascopeMode::render(f32 speedFactor)
     } else {
       FadeValue = 0.0f;
       FadingOut = false;
-      Bars[0]->setY(nEngine::CGame::ScreenPos.Top + 44);
-      Bars[1]->setY(nEngine::CGame::ScreenPos.Bottom - 44);
+      Bars[0]->setY(nEngine::CGame::ScreenPos.Hud.Top + 44);
+      Bars[1]->setY(nEngine::CGame::ScreenPos.Hud.Bottom - 44);
     }
     Bars[0]->setOpacity((u8)FadeValue);
     Bars[1]->setOpacity((u8)FadeValue);

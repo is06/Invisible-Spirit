@@ -31,6 +31,7 @@ class CPlayableCharacter : public CCharacter
     void goRight(f32 speed);
     void goForward(f32 speed);
     void goBackward(f32 speed);
+    void updateDirectionFromAngle(f32 angle);
 
     // Wall collisions
     void moveOpposite(const core::vector3df& normal);

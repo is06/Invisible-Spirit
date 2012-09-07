@@ -41,7 +41,7 @@ CDialogInterface::CDialogInterface(const string& filePath, CTranslation* transla
   CurrentMessageNumber = 0;
   CurrentMessageText = NULL;
 
-  BackWindow = new nHud::CPicture(0, CGame::ScreenPos.Bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
+  BackWindow = new nHud::CPicture(0, CGame::ScreenPos.Hud.Bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
 
   string fullPath = "resource/text/";
 
@@ -165,7 +165,7 @@ void CDialogInterface::createMessage(const string& dialogIdentifier, u16 message
   CurrentMessageText = new nHud::CText(
     DialogList[dialogIdentifier].getMessage(messageNumber),
     -350,
-    CGame::ScreenPos.Bottom + 100,
+    CGame::ScreenPos.Hud.Bottom + 100,
     nHud::EFS_STANDARD_48,
     25
   );

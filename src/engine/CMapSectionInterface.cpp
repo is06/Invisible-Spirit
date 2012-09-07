@@ -41,6 +41,11 @@ void CMapSectionInterface::unloadUnusedSection()
   }
 }
 
+bool CMapSectionInterface::hasSections()
+{
+  return (Level[0] != NULL);
+}
+
 void CMapSectionInterface::clearMeshCollision(u8 sectionIndex)
 {
   Level[sectionIndex]->clearMeshCollision();

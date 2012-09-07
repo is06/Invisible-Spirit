@@ -18,10 +18,14 @@ namespace nHud
 
 CMiniMap::CMiniMap(n3D::CPlayableCharacter* player) : CHud()
 {
+  Map = NULL;
+  EntrancePosition = NULL;
+  PlayerPosition = NULL;
+
   AttachedPlayer = player;
   Position = core::vector2df(
-    nEngine::CGame::ScreenPos.Right - 150.0f,
-    nEngine::CGame::ScreenPos.Bottom + 150.0f
+    nEngine::CGame::ScreenPos.Hud.Right - 150.0f,
+    nEngine::CGame::ScreenPos.Hud.Bottom + 150.0f
   );
 }
 
@@ -53,24 +57,26 @@ void CMiniMap::setMap(EMiniMapIdentifier id)
 //! Renders all mimi map elements
 void CMiniMap::render()
 {
-  Map->render();
-  EntrancePosition->render();
-  PlayerPosition->render();
+  if (Map != NULL) {
+    Map->render();
+    EntrancePosition->render();
+    PlayerPosition->render();
 
-  core::vector2df playerCoords = getMapCoordinates(core::vector2df(
-    AttachedPlayer->getNode()->getPosition().X,
-    AttachedPlayer->getNode()->getPosition().Z
-  ));
+    core::vector2df playerCoords = getMapCoordinates(core::vector2df(
+      AttachedPlayer->getNode()->getPosition().X,
+      AttachedPlayer->getNode()->getPosition().Z
+    ));
 
-  // Player position
-  PlayerPosition->setPosition(playerCoords.X, playerCoords.Y);
+    // Player position
+    PlayerPosition->setPosition(playerCoords.X, playerCoords.Y);
 
-  // Player rotation
-  PlayerPosition->setRotation(AttachedPlayer->getNode()->getRotation().Y);
+    // Player rotation
+    PlayerPosition->setRotation(AttachedPlayer->getNode()->getRotation().Y);
 
-  // Other entities position and rotation
-  for (AttachedEntitiesIt = AttachedEntities.begin(); AttachedEntitiesIt != AttachedEntities.end(); AttachedEntitiesIt++) {
-    // Get position of entity
+    // Other entities position and rotation
+    for (AttachedEntitiesIt = AttachedEntities.begin(); AttachedEntitiesIt != AttachedEntities.end(); AttachedEntitiesIt++) {
+      // Get position of entity
+    }
   }
 }
 

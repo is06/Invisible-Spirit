@@ -148,11 +148,7 @@ void CSceneGameplay::manageCharacterMovements()
     || Control->getPlayerYAxis() > 35
     || Control->getPlayerXAxis() < -35
     || Control->getPlayerYAxis() < -35) {
-      Hero->getNode()->setRotation(core::vector3df(
-        Hero->getNode()->getRotation().X,
-        Camera->getNode()->getRotation().Y - (Control->getPlayerDirection() + core::radToDeg(nEngine::PI_D2)),
-        Hero->getNode()->getRotation().Z
-      ));
+      Hero->updateDirectionFromAngle(Control->getPlayerDirection());
     }
   }
 }
@@ -160,31 +156,26 @@ void CSceneGameplay::manageCharacterMovements()
 //! This function manages Character collision with floor and wall. Called every cycle
 void CSceneGameplay::manageCharacterCollisions()
 {
-  // Check if level was created
-  /*
-  if (Level[0]->getMesh() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_45);
-  if (Level[0]->getNode() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_46);
-  if (Level[0]->getMainBody() == NULL) nEngine::CGame::fatalError(nDebug::EEC_CODE_47);
-  */
-
-  // Floor collision
-  if (Hero->getFloorCollision(MapSections->getSection(0)) > 1.0) {
-    Hero->fall(SpeedFactor);
-  }
-  if (Hero->getFloorCollision(MapSections->getSection(0)) < 1.0) {
-    while (Hero->getFloorCollision(MapSections->getSection(0)) < 0.95) {
-      Hero->raise();
+  // Floor collision (only if a map section is loaded)
+  if (MapSections->hasSections()) {
+    if (Hero->getFloorCollision(MapSections->getSection(0)) > 1.0) {
+      Hero->fall(SpeedFactor);
     }
-  }
+    if (Hero->getFloorCollision(MapSections->getSection(0)) < 1.0) {
+      while (Hero->getFloorCollision(MapSections->getSection(0)) < 0.95) {
+        Hero->raise();
+      }
+    }
 
-  // Wall collision, this normal vector will be modified by getWallCollision functions
-  core::vector3df normal;
+    // Wall collision, this normal vector will be modified by getWallCollision functions
+    core::vector3df normal;
 
-  if (Hero->getWallCollision(nEngine::ERT_WALL_P, MapSections->getSection(0), normal) < 1.0f
-  || Hero->getWallCollision(nEngine::ERT_WALL_Q, MapSections->getSection(0), normal) < 1.0f) {
-    while (Hero->getWallCollision(nEngine::ERT_WALL_P, MapSections->getSection(0), normal) < 0.99
-    || Hero->getWallCollision(nEngine::ERT_WALL_Q, MapSections->getSection(0), normal) < 0.99) {
-      Hero->moveOpposite(normal);
+    if (Hero->getWallCollision(nEngine::ERT_WALL_P, MapSections->getSection(0), normal) < 1.0f
+    || Hero->getWallCollision(nEngine::ERT_WALL_Q, MapSections->getSection(0), normal) < 1.0f) {
+      while (Hero->getWallCollision(nEngine::ERT_WALL_P, MapSections->getSection(0), normal) < 0.99
+      || Hero->getWallCollision(nEngine::ERT_WALL_Q, MapSections->getSection(0), normal) < 0.99) {
+        Hero->moveOpposite(normal);
+      }
     }
   }
 }

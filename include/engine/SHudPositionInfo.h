@@ -5,12 +5,10 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_SCREEN_POSITION_H__
-#define __IS06_SCREEN_POSITION_H__
+#ifndef __IS06_HUD_POSITION_INFO_H__
+#define __IS06_HUD_POSITION_INFO_H__
 
 #include "core.h"
-#include "SHudPositionInfo.h"
-#include "SDisplayPositionInfo.h"
 
 using namespace irr;
 
@@ -19,14 +17,20 @@ namespace is06
 namespace nEngine
 {
 
-//! Screen display and position information
-struct SScreenPosition
+struct SHudPositionInfo
 {
-  SHudPositionInfo Hud;
-  SDisplayPositionInfo Display;
+  f32 Top;
+  f32 Bottom;
+  f32 Left;
+  f32 Right;
+  f32 VCenter;
+  f32 HCenter;
+  u16 Width;
+  u16 Height;
 };
 
 }
 }
 
 #endif
+

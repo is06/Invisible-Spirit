@@ -27,6 +27,7 @@ void CNPCInterface::addNPC(n3D::CNPC* npc)
 n3D::CNPC* CNPCInterface::getNearestNPC(n3D::CCharacter* character)
 {
   // Parcours du vector et calcul de la distance avec le personnage passé en paramètre
+  return NULL;
 }
 
 CNPCInterface::~CNPCInterface()

@@ -346,11 +346,19 @@ void CGame::initScreenPositions()
   u32 screenHeight = Settings->getParamInt("display", "height");
   u8 screenDepth = Settings->getParamInt("display", "depth");
 
-  ScreenPos.DisplayWidth = screenWidth;
-  ScreenPos.DisplayHeight = screenHeight;
-  ScreenPos.DisplayDepth = screenDepth;
+  // Display Screen position info
+  ScreenPos.Display.Width = screenWidth;
+  ScreenPos.Display.Height = screenHeight;
+  ScreenPos.Display.HCenter = screenWidth / 2;
+  ScreenPos.Display.VCenter = screenHeight / 2;
+  ScreenPos.Display.Top = 0;
+  ScreenPos.Display.Bottom = screenHeight;
+  ScreenPos.Display.Left = 0;
+  ScreenPos.Display.Right = screenWidth;
+  ScreenPos.Display.ColorDepth = screenDepth;
 
   // Screen size limit 640x480 => 1920x1080
+  //@TODO: uncomment this block later
   /*
   if(screenWidth < 640) screenWidth = 640;
   if(screenWidth > 1920) screenWidth = 1920;
@@ -363,15 +371,15 @@ void CGame::initScreenPositions()
   screenHeight = 720;
   screenWidth = screenHeight * ratio;
 
-  // Screen position info
-  ScreenPos.Width = screenWidth;
-  ScreenPos.Height = screenHeight;
-  ScreenPos.HCenter = 0.0f;
-  ScreenPos.VCenter = 0.0f;
-  ScreenPos.Top = (screenHeight / 2.0f);
-  ScreenPos.Bottom = (screenHeight / 2.0f) * -1;
-  ScreenPos.Left = (screenWidth / 2.0f) * -1;
-  ScreenPos.Right = (screenWidth / 2.0f);
+  // Hud Screen position info
+  ScreenPos.Hud.Width = screenWidth;
+  ScreenPos.Hud.Height = screenHeight;
+  ScreenPos.Hud.HCenter = 0.0f;
+  ScreenPos.Hud.VCenter = 0.0f;
+  ScreenPos.Hud.Top = (screenHeight / 2.0f);
+  ScreenPos.Hud.Bottom = (screenHeight / 2.0f) * -1;
+  ScreenPos.Hud.Left = (screenWidth / 2.0f) * -1;
+  ScreenPos.Hud.Right = (screenWidth / 2.0f);
 }
 
 //! Initializes shader custom material values
@@ -475,9 +483,9 @@ void CGame::changeScreenDisplay(u32 width, u32 height, u8 colorDepth)
   ScreenSizeChanged = true;
   delete CurrentScene;
   Device->drop();
-  ScreenPos.DisplayWidth = width;
-  ScreenPos.DisplayHeight = height;
-  ScreenPos.DisplayDepth = colorDepth;
+  ScreenPos.Display.Width = width;
+  ScreenPos.Display.Height = height;
+  ScreenPos.Display.ColorDepth = colorDepth;
   initIrrlichtInterfaces();
   initScenes();
 }

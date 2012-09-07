@@ -52,6 +52,7 @@ CScene::CScene()
 
   DebugInfo = nEngine::CGame::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
   DebugInfo->setOverrideColor(video::SColor(255, 255, 255, 255));
+  DebugConsole = new nDebug::CDebugConsole();
 
   BackBufferColor = video::SColor(255, 0, 0, 0);
 }
@@ -65,11 +66,11 @@ void CScene::events()
 
   generateDebugInfo();
 
-/*
-  if (keyboard->pressed(KEY_CONTROL, EVENT_ONCE) && keyboard->pressed(KEY_KEY_D, EVENT_ONCE)) {
-    Game::debugOption.display.hidePostRender = true;
+  // Debug console
+  DebugConsole->render();
+  if (Control->commandEntered(nEngine::ECI_DEBUG_CONSOLE_EXECUTE, nEngine::EET_ONCE)) {
+    DebugConsole->executeCurrentCommand();
   }
-*/
 }
 
 void CScene::generateDebugInfo()
@@ -156,11 +157,6 @@ const video::SColor& CScene::getBackBufferColor() const
   return BackBufferColor;
 }
 
-void CScene::setSkyBox(const string& textureName)
-{
-
-}
-
 //! This destructor removes interfaces and flushes texture and mesh cache
 CScene::~CScene()
 {
@@ -183,6 +179,8 @@ CScene::~CScene()
   delete Cinemascope;
 
   delete ShadowProcessor;
+
+  delete DebugConsole;
 }
 
 }

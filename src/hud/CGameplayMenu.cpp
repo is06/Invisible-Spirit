@@ -52,10 +52,10 @@ CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CPlaye
   Background->setOpacity(128);
 
   // Silver title top bar
-  TopBar = new CPicture(0, nEngine::CGame::ScreenPos.Top - 20, 1280, 40, "resource/hud/menus/gameplay/top_bar.png");
+  TopBar = new CPicture(0, nEngine::CGame::ScreenPos.Hud.Top - 20, 1280, 40, "resource/hud/menus/gameplay/top_bar.png");
 
   // Menu (left)
-  SectionMenu = new CMenu(nEngine::CGame::ScreenPos.Left + 80, nEngine::CGame::ScreenPos.Top - 80, 150, 8, EMS_TITLE);
+  SectionMenu = new CMenu(nEngine::CGame::ScreenPos.Hud.Left + 80, nEngine::CGame::ScreenPos.Hud.Top - 80, 150, 8, EMS_TITLE);
   SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_swords"));
   SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_spirits"));
   SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_items"));

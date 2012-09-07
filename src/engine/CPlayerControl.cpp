@@ -61,7 +61,12 @@ bool CPlayerControl::commandEntered(ECommandIdentifier command, EEventType event
     case ECI_PLAYER_ATTACK:
       value = (Keyboard->pressed(KEY_KEY_C, eventType) || Gamepad->buttonPressed(EGB_A, eventType));
       break;
+    case ECI_DEBUG_CONSOLE_EXECUTE:
+      value = (Keyboard->pressed(KEY_RETURN, eventType));
+      break;
     case ECI_COUNT:
+      break;
+    default:
       break;
   }
 

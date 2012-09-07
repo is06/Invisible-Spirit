@@ -18,6 +18,8 @@ http://www.is06.com. Legal code in license.txt
 #include <fstream>
 #include <map>
 #include <vector>
+#include <algorithm>
+#include <iterator>
 #include <cmath>
 #include "classes.h"
 #include "maps.h"

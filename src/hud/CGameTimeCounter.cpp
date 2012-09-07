@@ -21,8 +21,8 @@ CGameTimeCounter::CGameTimeCounter() : CCounter()
 {
   CounterText = new CText(
     "---",
-    nEngine::CGame::ScreenPos.Left + 100,
-    nEngine::CGame::ScreenPos.Bottom + 80,
+    nEngine::CGame::ScreenPos.Hud.Left + 100,
+    nEngine::CGame::ScreenPos.Hud.Bottom + 80,
     EFS_STANDARD_48
   );
 }

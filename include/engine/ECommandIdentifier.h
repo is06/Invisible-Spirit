@@ -30,6 +30,8 @@ enum ECommandIdentifier
 
   ECI_DIALOG_ACTION,
 
+  ECI_DEBUG_CONSOLE_EXECUTE,
+
   ECI_COUNT
 };
 

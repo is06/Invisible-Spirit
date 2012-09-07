@@ -13,6 +13,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../engine/EFadeColor.h"
 #include "../hud/CCinemascopeMode.h"
 #include "../3d/CSky.h"
+#include "../debug/CDebugConsole.h"
 
 namespace is06
 {
@@ -38,6 +39,8 @@ class CScene
     n3D::CCamera* getActiveCamera();
 
     nEngine::CShadowProcessor* getShadowProcessor();
+
+    // API functions
 
     static bool InMapEditingMode;
 
@@ -69,6 +72,9 @@ class CScene
     f32 StartTime;
     f32 SpeedFactor;
     gui::IGUIStaticText* DebugInfo;
+
+    // Debug Tools
+    nDebug::CDebugConsole* DebugConsole;
 
     // Methods
     void setSkyBox(const string& textureName);

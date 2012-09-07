@@ -19,10 +19,10 @@ namespace nHud
 
 CButtonsInterface::CButtonsInterface() : CHud()
 {
-  Menu = new CTextButton(nEngine::CGame::ScreenPos.Left + 70, nEngine::CGame::ScreenPos.Bottom + 110);
-  Defense = new CIconButton(nEngine::CGame::ScreenPos.Left + 30, nEngine::CGame::ScreenPos.Bottom + 70);
-  Jump = new CIconButton(nEngine::CGame::ScreenPos.Left + 110, nEngine::CGame::ScreenPos.Bottom + 70);
-  Command = new CIconTextButton(nEngine::CGame::ScreenPos.Left + 70, nEngine::CGame::ScreenPos.Bottom + 30);
+  Menu = new CTextButton(nEngine::CGame::ScreenPos.Hud.Left + 70, nEngine::CGame::ScreenPos.Hud.Bottom + 110);
+  Defense = new CIconButton(nEngine::CGame::ScreenPos.Hud.Left + 30, nEngine::CGame::ScreenPos.Hud.Bottom + 70);
+  Jump = new CIconButton(nEngine::CGame::ScreenPos.Hud.Left + 110, nEngine::CGame::ScreenPos.Hud.Bottom + 70);
+  Command = new CIconTextButton(nEngine::CGame::ScreenPos.Hud.Left + 70, nEngine::CGame::ScreenPos.Hud.Bottom + 30);
 }
 
 void CButtonsInterface::render()
