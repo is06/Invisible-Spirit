@@ -52,7 +52,7 @@ CScene::CScene()
 
   DebugInfo = nEngine::CGame::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
   DebugInfo->setOverrideColor(video::SColor(255, 255, 255, 255));
-  DebugConsole = new nDebug::CDebugConsole();
+  //DebugConsole = new nDebug::CDebugConsole();
 
   BackBufferColor = video::SColor(255, 0, 0, 0);
 }
@@ -67,10 +67,12 @@ void CScene::events()
   generateDebugInfo();
 
   // Debug console
+  /*
   DebugConsole->render();
   if (Control->commandEntered(nEngine::ECI_DEBUG_CONSOLE_EXECUTE, nEngine::EET_ONCE)) {
     DebugConsole->executeCurrentCommand();
   }
+  */
 }
 
 void CScene::generateDebugInfo()
@@ -180,7 +182,7 @@ CScene::~CScene()
 
   delete ShadowProcessor;
 
-  delete DebugConsole;
+  //delete DebugConsole;
 }
 
 }

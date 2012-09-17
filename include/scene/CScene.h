@@ -71,17 +71,15 @@ class CScene
     f32 SceneTime;
     f32 StartTime;
     f32 SpeedFactor;
-    gui::IGUIStaticText* DebugInfo;
 
     // Debug Tools
     nDebug::CDebugConsole* DebugConsole;
 
-    // Methods
-    void setSkyBox(const string& textureName);
-
   private:
     // Methods
     void generateDebugInfo();
+
+    gui::IGUIStaticText* DebugInfo;
 };
 
 }

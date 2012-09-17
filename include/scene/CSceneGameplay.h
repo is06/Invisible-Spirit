@@ -29,7 +29,7 @@ class CSceneGameplay : public CScene
     virtual void hudRender();
 
   protected:
-
+    virtual void everySecond();
 
     n3D::CPlayableCharacter* Hero;
     nEngine::CMapSectionInterface* MapSections;
@@ -42,8 +42,6 @@ class CSceneGameplay : public CScene
     nEngine::CNPCInterface* NPCInterface;
 
   private:
-    virtual void everySecond();
-
     void manageCameraControl();
     void manageCharacterJumps();
     void manageCharacterMovements();

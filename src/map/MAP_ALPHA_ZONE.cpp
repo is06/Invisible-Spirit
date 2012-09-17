@@ -40,26 +40,27 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   MapSections->loadSection("alphazone", "main", core::vector3df(0.0f, 0.0f, 0.0f));
 
   // Multi-layers music example
-  Music->play("bodhum");
-  Music->unmuteSequence("bodhum", 1);
-  Music->muteSequence("bodhum", 2);
+  //Music->play("bodhum");
+  //Music->unmuteSequence("bodhum", 1);
+  //Music->muteSequence("bodhum", 2);
 
   // 3D Speaker example
-  Spk = new nSound::CSpeaker("path/to/a/file", core::vector3df(0,1,0), "speaker_debug_text", 10);
+  //Spk = new nSound::CSpeaker("path/to/a/file", core::vector3df(0,1,0), "speaker_debug_text", 10);
 
   // Omni Light example
-  Lt = new n3D::COmniLight();
+  //Lt = new n3D::COmniLight();
 
   // Scene dialog loading
   Dialog = new nEngine::CDialogInterface("MAP_ALPHA_ZONE.isd", SceneTranslations, Control);
 
   // Glow shader example
-  GlowShader = new nShader::CPostRenderGlow();
-  GlowShader->addEntityForEffect(MapSections->getSection(0), nShader::ESE_DARKEN);
+  //GlowShader = new nShader::CPostRenderGlow();
+  //GlowShader->addEntityForEffect(MapSections->getSection(0), nShader::ESE_DARKEN);
 
   // Direct Light (spot with shadow map system, work in progress)
-  DLight = n3D::CDirectLight::create();
-  ShadowProcessor->addDirectLight(DLight);
+  // This one is buggy: we don't see the meshes
+  //DLight = n3D::CDirectLight::create();
+  //ShadowProcessor->addDirectLight(DLight);
 
   // Hud
   MiniMap->setMap(nHud::EMMI_ALPHA_ZONE);
@@ -69,25 +70,22 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   Sky = new n3D::CSky("test");
 
   // Cinemascope mode (black stripes)
-  Cinemascope->slideIn(1.0f);
+  //Cinemascope->slideIn(1.0f);
 
   // Teleporter example
   // This teleporter moves the hero to another map (dungeon 1)
-  ToDungeonSensor = new n3D::CTeleporter(10.0f, 10.0f, 1.0f, core::vector3df(0.0f, 0.0f, 0.0f), nScene::ESI_MAP_DUNGEON_1);
+  //ToDungeonSensor = new n3D::CTeleporter(10.0f, 10.0f, 1.0f, core::vector3df(0.0f, 0.0f, 0.0f), nScene::ESI_MAP_DUNGEON_1);
 
   // NPC creation
-  NPC1 = new n3D::CNPC();
+  //NPC1 = new n3D::CNPC();
   // Add NPC to the interface -> Hero will be able to speak to the NPC
-  NPCInterface->addNPC(NPC1);
+  //NPCInterface->addNPC(NPC1);
 }
 
 //! Alpha Zone events
 void MAP_ALPHA_ZONE::events()
 {
   nScene::CSceneGameplay::events();
-
-
-
 
   /*
   if (Hero->collidesWithSensor(ToDungeonSensor)) {
@@ -130,7 +128,7 @@ void MAP_ALPHA_ZONE::events()
 void MAP_ALPHA_ZONE::postRender()
 {
   nScene::CSceneGameplay::postRender();
-  GlowShader->render();
+  //GlowShader->render();
 }
 
 //! Player HUD render
@@ -145,11 +143,11 @@ MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
   // Level Mesh collision clear
   MapSections->clearMeshCollision(0);
 
-  delete NPC1;
-  delete Spk;
-  delete Lt;
-  delete GlowShader;
-  delete ToDungeonSensor;
+  //delete NPC1;
+  //delete Spk;
+  //delete Lt;
+  //delete GlowShader;
+  //delete ToDungeonSensor;
 }
 
 }
