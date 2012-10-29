@@ -3,10 +3,10 @@
 
 Invisible Spirit requires several libraries in order to be compilated :
 
-- Irrlicht (>= 1.7)
-- FmodEx (>= 4.30)
-- Newton Game Dynamics (>= 2.29)
-- Boost (>= 1.46)
+- Irrlicht 1.7.x (http://irrlicht.sourceforge.net/downloads/)
+- FmodEx >= 4.30 (http://www.fmod.org/fmod-downloads.html)
+- Newton Game Dynamics >= 2.29 (http://newtondynamics.com/forum/downloads.php)
+- Boost >= 1.25 (http://www.boost.org/users/download/)
 
 Or you can use cmake:
 
