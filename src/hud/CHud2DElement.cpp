@@ -17,11 +17,16 @@ namespace is06
 namespace nHud
 {
 
-u16 CHud2DElement::Indices[] = {2, 1, 3, 2, 0, 1};
+f32 CHud2DElement::FarValue = 0.1f;
+f32 CHud2DElement::Coeff = 4954.94f;
+u16 CHud2DElement::Indices[] = {2, 1, 3, 0, 1, 2};
 core::matrix4 CHud2DElement::Mat;
 
 CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : CHud()
 {
+  AbsoluteTransformation = core::matrix4();
+  AbsoluteTransformation.makeIdentity();
+
   Texture = NULL;
   Opacity = 255;
 
@@ -33,7 +38,6 @@ CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : C
 
   // Dimensions, position
   Size = core::dimension2df(w, h);
-  Position = core::position2df(x, y);
 
   // Material
   Material.Lighting = false;
@@ -73,41 +77,36 @@ CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : C
   MaxTextureOffset.X = 1.0f;
   MaxTextureOffset.Y = 1.0f;
 
-  // Vertices creation
+  setPosition(x, y);
+
   Vertices[0] = video::S3DVertex(
-    (x / COEFF) + (w / 2 / COEFF * -1), (y / COEFF) + (h / 2 / COEFF), FAR,
-    1, 1, 0,
-    Material.DiffuseColor,
-    MinTextureOffset.X, MinTextureOffset.Y);
+    core::vector3df((w/2/Coeff*-1), (h/2/Coeff), FarValue), // Position
+    core::vector3df(1.0f, 1.0f, 0.0f), // Normal
+    Material.DiffuseColor, // Color
+    core::vector2df(MinTextureOffset.X, MinTextureOffset.Y) // Texture coords
+  );
   Vertices[1] = video::S3DVertex(
-    (x / COEFF) + (w / 2 / COEFF), (y / COEFF) + (h / 2 / COEFF), FAR,
-    1, 0, 0,
-    Material.DiffuseColor,
-    MaxTextureOffset.X, MinTextureOffset.Y);
+    core::vector3df((w/2/Coeff), (h/2/Coeff), FarValue), // Position
+    core::vector3df(1.0f, 0.0f, 0.0f), // Normal
+    Material.DiffuseColor, // Color
+    core::vector2df(MaxTextureOffset.X, MinTextureOffset.Y) // Texture coords
+  );
   Vertices[2] = video::S3DVertex(
-    (x / COEFF) + (w / 2 / COEFF * -1), (y / COEFF) + (h / 2 / COEFF * -1), FAR,
-    0, 1, 1,
-    Material.DiffuseColor,
-    MinTextureOffset.X, MaxTextureOffset.Y);
+    core::vector3df((w/2/Coeff*-1), (h/2/Coeff*-1), FarValue), // Position
+    core::vector3df(0.0f, 1.0f, 1.0f), // Normal
+    Material.DiffuseColor, // Color
+    core::vector2df(MinTextureOffset.X, MaxTextureOffset.Y) // Texture coords
+  );
   Vertices[3] = video::S3DVertex(
-    (x / COEFF) + (w / 2 / COEFF), (y / COEFF) + (h / 2 / COEFF * -1), FAR,
-    0, 0, 1,
-    Material.DiffuseColor,
-    MaxTextureOffset.X, MaxTextureOffset.Y);
+    core::vector3df((w/2/Coeff), (h/2/Coeff*-1), FarValue), // Position
+    core::vector3df(0.0f, 1.0f, 1.0f), // Normal
+    Material.DiffuseColor, // Color
+    core::vector2df(MaxTextureOffset.X, MaxTextureOffset.Y) // Texture coords
+  );
 }
 
 void CHud2DElement::render()
 {
-  // Déplacement et taille
-  Vertices[0].Pos.X = (Position.X / COEFF) + (Size.Width / 2 / COEFF * -1);
-  Vertices[0].Pos.Y = (Position.Y / COEFF) + (Size.Height / 2 / COEFF);
-  Vertices[1].Pos.X = (Position.X / COEFF) + (Size.Width / 2 / COEFF);
-  Vertices[1].Pos.Y = (Position.Y / COEFF) + (Size.Height / 2 / COEFF);
-  Vertices[2].Pos.X = (Position.X / COEFF) + (Size.Width / 2 / COEFF * -1);
-  Vertices[2].Pos.Y = (Position.Y / COEFF) + (Size.Height / 2 / COEFF * -1);
-  Vertices[3].Pos.X = (Position.X / COEFF) + (Size.Width / 2 / COEFF);
-  Vertices[3].Pos.Y = (Position.Y / COEFF) + (Size.Height / 2 / COEFF * -1);
-
   // Offset de texture
   Vertices[0].TCoords.X = MinTextureOffset.X;
   Vertices[0].TCoords.Y = MinTextureOffset.Y;
@@ -146,7 +145,7 @@ void CHud2DElement::render()
 
     // Rendering
     nEngine::CGame::getVideoDriver()->setMaterial(Material);
-    nEngine::CGame::getVideoDriver()->setTransform(video::ETS_VIEW, Mat);
+    nEngine::CGame::getVideoDriver()->setTransform(video::ETS_VIEW, AbsoluteTransformation);
     nEngine::CGame::getVideoDriver()->drawIndexedTriangleList(Vertices, 4, Indices, 2);
     nEngine::CGame::getVideoDriver()->setTransform(video::ETS_WORLD, Mat);
   }
@@ -160,8 +159,13 @@ void CHud2DElement::setSize(f32 w, f32 h)
 
 void CHud2DElement::setPosition(f32 x, f32 y)
 {
-  Position.X = x;
-  Position.Y = y;
+  AbsoluteTransformation.setTranslation(core::vector3df(x/Coeff, y/Coeff, 0.0f));
+}
+
+void CHud2DElement::setRotation(f32 value)
+{
+  value *= -1;
+  AbsoluteTransformation.setRotationDegrees(core::vector3df(0.0f, 0.0f, value));
 }
 
 void CHud2DElement::setTextureOffset(const core::vector2df& min, const core::vector2df& max)
@@ -172,32 +176,62 @@ void CHud2DElement::setTextureOffset(const core::vector2df& min, const core::vec
 
 void CHud2DElement::addX(f32 val)
 {
-  Position.X += val;
+  AbsoluteTransformation.setTranslation(core::vector3df(
+    AbsoluteTransformation.getTranslation().X + (val/Coeff),
+    AbsoluteTransformation.getTranslation().Y,
+    AbsoluteTransformation.getTranslation().Z
+  ));
+  //Position.X += val;
 }
 
 void CHud2DElement::subX(f32 val)
 {
-  Position.X -= val;
+  AbsoluteTransformation.setTranslation(core::vector3df(
+    AbsoluteTransformation.getTranslation().X - (val/Coeff),
+    AbsoluteTransformation.getTranslation().Y,
+    AbsoluteTransformation.getTranslation().Z
+  ));
+  //Position.X -= val;
 }
 
 void CHud2DElement::setX(f32 val)
 {
-  Position.X = val;
+  AbsoluteTransformation.setTranslation(core::vector3df(
+    (val/Coeff),
+    AbsoluteTransformation.getTranslation().Y,
+    AbsoluteTransformation.getTranslation().Z
+  ));
+  //Position.X = val;
 }
 
 void CHud2DElement::addY(f32 val)
 {
-  Position.Y += val;
+  AbsoluteTransformation.setTranslation(core::vector3df(
+    AbsoluteTransformation.getTranslation().X,
+    AbsoluteTransformation.getTranslation().Y + (val/Coeff),
+    AbsoluteTransformation.getTranslation().Z
+  ));
+  //Position.Y += val;
 }
 
 void CHud2DElement::subY(f32 val)
 {
-  Position.Y -= val;
+  AbsoluteTransformation.setTranslation(core::vector3df(
+    AbsoluteTransformation.getTranslation().X,
+    AbsoluteTransformation.getTranslation().Y - (val/Coeff),
+    AbsoluteTransformation.getTranslation().Z
+  ));
+  //Position.Y -= val;
 }
 
 void CHud2DElement::setY(f32 val)
 {
-  Position.Y = val;
+  AbsoluteTransformation.setTranslation(core::vector3df(
+    AbsoluteTransformation.getTranslation().X,
+    (val/Coeff),
+    AbsoluteTransformation.getTranslation().Z
+  ));
+  //Position.Y = val;
 }
 
 void CHud2DElement::setWidth(f32 val)
@@ -212,12 +246,12 @@ void CHud2DElement::setHeight(f32 val)
 
 f32 CHud2DElement::getX()
 {
-  return Position.X;
+  return AbsoluteTransformation.getTranslation().X;
 }
 
 f32 CHud2DElement::getY()
 {
-  return Position.Y;
+  return AbsoluteTransformation.getTranslation().Y;
 }
 
 f32 CHud2DElement::getWidth()

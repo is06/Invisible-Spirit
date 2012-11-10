@@ -16,6 +16,8 @@ namespace is06
 namespace nHud
 {
 
+f32 CMiniMap::Coeff = 4954.94f;
+
 CMiniMap::CMiniMap(n3D::CPlayableCharacter* player) : CHud()
 {
   Map = NULL;
@@ -40,6 +42,7 @@ void CMiniMap::setMap(EMiniMapIdentifier id)
 
   Map = new CPicture(Position.X, Position.Y, 250, 250, "resource/hud/minimap/" + fileName + ".png", true);
   Map->setOpacity(230);
+  //Map->setRotation(45.0f);
 
   // Entrance
   EntrancePosition = new CMiniMapArrow(video::SColor(255, 255, 0, 0));
@@ -109,8 +112,8 @@ void CMiniMap::setWorldSize(f32 size)
 core::vector2df CMiniMap::getMapCoordinates(const core::vector2df& worldCoords)
 {
   return core::vector2df(
-    (Position.X / COEFF) + ((worldCoords.X / COEFF) * (250.0f / WorldSize)),
-    (Position.Y / COEFF) + ((worldCoords.Y / COEFF) * (250.0f / WorldSize))
+    (Position.X / Coeff) + ((worldCoords.X / Coeff) * (250.0f / WorldSize)),
+    (Position.Y / Coeff) + ((worldCoords.Y / Coeff) * (250.0f / WorldSize))
   );
 }
 

@@ -26,6 +26,7 @@ class CHud2DElement : public CHud
 
     void setSize(f32 w, f32 h);
     void setPosition(f32 x, f32 y);
+    void setRotation(f32 value);
     void setTextureOffset(const core::vector2df& min, const core::vector2df& max);
 
     void addX(f32 val);
@@ -60,16 +61,16 @@ class CHud2DElement : public CHud
     video::S3DVertex Vertices[4];
 
     core::dimension2df Size;
-    core::position2df Position;
     core::vector2df AnimSpeed;
     core::vector2df MinTextureOffset;
     core::vector2df MaxTextureOffset;
+    core::matrix4 AbsoluteTransformation;
 
     bool Visible;
     u8 Opacity;
 
-    static constexpr f32 FAR = 0.1f;
-    static constexpr f32 COEFF = 4954.94f;
+    static f32 FarValue;
+    static f32 Coeff;
 
     static u16 Indices[];
     static core::matrix4 Mat;
