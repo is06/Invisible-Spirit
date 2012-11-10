@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
+#include "../../include/engine/CResourceManager.h"
 #include "../../include/sound/CSpeaker.h"
 #include "../../include/sound/CSoundManager.h"
 
@@ -17,7 +18,7 @@ namespace nSound
 
 CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text, f32 radius) : nEngine::CEntity()
 {
-  video::ITexture* iconTexture = nEngine::CGame::getVideoDriver()->getTexture("resource/debug/icons/speaker.bmp");
+  video::ITexture* iconTexture = nEngine::CResourceManager::loadTexture("resource/debug/icons/speaker.bmp");
 
   Icon = nEngine::CGame::getSceneManager()->addBillboardSceneNode(0, core::dimension2df(1.0f, 1.0f), initPos);
   Icon->setMaterialTexture(0, iconTexture);

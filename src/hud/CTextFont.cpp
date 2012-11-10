@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
+#include "../../include/engine/CResourceManager.h"
 #include "../../include/hud/CTextFont.h"
 
 namespace is06
@@ -146,7 +147,7 @@ void CTextFont::getTextureFromStyle(EFontStyle style, u8 extTexture)
 
   texturePath += ".png";
 
-  FontTexture = nEngine::CGame::getVideoDriver()->getTexture(texturePath.c_str());
+  FontTexture = nEngine::CResourceManager::loadTexture(texturePath);
   FontMaterial.setTexture(0, FontTexture);
   FontMaterial.Lighting = false;
 }
