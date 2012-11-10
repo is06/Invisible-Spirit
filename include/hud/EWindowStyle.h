@@ -16,7 +16,7 @@ namespace nHud
 enum EWindowStyle
 {
   EWS_STD,
-  EWS_NONE,
+  EWS_NONE
 };
 
 }
