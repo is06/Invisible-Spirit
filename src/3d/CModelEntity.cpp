@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
+#include "../../include/engine/CResourceManager.h"
 #include "../../include/3d/CModelEntity.h"
 
 namespace is06
@@ -39,7 +40,7 @@ void CModelEntity::shaderRender()
  */
 void CModelEntity::loadMesh(const string& meshFilePath)
 {
-  MainMesh = nEngine::CGame::getSceneManager()->getMesh(meshFilePath.c_str());
+  MainMesh = nEngine::CResourceManager::loadMesh(meshFilePath);
 }
 
 //! Returns the irrlicht mesh object of the entity

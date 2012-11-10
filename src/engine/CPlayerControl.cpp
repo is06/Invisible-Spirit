@@ -20,8 +20,9 @@ namespace nEngine
 {
 
 //! Constructor: Keyboard and Gamepad initialization
-CPlayerControl::CPlayerControl()
+CPlayerControl::CPlayerControl(bool gamepadActive)
 {
+  GamepadActive = gamepadActive;
   Keyboard = new CKeyboard();
   Gamepad = new CGamepad();
 }
@@ -78,8 +79,10 @@ f32 CPlayerControl::getPlayerDirection()
   if (Keyboard->pressed(KEY_UP) || Keyboard->pressed(KEY_DOWN) || Keyboard->pressed(KEY_LEFT) || Keyboard->pressed(KEY_RIGHT)) {
     return Keyboard->getDirectionAngle();
   }
-  if (fabs(Gamepad->getLeftJoystickXAxis()) > 35 || fabs(Gamepad->getLeftJoystickYAxis()) > 35) {
-    return Gamepad->getLeftJoystickAngle();
+  if (GamepadActive) {
+    if (fabs(Gamepad->getLeftJoystickXAxis()) > 35 || fabs(Gamepad->getLeftJoystickYAxis()) > 35) {
+      return Gamepad->getLeftJoystickAngle();
+    }
   }
 
   return 0.0f;
@@ -90,8 +93,10 @@ f32 CPlayerControl::getPlayerXAxis()
   if (Keyboard->pressed(KEY_LEFT) || Keyboard->pressed(KEY_RIGHT)) {
     return Keyboard->getDirectionXAxis();
   }
-  if (fabs(Gamepad->getLeftJoystickXAxis()) > 35) {
-    return Gamepad->getLeftJoystickXAxis();
+  if (GamepadActive) {
+    if (fabs(Gamepad->getLeftJoystickXAxis()) > 35) {
+      return Gamepad->getLeftJoystickXAxis();
+    }
   }
 
   return 0.0f;
@@ -102,8 +107,10 @@ f32 CPlayerControl::getPlayerYAxis()
   if (Keyboard->pressed(KEY_UP) || Keyboard->pressed(KEY_DOWN)) {
     return Keyboard->getDirectionYAxis();
   }
-  if (fabs(Gamepad->getLeftJoystickYAxis()) > 35) {
-    return Gamepad->getLeftJoystickYAxis();
+  if (GamepadActive) {
+    if (fabs(Gamepad->getLeftJoystickYAxis()) > 35) {
+      return Gamepad->getLeftJoystickYAxis();
+    }
   }
 
   return 0.0f;
@@ -117,8 +124,10 @@ f32 CPlayerControl::getCameraXAxis()
   if (Keyboard->pressed(KEY_KEY_L)) {
     return 100.0f;
   }
-  if (fabs(Gamepad->getRightJoystickXAxis()) > 35) {
-    return Gamepad->getRightJoystickXAxis();
+  if (GamepadActive) {
+    if (fabs(Gamepad->getRightJoystickXAxis()) > 35) {
+      return Gamepad->getRightJoystickXAxis();
+    }
   }
 
   return 0.0f;
@@ -132,8 +141,10 @@ f32 CPlayerControl::getCameraYAxis()
   if (Keyboard->pressed(KEY_KEY_K)) {
     return -100.0f;
   }
-  if (fabs(Gamepad->getRightJoystickYAxis()) > 35) {
-    return Gamepad->getRightJoystickYAxis();
+  if (GamepadActive) {
+    if (fabs(Gamepad->getRightJoystickYAxis()) > 35) {
+      return Gamepad->getRightJoystickYAxis();
+    }
   }
 
   return 0.0f;

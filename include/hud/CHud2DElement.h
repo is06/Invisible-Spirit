@@ -68,8 +68,8 @@ class CHud2DElement : public CHud
     bool Visible;
     u8 Opacity;
 
-    const static f32 FAR = 0.1f;
-    const static f32 COEFF = 4954.94f;
+    static constexpr f32 FAR = 0.1f;
+    static constexpr f32 COEFF = 4954.94f;
 
     static u16 Indices[];
     static core::matrix4 Mat;

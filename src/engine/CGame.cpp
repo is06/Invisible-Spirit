@@ -129,7 +129,7 @@ void CGame::run()
     s32 fps = VideoDriver->getFPS();
 
     if (lastFPS != fps) {
-      core::stringw str = L"Invisible Spirit 0.1 release 9 - fps: ";
+      core::stringw str = L"Invisible Spirit 0.1 release 10 - fps: ";
       str += fps;
       Device->setWindowCaption(str.c_str());
       lastFPS = fps;
@@ -430,8 +430,8 @@ void CGame::initScenes()
 void CGame::initControls()
 {
   // Joystick activation
-  core::array<SJoystickInfo> joystickInfo;
-  Device->activateJoysticks(joystickInfo);
+  //core::array<SJoystickInfo> joystickInfo;
+  //Device->activateJoysticks(joystickInfo);
 }
 
 //! Creates the Newton world object

@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
+#include "../../include/engine/CResourceManager.h"
 #include "../../include/hud/CPicture.h"
 
 namespace is06
@@ -26,7 +27,7 @@ void CPicture::render()
 
 void CPicture::loadSecondTexture(const string& filePath)
 {
-  video::ITexture* second = nEngine::CGame::getVideoDriver()->getTexture(filePath.c_str());
+  video::ITexture* second = nEngine::CResourceManager::loadTexture(filePath);
   if (second) {
     Material.setTexture(1, second);
   }
@@ -34,7 +35,7 @@ void CPicture::loadSecondTexture(const string& filePath)
 
 void CPicture::changeTexture(const string& filePath)
 {
-  Texture = nEngine::CGame::getVideoDriver()->getTexture(filePath.c_str());
+  Texture = nEngine::CResourceManager::loadTexture(filePath);
   if (Texture) {
     Material.setTexture(0, Texture);
   }

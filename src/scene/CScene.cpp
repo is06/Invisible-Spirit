@@ -35,7 +35,7 @@ CScene::CScene()
   SceneTranslations = NULL;
   Dialog = NULL;
   Sky = NULL;
-  Control = new nEngine::CPlayerControl();
+  Control = new nEngine::CPlayerControl(false);
 
   Music = nEngine::CGame::getMusicReference();
   GlobalTranslations = nEngine::CGame::getGlobalTranslations();

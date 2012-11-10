@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/3d/CSky.h"
 #include "../../include/engine/CGame.h"
+#include "../../include/engine/CResourceManager.h"
 
 namespace is06
 {
@@ -15,8 +16,6 @@ namespace n3D
 
 CSky::CSky(const string& textureName) : nEngine::CEntity()
 {
-  video::IVideoDriver* driver = nEngine::CGame::getVideoDriver();
-
   string up = "resource/texture/map/sky/" + textureName + "/up.jpg";
   string dn = "resource/texture/map/sky/" + textureName + "/dn.jpg";
   string lf = "resource/texture/map/sky/" + textureName + "/lf.jpg";
@@ -25,12 +24,12 @@ CSky::CSky(const string& textureName) : nEngine::CEntity()
   string bk = "resource/texture/map/sky/" + textureName + "/bk.jpg";
 
   Layers[0] = nEngine::CGame::getSceneManager()->addSkyBoxSceneNode(
-    driver->getTexture(up.c_str()),
-    driver->getTexture(dn.c_str()),
-    driver->getTexture(lf.c_str()),
-    driver->getTexture(rt.c_str()),
-    driver->getTexture(ft.c_str()),
-    driver->getTexture(bk.c_str())
+    nEngine::CResourceManager::loadTexture(up),
+    nEngine::CResourceManager::loadTexture(dn),
+    nEngine::CResourceManager::loadTexture(lf),
+    nEngine::CResourceManager::loadTexture(rt),
+    nEngine::CResourceManager::loadTexture(ft),
+    nEngine::CResourceManager::loadTexture(bk)
   );
 }
 
