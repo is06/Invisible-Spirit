@@ -19,7 +19,7 @@ namespace nEngine
 class CPlayerControl
 {
   public:
-    CPlayerControl();
+    CPlayerControl(bool gamepadActive);
     ~CPlayerControl();
 
     bool commandEntered(ECommandIdentifier command, EEventType eventType=EET_ALWAYS);
@@ -36,6 +36,7 @@ class CPlayerControl
     CGamepad* Gamepad;
 
     bool CommandOnce[ECI_COUNT];
+    bool GamepadActive;
 };
 
 }

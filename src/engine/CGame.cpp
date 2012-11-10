@@ -129,7 +129,7 @@ void CGame::run()
     s32 fps = VideoDriver->getFPS();
 
     if (lastFPS != fps) {
-      core::stringw str = L"Invisible Spirit 0.1 release 9 - fps: ";
+      core::stringw str = L"Invisible Spirit 0.1 release 10 - fps: ";
       str += fps;
       Device->setWindowCaption(str.c_str());
       lastFPS = fps;
