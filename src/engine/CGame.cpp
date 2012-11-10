@@ -430,8 +430,8 @@ void CGame::initScenes()
 void CGame::initControls()
 {
   // Joystick activation
-  core::array<SJoystickInfo> joystickInfo;
-  Device->activateJoysticks(joystickInfo);
+  //core::array<SJoystickInfo> joystickInfo;
+  //Device->activateJoysticks(joystickInfo);
 }
 
 //! Creates the Newton world object

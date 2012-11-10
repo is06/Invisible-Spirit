@@ -47,7 +47,7 @@ class CMiniMap : public CHud
     std::vector<n3D::CModelEntity*> AttachedEntities;
     std::vector<n3D::CModelEntity*>::iterator AttachedEntitiesIt;
 
-    const static f32 COEFF = 4954.94f;
+    static constexpr f32 COEFF = 4954.94f;
 };
 
 }

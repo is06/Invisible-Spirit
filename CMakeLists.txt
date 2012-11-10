@@ -12,6 +12,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
 # Uncomment this line if you want debug symbols
 #set(CMAKE_CXX_FLAGS "-g -Wall")
+set(CMAKE_CXX_FLAGS "-g -Wall -pthread -std=c++0x")
 
 find_package(Irrlicht REQUIRED)
 find_package(FmodEx REQUIRED)
