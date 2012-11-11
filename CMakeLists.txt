@@ -9,9 +9,7 @@ project(Invisible-Spirit)
 
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
-
-# Uncomment this line if you want debug symbols
-set(CMAKE_CXX_FLAGS "-s -O2 -Wall -pedantic -lboost_system -lboost_thread")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s -O2 -Wall -pedantic")
 
 find_package(Irrlicht REQUIRED)
 find_package(FmodEx REQUIRED)
@@ -33,7 +31,6 @@ IF(WIN32)
   target_link_libraries(
     Invisible-Spirit
     boost_thread
-    boost_system
     ${IRRLICHT_LIBRARY}
     ${FMODEX_LIBRARY}
     ${NEWTON_LIBRARY}
@@ -47,6 +44,7 @@ ELSE(WIN32)
     Xxf86vm
     Xext
     X11
+    boost_thread
     ${FMODEX_LIBRARY}
     ${NEWTON_LIBRARY}
   )

@@ -27,6 +27,10 @@ class CSceneGameplay : public CScene
     virtual void events();
     virtual void postRender();
     virtual void hudRender();
+    virtual void loadingSequence();
+    virtual void start();
+
+    void loadingScreen();
 
   protected:
     virtual void everySecond();

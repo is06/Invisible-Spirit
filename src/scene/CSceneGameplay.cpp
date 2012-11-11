@@ -26,8 +26,14 @@ namespace is06
 namespace nScene
 {
 
-//! Initialize all objects and entity in this type of scene
+//! Constructor
 CSceneGameplay::CSceneGameplay() : CScene()
+{
+  cout << "Gameplay scene constructor" << endl;
+}
+
+//! Loading sequence for all gameplay scenes
+void CSceneGameplay::loadingSequence()
 {
   Camera = new n3D::CTPCamera();
 
@@ -36,6 +42,7 @@ CSceneGameplay::CSceneGameplay() : CScene()
   // Hero info
   Hero = new n3D::CPlayableCharacter(Camera);
   //Hero->setShadowMode(SHADOW_MODE_CAST);
+
   // Link Hero to Third-Person Camera
   Camera->linkEntity(Hero);
 
@@ -44,6 +51,17 @@ CSceneGameplay::CSceneGameplay() : CScene()
   EnergyInterface = new nHud::CEnergyInterface();
   MiniMap = new nHud::CMiniMap(Hero);
   GameplayMenu = new nHud::nMenu::CGameplayMenu(GlobalTranslations, Control);
+}
+
+//! Loading screen for gameplay scenes (overworld, dungeons...)
+void CSceneGameplay::loadingScreen()
+{
+  cout << "Loading screen" << endl;
+}
+
+//! Gameplay scenes start sequence
+void CSceneGameplay::start()
+{
   EverySecondTimer = new nEngine::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), 9999);
 
   // Flag for fade out

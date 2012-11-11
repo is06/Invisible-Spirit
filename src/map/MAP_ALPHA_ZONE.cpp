@@ -30,6 +30,15 @@ namespace nMap
 //! Alpha Zone constructor
 MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
 {
+
+}
+
+void MAP_ALPHA_ZONE::loadingSequence()
+{
+  cout << "MAP ALPHA ZONE loading sequence" << endl;
+
+  nScene::CSceneGameplay::loadingSequence();
+
   // Main Player
   Hero->setCharacter(nEngine::EPCT_AYRON);
 
@@ -80,6 +89,13 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : nScene::CSceneGameplay()
   //NPC1 = new n3D::CNPC();
   // Add NPC to the interface -> Hero will be able to speak to the NPC
   //NPCInterface->addNPC(NPC1);
+}
+
+void MAP_ALPHA_ZONE::start()
+{
+  nScene::CSceneGameplay::start();
+
+  cout << "Loading sequence finished, scene started" << endl;
 }
 
 //! Alpha Zone events
