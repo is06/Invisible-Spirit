@@ -11,7 +11,7 @@ set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
 # Uncomment this line if you want debug symbols
-set(CMAKE_CXX_FLAGS "-g -Wall -pedantic -pthread -std=c++0x")
+set(CMAKE_CXX_FLAGS "-s -O2 -Wall -pedantic -lboost_system -lboost_thread")
 
 find_package(Irrlicht REQUIRED)
 find_package(FmodEx REQUIRED)
@@ -32,6 +32,8 @@ add_executable(
 IF(WIN32)
   target_link_libraries(
     Invisible-Spirit
+    boost_thread
+    boost_system
     ${IRRLICHT_LIBRARY}
     ${FMODEX_LIBRARY}
     ${NEWTON_LIBRARY}
