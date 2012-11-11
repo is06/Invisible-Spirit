@@ -25,7 +25,7 @@ namespace nScene
 
 bool CScene::InMapEditingMode;
 
-//! Instanciate required object interfaces such as keyboard or music so we can use them in all scenes
+//! Instanciate required object interfaces such as player control or music so we can use them in all scenes
 CScene::CScene()
 {
   StartTime = nEngine::CGame::getCurrentTime();
@@ -62,7 +62,7 @@ void CScene::events()
 {
   SpeedFactor = nEngine::CGame::getSpeedFactor();
   SceneTime = (nEngine::CGame::getCurrentTime() - StartTime) / 1000.0f;
-  //gameSave->setInteger(11, (u32)timeElapsed); // 11 = Total game time
+  //GameSave->setInteger(11, (u32)SceneTime); // 11 = Total game time
 
   generateDebugInfo();
 
@@ -75,6 +75,25 @@ void CScene::events()
   */
 }
 
+//! Loads all meshes and textures that will be used in the scene
+void CScene::loadingSequence()
+{
+
+}
+
+//! Displays the generic loading screen (for all type of scene)
+void CScene::loadingScreen()
+{
+
+}
+
+//! Called when the scene is starting
+void CScene::start()
+{
+
+}
+
+//! Displays the number of textures and meshes that are currently loaded in the scene
 void CScene::generateDebugInfo()
 {
   core::stringw debugText = "";

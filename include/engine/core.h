@@ -13,6 +13,7 @@ http://www.is06.com. Legal code in license.txt
 #include <fmodex/fmod.h>
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
+#include <boost/thread.hpp>
 #include <iostream>
 #include <sstream>
 #include <fstream>

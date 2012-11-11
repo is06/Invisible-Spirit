@@ -11,7 +11,7 @@ set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
 # Uncomment this line if you want debug symbols
-set(CMAKE_CXX_FLAGS "-g -Wall -pedantic -pthread -std=c++0x")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s -Wall -pedantic -std=c++0x")
 
 find_package(Irrlicht REQUIRED)
 find_package(FmodEx REQUIRED)
@@ -45,6 +45,7 @@ ELSE(WIN32)
     Xxf86vm
     Xext
     X11
+    boost_thread
     ${FMODEX_LIBRARY}
     ${NEWTON_LIBRARY}
   )

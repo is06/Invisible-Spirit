@@ -27,6 +27,8 @@ class MAP_ALPHA_ZONE : public nScene::CSceneGameplay
     void events();
     void postRender();
     void hudRender();
+    void loadingSequence();
+    void start();
 
   private:
     nSound::CSpeaker* Spk;
