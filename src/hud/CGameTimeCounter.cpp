@@ -17,6 +17,7 @@ namespace is06
 namespace nHud
 {
 
+//! \todo comment this function
 CGameTimeCounter::CGameTimeCounter() : CCounter()
 {
   CounterText = new CText(
@@ -27,6 +28,7 @@ CGameTimeCounter::CGameTimeCounter() : CCounter()
   );
 }
 
+//! \todo comment this function
 void CGameTimeCounter::render()
 {
   updateValues(nEngine::CGame::getCurrentSave()->getInteger(21));
@@ -34,6 +36,7 @@ void CGameTimeCounter::render()
   CounterText->render();
 }
 
+//! \todo comment this function
 void CGameTimeCounter::updateValues(s32 time)
 {
   Oss.clear();
@@ -74,31 +77,31 @@ void CGameTimeCounter::updateValues(s32 time)
   Seconds += Oss.str();
 }
 
+//! \todo comment this function
 void CGameTimeCounter::updateDigits()
 {
-  //cout << hours + ":" + minutes + ":" + seconds << endl;
   CounterText->setText(Hours + ":" + Minutes + ":" + Seconds);
 }
 
+//! \todo write this function
 void CGameTimeCounter::hide()
 {
   //counterText->hide();
 }
 
+//! \todo write this function
 void CGameTimeCounter::show()
 {
   //counterText->show();
 }
 
+//! \todo write this function
 void CGameTimeCounter::setOpacity(u8 value)
 {
   //counterText->setOpacity(value);
 }
 
-CGameTimeCounter::~CGameTimeCounter()
-{
-
-}
+CGameTimeCounter::~CGameTimeCounter() {}
 
 }
 }

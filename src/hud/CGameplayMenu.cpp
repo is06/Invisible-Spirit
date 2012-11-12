@@ -126,16 +126,19 @@ void CGameplayMenu::render()
   }
 }
 
+//! \todo write this function
 void CGameplayMenu::show()
 {
 
 }
 
+//! \todo write this function
 void CGameplayMenu::hide()
 {
 
 }
 
+//! \todo write this function
 void CGameplayMenu::setOpacity(u8 value)
 {
 
@@ -151,61 +154,73 @@ void CGameplayMenu::toggle()
   }
 }
 
+//! \todo comment this function
 bool CGameplayMenu::isVisible()
 {
   return Visible;
 }
 
+//! \todo comment this function
 CMenu* CGameplayMenu::getSectionMenu()
 {
   return SectionMenu;
 }
 
+//! \todo comment this function
 void CGameplayMenu::goToWeaponMenu()
 {
   WpMenu = new CWeaponMenu();
 }
 
+//! \todo write this function
 void CGameplayMenu::goToSpiritMenu()
 {
 
 }
 
+//! \todo write this function
 void CGameplayMenu::goToItemMenu()
 {
 
 }
 
+//! \todo write this function
 void CGameplayMenu::goToMapMenu()
 {
 
 }
 
+//! \todo write this function
 void CGameplayMenu::goToStatusMenu()
 {
 
 }
 
+//! \todo write this function
 void CGameplayMenu::goToDimensionMenu()
 {
 
 }
 
+//! \todo write this function
 void CGameplayMenu::goToTalesMenu()
 {
 
 }
 
+//! \todo write this function
 void CGameplayMenu::goToMonstersMenu()
 {
 
 }
 
+//! \todo write this function
 void CGameplayMenu::goToSettingsMenu()
 {
 
 }
 
+//! \todo comment this function
 CGameplayMenu::~CGameplayMenu()
 {
   delete Background;

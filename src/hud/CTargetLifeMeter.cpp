@@ -18,6 +18,7 @@ namespace is06
 namespace nHud
 {
 
+//! \todo comment this function
 CTargetLifeMeter::CTargetLifeMeter(s32 init, s32 min, s32 max)
 {
   Label = new CText("Cible", 0, 0, EFS_STANDARD_48, 0);
@@ -25,6 +26,7 @@ CTargetLifeMeter::CTargetLifeMeter(s32 init, s32 min, s32 max)
   BarBack = new CPicture();
 }
 
+//! \todo manage targetPosition parameter
 void CTargetLifeMeter::render(const core::vector3df& targetPosition)
 {
   Label->render();
@@ -32,11 +34,13 @@ void CTargetLifeMeter::render(const core::vector3df& targetPosition)
   BarBack->render();
 }
 
+//! \todo comment this function
 void CTargetLifeMeter::updateValue(const s32& value)
 {
   Gauge->setValue(value);
 }
 
+//! \todo comment this function
 CTargetLifeMeter::~CTargetLifeMeter()
 {
   delete BarBack;

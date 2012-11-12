@@ -44,7 +44,6 @@ ELSE(WIN32)
     Xxf86vm
     Xext
     X11
-    boost_thread
     ${FMODEX_LIBRARY}
     ${NEWTON_LIBRARY}
   )

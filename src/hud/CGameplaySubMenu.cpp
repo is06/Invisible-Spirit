@@ -15,35 +15,33 @@ namespace nHud
 namespace nMenu
 {
 
-CGameplaySubMenu::CGameplaySubMenu() : CHud()
-{
+CGameplaySubMenu::CGameplaySubMenu() : CHud() {}
 
-}
-
+//! \todo comment this function
 void CGameplaySubMenu::render()
 {
   CHud::render();
 }
 
+//! \todo write this function
 void CGameplaySubMenu::show()
 {
 
 }
 
+//! \todo write this function
 void CGameplaySubMenu::hide()
 {
 
 }
 
+//! \todo write this function
 void CGameplaySubMenu::setOpacity(u8 value)
 {
 
 }
 
-CGameplaySubMenu::~CGameplaySubMenu()
-{
-
-}
+CGameplaySubMenu::~CGameplaySubMenu() {}
 
 }
 }

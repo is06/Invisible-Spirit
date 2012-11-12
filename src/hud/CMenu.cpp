@@ -15,6 +15,7 @@ namespace is06
 namespace nHud
 {
 
+//! \todo comment this function
 CMenu::CMenu(f32 x, f32 y, f32 width, u8 height, EMenuStyle style) : CHud()
 {
   LastInsertedIndex = 0;
@@ -32,6 +33,7 @@ CMenu::CMenu(f32 x, f32 y, f32 width, u8 height, EMenuStyle style) : CHud()
   Cursor = new CPicture(x - 16, y, 32, 32, "resource/hud/menus/cursor.png");
 }
 
+//! \todo comment this function
 void CMenu::render()
 {
   CHud::render();
@@ -41,6 +43,7 @@ void CMenu::render()
   Cursor->render();
 }
 
+//! \todo comment this function
 void CMenu::addOption(EMenuIcon icon, const string& title)
 {
   f32 posY = Position.Y + (LastInsertedIndex * -1 * 40);
@@ -48,6 +51,7 @@ void CMenu::addOption(EMenuIcon icon, const string& title)
   LastInsertedIndex++;
 }
 
+//! \todo comment this function
 void CMenu::nextOption()
 {
   if (LoopMode) {
@@ -64,6 +68,7 @@ void CMenu::nextOption()
   }
 }
 
+//! \todo comment this function
 void CMenu::prevOption()
 {
   if (LoopMode) {
@@ -80,16 +85,19 @@ void CMenu::prevOption()
   }
 }
 
+//! \todo comment this function
 void CMenu::firstOption()
 {
   CurrentOption = 0;
 }
 
+//! \todo comment this function
 void CMenu::lastOption()
 {
   CurrentOption = Options.size() - 1;
 }
 
+//! \todo write this function
 void CMenu::removeOption(u16 index)
 {
   /*
@@ -102,6 +110,7 @@ void CMenu::removeOption(u16 index)
   */
 }
 
+//! \todo comment this function
 void CMenu::show()
 {
   for (OptionsIt = Options.begin(); OptionsIt != Options.end(); OptionsIt++) {
@@ -109,6 +118,7 @@ void CMenu::show()
   }
 }
 
+//! \todo comment this function
 void CMenu::hide()
 {
   for (OptionsIt = Options.begin(); OptionsIt != Options.end(); OptionsIt++) {
@@ -116,6 +126,7 @@ void CMenu::hide()
   }
 }
 
+//! \todo comment this function
 void CMenu::setOpacity(u8 value)
 {
   for (OptionsIt = Options.begin(); OptionsIt != Options.end(); OptionsIt++) {
@@ -123,16 +134,19 @@ void CMenu::setOpacity(u8 value)
   }
 }
 
+//! \todo comment this function
 CMenuOption* CMenu::getOption(u16 index)
 {
   return Options[index];
 }
 
+//! \todo comment this function
 u16 CMenu::getCurrentOption()
 {
   return CurrentOption;
 }
 
+//! \todo comment this function
 CMenu::~CMenu()
 {
   delete Cursor;

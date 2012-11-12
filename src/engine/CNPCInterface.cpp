@@ -12,28 +12,22 @@ namespace is06
 namespace nEngine
 {
 
-CNPCInterface::CNPCInterface()
-{
+CNPCInterface::CNPCInterface() {}
 
-}
-
-//! TODO
+//! \todo comment this function
 void CNPCInterface::addNPC(n3D::CNPC* npc)
 {
   NPCList.push_back(npc);
 }
 
-//! TODO
+//! \todo write this function
 n3D::CNPC* CNPCInterface::getNearestNPC(n3D::CCharacter* character)
 {
   // Parcours du vector et calcul de la distance avec le personnage passé en paramètre
   return NULL;
 }
 
-CNPCInterface::~CNPCInterface()
-{
-
-}
+CNPCInterface::~CNPCInterface() {}
 
 }
 }

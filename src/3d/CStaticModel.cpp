@@ -262,9 +262,10 @@ void CStaticModel::clearMeshCollision()
   NewtonDestroyBody(nEngine::CGame::getNewtonWorld(), MainBody);
 }
 
+//! \todo write this function
 void CStaticModel::setShadowMode(nEngine::EShadowMode mode)
 {
-  // TODO
+
 }
 
 CStaticModel::~CStaticModel()

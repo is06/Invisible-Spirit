@@ -47,6 +47,7 @@ void CNPC::attachDialogInterface(nEngine::CDialogInterface* dialog)
 
 //! Get a random dialog identifier
 /**
+ * \todo manage avoidDoubles parameter
  * \param bool avoidDoubles
  * \return const string&
  */
@@ -65,7 +66,7 @@ const string& CNPC::getNextTalkingDialogIdentifier()
   return DialogIdentifierList[CurrentTalkingDialogIdentifier];
 }
 
-//! TODO
+//! \todo write this function
 f32 CNPC::getDistanceFrom(n3D::CCharacter* character)
 {
   return 0.0f;

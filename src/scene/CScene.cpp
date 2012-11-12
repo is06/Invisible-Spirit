@@ -105,9 +105,7 @@ void CScene::generateDebugInfo()
   DebugInfo->setText(debugText.c_str());
 }
 
-/**
- * @todo
- */
+//! \todo comment this function
 void CScene::setSaveSlot(nEngine::CSave* saveSlot)
 {
   GameSave = saveSlot;
@@ -122,9 +120,7 @@ n3D::CCamera* CScene::getActiveCamera()
   return Camera;
 }
 
-/**
- * @todo
- */
+//! \todo comment this function
 void CScene::postRender()
 {
 
@@ -147,32 +143,41 @@ void CScene::hudRender()
   }
 }
 
-/**
- * @todo
- */
+//! \todo comment this function
 void CScene::fadeIn(f32 speed, nEngine::EFadeColor color)
 {
-  InFader->setColor(video::SColor(0, 0, 0, 0));
+  video::SColor irrColor = video::SColor(0, 0, 0, 0);
+
+  switch(color) {
+    case nEngine::EFC_WHITE: irrColor = video::SColor(255, 255, 255, 255); break;
+    default: irrColor = video::SColor(0, 0, 0, 0); break;
+  }
+
+  InFader->setColor(irrColor);
   InFader->fadeIn(speed * 1000);
 }
 
-/**
- * @todo
- */
+//! \todo comment this function
 void CScene::fadeOut(f32 speed, nEngine::EFadeColor color)
 {
-  OutFader->setColor(video::SColor(0, 0, 0, 0));
+  video::SColor irrColor = video::SColor(0, 0, 0, 0);
+
+  switch(color) {
+    case nEngine::EFC_WHITE: irrColor = video::SColor(255, 255, 255, 255); break;
+    default: irrColor = video::SColor(0, 0, 0, 0); break;
+  }
+
+  OutFader->setColor(irrColor);
   OutFader->fadeOut(speed * 1000);
 }
 
-/**
- * @todo
- */
+//! \todo comment this function
 nEngine::CShadowProcessor* CScene::getShadowProcessor()
 {
   return ShadowProcessor;
 }
 
+//! \todo comment this function
 const video::SColor& CScene::getBackBufferColor() const
 {
   return BackBufferColor;

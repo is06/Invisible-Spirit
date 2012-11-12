@@ -344,6 +344,7 @@ f32 CAnimatedModel::getWallCollision(nEngine::ERayType type, CStaticModel* other
   return NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, &normal.X, &faceId);
 }
 
+//! @todo write this function
 bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
 {
   return false;
@@ -490,9 +491,10 @@ bool CAnimatedModel::animationFinished(s32 id)
   return (MainNode->getFrameNr() == AnimationList[id].EndFrame);
 }
 
+//! \todo write this function
 void CAnimatedModel::setShadowMode(nEngine::EShadowMode mode)
 {
-  // TODO
+
 }
 
 //! Destructor, removes the main node

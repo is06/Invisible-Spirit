@@ -552,17 +552,11 @@ void CGame::loadNextScene()
     default: fatalError(nDebug::EEC_CODE_10); break;
   }
 
-
-
-  // Loads all entities during loading screen
-  //boost::thread loadSeqThread(&nScene::CScene::loadingSequence, CurrentScene);
-
   // Displays scene loading screen
   CurrentScene->loadingScreen();
 
-  // Loading sequence thread finished
+  // Loading sequence finished
   CurrentScene->loadingSequence();
-  //loadSeqThread.join();
 
   CurrentScene->setSaveSlot(CurrentSave);
   CurrentScene->start();

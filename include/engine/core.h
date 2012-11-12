@@ -8,14 +8,11 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_CORE_H__
 #define __IS06_CORE_H__
 
-#define BOOST_THREAD_USE_LIB
-
 #include <irrlicht/irrlicht.h>
 #include <newton/Newton.h>
 #include <fmodex/fmod.h>
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
-#include <boost/thread.hpp>
 #include <iostream>
 #include <sstream>
 #include <fstream>

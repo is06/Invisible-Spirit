@@ -14,6 +14,7 @@ namespace is06
 namespace n3D
 {
 
+//! \todo make multiple layers
 CSky::CSky(const string& textureName) : nEngine::CEntity()
 {
   string up = "resource/texture/map/sky/" + textureName + "/up.jpg";
@@ -33,21 +34,25 @@ CSky::CSky(const string& textureName) : nEngine::CEntity()
   );
 }
 
+//! \todo write this function
 void CSky::update()
 {
 
 }
 
+//! \todo write this function
 void CSky::setLayer(u8 index, const string& textureName)
 {
 
 }
 
+//! \todo write this function
 void CSky::setFrontLayerOpacity(u8 level)
 {
 
 }
 
+//! \todo write this function
 void CSky::setRotationSpeed(u8 index, f32 speed)
 {
 

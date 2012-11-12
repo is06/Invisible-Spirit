@@ -15,22 +15,26 @@ namespace is06
 namespace nHud
 {
 
+//! \todo comment this function
 CWorldTimeCounter::CWorldTimeCounter() : CCounter()
 {
   CounterText = new CText();
 }
 
+//! \todo write this function
 void CWorldTimeCounter::render()
 {
 
 }
 
+//! \todo comment this function
 void CWorldTimeCounter::render(s32 totalGameTime)
 {
   updateValues(totalGameTime);
   updateDigits();
 }
 
+//! \todo comment this function
 void CWorldTimeCounter::updateValues(s32 time)
 {
   Hours = "";
@@ -49,30 +53,31 @@ void CWorldTimeCounter::updateValues(s32 time)
   Minutes += minutesInt;
 }
 
+//! \todo comment this function
 void CWorldTimeCounter::updateDigits()
 {
   CounterText->setText(Hours + ":" + Minutes);
 }
 
+//! \todo write this function
 void CWorldTimeCounter::hide()
 {
 
 }
 
+//! \todo write this function
 void CWorldTimeCounter::show()
 {
 
 }
 
+//! \todo write this function
 void CWorldTimeCounter::setOpacity(u8 value)
 {
 
 }
 
-CWorldTimeCounter::~CWorldTimeCounter()
-{
-
-}
+CWorldTimeCounter::~CWorldTimeCounter() {}
 
 }
 }
