@@ -203,17 +203,13 @@ void CAnimatedModel::setDebugData(bool value)
   MainNode->setDebugDataVisible(value);
 }
 
-/**
- *
- */
+//! Makes the model completely dark
 void CAnimatedModel::darken()
 {
   MainNode->setMaterialFlag(video::EMF_LIGHTING, true);
 }
 
-/**
- *
- */
+//! Restores the light of the model
 void CAnimatedModel::undarken()
 {
   MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
@@ -254,8 +250,9 @@ bool CAnimatedModel::collidesWithStatic(CStaticModel* other)
   return (res > 0);
 }
 
-//! Casts 4 rays from the center of the chacter to the bottom and returns the minimum value of floor collision
+//! Casts 4 rays from the center of the character to the bottom and returns the minimum value of floor collision
 /**
+ * \param CStaticModel* other can be a LevelMesh or other static model like moving platforms...
  * \return f32 (collision between 0.0f and 1.0f)
  */
 f32 CAnimatedModel::getFloorCollision(CStaticModel* other)
@@ -307,6 +304,12 @@ f32 CAnimatedModel::getFloorCollision(CStaticModel* other)
   return core::min_(minAB, minCD);
 }
 
+//! Casts 2 rays in order to detect wall collisions
+/**
+ * \todo rewrite this function because of collision detection issues
+ * \param ERayType type can be P (left ray) or Q (right ray)
+ * \return f32 collision between 0.0f and 1.0f
+ */
 f32 CAnimatedModel::getWallCollision(nEngine::ERayType type, CStaticModel* other, core::vector3df& normal)
 {
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
@@ -344,13 +347,18 @@ f32 CAnimatedModel::getWallCollision(nEngine::ERayType type, CStaticModel* other
   return NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, &normal.X, &faceId);
 }
 
-//! @todo write this function
+//! \todo write this function
 bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
 {
   return false;
 }
 
 //! Returns true if the object is in the box sensor
+/**
+ * \param CSensor* sensor a box sensor object
+ * \param EEventType type can be Always or Once
+ * \return bool true if model is in sensor
+ */
 bool CAnimatedModel::collidesWithSensor(CSensor* sensor, nEngine::EEventType type)
 {
   bool inside = sensor->getBox().isPointInside(MainNode->getPosition());
@@ -444,6 +452,10 @@ void CAnimatedModel::loadAnimation(const string& fileName)
 }
 
 //! Sets the current animation
+/**
+ * \param s32 id the number of the animation to be played
+ * \param f32 speed speed of the animation
+ */
 void CAnimatedModel::setCurrentAnimation(s32 id, f32 speed)
 {
   CurrentAnimationId = id;
@@ -474,18 +486,28 @@ void CAnimatedModel::playAnimation()
 }
 
 //! Sets the current animation speed
+/**
+ * \param f32 value speed of the animation
+ */
 void CAnimatedModel::setAnimationSpeed(f32 value)
 {
   MainNode->setAnimationSpeed(value);
 }
 
 //! Returns true if the current animation is finished
+/**
+ * \return bool true if current animation is finished
+ */
 bool CAnimatedModel::currentAnimationFinished()
 {
   return animationFinished(CurrentAnimationId);
 }
 
 //! Returns true if a specific animation is finished
+/**
+ * \param s32 id the number of the animation
+ * \return bool true if the animation specified by id is finished
+ */
 bool CAnimatedModel::animationFinished(s32 id)
 {
   return (MainNode->getFrameNr() == AnimationList[id].EndFrame);

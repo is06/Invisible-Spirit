@@ -46,7 +46,7 @@ CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : C
   if (alphaBlending) {
     // Alpha blending (alpha channel + alpha vertex)
     Material.MaterialType = video::EMT_ONETEXTURE_BLEND;
-    Material.MaterialTypeParam = video::pack_texureBlendFunc(
+    Material.MaterialTypeParam = video::pack_textureBlendFunc(
       video::EBF_SRC_ALPHA,
       video::EBF_ONE_MINUS_SRC_ALPHA,
       video::EMFN_MODULATE_1X,

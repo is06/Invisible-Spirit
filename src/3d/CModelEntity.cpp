@@ -26,7 +26,7 @@ CModelEntity::CModelEntity() : nEngine::CEntity()
 //! Rendering and event method
 void CModelEntity::update()
 {
-  //Entity::update();
+
 }
 
 void CModelEntity::shaderRender()

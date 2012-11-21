@@ -17,6 +17,7 @@ namespace is06
 namespace n3D
 {
 
+//! Main constructor of abstract class
 CCamera::CCamera()
 {
   Controlable = true;
@@ -25,11 +26,16 @@ CCamera::CCamera()
   IrrCam->setNearValue(0.1f);
 }
 
+//! All cameras update function
 void CCamera::update()
 {
 
 }
 
+//! Turns around X rotation axis (from front to back)
+/**
+ * \param f32 speed the rotation value
+ */
 void CCamera::turnX(f32 speed)
 {
   IrrCam->setRotation(core::vector3df(
@@ -39,6 +45,10 @@ void CCamera::turnX(f32 speed)
   ));
 }
 
+//! Turns around Y rotation axis (from side to side)
+/**
+ * \param f32 speed the rotation value
+ */
 void CCamera::turnY(f32 speed)
 {
   IrrCam->setRotation(core::vector3df(
@@ -48,6 +58,10 @@ void CCamera::turnY(f32 speed)
   ));
 }
 
+//! Turns around Z rotation axis ((anti-)clockwise)
+/**
+ * \param f32 speed the rotation value
+ */
 void CCamera::turnZ(f32 speed)
 {
   IrrCam->setRotation(core::vector3df(

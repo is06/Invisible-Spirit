@@ -26,7 +26,7 @@ CLight::CLight() : nEngine::CEntity()
 
 void CLight::update()
 {
-  //Entity::update();
+
 }
 
 CLight::~CLight()
