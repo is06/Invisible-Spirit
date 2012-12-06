@@ -18,6 +18,7 @@ enum ESceneIdentifier
   ESI_IS06_SCREEN = -1,
   ESI_INTRODUCTION = -2,
   ESI_MENU = -3,
+  ESI_SELECT_MAP = -4,
   ESI_MAP_2D_TEST = 1,
   ESI_MAP_ALPHA_ZONE = 2,
   ESI_MAP_CANYON = 3,

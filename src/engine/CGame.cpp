@@ -17,6 +17,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/sound/CMusicReference.h"
 #include "../../include/scene/CScene.h"
 #include "../../include/scene/CSceneMenu.h"
+#include "../../include/scene/CSceneSelectMap.h"
 #include "../../include/scene/CSceneGameplay.h"
 
 #include "../../include/map/MAP_DEBUG.h"
@@ -423,7 +424,7 @@ void CGame::initScenes()
 {
   Exit = false;
   SceneChanged = true;
-  NextScene = nScene::ESI_MENU;
+  NextScene = nScene::ESI_SELECT_MAP;
 }
 
 //!
@@ -531,6 +532,7 @@ void CGame::loadNextScene()
   switch (NextScene) {
     // Menus
     case nScene::ESI_MENU: CurrentScene = new nScene::CSceneMenu(); break;
+    case nScene::ESI_SELECT_MAP: CurrentScene = new nScene::CSceneSelectMap(); break;
 
     // Debug
     case nScene::ESI_MAP_ALPHA_ZONE: CurrentScene = new nMap::MAP_ALPHA_ZONE(); break;
