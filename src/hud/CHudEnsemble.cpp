@@ -6,41 +6,41 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/hud/CGameplayInterface.h"
-#include "../../include/hud/CButtonsInterface.h"
+#include "../../include/hud/CHudEnsemble.h"
+#include "../../include/hud/CHudEnsembleCommands.h"
 
 namespace is06
 {
 namespace nHud
 {
 
-CGameplayInterface::CGameplayInterface() : CHud()
+CHudEnsemble::CHudEnsemble() : CHud()
 {
-  Buttons = new CButtonsInterface();
+  Buttons = new CHudEnsembleCommands();
 }
 
-void CGameplayInterface::render()
+void CHudEnsemble::render()
 {
   CHud::render();
   Buttons->render();
 }
 
-void CGameplayInterface::hide()
+void CHudEnsemble::hide()
 {
   Buttons->hide();
 }
 
-void CGameplayInterface::show()
+void CHudEnsemble::show()
 {
   Buttons->show();
 }
 
-void CGameplayInterface::setOpacity(u8 value)
+void CHudEnsemble::setOpacity(u8 value)
 {
   Buttons->setOpacity(value);
 }
 
-CGameplayInterface::~CGameplayInterface()
+CHudEnsemble::~CHudEnsemble()
 {
   delete Buttons;
 }

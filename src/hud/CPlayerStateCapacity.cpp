@@ -5,35 +5,34 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_ENERGY_INTERFACE_H__
-#define __IS06_ENERGY_INTERFACE_H__
-
-#include "CHud.h"
+#include "../../include/engine/core.h"
+#include "../../include/hud/CPlayerStateCapacity.h"
+#include "../../include/hud/CPicture.h"
+#include "../../include/hud/CText.h"
 
 namespace is06
 {
 namespace nHud
 {
 
-//! The HUD energy interface
-class CEnergyInterface : public CHud
+CPlayerStateCapacity::CPlayerStateCapacity() : CHud()
 {
-  public:
-    CEnergyInterface();
-    ~CEnergyInterface();
+  Icon = new CPicture();
+  Value = new CText();
+}
 
-    void render();
-    void hide();
-    void show();
-    void setOpacity(u8 value);
+void CPlayerStateCapacity::render()
+{
+  CHud::render();
+  Icon->render();
+  Value->render();
+}
 
-    CBarCounter* HpBar;
-    //BarCounter* MpBar;
-    //SpiritCounter* SpiritPower;
-};
+CPlayerStateCapacity::~CPlayerStateCapacity()
+{
+  delete Icon;
+  delete Value;
+}
 
 }
 }
-
-#endif
-

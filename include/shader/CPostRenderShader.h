@@ -9,7 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_POST_RENDER_SHADER_H__
 
 #include "EShaderEffect.h"
-#include "../hud/CHud2DElement.h"
+#include "../hud/CFlatElement.h"
 
 namespace is06
 {
@@ -17,7 +17,7 @@ namespace nShader
 {
 
 //! Aligned screen quad for post render in order to simulated a light glowing effect
-class CPostRenderShader : public nHud::CHud2DElement
+class CPostRenderShader : public nHud::CFlatElement
 {
   public:
     CPostRenderShader();

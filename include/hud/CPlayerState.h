@@ -31,16 +31,16 @@ class CPlayerState : public CHud
     CText* LevelLabel;
     CText* LevelInfo;
 
-    CMainStateInfo* HpInfo;
-    CMainStateInfo* ExpInfo;
-    CMainStateInfo* NextLevelInfo;
+    CPlayerStateMainInfo* HpInfo;
+    CPlayerStateMainInfo* ExpInfo;
+    CPlayerStateMainInfo* NextLevelInfo;
 
-    CCapacityInfo* StrengthInfo;
-    CCapacityInfo* DefenseInfo;
-    CCapacityInfo* MagicInfo;
-    CCapacityInfo* ConcInfo;
-    CCapacityInfo* PrecInfo;
-    CCapacityInfo* SpeedInfo;
+    CPlayerStateCapacity* StrengthInfo;
+    CPlayerStateCapacity* DefenseInfo;
+    CPlayerStateCapacity* MagicInfo;
+    CPlayerStateCapacity* ConcInfo;
+    CPlayerStateCapacity* PrecInfo;
+    CPlayerStateCapacity* SpeedInfo;
 };
 
 }

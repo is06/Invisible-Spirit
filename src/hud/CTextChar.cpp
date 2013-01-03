@@ -14,7 +14,7 @@ namespace is06
 namespace nHud
 {
 
-CTextChar::CTextChar(u8 code, f32& x, f32& y, u8 size, CTextFont* font, bool visible, u8 extTexture) : CHud2DElement(x, y, size, size, true)
+CTextChar::CTextChar(u8 code, f32& x, f32& y, u8 size, CTextFont* font, bool visible, u8 extTexture) : CFlatElement(x, y, size, size, true)
 {
   u32 offsetCode = code;
 
@@ -62,7 +62,7 @@ CTextChar::CTextChar(u8 code, f32& x, f32& y, u8 size, CTextFont* font, bool vis
 
 void CTextChar::render()
 {
-  CHud2DElement::render();
+  CFlatElement::render();
 }
 
 CTextChar::~CTextChar()

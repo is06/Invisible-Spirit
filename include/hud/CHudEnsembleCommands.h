@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_CAPACITY_INFO_H__
-#define __IS06_CAPACITY_INFO_H__
+#ifndef __IS06_HUD_ENSEMBLE_COMMANDS_H__
+#define __IS06_HUD_ENSEMBLE_COMMANDS_H__
 
 #include "CHud.h"
 
@@ -15,17 +15,22 @@ namespace is06
 namespace nHud
 {
 
-class CCapacityInfo : public CHud
+//! The HUD button gameplay interface
+class CHudEnsembleCommands : public CHud
 {
   public:
-    CCapacityInfo();
-    ~CCapacityInfo();
+    CHudEnsembleCommands();
+    ~CHudEnsembleCommands();
 
     void render();
+    void hide();
+    void show();
+    void setOpacity(u8 value);
 
-  private:
-    CPicture* Icon;
-    CText* Value;
+    CButton* Command;
+    CButton* Jump;
+    CButton* Defense;
+    CButton* Menu;
 };
 
 }

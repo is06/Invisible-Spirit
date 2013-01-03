@@ -37,8 +37,8 @@ class CSceneGameplay : public CScene
 
     n3D::CPlayableCharacter* Hero;
     nEngine::CMapSectionInterface* MapSections;
-    nHud::CGameplayInterface* GameplayInterface;
-    nHud::CEnergyInterface* EnergyInterface;
+    nHud::CHudEnsemble* HudEnsemble;
+    nHud::CHudEnsembleEnergy* HudEnergyEnsemble;
     nHud::CMiniMap* MiniMap;
     nHud::CWorldTimeCounter* WorldTime;
     nHud::nPauseScreen::CPauseScreen* PauseScreen;

@@ -7,7 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
-#include "../../include/hud/CButtonsInterface.h"
+#include "../../include/hud/CHudEnsembleCommands.h"
 #include "../../include/hud/CTextButton.h"
 #include "../../include/hud/CIconButton.h"
 #include "../../include/hud/CIconTextButton.h"
@@ -17,7 +17,7 @@ namespace is06
 namespace nHud
 {
 
-CButtonsInterface::CButtonsInterface() : CHud()
+CHudEnsembleCommands::CHudEnsembleCommands() : CHud()
 {
   Menu = new CTextButton(nEngine::CGame::ScreenPos.Hud.Left + 70, nEngine::CGame::ScreenPos.Hud.Bottom + 110);
   Defense = new CIconButton(nEngine::CGame::ScreenPos.Hud.Left + 30, nEngine::CGame::ScreenPos.Hud.Bottom + 70);
@@ -25,7 +25,7 @@ CButtonsInterface::CButtonsInterface() : CHud()
   Command = new CIconTextButton(nEngine::CGame::ScreenPos.Hud.Left + 70, nEngine::CGame::ScreenPos.Hud.Bottom + 30);
 }
 
-void CButtonsInterface::render()
+void CHudEnsembleCommands::render()
 {
   CHud::render();
   Menu->render();
@@ -34,7 +34,7 @@ void CButtonsInterface::render()
   Command->render();
 }
 
-void CButtonsInterface::hide()
+void CHudEnsembleCommands::hide()
 {
   Menu->hide();
   Defense->hide();
@@ -42,7 +42,7 @@ void CButtonsInterface::hide()
   Command->hide();
 }
 
-void CButtonsInterface::show()
+void CHudEnsembleCommands::show()
 {
   Menu->show();
   Defense->show();
@@ -50,7 +50,7 @@ void CButtonsInterface::show()
   Command->show();
 }
 
-void CButtonsInterface::setOpacity(u8 value)
+void CHudEnsembleCommands::setOpacity(u8 value)
 {
   Menu->setOpacity(value);
   Defense->setOpacity(value);
@@ -58,7 +58,7 @@ void CButtonsInterface::setOpacity(u8 value)
   Command->setOpacity(value);
 }
 
-CButtonsInterface::~CButtonsInterface()
+CHudEnsembleCommands::~CHudEnsembleCommands()
 {
   delete Menu;
   delete Defense;

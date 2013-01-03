@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAIN_STATE_INFO_H__
-#define __IS06_MAIN_STATE_INFO_H__
+#ifndef __IS06_PLAYER_STATE_MAIN_INFO_H__
+#define __IS06_PLAYER_STATE_MAIN_INFO_H__
 
 #include "CHud.h"
 
@@ -15,11 +15,11 @@ namespace is06
 namespace nHud
 {
 
-class CMainStateInfo : public CHud
+class CPlayerStateMainInfo : public CHud
 {
   public:
-    CMainStateInfo();
-    ~CMainStateInfo();
+    CPlayerStateMainInfo();
+    ~CPlayerStateMainInfo();
 
     void render();
     void show();

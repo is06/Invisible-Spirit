@@ -15,8 +15,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/CLevelMesh.h"
 #include "../../include/3d/CTPCamera.h"
 #include "../../include/3d/CPlayableCharacter.h"
-#include "../../include/hud/CGameplayInterface.h"
-#include "../../include/hud/CEnergyInterface.h"
+#include "../../include/hud/CHudEnsemble.h"
+#include "../../include/hud/CHudEnsembleEnergy.h"
 #include "../../include/hud/CPauseScreen.h"
 #include "../../include/hud/CMenu.h"
 #include "../../include/scene/CSceneGameplay.h"
@@ -47,8 +47,7 @@ void CSceneGameplay::loadingSequence()
   Camera->linkEntity(Hero);
 
   // GUI Interfaces
-  GameplayInterface = new nHud::CGameplayInterface();
-  EnergyInterface = new nHud::CEnergyInterface();
+  HudEnsemble = new nHud::CHudEnsemble();
   MiniMap = new nHud::CMiniMap(Hero);
   PauseScreen = new nHud::nPauseScreen::CPauseScreen(GlobalTranslations, Control);
 }
@@ -248,8 +247,7 @@ CSceneGameplay::~CSceneGameplay()
   if (MapSections) delete MapSections;
   if (Hero) delete Hero;
   if (Camera) delete Camera;
-  if (GameplayInterface) delete GameplayInterface;
-  if (EnergyInterface) delete EnergyInterface;
+  if (HudEnsemble) delete HudEnsemble;
   if (MiniMap) delete MiniMap;
   if (PauseScreen) delete PauseScreen;
   if (EverySecondTimer) delete EverySecondTimer;

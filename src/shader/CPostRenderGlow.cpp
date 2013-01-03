@@ -50,7 +50,7 @@ void CPostRenderGlow::render()
 {
   // Perform first pass (horizontal blur)
   Material.MaterialType = (video::E_MATERIAL_TYPE)nEngine::CGame::Shaders.HorizontalBlur;
-  CHud2DElement::render();
+  CFlatElement::render();
 
   if (Texture) {
     nEngine::CGame::getVideoDriver()->setRenderTarget(Texture, true, true, video::SColor(255, 255, 255, 255));
@@ -60,7 +60,7 @@ void CPostRenderGlow::render()
     nEngine::CGame::getSceneManager()->drawAll();
     // Perform second pass (vertical blur)
     Material.MaterialType = (video::E_MATERIAL_TYPE)nEngine::CGame::Shaders.VerticalBlur;
-    CHud2DElement::render();
+    CFlatElement::render();
     // Restore lighting material of all darkened entities
     removeEffectsToEntities();
     // Reset render target to main display viewport

@@ -8,40 +8,40 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
 #include "../../include/hud/CBarCounter.h"
-#include "../../include/hud/CEnergyInterface.h"
+#include "../../include/hud/CHudEnsembleEnergy.h"
 
 namespace is06
 {
 namespace nHud
 {
 
-CEnergyInterface::CEnergyInterface() : CHud()
+CHudEnsembleEnergy::CHudEnsembleEnergy() : CHud()
 {
   HpBar = new CBarCounter(100, 0, 100, (nEngine::CGame::ScreenPos.Hud.Right - 170), (nEngine::CGame::ScreenPos.Hud.Bottom + 30), 150, 4, EBS_LIFE);
 }
 
-void CEnergyInterface::render()
+void CHudEnsembleEnergy::render()
 {
   CHud::render();
   HpBar->render();
 }
 
-void CEnergyInterface::hide()
+void CHudEnsembleEnergy::hide()
 {
   HpBar->hide();
 }
 
-void CEnergyInterface::show()
+void CHudEnsembleEnergy::show()
 {
   HpBar->show();
 }
 
-void CEnergyInterface::setOpacity(u8 value)
+void CHudEnsembleEnergy::setOpacity(u8 value)
 {
   HpBar->setOpacity(value);
 }
 
-CEnergyInterface::~CEnergyInterface()
+CHudEnsembleEnergy::~CHudEnsembleEnergy()
 {
   delete HpBar;
 }

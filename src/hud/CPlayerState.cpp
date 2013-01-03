@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/core.h"
 #include "../../include/hud/CPlayerState.h"
 #include "../../include/hud/CText.h"
-#include "../../include/hud/CMainStateInfo.h"
+#include "../../include/hud/CPlayerStateMainInfo.h"
 
 namespace is06
 {
@@ -21,7 +21,7 @@ CPlayerState::CPlayerState()
   LevelLabel = new CText("niv.", 0, -24);
   LevelInfo = new CText("1", 100, -24);
 
-  HpInfo = new CMainStateInfo();
+  HpInfo = new CPlayerStateMainInfo();
 }
 
 void CPlayerState::render()

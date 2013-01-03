@@ -53,7 +53,7 @@ namespace nScene
 namespace nHud
 {
   class CHud;
-  class CHud2DElement;
+  class CHudFlatElement;
   class CTriangle;
   class CQuad;
   class CCounter;
@@ -69,33 +69,34 @@ namespace nHud
   class CTextChar;
   class CTextFont;
   class CWindow;
-  class CGameplayInterface;
-  class CEnergyInterface;
-  class CButtonsInterface;
+  class CHudEnsemble;
+  class CHudEnsembleEnergy;
+  class CHudEnsembleCommands;
   class CButton;
   class CTextButton;
   class CIconButton;
   class CIconTextButton;
   class CMenu;
   class CMenuOption;
-  class CMainStateInfo;
-  class CCapacityInfo;
+  class CPlayerStateMainInfo;
+  class CPlayerStateCapacity;
   class CPlayerState;
   class CMiniMap;
+  class CMiniMapArrow;
 
-  //! Menu and sub-menu interfaces
-  namespace nMenu
+  //! pause screen and sub-screen interfaces
+  namespace nPauseScreen
   {
-    class CGameplayMenu;
-    class CDimensionMenu;
-    class CItemMenu;
-    class CMapMenu;
-    class CMonstersMenu;
-    class CSettingsMenu;
-    class CSpiritMenu;
-    class CStatusMenu;
-    class CTalesMenu;
-    class CWeaponMenu;
+    class CPauseScreen;
+    class CPauseSubScreen;
+    class CPauseSubScreenItems;
+    class CPauseSubScreenMap;
+    class CPauseSubScreenMonsters;
+    class CPauseSubScreenSettings;
+    class CPauseSubScreenSpirits;
+    class CPauseSubScreenStatus;
+    class CPauseSubScreenStory;
+    class CPauseSubScreenWeapons;
   }
 }
 
@@ -115,6 +116,7 @@ namespace n3D
   class CSensor;
   class CPlaneSensor;
   class CBoxSensor;
+  class CTeleporter;
 
   // Characters
   class CCharacter;

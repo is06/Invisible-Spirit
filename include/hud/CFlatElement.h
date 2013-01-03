@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_HUD_2D_ELEMENT_H__
-#define __IS06_HUD_2D_ELEMENT_H__
+#ifndef __IS06_FLAT_ELEMENT_H__
+#define __IS06_FLAT_ELEMENT_H__
 
 #include "CHud.h"
 
@@ -16,11 +16,11 @@ namespace nHud
 {
 
 //! A simili-2D HUD element (3D screen-aligned quad), also used for post render effects
-class CHud2DElement : public CHud
+class CFlatElement : public CHud
 {
   public:
-    CHud2DElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending=false);
-    virtual ~CHud2DElement();
+    CFlatElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending=false);
+    virtual ~CFlatElement();
 
     virtual void render() = 0;
 

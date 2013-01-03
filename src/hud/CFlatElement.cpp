@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
 #include "../../include/engine/CSettings.h"
-#include "../../include/hud/CHud2DElement.h"
+#include "../../include/hud/CFlatElement.h"
 
 using namespace irr;
 
@@ -17,12 +17,12 @@ namespace is06
 namespace nHud
 {
 
-f32 CHud2DElement::FarValue = 0.1f;
-f32 CHud2DElement::Coeff = 4954.94f;
-u16 CHud2DElement::Indices[] = {2, 1, 3, 0, 1, 2};
-core::matrix4 CHud2DElement::Mat;
+f32 CFlatElement::FarValue = 0.1f;
+f32 CFlatElement::Coeff = 4954.94f;
+u16 CFlatElement::Indices[] = {2, 1, 3, 0, 1, 2};
+core::matrix4 CFlatElement::Mat;
 
-CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : CHud()
+CFlatElement::CFlatElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : CHud()
 {
   AbsoluteTransformation = core::matrix4();
   AbsoluteTransformation.makeIdentity();
@@ -105,7 +105,7 @@ CHud2DElement::CHud2DElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : C
   );
 }
 
-void CHud2DElement::render()
+void CFlatElement::render()
 {
   // Offset de texture
   Vertices[0].TCoords.X = MinTextureOffset.X;
@@ -151,30 +151,30 @@ void CHud2DElement::render()
   }
 }
 
-void CHud2DElement::setSize(f32 w, f32 h)
+void CFlatElement::setSize(f32 w, f32 h)
 {
   Size.Width = w;
   Size.Height = h;
 }
 
-void CHud2DElement::setPosition(f32 x, f32 y)
+void CFlatElement::setPosition(f32 x, f32 y)
 {
   AbsoluteTransformation.setTranslation(core::vector3df(x/Coeff, y/Coeff, 0.0f));
 }
 
-void CHud2DElement::setRotation(f32 value)
+void CFlatElement::setRotation(f32 value)
 {
   value *= -1;
   AbsoluteTransformation.setRotationDegrees(core::vector3df(0.0f, 0.0f, value));
 }
 
-void CHud2DElement::setTextureOffset(const core::vector2df& min, const core::vector2df& max)
+void CFlatElement::setTextureOffset(const core::vector2df& min, const core::vector2df& max)
 {
   MinTextureOffset = min;
   MaxTextureOffset = max;
 }
 
-void CHud2DElement::addX(f32 val)
+void CFlatElement::addX(f32 val)
 {
   AbsoluteTransformation.setTranslation(core::vector3df(
     AbsoluteTransformation.getTranslation().X + (val/Coeff),
@@ -184,7 +184,7 @@ void CHud2DElement::addX(f32 val)
   //Position.X += val;
 }
 
-void CHud2DElement::subX(f32 val)
+void CFlatElement::subX(f32 val)
 {
   AbsoluteTransformation.setTranslation(core::vector3df(
     AbsoluteTransformation.getTranslation().X - (val/Coeff),
@@ -194,7 +194,7 @@ void CHud2DElement::subX(f32 val)
   //Position.X -= val;
 }
 
-void CHud2DElement::setX(f32 val)
+void CFlatElement::setX(f32 val)
 {
   AbsoluteTransformation.setTranslation(core::vector3df(
     (val/Coeff),
@@ -204,7 +204,7 @@ void CHud2DElement::setX(f32 val)
   //Position.X = val;
 }
 
-void CHud2DElement::addY(f32 val)
+void CFlatElement::addY(f32 val)
 {
   AbsoluteTransformation.setTranslation(core::vector3df(
     AbsoluteTransformation.getTranslation().X,
@@ -214,7 +214,7 @@ void CHud2DElement::addY(f32 val)
   //Position.Y += val;
 }
 
-void CHud2DElement::subY(f32 val)
+void CFlatElement::subY(f32 val)
 {
   AbsoluteTransformation.setTranslation(core::vector3df(
     AbsoluteTransformation.getTranslation().X,
@@ -224,7 +224,7 @@ void CHud2DElement::subY(f32 val)
   //Position.Y -= val;
 }
 
-void CHud2DElement::setY(f32 val)
+void CFlatElement::setY(f32 val)
 {
   AbsoluteTransformation.setTranslation(core::vector3df(
     AbsoluteTransformation.getTranslation().X,
@@ -234,75 +234,75 @@ void CHud2DElement::setY(f32 val)
   //Position.Y = val;
 }
 
-void CHud2DElement::setWidth(f32 val)
+void CFlatElement::setWidth(f32 val)
 {
   Size.Width = val;
 }
 
-void CHud2DElement::setHeight(f32 val)
+void CFlatElement::setHeight(f32 val)
 {
   Size.Height = val;
 }
 
-f32 CHud2DElement::getX()
+f32 CFlatElement::getX()
 {
   return AbsoluteTransformation.getTranslation().X;
 }
 
-f32 CHud2DElement::getY()
+f32 CFlatElement::getY()
 {
   return AbsoluteTransformation.getTranslation().Y;
 }
 
-f32 CHud2DElement::getWidth()
+f32 CFlatElement::getWidth()
 {
   return Size.Width;
 }
 
-f32 CHud2DElement::getHeight()
+f32 CFlatElement::getHeight()
 {
   return Size.Height;
 }
 
-void CHud2DElement::startUVAnimation(f32 uSpeed, f32 vSpeed)
+void CFlatElement::startUVAnimation(f32 uSpeed, f32 vSpeed)
 {
   AnimSpeed.X = uSpeed;
   AnimSpeed.Y = vSpeed;
 }
 
-void CHud2DElement::stopUVAnimation()
+void CFlatElement::stopUVAnimation()
 {
   AnimSpeed.X = 0.0f;
   AnimSpeed.Y = 0.0f;
 }
 
-void CHud2DElement::hide()
+void CFlatElement::hide()
 {
   Visible = false;
 }
 
-void CHud2DElement::show()
+void CFlatElement::show()
 {
   Visible = true;
 }
 
-void CHud2DElement::setOpacity(u8 value)
+void CFlatElement::setOpacity(u8 value)
 {
   Opacity = value;
 }
 
-u8 CHud2DElement::getOpacity()
+u8 CFlatElement::getOpacity()
 {
   return Opacity;
 }
 
-void CHud2DElement::diffuse(video::SColor color)
+void CFlatElement::diffuse(video::SColor color)
 {
   Opacity = color.getAlpha();
   Material.DiffuseColor = color;
 }
 
-CHud2DElement::~CHud2DElement()
+CFlatElement::~CFlatElement()
 {
   Texture = NULL;
 }

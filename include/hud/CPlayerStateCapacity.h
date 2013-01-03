@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_GAMEPLAY_INTERFACE_H__
-#define __IS06_GAMEPLAY_INTERFACE_H__
+#ifndef __IS06_PLAYER_STATE_CAPACITY_H__
+#define __IS06_PLAYER_STATE_CAPACITY_H__
 
 #include "CHud.h"
 
@@ -15,20 +15,17 @@ namespace is06
 namespace nHud
 {
 
-//! The whole HUD gameplay interface (buttons, energy...)
-class CGameplayInterface : public CHud
+class CPlayerStateCapacity : public CHud
 {
   public:
-    CGameplayInterface();
-    ~CGameplayInterface();
+    CPlayerStateCapacity();
+    ~CPlayerStateCapacity();
 
     void render();
-    void hide();
-    void show();
-    void setOpacity(u8 value);
 
-    CButtonsInterface* Buttons;
-    CEnergyInterface* Energy;
+  private:
+    CPicture* Icon;
+    CText* Value;
 };
 
 }

@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_BUTTONS_INTERFACE_H__
-#define __IS06_BUTTONS_INTERFACE_H__
+#ifndef __IS06_HUD_ENSEMBLE_H__
+#define __IS06_HUD_ENSEMBLE_H__
 
 #include "CHud.h"
 
@@ -15,22 +15,20 @@ namespace is06
 namespace nHud
 {
 
-//! The HUD button gameplay interface
-class CButtonsInterface : public CHud
+//! The whole HUD gameplay interface (buttons, energy...)
+class CHudEnsemble : public CHud
 {
   public:
-    CButtonsInterface();
-    ~CButtonsInterface();
+    CHudEnsemble();
+    ~CHudEnsemble();
 
     void render();
     void hide();
     void show();
     void setOpacity(u8 value);
 
-    CButton* Command;
-    CButton* Jump;
-    CButton* Defense;
-    CButton* Menu;
+    CHudEnsembleCommands* Buttons;
+    CHudEnsembleEnergy* Energy;
 };
 
 }

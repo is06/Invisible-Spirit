@@ -16,14 +16,14 @@ namespace is06
 namespace nHud
 {
 
-CQuad::CQuad(f32 x, f32 y, f32 w, f32 h, video::SColor color) : CHud2DElement(x, y, w, h, false)
+CQuad::CQuad(f32 x, f32 y, f32 w, f32 h, video::SColor color) : CFlatElement(x, y, w, h, false)
 {
   Material.DiffuseColor = color;
 }
 
 void CQuad::render()
 {
-  CHud2DElement::render();
+  CFlatElement::render();
 }
 
 CQuad::~CQuad()

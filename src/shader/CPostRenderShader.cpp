@@ -15,7 +15,7 @@ namespace is06
 namespace nShader
 {
 
-CPostRenderShader::CPostRenderShader() : CHud2DElement(0, 0, nEngine::CGame::ScreenPos.Hud.Width, nEngine::CGame::ScreenPos.Hud.Height)
+CPostRenderShader::CPostRenderShader() : CFlatElement(0, 0, nEngine::CGame::ScreenPos.Hud.Width, nEngine::CGame::ScreenPos.Hud.Height)
 {
   Texture = 0;
 
