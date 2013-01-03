@@ -6,29 +6,42 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/hud/CStatusMenu.h"
+#include "../../include/hud/CPauseSubScreen.h"
 
 namespace is06
 {
 namespace nHud
 {
-namespace nMenu
+namespace nPauseScreen
 {
 
-CStatusMenu::CStatusMenu() : CGameplaySubMenu()
+CPauseSubScreen::CPauseSubScreen() : CHud() {}
+
+//! \todo comment this function
+void CPauseSubScreen::render()
+{
+  CHud::render();
+}
+
+//! \todo write this function
+void CPauseSubScreen::show()
 {
 
 }
 
-void CStatusMenu::render()
-{
-  CGameplaySubMenu::render();
-}
-
-CStatusMenu::~CStatusMenu()
+//! \todo write this function
+void CPauseSubScreen::hide()
 {
 
 }
+
+//! \todo write this function
+void CPauseSubScreen::setOpacity(u8 value)
+{
+
+}
+
+CPauseSubScreen::~CPauseSubScreen() {}
 
 }
 }

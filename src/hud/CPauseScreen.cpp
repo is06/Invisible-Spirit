@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/CSave.h"
 #include "../../include/engine/CPlayerControl.h"
 #include "../../include/engine/CTranslation.h"
-#include "../../include/hud/CGameplayMenu.h"
+#include "../../include/hud/CPauseScreen.h"
 #include "../../include/hud/CMenu.h"
 #include "../../include/hud/CMenuOption.h"
 #include "../../include/hud/CPicture.h"
@@ -21,25 +21,24 @@ namespace is06
 {
 namespace nHud
 {
-namespace nMenu
+namespace nPauseScreen
 {
 
 //! All elements creation
-CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CPlayerControl* control)
+CPauseScreen::CPauseScreen(nEngine::CTranslation* translation, nEngine::CPlayerControl* control)
 {
   // Properties
   Visible = false;
 
-  // Sub Menus pointers
-  WpMenu = NULL;
-  SpMenu = NULL;
-  ItMenu = NULL;
-  MpMenu = NULL;
-  StMenu = NULL;
-  DmMenu = NULL;
-  TlMenu = NULL;
-  MnMenu = NULL;
-  SeMenu = NULL;
+  // Sub Screens pointers
+  WeaponsSubScreen = NULL;
+  SpiritsSubScreen = NULL;
+  ItemsSubScreen = NULL;
+  MapSubScreen = NULL;
+  StatusSubScreen = NULL;
+  StorySubScreen = NULL;
+  MonstersSubScreen = NULL;
+  SettingsSubScreen = NULL;
 
   // Player control pointer
   Control = control;
@@ -80,7 +79,7 @@ CGameplayMenu::CGameplayMenu(nEngine::CTranslation* translation, nEngine::CPlaye
 }
 
 //! Gameplay menu render: all entities are rendered here
-void CGameplayMenu::render()
+void CPauseScreen::render()
 {
   if (Visible) {
     if (Control->commandEntered(nEngine::ECI_MENU_DOWN, nEngine::EET_ONCE)) {
@@ -96,56 +95,53 @@ void CGameplayMenu::render()
     StateInfo->render();
     GameplayTime->render();
 
-    if (WpMenu) {
-      WpMenu->render();
+    if (WeaponsSubScreen) {
+      WeaponsSubScreen->render();
     }
-    if (SpMenu) {
-      SpMenu->render();
+    if (SpiritsSubScreen) {
+      SpiritsSubScreen->render();
     }
-    if (ItMenu) {
-      ItMenu->render();
+    if (ItemsSubScreen) {
+      ItemsSubScreen->render();
     }
-    if (MpMenu) {
-      MpMenu->render();
+    if (MapSubScreen) {
+      MapSubScreen->render();
     }
-    if (StMenu) {
-      StMenu->render();
+    if (StatusSubScreen) {
+      StatusSubScreen->render();
     }
-    if (DmMenu) {
-      DmMenu->render();
+    if (StorySubScreen) {
+      StorySubScreen->render();
     }
-    if (TlMenu) {
-      TlMenu->render();
+    if (MonstersSubScreen) {
+      MonstersSubScreen->render();
     }
-    if (MnMenu) {
-      MnMenu->render();
-    }
-    if (SeMenu) {
-      SeMenu->render();
+    if (SettingsSubScreen) {
+      SettingsSubScreen->render();
     }
   }
 }
 
 //! \todo write this function
-void CGameplayMenu::show()
+void CPauseScreen::show()
 {
 
 }
 
 //! \todo write this function
-void CGameplayMenu::hide()
+void CPauseScreen::hide()
 {
 
 }
 
 //! \todo write this function
-void CGameplayMenu::setOpacity(u8 value)
+void CPauseScreen::setOpacity(u8 value)
 {
 
 }
 
 //! Toggles visibility of the menu
-void CGameplayMenu::toggle()
+void CPauseScreen::toggle()
 {
   if (Visible) {
     Visible = false;
@@ -155,73 +151,73 @@ void CGameplayMenu::toggle()
 }
 
 //! \todo comment this function
-bool CGameplayMenu::isVisible()
+bool CPauseScreen::isVisible()
 {
   return Visible;
 }
 
 //! \todo comment this function
-CMenu* CGameplayMenu::getSectionMenu()
+CMenu* CPauseScreen::getSectionMenu()
 {
   return SectionMenu;
 }
 
 //! \todo comment this function
-void CGameplayMenu::goToWeaponMenu()
+void CPauseScreen::goToWeaponMenu()
 {
-  WpMenu = new CWeaponMenu();
+  WeaponsSubScreen = new CPauseSubScreenWeapons();
 }
 
 //! \todo write this function
-void CGameplayMenu::goToSpiritMenu()
-{
-
-}
-
-//! \todo write this function
-void CGameplayMenu::goToItemMenu()
+void CPauseScreen::goToSpiritMenu()
 {
 
 }
 
 //! \todo write this function
-void CGameplayMenu::goToMapMenu()
+void CPauseScreen::goToItemMenu()
 {
 
 }
 
 //! \todo write this function
-void CGameplayMenu::goToStatusMenu()
+void CPauseScreen::goToMapMenu()
 {
 
 }
 
 //! \todo write this function
-void CGameplayMenu::goToDimensionMenu()
+void CPauseScreen::goToStatusMenu()
 {
 
 }
 
 //! \todo write this function
-void CGameplayMenu::goToTalesMenu()
+void CPauseScreen::goToDimensionMenu()
 {
 
 }
 
 //! \todo write this function
-void CGameplayMenu::goToMonstersMenu()
+void CPauseScreen::goToTalesMenu()
 {
 
 }
 
 //! \todo write this function
-void CGameplayMenu::goToSettingsMenu()
+void CPauseScreen::goToMonstersMenu()
+{
+
+}
+
+//! \todo write this function
+void CPauseScreen::goToSettingsMenu()
 {
 
 }
 
 //! \todo comment this function
-CGameplayMenu::~CGameplayMenu()
+CPauseScreen::~CPauseScreen()
 {
   delete Background;
   delete TopBar;

@@ -6,26 +6,26 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/hud/CSpiritMenu.h"
+#include "../../include/hud/CPauseSubScreenSpirits.h"
 
 namespace is06
 {
 namespace nHud
 {
-namespace nMenu
+namespace nPauseScreen
 {
 
-CSpiritMenu::CSpiritMenu() : CGameplaySubMenu()
+CPauseSubScreenSpirits::CPauseSubScreenSpirits() : CPauseSubScreen()
 {
 
 }
 
-void CSpiritMenu::render()
+void CPauseSubScreenSpirits::render()
 {
-  CGameplaySubMenu::render();
+  CPauseSubScreen::render();
 }
 
-CSpiritMenu::~CSpiritMenu()
+CPauseSubScreenSpirits::~CPauseSubScreenSpirits()
 {
 
 }

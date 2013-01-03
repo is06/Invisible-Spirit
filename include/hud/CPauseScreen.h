@@ -5,33 +5,32 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_GAMEPLAY_MENU_H__
-#define __IS06_GAMEPLAY_MENU_H__
+#ifndef __IS06_PAUSE_SCREEN_H__
+#define __IS06_PAUSE_SCREEN_H__
 
 #include "CHud.h"
-#include "CDimensionMenu.h"
-#include "CItemMenu.h"
-#include "CMapMenu.h"
-#include "CMonstersMenu.h"
-#include "CSettingsMenu.h"
-#include "CSpiritMenu.h"
-#include "CStatusMenu.h"
-#include "CTalesMenu.h"
-#include "CWeaponMenu.h"
+#include "CPauseSubScreenItems.h"
+#include "CPauseSubScreenMap.h"
+#include "CPauseSubScreenMonsters.h"
+#include "CPauseSubScreenSettings.h"
+#include "CPauseSubScreenSpirits.h"
+#include "CPauseSubScreenStatus.h"
+#include "CPauseSubScreenStory.h"
+#include "CPauseSubScreenWeapons.h"
 
 namespace is06
 {
 namespace nHud
 {
-namespace nMenu
+namespace nPauseScreen
 {
 
 //! The main gameplay menu
-class CGameplayMenu : public CHud
+class CPauseScreen : public CHud
 {
   public:
-    CGameplayMenu(nEngine::CTranslation* translation, nEngine::CPlayerControl* control);
-    ~CGameplayMenu();
+    CPauseScreen(nEngine::CTranslation* translation, nEngine::CPlayerControl* control);
+    ~CPauseScreen();
 
     void render();
     void toggle();
@@ -63,16 +62,15 @@ class CGameplayMenu : public CHud
     CGameTimeCounter* GameplayTime;
     //DigitCounter* moneyCounter;
 
-    // Sub menus
-    CWeaponMenu* WpMenu;
-    CSpiritMenu* SpMenu;
-    CItemMenu* ItMenu;
-    CMapMenu* MpMenu;
-    CStatusMenu* StMenu;
-    CDimensionMenu* DmMenu;
-    CTalesMenu* TlMenu;
-    CMonstersMenu* MnMenu;
-    CSettingsMenu* SeMenu;
+    // Sub screens
+    CPauseSubScreenWeapons* WeaponsSubScreen;
+    CPauseSubScreenSpirits* SpiritsSubScreen;
+    CPauseSubScreenItems* ItemsSubScreen;
+    CPauseSubScreenMap* MapSubScreen;
+    CPauseSubScreenStatus* StatusSubScreen;
+    CPauseSubScreenStory* StorySubScreen;
+    CPauseSubScreenMonsters* MonstersSubScreen;
+    CPauseSubScreenSettings* SettingsSubScreen;
 
     bool Visible;
 };

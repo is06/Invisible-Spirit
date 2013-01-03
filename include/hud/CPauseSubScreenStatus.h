@@ -5,31 +5,29 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/hud/CTalesMenu.h"
+#ifndef __IS06_PAUSE_SUB_SCREEN_STATUS_H__
+#define __IS06_PAUSE_SUB_SCREEN_STATUS_H__
+
+#include "CPauseSubScreen.h"
 
 namespace is06
 {
 namespace nHud
 {
-namespace nMenu
+namespace nPauseScreen
 {
 
-CTalesMenu::CTalesMenu() : CGameplaySubMenu()
+class CPauseSubScreenStatus : public CPauseSubScreen
 {
+  public:
+    CPauseSubScreenStatus();
+    ~CPauseSubScreenStatus();
 
-}
-
-void CTalesMenu::render()
-{
-  CGameplaySubMenu::render();
-}
-
-CTalesMenu::~CTalesMenu()
-{
-
-}
+    void render();
+};
 
 }
 }
 }
+
+#endif

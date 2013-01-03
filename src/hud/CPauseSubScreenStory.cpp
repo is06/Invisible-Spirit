@@ -5,35 +5,31 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_GAMEPLAY_SUB_MENU_H__
-#define __IS06_GAMEPLAY_SUB_MENU_H__
-
-#include "CHud.h"
+#include "../../include/engine/core.h"
+#include "../../include/hud/CPauseSubScreenStory.h"
 
 namespace is06
 {
 namespace nHud
 {
-namespace nMenu
+namespace nPauseScreen
 {
 
-//! The base class for all gameplay sub-menus
-class CGameplaySubMenu : public CHud {
-  public:
-    CGameplaySubMenu();
-    ~CGameplaySubMenu();
+CPauseSubScreenStory::CPauseSubScreenStory() : CPauseSubScreen()
+{
 
-    virtual void render();
-    virtual void show();
-    virtual void hide();
-    virtual void setOpacity(u8 value);
+}
 
-  protected:
+void CPauseSubScreenStory::render()
+{
+  CPauseSubScreen::render();
+}
 
-};
+CPauseSubScreenStory::~CPauseSubScreenStory()
+{
+
+}
 
 }
 }
 }
-
-#endif

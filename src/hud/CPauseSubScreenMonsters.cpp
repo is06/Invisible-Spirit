@@ -6,26 +6,26 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/hud/CDimensionMenu.h"
+#include "../../include/hud/CPauseSubScreenMonsters.h"
 
 namespace is06
 {
 namespace nHud
 {
-namespace nMenu
+namespace nPauseScreen
 {
 
-CDimensionMenu::CDimensionMenu() : CGameplaySubMenu()
+CPauseSubScreenMonsters::CPauseSubScreenMonsters() : CPauseSubScreen()
 {
 
 }
 
-void CDimensionMenu::render()
+void CPauseSubScreenMonsters::render()
 {
-  CGameplaySubMenu::render();
+  CPauseSubScreen::render();
 }
 
-CDimensionMenu::~CDimensionMenu()
+CPauseSubScreenMonsters::~CPauseSubScreenMonsters()
 {
 
 }

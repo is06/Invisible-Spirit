@@ -5,31 +5,29 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/hud/CWeaponMenu.h"
+#ifndef __IS06_PAUSE_SUB_SCREEN_SETTINGS_H__
+#define __IS06_PAUSE_SUB_SCREEN_SETTINGS_H__
+
+#include "CPauseSubScreen.h"
 
 namespace is06
 {
 namespace nHud
 {
-namespace nMenu
+namespace nPauseScreen
 {
 
-CWeaponMenu::CWeaponMenu() : CGameplaySubMenu()
+class CPauseSubScreenSettings : public CPauseSubScreen
 {
+  public:
+    CPauseSubScreenSettings();
+    ~CPauseSubScreenSettings();
 
-}
-
-void CWeaponMenu::render()
-{
-  CGameplaySubMenu::render();
-}
-
-CWeaponMenu::~CWeaponMenu()
-{
-
-}
+    void render();
+};
 
 }
 }
 }
+
+#endif

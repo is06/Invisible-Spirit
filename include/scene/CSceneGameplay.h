@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "CScene.h"
 #include "../hud/CMiniMap.h"
-#include "../hud/CGameplayMenu.h"
+#include "../hud/CPauseScreen.h"
 #include "../engine/CNPCInterface.h"
 #include "../engine/CMapSectionInterface.h"
 
@@ -41,7 +41,7 @@ class CSceneGameplay : public CScene
     nHud::CEnergyInterface* EnergyInterface;
     nHud::CMiniMap* MiniMap;
     nHud::CWorldTimeCounter* WorldTime;
-    nHud::nMenu::CGameplayMenu* GameplayMenu;
+    nHud::nPauseScreen::CPauseScreen* PauseScreen;
     nEngine::CTimer* EverySecondTimer;
     nEngine::CNPCInterface* NPCInterface;
 

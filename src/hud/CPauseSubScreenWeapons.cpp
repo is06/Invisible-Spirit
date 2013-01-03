@@ -6,26 +6,26 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/hud/CItemMenu.h"
+#include "../../include/hud/CPauseSubScreenWeapons.h"
 
 namespace is06
 {
 namespace nHud
 {
-namespace nMenu
+namespace nPauseScreen
 {
 
-CItemMenu::CItemMenu() : CGameplaySubMenu()
+CPauseSubScreenWeapons::CPauseSubScreenWeapons() : CPauseSubScreen()
 {
 
 }
 
-void CItemMenu::render()
+void CPauseSubScreenWeapons::render()
 {
-  CGameplaySubMenu::render();
+  CPauseSubScreen::render();
 }
 
-CItemMenu::~CItemMenu()
+CPauseSubScreenWeapons::~CPauseSubScreenWeapons()
 {
 
 }

@@ -17,7 +17,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3d/CPlayableCharacter.h"
 #include "../../include/hud/CGameplayInterface.h"
 #include "../../include/hud/CEnergyInterface.h"
-#include "../../include/hud/CGameplayMenu.h"
+#include "../../include/hud/CPauseScreen.h"
 #include "../../include/hud/CMenu.h"
 #include "../../include/scene/CSceneGameplay.h"
 
@@ -50,7 +50,7 @@ void CSceneGameplay::loadingSequence()
   GameplayInterface = new nHud::CGameplayInterface();
   EnergyInterface = new nHud::CEnergyInterface();
   MiniMap = new nHud::CMiniMap(Hero);
-  GameplayMenu = new nHud::nMenu::CGameplayMenu(GlobalTranslations, Control);
+  PauseScreen = new nHud::nPauseScreen::CPauseScreen(GlobalTranslations, Control);
 }
 
 //! Loading screen for gameplay scenes (overworld, dungeons...)
@@ -86,11 +86,11 @@ void CSceneGameplay::events()
 
   // Menu
   if (Control->commandEntered(nEngine::ECI_OPEN_MENU, nEngine::EET_ONCE)) {
-    GameplayMenu->toggle();
+    PauseScreen->toggle();
     Hero->toggleControl();
     Camera->toggleControl();
   }
-  if (GameplayMenu->isVisible()) {
+  if (PauseScreen->isVisible()) {
     manageMenuControl();
   }
 
@@ -215,7 +215,7 @@ void CSceneGameplay::manageCharacterNPCInteraction()
 void CSceneGameplay::manageMenuControl()
 {
   if (Control->commandEntered(nEngine::ECI_MENU_OK, nEngine::EET_ONCE)) {
-    if (GameplayMenu->getSectionMenu()->getCurrentOption() == 9) {
+    if (PauseScreen->getSectionMenu()->getCurrentOption() == 9) {
       QuitIsFading = true;
       fadeOut(0.5f);
     }
@@ -239,7 +239,7 @@ void CSceneGameplay::hudRender()
   //GameplayInterface->render();
   //EnergyInterface->render();
   MiniMap->render();
-  GameplayMenu->render();
+  PauseScreen->render();
 }
 
 //! Destroys all objects defined by constructor
@@ -251,7 +251,7 @@ CSceneGameplay::~CSceneGameplay()
   if (GameplayInterface) delete GameplayInterface;
   if (EnergyInterface) delete EnergyInterface;
   if (MiniMap) delete MiniMap;
-  if (GameplayMenu) delete GameplayMenu;
+  if (PauseScreen) delete PauseScreen;
   if (EverySecondTimer) delete EverySecondTimer;
 }
 

@@ -5,31 +5,31 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_DIMENSION_MENU_H__
-#define __IS06_DIMENSION_MENU_H__
-
-#include "CGameplaySubMenu.h"
+#include "../../include/engine/core.h"
+#include "../../include/hud/CPauseSubScreenStatus.h"
 
 namespace is06
 {
 namespace nHud
 {
-namespace nMenu
+namespace nPauseScreen
 {
 
-//! The dimensions sub-menu
-class CDimensionMenu : public CGameplaySubMenu
+CPauseSubScreenStatus::CPauseSubScreenStatus() : CPauseSubScreen()
 {
-  public:
-    CDimensionMenu();
-    ~CDimensionMenu();
 
-    void render();
-};
+}
+
+void CPauseSubScreenStatus::render()
+{
+  CPauseSubScreen::render();
+}
+
+CPauseSubScreenStatus::~CPauseSubScreenStatus()
+{
+
+}
 
 }
 }
 }
-
-#endif
-
