@@ -7,7 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
-#include "../../include/3d/CModelEntity.h"
+#include "../../include/model/CModelEntity.h"
 #include "../../include/shader/CPostRenderShader.h"
 
 namespace is06

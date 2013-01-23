@@ -6,25 +6,25 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/3d/CFloorEnemy.h"
-#include "../../include/3d/CEnemy.h"
+#include "../../include/model/CAnimatedModel.h"
+#include "../../include/model/CEnemy.h"
 
 namespace is06
 {
 namespace n3D
 {
 
-CFloorEnemy::CFloorEnemy() : CEnemy()
+CEnemy::CEnemy() : CAnimatedModel()
 {
 
 }
 
-void CFloorEnemy::update()
+void CEnemy::update()
 {
-  CEnemy::update();
+  CAnimatedModel::update();
 }
 
-CFloorEnemy::~CFloorEnemy()
+CEnemy::~CEnemy()
 {
 
 }

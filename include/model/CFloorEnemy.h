@@ -5,22 +5,24 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_OMNI_LIGHT_H__
-#define __IS06_OMNI_LIGHT_H__
+#ifndef __IS06_FLOOR_ENEMY_H__
+#define __IS06_FLOOR_ENEMY_H__
 
-#include "../../include/3d/CLight.h"
+#include "../../include/model/CEnemy.h"
 
 namespace is06
 {
 namespace n3D
 {
 
-//! A light entity that emits in all directions
-class COmniLight : public CLight
+//! Base class for all walking and crawling enemies
+class CFloorEnemy : public CEnemy
 {
   public:
-    COmniLight();
-    ~COmniLight();
+    CFloorEnemy();
+    virtual ~CFloorEnemy();
+
+    virtual void update();
 };
 
 }

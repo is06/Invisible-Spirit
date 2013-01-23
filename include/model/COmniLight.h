@@ -5,31 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CGame.h"
-#include "../../include/3d/CDirectLight.h"
+#ifndef __IS06_OMNI_LIGHT_H__
+#define __IS06_OMNI_LIGHT_H__
+
+#include "../../include/model/CLight.h"
 
 namespace is06
 {
 namespace n3D
 {
 
-CDirectLight::CDirectLight()
+//! A light entity that emits in all directions
+class COmniLight : public CLight
 {
-  Camera = nEngine::CGame::getSceneManager()->addCameraSceneNode();
-}
-
-CDirectLight* CDirectLight::create()
-{
-  // TODO: Add to shadow processor (factory design pattern)
-  CDirectLight* obj = new CDirectLight();
-  return obj;
-}
-
-CDirectLight::~CDirectLight()
-{
-  Camera->remove();
-}
+  public:
+    COmniLight();
+    ~COmniLight();
+};
 
 }
 }
+
+#endif

@@ -11,7 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/CGamepad.h"
 #include "../../include/engine/CDialogInterface.h"
 #include "../../include/engine/CSave.h"
-#include "../../include/3d/CModelEntity.h"
+#include "../../include/model/CModelEntity.h"
 #include "../../include/hud/CPicture.h"
 #include "../../include/hud/CQuad.h"
 #include "../../include/scene/CScene.h"

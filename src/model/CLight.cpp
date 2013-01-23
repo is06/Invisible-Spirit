@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
 #include "../../include/engine/CResourceManager.h"
-#include "../../include/3d/CLight.h"
+#include "../../include/model/CLight.h"
 
 namespace is06
 {

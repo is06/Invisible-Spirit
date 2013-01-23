@@ -5,29 +5,28 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/3d/CAnimatedModel.h"
-#include "../../include/3d/CEnemy.h"
+#ifndef __IS06_LEVEL_MESH_H__
+#define __IS06_LEVEL_MESH_H__
+
+#include "../../include/model/CStaticModel.h"
 
 namespace is06
 {
 namespace n3D
 {
 
-CEnemy::CEnemy() : CAnimatedModel()
+//! Static model with collision mask loading function
+class CLevelMesh : public CStaticModel
 {
+  public:
+    CLevelMesh();
+    ~CLevelMesh();
 
-}
-
-void CEnemy::update()
-{
-  CAnimatedModel::update();
-}
-
-CEnemy::~CEnemy()
-{
-
-}
+    void update();
+    void loadCollisionMask();
+};
 
 }
 }
+
+#endif

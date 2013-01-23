@@ -5,25 +5,37 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_LEVEL_MESH_H__
-#define __IS06_LEVEL_MESH_H__
+#ifndef __IS06_TPCAMERA_H__
+#define __IS06_TPCAMERA_H__
 
-#include "../../include/3d/CStaticModel.h"
+#include "../../include/model/CCamera.h"
 
 namespace is06
 {
 namespace n3D
 {
 
-//! Static model with collision mask loading function
-class CLevelMesh : public CStaticModel
+//! A Third-Person Camera class with control functions
+class CTPCamera : public CCamera
 {
   public:
-    CLevelMesh();
-    ~CLevelMesh();
+    CTPCamera();
 
     void update();
-    void loadCollisionMask();
+
+    void goLeft(f32 speed);
+    void goRight(f32 speed);
+    void goFar(f32 speed);
+    void goNear(f32 speed);
+
+    void linkEntity(CCharacter* entity);
+    f32 getDistance();
+
+  private:
+    CCharacter* LinkedEntity;
+    f32 UAxis;
+    f32 Height;
+    f32 Distance;
 };
 
 }

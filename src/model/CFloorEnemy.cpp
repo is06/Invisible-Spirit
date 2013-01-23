@@ -6,30 +6,25 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/3d/CLevelMesh.h"
-#include "../../include/3d/CStaticModel.h"
+#include "../../include/model/CFloorEnemy.h"
+#include "../../include/model/CEnemy.h"
 
 namespace is06
 {
 namespace n3D
 {
 
-CLevelMesh::CLevelMesh() : CStaticModel()
+CFloorEnemy::CFloorEnemy() : CEnemy()
 {
 
 }
 
-void CLevelMesh::update()
+void CFloorEnemy::update()
 {
-  CStaticModel::update();
+  CEnemy::update();
 }
 
-void CLevelMesh::loadCollisionMask()
-{
-
-}
-
-CLevelMesh::~CLevelMesh()
+CFloorEnemy::~CFloorEnemy()
 {
 
 }

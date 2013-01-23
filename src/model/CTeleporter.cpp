@@ -5,30 +5,35 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_ENEMY_H__
-#define __IS06_ENEMY_H__
+#include "../../include/model/CTeleporter.h"
 
-#include "../../include/3d/CAnimatedModel.h"
+using namespace irr;
 
 namespace is06
 {
 namespace n3D
 {
 
-//! Base class for all enemies
-class CEnemy : public CAnimatedModel
+CTeleporter::CTeleporter(f32 width, f32 height, f32 depth, const core::vector3df& position, nScene::ESceneIdentifier destination)
+: CSensor(width, height, depth, position)
 {
-  public:
-    CEnemy();
-    virtual ~CEnemy();
+  Destination = destination;
+}
 
-    virtual void update();
+void CTeleporter::update()
+{
+  CSensor::update();
+}
 
-  protected:
+void CTeleporter::setDestination(nScene::ESceneIdentifier id)
+{
+  Destination = id;
+}
 
-};
+CTeleporter::~CTeleporter()
+{
+
+}
 
 }
 }
-
-#endif

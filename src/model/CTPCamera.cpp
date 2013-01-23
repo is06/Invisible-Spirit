@@ -6,7 +6,7 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/3d/CTPCamera.h"
+#include "../../include/model/CTPCamera.h"
 
 namespace is06
 {

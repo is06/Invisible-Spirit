@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
 #include "../../include/engine/CSettings.h"
-#include "../../include/3d/CStaticModel.h"
+#include "../../include/model/CStaticModel.h"
 #include "../../include/scene/CScene.h"
 #include "../../include/sound/CSpeaker.h"
 

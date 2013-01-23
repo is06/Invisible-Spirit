@@ -9,9 +9,6 @@ http://www.is06.com. Legal code in license.txt
 #include "../include/engine/CGame.h"
 #include "../include/engine/CEngineException.h"
 
-using namespace is06;
-using namespace nEngine;
-
 #ifdef _IRR_WINDOWS_
 #include <windows.h>
 INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT)
@@ -20,15 +17,15 @@ int main()
 #endif
 {
   try {
-    CGame::init();
-    CGame::run();
-    CGame::finish();
+    is06::nEngine::CGame::init();
+    is06::nEngine::CGame::run();
+    is06::nEngine::CGame::finish();
   } catch(const exception& e) {
     cerr << "Exception: " << e.what() << endl;
 #ifdef _IRR_WINDOWS_
     MessageBoxA(NULL, e.what(), "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
 #endif
-    CGame::errorLog(e);
+    is06::nEngine::CGame::errorLog(e);
   }
   return 0;
 }

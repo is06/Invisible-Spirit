@@ -10,9 +10,9 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/engine/CSettings.h"
 #include "../../include/scene/CScene.h"
 #include "../../include/sound/CSpeaker.h"
-#include "../../include/3d/CAnimatedModel.h"
-#include "../../include/3d/CStaticModel.h"
-#include "../../include/3d/CSensor.h"
+#include "../../include/model/CAnimatedModel.h"
+#include "../../include/model/CStaticModel.h"
+#include "../../include/model/CSensor.h"
 
 using namespace irr;
 

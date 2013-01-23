@@ -7,7 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/CGame.h"
-#include "../../include/3d/CCamera.h"
+#include "../../include/model/CCamera.h"
 
 using namespace irr;
 using namespace std;

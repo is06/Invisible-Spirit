@@ -6,8 +6,8 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/3d/CPlayableCharacter.h"
-#include "../../include/3d/CLevelMesh.h"
+#include "../../include/model/CPlayableCharacter.h"
+#include "../../include/model/CLevelMesh.h"
 #include "../../include/map/MAP_DEBUG.h"
 
 using namespace irr;

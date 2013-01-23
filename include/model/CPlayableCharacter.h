@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_PLAYABLE_CHARACTER_H__
 #define __IS06_PLAYABLE_CHARACTER_H__
 
-#include "../../include/3d/CCharacter.h"
+#include "../../include/model/CCharacter.h"
 #include "../../include/engine/EPlayableCharacterType.h"
 
 namespace is06

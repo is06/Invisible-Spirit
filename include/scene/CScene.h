@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../engine/CPlayerControl.h"
 #include "../engine/EFadeColor.h"
 #include "../hud/CCinemascopeMode.h"
-#include "../3d/CSky.h"
+#include "../model/CSky.h"
 #include "../debug/CDebugConsole.h"
 
 namespace is06

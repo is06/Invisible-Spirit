@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_NPC_INTERFACE_H__
 #define __IS06_NPC_INTERFACE_H__
 
-#include "../3d/CNPC.h"
+#include "../model/CNPC.h"
 
 namespace is06
 {

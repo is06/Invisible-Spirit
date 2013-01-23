@@ -36,7 +36,7 @@ enum EErrorCode
   EEC_CODE_46, // Scene requires a Level Mesh Node
   EEC_CODE_47, // LevelMesh need a Newton Body
 
-  // Effets errors
+  // Effects errors
   EEC_CODE_50, // Vertex Shaders 1.1 not supported
   EEC_CODE_51, // Pixel Shaders 1.1 not supported
   EEC_CODE_52, // Render to target not supported

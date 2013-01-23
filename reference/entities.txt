@@ -1,0 +1,66 @@
+
+Entités
+=======
+
+CEntity                             Toute entité
+  CModelEntity                      Entité 3D modélisée
+    CAnimatedModel                  Entité 3D animée
+      CCharacter                    Personnage 3D
+        CNPC                        Personnage non jouable
+        CPlayableCharacter          Personnage jouable
+    CStaticModel                    Entité 3D statique
+      CLevelMesh                    Elément de décor
+  CCamera                           Caméra
+    CTPCamera                       Caméra à la troisième personne, contrôlable
+  CLight                            Lumière
+    CDirectLight                    Spot avec gestion des ombres portées
+    COmniLight                      Omnidirectionnelle, sans gestion des ombres
+  CSensor                           Détecteur
+    CTeleporter                     Téléporteur
+  CSky                              Ciel avec technique skybox
+  CHud                              Element 2D d'interface joueur
+    CButton                         Bouton 2D
+      CIconButton                   Bouton icône
+      CIconTextButton               Bouton icône + texte
+      CTextButton                   Bouton texte
+    CCinemascopeMode                Barres noires pour effet cinemascope
+    CCounter                        Compteur
+      CBarCounter                   Compteur barre (vie, magie...)
+      CGameTimeCounter              Compteur de temps de jeu
+      CWorldTimeCounter             Horloge dans le monde du jeu
+    CHudEnsemble                    Ensemble des éléments du HUD du joueur (vie, touches, minimap...)
+    CHudEnsembleCommands            Ensemble des boutons de commandes du joueur
+    CHudEnsembleEnergy              Ensemble des jauges d'energie du joueur
+    CPauseScreen                    Ecran pause
+    CPauseSubScreen                 Sous-écran pause
+      CPauseSubScreenItems          Sous-écran des objets
+      CPauseSubScreenMaps           Sous-écran de la carte
+      CPauseSubScreenMonsters       Sous-écran du bestiaire
+      CPauseSubScreenSettings       Sous-écran des paramètres
+      CPauseSubScreenSpirits        Sous-écran des esprits
+      CPauseSubScreenStatus         Sous-écran du statut quête
+      CPauseSubScreenStory          Sous-écran de l'histoire
+      CPauseSubScreenWeapons        Sous-écran des armes
+    CFlatElement                    Elément graphique 2D
+      CPicture                      Image 2D
+      CQuad                         Carré 2D
+      CTextChar                     Caractère texte
+    CMenu                           Element Menu à choix multiple
+    CMenuOption                     Option d'un menu
+    CMiniMap                        Mini-map
+    CMiniMapArrow                   Flèche de mini-map
+    CPlayerState                    Section de statistiques du joueur dans l'écran pause
+    CPlayerStateMainInfo            Donnée principale du joueur (niveau, expérience, hp...) dans l'écran pause
+    CPlayerStateCapacity            Statistique du joueur (force, défense...) dans l'écran pause
+    CTargetLifeMeter                Jauge de vie de la cible visée
+    CText                           Texte 2D
+    CWindow                         Fenêtre 2D
+  
+Interfaces
+==========
+
+CDialogInterface
+CMapSectionInterface  
+CNPCInterface
+CPlayerControl
+

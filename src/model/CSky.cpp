@@ -5,7 +5,7 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/3d/CSky.h"
+#include "../../include/model/CSky.h"
 #include "../../include/engine/CGame.h"
 #include "../../include/engine/CResourceManager.h"
 

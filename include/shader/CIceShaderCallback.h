@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __ICE_SHADER_CALLBACK_H__
 #define __ICE_SHADER_CALLBACK_H__
 
-#include "../3d/CCamera.h"
+#include "../model/CCamera.h"
 #include "../scene/CScene.h"
 #include "../engine/CGame.h"
 

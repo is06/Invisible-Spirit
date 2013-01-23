@@ -6,40 +6,30 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/model/CTPCamera.h"
-#include "../../include/scene/CSceneSelectMap.h"
+#include "../../include/model/CLevelMesh.h"
+#include "../../include/model/CStaticModel.h"
 
 namespace is06
 {
-namespace nScene
+namespace n3D
 {
 
-CSceneSelectMap::CSceneSelectMap() : CScene()
+CLevelMesh::CLevelMesh() : CStaticModel()
 {
-  BackBufferColor = video::SColor(0, 0, 0, 0);
-  Camera = new n3D::CTPCamera();
-  Camera->setControl(false);
-}
-
-void CSceneSelectMap::events()
-{
-  CScene::events();
 
 }
 
-void CSceneSelectMap::postRender()
+void CLevelMesh::update()
 {
-  CScene::postRender();
+  CStaticModel::update();
+}
+
+void CLevelMesh::loadCollisionMask()
+{
 
 }
 
-void CSceneSelectMap::hudRender()
-{
-  CScene::hudRender();
-
-}
-
-CSceneSelectMap::~CSceneSelectMap()
+CLevelMesh::~CLevelMesh()
 {
 
 }

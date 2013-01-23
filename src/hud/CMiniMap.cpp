@@ -7,7 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/hud/CMiniMap.h"
 #include "../../include/engine/CGame.h"
-#include "../../include/3d/CPlayableCharacter.h"
+#include "../../include/model/CPlayableCharacter.h"
 
 using namespace irr;
 

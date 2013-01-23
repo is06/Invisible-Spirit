@@ -7,7 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/engine/core.h"
 #include "../../include/engine/CMapSectionInterface.h"
-#include "../../include/3d/CLevelMesh.h"
+#include "../../include/model/CLevelMesh.h"
 
 namespace is06
 {

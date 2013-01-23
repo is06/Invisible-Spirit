@@ -6,8 +6,8 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/3d/CCharacter.h"
-#include "../../include/3d/CAnimatedModel.h"
+#include "../../include/model/CCharacter.h"
+#include "../../include/model/CAnimatedModel.h"
 
 namespace is06
 {

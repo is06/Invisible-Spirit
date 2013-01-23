@@ -6,8 +6,8 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/engine/core.h"
-#include "../../include/3d/CPlayableCharacter.h"
-#include "../../include/3d/CCamera.h"
+#include "../../include/model/CPlayableCharacter.h"
+#include "../../include/model/CCamera.h"
 #include "../../include/engine/CDialogInterface.h"
 #include "../../include/engine/EPlayableCharacterType.h"
 #include "../../include/map/MAP_METADIM.h"

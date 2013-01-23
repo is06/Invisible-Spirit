@@ -5,27 +5,31 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_FLOOR_ENEMY_H__
-#define __IS06_FLOOR_ENEMY_H__
-
-#include "../../include/3d/CEnemy.h"
+#include "../../include/engine/core.h"
+#include "../../include/engine/CGame.h"
+#include "../../include/model/CDirectLight.h"
 
 namespace is06
 {
 namespace n3D
 {
 
-//! Base class for all walking and crawling enemies
-class CFloorEnemy : public CEnemy
+CDirectLight::CDirectLight()
 {
-  public:
-    CFloorEnemy();
-    virtual ~CFloorEnemy();
+  Camera = nEngine::CGame::getSceneManager()->addCameraSceneNode();
+}
 
-    virtual void update();
-};
+CDirectLight* CDirectLight::create()
+{
+  // TODO: Add to shadow processor (factory design pattern)
+  CDirectLight* obj = new CDirectLight();
+  return obj;
+}
+
+CDirectLight::~CDirectLight()
+{
+  Camera->remove();
+}
 
 }
 }
-
-#endif
