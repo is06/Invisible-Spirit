@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nSound
+namespace NSound
 {
 
 //! Structure for sequence information like loop bounds

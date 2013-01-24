@@ -5,49 +5,49 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_GAME_H__
-#define __IS06_GAME_H__
+#ifndef __IS06_ENGINE_GAME_H__
+#define __IS06_ENGINE_GAME_H__
 
 #include "SScreenPosition.h"
-#include "ELocaleIdentifier.h"
-#include "../shader/CShaders.h"
-#include "../scene/ESceneIdentifier.h"
-#include "../debug/EErrorCode.h"
-#include "../debug/SGameDebugOption.h"
+#include "Resource/ELocaleIdentifier.h"
+#include "../Shader/CShaders.h"
+#include "../Scene/ESceneIdentifier.h"
+#include "../Debug/EErrorCode.h"
+#include "../Debug/SOption.h"
 
 //! Main namespace for Invisible Spirit Game
 namespace is06
 {
 //! Namespace for debugging information and parameters
-namespace nDebug
+namespace NDebug
 {
 }
 //! Hud namespace with all simili 2D elements to display
-namespace nHud
+namespace NHud
 {
 }
 //! This namespace contains all levels and maps of the game
-namespace nMap
+namespace NMap
 {
 }
 //! The namespace which provides 3D Model classes
-namespace n3D
+namespace N3D
 {
 }
 //! Namespace for scene types
-namespace nScene
+namespace NScene
 {
 }
 //! This namespace is for shader graphical effects
-namespace nShader
+namespace NShader
 {
 }
 //! Namespace for sound and music interfaces
-namespace nSound
+namespace NSound
 {
 }
 //! Namespace for engine classes
-namespace nEngine
+namespace NEngine
 {
 //! Singleton class CGame manage everything, it contains the main loop and all main entities like the current scene
 /** \section usecase Use case
@@ -55,12 +55,12 @@ namespace nEngine
  * int main()
  * {
  *   try {
- *     is06::nEngine::CGame::init();
- *     is06::nEngine::CGame::run();
- *     is06::nEngine::CGame::finish();
+ *     is06::NEngine::CGame::init();
+ *     is06::NEngine::CGame::run();
+ *     is06::NEngine::CGame::finish();
  *   } catch(const exception& e) {
  *     cerr << "Exception: " << e.what() << endl;
- *     is06::nEngine::CGame::errorLog(e);
+ *     is06::NEngine::CGame::errorLog(e);
  *   }
  *   return 0;
  * }
@@ -75,8 +75,8 @@ class CGame
 
     static void quit();
     static void changeScene(s32 id);
-    static void warning(is06::nDebug::EErrorCode code);
-    static void fatalError(is06::nDebug::EErrorCode code);
+    static void warning(NDebug::EErrorCode code);
+    static void fatalError(NDebug::EErrorCode code);
     static void errorLog(const exception& e);
 
     static IrrlichtDevice* getDevice();
@@ -84,24 +84,24 @@ class CGame
     static scene::ISceneManager* getSceneManager();
     static gui::IGUIEnvironment* getDebugGUI();
     static NewtonWorld* getNewtonWorld();
-    static nEngine::CEventManager* getEventManager();
-    static nEngine::CTranslation* getGlobalTranslations();
-    static nEngine::CSave* getCurrentSave();
-    static nScene::CScene* getCurrentScene();
-    static nSound::CSoundManager* getSoundManager();
+    static NEngine::CEventManager* getEventManager();
+    static NEngine::NResource::CTranslation* getGlobalTranslations();
+    static NEngine::CSave* getCurrentSave();
+    static NScene::CScene* getCurrentScene();
+    static NSound::CSoundManager* getSoundManager();
 
     static f32 getFramerate();
     static f32 getSpeedFactor();
     static f32 getCurrentTime();
-    static nEngine::ELocaleIdentifier getCurrentLocale();
-    static nSound::CMusicReference* getMusicReference();
+    static NEngine::ELocaleIdentifier getCurrentLocale();
+    static NSound::CMusicReference* getMusicReference();
 
     static void changeScreenDisplay(u32 width=848, u32 height=480, u8 colorDepth=32);
 
-    static nEngine::CSettings* Settings;
-    static nEngine::SScreenPosition ScreenPos;
-    static nShader::CShaders Shaders;
-    static nDebug::SGameDebugOption DebugOption;
+    static NEngine::NResource::CSettings* Settings;
+    static NEngine::SScreenPosition ScreenPos;
+    static NShader::CShaders Shaders;
+    static NDebug::SOption DebugOption;
 
   private:
     CGame();
@@ -134,14 +134,14 @@ class CGame
     static NewtonWorld* GameNewtonWorld;
 
     // is06 objects
-    static nEngine::CEventManager* EventManager;
-    static nScene::CScene* CurrentScene;
-    static nEngine::CTranslation* GlobalTranslations;
-    static nEngine::CSave* CurrentSave;
-    static nSound::CSoundManager* SoundManager;
-    static nSound::CMusicReference* MusicReference;
+    static NEngine::CEventManager* EventManager;
+    static NScene::CScene* CurrentScene;
+    static NEngine::NResource::CTranslation* GlobalTranslations;
+    static NEngine::CSave* CurrentSave;
+    static NSound::CSoundManager* SoundManager;
+    static NSound::CMusicReference* MusicReference;
 
-    static nEngine::ELocaleIdentifier CurrentLocale;
+    static NEngine::ELocaleIdentifier CurrentLocale;
     static s32 NextScene;
     static bool SceneChanged;
     static bool ScreenSizeChanged;

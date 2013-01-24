@@ -5,9 +5,12 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../include/engine/core.h"
-#include "../include/engine/CGame.h"
-#include "../include/engine/CEngineException.h"
+#include "../include/Engine/core.h"
+#include "../include/Engine/CGame.h"
+#include "../include/Engine/CEngineException.h"
+
+using namespace is06;
+using namespace NEngine;
 
 #ifdef _IRR_WINDOWS_
 #include <windows.h>
@@ -17,15 +20,15 @@ int main()
 #endif
 {
   try {
-    is06::nEngine::CGame::init();
-    is06::nEngine::CGame::run();
-    is06::nEngine::CGame::finish();
+    CGame::init();
+    CGame::run();
+    CGame::finish();
   } catch(const exception& e) {
     cerr << "Exception: " << e.what() << endl;
 #ifdef _IRR_WINDOWS_
     MessageBoxA(NULL, e.what(), "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
 #endif
-    is06::nEngine::CGame::errorLog(e);
+    CGame::errorLog(e);
   }
   return 0;
 }

@@ -5,14 +5,14 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CSave.h"
-#include "../../include/engine/CSaveFile.h"
-#include "../../include/engine/CGame.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/CSave.h"
+#include "../../include/Engine/Save/CFile.h"
+#include "../../include/Engine/CGame.h"
 
 namespace is06
 {
-namespace nEngine
+namespace NEngine
 {
 
 //! Default constructor
@@ -23,10 +23,10 @@ CSave::CSave()
 
 void CSave::loadPrimitiveInfo(u8 slot)
 {
-  CSaveFile* saveFile = new CSaveFile();
+  NSave::CFile* saveFile = new NSave::CFile();
   saveFile->prepareForRead(slot);
 
-  SSaveFileElement element;
+  NSave::SFileElement element;
 
   for (u32 i = 0; i < 65535; i++) {
     element = saveFile->getNextElement();
@@ -47,10 +47,10 @@ void CSave::loadPrimitiveInfo(u8 slot)
 //! Loads all game save variable from a file
 void CSave::load(u8 slot)
 {
-  CSaveFile* saveFile = new CSaveFile();
+  NSave::CFile* saveFile = new NSave::CFile();
   saveFile->prepareForRead(slot);
 
-  SSaveFileElement element;
+  NSave::SFileElement element;
 
   for (u32 i = 0; i < 65535; i++) {
     element = saveFile->getNextElement();
@@ -73,7 +73,7 @@ void CSave::load(u8 slot)
 //! Writes the current game save to a file
 void CSave::save(u8 slot)
 {
-  CSaveFile* saveFile = new CSaveFile();
+  NSave::CFile* saveFile = new NSave::CFile();
   saveFile->prepareForWrite(slot);
 
   for (u32 i = 0; i < 65535; i++) {
@@ -94,7 +94,7 @@ void CSave::save(u8 slot)
  * Every memorized pieces of data are initialized here, like the start map or character HP...
  * It changes the current map of the game so the player can start to play.
  */
-void CSave::newGame(nEngine::EDifficultyLevel difficultyLevel)
+void CSave::newGame(NEngine::NGameplay::EDifficultyLevel difficultyLevel)
 {
   setGeneralDefaultValues(difficultyLevel);
   CGame::changeScene(IntegerList[11]);
@@ -149,20 +149,20 @@ void CSave::setString(u32 index, const string& value)
 }
 
 //! When the player gets a new trophy!
-void CSave::earnTrophy(ETrophyIdentifier trophy)
+void CSave::earnTrophy(NGameplay::ETrophyIdentifier trophy)
 {
   BooleanList[trophy] = true;
 }
 
 //! Sets all general default value in the game save when the player starts a new game
-void CSave::setGeneralDefaultValues(nEngine::EDifficultyLevel difficultyLevel)
+void CSave::setGeneralDefaultValues(NGameplay::EDifficultyLevel difficultyLevel)
 {
   // Primitive Info
   IntegerList[1] = -1; // Slot number (-1 = No slot number)
   IntegerList[2] = difficultyLevel; // Difficulty Level
 
   // Map info
-  IntegerList[11] = nScene::ESI_MAP_ALPHA_ZONE; // Current map id
+  IntegerList[11] = NScene::ESI_MAP_ALPHA_ZONE; // Current map id
   StringList[12] = "Alpha Zone (Debug)"; // Current map name
 
   // Time info

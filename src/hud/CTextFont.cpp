@@ -5,14 +5,14 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CGame.h"
-#include "../../include/engine/CResourceManager.h"
-#include "../../include/hud/CTextFont.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/CGame.h"
+#include "../../include/Engine/Resource/CResourceManager.h"
+#include "../../include/Hud/CTextFont.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 //! Constructor, defines current font style and get the appropriate texture
@@ -111,7 +111,7 @@ EFontStyle CTextFont::getCurrentStyle()
 
 void CTextFont::getFontDataFromStyle(EFontStyle style)
 {
-  string filePath = "resource/hud/font/";
+  string filePath = "resource/Hud/font/";
 
   switch (style) {
     case EFS_STANDARD_48: filePath += "standard_48"; break;
@@ -129,7 +129,7 @@ void CTextFont::getFontDataFromStyle(EFontStyle style)
  */
 void CTextFont::getTextureFromStyle(EFontStyle style, u8 extTexture)
 {
-  string filePath = "resource/hud/font/";
+  string filePath = "resource/Hud/font/";
 
   switch (style) {
     case EFS_STANDARD_48: filePath += "standard_48"; break;
@@ -147,7 +147,7 @@ void CTextFont::getTextureFromStyle(EFontStyle style, u8 extTexture)
 
   texturePath += ".png";
 
-  FontTexture = nEngine::CResourceManager::loadTexture(texturePath);
+  FontTexture = NEngine::NResource::CResourceManager::loadTexture(texturePath);
   FontMaterial.setTexture(0, FontTexture);
   FontMaterial.Lighting = false;
 }

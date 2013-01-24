@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 class CCinemascopeMode : public CHud
@@ -32,7 +32,7 @@ class CCinemascopeMode : public CHud
     void slideOut(f32 speed);
 
   private:
-    CQuad* Bars[2];
+    NPrimitive::CQuad* Bars[2];
     bool FadingIn;
     bool FadingOut;
     bool SlidingIn;

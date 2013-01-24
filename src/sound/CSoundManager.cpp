@@ -5,13 +5,13 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/model/CCamera.h"
-#include "../../include/sound/CSoundManager.h"
+#include "../../include/Engine/core.h"
+#include "../../include/3D/CCamera.h"
+#include "../../include/Sound/CSoundManager.h"
 
 namespace is06
 {
-namespace nSound
+namespace NSound
 {
 
 CSoundManager::CSoundManager()
@@ -22,7 +22,7 @@ CSoundManager::CSoundManager()
 }
 
 //! Called by the Game main loop, this converts camera's position and rotation to FMOD vector format and store them into sound manager
-void CSoundManager::setEarsData(n3D::CCamera* activeCamera)
+void CSoundManager::setEarsData(N3D::CCamera* activeCamera)
 {
   core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
   //core::vector3df rotation = activeCamera->getNode()->getRotation();

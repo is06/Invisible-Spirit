@@ -5,13 +5,13 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/hud/CTextChar.h"
-#include "../../include/hud/CTextFont.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Hud/CTextChar.h"
+#include "../../include/Hud/CTextFont.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 CTextChar::CTextChar(u8 code, f32& x, f32& y, u8 size, CTextFont* font, bool visible, u8 extTexture) : CFlatElement(x, y, size, size, true)

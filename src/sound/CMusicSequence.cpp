@@ -5,14 +5,14 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CGame.h"
-#include "../../include/sound/CMusicSequence.h"
-#include "../../include/sound/CSoundManager.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/CGame.h"
+#include "../../include/Sound/CMusicSequence.h"
+#include "../../include/Sound/CSoundManager.h"
 
 namespace is06
 {
-namespace nSound
+namespace NSound
 {
 
 CMusicSequence::CMusicSequence(const SMusicSequenceInfo& info)
@@ -21,16 +21,16 @@ CMusicSequence::CMusicSequence(const SMusicSequenceInfo& info)
   filePath += info.FileName;
 
   if (info.Looped) {
-    FMOD_System_CreateStream(nEngine::CGame::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
+    FMOD_System_CreateStream(NEngine::CGame::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
     FMOD_Sound_SetLoopPoints(SoundPtr, info.LoopStart, FMOD_TIMEUNIT_MS, info.LoopEnd, FMOD_TIMEUNIT_MS);
   } else {
-    FMOD_System_CreateStream(nEngine::CGame::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_OFF, 0, &SoundPtr);
+    FMOD_System_CreateStream(NEngine::CGame::getSoundManager()->getSystem(), filePath.c_str(), FMOD_HARDWARE | FMOD_LOOP_OFF, 0, &SoundPtr);
   }
 }
 
 void CMusicSequence::play()
 {
-  FMOD_System_PlaySound(nEngine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
+  FMOD_System_PlaySound(NEngine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
 }
 
 void CMusicSequence::setVolume(f32 value)

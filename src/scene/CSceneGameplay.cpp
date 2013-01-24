@@ -5,25 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/EGamepadButton.h"
-#include "../../include/engine/CSave.h"
-#include "../../include/engine/CGame.h"
-#include "../../include/engine/CKeyboard.h"
-#include "../../include/engine/CGamepad.h"
-#include "../../include/engine/CTimer.h"
-#include "../../include/model/CLevelMesh.h"
-#include "../../include/model/CTPCamera.h"
-#include "../../include/model/CPlayableCharacter.h"
-#include "../../include/hud/CHudEnsemble.h"
-#include "../../include/hud/CHudEnsembleEnergy.h"
-#include "../../include/hud/CPauseScreen.h"
-#include "../../include/hud/CMenu.h"
-#include "../../include/scene/CSceneGameplay.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/Control/EGamepadButton.h"
+#include "../../include/Engine/CSave.h"
+#include "../../include/Engine/CGame.h"
+#include "../../include/Engine/Control/CKeyboard.h"
+#include "../../include/Engine/Control/CGamepad.h"
+#include "../../include/Engine/CTimer.h"
+#include "../../include/3D/CLevelMesh.h"
+#include "../../include/3D/Camera/CThirdPerson.h"
+#include "../../include/3D/Character/CPlayable.h"
+#include "../../include/Hud/CHudEnsemble.h"
+#include "../../include/Hud/Ensemble/CEnergy.h"
+#include "../../include/Hud/CPauseScreen.h"
+#include "../../include/Hud/CMenu.h"
+#include "../../include/Scene/CSceneGameplay.h"
 
 namespace is06
 {
-namespace nScene
+namespace NScene
 {
 
 //! Constructor
@@ -35,21 +35,21 @@ CSceneGameplay::CSceneGameplay() : CScene()
 //! Loading sequence for all gameplay scenes
 void CSceneGameplay::loadingSequence()
 {
-  Camera = new n3D::CTPCamera();
+  Camera = new N3D::NCamera::CThirdPerson();
 
-  MapSections = new nEngine::CMapSectionInterface();
+  MapSections = new NEngine::NGameplay::CMapSectionInterface();
 
   // Hero info
-  Hero = new n3D::CPlayableCharacter(Camera);
+  Hero = new N3D::NCharacter::CPlayable(Camera);
   //Hero->setShadowMode(SHADOW_MODE_CAST);
 
   // Link Hero to Third-Person Camera
   Camera->linkEntity(Hero);
 
   // GUI Interfaces
-  HudEnsemble = new nHud::CHudEnsemble();
-  MiniMap = new nHud::CMiniMap(Hero);
-  PauseScreen = new nHud::nPauseScreen::CPauseScreen(GlobalTranslations, Control);
+  HudEnsemble = new NHud::CHudEnsemble();
+  MiniMap = new NHud::CMiniMap(Hero);
+  PauseScreen = new NHud::CPauseScreen(GlobalTranslations, Control);
 }
 
 //! Loading screen for gameplay scenes (overworld, dungeons...)
@@ -61,7 +61,7 @@ void CSceneGameplay::loadingScreen()
 //! Gameplay scenes start sequence
 void CSceneGameplay::start()
 {
-  EverySecondTimer = new nEngine::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), 9999);
+  EverySecondTimer = new NEngine::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), 9999);
 
   // Flag for fade out
   QuitIsFading = false;
@@ -84,7 +84,7 @@ void CSceneGameplay::events()
   manageCharacterNPCInteraction();
 
   // Menu
-  if (Control->commandEntered(nEngine::ECI_OPEN_MENU, nEngine::EET_ONCE)) {
+  if (Control->commandEntered(NEngine::NControl::ECI_OPEN_MENU, NEngine::EET_ONCE)) {
     PauseScreen->toggle();
     Hero->toggleControl();
     Camera->toggleControl();
@@ -94,7 +94,7 @@ void CSceneGameplay::events()
   }
 
   // Cinemascope mode
-  if (Control->commandEntered(nEngine::ECI_PLAYER_GUARD, nEngine::EET_ONCE)) {
+  if (Control->commandEntered(NEngine::NControl::ECI_PLAYER_GUARD, NEngine::EET_ONCE)) {
     Cinemascope->fadeIn(500.0f);
   }
 
@@ -132,12 +132,12 @@ void CSceneGameplay::manageCharacterJumps()
   if (Hero->hasControl()) {
     Hero->setJumping(false);
 
-    if (Control->commandEntered(nEngine::ECI_PLAYER_JUMP, nEngine::EET_ONCE)) {
+    if (Control->commandEntered(NEngine::NControl::ECI_PLAYER_JUMP, NEngine::EET_ONCE)) {
       if (!Hero->isJumping() && !Hero->isFalling()) {
         Hero->setJumpDelta(Hero->getJumpStrength());
       }
     }
-    if (Control->commandEntered(nEngine::ECI_PLAYER_JUMP)) {
+    if (Control->commandEntered(NEngine::NControl::ECI_PLAYER_JUMP)) {
       Hero->setJumping(true);
       Hero->jump();
     }
@@ -187,10 +187,10 @@ void CSceneGameplay::manageCharacterCollisions()
     // Wall collision, this normal vector will be modified by getWallCollision functions
     core::vector3df normal;
 
-    if (Hero->getWallCollision(nEngine::ERT_WALL_P, MapSections->getSection(0), normal) < 1.0f
-    || Hero->getWallCollision(nEngine::ERT_WALL_Q, MapSections->getSection(0), normal) < 1.0f) {
-      while (Hero->getWallCollision(nEngine::ERT_WALL_P, MapSections->getSection(0), normal) < 0.99
-      || Hero->getWallCollision(nEngine::ERT_WALL_Q, MapSections->getSection(0), normal) < 0.99) {
+    if (Hero->getWallCollision(N3D::ERT_WALL_P, MapSections->getSection(0), normal) < 1.0f
+    || Hero->getWallCollision(N3D::ERT_WALL_Q, MapSections->getSection(0), normal) < 1.0f) {
+      while (Hero->getWallCollision(N3D::ERT_WALL_P, MapSections->getSection(0), normal) < 0.99
+      || Hero->getWallCollision(N3D::ERT_WALL_Q, MapSections->getSection(0), normal) < 0.99) {
         Hero->moveOpposite(normal);
       }
     }
@@ -200,10 +200,10 @@ void CSceneGameplay::manageCharacterCollisions()
 //! Manages interactions between Hero and NPCs
 void CSceneGameplay::manageCharacterNPCInteraction()
 {
-  n3D::CNPC* npc = NPCInterface->getNearestNPC(Hero);
+  N3D::NCharacter::CNPC* npc = NPCInterface->getNearestNPC(Hero);
   if (npc) {
     if (npc->getDistanceFrom(Hero) < 1.0f) {
-      if (Control->commandEntered(nEngine::ECI_DIALOG_ACTION, nEngine::EET_ONCE)) {
+      if (Control->commandEntered(NEngine::NControl::ECI_DIALOG_ACTION, NEngine::EET_ONCE)) {
         npc->talk("npc_dialog_identifier_lambda");
       }
     }
@@ -213,14 +213,14 @@ void CSceneGameplay::manageCharacterNPCInteraction()
 //! Manages menu control
 void CSceneGameplay::manageMenuControl()
 {
-  if (Control->commandEntered(nEngine::ECI_MENU_OK, nEngine::EET_ONCE)) {
+  if (Control->commandEntered(NEngine::NControl::ECI_MENU_OK, NEngine::EET_ONCE)) {
     if (PauseScreen->getSectionMenu()->getCurrentOption() == 9) {
       QuitIsFading = true;
       fadeOut(0.5f);
     }
   }
   if (QuitIsFading && OutFader->isReady()) {
-    nEngine::CGame::changeScene(ESI_MENU);
+    NEngine::CGame::changeScene(ESI_MENU);
   }
 }
 

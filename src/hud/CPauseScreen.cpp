@@ -5,27 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CGame.h"
-#include "../../include/engine/CSave.h"
-#include "../../include/engine/CPlayerControl.h"
-#include "../../include/engine/CTranslation.h"
-#include "../../include/hud/CPauseScreen.h"
-#include "../../include/hud/CMenu.h"
-#include "../../include/hud/CMenuOption.h"
-#include "../../include/hud/CPicture.h"
-#include "../../include/hud/CPlayerState.h"
-#include "../../include/hud/CGameTimeCounter.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/CGame.h"
+#include "../../include/Engine/CSave.h"
+#include "../../include/Engine/CPlayerControl.h"
+#include "../../include/Engine/Resource/CTranslation.h"
+#include "../../include/Hud/CPauseScreen.h"
+#include "../../include/Hud/CMenu.h"
+#include "../../include/Hud/CMenuOption.h"
+#include "../../include/Hud/CPicture.h"
+#include "../../include/Hud/CPlayerState.h"
+#include "../../include/Hud/Counter/CGameTime.h"
 
 namespace is06
 {
-namespace nHud
-{
-namespace nPauseScreen
+namespace NHud
 {
 
 //! All elements creation
-CPauseScreen::CPauseScreen(nEngine::CTranslation* translation, nEngine::CPlayerControl* control)
+CPauseScreen::CPauseScreen(NEngine::NResource::CTranslation* translation, NEngine::CPlayerControl* control)
 {
   // Properties
   Visible = false;
@@ -47,14 +45,14 @@ CPauseScreen::CPauseScreen(nEngine::CTranslation* translation, nEngine::CPlayerC
   GlobalTranslations = translation;
 
   // Black transparent background
-  Background = new CPicture(0, 0, 1280, 720, "resource/hud/menus/gameplay/back.png");
+  Background = new CPicture(0, 0, 1280, 720, "resource/Hud/menus/gameplay/back.png");
   Background->setOpacity(128);
 
   // Silver title top bar
-  TopBar = new CPicture(0, nEngine::CGame::ScreenPos.Hud.Top - 20, 1280, 40, "resource/hud/menus/gameplay/top_bar.png");
+  TopBar = new CPicture(0, NEngine::CGame::ScreenPos.Hud.Top - 20, 1280, 40, "resource/Hud/menus/gameplay/top_bar.png");
 
   // Menu (left)
-  SectionMenu = new CMenu(nEngine::CGame::ScreenPos.Hud.Left + 80, nEngine::CGame::ScreenPos.Hud.Top - 80, 150, 8, EMS_TITLE);
+  SectionMenu = new CMenu(NEngine::CGame::ScreenPos.Hud.Left + 80, NEngine::CGame::ScreenPos.Hud.Top - 80, 150, 8, EMS_TITLE);
   SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_swords"));
   SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_spirits"));
   SectionMenu->addOption(EMI_NONE, GlobalTranslations->getTranslation("gameplay_menu_items"));
@@ -72,7 +70,7 @@ CPauseScreen::CPauseScreen(nEngine::CTranslation* translation, nEngine::CPlayerC
   StateInfo = new CPlayerState();
 
   // Gameplay time
-  GameplayTime = new CGameTimeCounter();
+  GameplayTime = new NCounter::CGameTime();
 
   // Money TODO
   //moneyCounter = new DigitCounter();
@@ -82,10 +80,10 @@ CPauseScreen::CPauseScreen(nEngine::CTranslation* translation, nEngine::CPlayerC
 void CPauseScreen::render()
 {
   if (Visible) {
-    if (Control->commandEntered(nEngine::ECI_MENU_DOWN, nEngine::EET_ONCE)) {
+    if (Control->commandEntered(NEngine::NControl::ECI_MENU_DOWN, NEngine::EET_ONCE)) {
       SectionMenu->nextOption();
     }
-    if (Control->commandEntered(nEngine::ECI_MENU_UP, nEngine::EET_ONCE)) {
+    if (Control->commandEntered(NEngine::NControl::ECI_MENU_UP, NEngine::EET_ONCE)) {
       SectionMenu->prevOption();
     }
 
@@ -165,7 +163,7 @@ CMenu* CPauseScreen::getSectionMenu()
 //! \todo comment this function
 void CPauseScreen::goToWeaponMenu()
 {
-  WeaponsSubScreen = new CPauseSubScreenWeapons();
+  WeaponsSubScreen = new NPauseScreen::NSubScreen::CWeapons();
 }
 
 //! \todo write this function
@@ -226,6 +224,5 @@ CPauseScreen::~CPauseScreen()
   delete GameplayTime;
 }
 
-}
 }
 }

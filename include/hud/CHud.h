@@ -8,15 +8,15 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_H__
 #define __IS06_HUD_H__
 
-#include "../engine/CEntity.h"
+#include "../Engine/CEntity.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 //! Abstract main class for all hud elements
-class CHud : public nEngine::CEntity
+class CHud : public NEngine::CEntity
 {
   public:
     CHud();

@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_PLAYER_CONTROL_H__
 #define __IS06_PLAYER_CONTROL_H__
 
-#include "ECommandIdentifier.h"
+#include "Control/ECommandIdentifier.h"
 #include "EEventType.h"
 
 namespace is06
 {
-namespace nEngine
+namespace NEngine
 {
 
 class CPlayerControl
@@ -22,7 +22,7 @@ class CPlayerControl
     CPlayerControl(bool gamepadActive);
     ~CPlayerControl();
 
-    bool commandEntered(ECommandIdentifier command, EEventType eventType=EET_ALWAYS);
+    bool commandEntered(NControl::ECommandIdentifier command, EEventType eventType=EET_ALWAYS);
 
     f32 getPlayerDirection();
     f32 getPlayerXAxis();
@@ -32,10 +32,10 @@ class CPlayerControl
     f32 getCameraYAxis();
 
   private:
-    CKeyboard* Keyboard;
-    CGamepad* Gamepad;
+    NControl::CKeyboard* Keyboard;
+    NControl::CGamepad* Gamepad;
 
-    bool CommandOnce[ECI_COUNT];
+    bool CommandOnce[NControl::ECI_COUNT];
     bool GamepadActive;
 };
 

@@ -8,19 +8,19 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_PICTURE_H__
 #define __IS06_PICTURE_H__
 
-#include "CFlatElement.h"
+#include "Primitive/CFlatElement.h"
 
 using namespace irr;
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
-class CPicture : public CFlatElement
+class CPicture : public NPrimitive::CFlatElement
 {
   public:
-    CPicture(f32 x = 0, f32 y = 0, f32 w = 32, f32 h = 32, const string& filePath = "resource/hud/default.bmp", bool useAlphaBlending=true);
+    CPicture(f32 x = 0, f32 y = 0, f32 w = 32, f32 h = 32, const string& filePath = "resource/Hud/default.bmp", bool useAlphaBlending=true);
     ~CPicture();
 
     void render();

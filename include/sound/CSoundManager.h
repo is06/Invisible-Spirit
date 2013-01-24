@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nSound
+namespace NSound
 {
 
 //! The 3D sound manager for sound effects in space
@@ -20,7 +20,7 @@ class CSoundManager
     CSoundManager();
     ~CSoundManager();
 
-    void setEarsData(n3D::CCamera* activeCamera);
+    void setEarsData(N3D::CCamera* activeCamera);
     void update();
 
     FMOD_SYSTEM* getSystem();

@@ -11,141 +11,258 @@ http://www.is06.com. Legal code in license.txt
 namespace is06
 {
 
-// Engine classes
-namespace nEngine
+//! 3D Concepts
+namespace N3D
 {
+  //! Cameras
+  class CCamera;
+  namespace NCamera
+  {
+    class CThirdPerson;
+  }
+  
+  //! Characters
+  class CCharacter;
+  namespace NCharacter
+  {
+    class CNPC;
+    class CPlayable;
+  }
+  
+  //! Enemies
+  class CEnemy;
+  namespace NEnemy
+  {
+    class CAir;
+    class CFloor;
+  }
+  
+  //! Lights
+  class CLight;
+  namespace NLight
+  {
+    class CDirect;
+    class COmni;
+  }
+  
+  //! Sensors
+  class CSensor;
+  namespace NSensor
+  {
+    class CBox;
+    class CPlane;
+    class CTeleporter;
+    // EPlaneType
+  }
+
+  class CAnimatedModel;
+  class CLevelMesh;
+  class CModelEntity;
+  class CSky;
+  class CStaticModel;  
+  // SMeshAnimationInfo
+}
+
+//! Debug classes
+namespace NDebug
+{
+  namespace NEditor
+  {
+    class CMap;
+  }
+
+  namespace NProperty
+  {
+    class CColor;
+  }
+  
+  class CConsole;
+  // EErrorCode
+  // SDisplay
+  // SOption
+}
+
+//! Engine classes
+namespace NEngine
+{
+  class CPlayerControl;
+  namespace NControl
+  {
+    class CGamepad;
+    class CKeyboard;
+    class CMouse;
+    // ECommandIdentifier
+    // EGamepadButton
+    // EGamepadDirection
+  }
+
+  namespace NGameplay
+  {
+    class CDialog;
+    class CDialogInterface;
+    class CMapSectionInterface;
+    class CNPCInterface;
+    // EDifficultyLevel
+    // EPlayableCharacterType
+    // ETrophyIdentifier
+  }
+
+  namespace NResource
+  {
+    class CResourceManager;
+    class CSettings;
+    class CSettingsGroup;
+    class CTranslation;
+    // ELocaleIdentifier
+  }
+  
+  class CSave;
+  namespace NSave
+  {
+    class CSlot;
+    class CFile;
+    // SFileElement
+  }
+
   class CGame;
   class CEngineException;
   class CEventManager;
-  class CSettings;
-  class CSettingsGroup;
-  class CTimer;
-  class CTranslation;
   class CEntity;
-  class CSave;
-  class CSaveSlot;
-  class CSaveFile;
-  class CPlayerControl;
-  class CKeyboard;
-  class CMouse;
-  class CGamepad;
-  class CDialog;
-  class CDialogInterface;
-  class CNPCInterface;
+  class CTimer;
+  // ECharacterAnimationIdentifier
+  // ECinemascopeAnimType
+  // ECollisionType
+  // EEventType
+  // EFadeColor
+  // ERayType
 }
 
-// Debug classes
-namespace nDebug
+//! HUD
+namespace NHud
 {
-  class CMapEditor;
-  class CColorProperty;
-}
-
-// Scenes
-namespace nScene
-{
-  class CScene;
-  class CSceneGameplay;
-  class CSceneMenu;
-}
-
-// HUD
-namespace nHud
-{
-  class CHud;
-  class CHudFlatElement;
-  class CTriangle;
-  class CQuad;
+  //! Buttons
+  class CButton;
+  namespace NButton
+  {
+    class CIcon;
+    class CIconText;
+    class CText;
+  }
+  
+  //! Counters
   class CCounter;
-  class CBarCounter;
-  class CDigitCounter;
-  class CGameTimeCounter;
-  class CWorldTimeCounter;
-  class CTargetLifeMeter;
-  class CIconCounter;
-  class CPicture;
+  namespace NCounter
+  {
+    class CBar;
+    class CDigit;
+    class CGameTime;
+    class CIcon;
+    class CTargetLife;
+    class CWorldTime;
+    // EBarStyle
+  }
+  
+  //! Hud ensembles
+  class CEnsemble;
+  namespace NEnsemble
+  {
+    class CCommands;
+    class CEnergy;
+  }
+  
+  //! Pause screen and sub-screen interfaces
+  class CPauseScreen;
+  namespace NPauseScreen
+  {
+    namespace NSubScreen
+    {
+      class CItems;
+      class CMap;
+      class CMonsters;
+      class CSettings;
+      class CSpirits;
+      class CStatus;
+      class CStory;
+      class CWeapons;
+    }
+    
+    class CSubScreen;
+  }
+  
+  //! Player states
+  class CPlayerState;
+  namespace NPlayerState
+  {
+    class CCapacity;
+    class CMainInfo;
+  }
+
+  //! Primitives
+  class CHud;
+  namespace NPrimitive
+  {
+    class CFlatElement;
+    class CTriangle;
+    class CQuad;
+  }
+
   class CAnimation;
+  class CCinemascopeMode;
+  class CMenu;
+  class CMenuOption;
+  class CMiniMap;
+  class CMiniMapArrow;
+  class CPicture;
   class CText;
   class CTextChar;
   class CTextFont;
   class CWindow;
-  class CHudEnsemble;
-  class CHudEnsembleEnergy;
-  class CHudEnsembleCommands;
-  class CButton;
-  class CTextButton;
-  class CIconButton;
-  class CIconTextButton;
-  class CMenu;
-  class CMenuOption;
-  class CPlayerStateMainInfo;
-  class CPlayerStateCapacity;
-  class CPlayerState;
-  class CMiniMap;
-  class CMiniMapArrow;
-
-  //! pause screen and sub-screen interfaces
-  namespace nPauseScreen
-  {
-    class CPauseScreen;
-    class CPauseSubScreen;
-    class CPauseSubScreenItems;
-    class CPauseSubScreenMap;
-    class CPauseSubScreenMonsters;
-    class CPauseSubScreenSettings;
-    class CPauseSubScreenSpirits;
-    class CPauseSubScreenStatus;
-    class CPauseSubScreenStory;
-    class CPauseSubScreenWeapons;
-  }
+  // EFontStyle
+  // EMenuIcon
+  // EMenuStyle
+  // EMiniMapIdentifier
+  // ETextAlignment
+  // EWindowStyle
+  // SPositionInfo
 }
 
-// 3D Model
-namespace n3D
+//! Scenes
+namespace NScene
 {
-  // General
-  class CModelEntity;
-  class CAnimatedModel;
-  class CStaticModel;
-  class CLevelMesh;
-  class CCamera;
-  class CTPCamera;
-  class CLight;
-  class CDirectLight;
-  class COmniLight;
-  class CSensor;
-  class CPlaneSensor;
-  class CBoxSensor;
-  class CTeleporter;
-
-  // Characters
-  class CCharacter;
-  class CPlayableCharacter;
-  class CNPC;
-
-  // Enemies
-  class CEnemy;
-  class CFloorEnemy;
-  class CAirEnemy;
+  class CScene;
+  class CSceneGameplay;
+  class CSceneMenu;
+  class CSceneDungeon;
+  class CSceneSelectMap;
+  // ESceneIdentifier
 }
 
-// Shaders
-namespace nShader
+//! Shaders
+namespace NShader
 {
-  class CDiffuseShaderCallback;
-  class CPostRenderGlow;
   class CDepthShaderCallback;
+  class CDiffuseShaderCallback;
+  class CIceShaderCallback;
+  class CPostRenderGlow;
+  class CPostRenderShader;
+  class CShaders;
+  class CShadow;
+  class CShadowProcessor;
   class CShadowShaderCallback;
+  // EShaderEffect
+  // EShadowMode
 }
 
-// Sound
-namespace nSound
+//! Sound
+namespace NSound
 {
+  class CMusic;
+  class CMusicReference;
+  class CMusicSequence;
   class CSoundManager;
   class CSpeaker;
-  class CMusicReference;
-  class CMusic;
-  class CMusicSequence;
+  // SMusicInfo
+  // SMusicSequenceInfo
 }
 
 }

@@ -5,14 +5,14 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CGame.h"
-#include "../../include/engine/CResourceManager.h"
-#include "../../include/hud/CPicture.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/CGame.h"
+#include "../../include/Engine/Resource/CResourceManager.h"
+#include "../../include/Hud/CPicture.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 CPicture::CPicture(f32 x, f32 y, f32 w, f32 h, const string& filePath, bool useAlphaBlending) : CFlatElement(x, y, w, h, useAlphaBlending)
@@ -27,7 +27,7 @@ void CPicture::render()
 
 void CPicture::loadSecondTexture(const string& filePath)
 {
-  video::ITexture* second = nEngine::CResourceManager::loadTexture(filePath);
+  video::ITexture* second = NEngine::NResource::CResourceManager::loadTexture(filePath);
   if (second) {
     Material.setTexture(1, second);
   }
@@ -35,7 +35,7 @@ void CPicture::loadSecondTexture(const string& filePath)
 
 void CPicture::changeTexture(const string& filePath)
 {
-  Texture = nEngine::CResourceManager::loadTexture(filePath);
+  Texture = NEngine::NResource::CResourceManager::loadTexture(filePath);
   if (Texture) {
     Material.setTexture(0, Texture);
   }

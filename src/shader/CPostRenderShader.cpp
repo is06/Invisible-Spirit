@@ -5,17 +5,17 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CGame.h"
-#include "../../include/model/CModelEntity.h"
-#include "../../include/shader/CPostRenderShader.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/CGame.h"
+#include "../../include/3D/CModelEntity.h"
+#include "../../include/Shader/CPostRenderShader.h"
 
 namespace is06
 {
-namespace nShader
+namespace NShader
 {
 
-CPostRenderShader::CPostRenderShader() : CFlatElement(0, 0, nEngine::CGame::ScreenPos.Hud.Width, nEngine::CGame::ScreenPos.Hud.Height)
+CPostRenderShader::CPostRenderShader() : CFlatElement(0, 0, NEngine::CGame::ScreenPos.Hud.Width, NEngine::CGame::ScreenPos.Hud.Height)
 {
   Texture = 0;
 
@@ -30,7 +30,7 @@ void CPostRenderShader::render()
 
 }
 
-void CPostRenderShader::addEntityForEffect(n3D::CModelEntity* entity, EShaderEffect effect)
+void CPostRenderShader::addEntityForEffect(N3D::CModelEntity* entity, NShader::EEffect effect)
 {
   EntityList[entity] = effect;
 }
@@ -39,9 +39,9 @@ void CPostRenderShader::applyEffectsToEntities()
 {
   for (EntityListIt = EntityList.begin(); EntityListIt != EntityList.end(); EntityListIt++) {
     switch (EntityListIt->second) {
-      case ESE_DARKEN:
+      case EFFECT_DARKEN:
         // @todo : turn off all lights
-        nEngine::CGame::getSceneManager()->setAmbientLight(video::SColorf(0.0f, 0.0f, 0.0f));
+        NEngine::CGame::getSceneManager()->setAmbientLight(video::SColorf(0.0f, 0.0f, 0.0f));
         EntityListIt->first->darken();
         break;
       default:
@@ -54,9 +54,9 @@ void CPostRenderShader::removeEffectsToEntities()
 {
   for (EntityListIt = EntityList.begin(); EntityListIt != EntityList.end(); EntityListIt++) {
     switch (EntityListIt->second) {
-      case ESE_DARKEN:
+      case EFFECT_DARKEN:
         // @todo : turn on all lights
-        nEngine::CGame::getSceneManager()->setAmbientLight(video::SColorf(1.0f, 1.0f, 1.0f));
+        NEngine::CGame::getSceneManager()->setAmbientLight(video::SColorf(1.0f, 1.0f, 1.0f));
         EntityListIt->first->undarken();
         break;
       default:

@@ -5,13 +5,13 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CTimer.h"
-#include "../../include/engine/CGame.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/CTimer.h"
+#include "../../include/Engine/CGame.h"
 
 namespace is06
 {
-namespace nEngine
+namespace NEngine
 {
 
 //! Constructor

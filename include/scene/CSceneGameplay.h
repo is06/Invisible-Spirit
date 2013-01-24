@@ -9,14 +9,15 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_SCENE_GAMEPLAY_H__
 
 #include "CScene.h"
-#include "../hud/CMiniMap.h"
-#include "../hud/CPauseScreen.h"
-#include "../engine/CNPCInterface.h"
-#include "../engine/CMapSectionInterface.h"
+#include "../Hud/CHudEnsemble.h"
+#include "../Hud/CMiniMap.h"
+#include "../Hud/CPauseScreen.h"
+#include "../Engine/Gameplay/CNPCInterface.h"
+#include "../Engine/Gameplay/CMapSectionInterface.h"
 
 namespace is06
 {
-namespace nScene
+namespace NScene
 {
 
 class CSceneGameplay : public CScene
@@ -35,15 +36,15 @@ class CSceneGameplay : public CScene
   protected:
     virtual void everySecond();
 
-    n3D::CPlayableCharacter* Hero;
-    nEngine::CMapSectionInterface* MapSections;
-    nHud::CHudEnsemble* HudEnsemble;
-    nHud::CHudEnsembleEnergy* HudEnergyEnsemble;
-    nHud::CMiniMap* MiniMap;
-    nHud::CWorldTimeCounter* WorldTime;
-    nHud::nPauseScreen::CPauseScreen* PauseScreen;
-    nEngine::CTimer* EverySecondTimer;
-    nEngine::CNPCInterface* NPCInterface;
+    N3D::NCharacter::CPlayable* Hero;
+    NEngine::NGameplay::CMapSectionInterface* MapSections;
+    NHud::CHudEnsemble* HudEnsemble;
+    NHud::NEnsemble::CEnergy* HudEnergyEnsemble;
+    NHud::CMiniMap* MiniMap;
+    NHud::NCounter::CWorldTime* WorldTime;
+    NHud::CPauseScreen* PauseScreen;
+    NEngine::CTimer* EverySecondTimer;
+    NEngine::NGameplay::CNPCInterface* NPCInterface;
 
   private:
     void manageCameraControl();

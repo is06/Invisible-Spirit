@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 //! The whole HUD gameplay interface (buttons, energy...)
@@ -27,8 +27,8 @@ class CHudEnsemble : public CHud
     void show();
     void setOpacity(u8 value);
 
-    CHudEnsembleCommands* Buttons;
-    CHudEnsembleEnergy* Energy;
+    NEnsemble::CCommands* Buttons;
+    NEnsemble::CEnergy* Energy;
 };
 
 }

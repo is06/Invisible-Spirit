@@ -5,14 +5,14 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/hud/CMenu.h"
-#include "../../include/hud/CMenuOption.h"
-#include "../../include/hud/CPicture.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Hud/CMenu.h"
+#include "../../include/Hud/CMenuOption.h"
+#include "../../include/Hud/CPicture.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 //! \todo comment this function
@@ -30,7 +30,7 @@ CMenu::CMenu(f32 x, f32 y, f32 width, u8 height, EMenuStyle style) : CHud()
 
   Style = style;
 
-  Cursor = new CPicture(x - 16, y, 32, 32, "resource/hud/menus/cursor.png");
+  Cursor = new CPicture(x - 16, y, 32, 32, "resource/Hud/menus/cursor.png");
 }
 
 //! \todo comment this function

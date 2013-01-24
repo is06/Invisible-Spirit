@@ -5,20 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/hud/CMiniMap.h"
-#include "../../include/engine/CGame.h"
-#include "../../include/model/CPlayableCharacter.h"
+#include "../../include/Hud/CMiniMap.h"
+#include "../../include/Engine/CGame.h"
+#include "../../include/3D/Character/CPlayable.h"
 
 using namespace irr;
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 f32 CMiniMap::Coeff = 4954.94f;
 
-CMiniMap::CMiniMap(n3D::CPlayableCharacter* player) : CHud()
+CMiniMap::CMiniMap(N3D::NCharacter::CPlayable* player) : CHud()
 {
   Map = NULL;
   EntrancePosition = NULL;
@@ -26,8 +26,8 @@ CMiniMap::CMiniMap(n3D::CPlayableCharacter* player) : CHud()
 
   AttachedPlayer = player;
   Position = core::vector2df(
-    nEngine::CGame::ScreenPos.Hud.Right - 150.0f,
-    nEngine::CGame::ScreenPos.Hud.Bottom + 150.0f
+    NEngine::CGame::ScreenPos.Hud.Right - 150.0f,
+    NEngine::CGame::ScreenPos.Hud.Bottom + 150.0f
   );
 }
 
@@ -40,7 +40,7 @@ void CMiniMap::setMap(EMiniMapIdentifier id)
     default: fileName = "global/default"; break;
   }
 
-  Map = new CPicture(Position.X, Position.Y, 250, 250, "resource/hud/minimap/" + fileName + ".png", true);
+  Map = new CPicture(Position.X, Position.Y, 250, 250, "resource/Hud/minimap/" + fileName + ".png", true);
   Map->setOpacity(230);
   //Map->setRotation(45.0f);
 

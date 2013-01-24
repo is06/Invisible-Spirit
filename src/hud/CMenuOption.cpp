@@ -5,14 +5,14 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/hud/CMenuOption.h"
-#include "../../include/hud/CWindow.h"
-#include "../../include/hud/CText.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Hud/CMenuOption.h"
+#include "../../include/Hud/CWindow.h"
+#include "../../include/Hud/CText.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 CMenuOption::CMenuOption(EMenuIcon icon, const string& title, f32 x, f32 y, EMenuStyle style) : CHud()

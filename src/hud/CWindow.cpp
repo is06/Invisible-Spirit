@@ -5,13 +5,13 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/hud/CWindow.h"
-#include "../../include/hud/CPicture.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Hud/CWindow.h"
+#include "../../include/Hud/CPicture.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 CWindow::CWindow(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, EWindowStyle style) : CHud()
@@ -27,7 +27,7 @@ CWindow::CWindow(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, EWindowStyle style
 
 void CWindow::applyStyleStd(f32 x, f32 y, f32 w, f32 h, f32 borderWidth)
 {
-  string texturePath = "resource/hud/window/window1.bmp";
+  string texturePath = "resource/Hud/window/window1.bmp";
 
   f32 sideW = w - borderWidth;
   f32 sideH = h - borderWidth;

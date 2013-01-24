@@ -5,54 +5,54 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CGame.h"
-#include "../../include/engine/CKeyboard.h"
-#include "../../include/engine/CGamepad.h"
-#include "../../include/engine/CDialogInterface.h"
-#include "../../include/engine/CSave.h"
-#include "../../include/model/CModelEntity.h"
-#include "../../include/hud/CPicture.h"
-#include "../../include/hud/CQuad.h"
-#include "../../include/scene/CScene.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/CGame.h"
+#include "../../include/Engine/Control/CKeyboard.h"
+#include "../../include/Engine/Control/CGamepad.h"
+#include "../../include/Engine/Gameplay/CDialogInterface.h"
+#include "../../include/Engine/CSave.h"
+#include "../../include/3D/CModelEntity.h"
+#include "../../include/Hud/CPicture.h"
+#include "../../include/Hud/Primitive/CQuad.h"
+#include "../../include/Scene/CScene.h"
 
 using namespace irr;
 
 namespace is06
 {
-namespace nScene
+namespace NScene
 {
 
-bool CScene::InMapEditingMode;
+bool CScene::INMapEditingMode;
 
 //! Instanciate required object interfaces such as player control or music so we can use them in all scenes
 CScene::CScene()
 {
-  StartTime = nEngine::CGame::getCurrentTime();
+  StartTime = NEngine::CGame::getCurrentTime();
   SceneTime = 0.0f;
 
   Camera = NULL;
   SceneTranslations = NULL;
   Dialog = NULL;
   Sky = NULL;
-  Control = new nEngine::CPlayerControl(false);
+  Control = new NEngine::CPlayerControl(false);
 
-  Music = nEngine::CGame::getMusicReference();
-  GlobalTranslations = nEngine::CGame::getGlobalTranslations();
-  InFader = nEngine::CGame::getDebugGUI()->addInOutFader();
-  OutFader = nEngine::CGame::getDebugGUI()->addInOutFader();
+  Music = NEngine::CGame::getMusicReference();
+  GlobalTranslations = NEngine::CGame::getGlobalTranslations();
+  InFader = NEngine::CGame::getDebugGUI()->addInOutFader();
+  OutFader = NEngine::CGame::getDebugGUI()->addInOutFader();
 
   // Temporary picture to avoid a strange bug in hud rendering (first picture to render badly positionned)
-  Dummy = new nHud::CPicture(-5000, -5000, 0, 0);
+  Dummy = new NHud::CPicture(-5000, -5000, 0, 0);
 
   // Cinemascope elements
-  Cinemascope = new nHud::CCinemascopeMode();
+  Cinemascope = new NHud::CCinemascopeMode();
 
-  //ShadowProcessor = new nEngine::CShadowProcessor(Camera);
+  //ShadowProcessor = new NEngine::CShadowProcessor(Camera);
 
-  DebugInfo = nEngine::CGame::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
+  DebugInfo = NEngine::CGame::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
   DebugInfo->setOverrideColor(video::SColor(255, 255, 255, 255));
-  //DebugConsole = new nDebug::CDebugConsole();
+  //DebugConsole = new NDebug::CDebugConsole();
 
   BackBufferColor = video::SColor(255, 0, 0, 0);
 }
@@ -60,8 +60,8 @@ CScene::CScene()
 //! Event test of all scenes in the game (global events)
 void CScene::events()
 {
-  SpeedFactor = nEngine::CGame::getSpeedFactor();
-  SceneTime = (nEngine::CGame::getCurrentTime() - StartTime) / 1000.0f;
+  SpeedFactor = NEngine::CGame::getSpeedFactor();
+  SceneTime = (NEngine::CGame::getCurrentTime() - StartTime) / 1000.0f;
   //GameSave->setInteger(11, (u32)SceneTime); // 11 = Total game time
 
   generateDebugInfo();
@@ -69,7 +69,7 @@ void CScene::events()
   // Debug console
   /*
   DebugConsole->render();
-  if (Control->commandEntered(nEngine::ECI_DEBUG_CONSOLE_EXECUTE, nEngine::EET_ONCE)) {
+  if (Control->commandEntered(NEngine::ECI_DEBUG_CONSOLE_EXECUTE, NEngine::EET_ONCE)) {
     DebugConsole->executeCurrentCommand();
   }
   */
@@ -98,15 +98,15 @@ void CScene::generateDebugInfo()
 {
   core::stringw debugText = "";
   debugText += "Texture count: ";
-  debugText += nEngine::CGame::getVideoDriver()->getTextureCount();
+  debugText += NEngine::CGame::getVideoDriver()->getTextureCount();
   debugText += "\nMesh count: ";
-  debugText += nEngine::CGame::getSceneManager()->getMeshCache()->getMeshCount();
+  debugText += NEngine::CGame::getSceneManager()->getMeshCache()->getMeshCount();
 
   DebugInfo->setText(debugText.c_str());
 }
 
 //! \todo comment this function
-void CScene::setSaveSlot(nEngine::CSave* saveSlot)
+void CScene::setSaveSlot(NEngine::CSave* saveSlot)
 {
   GameSave = saveSlot;
 }
@@ -115,7 +115,7 @@ void CScene::setSaveSlot(nEngine::CSave* saveSlot)
 /**
  * \return Camera*
  */
-n3D::CCamera* CScene::getActiveCamera()
+N3D::CCamera* CScene::getActiveCamera()
 {
   return Camera;
 }
@@ -144,12 +144,12 @@ void CScene::hudRender()
 }
 
 //! \todo comment this function
-void CScene::fadeIn(f32 speed, nEngine::EFadeColor color)
+void CScene::fadeIn(f32 speed, NHud::EFadeColor color)
 {
   video::SColor irrColor = video::SColor(0, 0, 0, 0);
 
   switch(color) {
-    case nEngine::EFC_WHITE: irrColor = video::SColor(255, 255, 255, 255); break;
+    case NHud::EFC_WHITE: irrColor = video::SColor(255, 255, 255, 255); break;
     default: irrColor = video::SColor(0, 0, 0, 0); break;
   }
 
@@ -158,12 +158,12 @@ void CScene::fadeIn(f32 speed, nEngine::EFadeColor color)
 }
 
 //! \todo comment this function
-void CScene::fadeOut(f32 speed, nEngine::EFadeColor color)
+void CScene::fadeOut(f32 speed, NHud::EFadeColor color)
 {
   video::SColor irrColor = video::SColor(0, 0, 0, 0);
 
   switch(color) {
-    case nEngine::EFC_WHITE: irrColor = video::SColor(255, 255, 255, 255); break;
+    case NHud::EFC_WHITE: irrColor = video::SColor(255, 255, 255, 255); break;
     default: irrColor = video::SColor(0, 0, 0, 0); break;
   }
 
@@ -172,7 +172,7 @@ void CScene::fadeOut(f32 speed, nEngine::EFadeColor color)
 }
 
 //! \todo comment this function
-nEngine::CShadowProcessor* CScene::getShadowProcessor()
+NShader::CShadowProcessor* CScene::getShadowProcessor()
 {
   return ShadowProcessor;
 }
@@ -189,8 +189,8 @@ CScene::~CScene()
   InFader->remove();
   OutFader->remove();
 
-  nEngine::CGame::getVideoDriver()->removeAllTextures();
-  nEngine::CGame::getSceneManager()->getMeshCache()->clear();
+  NEngine::CGame::getVideoDriver()->removeAllTextures();
+  NEngine::CGame::getSceneManager()->getMeshCache()->clear();
 
   if (Dialog) {
     delete Dialog;

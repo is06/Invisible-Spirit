@@ -8,14 +8,14 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_TEXT_CHAR_H__
 #define __IS06_TEXT_CHAR_H__
 
-#include "CFlatElement.h"
+#include "Primitive/CFlatElement.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
-class CTextChar : public CFlatElement
+class CTextChar : public NPrimitive::CFlatElement
 {
   public:
     CTextChar(u8 code, f32& x, f32& y, u8 size, CTextFont* font, bool visible = true, u8 extTexture=0);

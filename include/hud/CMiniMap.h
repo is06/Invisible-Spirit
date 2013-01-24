@@ -17,13 +17,13 @@ using namespace irr;
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 class CMiniMap : public CHud
 {
   public:
-    CMiniMap(n3D::CPlayableCharacter* player);
+    CMiniMap(N3D::NCharacter::CPlayable* player);
     ~CMiniMap();
 
     void render();
@@ -43,9 +43,9 @@ class CMiniMap : public CHud
     CMiniMapArrow* PlayerPosition;
     CMiniMapArrow* EntrancePosition;
 
-    n3D::CPlayableCharacter* AttachedPlayer;
-    std::vector<n3D::CModelEntity*> AttachedEntities;
-    std::vector<n3D::CModelEntity*>::iterator AttachedEntitiesIt;
+    N3D::NCharacter::CPlayable* AttachedPlayer;
+    std::vector<N3D::CModelEntity*> AttachedEntities;
+    std::vector<N3D::CModelEntity*>::iterator AttachedEntitiesIt;
 
     static f32 Coeff;
 };

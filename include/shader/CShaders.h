@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nShader
+namespace NShader
 {
 
 //! Shader material type identifiers for use in 3D graphical entities

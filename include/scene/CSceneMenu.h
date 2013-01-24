@@ -9,11 +9,11 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_SCENE_MENU_H__
 
 #include "CScene.h"
-#include "../engine/CSaveSlot.h"
+#include "../Engine/Save/CSlot.h"
 
 namespace is06
 {
-namespace nScene
+namespace NScene
 {
 
 class CSceneMenu : public CScene
@@ -40,11 +40,11 @@ class CSceneMenu : public CScene
     void retrieveSaveSlotList();
     void clearSaveSlotList();
 
-    nHud::CPicture* Title;
-    nHud::CPicture* CreativeCommons;
-    nHud::CMenu* MainMenu;
+    NHud::CPicture* Title;
+    NHud::CPicture* CreativeCommons;
+    NHud::CMenu* MainMenu;
     map<u16, core::vector3di> ModeList;
-    map<u8, nEngine::CSaveSlot*> SaveSlotList;
+    map<u8, NEngine::NSave::CSlot*> SaveSlotList;
 
     bool NewGameIsFading;
     bool QuitIsFading;

@@ -8,11 +8,11 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __DEPTH_SHADER_CALLBACK_H__
 #define __DEPTH_SHADER_CALLBACK_H__
 
-#include "../engine/CGame.h"
+#include "../Engine/CGame.h"
 
 namespace is06
 {
-namespace nShader
+namespace NShader
 {
 
 class CDepthShaderCallback : public video::IShaderConstantSetCallBack

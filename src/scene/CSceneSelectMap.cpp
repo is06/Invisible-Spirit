@@ -5,19 +5,19 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/model/CTPCamera.h"
-#include "../../include/scene/CSceneSelectMap.h"
+#include "../../include/Engine/core.h"
+#include "../../include/3D/Camera/CThirdPerson.h"
+#include "../../include/Scene/CSceneSelectMap.h"
 
 namespace is06
 {
-namespace nScene
+namespace NScene
 {
 
 CSceneSelectMap::CSceneSelectMap() : CScene()
 {
   BackBufferColor = video::SColor(0, 0, 0, 0);
-  Camera = new n3D::CTPCamera();
+  Camera = new N3D::NCamera::CThirdPerson();
   Camera->setControl(false);
 }
 

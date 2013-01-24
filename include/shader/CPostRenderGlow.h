@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nShader
+namespace NShader
 {
 
 //! Aligned screen quad for post render in order to simulated a light glowing effect

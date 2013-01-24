@@ -5,15 +5,15 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/CGame.h"
-#include "../../include/engine/CEventManager.h"
-#include "../../include/hud/CMiniMapArrow.h"
+#include "../../include/Engine/CGame.h"
+#include "../../include/Engine/CEventManager.h"
+#include "../../include/Hud/CMiniMapArrow.h"
 
 using namespace irr;
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 CMiniMapArrow::CMiniMapArrow(video::SColor color) : CHud()
@@ -56,20 +56,20 @@ void CMiniMapArrow::render()
   core::matrix4 mat;
   mat.makeIdentity();
 
-  if (nEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD7)) {
+  if (NEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD7)) {
     Vertices[0].Pos.X += 0.00001f;
     Vertices[1].Pos.X -= 0.00001f;
   }
-  if (nEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD8)) {
+  if (NEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD8)) {
     Vertices[0].Pos.Y += 0.00001f;
     Vertices[1].Pos.Y += 0.00001f;
     Vertices[2].Pos.Y -= 0.00001f;
   }
-  if (nEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD4)) {
+  if (NEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD4)) {
     Vertices[0].Pos.X -= 0.00001f;
     Vertices[1].Pos.X += 0.00001f;
   }
-  if (nEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD5)) {
+  if (NEngine::CGame::getEventManager()->isKeyDown(KEY_NUMPAD5)) {
     Vertices[0].Pos.Y -= 0.00001f;
     Vertices[1].Pos.Y -= 0.00001f;
     Vertices[2].Pos.Y += 0.00001f;
@@ -78,10 +78,10 @@ void CMiniMapArrow::render()
   Material.DiffuseColor.setAlpha(Opacity);
 
   if (Visible) {
-    nEngine::CGame::getVideoDriver()->setMaterial(Material);
-    nEngine::CGame::getVideoDriver()->setTransform(video::ETS_VIEW, AbsoluteTransformation);
-    nEngine::CGame::getVideoDriver()->drawIndexedTriangleList(Vertices, 3, Indices, 1);
-    nEngine::CGame::getVideoDriver()->setTransform(video::ETS_WORLD, mat);
+    NEngine::CGame::getVideoDriver()->setMaterial(Material);
+    NEngine::CGame::getVideoDriver()->setTransform(video::ETS_VIEW, AbsoluteTransformation);
+    NEngine::CGame::getVideoDriver()->drawIndexedTriangleList(Vertices, 3, Indices, 1);
+    NEngine::CGame::getVideoDriver()->setTransform(video::ETS_WORLD, mat);
   }
 }
 

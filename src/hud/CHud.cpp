@@ -5,12 +5,12 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/hud/CHud.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Hud/CHud.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 CHud::CHud()

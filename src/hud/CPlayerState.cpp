@@ -5,14 +5,14 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/hud/CPlayerState.h"
-#include "../../include/hud/CText.h"
-#include "../../include/hud/CPlayerStateMainInfo.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Hud/CPlayerState.h"
+#include "../../include/Hud/CText.h"
+#include "../../include/Hud/PlayerState/CMainInfo.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 CPlayerState::CPlayerState()
@@ -21,7 +21,7 @@ CPlayerState::CPlayerState()
   LevelLabel = new CText("niv.", 0, -24);
   LevelInfo = new CText("1", 100, -24);
 
-  HpInfo = new CPlayerStateMainInfo();
+  HpInfo = new NPlayerState::CMainInfo();
 }
 
 void CPlayerState::render()

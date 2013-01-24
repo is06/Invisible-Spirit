@@ -10,15 +10,15 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nShader
+namespace NShader
 {
 
-enum EShaderEffect
+enum EEffect
 {
-  ESE_NONE,
-  ESE_DARKEN,
+  EFFECT_NONE,
+  EFFECT_DARKEN,
 
-  ESE_COUNT
+  EFFECT_COUNT
 };
 
 }

@@ -5,38 +5,38 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/maps.h"
-#include "../../include/engine/CGame.h"
-#include "../../include/engine/CTranslation.h"
-#include "../../include/engine/CEngineException.h"
-#include "../../include/engine/CEventManager.h"
-#include "../../include/engine/CSettings.h"
-#include "../../include/engine/CSave.h"
-#include "../../include/sound/CSoundManager.h"
-#include "../../include/sound/CMusicReference.h"
-#include "../../include/scene/CScene.h"
-#include "../../include/scene/CSceneMenu.h"
-#include "../../include/scene/CSceneSelectMap.h"
-#include "../../include/scene/CSceneGameplay.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/maps.h"
+#include "../../include/Engine/CGame.h"
+#include "../../include/Engine/Resource/CTranslation.h"
+#include "../../include/Engine/CEngineException.h"
+#include "../../include/Engine/CEventManager.h"
+#include "../../include/Engine/Resource/CSettings.h"
+#include "../../include/Engine/CSave.h"
+#include "../../include/Sound/CSoundManager.h"
+#include "../../include/Sound/CMusicReference.h"
+#include "../../include/Scene/CScene.h"
+#include "../../include/Scene/CSceneMenu.h"
+#include "../../include/Scene/CSceneSelectMap.h"
+#include "../../include/Scene/CSceneGameplay.h"
 
-#include "../../include/map/MAP_DEBUG.h"
-#include "../../include/map/MAP_ALPHA_ZONE.h"
-#include "../../include/map/MAP_DUNGEON_1.h"
-#include "../../include/map/MAP_DUNGEON_2.h"
-#include "../../include/map/MAP_DUNGEON_3.h"
-#include "../../include/map/MAP_DUNGEON_4.h"
-#include "../../include/map/MAP_DUNGEON_5.h"
-#include "../../include/map/MAP_DUNGEON_6.h"
-#include "../../include/map/MAP_DUNGEON_7.h"
-#include "../../include/map/MAP_DUNGEON_8.h"
-#include "../../include/map/MAP_DUNGEON_9.h"
+#include "../../include/Map/Debug/MAP_DEBUG.h"
+#include "../../include/Map/Debug/MAP_ALPHA_ZONE.h"
+#include "../../include/Map/Dungeon/MAP_DUNGEON_1.h"
+#include "../../include/Map/Dungeon/MAP_DUNGEON_2.h"
+#include "../../include/Map/Dungeon/MAP_DUNGEON_3.h"
+#include "../../include/Map/Dungeon/MAP_DUNGEON_4.h"
+#include "../../include/Map/Dungeon/MAP_DUNGEON_5.h"
+#include "../../include/Map/Dungeon/MAP_DUNGEON_6.h"
+#include "../../include/Map/Dungeon/MAP_DUNGEON_7.h"
+#include "../../include/Map/Dungeon/MAP_DUNGEON_8.h"
+#include "../../include/Map/Dungeon/MAP_DUNGEON_9.h"
 
 using namespace irr;
 
 namespace is06
 {
-namespace nEngine
+namespace NEngine
 {
 
 IrrlichtDevice* CGame::Device;
@@ -45,14 +45,14 @@ video::IGPUProgrammingServices* CGame::GpuManager;
 scene::ISceneManager* CGame::SceneManager;
 gui::IGUIEnvironment* CGame::DebugGUI;
 NewtonWorld* CGame::GameNewtonWorld;
-nScene::CScene* CGame::CurrentScene;
-nEngine::CEventManager* CGame::EventManager;
-nEngine::CTranslation* CGame::GlobalTranslations;
-nEngine::CSave* CGame::CurrentSave;
-nSound::CSoundManager* CGame::SoundManager;
-nSound::CMusicReference* CGame::MusicReference;
+NScene::CScene* CGame::CurrentScene;
+NEngine::CEventManager* CGame::EventManager;
+NEngine::NResource::CTranslation* CGame::GlobalTranslations;
+NEngine::CSave* CGame::CurrentSave;
+NSound::CSoundManager* CGame::SoundManager;
+NSound::CMusicReference* CGame::MusicReference;
 s32 CGame::NextScene;
-nEngine::ELocaleIdentifier CGame::CurrentLocale;
+NEngine::ELocaleIdentifier CGame::CurrentLocale;
 bool CGame::SceneChanged;
 bool CGame::ScreenSizeChanged;
 bool CGame::Exit;
@@ -65,36 +65,36 @@ f32 CGame::SpeedFactor;
 /**
  * \section settings_usecase Settings use case
  * \code
- * string rendererName = nEngine::CGame::Settings->getParamString("display", "renderer");
+ * string rendererName = NEngine::CGame::Settings->getParamString("display", "renderer");
  * \endcode
  */
-nEngine::CSettings* CGame::Settings;
+NEngine::NResource::CSettings* CGame::Settings;
 
 //! Screen position information
 /**
  * \section screenpos_usecase ScreenPos use case
  * \code
- * f32 topEdge = nEngine::CGame::ScreenPos.Top;
+ * f32 topEdge = NEngine::CGame::ScreenPos.Top;
  * \endcode
  */
-nEngine::SScreenPosition CGame::ScreenPos;
+NEngine::SScreenPosition CGame::ScreenPos;
 
 //! Shaders interface
 /**
  * \section shaders_usecase Shaders use case
  * \code
- * Material.MaterialType = (video::E_MATERIAL_TYPE)nEngine::CGame::Shaders.HorizontalBlur;
+ * Material.MaterialType = (video::E_MATERIAL_TYPE)NEngine::CGame::Shaders.HorizontalBlur;
  * \endcode
  */
-nShader::CShaders CGame::Shaders;
+NShader::CShaders CGame::Shaders;
 
 //! Debug options information
-nDebug::SGameDebugOption CGame::DebugOption;
+NDebug::SOption CGame::DebugOption;
 
 //! All initializations
 void CGame::init()
 {
-  Settings = new CSettings();
+  Settings = new NResource::CSettings();
   initScreenPositions();
   initIrrlichtInterfaces();
   initDebugOptions();
@@ -255,7 +255,7 @@ NewtonWorld* CGame::getNewtonWorld()
 /**
  * \return CScene*
  */
-nScene::CScene* CGame::getCurrentScene()
+NScene::CScene* CGame::getCurrentScene()
 {
   return CurrentScene;
 }
@@ -309,7 +309,7 @@ void CGame::initIrrlichtInterfaces()
   Device = createDeviceEx(deviceParameters);
 
   if (!Device) {
-    fatalError(nDebug::EEC_CODE_01);
+    fatalError(NDebug::ERROR_CODE_01);
   }
 
   // Other interfaces
@@ -317,7 +317,7 @@ void CGame::initIrrlichtInterfaces()
   VideoDriver->getDriverType();
 
   if (!VideoDriver) {
-    fatalError(nDebug::EEC_CODE_02);
+    fatalError(NDebug::ERROR_CODE_02);
   }
 
   GpuManager = VideoDriver->getGPUProgrammingServices();
@@ -386,7 +386,7 @@ void CGame::initScreenPositions()
 //! Initializes shader custom material values
 void CGame::initShaders()
 {
-  Shaders = nShader::CShaders();
+  Shaders = NShader::CShaders();
   Shaders.createMaterials(GpuManager);
 }
 
@@ -401,7 +401,7 @@ void CGame::initLocale()
   }
   */
 
-  GlobalTranslations = new nEngine::CTranslation("global.ist");
+  GlobalTranslations = new NEngine::NResource::CTranslation("global.ist");
 }
 
 //!
@@ -415,8 +415,8 @@ void CGame::initDebugOptions()
 //!
 void CGame::initSoundLayer()
 {
-  SoundManager = new nSound::CSoundManager();
-  MusicReference = new nSound::CMusicReference();
+  SoundManager = new NSound::CSoundManager();
+  MusicReference = new NSound::CMusicReference();
 }
 
 //!
@@ -424,7 +424,7 @@ void CGame::initScenes()
 {
   Exit = false;
   SceneChanged = true;
-  NextScene = nScene::ESI_SELECT_MAP;
+  NextScene = NScene::ESI_SELECT_MAP;
 }
 
 //!
@@ -454,27 +454,27 @@ void CGame::checkGraphicalCapabilities()
     // DirectX 9 requirements
     // HLSL
     if (!VideoDriver->queryFeature(video::EVDF_HLSL)) {
-      fatalError(nDebug::EEC_CODE_56);
+      fatalError(NDebug::ERROR_CODE_56);
     }
     // Pixel Shader 2.0
     if (!VideoDriver->queryFeature(video::EVDF_VERTEX_SHADER_2_0)) {
-      fatalError(nDebug::EEC_CODE_50);
+      fatalError(NDebug::ERROR_CODE_50);
     }
     // Vertex Shader 2.0
     if (!VideoDriver->queryFeature(video::EVDF_PIXEL_SHADER_2_0)) {
-      fatalError(nDebug::EEC_CODE_51);
+      fatalError(NDebug::ERROR_CODE_51);
     }
   } else if (VideoDriver->getDriverType() == video::EDT_OPENGL) {
     // OpenGL requirements
     // GLSL
     if (!VideoDriver->queryFeature(video::EVDF_ARB_GLSL)) {
-      fatalError(nDebug::EEC_CODE_55);
+      fatalError(NDebug::ERROR_CODE_55);
     }
   }
 
   // Render to target textures
   if (!VideoDriver->queryFeature(video::EVDF_RENDER_TO_TARGET)) {
-    fatalError(nDebug::EEC_CODE_52);
+    fatalError(NDebug::ERROR_CODE_52);
   }
 }
 
@@ -531,27 +531,27 @@ void CGame::loadNextScene()
   delete CurrentScene;
   switch (NextScene) {
     // Menus
-    case nScene::ESI_MENU: CurrentScene = new nScene::CSceneMenu(); break;
-    case nScene::ESI_SELECT_MAP: CurrentScene = new nScene::CSceneSelectMap(); break;
+    case NScene::ESI_MENU: CurrentScene = new NScene::CSceneMenu(); break;
+    case NScene::ESI_SELECT_MAP: CurrentScene = new NScene::CSceneSelectMap(); break;
 
     // Debug
-    case nScene::ESI_MAP_ALPHA_ZONE: CurrentScene = new nMap::MAP_ALPHA_ZONE(); break;
-    case nScene::ESI_MAP_DEBUG: CurrentScene = new nMap::MAP_DEBUG(); break;
+    case NScene::ESI_MAP_ALPHA_ZONE: CurrentScene = new NMap::NDebug::MAP_ALPHA_ZONE(); break;
+    case NScene::ESI_MAP_DEBUG: CurrentScene = new NMap::NDebug::MAP_DEBUG(); break;
 
     // Countries
 
     // Dungeons
-    case nScene::ESI_MAP_DUNGEON_1: CurrentScene = new nMap::MAP_DUNGEON_1(); break;
-    case nScene::ESI_MAP_DUNGEON_2: CurrentScene = new nMap::MAP_DUNGEON_2(); break;
-    case nScene::ESI_MAP_DUNGEON_3: CurrentScene = new nMap::MAP_DUNGEON_3(); break;
-    case nScene::ESI_MAP_DUNGEON_4: CurrentScene = new nMap::MAP_DUNGEON_4(); break;
-    case nScene::ESI_MAP_DUNGEON_5: CurrentScene = new nMap::MAP_DUNGEON_5(); break;
-    case nScene::ESI_MAP_DUNGEON_6: CurrentScene = new nMap::MAP_DUNGEON_6(); break;
-    case nScene::ESI_MAP_DUNGEON_7: CurrentScene = new nMap::MAP_DUNGEON_7(); break;
-    case nScene::ESI_MAP_DUNGEON_8: CurrentScene = new nMap::MAP_DUNGEON_8(); break;
-    case nScene::ESI_MAP_DUNGEON_9: CurrentScene = new nMap::MAP_DUNGEON_9(); break;
+    case NScene::ESI_MAP_DUNGEON_1: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_1(); break;
+    case NScene::ESI_MAP_DUNGEON_2: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_2(); break;
+    case NScene::ESI_MAP_DUNGEON_3: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_3(); break;
+    case NScene::ESI_MAP_DUNGEON_4: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_4(); break;
+    case NScene::ESI_MAP_DUNGEON_5: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_5(); break;
+    case NScene::ESI_MAP_DUNGEON_6: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_6(); break;
+    case NScene::ESI_MAP_DUNGEON_7: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_7(); break;
+    case NScene::ESI_MAP_DUNGEON_8: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_8(); break;
+    case NScene::ESI_MAP_DUNGEON_9: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_9(); break;
 
-    default: fatalError(nDebug::EEC_CODE_10); break;
+    default: fatalError(NDebug::ERROR_CODE_10); break;
   }
 
   // Displays scene loading screen
@@ -567,11 +567,11 @@ void CGame::loadNextScene()
 }
 
 //! Writes a warning in the console
-void CGame::warning(nDebug::EErrorCode code)
+void CGame::warning(NDebug::EErrorCode code)
 {
   switch (code) {
-    case nDebug::EEC_CODE_21: throw nEngine::CEngineException(code, "Unable to write save file", 2); break;
-    default: throw nEngine::CEngineException(code, "Unknown warning", 2); break;
+    case NDebug::ERROR_CODE_21: throw NEngine::CEngineException(code, "Unable to write save file", 2); break;
+    default: throw NEngine::CEngineException(code, "Unknown warning", 2); break;
   }
 }
 
@@ -579,26 +579,26 @@ void CGame::warning(nDebug::EErrorCode code)
 /**
  * \param EErrorCode the code number
  */
-void CGame::fatalError(nDebug::EErrorCode code)
+void CGame::fatalError(NDebug::EErrorCode code)
 {
   switch (code) {
-    case nDebug::EEC_CODE_01: throw nEngine::CEngineException(code, "Irrlicht device not created", 3); break;
-    case nDebug::EEC_CODE_02: throw nEngine::CEngineException(code, "Video driver not created", 3); break;
-    case nDebug::EEC_CODE_10: throw nEngine::CEngineException(code, "Unknown map id", 3); break;
-    case nDebug::EEC_CODE_20: throw nEngine::CEngineException(code, "Unable to open save file", 3); break;
-    case nDebug::EEC_CODE_30: throw nEngine::CEngineException(code, "Mesh file not found", 3); break;
-    case nDebug::EEC_CODE_45: throw nEngine::CEngineException(code, "Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor", 3); break;
-    case nDebug::EEC_CODE_46: throw nEngine::CEngineException(code, "Level Mesh need an Irrlicht node, use createNode method in scene constructor", 3); break;
-    case nDebug::EEC_CODE_47: throw nEngine::CEngineException(code, "Level Mesh need a Newton body, use loadMeshCollision method in scene constructor", 3); break;
-    case nDebug::EEC_CODE_50: throw nEngine::CEngineException(code, "Vertex Shaders 3.0 not supported", 3); break;
-    case nDebug::EEC_CODE_51: throw nEngine::CEngineException(code, "Pixels Shaders 3.0 not supported", 3); break;
-    case nDebug::EEC_CODE_52: throw nEngine::CEngineException(code, "Render to target not supported", 3); break;
-    case nDebug::EEC_CODE_53: throw nEngine::CEngineException(code, "Non-square textures not supported", 3); break;
-    case nDebug::EEC_CODE_54: throw nEngine::CEngineException(code, "Non-power of two texture size not supported", 3); break;
-    case nDebug::EEC_CODE_55: throw nEngine::CEngineException(code, "GLSL not supported", 3); break;
-    case nDebug::EEC_CODE_56: throw nEngine::CEngineException(code, "HLSL not supported", 3); break;
-    case nDebug::EEC_CODE_60: throw nEngine::CEngineException(code, "No local translation object for dialog interface", 3); break;
-    default: throw nEngine::CEngineException(code, "Internal error", 3); break;
+    case NDebug::ERROR_CODE_01: throw NEngine::CEngineException(code, "Irrlicht device not created", 3); break;
+    case NDebug::ERROR_CODE_02: throw NEngine::CEngineException(code, "Video driver not created", 3); break;
+    case NDebug::ERROR_CODE_10: throw NEngine::CEngineException(code, "Unknown map id", 3); break;
+    case NDebug::ERROR_CODE_20: throw NEngine::CEngineException(code, "Unable to open save file", 3); break;
+    case NDebug::ERROR_CODE_30: throw NEngine::CEngineException(code, "Mesh file not found", 3); break;
+    case NDebug::ERROR_CODE_45: throw NEngine::CEngineException(code, "Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor", 3); break;
+    case NDebug::ERROR_CODE_46: throw NEngine::CEngineException(code, "Level Mesh need an Irrlicht node, use createNode method in scene constructor", 3); break;
+    case NDebug::ERROR_CODE_47: throw NEngine::CEngineException(code, "Level Mesh need a Newton body, use loadMeshCollision method in scene constructor", 3); break;
+    case NDebug::ERROR_CODE_50: throw NEngine::CEngineException(code, "Vertex Shaders 3.0 not supported", 3); break;
+    case NDebug::ERROR_CODE_51: throw NEngine::CEngineException(code, "Pixels Shaders 3.0 not supported", 3); break;
+    case NDebug::ERROR_CODE_52: throw NEngine::CEngineException(code, "Render to target not supported", 3); break;
+    case NDebug::ERROR_CODE_53: throw NEngine::CEngineException(code, "Non-square textures not supported", 3); break;
+    case NDebug::ERROR_CODE_54: throw NEngine::CEngineException(code, "Non-power of two texture size not supported", 3); break;
+    case NDebug::ERROR_CODE_55: throw NEngine::CEngineException(code, "GLSL not supported", 3); break;
+    case NDebug::ERROR_CODE_56: throw NEngine::CEngineException(code, "HLSL not supported", 3); break;
+    case NDebug::ERROR_CODE_60: throw NEngine::CEngineException(code, "No local translation object for dialog interface", 3); break;
+    default: throw NEngine::CEngineException(code, "Internal error", 3); break;
   }
 
 }
@@ -629,7 +629,7 @@ ELocaleIdentifier CGame::getCurrentLocale()
 /**
  * \return CTranslation*
  */
-CTranslation* CGame::getGlobalTranslations()
+NResource::CTranslation* CGame::getGlobalTranslations()
 {
   return GlobalTranslations;
 }
@@ -647,13 +647,13 @@ CSave* CGame::getCurrentSave()
 /**
  * \return CSoundManager*
  */
-nSound::CSoundManager* CGame::getSoundManager()
+NSound::CSoundManager* CGame::getSoundManager()
 {
   return SoundManager;
 }
 
 //! Returns the music interface
-nSound::CMusicReference* CGame::getMusicReference()
+NSound::CMusicReference* CGame::getMusicReference()
 {
   return MusicReference;
 }

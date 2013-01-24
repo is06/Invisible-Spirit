@@ -8,16 +8,16 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SCENE_H__
 #define __IS06_SCENE_H__
 
-#include "../engine/CShadowProcessor.h"
-#include "../engine/CPlayerControl.h"
-#include "../engine/EFadeColor.h"
-#include "../hud/CCinemascopeMode.h"
-#include "../model/CSky.h"
-#include "../debug/CDebugConsole.h"
+#include "../Shader/CShadowProcessor.h"
+#include "../Engine/CPlayerControl.h"
+#include "../Hud/EFadeColor.h"
+#include "../Hud/CCinemascopeMode.h"
+#include "../3D/CSky.h"
+#include "../Debug/CConsole.h"
 
 namespace is06
 {
-namespace nScene
+namespace NScene
 {
 
 class CScene
@@ -33,19 +33,19 @@ class CScene
     virtual void loadingSequence();
     virtual void start();
 
-    void setSaveSlot(nEngine::CSave* save);
-    void fadeIn(f32 speed = 1.5f, nEngine::EFadeColor color = nEngine::EFC_BLACK);
-    void fadeOut(f32 speed = 3.0f, nEngine::EFadeColor color = nEngine::EFC_BLACK);
+    void setSaveSlot(NEngine::CSave* save);
+    void fadeIn(f32 speed = 1.5f, NHud::EFadeColor color = NHud::EFC_BLACK);
+    void fadeOut(f32 speed = 3.0f, NHud::EFadeColor color = NHud::EFC_BLACK);
 
     const video::SColor& getBackBufferColor() const;
 
-    n3D::CCamera* getActiveCamera();
+    N3D::CCamera* getActiveCamera();
 
-    nEngine::CShadowProcessor* getShadowProcessor();
+    NShader::CShadowProcessor* getShadowProcessor();
 
     // API functions
 
-    static bool InMapEditingMode;
+    static bool INMapEditingMode;
 
   protected:
     // Faders
@@ -53,21 +53,21 @@ class CScene
     gui::IGUIInOutFader* OutFader;
 
     // 2D elements
-    nHud::CPicture* Dummy;
-    nHud::CCinemascopeMode* Cinemascope;
+    NHud::CPicture* Dummy;
+    NHud::CCinemascopeMode* Cinemascope;
 
     // 3D entities
-    n3D::CCamera* Camera;
-    n3D::CSky* Sky;
+    N3D::CCamera* Camera;
+    N3D::CSky* Sky;
 
     // Interfaces
-    nEngine::CPlayerControl* Control;
-    nEngine::CSave* GameSave;
-    nEngine::CDialogInterface* Dialog;
-    nSound::CMusicReference* Music;
-    nEngine::CTranslation* GlobalTranslations;
-    nEngine::CTranslation* SceneTranslations;
-    nEngine::CShadowProcessor* ShadowProcessor;
+    NEngine::CPlayerControl* Control;
+    NEngine::CSave* GameSave;
+    NEngine::NGameplay::CDialogInterface* Dialog;
+    NSound::CMusicReference* Music;
+    NEngine::NResource::CTranslation* GlobalTranslations;
+    NEngine::NResource::CTranslation* SceneTranslations;
+    NShader::CShadowProcessor* ShadowProcessor;
 
     // Primitive data
     video::SColor BackBufferColor;
@@ -76,7 +76,7 @@ class CScene
     f32 SpeedFactor;
 
     // Debug Tools
-    nDebug::CDebugConsole* DebugConsole;
+    NDebug::CConsole* DebugConsole;
 
   private:
     // Methods

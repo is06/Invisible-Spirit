@@ -9,27 +9,25 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_PAUSE_SCREEN_H__
 
 #include "CHud.h"
-#include "CPauseSubScreenItems.h"
-#include "CPauseSubScreenMap.h"
-#include "CPauseSubScreenMonsters.h"
-#include "CPauseSubScreenSettings.h"
-#include "CPauseSubScreenSpirits.h"
-#include "CPauseSubScreenStatus.h"
-#include "CPauseSubScreenStory.h"
-#include "CPauseSubScreenWeapons.h"
+#include "PauseScreen/SubScreen/CItems.h"
+#include "PauseScreen/SubScreen/CMap.h"
+#include "PauseScreen/SubScreen/CMonsters.h"
+#include "PauseScreen/SubScreen/CSettings.h"
+#include "PauseScreen/SubScreen/CSpirits.h"
+#include "PauseScreen/SubScreen/CStatus.h"
+#include "PauseScreen/SubScreen/CStory.h"
+#include "PauseScreen/SubScreen/CWeapons.h"
 
 namespace is06
 {
-namespace nHud
-{
-namespace nPauseScreen
+namespace NHud
 {
 
 //! The main gameplay menu
 class CPauseScreen : public CHud
 {
   public:
-    CPauseScreen(nEngine::CTranslation* translation, nEngine::CPlayerControl* control);
+    CPauseScreen(NEngine::NResource::CTranslation* translation, NEngine::CPlayerControl* control);
     ~CPauseScreen();
 
     void render();
@@ -53,29 +51,28 @@ class CPauseScreen : public CHud
     bool isVisible();
 
   private:
-    nEngine::CPlayerControl* Control;
-    nEngine::CTranslation* GlobalTranslations;
+    NEngine::CPlayerControl* Control;
+    NEngine::NResource::CTranslation* GlobalTranslations;
     CPicture* Background;
     CPicture* TopBar;
     CMenu* SectionMenu;
     CPlayerState* StateInfo;
-    CGameTimeCounter* GameplayTime;
+    NCounter::CGameTime* GameplayTime;
     //DigitCounter* moneyCounter;
 
     // Sub screens
-    CPauseSubScreenWeapons* WeaponsSubScreen;
-    CPauseSubScreenSpirits* SpiritsSubScreen;
-    CPauseSubScreenItems* ItemsSubScreen;
-    CPauseSubScreenMap* MapSubScreen;
-    CPauseSubScreenStatus* StatusSubScreen;
-    CPauseSubScreenStory* StorySubScreen;
-    CPauseSubScreenMonsters* MonstersSubScreen;
-    CPauseSubScreenSettings* SettingsSubScreen;
+    NPauseScreen::NSubScreen::CWeapons* WeaponsSubScreen;
+    NPauseScreen::NSubScreen::CSpirits* SpiritsSubScreen;
+    NPauseScreen::NSubScreen::CItems* ItemsSubScreen;
+    NPauseScreen::NSubScreen::CMap* MapSubScreen;
+    NPauseScreen::NSubScreen::CStatus* StatusSubScreen;
+    NPauseScreen::NSubScreen::CStory* StorySubScreen;
+    NPauseScreen::NSubScreen::CMonsters* MonstersSubScreen;
+    NPauseScreen::NSubScreen::CSettings* SettingsSubScreen;
 
     bool Visible;
 };
 
-}
 }
 }
 

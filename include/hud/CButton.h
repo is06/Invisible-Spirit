@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_BUTTON_H__
 #define __IS06_BUTTON_H__
 
-#include "../engine/ECommandIdentifier.h"
+#include "../Engine/Control/ECommandIdentifier.h"
 #include "CHud.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 //! Graphical representation of a button in the HUD gameplay interface
@@ -25,7 +25,7 @@ class CButton : public CHud
 
     virtual void render() = 0;
 
-    void changeCommand(nEngine::ECommandIdentifier newCommand);
+    void changeCommand(NEngine::NControl::ECommandIdentifier newCommand);
     void hide();
     void show();
     void setOpacity(u8 value);

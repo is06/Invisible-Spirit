@@ -8,11 +8,11 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __SHADOW_SHADER_CALLBACK_H__
 #define __SHADOW_SHADER_CALLBACK_H__
 
-#include "../engine/CGame.h"
+#include "../Engine/CGame.h"
 
 namespace is06
 {
-namespace nShader
+namespace NShader
 {
 
 class CShadowShaderCallback : public video::IShaderConstantSetCallBack

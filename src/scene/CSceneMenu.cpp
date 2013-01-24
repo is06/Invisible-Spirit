@@ -5,21 +5,21 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CTranslation.h"
-#include "../../include/engine/CGame.h"
-#include "../../include/engine/CKeyboard.h"
-#include "../../include/engine/CSave.h"
-#include "../../include/scene/CSceneMenu.h"
-#include "../../include/model/CTPCamera.h"
-#include "../../include/model/CStaticModel.h"
-#include "../../include/hud/CPicture.h"
-#include "../../include/hud/CMenu.h"
-#include "../../include/hud/CText.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/Resource/CTranslation.h"
+#include "../../include/Engine/CGame.h"
+#include "../../include/Engine/Control/CKeyboard.h"
+#include "../../include/Engine/CSave.h"
+#include "../../include/Scene/CSceneMenu.h"
+#include "../../include/3D/Camera/CThirdPerson.h"
+#include "../../include/3D/CStaticModel.h"
+#include "../../include/Hud/CPicture.h"
+#include "../../include/Hud/CMenu.h"
+#include "../../include/Hud/CText.h"
 
 namespace is06
 {
-namespace nScene
+namespace NScene
 {
 
 //! Init common elements
@@ -38,19 +38,19 @@ CSceneMenu::CSceneMenu() : CScene()
 
   initModeList();
 
-  Camera = new n3D::CTPCamera();
+  Camera = new N3D::NCamera::CThirdPerson();
   Camera->setControl(false);
 
   Camera->getNode()->setPosition(core::vector3df(0.0f, 1.0f, -2700.0f));
   Camera->getNode()->setTarget(core::vector3df(0.0f, 100.0f, 0.0f));
   Camera->getNode()->setFarValue(10000.0f);
 
-  MainMenu = new nHud::CMenu(nEngine::CGame::ScreenPos.Hud.Left + 100.0f, -100.0f, 150.0f, 8, nHud::EMS_TITLE);
-  MainMenu->addOption(nHud::EMI_NONE, GlobalTranslations->getTranslation("main_menu_launch_demo"));
-  MainMenu->addOption(nHud::EMI_NONE, GlobalTranslations->getTranslation("main_menu_quit"));
+  MainMenu = new NHud::CMenu(NEngine::CGame::ScreenPos.Hud.Left + 100.0f, -100.0f, 150.0f, 8, NHud::EMS_TITLE);
+  MainMenu->addOption(NHud::EMI_NONE, GlobalTranslations->getTranslation("main_menu_launch_demo"));
+  MainMenu->addOption(NHud::EMI_NONE, GlobalTranslations->getTranslation("main_menu_quit"));
 
-  Title = new nHud::CPicture(nEngine::CGame::ScreenPos.Hud.Right - 413.0f, 100.0f, 826.0f, 101.0f, "resource/texture/menus/title/main.png");
-  CreativeCommons = new nHud::CPicture(nEngine::CGame::ScreenPos.Hud.Left + 300.0f, nEngine::CGame::ScreenPos.Hud.Bottom + 50.0f, 420.0f, 44.0f, "resource/texture/menus/title/cc.png");
+  Title = new NHud::CPicture(NEngine::CGame::ScreenPos.Hud.Right - 413.0f, 100.0f, 826.0f, 101.0f, "resource/texture/menus/title/main.png");
+  CreativeCommons = new NHud::CPicture(NEngine::CGame::ScreenPos.Hud.Left + 300.0f, NEngine::CGame::ScreenPos.Hud.Bottom + 50.0f, 420.0f, 44.0f, "resource/texture/menus/title/cc.png");
 
   fadeIn(0.5f);
 }
@@ -93,13 +93,13 @@ void CSceneMenu::hudRender()
 void CSceneMenu::manageMainMenu()
 {
   if (!QuitIsFading && !NewGameIsFading) {
-    if (Control->commandEntered(nEngine::ECI_MENU_DOWN, nEngine::EET_ONCE)) {
+    if (Control->commandEntered(NEngine::NControl::ECI_MENU_DOWN, NEngine::EET_ONCE)) {
       MainMenu->nextOption();
     }
-    if (Control->commandEntered(nEngine::ECI_MENU_UP, nEngine::EET_ONCE)) {
+    if (Control->commandEntered(NEngine::NControl::ECI_MENU_UP, NEngine::EET_ONCE)) {
       MainMenu->prevOption();
     }
-    if (Control->commandEntered(nEngine::ECI_MENU_OK, nEngine::EET_ONCE)) {
+    if (Control->commandEntered(NEngine::NControl::ECI_MENU_OK, NEngine::EET_ONCE)) {
       switch (MainMenu->getCurrentOption()) {
         case 0:
           // Fade Out and boolean to go to gameplay (demo)
@@ -126,11 +126,11 @@ void CSceneMenu::manageMainMenu()
     if (OutFader->isReady()) {
       if (NewGameIsFading) {
         // New Game
-        nEngine::CGame::getCurrentSave()->newGame(nEngine::EDL_MEDIUM);
+        NEngine::CGame::getCurrentSave()->newGame(NEngine::NGameplay::EDL_MEDIUM);
       }
       if (QuitIsFading) {
         // Quit to OS
-        nEngine::CGame::quit();
+        NEngine::CGame::quit();
       }
     }
   }
@@ -182,9 +182,9 @@ void CSceneMenu::retrieveSaveSlotList()
 {
   clearSaveSlotList();
   for (u8 i = 0; i <= 255; i++) {
-    nEngine::CSave* save = new nEngine::CSave();
+    NEngine::CSave* save = new NEngine::CSave();
     save->loadPrimitiveInfo(i);
-    SaveSlotList[i] = new nEngine::CSaveSlot(save);
+    SaveSlotList[i] = new NEngine::NSave::CSlot(save);
   }
 }
 
@@ -198,7 +198,7 @@ void CSceneMenu::clearSaveSlotList()
 //! Init supported video mode list
 void CSceneMenu::initModeList()
 {
-  video::IVideoModeList* vml = nEngine::CGame::getDevice()->getVideoModeList();
+  video::IVideoModeList* vml = NEngine::CGame::getDevice()->getVideoModeList();
   s32 videoModeCount = vml->getVideoModeCount();
   s32 colorDepth;
   core::dimension2du vres;

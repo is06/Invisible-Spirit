@@ -8,13 +8,13 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SAVE_H__
 #define __IS06_SAVE_H__
 
-#include "../scene/ESceneIdentifier.h"
-#include "../engine/EDifficultyLevel.h"
-#include "../engine/ETrophyIdentifier.h"
+#include "../Scene/ESceneIdentifier.h"
+#include "../Engine/Gameplay/EDifficultyLevel.h"
+#include "../Engine/Gameplay/ETrophyIdentifier.h"
 
 namespace is06
 {
-namespace nEngine
+namespace NEngine
 {
 
 //! Class for storing variables and using them in scenes or maps
@@ -27,7 +27,7 @@ class CSave
     void loadPrimitiveInfo(u8 slot);
     void load(u8 slot);
     void save(u8 slot);
-    void newGame(nEngine::EDifficultyLevel difficultyLevel);
+    void newGame(NEngine::NGameplay::EDifficultyLevel difficultyLevel);
 
     s32& getInteger(u32 index);
     bool& getBoolean(u32 index);
@@ -39,7 +39,7 @@ class CSave
     void setBoolean(u32 index, bool value);
     void setString(u32 index, const string& value);
 
-    void earnTrophy(ETrophyIdentifier trophy);
+    void earnTrophy(NGameplay::ETrophyIdentifier trophy);
 
   private:
     // Data maps
@@ -48,7 +48,7 @@ class CSave
     map<u32, string> StringList;
 
     // Default values
-    void setGeneralDefaultValues(nEngine::EDifficultyLevel difficultyLevel);
+    void setGeneralDefaultValues(NEngine::NGameplay::EDifficultyLevel difficultyLevel);
 };
 
 }

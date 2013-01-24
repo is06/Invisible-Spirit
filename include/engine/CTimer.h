@@ -6,7 +6,7 @@ using namespace std;
 
 namespace is06
 {
-namespace nEngine
+namespace NEngine
 {
 
 //! A simple implementation of a timer

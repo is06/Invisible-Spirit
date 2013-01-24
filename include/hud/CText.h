@@ -15,13 +15,13 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 class CText : public CHud
 {
   public:
-    CText(const string& str = "[Text]", f32 x = 0, f32 y = 0, nHud::EFontStyle style = nHud::EFS_STANDARD_48, u8 speed = 0);
+    CText(const string& str = "[Text]", f32 x = 0, f32 y = 0, NHud::EFontStyle style = NHud::EFS_STANDARD_48, u8 speed = 0);
     ~CText();
 
     void render();
@@ -53,10 +53,10 @@ class CText : public CHud
     map<u16, u16> LineWidthList;
     f32 LeftBound;
     f32 RightBound;
-    nHud::ETextAlignment CurrentAlign;
+    NHud::ETextAlignment CurrentAlign;
     bool TextFinished;
 
-    nEngine::CTimer* SpeedTimer;
+    NEngine::CTimer* SpeedTimer;
 };
 
 }

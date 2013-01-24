@@ -5,15 +5,15 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CTimer.h"
-#include "../../include/hud/CText.h"
-#include "../../include/hud/CTextFont.h"
-#include "../../include/hud/CTextChar.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/CTimer.h"
+#include "../../include/Hud/CText.h"
+#include "../../include/Hud/CTextFont.h"
+#include "../../include/Hud/CTextChar.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 CText::CText(const string& str, f32 x, f32 y, EFontStyle style, u8 speed) : CHud()
@@ -37,7 +37,7 @@ CText::CText(const string& str, f32 x, f32 y, EFontStyle style, u8 speed) : CHud
 
   SpeedTimer = NULL;
   if (CurrentSpeed > 0) {
-    SpeedTimer = new nEngine::CTimer(CurrentSpeed / 512.0f, boost::bind(&CText::nextChar, this), str.size());
+    SpeedTimer = new NEngine::CTimer(CurrentSpeed / 512.0f, boost::bind(&CText::nextChar, this), str.size());
   }
 }
 

@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nEngine
+namespace N3D
 {
 
 //! Ray type enumeration for wall and floor collisions

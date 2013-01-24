@@ -8,11 +8,11 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __DIFFUSE_SHADER_CALLBACK_H__
 #define __DIFFUSE_SHADER_CALLBACK_H__
 
-#include "../engine/CGame.h"
+#include "../Engine/CGame.h"
 
 namespace is06
 {
-namespace nShader
+namespace NShader
 {
 
 //! This class passes parameters to vertex and fragment programs to set up the shader diffuse material
@@ -29,9 +29,9 @@ class CDiffuseShaderCallback : public video::IShaderConstantSetCallBack
     virtual void OnSetConstants(video::IMaterialRendererServices* services, s32 userData)
     {
       core::matrix4 worldViewProj;
-      worldViewProj = nEngine::CGame::getVideoDriver()->getTransform(video::ETS_PROJECTION);
-      worldViewProj *= nEngine::CGame::getVideoDriver()->getTransform(video::ETS_VIEW);
-      worldViewProj *= nEngine::CGame::getVideoDriver()->getTransform(video::ETS_WORLD);
+      worldViewProj = NEngine::CGame::getVideoDriver()->getTransform(video::ETS_PROJECTION);
+      worldViewProj *= NEngine::CGame::getVideoDriver()->getTransform(video::ETS_VIEW);
+      worldViewProj *= NEngine::CGame::getVideoDriver()->getTransform(video::ETS_WORLD);
       services->setVertexShaderConstant("mWorldViewProj", worldViewProj.pointer(), 16);
 
       f32 vColor[4] = {

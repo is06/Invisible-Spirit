@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 class CPlayerState : public CHud
@@ -31,16 +31,16 @@ class CPlayerState : public CHud
     CText* LevelLabel;
     CText* LevelInfo;
 
-    CPlayerStateMainInfo* HpInfo;
-    CPlayerStateMainInfo* ExpInfo;
-    CPlayerStateMainInfo* NextLevelInfo;
+    NPlayerState::CMainInfo* HpInfo;
+    NPlayerState::CMainInfo* ExpInfo;
+    NPlayerState::CMainInfo* NextLevelInfo;
 
-    CPlayerStateCapacity* StrengthInfo;
-    CPlayerStateCapacity* DefenseInfo;
-    CPlayerStateCapacity* MagicInfo;
-    CPlayerStateCapacity* ConcInfo;
-    CPlayerStateCapacity* PrecInfo;
-    CPlayerStateCapacity* SpeedInfo;
+    NPlayerState::CCapacity* StrengthInfo;
+    NPlayerState::CCapacity* DefenseInfo;
+    NPlayerState::CCapacity* MagicInfo;
+    NPlayerState::CCapacity* ConcInfo;
+    NPlayerState::CCapacity* PrecInfo;
+    NPlayerState::CCapacity* SpeedInfo;
 };
 
 }

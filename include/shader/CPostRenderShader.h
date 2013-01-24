@@ -9,29 +9,29 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_POST_RENDER_SHADER_H__
 
 #include "EShaderEffect.h"
-#include "../hud/CFlatElement.h"
+#include "../Hud/Primitive/CFlatElement.h"
 
 namespace is06
 {
-namespace nShader
+namespace NShader
 {
 
 //! Aligned screen quad for post render in order to simulated a light glowing effect
-class CPostRenderShader : public nHud::CFlatElement
+class CPostRenderShader : public NHud::NPrimitive::CFlatElement
 {
   public:
     CPostRenderShader();
     ~CPostRenderShader();
 
     virtual void render();
-    void addEntityForEffect(n3D::CModelEntity* entity, EShaderEffect effect);
+    void addEntityForEffect(N3D::CModelEntity* entity, NShader::EEffect effect);
     void applyEffectsToEntities();
     void removeEffectsToEntities();
 
   protected:
     // A map for post processing effects
-    map<n3D::CModelEntity*, EShaderEffect> EntityList;
-    map<n3D::CModelEntity*, EShaderEffect>::iterator EntityListIt;
+    map<N3D::CModelEntity*, NShader::EEffect> EntityList;
+    map<N3D::CModelEntity*, NShader::EEffect>::iterator EntityListIt;
 };
 
 }

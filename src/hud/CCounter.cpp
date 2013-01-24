@@ -5,12 +5,12 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/hud/CCounter.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Hud/CCounter.h"
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 CCounter::CCounter(s32 init, s32 min, s32 max)

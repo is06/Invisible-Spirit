@@ -13,7 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nHud
+namespace NHud
 {
 
 class CWindow : public CHud

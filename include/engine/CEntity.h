@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nEngine
+namespace NEngine
 {
 
 //! Main general abstract class for all entities in the game

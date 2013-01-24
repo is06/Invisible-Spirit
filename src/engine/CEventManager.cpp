@@ -5,12 +5,12 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/engine/core.h"
-#include "../../include/engine/CEventManager.h"
+#include "../../include/Engine/core.h"
+#include "../../include/Engine/CEventManager.h"
 
 namespace is06
 {
-namespace nEngine
+namespace NEngine
 {
 
 //! Initializes arrays for key listening

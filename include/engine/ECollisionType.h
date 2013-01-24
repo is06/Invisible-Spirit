@@ -10,7 +10,9 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
-namespace nEngine
+namespace NEngine
+{
+namespace NGameplay
 {
 
 //! Collision type enumeration
@@ -20,6 +22,7 @@ enum ECollisionType
   ECT_MESH
 };
 
+}
 }
 }
 
