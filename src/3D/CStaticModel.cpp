@@ -25,6 +25,7 @@ CStaticModel::CStaticModel() : CModelEntity()
   MainNode = NULL;
 }
 
+//! Update method, called every cycle for event testing
 void CStaticModel::update()
 {
   CModelEntity::update();
@@ -41,6 +42,7 @@ void CStaticModel::shaderRender()
   MainNode->render();
 }
 
+//! Loads mesh and creates Irrlicht node
 void CStaticModel::createNode(const core::vector3df& initPosition)
 {
   if (MainMesh) {
@@ -68,56 +70,67 @@ void CStaticModel::createNode(const core::vector3df& initPosition)
   }
 }
 
+//! Returns the Irrlicht node of this model
 scene::IMeshSceneNode* CStaticModel::getNode()
 {
   return MainNode;
 }
 
+//! Returns the Irrlicht main material of this model
 video::SMaterial& CStaticModel::getMaterial()
 {
   return MainNode->getMaterial(0);
 }
 
+//! Hides the model
 void CStaticModel::hide()
 {
   MainNode->setVisible(false);
 }
 
+//! Shows the model
 void CStaticModel::show()
 {
   MainNode->setVisible(true);
 }
 
+//! Shows/Hides the model
 void CStaticModel::setVisible(bool value)
 {
   MainNode->setVisible(value);
 }
 
+//! Shows/Hides the model with front face culling method
 void CStaticModel::setGhost(bool value)
 {
   MainNode->setMaterialFlag(video::EMF_FRONT_FACE_CULLING, !value);
 }
 
+//! Sets the wireframe mode for this model
 void CStaticModel::setWireFrame(bool value)
 {
   MainNode->setMaterialFlag(video::EMF_WIREFRAME, value);
 }
 
+//! Shows/Hide Irrlicht debug data for this model
 void CStaticModel::setDebugData(bool value)
 {
   MainNode->setDebugDataVisible(value);
 }
 
+//! Sets the dark mode so the model is totally black for post process effects
 void CStaticModel::darken()
 {
   MainNode->setMaterialFlag(video::EMF_LIGHTING, true);
 }
 
+//! Disable the dark mode for this model
 void CStaticModel::undarken()
 {
   MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
 }
 
+//! Turns the model along the X axis
 void CStaticModel::turnX(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -127,6 +140,7 @@ void CStaticModel::turnX(f32 speed)
   ));
 }
 
+//! Turns the model along the Y axis
 void CStaticModel::turnY(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -136,6 +150,7 @@ void CStaticModel::turnY(f32 speed)
   ));
 }
 
+//! Turns the model along the Z axis
 void CStaticModel::turnZ(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
@@ -145,6 +160,7 @@ void CStaticModel::turnZ(f32 speed)
   ));
 }
 
+//! Moves the model along the X axis
 void CStaticModel::moveX(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -154,6 +170,7 @@ void CStaticModel::moveX(f32 speed)
   ));
 }
 
+//! Moves the model along the Y axis
 void CStaticModel::moveY(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -163,6 +180,7 @@ void CStaticModel::moveY(f32 speed)
   ));
 }
 
+//! Moves the model along the Z axis
 void CStaticModel::moveZ(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
@@ -172,6 +190,7 @@ void CStaticModel::moveZ(f32 speed)
   ));
 }
 
+//! Generates the geometry complex collision mask for this model
 void CStaticModel::loadMeshCollision()
 {
   bool optimize = true;
@@ -203,6 +222,7 @@ void CStaticModel::loadMeshCollision()
   }
 }
 
+//! Generates a collision mask for an Irrlicht mesh buffer (needed for loadMeshCollision)
 void CStaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene::IMeshBuffer* meshBuffer,
   NewtonCollision* treeCollision, core::vector3df scale)
 {
@@ -257,17 +277,19 @@ void CStaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene
   }
 }
 
+//! Erases the collision mask
 void CStaticModel::clearMeshCollision()
 {
   NewtonDestroyBody(NEngine::CGame::getNewtonWorld(), MainBody);
 }
 
-//! \todo write this function
+//! Changes the shadow mode between cast, receive, both or none
 void CStaticModel::setShadowMode(NShader::EShadowMode mode)
 {
 
 }
 
+//! Destructor
 CStaticModel::~CStaticModel()
 {
   if (MainNode) {

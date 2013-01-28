@@ -71,6 +71,7 @@ void CCamera::turnZ(f32 speed)
   ));
 }
 
+//! Moves the camera along the X axis
 void CCamera::moveX(f32 speed)
 {
   IrrCam->setPosition(core::vector3df(
@@ -80,6 +81,7 @@ void CCamera::moveX(f32 speed)
   ));
 }
 
+//! Moves the camera along the Y axis
 void CCamera::moveY(f32 speed)
 {
   IrrCam->setPosition(core::vector3df(
@@ -89,6 +91,7 @@ void CCamera::moveY(f32 speed)
   ));
 }
 
+//! Moves the camera along the Z axis
 void CCamera::moveZ(f32 speed)
 {
   IrrCam->setPosition(core::vector3df(
@@ -98,31 +101,37 @@ void CCamera::moveZ(f32 speed)
   ));
 }
 
+//! Returns the current X coordinate of the camera
 f32 CCamera::getX()
 {
   return IrrCam->getPosition().X;
 }
 
+//! Returns the current Y coordinate of the camera
 f32 CCamera::getY()
 {
   return IrrCam->getPosition().Y;
 }
 
+//! Returns the current Z coordinate of the camera
 f32 CCamera::getZ()
 {
   return IrrCam->getPosition().Z;
 }
 
+//! Returns the Irrlicht camera scene node pointer
 scene::ICameraSceneNode* CCamera::getNode()
 {
   return IrrCam;
 }
 
+//! Returns a 3d vector of the previous position
 const core::vector3df& CCamera::getLastPosition() const
 {
   return LastPosition;
 }
 
+//! Toggles control for this camera
 void CCamera::toggleControl()
 {
   if (Controlable) {
@@ -132,11 +141,13 @@ void CCamera::toggleControl()
   }
 }
 
+//! Enables/Disables the control for this camera
 void CCamera::setControl(bool val)
 {
   Controlable = val;
 }
 
+//! Returns true if this camera is controlable
 bool CCamera::hasControl()
 {
   return Controlable;

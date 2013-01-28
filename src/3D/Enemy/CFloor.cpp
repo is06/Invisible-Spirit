@@ -16,16 +16,19 @@ namespace N3D
 namespace NEnemy
 {
 
+//! Constructor
 CFloor::CFloor() : CEnemy()
 {
 
 }
 
+//! Update function called every cycle for event testing
 void CFloor::update()
 {
   CEnemy::update();
 }
 
+//! Destructor
 CFloor::~CFloor()
 {
 

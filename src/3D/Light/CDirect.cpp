@@ -16,11 +16,13 @@ namespace N3D
 namespace NLight
 {
 
+//! Constructor
 CDirect::CDirect()
 {
   Camera = NEngine::CGame::getSceneManager()->addCameraSceneNode();
 }
 
+//! Creates a direct light and add it to the shadow processor
 CDirect* CDirect::create()
 {
   // TODO: Add to shadow processor (factory design pattern)
@@ -28,6 +30,7 @@ CDirect* CDirect::create()
   return obj;
 }
 
+//! Destructor
 CDirect::~CDirect()
 {
   Camera->remove();

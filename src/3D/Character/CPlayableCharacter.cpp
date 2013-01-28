@@ -38,6 +38,7 @@ CPlayable::CPlayable(CCamera* cam) : CCharacter()
   WallSensorWidth = 0.5f;
 }
 
+//! Changes the 3d model for this character
 void CPlayable::setCharacter(NEngine::NGameplay::EPlayableCharacterType type)
 {
   // 3D Model type
@@ -119,6 +120,7 @@ void CPlayable::goBackward(f32 speed)
   updateCoords(NEngine::PI_M3D2, speed);
 }
 
+//! Updates the model direction from a specified angle
 void CPlayable::updateDirectionFromAngle(f32 angle)
 {
   if (MainNode != NULL) {
@@ -149,6 +151,7 @@ void CPlayable::updateCoords(f32 deltaU, f32 speed)
   }
 }
 
+//! Toggles the player control
 void CPlayable::toggleControl()
 {
   if (Controlable) {
@@ -158,6 +161,7 @@ void CPlayable::toggleControl()
   }
 }
 
+//! Enables/Disabled player control
 void CPlayable::setControl(bool active)
 {
   Controlable = active;

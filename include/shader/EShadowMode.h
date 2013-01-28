@@ -19,7 +19,7 @@ enum EShadowMode
   ESM_NONE,
   ESM_CAST,
   ESM_RECEIVE,
-  ESM_ALL
+  ESM_BOTH
 };
 
 }

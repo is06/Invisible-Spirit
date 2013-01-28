@@ -15,6 +15,7 @@ namespace is06
 namespace N3D
 {
 
+//! Constructor
 CLight::CLight() : NEngine::CEntity()
 {
   video::ITexture* iconTexture = NEngine::NResource::CResourceManager::loadTexture("resource/debug/icons/light.bmp");
@@ -24,11 +25,13 @@ CLight::CLight() : NEngine::CEntity()
   Icon->setMaterialTexture(0, iconTexture);
 }
 
+//! Update method, called every cycle for event testing
 void CLight::update()
 {
 
 }
 
+//! Destructor
 CLight::~CLight()
 {
   Node->remove();

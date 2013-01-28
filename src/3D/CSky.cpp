@@ -14,7 +14,10 @@ namespace is06
 namespace N3D
 {
 
-//! \todo make multiple layers
+//! Constructor
+/**
+ * \todo make multiple layers
+ */
 CSky::CSky(const string& textureName) : NEngine::CEntity()
 {
   string up = "resource/texture/map/sky/" + textureName + "/up.jpg";
@@ -34,30 +37,31 @@ CSky::CSky(const string& textureName) : NEngine::CEntity()
   );
 }
 
-//! \todo write this function
+//! Update method, called every cycle for event testing
 void CSky::update()
 {
 
 }
 
-//! \todo write this function
+//! Changes the texture file group of the front layer
 void CSky::setLayer(u8 index, const string& textureName)
 {
 
 }
 
-//! \todo write this function
+//! Changes the opacity of the front layer
 void CSky::setFrontLayerOpacity(u8 level)
 {
 
 }
 
-//! \todo write this function
+//! Changes the rotation speed of a layer of the sky
 void CSky::setRotationSpeed(u8 index, f32 speed)
 {
 
 }
 
+//! Destructor
 CSky::~CSky()
 {
   Layers[0]->remove();

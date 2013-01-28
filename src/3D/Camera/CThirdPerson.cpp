@@ -55,6 +55,7 @@ void CThirdPerson::update()
   }
 }
 
+//! Moves the camera to the left along the U axis
 void CThirdPerson::goLeft(f32 speed)
 {
   UAxis -= (speed / 60.0f);
@@ -63,6 +64,7 @@ void CThirdPerson::goLeft(f32 speed)
   }
 }
 
+//! Moves the camera to the right along the U axis
 void CThirdPerson::goRight(f32 speed)
 {
   UAxis += (speed / 60.0f);
@@ -71,6 +73,7 @@ void CThirdPerson::goRight(f32 speed)
   }
 }
 
+//! Moves the camera away from the linked entity
 void CThirdPerson::goFar(f32 speed)
 {
   if (Height < 3.3) {
@@ -86,6 +89,7 @@ void CThirdPerson::goFar(f32 speed)
   }
 }
 
+//! Moves the camera closer to the linked entity
 void CThirdPerson::goNear(f32 speed)
 {
   if (Height > 0.3) {
@@ -101,6 +105,7 @@ void CThirdPerson::goNear(f32 speed)
   }
 }
 
+//! Returns the current distance between the camera and its linked entity
 f32 CThirdPerson::getDistance()
 {
   return Distance;

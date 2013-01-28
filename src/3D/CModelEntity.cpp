@@ -23,12 +23,13 @@ CModelEntity::CModelEntity() : NEngine::CEntity()
   AttachedSpeaker = NULL;
 }
 
-//! Rendering and event method
+//! Update method, called every cycle for event testing
 void CModelEntity::update()
 {
 
 }
 
+//! Called every cycle to generate shader effects
 void CModelEntity::shaderRender()
 {
 
@@ -59,6 +60,7 @@ NewtonBody* CModelEntity::getMainBody()
   }
 }
 
+//! Links a speaker object to this model entity
 void CModelEntity::attachSpeaker(NSound::CSpeaker* speaker)
 {
   AttachedSpeaker = speaker;

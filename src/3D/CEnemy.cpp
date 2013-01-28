@@ -14,16 +14,19 @@ namespace is06
 namespace N3D
 {
 
+//! Constructor
 CEnemy::CEnemy() : CAnimatedModel()
 {
 
 }
 
+//! Update method, called every cycle for event testing
 void CEnemy::update()
 {
   CAnimatedModel::update();
 }
 
+//! Destructor
 CEnemy::~CEnemy()
 {
 

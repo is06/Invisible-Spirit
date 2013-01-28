@@ -14,21 +14,25 @@ namespace is06
 namespace N3D
 {
 
+//! Constructor
 CLevelMesh::CLevelMesh() : CStaticModel()
 {
 
 }
 
+//! Update method, called every cycle for event testing
 void CLevelMesh::update()
 {
   CStaticModel::update();
 }
 
+//! Loads the collision mask for this model from a dedicate file (newton serialization)
 void CLevelMesh::loadCollisionMask()
 {
 
 }
 
+//! Destructor
 CLevelMesh::~CLevelMesh()
 {
 

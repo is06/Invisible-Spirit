@@ -15,11 +15,13 @@ namespace N3D
 namespace NLight
 {
 
+//! Constructor
 COmni::COmni() : CLight()
 {
 
 }
 
+//! Destructor
 COmni::~COmni()
 {
 

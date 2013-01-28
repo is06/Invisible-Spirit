@@ -347,7 +347,7 @@ f32 CAnimatedModel::getWallCollision(N3D::ERayType type, CStaticModel* other, co
   return NewtonCollisionRayCast(otherBodyCollision, &origin.X, &end.X, &normal.X, &faceId);
 }
 
-//! \todo write this function
+//! Returns true if the model is currently colliding with an other animated model
 bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
 {
   NewtonBody* otherBody = other->getMainBody();
@@ -488,11 +488,8 @@ void CAnimatedModel::setCurrentAnimation(s32 id, f32 speed)
 
   N3D::SMeshAnimationInfo anim = AnimationList[id];
 
-  u32 startFrame = anim.StartFrame;
-  u32 endFrame = anim.EndFrame;
-
-  MainNode->setCurrentFrame(startFrame);
-  MainNode->setFrameLoop(startFrame, endFrame);
+  MainNode->setCurrentFrame(anim.StartFrame);
+  MainNode->setFrameLoop(anim.StartFrame, anim.EndFrame);
   MainNode->setLoopMode(anim.Looped);
 
   playAnimation();
@@ -538,7 +535,7 @@ bool CAnimatedModel::animationFinished(s32 id)
   return (MainNode->getFrameNr() == AnimationList[id].EndFrame);
 }
 
-//! \todo write this function
+//! Changes the shadow mode between cast, receive, both or none
 void CAnimatedModel::setShadowMode(NShader::EShadowMode mode)
 {
 

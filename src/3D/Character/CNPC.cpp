@@ -24,6 +24,7 @@ CNPC::CNPC() : CCharacter()
   CurrentTalkingDialogIdentifier = 0;
 }
 
+//! Changes the 3d model for this character
 void CNPC::setCharacter(const string& characterId)
 {
   CCharacter::setCharacterModel(characterId);
@@ -68,7 +69,10 @@ const string& CNPC::getNextTalkingDialogIdentifier()
   return DialogIdentifierList[CurrentTalkingDialogIdentifier];
 }
 
-//! \todo write this function
+//! Returns the distance between the NPC and an other character
+/**
+ * \todo write this function
+ */
 f32 CNPC::getDistanceFrom(N3D::CCharacter* character)
 {
   return 0.0f;
