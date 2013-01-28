@@ -48,12 +48,36 @@ void CPlayerState::hide()
   HpInfo->hide();
 }
 
-void CPlayerState::setOpacity(u8 value)
+void CPlayerState::setOpacity(f32 value)
 {
-  PlayerName->setOpacity(value);
-  LevelLabel->setOpacity(value);
-  LevelInfo->setOpacity(value);
-  HpInfo->setOpacity(value);
+  Opacity = value;
+  PlayerName->setOpacity(PlayerName->getOpacity() * Opacity);
+  LevelLabel->setOpacity(LevelLabel->getOpacity() * Opacity);
+  LevelInfo->setOpacity(LevelInfo->getOpacity() * Opacity);
+  HpInfo->setOpacity(HpInfo->getOpacity() * Opacity);
+}
+
+void CPlayerState::addOpacity(f32 value)
+{
+  Opacity += value;
+  PlayerName->setOpacity(PlayerName->getOpacity() * Opacity);
+  LevelLabel->setOpacity(LevelLabel->getOpacity() * Opacity);
+  LevelInfo->setOpacity(LevelInfo->getOpacity() * Opacity);
+  HpInfo->setOpacity(HpInfo->getOpacity() * Opacity);
+}
+
+void CPlayerState::subOpacity(f32 value)
+{
+  Opacity -= value;
+  PlayerName->setOpacity(PlayerName->getOpacity() * Opacity);
+  LevelLabel->setOpacity(LevelLabel->getOpacity() * Opacity);
+  LevelInfo->setOpacity(LevelInfo->getOpacity() * Opacity);
+  HpInfo->setOpacity(HpInfo->getOpacity() * Opacity);
+}
+
+f32 CPlayerState::getOpacity()
+{
+  return Opacity;
 }
 
 CPlayerState::~CPlayerState()

@@ -127,11 +127,35 @@ void CMenu::hide()
 }
 
 //! \todo comment this function
-void CMenu::setOpacity(u8 value)
+void CMenu::setOpacity(f32 value)
 {
+  Opacity = value;
   for (OptionsIt = Options.begin(); OptionsIt != Options.end(); OptionsIt++) {
-    OptionsIt->second->setOpacity(value);
+    OptionsIt->second->setOpacity(OptionsIt->second->getOpacity() * Opacity);
   }
+}
+
+//! \todo comment this function
+void CMenu::addOpacity(f32 value)
+{
+  Opacity += value;
+  for (OptionsIt = Options.begin(); OptionsIt != Options.end(); OptionsIt++) {
+    OptionsIt->second->setOpacity(OptionsIt->second->getOpacity() * Opacity);
+  }
+}
+
+//! \todo comment this function
+void CMenu::subOpacity(f32 value)
+{
+  Opacity -= value;
+  for (OptionsIt = Options.begin(); OptionsIt != Options.end(); OptionsIt++) {
+    OptionsIt->second->setOpacity(OptionsIt->second->getOpacity() * Opacity);
+  }
+}
+
+f32 CMenu::getOpacity()
+{
+  return Opacity;
 }
 
 //! \todo comment this function

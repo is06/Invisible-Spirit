@@ -26,13 +26,16 @@ class CMiniMapArrow : public CHud
     void render();
     void hide();
     void show();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
     void setPosition(f32 x, f32 y);
     void setRotation(f32 value);
 
   private:
     bool Visible;
-    u8 Opacity;
+    f32 Opacity;
     video::S3DVertex Vertices[3];
     u16 Indices[3];
     core::matrix4 AbsoluteTransformation;

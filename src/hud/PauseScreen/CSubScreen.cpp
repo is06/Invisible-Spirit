@@ -36,9 +36,24 @@ void CSubScreen::hide()
 }
 
 //! \todo write this function
-void CSubScreen::setOpacity(u8 value)
+void CSubScreen::setOpacity(f32 value)
 {
+  Opacity = value;
+}
 
+void CSubScreen::addOpacity(f32 value)
+{
+  Opacity += value;
+}
+
+void CSubScreen::subOpacity(f32 value)
+{
+  Opacity -= value;
+}
+
+f32 CSubScreen::getOpacity()
+{
+  return Opacity;
 }
 
 CSubScreen::~CSubScreen() {}

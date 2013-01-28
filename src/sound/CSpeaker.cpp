@@ -43,7 +43,7 @@ CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, con
 
 void CSpeaker::update()
 {
-  //Entity::render();
+
 }
 
 const FMOD_VECTOR& CSpeaker::getPosition() const
@@ -95,7 +95,7 @@ void CSpeaker::stop()
 
 void CSpeaker::setVolume(f32 val)
 {
-
+  FMOD_Channel_SetVolume(ChannelPtr, val);
 }
 
 CSpeaker::~CSpeaker()

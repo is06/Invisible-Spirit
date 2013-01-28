@@ -38,9 +38,27 @@ void CEnergy::show()
   HpBar->show();
 }
 
-void CEnergy::setOpacity(u8 value)
+void CEnergy::setOpacity(f32 value)
 {
-  HpBar->setOpacity(value);
+  Opacity = value;
+  HpBar->setOpacity(HpBar->getOpacity() * Opacity);
+}
+
+void CEnergy::addOpacity(f32 value)
+{
+  Opacity += value;
+  HpBar->setOpacity(HpBar->getOpacity() * Opacity);
+}
+
+void CEnergy::subOpacity(f32 value)
+{
+  Opacity -= value;
+  HpBar->setOpacity(HpBar->getOpacity() * Opacity);
+}
+
+f32 CEnergy::getOpacity()
+{
+  return Opacity;
 }
 
 CEnergy::~CEnergy()

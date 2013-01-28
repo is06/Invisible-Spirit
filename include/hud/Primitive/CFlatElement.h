@@ -48,8 +48,10 @@ class CFlatElement : public CHud
 
     void hide();
     void show();
-    void setOpacity(u8 value);
-    u8 getOpacity();
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
     void diffuse(video::SColor color);
 
     void startUVAnimation(f32 uSpeed, f32 vSpeed);
@@ -69,7 +71,7 @@ class CFlatElement : public CHud
     core::matrix4 AbsoluteTransformation;
 
     bool Visible;
-    u8 Opacity;
+    f32 Opacity;
 
     static f32 FarValue;
     static f32 Coeff;

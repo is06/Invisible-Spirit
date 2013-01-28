@@ -26,12 +26,16 @@ class CMainInfo : public CHud
     void render();
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
 
   private:
     CText* Label;
     CText* Info;
     NCounter::CBar* Gauge;
+    f32 Opacity;
 };
 
 }

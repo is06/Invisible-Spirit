@@ -23,8 +23,6 @@ namespace is06
 namespace NScene
 {
 
-bool CScene::INMapEditingMode;
-
 //! Instanciate required object interfaces such as player control or music so we can use them in all scenes
 CScene::CScene()
 {
@@ -82,7 +80,13 @@ void CScene::loadingSequence()
 }
 
 //! Displays the generic loading screen (for all type of scene)
-void CScene::loadingScreen()
+void CScene::startLoadingScreen()
+{
+
+}
+
+//! Hides the generic loading screen
+void CScene::stopLoadingScreen()
 {
 
 }
@@ -141,6 +145,16 @@ void CScene::hudRender()
   if (Dialog) {
     Dialog->render();
   }
+}
+
+NScene::ELoadingStatus CScene::getLoadingStatus()
+{
+  return LoadingStatus;
+}
+
+void CScene::setLoadingStatus(NScene::ELoadingStatus status)
+{
+  LoadingStatus = status;
 }
 
 //! \todo comment this function

@@ -123,19 +123,42 @@ void CPauseScreen::render()
 //! \todo write this function
 void CPauseScreen::show()
 {
-
+  Background->show();
 }
 
 //! \todo write this function
 void CPauseScreen::hide()
 {
-
+  Background->hide();
 }
 
 //! \todo write this function
-void CPauseScreen::setOpacity(u8 value)
+void CPauseScreen::setOpacity(f32 value)
 {
+  Opacity = value;
+  Background->setOpacity(Background->getOpacity() * Opacity);
+  TopBar->setOpacity(TopBar->getOpacity() * Opacity);
+}
 
+//! \todo write this function
+void CPauseScreen::addOpacity(f32 value)
+{
+  Opacity += value;
+  Background->setOpacity(Background->getOpacity() * Opacity);
+  TopBar->setOpacity(TopBar->getOpacity() * Opacity);
+}
+
+//! \todo write this function
+void CPauseScreen::subOpacity(f32 value)
+{
+  Opacity -= value;
+  Background->setOpacity(Background->getOpacity() * Opacity);
+  TopBar->setOpacity(TopBar->getOpacity() * Opacity);
+}
+
+f32 CPauseScreen::getOpacity()
+{
+  return Opacity;
 }
 
 //! Toggles visibility of the menu

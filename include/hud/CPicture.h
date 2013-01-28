@@ -20,7 +20,7 @@ namespace NHud
 class CPicture : public NPrimitive::CFlatElement
 {
   public:
-    CPicture(f32 x = 0, f32 y = 0, f32 w = 32, f32 h = 32, const string& filePath = "resource/Hud/default.bmp", bool useAlphaBlending=true);
+    CPicture(f32 x = 0, f32 y = 0, f32 w = 32, f32 h = 32, const string& filePath = "resource/hud/default.bmp", bool useAlphaBlending = true);
     ~CPicture();
 
     void render();

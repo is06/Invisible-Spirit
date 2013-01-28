@@ -64,19 +64,36 @@ void CWorldTime::updateDigits()
 //! \todo write this function
 void CWorldTime::hide()
 {
-
+  CounterText->hide();
 }
 
 //! \todo write this function
 void CWorldTime::show()
 {
-
+  CounterText->show();
 }
 
 //! \todo write this function
-void CWorldTime::setOpacity(u8 value)
+void CWorldTime::setOpacity(f32 value)
 {
+  CounterText->setOpacity(value);
+}
 
+//! \todo write this function
+void CWorldTime::addOpacity(f32 value)
+{
+  CounterText->addOpacity(value);
+}
+
+//! \todo write this function
+void CWorldTime::subOpacity(f32 value)
+{
+  CounterText->subOpacity(value);
+}
+
+f32 CWorldTime::getOpacity()
+{
+  return CounterText->getOpacity();
 }
 
 CWorldTime::~CWorldTime() {}

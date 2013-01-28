@@ -350,7 +350,32 @@ f32 CAnimatedModel::getWallCollision(N3D::ERayType type, CStaticModel* other, co
 //! \todo write this function
 bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
 {
-  return false;
+  NewtonBody* otherBody = other->getMainBody();
+
+  f32 mainBodyMatrix[16] = {};
+  f32 otherBodyMatrix[16] = {};
+
+  NewtonBodyGetMatrix(MainBody, mainBodyMatrix);
+  NewtonBodyGetMatrix(otherBody, otherBodyMatrix);
+
+  f32 contacts[3];
+  f32 normals[3];
+  f32 penetration[3];
+
+  s32 res = NewtonCollisionCollide(
+    NEngine::CGame::getNewtonWorld(),
+    64,
+    NewtonBodyGetCollision(MainBody),
+    mainBodyMatrix,
+    NewtonBodyGetCollision(otherBody),
+    otherBodyMatrix,
+    contacts,
+    normals,
+    penetration,
+    0
+  );
+
+  return (res > 0);
 }
 
 //! Returns true if the object is in the box sensor

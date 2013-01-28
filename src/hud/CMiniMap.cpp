@@ -97,11 +97,33 @@ void CMiniMap::hide()
   EntrancePosition->hide();
 }
 
-void CMiniMap::setOpacity(u8 value)
+void CMiniMap::setOpacity(f32 value)
 {
-  Map->setOpacity(value);
-  PlayerPosition->setOpacity(value);
-  EntrancePosition->setOpacity(value);
+  Opacity = value;
+  Map->setOpacity(Map->getOpacity() * Opacity);
+  PlayerPosition->setOpacity(Map->getOpacity() * Opacity);
+  EntrancePosition->setOpacity(Map->getOpacity() * Opacity);
+}
+
+void CMiniMap::addOpacity(f32 value)
+{
+  Opacity += value;
+  Map->setOpacity(Map->getOpacity() * Opacity);
+  PlayerPosition->setOpacity(Map->getOpacity() * Opacity);
+  EntrancePosition->setOpacity(Map->getOpacity() * Opacity);
+}
+
+void CMiniMap::subOpacity(f32 value)
+{
+  Opacity -= value;
+  Map->setOpacity(Map->getOpacity() * Opacity);
+  PlayerPosition->setOpacity(Map->getOpacity() * Opacity);
+  EntrancePosition->setOpacity(Map->getOpacity() * Opacity);
+}
+
+f32 CMiniMap::getOpacity()
+{
+  return Opacity;
 }
 
 void CMiniMap::setWorldSize(f32 size)

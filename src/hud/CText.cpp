@@ -192,11 +192,33 @@ void CText::hide()
   }
 }
 
-void CText::setOpacity(u8 value)
+void CText::setOpacity(f32 value)
 {
+  Opacity = value;
   for (CharIt = CharList.begin(); CharIt != CharList.end(); CharIt++) {
-    CharIt->setOpacity(value);
+    CharIt->setOpacity(CharIt->getOpacity() * Opacity);
   }
+}
+
+void CText::addOpacity(f32 value)
+{
+  Opacity += value;
+  for (CharIt = CharList.begin(); CharIt != CharList.end(); CharIt++) {
+    CharIt->setOpacity(CharIt->getOpacity() * Opacity);
+  }
+}
+
+void CText::subOpacity(f32 value)
+{
+  Opacity -= value;
+  for (CharIt = CharList.begin(); CharIt != CharList.end(); CharIt++) {
+    CharIt->setOpacity(CharIt->getOpacity() * Opacity);
+  }
+}
+
+f32 CText::getOpacity()
+{
+  return Opacity;
 }
 
 bool CText::finished()

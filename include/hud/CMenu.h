@@ -37,7 +37,10 @@ class CMenu : public CHud
     void lastOption();
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
 
   protected:
     CPicture* Cursor;
@@ -50,6 +53,7 @@ class CMenu : public CHud
     core::position2df Position;
     f32 Width;
     u8 Height;
+    f32 Opacity;
 
     EMenuStyle Style;
 

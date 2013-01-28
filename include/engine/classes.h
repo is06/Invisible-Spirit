@@ -8,45 +8,46 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_CLASSES_H__
 #define __IS06_CLASSES_H__
 
+//! Main namespace for Invisible Spirit Game
 namespace is06
 {
 
-//! 3D Concepts
+//! The namespace which provides 3D Model classes
 namespace N3D
 {
-  //! Cameras
   class CCamera;
+  //! Specialized camera classes
   namespace NCamera
   {
     class CThirdPerson;
   }
-  
-  //! Characters
+
   class CCharacter;
+  //! Types of characters
   namespace NCharacter
   {
     class CNPC;
     class CPlayable;
   }
-  
-  //! Enemies
+
   class CEnemy;
+  //! Types of enemies
   namespace NEnemy
   {
     class CAir;
     class CFloor;
   }
-  
-  //! Lights
+
   class CLight;
+  //! Types of lights
   namespace NLight
   {
     class CDirect;
     class COmni;
   }
-  
-  //! Sensors
+
   class CSensor;
+  //! Types of sensors (box, planes, teleporters...)
   namespace NSensor
   {
     class CBox;
@@ -59,33 +60,24 @@ namespace N3D
   class CLevelMesh;
   class CModelEntity;
   class CSky;
-  class CStaticModel;  
+  class CStaticModel;
   // SMeshAnimationInfo
 }
 
-//! Debug classes
+//! Namespace for debugging information and parameters
 namespace NDebug
 {
-  namespace NEditor
-  {
-    class CMap;
-  }
-
-  namespace NProperty
-  {
-    class CColor;
-  }
-  
   class CConsole;
   // EErrorCode
   // SDisplay
   // SOption
 }
 
-//! Engine classes
+//! Engine generic classes
 namespace NEngine
 {
   class CPlayerControl;
+  //! Player control interface classes
   namespace NControl
   {
     class CGamepad;
@@ -96,6 +88,13 @@ namespace NEngine
     // EGamepadDirection
   }
 
+  //! Screen display related information structure (screen position)
+  namespace NDisplay
+  {
+    // SPositionInfo
+  }
+
+  //! Classes related to gameplay entities
   namespace NGameplay
   {
     class CDialog;
@@ -107,6 +106,7 @@ namespace NEngine
     // ETrophyIdentifier
   }
 
+  //! External resources management
   namespace NResource
   {
     class CResourceManager;
@@ -115,8 +115,9 @@ namespace NEngine
     class CTranslation;
     // ELocaleIdentifier
   }
-  
+
   class CSave;
+  //! Savefile management
   namespace NSave
   {
     class CSlot;
@@ -137,20 +138,20 @@ namespace NEngine
   // ERayType
 }
 
-//! HUD
+//! Hud namespace with all simili 2D elements to display
 namespace NHud
 {
-  //! Buttons
   class CButton;
+  //! Types of buttons
   namespace NButton
   {
     class CIcon;
     class CIconText;
     class CText;
   }
-  
-  //! Counters
+
   class CCounter;
+  //! Types of counters (bars, life, meters, money...)
   namespace NCounter
   {
     class CBar;
@@ -161,19 +162,20 @@ namespace NHud
     class CWorldTime;
     // EBarStyle
   }
-  
-  //! Hud ensembles
+
   class CEnsemble;
+  //! HUD ensemble zones (energy, command icons...)
   namespace NEnsemble
   {
     class CCommands;
     class CEnergy;
   }
-  
-  //! Pause screen and sub-screen interfaces
+
   class CPauseScreen;
+  //! Pause screen
   namespace NPauseScreen
   {
+    //! Pause sub-screens
     namespace NSubScreen
     {
       class CItems;
@@ -185,20 +187,20 @@ namespace NHud
       class CStory;
       class CWeapons;
     }
-    
+
     class CSubScreen;
   }
-  
-  //! Player states
+
   class CPlayerState;
+  //! Player state classes in pause screen (HP, exp., level...)
   namespace NPlayerState
   {
     class CCapacity;
     class CMainInfo;
   }
 
-  //! Primitives
   class CHud;
+  //! HUD primitive entities (quad, triangle, flat element...)
   namespace NPrimitive
   {
     class CFlatElement;
@@ -226,7 +228,7 @@ namespace NHud
   // SPositionInfo
 }
 
-//! Scenes
+//! Namespace for scene types
 namespace NScene
 {
   class CScene;
@@ -237,7 +239,7 @@ namespace NScene
   // ESceneIdentifier
 }
 
-//! Shaders
+//! This namespace is for shader graphical effects
 namespace NShader
 {
   class CDepthShaderCallback;
@@ -253,7 +255,7 @@ namespace NShader
   // EShadowMode
 }
 
-//! Sound
+//! Namespace for sound and music interfaces
 namespace NSound
 {
   class CMusic;

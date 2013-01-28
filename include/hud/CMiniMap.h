@@ -29,7 +29,10 @@ class CMiniMap : public CHud
     void render();
     void hide();
     void show();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
     void setMap(EMiniMapIdentifier id);
     void setWorldSize(f32 size);
 
@@ -38,6 +41,7 @@ class CMiniMap : public CHud
 
     core::vector2df Position;
     f32 WorldSize;
+    f32 Opacity;
 
     CPicture* Map;
     CMiniMapArrow* PlayerPosition;

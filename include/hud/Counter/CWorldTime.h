@@ -27,7 +27,10 @@ class CWorldTime : public CCounter
     void render(s32 worldTime);
     void hide();
     void show();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
 
   private:
     string Minutes;

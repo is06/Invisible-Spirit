@@ -88,19 +88,36 @@ void CGameTime::updateDigits()
 //! \todo write this function
 void CGameTime::hide()
 {
-  //counterText->hide();
+  CounterText->hide();
 }
 
 //! \todo write this function
 void CGameTime::show()
 {
-  //counterText->show();
+  CounterText->show();
 }
 
 //! \todo write this function
-void CGameTime::setOpacity(u8 value)
+void CGameTime::setOpacity(f32 value)
 {
-  //counterText->setOpacity(value);
+  CounterText->setOpacity(value);
+}
+
+//! \todo write this function
+void CGameTime::addOpacity(f32 value)
+{
+  CounterText->addOpacity(value);
+}
+
+//! \todo write this function
+void CGameTime::subOpacity(f32 value)
+{
+  CounterText->subOpacity(value);
+}
+
+f32 CGameTime::getOpacity()
+{
+  return CounterText->getOpacity();
 }
 
 CGameTime::~CGameTime() {}

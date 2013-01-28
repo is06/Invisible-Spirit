@@ -34,7 +34,10 @@ class CPauseScreen : public CHud
     void toggle();
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
 
     void goToWeaponMenu();
     void goToSpiritMenu();
@@ -70,6 +73,7 @@ class CPauseScreen : public CHud
     NPauseScreen::NSubScreen::CMonsters* MonstersSubScreen;
     NPauseScreen::NSubScreen::CSettings* SettingsSubScreen;
 
+    f32 Opacity;
     bool Visible;
 };
 

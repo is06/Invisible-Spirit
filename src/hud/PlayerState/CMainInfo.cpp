@@ -46,11 +46,33 @@ void CMainInfo::hide()
   Gauge->hide();
 }
 
-void CMainInfo::setOpacity(u8 value)
+void CMainInfo::setOpacity(f32 value)
 {
-  Label->setOpacity(value);
-  Info->setOpacity(value);
-  Gauge->setOpacity(value);
+  Opacity = value;
+  Label->setOpacity(Label->getOpacity() * Opacity);
+  Info->setOpacity(Info->getOpacity() * Opacity);
+  Gauge->setOpacity(Gauge->getOpacity() * Opacity);
+}
+
+void CMainInfo::addOpacity(f32 value)
+{
+  Opacity += value;
+  Label->setOpacity(Label->getOpacity() * Opacity);
+  Info->setOpacity(Info->getOpacity() * Opacity);
+  Gauge->setOpacity(Gauge->getOpacity() * Opacity);
+}
+
+void CMainInfo::subOpacity(f32 value)
+{
+  Opacity -= value;
+  Label->setOpacity(Label->getOpacity() * Opacity);
+  Info->setOpacity(Info->getOpacity() * Opacity);
+  Gauge->setOpacity(Gauge->getOpacity() * Opacity);
+}
+
+f32 CMainInfo::getOpacity()
+{
+  return Opacity;
 }
 
 CMainInfo::~CMainInfo()

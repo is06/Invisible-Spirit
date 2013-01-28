@@ -27,11 +27,16 @@ class CEnergy : public CHud
     void render();
     void hide();
     void show();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
 
     NCounter::CBar* HpBar;
     //CBarCounter* MpBar;
     //CSpiritCounter* SpiritPower;
+
+    f32 Opacity;
 };
 
 }

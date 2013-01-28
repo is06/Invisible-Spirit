@@ -30,7 +30,7 @@ CFlatElement::CFlatElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : CHu
   AbsoluteTransformation.makeIdentity();
 
   Texture = NULL;
-  Opacity = 255;
+  Opacity = 1.0f;
 
   // Visible on start
   Visible = true;
@@ -43,7 +43,7 @@ CFlatElement::CFlatElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : CHu
 
   // Material
   Material.Lighting = false;
-  Material.DiffuseColor.setAlpha(Opacity);
+  Material.DiffuseColor.setAlpha((u8)(Opacity * 255.0f));
 
   if (alphaBlending) {
     // Alpha blending (alpha channel + alpha vertex)
@@ -142,7 +142,7 @@ void CFlatElement::render()
       // Color
       Vertices[i].Color = Material.DiffuseColor;
       // Opacity
-      Vertices[i].Color.setAlpha(Opacity);
+      Vertices[i].Color.setAlpha((u8)(Opacity * 255.0f));
     }
 
     // Rendering
@@ -288,12 +288,22 @@ void CFlatElement::show()
   Visible = true;
 }
 
-void CFlatElement::setOpacity(u8 value)
+void CFlatElement::setOpacity(f32 value)
 {
   Opacity = value;
 }
 
-u8 CFlatElement::getOpacity()
+void CFlatElement::addOpacity(f32 value)
+{
+  Opacity += value;
+}
+
+void CFlatElement::subOpacity(f32 value)
+{
+  Opacity -= value;
+}
+
+f32 CFlatElement::getOpacity()
 {
   return Opacity;
 }

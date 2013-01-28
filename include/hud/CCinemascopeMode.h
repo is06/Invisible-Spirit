@@ -25,7 +25,10 @@ class CCinemascopeMode : public CHud
     void render(f32 speedFactor);
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
     void fadeIn(f32 speed);
     void fadeOut(f32 speed);
     void slideIn(f32 speed);
@@ -40,6 +43,7 @@ class CCinemascopeMode : public CHud
     f32 FadeValue;
     f32 FadeSpeed;
     f32 SlideSpeed;
+    f32 Opacity;
 };
 
 }

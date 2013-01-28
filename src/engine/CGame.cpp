@@ -150,6 +150,7 @@ void CGame::run()
       VideoDriver->beginScene(true, true, CurrentScene->getBackBufferColor());
 
       // Main events
+      manageLoadingScreen();
       CurrentScene->events();
       SceneManager->drawAll();
 
@@ -178,6 +179,7 @@ void CGame::run()
       VideoDriver->beginScene(true, true, CurrentScene->getBackBufferColor());
 
       // Main events
+      manageLoadingScreen();
       CurrentScene->events();
       SceneManager->drawAll();
 
@@ -554,16 +556,24 @@ void CGame::loadNextScene()
     default: fatalError(NDebug::ERROR_CODE_10); break;
   }
 
-  // Displays scene loading screen
-  CurrentScene->loadingScreen();
-
-  // Loading sequence finished
-  CurrentScene->loadingSequence();
-
   CurrentScene->setSaveSlot(CurrentSave);
-  CurrentScene->start();
+
+  // Displays scene loading screen
+  CurrentScene->startLoadingScreen();
 
   SceneChanged = false;
+}
+
+void CGame::manageLoadingScreen()
+{
+  if (CurrentScene->getLoadingStatus() == NScene::ELS_LOADS) {
+    // When the loading sequence finishes, start the loading outro
+    CurrentScene->loadingSequence();
+    CurrentScene->setLoadingStatus(NScene::ELS_OUTRO);
+  } else if (CurrentScene->getLoadingStatus() == NScene::ELS_READY) {
+    CurrentScene->start();
+    CurrentScene->setLoadingStatus(NScene::ELS_PLAYING);
+  }
 }
 
 //! Writes a warning in the console

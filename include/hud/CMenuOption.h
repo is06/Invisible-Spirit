@@ -30,13 +30,17 @@ class CMenuOption : public CHud
     void setSelectable(bool value);
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
 
   protected:
     EMenuIcon Icon;
     CText* Label;
     CWindow* Box;
 
+    f32 Opacity;
     bool Hover;
     bool Enabled;
     bool Visible;

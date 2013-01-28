@@ -107,7 +107,7 @@ void CWindow::hide()
   Center->hide();
 }
 
-void CWindow::setOpacity(u8 value)
+void CWindow::setOpacity(f32 value)
 {
   CornerTL->setOpacity(value);
   CornerTR->setOpacity(value);
@@ -118,6 +118,37 @@ void CWindow::setOpacity(u8 value)
   SideRight->setOpacity(value);
   SideBottom->setOpacity(value);
   Center->setOpacity(value);
+}
+
+void CWindow::addOpacity(f32 value)
+{
+  CornerTL->addOpacity(value);
+  CornerTR->addOpacity(value);
+  CornerBL->addOpacity(value);
+  CornerBR->addOpacity(value);
+  SideTop->addOpacity(value);
+  SideLeft->addOpacity(value);
+  SideRight->addOpacity(value);
+  SideBottom->addOpacity(value);
+  Center->addOpacity(value);
+}
+
+void CWindow::subOpacity(f32 value)
+{
+  CornerTL->subOpacity(value);
+  CornerTR->subOpacity(value);
+  CornerBL->subOpacity(value);
+  CornerBR->subOpacity(value);
+  SideTop->subOpacity(value);
+  SideLeft->subOpacity(value);
+  SideRight->subOpacity(value);
+  SideBottom->subOpacity(value);
+  Center->subOpacity(value);
+}
+
+f32 CWindow::getOpacity()
+{
+  return Center->getOpacity();
 }
 
 CWindow::~CWindow()

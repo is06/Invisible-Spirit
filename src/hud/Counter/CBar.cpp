@@ -143,12 +143,33 @@ void CBar::show()
   }
 }
 
-void CBar::setOpacity(u8 value)
+void CBar::setOpacity(f32 value)
 {
   Bar->setOpacity(value);
   if (Sub) {
     Sub->setOpacity(value);
   }
+}
+
+void CBar::addOpacity(f32 value)
+{
+  Bar->addOpacity(value);
+  if (Sub) {
+    Sub->addOpacity(value);
+  }
+}
+
+void CBar::subOpacity(f32 value)
+{
+  Bar->subOpacity(value);
+  if (Sub) {
+    Sub->subOpacity(value);
+  }
+}
+
+f32 CBar::getOpacity()
+{
+  return Bar->getOpacity();
 }
 
 CBar::~CBar()

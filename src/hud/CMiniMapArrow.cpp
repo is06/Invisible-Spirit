@@ -75,7 +75,7 @@ void CMiniMapArrow::render()
     Vertices[2].Pos.Y += 0.00001f;
   }
 
-  Material.DiffuseColor.setAlpha(Opacity);
+  Material.DiffuseColor.setAlpha((u8)(Opacity * 255.0f));
 
   if (Visible) {
     NEngine::CGame::getVideoDriver()->setMaterial(Material);
@@ -95,9 +95,24 @@ void CMiniMapArrow::hide()
   Visible = false;
 }
 
-void CMiniMapArrow::setOpacity(u8 value)
+void CMiniMapArrow::setOpacity(f32 value)
 {
   Opacity = value;
+}
+
+void CMiniMapArrow::addOpacity(f32 value)
+{
+  Opacity += value;
+}
+
+void CMiniMapArrow::subOpacity(f32 value)
+{
+  Opacity -= value;
+}
+
+f32 CMiniMapArrow::getOpacity()
+{
+  return Opacity;
 }
 
 void CMiniMapArrow::setPosition(f32 x, f32 y)

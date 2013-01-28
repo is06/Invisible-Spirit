@@ -35,9 +35,27 @@ void CButton::show()
   ButtonCircle->show();
 }
 
-void CButton::setOpacity(u8 value)
+void CButton::setOpacity(f32 value)
 {
-  ButtonCircle->setOpacity(value);
+  Opacity = value;
+  ButtonCircle->setOpacity(ButtonCircle->getOpacity() * Opacity);
+}
+
+void CButton::addOpacity(f32 value)
+{
+  Opacity += value;
+  ButtonCircle->setOpacity(ButtonCircle->getOpacity() * Opacity);
+}
+
+void CButton::subOpacity(f32 value)
+{
+  Opacity -= value;
+  ButtonCircle->setOpacity(ButtonCircle->getOpacity() * Opacity);
+}
+
+f32 CButton::getOpacity()
+{
+  return Opacity;
 }
 
 CButton::~CButton()

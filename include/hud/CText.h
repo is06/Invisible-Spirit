@@ -34,7 +34,10 @@ class CText : public CHud
     void setAlign(ETextAlignment align);
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
     void skip();
     bool finished();
 
@@ -55,6 +58,7 @@ class CText : public CHud
     f32 RightBound;
     NHud::ETextAlignment CurrentAlign;
     bool TextFinished;
+    f32 Opacity;
 
     NEngine::CTimer* SpeedTimer;
 };

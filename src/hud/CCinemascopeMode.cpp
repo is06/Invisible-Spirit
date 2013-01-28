@@ -98,10 +98,30 @@ void CCinemascopeMode::hide()
   Bars[1]->hide();
 }
 
-void CCinemascopeMode::setOpacity(u8 value)
+void CCinemascopeMode::setOpacity(f32 value)
 {
-  Bars[0]->setOpacity(value);
-  Bars[1]->setOpacity(value);
+  Opacity = value;
+  Bars[0]->setOpacity(Bars[0]->getOpacity() * Opacity);
+  Bars[1]->setOpacity(Bars[1]->getOpacity() * Opacity);
+}
+
+void CCinemascopeMode::addOpacity(f32 value)
+{
+  Opacity += value;
+  Bars[0]->setOpacity(Bars[0]->getOpacity() * Opacity);
+  Bars[1]->setOpacity(Bars[1]->getOpacity() * Opacity);
+}
+
+void CCinemascopeMode::subOpacity(f32 value)
+{
+  Opacity -= value;
+  Bars[0]->setOpacity(Bars[0]->getOpacity() * Opacity);
+  Bars[1]->setOpacity(Bars[1]->getOpacity() * Opacity);
+}
+
+f32 CCinemascopeMode::getOpacity()
+{
+  return Opacity;
 }
 
 void CCinemascopeMode::fadeIn(f32 speed)

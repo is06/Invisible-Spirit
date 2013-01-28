@@ -25,10 +25,16 @@ class CHudEnsemble : public CHud
     void render();
     void hide();
     void show();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
 
     NEnsemble::CCommands* Buttons;
     NEnsemble::CEnergy* Energy;
+
+  protected:
+    f32 Opacity;
 };
 
 }

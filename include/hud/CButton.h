@@ -28,10 +28,14 @@ class CButton : public CHud
     void changeCommand(NEngine::NControl::ECommandIdentifier newCommand);
     void hide();
     void show();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
 
   protected:
     CPicture* ButtonCircle;
+    f32 Opacity;
 };
 
 }

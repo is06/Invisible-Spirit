@@ -15,38 +15,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../Debug/EErrorCode.h"
 #include "../Debug/SOption.h"
 
-//! Main namespace for Invisible Spirit Game
 namespace is06
 {
-//! Namespace for debugging information and parameters
-namespace NDebug
-{
-}
-//! Hud namespace with all simili 2D elements to display
-namespace NHud
-{
-}
-//! This namespace contains all levels and maps of the game
-namespace NMap
-{
-}
-//! The namespace which provides 3D Model classes
-namespace N3D
-{
-}
-//! Namespace for scene types
-namespace NScene
-{
-}
-//! This namespace is for shader graphical effects
-namespace NShader
-{
-}
-//! Namespace for sound and music interfaces
-namespace NSound
-{
-}
-//! Namespace for engine classes
 namespace NEngine
 {
 //! Singleton class CGame manage everything, it contains the main loop and all main entities like the current scene
@@ -122,6 +92,7 @@ class CGame
 
     // Game actions
     static void loadNextScene();
+    static void manageLoadingScreen();
 
     // Irrlicht objects
     static IrrlichtDevice* Device;

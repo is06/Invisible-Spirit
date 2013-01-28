@@ -28,7 +28,10 @@ class CGameTime : public CCounter
     void render(s32 totalGameTime);
     void hide();
     void show();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
 
   private:
     string Seconds;

@@ -52,12 +52,36 @@ void CCommands::show()
   Command->show();
 }
 
-void CCommands::setOpacity(u8 value)
+void CCommands::setOpacity(f32 value)
 {
-  Menu->setOpacity(value);
-  Defense->setOpacity(value);
-  Jump->setOpacity(value);
-  Command->setOpacity(value);
+  Opacity = value;
+  Menu->setOpacity(Menu->getOpacity() * Opacity);
+  Defense->setOpacity(Defense->getOpacity() * Opacity);
+  Jump->setOpacity(Jump->getOpacity() * Opacity);
+  Command->setOpacity(Command->getOpacity() * Opacity);
+}
+
+void CCommands::addOpacity(f32 value)
+{
+  Opacity += value;
+  Menu->setOpacity(Menu->getOpacity() * Opacity);
+  Defense->setOpacity(Defense->getOpacity() * Opacity);
+  Jump->setOpacity(Jump->getOpacity() * Opacity);
+  Command->setOpacity(Command->getOpacity() * Opacity);
+}
+
+void CCommands::subOpacity(f32 value)
+{
+  Opacity -= value;
+  Menu->setOpacity(Menu->getOpacity() * Opacity);
+  Defense->setOpacity(Defense->getOpacity() * Opacity);
+  Jump->setOpacity(Jump->getOpacity() * Opacity);
+  Command->setOpacity(Command->getOpacity() * Opacity);
+}
+
+f32 CCommands::getOpacity()
+{
+  return Opacity;
 }
 
 CCommands::~CCommands()

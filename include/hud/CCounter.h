@@ -26,7 +26,10 @@ class CCounter : public CHud
 
     virtual void hide() = 0;
     virtual void show() = 0;
-    virtual void setOpacity(u8 value) = 0;
+    virtual void setOpacity(f32 value) = 0;
+    virtual void addOpacity(f32 value) = 0;
+    virtual void subOpacity(f32 value) = 0;
+    virtual f32 getOpacity() = 0;
 
     void addValue(s32 val);
     void subValue(s32 val);

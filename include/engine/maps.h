@@ -10,33 +10,35 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
+
+//! Maps ensemble namespace
 namespace NMap
 {
-  // Debug
+  //! Debug maps (alpha zone...)
   namespace NDebug
   {
     class MAP_ALPHA_ZONE;
   }
 
-  // Generic
+  //! Generic maps
   namespace NGeneric
   {
     class MAP_METADIM;
   }
 
-  // Countries
+  //! Countries
   namespace NCountry
   {
 
   }
 
-  // Insides
+  //! Inside maps (caverns, houses...)
   namespace NInside
   {
 
   }
 
-  // Dungeons
+  //! Dungeons
   namespace NDungeon
   {
     class MAP_DUNGEON_1;

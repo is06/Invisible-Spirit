@@ -85,9 +85,27 @@ void CMenuOption::hide()
   Label->hide();
 }
 
-void CMenuOption::setOpacity(u8 value)
+void CMenuOption::setOpacity(f32 value)
 {
-  Label->setOpacity(value);
+  Opacity = value;
+  Label->setOpacity(Label->getOpacity() * Opacity);
+}
+
+void CMenuOption::addOpacity(f32 value)
+{
+  Opacity += value;
+  Label->setOpacity(Label->getOpacity() * Opacity);
+}
+
+void CMenuOption::subOpacity(f32 value)
+{
+  Opacity -= value;
+  Label->setOpacity(Label->getOpacity() * Opacity);
+}
+
+f32 CMenuOption::getOpacity()
+{
+  return Opacity;
 }
 
 CMenuOption::~CMenuOption()

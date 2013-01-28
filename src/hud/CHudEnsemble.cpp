@@ -35,9 +35,27 @@ void CHudEnsemble::show()
   Buttons->show();
 }
 
-void CHudEnsemble::setOpacity(u8 value)
+void CHudEnsemble::setOpacity(f32 value)
 {
-  Buttons->setOpacity(value);
+  Opacity = value;
+  Buttons->setOpacity(Buttons->getOpacity() * Opacity);
+}
+
+void CHudEnsemble::addOpacity(f32 value)
+{
+  Opacity += value;
+  Buttons->setOpacity(Buttons->getOpacity() * Opacity);
+}
+
+void CHudEnsemble::subOpacity(f32 value)
+{
+  Opacity -= value;
+  Buttons->setOpacity(Buttons->getOpacity() * Opacity);
+}
+
+f32 CHudEnsemble::getOpacity()
+{
+  return Opacity;
 }
 
 CHudEnsemble::~CHudEnsemble()

@@ -29,7 +29,10 @@ class CBar : public CCounter
 
     virtual void hide();
     virtual void show();
-    virtual void setOpacity(u8 value);
+    virtual void setOpacity(f32 value);
+    virtual void addOpacity(f32 value);
+    virtual void subOpacity(f32 value);
+    virtual f32 getOpacity();
 
     void setPosition(f32 x, f32 y);
     void setX(f32 value);

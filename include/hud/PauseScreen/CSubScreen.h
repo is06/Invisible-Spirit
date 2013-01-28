@@ -26,10 +26,13 @@ class CSubScreen : public CHud {
     virtual void render();
     virtual void show();
     virtual void hide();
-    virtual void setOpacity(u8 value);
+    virtual void setOpacity(f32 value);
+    virtual void addOpacity(f32 value);
+    virtual void subOpacity(f32 value);
+    virtual f32 getOpacity();
 
   protected:
-
+    f32 Opacity;
 };
 
 }

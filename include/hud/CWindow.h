@@ -25,7 +25,10 @@ class CWindow : public CHud
     void render();
     void show();
     void hide();
-    void setOpacity(u8 value);
+    void setOpacity(f32 value);
+    void addOpacity(f32 value);
+    void subOpacity(f32 value);
+    f32 getOpacity();
 
   private:
     void applyStyleStd(f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 100, f32 borderWidth = 4);

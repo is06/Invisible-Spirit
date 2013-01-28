@@ -36,15 +36,17 @@ class CSceneGameplay : public CScene
   protected:
     virtual void everySecond();
 
-    N3D::NCharacter::CPlayable* Hero;
-    NEngine::NGameplay::CMapSectionInterface* MapSections;
-    NHud::CHudEnsemble* HudEnsemble;
-    NHud::NEnsemble::CEnergy* HudEnergyEnsemble;
-    NHud::CMiniMap* MiniMap;
-    NHud::NCounter::CWorldTime* WorldTime;
-    NHud::CPauseScreen* PauseScreen;
-    NEngine::CTimer* EverySecondTimer;
-    NEngine::NGameplay::CNPCInterface* NPCInterface;
+    N3D::NCharacter::CPlayable*                 Hero;
+
+    NHud::CHudEnsemble*                         HudEnsemble;
+    NHud::NEnsemble::CEnergy*                   HudEnergyEnsemble;
+    NHud::CMiniMap*                             MiniMap;
+    NHud::NCounter::CWorldTime*                 WorldTime;
+    NHud::CPauseScreen*                         PauseScreen;
+
+    NEngine::NGameplay::CMapSectionInterface*   MapSections;
+    NEngine::NGameplay::CNPCInterface*          NPCInterface;
+    NEngine::CTimer*                            EverySecondTimer;
 
   private:
     void manageCameraControl();

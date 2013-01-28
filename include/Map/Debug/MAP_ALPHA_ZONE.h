@@ -33,12 +33,12 @@ class MAP_ALPHA_ZONE : public NScene::CSceneGameplay
     void start();
 
   private:
-    NSound::CSpeaker* Spk;
-    NShader::CPostRenderGlow* GlowShader;
-    N3D::NLight::COmni* Lt;
-    N3D::NSensor::CTeleporter* ToDungeonSensor;
-    N3D::NLight::CDirect* DLight;
-    N3D::NCharacter::CNPC* NPC1;
+    NSound::CSpeaker*           Spk;
+    NShader::CPostRenderGlow*   GlowShader;
+    N3D::NLight::COmni*         Lt;
+    N3D::NLight::CDirect*       DLight;
+    N3D::NSensor::CTeleporter*  ToDungeonSensor;
+    N3D::NCharacter::CNPC*      NPC1;
 };
 
 }
