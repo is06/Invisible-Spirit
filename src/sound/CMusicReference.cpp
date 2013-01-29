@@ -14,6 +14,7 @@ namespace is06
 namespace NSound
 {
 
+//! Music interface initialization, loads music info from resource/music/list.ism file
 CMusicReference::CMusicReference()
 {
   CurrentMusic = NULL;
@@ -122,6 +123,10 @@ CMusicReference::CMusicReference()
   }
 }
 
+//! Plays a music by its id (name identifier)
+/**
+ * \param string id the name of the music
+ */
 void CMusicReference::play(const string& id)
 {
   CurrentId = id;
@@ -129,10 +134,11 @@ void CMusicReference::play(const string& id)
   if (!CurrentMusic) {
     CurrentMusic = new CMusic(id);
     CurrentMusic->addSequences(MusicList[id].SequenceInfo);
-    CurrentMusic->playSequences(MusicList[id].SequenceInfo);
+    CurrentMusic->playSequences();
   }
 }
 
+//! Mutes a specific sequence of the multi-layer music
 void CMusicReference::muteSequence(const string& id, u16 number)
 {
   if (CurrentMusic->getSequence(number)) {
@@ -140,6 +146,7 @@ void CMusicReference::muteSequence(const string& id, u16 number)
   }
 }
 
+//! Unmutes a specific sequence of the multi-layer music
 void CMusicReference::unmuteSequence(const string& id, u16 number)
 {
   if (CurrentMusic->getSequence(number)) {
@@ -147,6 +154,7 @@ void CMusicReference::unmuteSequence(const string& id, u16 number)
   }
 }
 
+//! Stops the current music
 void CMusicReference::stop()
 {
 

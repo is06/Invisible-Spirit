@@ -13,11 +13,13 @@ namespace is06
 namespace NSound
 {
 
+//! Constructor
 CMusic::CMusic(const string& id)
 {
 
 }
 
+//! Adds a multi-layer music sequence
 void CMusic::addSequences(const map<u16, SMusicSequenceInfo>& list)
 {
   map<u16, SMusicSequenceInfo>::const_iterator msIt;
@@ -27,11 +29,24 @@ void CMusic::addSequences(const map<u16, SMusicSequenceInfo>& list)
 }
 
 //! Plays all the music sequences
-void CMusic::playSequences(const map<u16, SMusicSequenceInfo>& list)
+void CMusic::playSequences()
 {
-  map<u16, SMusicSequenceInfo>::const_iterator msIt;
-  for (msIt = list.begin(); msIt != list.end(); msIt++) {
-    Sequences[msIt->second.Number]->play();
+  map<u16, CMusicSequence*>::const_iterator msIt;
+  for (msIt = Sequences.begin(); msIt != Sequences.end(); msIt++) {
+    if (msIt->second) {
+      msIt->second->play();
+    }
+  }
+}
+
+//! Stops all the music sequences
+void CMusic::stopSequences()
+{
+  map<u16, CMusicSequence*>::const_iterator msIt;
+  for (msIt = Sequences.begin(); msIt != Sequences.end(); msIt++) {
+    if (msIt->second) {
+      msIt->second->stop();
+    }
   }
 }
 
@@ -51,9 +66,15 @@ CMusicSequence* CMusic::getSequence(u16 number)
   }
 }
 
+//! Destructor
 CMusic::~CMusic()
 {
-
+  map<u16, CMusicSequence*>::const_iterator msIt;
+  for (msIt = Sequences.begin(); msIt != Sequences.end(); msIt++) {
+    if (msIt->second) {
+      delete msIt->second;
+    }
+  }
 }
 
 }

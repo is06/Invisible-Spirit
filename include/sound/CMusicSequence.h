@@ -23,6 +23,7 @@ class CMusicSequence
     ~CMusicSequence();
 
     void play();
+    void stop();
     void setVolume(f32 value);
 
   private:

@@ -33,6 +33,11 @@ void CMusicSequence::play()
   FMOD_System_PlaySound(NEngine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
 }
 
+void CMusicSequence::stop()
+{
+  FMOD_Channel_Stop(ChannelPtr);
+}
+
 void CMusicSequence::setVolume(f32 value)
 {
   if (value >= 0.0f && value <= 1.0f) {

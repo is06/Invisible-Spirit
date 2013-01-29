@@ -23,8 +23,10 @@ class CMusic
     CMusic(const string& id);
     ~CMusic();
 
-    void playSequences(const map<u16, SMusicSequenceInfo>& list);
     void addSequences(const map<u16, SMusicSequenceInfo>& list);
+    void playSequences();
+    void stopSequences();
+
     map<u16, CMusicSequence*>& getSequenceMap();
     CMusicSequence* getSequence(u16 number);
 
