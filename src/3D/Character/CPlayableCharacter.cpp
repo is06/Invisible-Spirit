@@ -6,6 +6,7 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../../include/Engine/core.h"
+#include "../../../include/Engine/CGame.h"
 #include "../../../include/3D/Character/CPlayable.h"
 #include "../../../include/3D/CCamera.h"
 #include "../../../include/3D/CCharacter.h"
@@ -53,6 +54,8 @@ void CPlayable::setCharacter(NEngine::NGameplay::EPlayableCharacterType type)
   }
 
   CCharacter::setCharacterModel(modelId);
+
+  getNode()->setMaterialType((video::E_MATERIAL_TYPE)NEngine::CGame::Shaders.CgTest);
 
   // Start direction
   if (MainNode != NULL) {

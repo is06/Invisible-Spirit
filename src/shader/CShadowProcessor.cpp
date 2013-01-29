@@ -78,7 +78,7 @@ void CShadowProcessor::drawDepthOnTexture()
   CGame::getVideoDriver()->setRenderTarget(video::ERT_FRAME_BUFFER, false, true, CGame::getCurrentScene()->getBackBufferColor());
 }
 
-//! Destructor, does nothing
+//! Destructor
 CShadowProcessor::~CShadowProcessor()
 {
   delete DepthMapHud;

@@ -1,0 +1,12 @@
+struct pixel_Output {
+  float4 color : COLOR;
+};
+
+pixel_Output mainPS(float4 color : COLOR)
+{
+  pixel_Output OUT;
+
+  OUT.color = color;
+
+  return OUT;
+}
