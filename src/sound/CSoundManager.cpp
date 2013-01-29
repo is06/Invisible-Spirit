@@ -14,11 +14,12 @@ namespace is06
 namespace NSound
 {
 
+//! Constructor, initializes FMOD system with 3D settings
 CSoundManager::CSoundManager()
 {
-  FMOD_System_Create(&sys);
-  FMOD_System_Init(sys, 4, FMOD_INIT_NORMAL, NULL);
-  FMOD_System_Set3DSettings(sys, 1.0f, 1.0f, 1.0f);
+  FMOD_System_Create(&System);
+  FMOD_System_Init(System, 4, FMOD_INIT_NORMAL, NULL);
+  FMOD_System_Set3DSettings(System, 1.0f, 1.0f, 1.0f);
 }
 
 //! Called by the Game main loop, this converts camera's position and rotation to FMOD vector format and store them into sound manager
@@ -31,44 +32,47 @@ void CSoundManager::setEarsData(N3D::CCamera* activeCamera)
   forward.normalize();
   core::vector3df up = activeCamera->getNode()->getUpVector();
 
-  cameraPosition.x = position.X;
-  cameraPosition.y = position.Y;
-  cameraPosition.z = position.Z;
+  CameraPosition.x = position.X;
+  CameraPosition.y = position.Y;
+  CameraPosition.z = position.Z;
 
-  cameraForward.x = forward.X;
-  cameraForward.y = forward.Y;
-  cameraForward.z = forward.Z;
+  CameraForward.x = forward.X;
+  CameraForward.y = forward.Y;
+  CameraForward.z = forward.Z;
 
-  cameraUp.x = up.X;
-  cameraUp.y = up.Y;
-  cameraUp.z = up.Z;
+  CameraUp.x = up.X;
+  CameraUp.y = up.Y;
+  CameraUp.z = up.Z;
 
 /*
   //@todo : for doppler effect, check and fix this calculation
-  cameraVelocity.x = (position.X - lastPosition.X) / cycleTime;
-  cameraVelocity.y = (position.Y - lastPosition.Y) / cycleTime;
-  cameraVelocity.z = (position.Z - lastPosition.Z) / cycleTime;
+  CameraVelocity.x = (position.X - lastPosition.X) / cycleTime;
+  CameraVelocity.y = (position.Y - lastPosition.Y) / cycleTime;
+  CameraVelocity.z = (position.Z - lastPosition.Z) / cycleTime;
 */
 }
 
+//! Updates the FMOD system for 3D sound positions
 void CSoundManager::update()
 {
-  FMOD_RESULT result = FMOD_System_Set3DListenerAttributes(sys, 0, &cameraPosition, NULL, &cameraForward, &cameraUp);
+  FMOD_RESULT result = FMOD_System_Set3DListenerAttributes(System, 0, &CameraPosition, NULL, &CameraForward, &CameraUp);
   if (result != FMOD_OK) {
-    cout << "[FMOD] Erreur update 3D" << endl;
+    cout << "[FMOD] 3D update error" << endl;
   }
-  FMOD_System_Update(sys);
+  FMOD_System_Update(System);
 }
 
+//! Returns the FMOD system pointer
 FMOD_SYSTEM* CSoundManager::getSystem()
 {
-  return sys;
+  return System;
 }
 
+//! Destructor, releases FMOD System pointer
 CSoundManager::~CSoundManager()
 {
-  FMOD_System_Close(sys);
-  FMOD_System_Release(sys);
+  FMOD_System_Close(System);
+  FMOD_System_Release(System);
 }
 
 }

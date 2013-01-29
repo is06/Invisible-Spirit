@@ -25,8 +25,8 @@ class CMusicReference
     void play(const string& id);
     void stop();
 
-    void muteSequence(const string& id, u16 number);
-    void unmuteSequence(const string& id, u16 number);
+    void muteSequence(u16 number);
+    void unmuteSequence(u16 number);
 
     CMusic* getCurrentMusic();
 

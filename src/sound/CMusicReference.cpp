@@ -138,16 +138,22 @@ void CMusicReference::play(const string& id)
   }
 }
 
-//! Mutes a specific sequence of the multi-layer music
-void CMusicReference::muteSequence(const string& id, u16 number)
+//! Mutes a specific sequence of the current multi-layer music
+/**
+ * \param u16 number the sequence layer number
+ */
+void CMusicReference::muteSequence(u16 number)
 {
   if (CurrentMusic->getSequence(number)) {
     CurrentMusic->getSequence(number)->setVolume(0.0f);
   }
 }
 
-//! Unmutes a specific sequence of the multi-layer music
-void CMusicReference::unmuteSequence(const string& id, u16 number)
+//! Unmutes a specific sequence of the current multi-layer music
+/**
+ * \param u16 number the sequence layer number
+ */
+void CMusicReference::unmuteSequence(u16 number)
 {
   if (CurrentMusic->getSequence(number)) {
     CurrentMusic->getSequence(number)->setVolume(1.0f);
@@ -157,17 +163,21 @@ void CMusicReference::unmuteSequence(const string& id, u16 number)
 //! Stops the current music
 void CMusicReference::stop()
 {
-
+  CurrentMusic->stopSequences();
 }
 
+//! Returns the current music pointer
 CMusic* CMusicReference::getCurrentMusic()
 {
   return CurrentMusic;
 }
 
+//! Destructor
 CMusicReference::~CMusicReference()
 {
-
+  if (CurrentMusic) {
+    delete CurrentMusic;
+  }
 }
 
 }

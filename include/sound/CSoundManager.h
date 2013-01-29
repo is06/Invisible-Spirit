@@ -26,12 +26,12 @@ class CSoundManager
     FMOD_SYSTEM* getSystem();
 
   private:
-    FMOD_SYSTEM* sys;
+    FMOD_SYSTEM* System;
 
-    FMOD_VECTOR cameraPosition;
-    FMOD_VECTOR cameraVelocity;
-    FMOD_VECTOR cameraForward;
-    FMOD_VECTOR cameraUp;
+    FMOD_VECTOR CameraPosition;
+    FMOD_VECTOR CameraVelocity;
+    FMOD_VECTOR CameraForward;
+    FMOD_VECTOR CameraUp;
 };
 
 }

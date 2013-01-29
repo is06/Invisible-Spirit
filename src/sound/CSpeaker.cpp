@@ -16,6 +16,7 @@ namespace is06
 namespace NSound
 {
 
+//! Constructor
 CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text, f32 radius) : NEngine::CEntity()
 {
   video::ITexture* iconTexture = NEngine::NResource::CResourceManager::loadTexture("resource/debug/icons/speaker.bmp");
@@ -41,16 +42,25 @@ CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, con
   play();
 }
 
+//! Update function for event testing
 void CSpeaker::update()
 {
 
 }
 
+//! Returns the current position of the 3D speaker
+/**
+ * \return FMOD_VECTOR
+ */
 const FMOD_VECTOR& CSpeaker::getPosition() const
 {
   return Position;
 }
 
+//! Returns the current position of the 3D speaker
+/**
+ * \return vector3df
+ */
 core::vector3df CSpeaker::getPositionVector()
 {
   return core::vector3df(
@@ -60,11 +70,19 @@ core::vector3df CSpeaker::getPositionVector()
   );
 }
 
+//! Changes the position of the 3D speaker
+/**
+ * \param FMOD_VECTOR position the new position
+ */
 void CSpeaker::setPosition(const FMOD_VECTOR& position)
 {
   Position = position;
 }
 
+//! Changes the position of the 3D speaker
+/**
+ * \param vector3df position the new position
+ */
 void CSpeaker::setPosition(const core::vector3df& position)
 {
   Position.x = position.X;
@@ -72,32 +90,38 @@ void CSpeaker::setPosition(const core::vector3df& position)
   Position.z = position.Z;
 }
 
+//! Plays the sound from the speaker
 void CSpeaker::play()
 {
   FMOD_System_PlaySound(NEngine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
   FMOD_Channel_SetPaused(ChannelPtr, false);
 }
 
+//! Pauses the current sound
 void CSpeaker::pause()
 {
   FMOD_Channel_SetPaused(ChannelPtr, true);
 }
 
+//! Resumes the current sound
 void CSpeaker::resume()
 {
   FMOD_Channel_SetPaused(ChannelPtr, false);
 }
 
+//! Stops the current sound
 void CSpeaker::stop()
 {
   FMOD_Channel_Stop(ChannelPtr);
 }
 
+//! Changes the volume of the speaker
 void CSpeaker::setVolume(f32 val)
 {
   FMOD_Channel_SetVolume(ChannelPtr, val);
 }
 
+//! Destructor
 CSpeaker::~CSpeaker()
 {
   Icon->remove();

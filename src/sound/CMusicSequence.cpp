@@ -15,6 +15,7 @@ namespace is06
 namespace NSound
 {
 
+//! Constructor, creates the FMOD stream and set loop points if needed
 CMusicSequence::CMusicSequence(const SMusicSequenceInfo& info)
 {
   string filePath("resource/music/");
@@ -28,16 +29,19 @@ CMusicSequence::CMusicSequence(const SMusicSequenceInfo& info)
   }
 }
 
+//! Plays the sequence
 void CMusicSequence::play()
 {
   FMOD_System_PlaySound(NEngine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
 }
 
+//! Stops the sequence
 void CMusicSequence::stop()
 {
   FMOD_Channel_Stop(ChannelPtr);
 }
 
+//! Sets the volume of the sequence
 void CMusicSequence::setVolume(f32 value)
 {
   if (value >= 0.0f && value <= 1.0f) {
@@ -45,8 +49,10 @@ void CMusicSequence::setVolume(f32 value)
   }
 }
 
+//! Destructor, deletes the FMOD sound
 CMusicSequence::~CMusicSequence()
 {
+  stop();
   FMOD_Sound_Release(SoundPtr);
 }
 
