@@ -426,7 +426,7 @@ void CGame::initScenes()
 {
   Exit = false;
   SceneChanged = true;
-  NextScene = NScene::ESI_SELECT_MAP;
+  NextScene = NScene::ESI_MAP_ALPHA_ZONE;
 }
 
 //!

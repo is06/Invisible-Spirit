@@ -29,7 +29,7 @@ CTimer::CTimer(f32 end, TVoidCallback callback, s32 loopLimit)
 //! The update methods that must be called in the scene event loop
 void CTimer::update()
 {
-  if (Running && CurrentLoop < CurrentLoopLimit) {
+  if (Running && (CurrentLoop < CurrentLoopLimit || CurrentLoopLimit == -1)) {
     CurrentTime += (CGame::getSpeedFactor());
     if (CurrentTime >= EndTime) {
       bool called = true;

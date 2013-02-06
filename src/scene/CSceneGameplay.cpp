@@ -61,7 +61,7 @@ void CSceneGameplay::loadingScreen()
 //! Gameplay scenes start sequence
 void CSceneGameplay::start()
 {
-  EverySecondTimer = new NEngine::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), 9999);
+  EverySecondTimer = new NEngine::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), -1);
 
   // Flag for fade out
   QuitIsFading = false;
