@@ -280,7 +280,9 @@ void CStaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene
 //! Erases the collision mask
 void CStaticModel::clearMeshCollision()
 {
-  NewtonDestroyBody(NEngine::CGame::getNewtonWorld(), MainBody);
+  if (MainBody) {
+    NewtonDestroyBody(NEngine::CGame::getNewtonWorld(), MainBody);
+  }
 }
 
 //! Changes the shadow mode between cast, receive, both or none

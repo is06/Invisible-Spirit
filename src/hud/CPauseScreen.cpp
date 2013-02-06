@@ -45,11 +45,11 @@ CPauseScreen::CPauseScreen(NEngine::NResource::CTranslation* translation, NEngin
   GlobalTranslations = translation;
 
   // Black transparent background
-  Background = new CPicture(0, 0, 1280, 720, "resource/Hud/menus/gameplay/back.png");
+  Background = new CPicture(0, 0, 1280, 720, "resource/hud/menus/gameplay/back.png");
   Background->setOpacity(128);
 
   // Silver title top bar
-  TopBar = new CPicture(0, NEngine::CGame::ScreenPos.Hud.Top - 20, 1280, 40, "resource/Hud/menus/gameplay/top_bar.png");
+  TopBar = new CPicture(0, NEngine::CGame::ScreenPos.Hud.Top - 20, 1280, 40, "resource/hud/menus/gameplay/top_bar.png");
 
   // Menu (left)
   SectionMenu = new CMenu(NEngine::CGame::ScreenPos.Hud.Left + 80, NEngine::CGame::ScreenPos.Hud.Top - 80, 150, 8, EMS_TITLE);

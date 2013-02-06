@@ -43,7 +43,7 @@ CDialogInterface::CDialogInterface(const string& filePath, NResource::CTranslati
   CurrentMessageNumber = 0;
   CurrentMessageText = NULL;
 
-  BackWindow = new NHud::CPicture(0, CGame::ScreenPos.Hud.Bottom + 68, 1280, 136, "resource/Hud/window/dialog_back.png");
+  BackWindow = new NHud::CPicture(0, CGame::ScreenPos.Hud.Bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
 
   string fullPath = "resource/text/";
 

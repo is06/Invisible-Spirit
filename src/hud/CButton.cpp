@@ -16,7 +16,7 @@ namespace NHud
 
 CButton::CButton(f32 x, f32 y) : CHud()
 {
-  ButtonCircle = new CPicture(x, y, 40, 40, "resource/Hud/button/buttonCircle.png");
+  ButtonCircle = new CPicture(x, y, 40, 40, "resource/hud/button/buttonCircle.png");
 }
 
 void CButton::render()

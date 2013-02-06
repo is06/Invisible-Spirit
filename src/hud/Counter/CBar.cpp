@@ -19,7 +19,7 @@ namespace NCounter
 
 CBar::CBar(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, EBarStyle style) : CCounter(init, min, max)
 {
-  string texturePath = "resource/Hud/bar/";
+  string texturePath = "resource/hud/bar/";
   Sub = NULL;
   OldValue = CurrentValue + 1;
   BehindValue = CurrentValue;
@@ -34,8 +34,8 @@ CBar::CBar(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, EBarStyle sty
   switch (style) {
     case EBS_LIFE:
       texturePath += "life.bmp";
-      Sub = new CPicture(x, y, w, h, "resource/Hud/bar/life_gain.bmp", false);
-      Sub->loadSecondTexture("resource/Hud/bar/life_loss.bmp");
+      Sub = new CPicture(x, y, w, h, "resource/hud/bar/life_gain.bmp", false);
+      Sub->loadSecondTexture("resource/hud/bar/life_loss.bmp");
       break;
     default:
       texturePath += "default.bmp";
@@ -49,10 +49,10 @@ void CBar::render()
 {
   if (OldValue != CurrentValue) {
     if (OldValue < CurrentValue) {
-      Sub->changeTexture("resource/Hud/bar/life_gain.bmp");
+      Sub->changeTexture("resource/hud/bar/life_gain.bmp");
       Decrease = false;
     } else {
-      Sub->changeTexture("resource/Hud/bar/life_loss.bmp");
+      Sub->changeTexture("resource/hud/bar/life_loss.bmp");
       Decrease = true;
     }
     OldValue = CurrentValue;

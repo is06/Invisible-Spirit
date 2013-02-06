@@ -30,7 +30,7 @@ CMenu::CMenu(f32 x, f32 y, f32 width, u8 height, EMenuStyle style) : CHud()
 
   Style = style;
 
-  Cursor = new CPicture(x - 16, y, 32, 32, "resource/Hud/menus/cursor.png");
+  Cursor = new CPicture(x - 16, y, 32, 32, "resource/hud/menus/cursor.png");
 }
 
 //! \todo comment this function

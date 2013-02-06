@@ -1,0 +1,29 @@
+
+DirectX SDK (June 2010)
+  - Install DirectX Runtime
+  - Developer Runtime Support (for debug compilation)
+  - DirectX Headers and Libs
+  - DirectX Redistributable Files (for redistribution)
+  
+Cg SDK
+  
+Build Options
+  tab #defines
+    IRR_COMPILE_WITH_DX9_DEV_PACK
+    _IRR_COMPILE_WITH_CG_
+  tab Linker Settings
+    dinput8
+    dxguid
+    d3dx9
+    d3dx9d (for debug)
+    cg.lib
+    cgD3D9.lib
+    cgGL.lib
+  tab Search Directories
+    sub tab Compiler
+      C:\Program Files\Microsoft DirectX SDK (June 2010)\Include
+      C:\Program Files\NVIDIA Corporation\Cg\include
+    sub tab Linker
+      C:\Program Files\Microsoft DirectX SDK (June 2010)\Lib\x86
+      C:\Program Files\NVIDIA Corporation\Cg\lib
+      

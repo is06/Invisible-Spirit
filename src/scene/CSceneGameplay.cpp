@@ -30,11 +30,7 @@ namespace NScene
 CSceneGameplay::CSceneGameplay() : CScene()
 {
   cout << "Gameplay scene constructor" << endl;
-}
 
-//! Loading sequence for all gameplay scenes
-void CSceneGameplay::loadingSequence()
-{
   Camera = new N3D::NCamera::CThirdPerson();
 
   MapSections = new NEngine::NGameplay::CMapSectionInterface();
@@ -50,6 +46,14 @@ void CSceneGameplay::loadingSequence()
   HudEnsemble = new NHud::CHudEnsemble();
   MiniMap = new NHud::CMiniMap(Hero);
   PauseScreen = new NHud::CPauseScreen(GlobalTranslations, Control);
+
+  EverySecondTimer = new NEngine::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), -1);
+}
+
+//! Loading sequence for all gameplay scenes
+void CSceneGameplay::loadingSequence()
+{
+
 }
 
 //! Loading screen for gameplay scenes (overworld, dungeons...)
@@ -61,8 +65,6 @@ void CSceneGameplay::loadingScreen()
 //! Gameplay scenes start sequence
 void CSceneGameplay::start()
 {
-  EverySecondTimer = new NEngine::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), -1);
-
   // Flag for fade out
   QuitIsFading = false;
 

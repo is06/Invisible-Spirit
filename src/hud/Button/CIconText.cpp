@@ -18,7 +18,7 @@ namespace NButton
 CIconText::CIconText(f32 x, f32 y) : CButton(x, y)
 {
   //text = new Text(textMsg);
-  //icon = new Picture(40, 40, x - 2, y + 2, "resource/Hud/default.bmp");
+  //icon = new Picture(40, 40, x - 2, y + 2, "resource/hud/default.bmp");
 }
 
 void CIconText::render()
@@ -32,7 +32,7 @@ void CIconText::changeCommand(NEngine::NControl::ECommandIdentifier newCommand)
 {
   switch (newCommand) {
     default:
-      //icon->change("resource/Hud/fireCommand.bmp");
+      //icon->change("resource/hud/fireCommand.bmp");
       break;
   }
 }

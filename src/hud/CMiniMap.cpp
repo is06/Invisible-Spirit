@@ -40,7 +40,7 @@ void CMiniMap::setMap(EMiniMapIdentifier id)
     default: fileName = "global/default"; break;
   }
 
-  Map = new CPicture(Position.X, Position.Y, 250, 250, "resource/Hud/minimap/" + fileName + ".png", true);
+  Map = new CPicture(Position.X, Position.Y, 250, 250, "resource/hud/minimap/" + fileName + ".png", true);
   Map->setOpacity(230);
   //Map->setRotation(45.0f);
 

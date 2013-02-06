@@ -111,7 +111,7 @@ EFontStyle CTextFont::getCurrentStyle()
 
 void CTextFont::getFontDataFromStyle(EFontStyle style)
 {
-  string filePath = "resource/Hud/font/";
+  string filePath = "resource/hud/font/";
 
   switch (style) {
     case EFS_STANDARD_48: filePath += "standard_48"; break;
@@ -129,7 +129,7 @@ void CTextFont::getFontDataFromStyle(EFontStyle style)
  */
 void CTextFont::getTextureFromStyle(EFontStyle style, u8 extTexture)
 {
-  string filePath = "resource/Hud/font/";
+  string filePath = "resource/hud/font/";
 
   switch (style) {
     case EFS_STANDARD_48: filePath += "standard_48"; break;
