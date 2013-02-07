@@ -1,0 +1,1 @@
+http://www.gamedev.net/topic/573968-blur-in-cg-fragment-shader/

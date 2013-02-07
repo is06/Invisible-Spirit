@@ -1,0 +1,12 @@
+struct vertex_Output {
+  float4 position : POSITION;
+  float4 color : COLOR;
+  float2 texCoord : TEXCOORD0;
+};
+
+vertex_Output mainVS(float4 position : POSITION, uniform float4x4 worldViewProj)
+{
+  vertex_Output OUT;
+  OUT.position = mul(position, worldViewProj);
+  return OUT;
+}

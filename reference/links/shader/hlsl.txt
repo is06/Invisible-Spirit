@@ -1,1 +1,2 @@
 http://www.neatware.com/lbstudio/web/hlsl.html
+http://khason.net/blog/hlsl-pixel-shader-effects-tutorial/

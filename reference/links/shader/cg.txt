@@ -1,1 +1,2 @@
 http://http.developer.nvidia.com/CgTutorial/cg_tutorial_chapter01.html
+http://http.developer.nvidia.com/GPUGems2/gpugems2_part01.html

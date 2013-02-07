@@ -19,6 +19,7 @@ namespace NGameplay
 enum EPlayableCharacterType
 {
   EPCT_AYRON,
+  EPCT_CUBE,
 
   EPCT_COUNT
 };

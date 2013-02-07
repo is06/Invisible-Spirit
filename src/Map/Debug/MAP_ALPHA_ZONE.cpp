@@ -32,17 +32,8 @@ namespace NDebug
 //! Alpha Zone constructor
 MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : NScene::CSceneGameplay()
 {
-
-}
-
-void MAP_ALPHA_ZONE::loadingSequence()
-{
-  cout << "MAP ALPHA ZONE loading sequence" << endl;
-
-  NScene::CSceneGameplay::loadingSequence();
-
   // Main Player
-  Hero->setCharacter(NEngine::NGameplay::EPCT_AYRON);
+  Hero->setCharacter(NEngine::NGameplay::EPCT_CUBE);
 
   // Local Translations
   SceneTranslations = new NEngine::NResource::CTranslation("MAP_ALPHA_ZONE.ist");
@@ -65,8 +56,9 @@ void MAP_ALPHA_ZONE::loadingSequence()
   Dialog = new NEngine::NGameplay::CDialogInterface("MAP_ALPHA_ZONE.isd", SceneTranslations, Control);
 
   // Glow shader example
-  //GlowShader = new nShader::CPostRenderGlow();
-  //GlowShader->addEntityForEffect(MapSections->getSection(0), nShader::ESE_DARKEN);
+  GlowShader = new NShader::CPostRenderGlow();
+  GlowShader->addEntityForEffect(MapSections->getSection(0), NShader::EFFECT_DARKEN);
+  GlowShader->addEntityForEffect(Hero, NShader::EFFECT_DARKEN);
 
   // Direct Light (spot with shadow map system, work in progress)
   // This one is buggy: we don't see the meshes
@@ -93,11 +85,15 @@ void MAP_ALPHA_ZONE::loadingSequence()
   //NPCInterface->addNPC(NPC1);
 }
 
+void MAP_ALPHA_ZONE::loadingSequence()
+{
+  NScene::CSceneGameplay::loadingSequence();
+}
+
 void MAP_ALPHA_ZONE::start()
 {
   NScene::CSceneGameplay::start();
-
-  cout << "Loading sequence finished, scene started" << endl;
+  //cout << "Loading sequence finished, scene started" << endl;
 }
 
 //! Alpha Zone events
@@ -146,7 +142,7 @@ void MAP_ALPHA_ZONE::events()
 void MAP_ALPHA_ZONE::postRender()
 {
   NScene::CSceneGameplay::postRender();
-  //GlowShader->render();
+  GlowShader->render();
 }
 
 //! Player HUD render
@@ -164,7 +160,7 @@ MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
   //delete NPC1;
   //delete Spk;
   //delete Lt;
-  //delete GlowShader;
+  delete GlowShader;
   //delete ToDungeonSensor;
 }
 

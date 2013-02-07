@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/core.h"
 #include "../../include/Shader/CShaders.h"
 #include "../../include/Shader/CDiffuseShaderCallback.h"
-#include "../../include/Shader/CIceShaderCallback.h"
+#include "../../include/Shader/CBlurShaderCallback.h"
 #include "../../include/Shader/CDepthShaderCallback.h"
 #include "../../include/Shader/CShadowShaderCallback.h"
 
@@ -33,9 +33,6 @@ CShaders::CShaders()
 void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
 {
   if (gpuManager) {
-    string vertexProgram = "";
-    string pixelProgram = "";
-
     // Cg Test shader
     CgTest = gpuManager->addHighLevelShaderMaterialFromFiles(
       "resource/Shader/cgtest.vertex.cg", "mainVS", video::EVST_VS_2_0,
@@ -46,34 +43,30 @@ void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
     // Ice shader
     /*
     CIceShaderCallback* iceCallback = new CIceShaderCallback();
-    vertexProgram = "resource/Shader/ice.vertex.cg";
-    pixelProgram = "resource/Shader/ice.pixel.cg";
     Ice = gpuManager->addHighLevelShaderMaterialFromFiles(
-      vertexProgram.c_str(), "mainVS", video::EVST_VS_2_0,
-      pixelProgram.c_str(), "mainPS", video::EPST_PS_2_0,
+      "resource/Shader/ice.vertex.cg", "mainVS", video::EVST_VS_2_0,
+      "resource/Shader/ice.pixel.cg", "mainPS", video::EPST_PS_2_0,
       iceCallback, video::EMT_SOLID, 0, video::EGSL_CG
     );
     iceCallback->drop();
     */
 
     // Horizontal Blur Shader
-    vertexProgram = "resource/Shader/blur.vertex.cg";
-    pixelProgram = "resource/Shader/horizontal_blur.pixel.cg";
+    CBlurShaderCallback* blurCallback = new CBlurShaderCallback();
     HorizontalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
-      vertexProgram.c_str(), "mainVS", video::EVST_VS_2_0,
-      pixelProgram.c_str(), "mainPS", video::EPST_PS_2_0,
-      0, video::EMT_SOLID, 0, video::EGSL_CG
+      "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_2_0,
+      "resource/Shader/horizontal_blur.pixel.cg", "mainPS", video::EPST_PS_2_0,
+      blurCallback, video::EMT_SOLID, 0, video::EGSL_CG
     );
-
     // Vertical Blur Shader
-    pixelProgram = "resource/Shader/vertical_blur.pixel.cg";
     VerticalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
-      vertexProgram.c_str(), "mainVS", video::EVST_VS_2_0,
-      pixelProgram.c_str(), "mainPS", video::EPST_PS_2_0,
-      0, video::EMT_SOLID, 0, video::EGSL_CG
+      "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_2_0,
+      "resource/Shader/vertical_blur.pixel.cg", "mainPS", video::EPST_PS_2_0,
+      blurCallback, video::EMT_SOLID, 0, video::EGSL_CG
     );
 
     // Shadow map pass 1 (depth buffer emulation)
+    /*
     CDepthShaderCallback* depthCallback = new CDepthShaderCallback();
     vertexProgram = "resource/Shader/shadowmap_pass1.vertex.cg";
     pixelProgram = "resource/Shader/shadowmap_pass1.pixel.cg";
@@ -82,8 +75,9 @@ void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
       pixelProgram.c_str(), "mainPS", video::EPST_PS_2_0,
       depthCallback, video::EMT_SOLID, 0, video::EGSL_CG
     );
-
+    */
     // Shadow map pass 2
+    /*
     CShadowShaderCallback* shadowCallback = new CShadowShaderCallback();
     vertexProgram = "resource/Shader/shadowmap_pass2.vertex.cg";
     pixelProgram = "resource/Shader/shadowmap_pass2.pixel.cg";
@@ -92,6 +86,7 @@ void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
       pixelProgram.c_str(), "mainPS", video::EPST_PS_2_0,
       shadowCallback, video::EMT_SOLID, 0, video::EGSL_CG
     );
+    */
   }
 }
 

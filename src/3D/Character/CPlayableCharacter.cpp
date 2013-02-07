@@ -55,7 +55,8 @@ void CPlayable::setCharacter(NEngine::NGameplay::EPlayableCharacterType type)
 
   CCharacter::setCharacterModel(modelId);
 
-  getNode()->setMaterialType((video::E_MATERIAL_TYPE)NEngine::CGame::Shaders.CgTest);
+  // Cg Test Shader
+  //getNode()->setMaterialType((video::E_MATERIAL_TYPE)NEngine::CGame::Shaders.CgTest);
 
   // Start direction
   if (MainNode != NULL) {

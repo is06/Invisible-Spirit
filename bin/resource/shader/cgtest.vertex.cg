@@ -4,10 +4,10 @@ struct vertex_Output {
 };
 
 //vertex_Output mainVS(float2 position : POSITION, uniform float4 constantColor)
-vertex_Output mainVS(float2 position : POSITION)
+vertex_Output mainVS(float4 position : POSITION)
 {
   vertex_Output OUT;
-  OUT.position = float4(position, 0, 1);
+  OUT.position = position;
   OUT.color = float4(0, 1, 0, 1); // green
   //OUT.color = constantColor;
 
