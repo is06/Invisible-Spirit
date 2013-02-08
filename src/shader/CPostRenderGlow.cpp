@@ -11,6 +11,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Shader/CPostRenderGlow.h"
 #include "../../include/Scene/CScene.h"
 
+using namespace irr;
+
 namespace is06
 {
 namespace NShader
@@ -18,7 +20,9 @@ namespace NShader
 
 CPostRenderGlow::CPostRenderGlow() : CPostRenderShader()
 {
-  // Render to target texture quality
+  BackBufferColor = video::SColor(255, 255, 255, 255);
+
+  // Render to target texture resolution quality
   u32 texture_quality = NEngine::CGame::Settings->getParamInt("glow", "texture_quality");
   switch (texture_quality) {
     case 1: texture_quality = 64; break;  // 16KB
@@ -36,7 +40,7 @@ CPostRenderGlow::CPostRenderGlow() : CPostRenderShader()
   }
 
   Material.AntiAliasing = false;
-  Texture = NEngine::CGame::getVideoDriver()->addRenderTargetTexture(core::dimension2du(512, 512), "GlowRTT", textureColorFormat);
+  Texture = NEngine::CGame::getVideoDriver()->addRenderTargetTexture(core::dimension2du(texture_quality, texture_quality), "GlowRTT", textureColorFormat);
   Material.setTexture(0, Texture);
 }
 
@@ -53,7 +57,7 @@ void CPostRenderGlow::render()
   CFlatElement::render();
 
   if (Texture) {
-    NEngine::CGame::getVideoDriver()->setRenderTarget(Texture, true, true, video::SColor(255, 255, 255, 255));
+    NEngine::CGame::getVideoDriver()->setRenderTarget(Texture, true, true, BackBufferColor);
     // Darken non glowing entities
     applyEffectsToEntities();
     // Draw the whole scene

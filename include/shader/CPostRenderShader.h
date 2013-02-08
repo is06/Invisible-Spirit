@@ -16,7 +16,7 @@ namespace is06
 namespace NShader
 {
 
-//! Aligned screen quad for post render in order to simulated a light glowing effect
+//! Aligned screen quad for post render in order to produce post process effects like glow or bloom
 class CPostRenderShader : public NHud::NPrimitive::CFlatElement
 {
   public:

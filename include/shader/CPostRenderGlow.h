@@ -10,12 +10,14 @@ http://www.is06.com. Legal code in license.txt
 
 #include "CPostRenderShader.h"
 
+using namespace irr;
+
 namespace is06
 {
 namespace NShader
 {
 
-//! Aligned screen quad for post render in order to simulated a light glowing effect
+//! Aligned screen quad for post render in order to simulate a light glowing effect
 class CPostRenderGlow : public CPostRenderShader
 {
   public:
@@ -23,6 +25,9 @@ class CPostRenderGlow : public CPostRenderShader
     ~CPostRenderGlow();
 
     void render();
+
+  protected:
+    video::SColor BackBufferColor;
 };
 
 }
