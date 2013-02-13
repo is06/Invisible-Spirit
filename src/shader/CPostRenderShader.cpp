@@ -7,6 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../include/Engine/core.h"
 #include "../../include/Engine/CGame.h"
+#include "../../include/Engine/Resource/CSettings.h"
 #include "../../include/3D/CModelEntity.h"
 #include "../../include/Shader/CPostRenderShader.h"
 
@@ -18,11 +19,19 @@ namespace NShader
 CPostRenderShader::CPostRenderShader() : CFlatElement(0, 0, NEngine::CGame::ScreenPos.Hud.Width, NEngine::CGame::ScreenPos.Hud.Height)
 {
   Texture = 0;
-
-  MinTextureOffset.X = 0.0f;
-  MinTextureOffset.Y = 1.0f;
-  MaxTextureOffset.X = 1.0f;
-  MaxTextureOffset.Y = 0.0f;
+  if (NEngine::CGame::Settings->getParamString("display", "renderer") == "direct3d") {
+    // Direct3D post render texture coordinates
+    MinTextureOffset.X = 0.0f;
+    MinTextureOffset.Y = 0.0f;
+    MaxTextureOffset.X = 1.0f;
+    MaxTextureOffset.Y = 1.0f;
+  } else {
+    // OpenGL post render texture coordinates
+    MinTextureOffset.X = 0.0f;
+    MinTextureOffset.Y = 1.0f;
+    MaxTextureOffset.X = 1.0f;
+    MaxTextureOffset.Y = 0.0f;
+  }
 }
 
 void CPostRenderShader::render()
@@ -44,6 +53,18 @@ void CPostRenderShader::applyEffectsToEntities()
         NEngine::CGame::getSceneManager()->setAmbientLight(video::SColorf(0.0f, 0.0f, 0.0f));
         EntityListIt->first->darken();
         break;
+      case EFFECT_LIGHTEN:
+        EntityListIt->first->lighten();
+        break;
+      case EFFECT_SHOW:
+        EntityListIt->first->show();
+        break;
+      case EFFECT_HIDE:
+        EntityListIt->first->hide();
+        break;
+      case EFFECT_TEXTURE_SWITCH:
+        EntityListIt->first->textureSwitch();
+        break;
       default:
         break;
     }
@@ -58,6 +79,18 @@ void CPostRenderShader::removeEffectsToEntities()
         // @todo : turn on all lights
         NEngine::CGame::getSceneManager()->setAmbientLight(video::SColorf(1.0f, 1.0f, 1.0f));
         EntityListIt->first->undarken();
+        break;
+      case EFFECT_LIGHTEN:
+        EntityListIt->first->unlighten();
+        break;
+      case EFFECT_SHOW:
+        EntityListIt->first->hide();
+        break;
+      case EFFECT_HIDE:
+        EntityListIt->first->show();
+        break;
+      case EFFECT_TEXTURE_SWITCH:
+        EntityListIt->first->textureSwitch();
         break;
       default:
         break;
