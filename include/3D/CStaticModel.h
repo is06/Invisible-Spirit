@@ -33,6 +33,9 @@ class CStaticModel : public CModelEntity
     void setDebugData(bool value);
     void darken();
     void undarken();
+    void lighten();
+    void unlighten();
+    void textureSwitch();
 
     void turnX(f32 speed);
     void turnY(f32 speed);

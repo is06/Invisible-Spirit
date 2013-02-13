@@ -37,6 +37,9 @@ class CAnimatedModel : public CModelEntity
     void setDebugData(bool value);
     void darken();
     void undarken();
+    void lighten();
+    void unlighten();
+    void textureSwitch();
 
     // Movements
     void turnX(f32 speed);

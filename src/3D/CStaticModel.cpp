@@ -130,6 +130,23 @@ void CStaticModel::undarken()
   MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
 }
 
+void CStaticModel::lighten()
+{
+
+}
+
+void CStaticModel::unlighten()
+{
+
+}
+
+void CStaticModel::textureSwitch()
+{
+  video::ITexture* tempTexture = MainNode->getMaterial(0).getTexture(0);
+  MainNode->getMaterial(0).setTexture(0, MainNode->getMaterial(0).getTexture(1));
+  MainNode->getMaterial(0).setTexture(1, tempTexture);
+}
+
 //! Turns the model along the X axis
 void CStaticModel::turnX(f32 speed)
 {

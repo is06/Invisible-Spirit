@@ -215,6 +215,23 @@ void CAnimatedModel::undarken()
   MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
 }
 
+void CAnimatedModel::lighten()
+{
+
+}
+
+void CAnimatedModel::unlighten()
+{
+
+}
+
+void CAnimatedModel::textureSwitch()
+{
+  video::ITexture* tempTexture = MainNode->getMaterial(0).getTexture(0);
+  MainNode->getMaterial(0).setTexture(0, MainNode->getMaterial(0).getTexture(1));
+  MainNode->getMaterial(0).setTexture(1, tempTexture);
+}
+
 //! Returns true if the animated model collides with a static model defined by other
 /**
  * \param StaticModel* other pointer to the static object which collides with the animated model

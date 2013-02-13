@@ -34,6 +34,9 @@ class CModelEntity : public NEngine::CEntity
     virtual void setDebugData(bool value) = 0;
     virtual void darken() = 0;
     virtual void undarken() = 0;
+    virtual void lighten() = 0;
+    virtual void unlighten() = 0;
+    virtual void textureSwitch() = 0;
 
     virtual video::SMaterial& getMaterial() = 0;
 
