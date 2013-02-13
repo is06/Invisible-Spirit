@@ -56,13 +56,13 @@ void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
     HorizontalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
       "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_2_0,
       "resource/Shader/horizontal_blur.pixel.cg", "mainPS", video::EPST_PS_2_0,
-      blurCallback, video::EMT_SOLID, 0, video::EGSL_CG
+      blurCallback, video::EMT_TRANSPARENT_ADD_COLOR, 0, video::EGSL_CG
     );
     // Vertical Blur Shader
     VerticalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
       "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_2_0,
       "resource/Shader/vertical_blur.pixel.cg", "mainPS", video::EPST_PS_2_0,
-      blurCallback, video::EMT_SOLID, 0, video::EGSL_CG
+      blurCallback, video::EMT_TRANSPARENT_ADD_COLOR, 0, video::EGSL_CG
     );
 
     // Shadow map pass 1 (depth buffer emulation)

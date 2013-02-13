@@ -1,13 +1,13 @@
 const float BlurSize = 1.0 / 512.0;
 const float BlurScale = 0.003;
 
-struct pixel_Output {
+struct SPixelOutput {
   float4 color : COLOR;
 };
 
-pixel_Output mainPS(float2 texCoord : TEXCOORD0, uniform sampler2D blurSampler)
+SPixelOutput mainPS(float3 color : COLOR0, float2 texCoord : TEXCOORD0, uniform sampler2D blurSampler)
 {
-  pixel_Output OUT;
+  SPixelOutput output;
 
   float2 offsets[8];
   offsets[0] = float2(-4, 0);
@@ -19,14 +19,14 @@ pixel_Output mainPS(float2 texCoord : TEXCOORD0, uniform sampler2D blurSampler)
   offsets[6] = float2(3, 0);
   offsets[7] = float2(4, 0);
 
-  float4 sum = tex2D(blurSampler, texCoord) * BlurScale;
+  float4 sum = tex2D(blurSampler, (texCoord + BlurScale * float2(0, 0)));
 
   int i = 0;
   for (i = 0; i < 8; i++) {
-    sum += tex2D(blurSampler, (offsets[i] * texCoord)) * BlurScale;
+    sum += tex2D(blurSampler, (texCoord + BlurScale * offsets[i]));
   }
 
-  OUT.color = sum / 9;
+  output.color = sum / 9;
 
-  return OUT;
+  return output;
 }

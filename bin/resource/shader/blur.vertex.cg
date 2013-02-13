@@ -1,12 +1,12 @@
-struct vertex_Output {
+struct SVertexOutput {
   float4 position : POSITION;
-  float4 color : COLOR;
   float2 texCoord : TEXCOORD0;
 };
 
-vertex_Output mainVS(float4 position : POSITION, uniform float4x4 worldViewProj)
+SVertexOutput mainVS(float3 texCoord : TEXCOORD0, float4 position : POSITION, uniform float4x4 worldViewProj)
 {
-  vertex_Output OUT;
-  OUT.position = mul(position, worldViewProj);
-  return OUT;
+  SVertexOutput output;
+  output.position = mul(position, worldViewProj);
+  output.texCoord = texCoord;
+  return output;
 }
