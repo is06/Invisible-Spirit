@@ -1,0 +1,20 @@
+struct SPixelOutput {
+  float4 color : COLOR;
+};
+
+// Color inutile en entrée ?
+SPixelOutput mainPS(float3 texCoord : TEXCOORD0, float3 color : COLOR0)
+{
+  SPixelOutput output;
+
+  // On récupère les coordonnées de la texture du vertex shader
+  // On divise la coordonnée Z du vertex par la distance max de la profondeur
+  float depth = texCoord.z / texCoord.x;
+
+  // On calcule la couleur finale du pixel en fonction de la profondeur
+  // Plus le pixel est clair, plus le point est loin
+  output.color = float4(depth, (depth * depth), 0.0, 0.0);
+
+  // Sortie de la couleur dans une texture au format ECF_R32F
+  return output;
+}

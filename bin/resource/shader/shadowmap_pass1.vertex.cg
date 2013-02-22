@@ -1,0 +1,22 @@
+struct SVertexOutput {
+  float4 position : POSITION;
+  float2 texCoord : TEXCOORD0;
+};
+
+SVertexOutput mainVS(float4 position : POSITION, uniform float4x4 worldViewProj, uniform float maxD)
+{
+  SVertexOutput output;
+
+  // Transformation de la position du vertex : inchangée
+  float4 tPos = mul(position, worldViewProj);
+
+  // On transpose basiquement la position du vertex
+  output.position = tPos;
+
+  // On stocke la valeur max de la profondeur dans la coordonnée X de la texture,
+  // et la coordonnée Z du vertex dans la coordonnée Z de la texture
+  // --> vers le pixel shader
+  output.texCoord = float4(maxD, 0.0, tPos.z, 0.0);
+
+  return output;
+}

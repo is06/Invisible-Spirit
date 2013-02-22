@@ -20,8 +20,6 @@ class CShaders
     CShaders();
     void createMaterials(video::IGPUProgrammingServices* gpuManager);
 
-    s32 CgTest;
-
     s32 Ice;
     s32 Metal;
     s32 Glass;

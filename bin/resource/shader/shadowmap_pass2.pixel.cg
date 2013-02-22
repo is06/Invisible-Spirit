@@ -1,0 +1,57 @@
+struct SPixelOutput {
+  float4 color : COLOR;
+};
+
+float testShadow(float2 shadowMapTexCoord, float2 offset, float realDistance, sampler2D shadowMapSampler)
+{
+  float4 texDepth = tex2D(shadowMapSampler, float2(shadowMapTexCoord + offset));
+  float extractedDistance = texDepth.r;
+
+  return (extractedDistance <= realDistance) ? (1.0 / 16.0) : 0.0;
+}
+
+SPixelOutput mainPS(float4 texCoord0 : TEXCOORD0,
+                    float4 texCoord1 : TEXCOORD1,
+                    float3 color : COLOR0,
+                    uniform float4 lightColor,
+                    uniform sampler2D shadowMapSampler)
+{
+  SPixelOutput output;
+
+  float2 offsets[16];
+  offsets[0] = float2(0.0, 0.0);
+  offsets[1] = float2(0.0, 1.0);
+  offsets[2] = float2(1.0, 1.0);
+  offsets[3] = float2(-1.0, -1.0);
+  offsets[4] = float2(-2.0, 0.0);
+  offsets[5] = float2(0.0, -2.0);
+  offsets[6] = float2(2.0, -2.0);
+  offsets[7] = float2(-2.0, 2.0);
+  offsets[8] = float2(3.0, 0.0);
+  offsets[9] = float2(0.0, 3.0);
+  offsets[10] = float2(3.0, 3.0);
+  offsets[11] = float2(-3.0, -3.0);
+  offsets[12] = float2(-4.0, 0.0);
+  offsets[13] = float2(0.0, -4.0);
+  offsets[14] = float2(4.0, -4.0);
+  offsets[15] = float2(-4.0, 4.0);
+
+  float4 shadowMapPos = texCoord0.xy / texCoord0.w / 2.0 + float2(0.5, 0.5);
+  float4 finalColor = float4(0.0, 0.0, 0.0, 0.0);
+  float2 clampedShadowMapPos = clamp(shadowMapPos.xy, float2(0.0, 0.0), float2(1.0, 1.0));
+
+  if (clampedShadowMapPos.x = shadowMapPos.x && clampedShadowMapPos.y == shadowMapPos.y && shadowMapPos.z > 0.0 && shadowMapPos.z < texCoord1.z) {
+    float lightFactor = 1.0;
+    float realDistance = texCoord1.x / texCoord1.z - 0.002;
+
+    for (int i = 0; i < 16; i++) {
+      lightFactor -= testShadow(shadowMapPos.xy, offset[i] * texCoord1.w, realDistance, shadowMapSampler);
+    }
+
+    finalColor = lightColor * lightFactor * texCoord1.y;
+  }
+
+  output.color = finalColor;
+
+  return output;
+}
