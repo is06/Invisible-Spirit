@@ -113,9 +113,6 @@ void CGame::run()
 {
   // For independant speed
   u32 lastCycleTime, loopTime = 0;
-  // For constant speed
-  u32 before, after, renderTime, timeToSleep = 0;
-
   s32 lastFPS = -1;
 
   while (Device->run()) {
@@ -136,74 +133,33 @@ void CGame::run()
       lastFPS = fps;
     }
 
-    if (IndependantSpeed) {
-      // ----------------------------------------------------
-      // Speed Independant Loop
+    // Speed factor computation
+    lastCycleTime = Device->getTimer()->getRealTime() - loopTime;
+    loopTime = Device->getTimer()->getRealTime();
+    SpeedFactor = lastCycleTime / 1000.0f;
+    if (SpeedFactor > 1.0f) SpeedFactor = 1.0f; // Limit min 1fps
+    if (SpeedFactor < 0.0f) SpeedFactor = 0.0f; // Limit max fps (infinite) negative = reversed movements
 
-      // Speed factor computation
-      lastCycleTime = Device->getTimer()->getRealTime() - loopTime;
-      loopTime = Device->getTimer()->getRealTime();
-      SpeedFactor = lastCycleTime / 1000.0f;
-      if (SpeedFactor > 1.0f) SpeedFactor = 1.0f; // Limit min 1fps
-      if (SpeedFactor < 0.0f) SpeedFactor = 0.0f; // Limit max fps (infinite) negative = reversed movements
+    VideoDriver->beginScene(true, true, CurrentScene->getBackBufferColor());
 
-      VideoDriver->beginScene(true, true, CurrentScene->getBackBufferColor());
+    // Main events
+    manageLoadingScreen();
+    CurrentScene->events();
+    SceneManager->drawAll();
 
-      // Main events
-      manageLoadingScreen();
-      CurrentScene->events();
-      SceneManager->drawAll();
+    // Post Render events
+    if (!DebugOption.Display.HidePostRender) {
+      CurrentScene->postRender();
+    }
+    CurrentScene->hudRender();
+    DebugGUI->drawAll();
 
-      // Post Render events
-      if (!DebugOption.Display.HidePostRender) {
-        CurrentScene->postRender();
-      }
-      CurrentScene->hudRender();
-      DebugGUI->drawAll();
+    SoundManager->setEarsData(CurrentScene->getActiveCamera());
+    SoundManager->update();
 
-      SoundManager->setEarsData(CurrentScene->getActiveCamera());
-      SoundManager->update();
-
-      VideoDriver->endScene();
-      if (!ProcessorPriority) {
-        Device->yield();
-      }
-
-    } else {
-      // ----------------------------------------------------
-      // Constant Speed Loop
-      before = Device->getTimer()->getRealTime();
-
-      SpeedFactor = 1.0f / Framerate;
-
-      VideoDriver->beginScene(true, true, CurrentScene->getBackBufferColor());
-
-      // Main events
-      manageLoadingScreen();
-      CurrentScene->events();
-      SceneManager->drawAll();
-
-      // Post Render events
-      if (!DebugOption.Display.HidePostRender) {
-        CurrentScene->postRender();
-      }
-      CurrentScene->hudRender();
-      DebugGUI->drawAll();
-
-      SoundManager->setEarsData(CurrentScene->getActiveCamera());
-      SoundManager->update();
-      VideoDriver->endScene();
-
-      after = Device->getTimer()->getRealTime();
-      renderTime = after - before;
-
-      timeToSleep = (u32)(((1000.0f / Framerate) - renderTime) + after);
-
-      while (Device->getTimer()->getRealTime() < timeToSleep) {
-        if (!ProcessorPriority) {
-          Device->yield();
-        }
-      }
+    VideoDriver->endScene();
+    if (!ProcessorPriority) {
+      Device->yield();
     }
   }
 }
@@ -335,7 +291,6 @@ void CGame::initRenderSystem()
 {
   // Render speed
   Framerate = 60;
-  IndependantSpeed = (Settings->getParamInt("processor", "independant_speed") == 1);
   ProcessorPriority = (Settings->getParamInt("processor", "priority") == 1);
 }
 
