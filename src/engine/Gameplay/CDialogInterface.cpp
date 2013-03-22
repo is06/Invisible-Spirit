@@ -37,7 +37,7 @@ CDialogInterface::CDialogInterface(const string& filePath, NResource::CTranslati
   DialogFinished = false;
 
   if (!translation) {
-    throw new NException::CTextException("[E60] No local translation object for dialog interface");
+    throw NException::CTextException("[E60] No local translation object for dialog interface");
   }
 
   CurrentTranslation = translation;

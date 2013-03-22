@@ -269,7 +269,7 @@ void CGame::initIrrlichtInterfaces()
   Device = createDeviceEx(deviceParameters);
 
   if (!Device) {
-    throw new NException::CEngineException("Irrlicht device not created");
+    throw NException::CEngineException("Irrlicht device not created");
   }
 
   // Other interfaces
@@ -277,7 +277,7 @@ void CGame::initIrrlichtInterfaces()
   VideoDriver->getDriverType();
 
   if (!VideoDriver) {
-    throw new NException::CEngineException("Video driver not created");
+    throw NException::CEngineException("Video driver not created");
   }
 
   GpuManager = VideoDriver->getGPUProgrammingServices();
@@ -413,27 +413,27 @@ void CGame::checkGraphicalCapabilities()
     // DirectX 9 requirements
     // HLSL
     if (!VideoDriver->queryFeature(video::EVDF_HLSL)) {
-      throw new NException::CDisplayException("[E56] HLSL not supported");
+      throw NException::CDisplayException("[E56] HLSL not supported");
     }
     // Vertex Shader 2.0
     if (!VideoDriver->queryFeature(video::EVDF_VERTEX_SHADER_2_0)) {
-      throw new NException::CDisplayException("[E50] Vertex shaders 2.0 not supported");
+      throw NException::CDisplayException("[E50] Vertex shaders 2.0 not supported");
     }
     // Pixel Shader 2.0
     if (!VideoDriver->queryFeature(video::EVDF_PIXEL_SHADER_2_0)) {
-      throw new NException::CDisplayException("[E51] Pixel shaders 2.0 not supported");
+      throw NException::CDisplayException("[E51] Pixel shaders 2.0 not supported");
     }
   } else if (VideoDriver->getDriverType() == video::EDT_OPENGL) {
     // OpenGL requirements
     // GLSL
     if (!VideoDriver->queryFeature(video::EVDF_ARB_GLSL)) {
-      throw new NException::CDisplayException("[E55] GLSL not supported");
+      throw NException::CDisplayException("[E55] GLSL not supported");
     }
   }
 
   // Render to target textures
   if (!VideoDriver->queryFeature(video::EVDF_RENDER_TO_TARGET)) {
-    throw new NException::CDisplayException("[E52] Render to target textures not supported");
+    throw NException::CDisplayException("[E52] Render to target textures not supported");
   }
 }
 
@@ -512,7 +512,7 @@ void CGame::loadNextScene()
     case NScene::ESI_MAP_DUNGEON_9: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_9(); break;
 
     default:
-      throw new NException::CMapException("[E10] Unknown map id");
+      throw NException::CMapException("[E10] Unknown map id");
       break;
   }
 

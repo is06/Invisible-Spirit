@@ -31,7 +31,7 @@ void CFile::prepareForRead(u8 slot)
   Rs.open(filePath.c_str(), ios::in);
 
   if (!Rs) {
-    throw new NException::CFileException("[E20] Unable to open save file");
+    throw NException::CFileException("[E20] Unable to open save file");
   }
 }
 
@@ -43,7 +43,7 @@ void CFile::prepareForWrite(u8 slot)
   Ws.open(filePath.c_str(), ios::out | ios::trunc);
 
   if (!Ws) {
-    throw new NException::CFileException("[E21] Unable to write save file");
+    throw NException::CFileException("[E21] Unable to write save file");
   }
 }
 

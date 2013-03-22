@@ -67,7 +67,7 @@ void CStaticModel::createNode(const core::vector3df& initPosition)
       MainNode->setMaterialFlag(video::EMF_BILINEAR_FILTER, true);
     }
   } else {
-    throw new NEngine::NException::C3DException("Unable to retrieve static mesh");
+    throw NEngine::NException::C3DException("Unable to retrieve static mesh");
   }
 }
 

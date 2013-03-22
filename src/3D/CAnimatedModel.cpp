@@ -149,7 +149,7 @@ void CAnimatedModel::createNode(const core::vector3df& initPosition)
     MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (NEngine::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled"));
     MainNode->setPosition(initPosition);
   } else {
-    throw new NEngine::NException::C3DException("Unable to create animated mesh node");
+    throw NEngine::NException::C3DException("Unable to create animated mesh node");
   }
 }
 
