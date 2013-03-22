@@ -10,6 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/CPlayerControl.h"
 #include "../../../include/Engine/Resource/CTranslation.h"
 #include "../../../include/Engine/Gameplay/CDialogInterface.h"
+#include "../../../include/Engine/Exception/CTextException.h"
 #include "../../../include/Hud/CText.h"
 #include "../../../include/Hud/CPicture.h"
 
@@ -36,7 +37,7 @@ CDialogInterface::CDialogInterface(const string& filePath, NResource::CTranslati
   DialogFinished = false;
 
   if (!translation) {
-    CGame::fatalError(NDebug::ERROR_CODE_60);
+    throw NException::CTextException("[E60] No local translation object for dialog interface");
   }
 
   CurrentTranslation = translation;

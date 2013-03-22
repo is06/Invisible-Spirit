@@ -8,6 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/core.h"
 #include "../../include/Engine/CGame.h"
 #include "../../include/Engine/Resource/CSettings.h"
+#include "../../include/Engine/Exception/C3DException.h"
 #include "../../include/Scene/CScene.h"
 #include "../../include/Sound/CSpeaker.h"
 #include "../../include/3D/CAnimatedModel.h"
@@ -148,7 +149,7 @@ void CAnimatedModel::createNode(const core::vector3df& initPosition)
     MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (NEngine::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled"));
     MainNode->setPosition(initPosition);
   } else {
-    NEngine::CGame::fatalError(NDebug::ERROR_CODE_30);
+    throw NEngine::NException::C3DException("Unable to create animated mesh node");
   }
 }
 

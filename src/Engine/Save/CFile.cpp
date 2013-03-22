@@ -8,6 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/core.h"
 #include "../../../include/Engine/Save/CFile.h"
 #include "../../../include/Engine/CGame.h"
+#include "../../../include/Engine/Exception/CFileException.h"
 
 namespace is06
 {
@@ -30,7 +31,7 @@ void CFile::prepareForRead(u8 slot)
   Rs.open(filePath.c_str(), ios::in);
 
   if (!Rs) {
-    CGame::fatalError(NDebug::ERROR_CODE_20);
+    throw NException::CFileException("[E20] Unable to open save file");
   }
 }
 
@@ -42,7 +43,7 @@ void CFile::prepareForWrite(u8 slot)
   Ws.open(filePath.c_str(), ios::out | ios::trunc);
 
   if (!Ws) {
-    CGame::fatalError(NDebug::ERROR_CODE_21);
+    throw NException::CFileException("[E21] Unable to write save file");
   }
 }
 
