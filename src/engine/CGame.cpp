@@ -9,7 +9,9 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/maps.h"
 #include "../../include/Engine/CGame.h"
 #include "../../include/Engine/Resource/CTranslation.h"
-#include "../../include/Engine/CEngineException.h"
+#include "../../include/Engine/Exception/CEngineException.h"
+#include "../../include/Engine/Exception/CDisplayException.h"
+#include "../../include/Engine/Exception/CMapException.h"
 #include "../../include/Engine/CEventManager.h"
 #include "../../include/Engine/Resource/CSettings.h"
 #include "../../include/Engine/CSave.h"
@@ -267,7 +269,7 @@ void CGame::initIrrlichtInterfaces()
   Device = createDeviceEx(deviceParameters);
 
   if (!Device) {
-    fatalError(NDebug::ERROR_CODE_01);
+    throw new NException::CEngineException("Irrlicht device not created");
   }
 
   // Other interfaces
@@ -275,7 +277,7 @@ void CGame::initIrrlichtInterfaces()
   VideoDriver->getDriverType();
 
   if (!VideoDriver) {
-    fatalError(NDebug::ERROR_CODE_02);
+    throw new NException::CEngineException("Video driver not created");
   }
 
   GpuManager = VideoDriver->getGPUProgrammingServices();
@@ -411,27 +413,27 @@ void CGame::checkGraphicalCapabilities()
     // DirectX 9 requirements
     // HLSL
     if (!VideoDriver->queryFeature(video::EVDF_HLSL)) {
-      fatalError(NDebug::ERROR_CODE_56);
-    }
-    // Pixel Shader 2.0
-    if (!VideoDriver->queryFeature(video::EVDF_VERTEX_SHADER_2_0)) {
-      fatalError(NDebug::ERROR_CODE_50);
+      throw new NException::CDisplayException("[E56] HLSL not supported");
     }
     // Vertex Shader 2.0
+    if (!VideoDriver->queryFeature(video::EVDF_VERTEX_SHADER_2_0)) {
+      throw new NException::CDisplayException("[E50] Vertex shaders 2.0 not supported");
+    }
+    // Pixel Shader 2.0
     if (!VideoDriver->queryFeature(video::EVDF_PIXEL_SHADER_2_0)) {
-      fatalError(NDebug::ERROR_CODE_51);
+      throw new NException::CDisplayException("[E51] Pixel shaders 2.0 not supported");
     }
   } else if (VideoDriver->getDriverType() == video::EDT_OPENGL) {
     // OpenGL requirements
     // GLSL
     if (!VideoDriver->queryFeature(video::EVDF_ARB_GLSL)) {
-      fatalError(NDebug::ERROR_CODE_55);
+      throw new NException::CDisplayException("[E55] GLSL not supported");
     }
   }
 
   // Render to target textures
   if (!VideoDriver->queryFeature(video::EVDF_RENDER_TO_TARGET)) {
-    fatalError(NDebug::ERROR_CODE_52);
+    throw new NException::CDisplayException("[E52] Render to target textures not supported");
   }
 }
 
@@ -486,6 +488,7 @@ void CGame::changeScene(s32 id)
 void CGame::loadNextScene()
 {
   delete CurrentScene;
+
   switch (NextScene) {
     // Menus
     case NScene::ESI_MENU: CurrentScene = new NScene::CSceneMenu(); break;
@@ -508,7 +511,9 @@ void CGame::loadNextScene()
     case NScene::ESI_MAP_DUNGEON_8: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_8(); break;
     case NScene::ESI_MAP_DUNGEON_9: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_9(); break;
 
-    default: fatalError(NDebug::ERROR_CODE_10); break;
+    default:
+      throw new NException::CMapException("[E10] Unknown map id");
+      break;
   }
 
   CurrentScene->setSaveSlot(CurrentSave);
@@ -531,48 +536,11 @@ void CGame::manageLoadingScreen()
   }
 }
 
-//! Writes a warning in the console
-void CGame::warning(NDebug::EErrorCode code)
-{
-  switch (code) {
-    case NDebug::ERROR_CODE_21: throw NEngine::CEngineException(code, "Unable to write save file", 2); break;
-    default: throw NEngine::CEngineException(code, "Unknown warning", 2); break;
-  }
-}
-
-//! Launches an error to error.log file by its code number
-/**
- * \param EErrorCode the code number
- */
-void CGame::fatalError(NDebug::EErrorCode code)
-{
-  switch (code) {
-    case NDebug::ERROR_CODE_01: throw NEngine::CEngineException(code, "Irrlicht device not created", 3); break;
-    case NDebug::ERROR_CODE_02: throw NEngine::CEngineException(code, "Video driver not created", 3); break;
-    case NDebug::ERROR_CODE_10: throw NEngine::CEngineException(code, "Unknown map id", 3); break;
-    case NDebug::ERROR_CODE_20: throw NEngine::CEngineException(code, "Unable to open save file", 3); break;
-    case NDebug::ERROR_CODE_30: throw NEngine::CEngineException(code, "Mesh file not found", 3); break;
-    case NDebug::ERROR_CODE_45: throw NEngine::CEngineException(code, "Level Mesh need an Irrlicht mesh, use loadMesh method in scene constructor", 3); break;
-    case NDebug::ERROR_CODE_46: throw NEngine::CEngineException(code, "Level Mesh need an Irrlicht node, use createNode method in scene constructor", 3); break;
-    case NDebug::ERROR_CODE_47: throw NEngine::CEngineException(code, "Level Mesh need a Newton body, use loadMeshCollision method in scene constructor", 3); break;
-    case NDebug::ERROR_CODE_50: throw NEngine::CEngineException(code, "Vertex Shaders 3.0 not supported", 3); break;
-    case NDebug::ERROR_CODE_51: throw NEngine::CEngineException(code, "Pixels Shaders 3.0 not supported", 3); break;
-    case NDebug::ERROR_CODE_52: throw NEngine::CEngineException(code, "Render to target not supported", 3); break;
-    case NDebug::ERROR_CODE_53: throw NEngine::CEngineException(code, "Non-square textures not supported", 3); break;
-    case NDebug::ERROR_CODE_54: throw NEngine::CEngineException(code, "Non-power of two texture size not supported", 3); break;
-    case NDebug::ERROR_CODE_55: throw NEngine::CEngineException(code, "GLSL not supported", 3); break;
-    case NDebug::ERROR_CODE_56: throw NEngine::CEngineException(code, "HLSL not supported", 3); break;
-    case NDebug::ERROR_CODE_60: throw NEngine::CEngineException(code, "No local translation object for dialog interface", 3); break;
-    default: throw NEngine::CEngineException(code, "Internal error", 3); break;
-  }
-
-}
-
 //! Writes an error message in error.log file
 /**
  * \param EngineException& to write
  */
-void CGame::errorLog(const exception& e)
+void CGame::writeErrorToLogFile(const exception& e)
 {
   ofstream errorLogFile("error.log", ios::out | ios::app);
   if (errorLogFile) {

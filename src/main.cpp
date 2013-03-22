@@ -7,7 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../include/Engine/core.h"
 #include "../include/Engine/CGame.h"
-#include "../include/Engine/CEngineException.h"
+#include "../include/Engine/Exception/CEngineException.h"
 
 using namespace is06;
 using namespace NEngine;
@@ -28,7 +28,7 @@ int main()
 #ifdef _IRR_WINDOWS_
     MessageBoxA(NULL, e.what(), "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
 #endif
-    CGame::errorLog(e);
+    CGame::writeErrorToLogFile(e);
   }
   return 0;
 }

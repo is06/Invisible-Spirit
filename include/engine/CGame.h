@@ -45,9 +45,7 @@ class CGame
 
     static void quit();
     static void changeScene(s32 id);
-    static void warning(NDebug::EErrorCode code);
-    static void fatalError(NDebug::EErrorCode code);
-    static void errorLog(const exception& e);
+    static void writeErrorToLogFile(const exception& e);
 
     static IrrlichtDevice* getDevice();
     static video::IVideoDriver* getVideoDriver();

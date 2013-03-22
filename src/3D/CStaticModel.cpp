@@ -8,6 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/core.h"
 #include "../../include/Engine/CGame.h"
 #include "../../include/Engine/Resource/CSettings.h"
+#include "../../include/Engine/Exception/C3DException.h"
 #include "../../include/3D/CStaticModel.h"
 #include "../../include/Scene/CScene.h"
 #include "../../include/Sound/CSpeaker.h"
@@ -66,7 +67,7 @@ void CStaticModel::createNode(const core::vector3df& initPosition)
       MainNode->setMaterialFlag(video::EMF_BILINEAR_FILTER, true);
     }
   } else {
-    NEngine::CGame::fatalError(NDebug::ERROR_CODE_30);
+    throw new NEngine::NException::C3DException("Unable to retrieve static mesh");
   }
 }
 

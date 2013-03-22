@@ -116,6 +116,12 @@ namespace NEngine
     // ELocaleIdentifier
   }
 
+  namespace NException
+  {
+    class CEngineException;
+    class C3DException;
+  }
+
   class CSave;
   //! Savefile management
   namespace NSave
@@ -126,7 +132,6 @@ namespace NEngine
   }
 
   class CGame;
-  class CEngineException;
   class CEventManager;
   class CEntity;
   class CTimer;

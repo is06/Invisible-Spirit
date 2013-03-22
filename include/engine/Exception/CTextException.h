@@ -5,23 +5,23 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_ENGINE_EXCEPTION_H__
-#define __IS06_ENGINE_EXCEPTION_H__
+#ifndef __IS06_TEXT_EXCEPTION_H__
+#define __IS06_TEXT_EXCEPTION_H__
 
 namespace is06
 {
 namespace NEngine
 {
+namespace NException
+{
 
 //! Main exception class
-class CEngineException : public exception
+class CTextException : public exception
 {
   public:
-    CEngineException(u32 code = 0, const string& message = "", s32 level = 3) throw()
+    CTextException(const string& message = "") throw()
     {
-      Code = code;
       Message = message;
-      Level = level;
     }
 
     virtual const char* what() const throw()
@@ -29,27 +29,16 @@ class CEngineException : public exception
       return Message.c_str();
     }
 
-    u32 getCode() const throw()
-    {
-      return Code;
-    }
-
-    u32 getLevel() const throw()
-    {
-      return Level;
-    }
-
-    virtual ~CEngineException() throw()
+    virtual ~CTextException() throw()
     {
 
     }
 
   private:
-    u32 Code;
     string Message;
-    s32 Level;
 };
 
+}
 }
 }
 
