@@ -29,10 +29,7 @@ namespace NScene
 //! Constructor
 CSceneGameplay::CSceneGameplay() : CScene()
 {
-  cout << "Gameplay scene constructor" << endl;
-
   Camera = new N3D::NCamera::CThirdPerson();
-
   MapSections = new NEngine::NGameplay::CMapSectionInterface();
 
   // Hero info
@@ -59,7 +56,7 @@ void CSceneGameplay::loadingSequence()
 //! Loading screen for gameplay scenes (overworld, dungeons...)
 void CSceneGameplay::loadingScreen()
 {
-  cout << "Loading screen" << endl;
+
 }
 
 //! Gameplay scenes start sequence
@@ -239,6 +236,7 @@ void CSceneGameplay::hudRender()
 
   //GameplayInterface->render();
   //EnergyInterface->render();
+  HudEnsemble->render();
   MiniMap->render();
   PauseScreen->render();
 }

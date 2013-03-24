@@ -153,5 +153,10 @@ bool CCamera::hasControl()
   return Controlable;
 }
 
+CCamera::~CCamera()
+{
+
+}
+
 }
 }

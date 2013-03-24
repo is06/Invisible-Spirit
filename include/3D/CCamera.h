@@ -21,6 +21,7 @@ class CCamera : public NEngine::CEntity
 {
   public:
     CCamera();
+    virtual ~CCamera();
 
     virtual void update() = 0;
 

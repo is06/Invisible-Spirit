@@ -41,7 +41,7 @@ void CMiniMap::setMap(EMiniMapIdentifier id)
   }
 
   Map = new CPicture(Position.X, Position.Y, 250, 250, "resource/hud/minimap/" + fileName + ".png", true);
-  Map->setOpacity(230);
+  Map->setOpacity(0.8f);
   //Map->setRotation(45.0f);
 
   // Entrance
