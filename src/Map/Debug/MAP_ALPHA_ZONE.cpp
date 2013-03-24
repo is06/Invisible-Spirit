@@ -56,9 +56,9 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : NScene::CSceneGameplay()
   Dialog = new NEngine::NGameplay::CDialogInterface("MAP_ALPHA_ZONE.isd", SceneTranslations, Control);
 
   // Glow shader example
-  GlowShader = new NShader::CPostRenderGlow();
-  GlowShader->addEntityForEffect(MapSections->getSection(0), NShader::EFFECT_DARKEN);
-  GlowShader->addEntityForEffect(Hero, NShader::EFFECT_DARKEN);
+  //GlowShader = new NShader::CPostRenderGlow();
+  //GlowShader->addEntityForEffect(MapSections->getSection(0), NShader::EFFECT_DARKEN);
+  //GlowShader->addEntityForEffect(Hero, NShader::EFFECT_DARKEN);
 
   // Direct Light (spot with shadow map system, work in progress)
   // This one is buggy: we don't see the meshes
@@ -142,7 +142,7 @@ void MAP_ALPHA_ZONE::events()
 void MAP_ALPHA_ZONE::postRender()
 {
   NScene::CSceneGameplay::postRender();
-  GlowShader->render();
+  //GlowShader->render();
 }
 
 //! Player HUD render
@@ -160,7 +160,7 @@ MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
   //delete NPC1;
   //delete Spk;
   //delete Lt;
-  delete GlowShader;
+  //delete GlowShader;
   //delete ToDungeonSensor;
 }
 

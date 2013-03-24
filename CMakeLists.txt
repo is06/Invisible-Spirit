@@ -41,6 +41,8 @@ ELSE(WIN32)
     ${IRRLICHT_LIBRARY}
     GL
     GLU
+    Cg
+    CgGL
     Xxf86vm
     Xext
     X11

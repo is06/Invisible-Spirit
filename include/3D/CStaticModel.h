@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_STATIC_MODEL_H__
 #define __IS06_3D_STATIC_MODEL_H__
 
-#include "../../include/3d/CModelEntity.h"
+#include "../../include/3D/CModelEntity.h"
 
 namespace is06
 {
