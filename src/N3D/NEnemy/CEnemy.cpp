@@ -6,16 +6,13 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../../include/core.h"
-#include "../../../include/N3D/CAnimatedModel.h"
-#include "../../../include/N3D/CEnemy.h"
+#include "../../../include/N3D/NPrimitive/CAnimatedModel.h"
+#include "../../../include/N3D/NEnemy/CEnemy.h"
 
-namespace is06
-{
-namespace N3D
-{
+namespace is06 { namespace N3D { namespace NEnemy {
 
 //! Constructor
-CEnemy::CEnemy() : CAnimatedModel()
+CEnemy::CEnemy() : NPrimitive::CAnimatedModel()
 {
 
 }
@@ -32,5 +29,4 @@ CEnemy::~CEnemy()
 
 }
 
-}
-}
+}}}

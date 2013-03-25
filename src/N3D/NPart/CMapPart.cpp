@@ -5,9 +5,9 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/3D/CMapPart.h"
-#include "../../include/3D/CStaticModel.h"
+#include "../../../include/core.h"
+#include "../../../include/N3D/NPart/CMapPart.h"
+#include "../../../include/N3D/NPrimitive/CStaticModel.h"
 
 namespace is06 { namespace N3D { namespace NPart {
 

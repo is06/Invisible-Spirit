@@ -19,7 +19,7 @@ namespace is06 { namespace NEngine { namespace NGameplay {
 class CDialogInterface
 {
 public:
-  CDialogInterface(const string& filePath, NEngine::NResource::CTranslation* translation, NEngine::CPlayerControl* control);
+  CDialogInterface(const string& filePath, NEngine::NResource::CTranslation* translation, NEngine::NControl::CPlayerControl* control);
   ~CDialogInterface();
 
   void render();
@@ -40,11 +40,11 @@ private:
 
   u16 CurrentMessageNumber;
   string CurrentDialogIdentifier;
-  NHud::CText* CurrentMessageText;
-  NHud::CPicture* BackWindow;
+  NHud::NText::CText* CurrentMessageText;
+  NHud::NPrimitive::CPicture* BackWindow;
   NEngine::NGameplay::TDialogMap DialogList;
   NEngine::NResource::CTranslation* CurrentTranslation;
-  NEngine::CPlayerControl* Control;
+  NEngine::NControl::CPlayerControl* Control;
 };
 
 }}}

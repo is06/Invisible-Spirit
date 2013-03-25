@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_LIGHT_LIGHT_H__
 #define __IS06_3D_LIGHT_LIGHT_H__
 
-#include "../../include/Engine/CEntity.h"
+#include "../../NEngine/NCore/CEntity.h"
 
 namespace is06 { namespace N3D { namespace NLight {
 
 //! Base class for lights
-class CLight : public NEngine::CEntity
+class CLight : public NEngine::NCore::CEntity
 {
 public:
   CLight();

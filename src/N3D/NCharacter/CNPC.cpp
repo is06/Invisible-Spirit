@@ -6,9 +6,9 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../../include/core.h"
-#include "../../../include/NEngine/Gameplay/CDialogInterface.h"
-#include "../../../include/N3D/CCharacter.h"
-#include "../../../include/N3D/Character/CNPC.h"
+#include "../../../include/NEngine/NGameplay/CDialogInterface.h"
+#include "../../../include/N3D/NCharacter/CCharacter.h"
+#include "../../../include/N3D/NCharacter/CNPC.h"
 
 namespace is06 { namespace N3D { namespace NCharacter {
 
@@ -68,7 +68,7 @@ const string& CNPC::getNextTalkingDialogIdentifier()
 /**
  * \todo write this function
  */
-f32 CNPC::getDistanceFrom(N3D::CCharacter* character)
+f32 CNPC::getDistanceFrom(CCharacter* character)
 {
   return 0.0f;
 }

@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENGINE_CORE_GAME_H__
 #define __IS06_ENGINE_CORE_GAME_H__
 
-#include "SScreenPosition.h"
-#include "Resource/ELocaleIdentifier.h"
-#include "../Shader/CShaders.h"
-#include "../Scene/ESceneIdentifier.h"
-#include "../Debug/EErrorCode.h"
-#include "../Debug/SOption.h"
+#include "../NDisplay/SScreenPosition.h"
+#include "../NResource/ELocaleIdentifier.h"
+#include "../../NShader/CShaders.h"
+#include "../../NScene/ESceneIdentifier.h"
+#include "../../NDebug/EErrorCode.h"
+#include "../../NDebug/SOption.h"
 
 namespace is06 { namespace NEngine { namespace NCore {
 
@@ -34,22 +34,22 @@ public:
   static scene::ISceneManager* getSceneManager();
   static gui::IGUIEnvironment* getDebugGUI();
   static NewtonWorld* getNewtonWorld();
-  static NEngine::CEventManager* getEventManager();
+  static NEngine::NEvent::CEventManager* getEventManager();
   static NEngine::NResource::CTranslation* getGlobalTranslations();
-  static NEngine::CSave* getCurrentSave();
+  static NEngine::NSave::CSave* getCurrentSave();
   static NScene::CScene* getCurrentScene();
   static NSound::CSoundManager* getSoundManager();
 
   static f32 getFramerate();
   static f32 getSpeedFactor();
   static f32 getCurrentTime();
-  static NEngine::ELocaleIdentifier getCurrentLocale();
+  static NEngine::NResource::ELocaleIdentifier getCurrentLocale();
   static NSound::CMusicReference* getMusicReference();
 
   static void changeScreenDisplay(u32 width=848, u32 height=480, u8 colorDepth=32);
 
   static NEngine::NResource::CSettings* Settings;
-  static NEngine::SScreenPosition ScreenPos;
+  static NEngine::NDisplay::SScreenPosition ScreenPos;
   static NShader::CShaders Shaders;
   static NDebug::SOption DebugOption;
 
@@ -85,14 +85,14 @@ private:
   static NewtonWorld* GameNewtonWorld;
 
   // is06 objects
-  static NEngine::CEventManager* EventManager;
+  static NEngine::NEvent::CEventManager* EventManager;
   static NScene::CScene* CurrentScene;
   static NEngine::NResource::CTranslation* GlobalTranslations;
-  static NEngine::CSave* CurrentSave;
+  static NEngine::NSave::CSave* CurrentSave;
   static NSound::CSoundManager* SoundManager;
   static NSound::CMusicReference* MusicReference;
 
-  static NEngine::ELocaleIdentifier CurrentLocale;
+  static NEngine::NResource::ELocaleIdentifier CurrentLocale;
   static s32 NextScene;
   static bool SceneChanged;
   static bool ScreenSizeChanged;

@@ -8,9 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENGINE_DISPLAY_SCREEN_POSITION_H__
 #define __IS06_ENGINE_DISPLAY_SCREEN_POSITION_H__
 
-#include "core.h"
-#include "../Hud/SPositionInfo.h"
-#include "Display/SPositionInfo.h"
+#include "../../core.h"
+#include "../../NHud/NCore/SPositionInfo.h"
+#include "SPositionInfo.h"
 
 using namespace irr;
 
@@ -19,8 +19,8 @@ namespace is06 { namespace NEngine { namespace NDisplay {
 //! Screen display and position information
 struct SScreenPosition
 {
-  NHud::SPositionInfo Hud;
-  NDisplay::SPositionInfo Display;
+  NHud::NCore::SPositionInfo Hud;
+  SPositionInfo Display;
 };
 
 }}}

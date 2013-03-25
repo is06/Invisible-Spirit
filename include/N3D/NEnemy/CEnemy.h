@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_ENEMY_ENEMY_H__
 #define __IS06_3D_ENEMY_ENEMY_H__
 
-#include "../../include/3D/CAnimatedModel.h"
+#include "../NPrimitive/CAnimatedModel.h"
 
 namespace is06 { namespace N3D { namespace NEnemy {
 
 //! Base class for all enemies
-class CEnemy : public CAnimatedModel
+class CEnemy : public NPrimitive::CAnimatedModel
 {
 public:
   CEnemy();

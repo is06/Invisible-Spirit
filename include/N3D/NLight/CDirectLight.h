@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_LIGHT_DIRECT_LIGHT_H__
 #define __IS06_3D_LIGHT_DIRECT_LIGHT_H__
 
-#include "../CLight.h"
+#include "CLight.h"
 
 namespace is06 { namespace N3D { namespace NLight {
 

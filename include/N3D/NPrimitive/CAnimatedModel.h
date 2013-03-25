@@ -8,9 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_PRIMITIVE_ANIMATED_MODEL_H__
 #define __IS06_3D_PRIMITIVE_ANIMATED_MODEL_H__
 
-#include "../Engine/ERayType.h"
-#include "../Engine/EEventType.h"
-#include "../Engine/ECharacterAnimationIdentifier.h"
+#include "../NCollision/ERayType.h"
+#include "../NCharacter/ECharacterAnimationIdentifier.h"
+#include "../../NEngine/NEvent/EEventType.h"
 #include "CModelEntity.h"
 #include "SMeshAnimationInfo.h"
 
@@ -51,11 +51,11 @@ public:
   scene::IAnimatedMeshSceneNode* getNode();
 
   // Collision detection
-  bool collidesWithStatic(N3D::CStaticModel* other);
-  bool collidesWithAnimated(N3D::CAnimatedModel* other);
-  bool collidesWithSensor(N3D::CSensor* sensor, NEngine::EEventType type = NEngine::EET_ONCE);
-  f32 getFloorCollision(N3D::CStaticModel* other);
-  f32 getWallCollision(N3D::ERayType type, N3D::CStaticModel* other, core::vector3df& normal);
+  bool collidesWithStatic(N3D::NPrimitive::CStaticModel* other);
+  bool collidesWithAnimated(N3D::NPrimitive::CAnimatedModel* other);
+  bool collidesWithSensor(N3D::NSensor::CSensor* sensor, NEngine::NEvent::EEventType type = NEngine::NEvent::EET_ONCE);
+  f32 getFloorCollision(N3D::NPrimitive::CStaticModel* other);
+  f32 getWallCollision(N3D::NCollision::ERayType type, N3D::NPrimitive::CStaticModel* other, core::vector3df& normal);
 
   // Animations
   void loadAnimation(const string& fileName);
@@ -78,8 +78,8 @@ protected:
 private:
   s32 CurrentAnimationId;
   f32 CurrentAnimationSpeed;
-  map<s32, N3D::SMeshAnimationInfo> AnimationList;
-  map<N3D::CSensor*, bool> SensorOnce;
+  map<s32, N3D::NPrimitive::SMeshAnimationInfo> AnimationList;
+  map<N3D::NSensor::CSensor*, bool> SensorOnce;
 };
 
 }}}

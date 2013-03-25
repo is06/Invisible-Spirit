@@ -23,7 +23,7 @@ CThirdPerson::CThirdPerson() : CCamera()
 /**
  * \param Character* pointer to a character
  */
-void CThirdPerson::linkEntity(CCharacter* entity)
+void CThirdPerson::linkEntity(NCharacter::CCharacter* entity)
 {
   LinkedEntity = entity;
 }

@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_PART_MAP_PART_H__
 #define __IS06_3D_PART_MAP_PART_H__
 
-#include "../../include/3D/CStaticModel.h"
+#include "../NPrimitive/CStaticModel.h"
 
 namespace is06 { namespace N3D { namespace NPart {
 
 //! Static model with collision mask loading function
-class CMapPart : public CStaticModel
+class CMapPart : public NPrimitive::CStaticModel
 {
 public:
   CMapPart();

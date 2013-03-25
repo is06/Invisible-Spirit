@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_ENEMY_FLOOR_ENEMY_H__
 #define __IS06_3D_ENEMY_FLOOR_ENEMY_H__
 
-#include "../../../include/3D/CEnemy.h"
+#include "CEnemy.h"
 
 namespace is06 { namespace N3D { namespace NEnemy {
 

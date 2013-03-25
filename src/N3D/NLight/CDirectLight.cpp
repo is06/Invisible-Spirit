@@ -5,28 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/CGame.h"
-#include "../../../include/3D/Light/CDirect.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/N3D/NLight/CDirectLight.h"
 
 namespace is06 { namespace N3D { namespace NLight {
 
 //! Constructor
-CDirect::CDirect()
+CDirectLight::CDirectLight()
 {
-  Camera = NEngine::CGame::getSceneManager()->addCameraSceneNode();
-}
-
-//! Creates a direct light and add it to the shadow processor
-CDirect* CDirect::create()
-{
-  // TODO: Add to shadow processor (factory design pattern)
-  CDirect* obj = new CDirect();
-  return obj;
+  Camera = NEngine::NCore::CGame::getSceneManager()->addCameraSceneNode();
 }
 
 //! Destructor
-CDirect::~CDirect()
+CDirectLight::~CDirectLight()
 {
   Camera->remove();
 }

@@ -6,25 +6,25 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../../include/core.h"
-#include "../../../include/3D/CEnemy.h"
-#include "../../../include/3D/Enemy/CFloor.h"
+#include "../../../include/N3D/NEnemy/CEnemy.h"
+#include "../../../include/N3D/NEnemy/CFloorEnemy.h"
 
 namespace is06 { namespace N3D { namespace NEnemy {
 
 //! Constructor
-CFloor::CFloor() : CEnemy()
+CFloorEnemy::CFloorEnemy() : CEnemy()
 {
 
 }
 
 //! Update function called every cycle for event testing
-void CFloor::update()
+void CFloorEnemy::update()
 {
   CEnemy::update();
 }
 
 //! Destructor
-CFloor::~CFloor()
+CFloorEnemy::~CFloorEnemy()
 {
 
 }

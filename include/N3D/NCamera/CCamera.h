@@ -8,13 +8,13 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_CAMERA_CAMERA_H__
 #define __IS06_3D_CAMERA_CAMERA_H__
 
-#include "CCharacter.h"
-#include "../Engine/CEntity.h"
+#include "../NCharacter/CCharacter.h"
+#include "../../NEngine/NCore/CEntity.h"
 
 namespace is06 { namespace N3D { namespace NCamera {
 
 //! Main abstract Camera class
-class CCamera : public NEngine::CEntity
+class CCamera : public NEngine::NCore::CEntity
 {
 public:
   CCamera();
@@ -22,7 +22,7 @@ public:
 
   virtual void update() = 0;
 
-  virtual void linkEntity(CCharacter* entityToLink) = 0;
+  virtual void linkEntity(NCharacter::CCharacter* entityToLink) = 0;
   virtual f32 getDistance() = 0;
 
   void turnX(f32 speed);

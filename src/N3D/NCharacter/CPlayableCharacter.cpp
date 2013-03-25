@@ -19,7 +19,7 @@ namespace is06 { namespace N3D { namespace NCharacter {
 /**
  * \param Camera* cam pointer to a Camera to link to PlayableCharacter
  */
-CPlayable::CPlayable(CCamera* cam) : CCharacter()
+CPlayableCharacter::CPlayableCharacter(NCamera::CCamera* cam) : CCharacter()
 {
   // Linking third-person camera
   LinkedCam = cam;
@@ -35,12 +35,12 @@ CPlayable::CPlayable(CCamera* cam) : CCharacter()
 }
 
 //! Changes the 3d model for this character
-void CPlayable::setCharacter(NEngine::NGameplay::EPlayableCharacterType type)
+void CPlayableCharacter::setCharacter(N3D::NCharacter::EPlayableCharacterType type)
 {
   // 3D Model type
   string modelId;
   switch (type) {
-    case NEngine::NGameplay::EPCT_AYRON:
+    case N3D::NCharacter::EPCT_AYRON:
       modelId = "ayron";
       break;
     default:
@@ -64,13 +64,13 @@ void CPlayable::setCharacter(NEngine::NGameplay::EPlayableCharacterType type)
 }
 
 //! Update function, called every cycle
-void CPlayable::update()
+void CPlayableCharacter::update()
 {
   CCharacter::update();
 }
 
 //! Applies an opposite force to PlayableCharacter in order to stop it against a wall
-void CPlayable::moveOpposite(const core::vector3df& normal)
+void CPlayableCharacter::moveOpposite(const core::vector3df& normal)
 {
   f32 angle = (atan2(normal.X, normal.Z) * -1) + (NEngine::PI_D2);
 
@@ -87,7 +87,7 @@ void CPlayable::moveOpposite(const core::vector3df& normal)
 /**
  * \param f32 speed movement speed
  */
-void CPlayable::goLeft(f32 speed)
+void CPlayableCharacter::goLeft(f32 speed)
 {
   updateCoords(0, speed);
 }
@@ -96,7 +96,7 @@ void CPlayable::goLeft(f32 speed)
 /**
  * \param f32 speed movement speed
  */
-void CPlayable::goRight(f32 speed)
+void CPlayableCharacter::goRight(f32 speed)
 {
   updateCoords(core::PI, speed);
 }
@@ -105,7 +105,7 @@ void CPlayable::goRight(f32 speed)
 /**
  * \param f32 speed movement speed
  */
-void CPlayable::goForward(f32 speed)
+void CPlayableCharacter::goForward(f32 speed)
 {
   updateCoords((NEngine::PI_D2), speed);
 }
@@ -114,13 +114,13 @@ void CPlayable::goForward(f32 speed)
 /**
  * \param f32 speed movement speed
  */
-void CPlayable::goBackward(f32 speed)
+void CPlayableCharacter::goBackward(f32 speed)
 {
   updateCoords(NEngine::PI_M3D2, speed);
 }
 
 //! Updates the model direction from a specified angle
-void CPlayable::updateDirectionFromAngle(f32 angle)
+void CPlayableCharacter::updateDirectionFromAngle(f32 angle)
 {
   if (MainNode != NULL) {
     MainNode->setRotation(core::vector3df(
@@ -136,7 +136,7 @@ void CPlayable::updateDirectionFromAngle(f32 angle)
  * \param f32 deltaU direction value
  * \param f32 speed speed value
  */
-void CPlayable::updateCoords(f32 deltaU, f32 speed)
+void CPlayableCharacter::updateCoords(f32 deltaU, f32 speed)
 {
   f32 x = cos(core::degToRad(LinkedCam->getNode()->getRotation().Y) + deltaU);
   f32 z = sin(core::degToRad(LinkedCam->getNode()->getRotation().Y) + deltaU);
@@ -151,7 +151,7 @@ void CPlayable::updateCoords(f32 deltaU, f32 speed)
 }
 
 //! Toggles the player control
-void CPlayable::toggleControl()
+void CPlayableCharacter::toggleControl()
 {
   if (Controlable) {
     Controlable = false;
@@ -161,13 +161,13 @@ void CPlayable::toggleControl()
 }
 
 //! Enables/Disabled player control
-void CPlayable::setControl(bool active)
+void CPlayableCharacter::setControl(bool active)
 {
   Controlable = active;
 }
 
 //! Returns true if the player has control
-bool CPlayable::hasControl()
+bool CPlayableCharacter::hasControl()
 {
   return Controlable;
 }

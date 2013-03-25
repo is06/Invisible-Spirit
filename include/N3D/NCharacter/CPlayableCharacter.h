@@ -8,8 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_CHARACTER_PLAYABLE_CHARACTER_H__
 #define __IS06_3D_CHARACTER_PLAYABLE_CHARACTER_H__
 
-#include "../../../include/3D/CCharacter.h"
-#include "../../../include/Engine/Gameplay/EPlayableCharacterType.h"
+#include "CCharacter.h"
+#include "../../N3D/NCharacter/EPlayableCharacterType.h"
 
 namespace is06 { namespace N3D { namespace NCharacter {
 
@@ -17,11 +17,11 @@ namespace is06 { namespace N3D { namespace NCharacter {
 class CPlayableCharacter : public CCharacter
 {
 public:
-  CPlayableCharacter(CCamera* cam);
+  CPlayableCharacter(NCamera::CCamera* cam);
 
   void update();
 
-  void setCharacter(NEngine::NGameplay::EPlayableCharacterType type = NEngine::NGameplay::EPCT_AYRON);
+  void setCharacter(N3D::NCharacter::EPlayableCharacterType type = N3D::NCharacter::EPCT_AYRON);
 
   // Player moves
   void goLeft(f32 speed);
@@ -41,7 +41,7 @@ public:
 private:
   void updateCoords(f32 deltaU, f32 speed);
 
-  CCamera* LinkedCam;
+  NCamera::CCamera* LinkedCam;
 
   bool Controlable;
 };

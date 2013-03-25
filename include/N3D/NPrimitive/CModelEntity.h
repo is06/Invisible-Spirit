@@ -8,13 +8,13 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_PRIMITIVE_MODEL_ENTITY_H__
 #define __IS06_3D_PRIMITIVE_MODEL_ENTITY_H__
 
-#include "../Engine/CEntity.h"
-#include "../Shader/EShadowMode.h"
+#include "../../NEngine/NCore/CEntity.h"
+#include "../../NShader/EShadowMode.h"
 
 namespace is06 { namespace N3D { namespace NPrimitive {
 
 //! Abstract class for all 3D models entities
-class CModelEntity : public NEngine::CEntity
+class CModelEntity : public NEngine::NCore::CEntity
 {
 public:
   CModelEntity();

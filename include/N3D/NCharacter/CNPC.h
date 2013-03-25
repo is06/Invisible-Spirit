@@ -8,8 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_CHARACTER_NPC_H__
 #define __IS06_3D_CHARACTER_NPC_H__
 
-#include "../CCharacter.h"
-#include "../../Engine/Gameplay/CDialogInterface.h"
+#include "CCharacter.h"
+#include "../../NEngine/NGameplay/CDialogInterface.h"
 
 namespace is06 { namespace N3D { namespace NCharacter {
 
@@ -26,7 +26,7 @@ public:
   void attachDialogInterface(NEngine::NGameplay::CDialogInterface* dialog);
   const string& getRandomTalkingDialogIdentifier(bool avoidDoubles = false);
   const string& getNextTalkingDialogIdentifier();
-  f32 getDistanceFrom(N3D::CCharacter* character);
+  f32 getDistanceFrom(CCharacter* character);
 
 protected:
   NEngine::NGameplay::CDialogInterface* AttachedDialog;
