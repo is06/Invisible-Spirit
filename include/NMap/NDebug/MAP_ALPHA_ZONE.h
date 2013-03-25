@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAP_ALPHA_ZONE__
-#define __IS06_MAP_ALPHA_ZONE__
+#ifndef __IS06_MAP_DEBUG_MAP_ALPHA_ZONE_H__
+#define __IS06_MAP_DEBUG_MAP_ALPHA_ZONE_H__
 
 #include "../../../include/3D/Sensor/CTeleporter.h"
 #include "../../../include/Scene/CSceneGameplay.h"

@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_WORLD_TIME_COUNTER_H__
-#define __IS06_WORLD_TIME_COUNTER_H__
+#ifndef __IS06_HUD_COUNTER_WORLD_TIME_H__
+#define __IS06_HUD_COUNTER_WORLD_TIME_H__
 
 #include "../CCounter.h"
 

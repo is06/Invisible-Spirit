@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MESH_ANIMATION_INFO_H__
-#define __IS06_MESH_ANIMATION_INFO_H__
+#ifndef __IS06_3D_PRIMITIVE_MESH_ANIMATION_INFO_H__
+#define __IS06_3D_PRIMITIVE_MESH_ANIMATION_INFO_H__
 
 namespace is06 { namespace N3D { namespace NPrimitive {
 

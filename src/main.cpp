@@ -11,6 +11,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace is06;
 using namespace NEngine;
+using namespace NCore;
 
 #ifdef _IRR_WINDOWS_
 #include <windows.h>

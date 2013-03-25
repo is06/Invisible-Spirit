@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_CAMERA_H__
-#define __IS06_CAMERA_H__
+#ifndef __IS06_3D_CAMERA_CAMERA_H__
+#define __IS06_3D_CAMERA_CAMERA_H__
 
 #include "CCharacter.h"
 #include "../Engine/CEntity.h"

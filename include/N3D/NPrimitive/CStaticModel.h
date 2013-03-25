@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_3D_STATIC_MODEL_H__
-#define __IS06_3D_STATIC_MODEL_H__
+#ifndef __IS06_3D_PRIMITIVE_STATIC_MODEL_H__
+#define __IS06_3D_PRIMITIVE_STATIC_MODEL_H__
 
 #include "../../include/3D/CModelEntity.h"
 

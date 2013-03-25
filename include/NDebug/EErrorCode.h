@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_ERROR_CODE_H__
-#define __IS06_ERROR_CODE_H__
+#ifndef __IS06_DEBUG_ERROR_CODE_H__
+#define __IS06_DEBUG_ERROR_CODE_H__
 
 namespace is06 { namespace NDebug {
 

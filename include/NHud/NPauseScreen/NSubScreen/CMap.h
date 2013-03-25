@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_PAUSE_SUB_SCREEN_MAP_H__
-#define __IS06_PAUSE_SUB_SCREEN_MAP_H__
+#ifndef __IS06_HUD_PAUSE_SCREEN_SUB_SCREEN_MAP_H__
+#define __IS06_HUD_PAUSE_SCREEN_SUB_SCREEN_MAP_H__
 
 #include "../CSubScreen.h"
 

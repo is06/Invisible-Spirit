@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#ifndef __IS06_MAP_METADIM__
-#define __IS06_MAP_METADIM__
+#ifndef __IS06_MAP_GENERIC_MAP_METADIM_H__
+#define __IS06_MAP_GENERIC_MAP_METADIM_H__
 
 #include "../../Scene/CSceneGameplay.h"
 
