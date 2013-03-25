@@ -8,12 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/core.h"
 #include "../../../include/Engine/Resource/CSettingsGroup.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NResource
-{
+namespace is06 { namespace NEngine { namespace NResource {
 
 //! Constructor
 CSettingsGroup::CSettingsGroup(const string& name)
@@ -54,6 +49,4 @@ string& CSettingsGroup::getDefault()
   return Default;
 }
 
-}
-}
-}
+}}}

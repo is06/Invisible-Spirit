@@ -18,10 +18,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NScene
-{
+namespace is06 { namespace NScene {
 
 //! Instanciate required object interfaces such as player control or music so we can use them in all scenes
 CScene::CScene()
@@ -223,5 +220,4 @@ CScene::~CScene()
   //delete DebugConsole;
 }
 
-}
-}
+}}

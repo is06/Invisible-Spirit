@@ -9,10 +9,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace N3D
-{
+namespace is06 { namespace N3D { namespace NSensor {
 
 //! Construcotr
 CSensor::CSensor(f32 width, f32 height, f32 depth, const core::vector3df& position) : NEngine::CEntity()
@@ -41,5 +38,4 @@ const core::aabbox3df& CSensor::getBox()
   return Box;
 }
 
-}
-}
+}}}

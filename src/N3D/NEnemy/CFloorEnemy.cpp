@@ -9,12 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/3D/CEnemy.h"
 #include "../../../include/3D/Enemy/CFloor.h"
 
-namespace is06
-{
-namespace N3D
-{
-namespace NEnemy
-{
+namespace is06 { namespace N3D { namespace NEnemy {
 
 //! Constructor
 CFloor::CFloor() : CEnemy()
@@ -34,6 +29,4 @@ CFloor::~CFloor()
 
 }
 
-}
-}
-}
+}}}

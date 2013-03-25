@@ -8,12 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/core.h"
 #include "../../../include/Hud/Button/CIconText.h"
 
-namespace is06
-{
-namespace NHud
-{
-namespace NButton
-{
+namespace is06 { namespace NHud { namespace NButton {
 
 CIconText::CIconText(f32 x, f32 y) : CButton(x, y)
 {
@@ -43,6 +38,4 @@ CIconText::~CIconText()
   //delete icon;
 }
 
-}
-}
-}
+}}}

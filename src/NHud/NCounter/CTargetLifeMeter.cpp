@@ -13,12 +13,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Hud/Counter/EBarStyle.h"
 #include "../../../include/Hud/Counter/CTargetLife.h"
 
-namespace is06
-{
-namespace NHud
-{
-namespace NCounter
-{
+namespace is06 { namespace NHud { namespace NCounter {
 
 //! \todo comment this function
 CTargetLife::CTargetLife(s32 init, s32 min, s32 max)
@@ -50,6 +45,4 @@ CTargetLife::~CTargetLife()
   delete Gauge;
 }
 
-}
-}
-}
+}}}

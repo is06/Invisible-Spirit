@@ -10,12 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Hud/CText.h"
 #include "../../../include/Hud/Counter/CBar.h"
 
-namespace is06
-{
-namespace NHud
-{
-namespace NPlayerState
-{
+namespace is06 { namespace NHud { namespace NPlayerState {
 
 CMainInfo::CMainInfo() : CHud()
 {
@@ -82,6 +77,4 @@ CMainInfo::~CMainInfo()
   delete Gauge;
 }
 
-}
-}
-}
+}}}

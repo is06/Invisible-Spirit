@@ -10,10 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Hud/CPicture.h"
 #include "../../../include/Hud/CText.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NPlayerState {
 
 CCapacity::CCapacity() : CHud()
 {
@@ -34,5 +31,4 @@ CCapacity::~CCapacity()
   delete Value;
 }
 
-}
-}
+}}}

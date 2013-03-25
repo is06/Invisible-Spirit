@@ -8,10 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/core.h"
 #include "../../include/Shader/CShadow.h"
 
-namespace is06
-{
-namespace NShader
-{
+namespace is06 { namespace NShader {
 
 //! Constructor
 CShadow::CShadow(EShadowMode mode)
@@ -31,5 +28,4 @@ CShadow::~CShadow()
 
 }
 
-}
-}
+}}

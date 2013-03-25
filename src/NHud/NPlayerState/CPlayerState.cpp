@@ -10,10 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Hud/CText.h"
 #include "../../include/Hud/PlayerState/CMainInfo.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NPlayerState {
 
 CPlayerState::CPlayerState()
 {
@@ -88,5 +85,4 @@ CPlayerState::~CPlayerState()
   delete HpInfo;
 }
 
-}
-}
+}}}

@@ -8,10 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/core.h"
 #include "../../include/Engine/CEntity.h"
 
-namespace is06
-{
-namespace NEngine
-{
+namespace is06 { namespace NEngine { namespace NCore {
 
 //! Constructor of all entities
 CEntity::CEntity()
@@ -19,5 +16,6 @@ CEntity::CEntity()
 
 }
 
+}
 }
 }

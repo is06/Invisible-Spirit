@@ -9,10 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/CGame.h"
 #include "../../include/Engine/Resource/CResourceManager.h"
 
-namespace is06
-{
-namespace N3D
-{
+namespace is06 { namespace N3D { namespace NPart {
 
 //! Constructor
 /**
@@ -67,5 +64,4 @@ CSky::~CSky()
   Layers[0]->remove();
 }
 
-}
-}
+}}}

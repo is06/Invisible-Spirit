@@ -21,10 +21,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Hud/CMenu.h"
 #include "../../include/Scene/CSceneGameplay.h"
 
-namespace is06
-{
-namespace NScene
-{
+namespace is06 { namespace NScene {
 
 //! Constructor
 CSceneGameplay::CSceneGameplay() : CScene()
@@ -253,5 +250,4 @@ CSceneGameplay::~CSceneGameplay()
   if (EverySecondTimer) delete EverySecondTimer;
 }
 
-}
-}
+}}

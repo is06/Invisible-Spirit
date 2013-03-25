@@ -9,12 +9,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace N3D
-{
-namespace NSensor
-{
+namespace is06 { namespace N3D { namespace NSensor {
 
 //! Constructor
 CTeleporter::CTeleporter(f32 width, f32 height, f32 depth, const core::vector3df& position, NScene::ESceneIdentifier destination)
@@ -41,6 +36,4 @@ CTeleporter::~CTeleporter()
 
 }
 
-}
-}
-}
+}}}

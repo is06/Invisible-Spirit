@@ -22,12 +22,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NMap
-{
-namespace NDebug
-{
+namespace is06 { namespace NMap { namespace NDebug {
 
 //! Alpha Zone constructor
 MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : NScene::CSceneGameplay()
@@ -164,6 +159,4 @@ MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
   //delete ToDungeonSensor;
 }
 
-}
-}
-}
+}}}

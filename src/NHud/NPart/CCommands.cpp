@@ -12,12 +12,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Hud/Button/CIcon.h"
 #include "../../../include/Hud/Button/CIconText.h"
 
-namespace is06
-{
-namespace NHud
-{
-namespace NEnsemble
-{
+namespace is06 { namespace NHud { namespace NPart
 
 CCommands::CCommands() : CHud()
 {
@@ -92,6 +87,4 @@ CCommands::~CCommands()
   delete Command;
 }
 
-}
-}
-}
+}}}

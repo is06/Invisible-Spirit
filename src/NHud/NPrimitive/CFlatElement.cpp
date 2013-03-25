@@ -12,12 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NHud
-{
-namespace NPrimitive
-{
+namespace is06 { namespace NHud { namespace NPrimitive {
 
 f32 CFlatElement::FarValue = 0.1f;
 f32 CFlatElement::Coeff = 4954.94f;
@@ -319,6 +314,4 @@ CFlatElement::~CFlatElement()
   Texture = NULL;
 }
 
-}
-}
-}
+}}}

@@ -13,12 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace N3D
-{
-namespace NCharacter
-{
+namespace is06 { namespace N3D { namespace NCharacter {
 
 //! PlayableCharacter entity constructor: defines which mesh to load and set the initial direction
 /**
@@ -177,6 +172,4 @@ bool CPlayable::hasControl()
   return Controlable;
 }
 
-}
-}
-}
+}}}

@@ -10,12 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Hud/Counter/CBar.h"
 #include "../../../include/Hud/Ensemble/CEnergy.h"
 
-namespace is06
-{
-namespace NHud
-{
-namespace NEnsemble
-{
+namespace is06 { namespace NHud { namespace NPart
 
 CEnergy::CEnergy() : CHud()
 {
@@ -66,6 +61,4 @@ CEnergy::~CEnergy()
   delete HpBar;
 }
 
-}
-}
-}
+}}}

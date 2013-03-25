@@ -9,12 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/Resource/CTranslation.h"
 #include "../../../include/Engine/CGame.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NResource
-{
+namespace is06 { namespace NEngine { namespace NResource {
 
 //! Constructor
 CTranslation::CTranslation(const string& filePath)
@@ -96,6 +91,4 @@ const string& CTranslation::getTranslation(const string& identifier) const
   }
 }
 
-}
-}
-}
+}}}

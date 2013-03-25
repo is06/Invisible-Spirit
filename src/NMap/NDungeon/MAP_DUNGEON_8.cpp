@@ -8,12 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/core.h"
 #include "../../../include/Map/Dungeon/MAP_DUNGEON_8.h"
 
-namespace is06
-{
-namespace NMap
-{
-namespace NDungeon
-{
+namespace is06 { namespace NMap { namespace NDungeon {
 
 MAP_DUNGEON_8::MAP_DUNGEON_8() : NScene::CSceneDungeon()
 {
@@ -30,6 +25,4 @@ MAP_DUNGEON_8::~MAP_DUNGEON_8()
 
 }
 
-}
-}
-}
+}}}

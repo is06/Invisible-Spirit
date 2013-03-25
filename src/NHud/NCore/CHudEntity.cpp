@@ -8,10 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/core.h"
 #include "../../include/Hud/CHud.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NCore {
 
 CHud::CHud()
 {
@@ -28,5 +25,4 @@ CHud::~CHud()
 
 }
 
-}
-}
+}}}

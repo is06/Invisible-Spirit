@@ -9,10 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Hud/CButton.h"
 #include "../../include/Hud/CPicture.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NButton {
 
 CButton::CButton(f32 x, f32 y) : CHud()
 {
@@ -63,5 +60,4 @@ CButton::~CButton()
   delete ButtonCircle;
 }
 
-}
-}
+}}}

@@ -10,10 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Sound/CMusicSequence.h"
 #include "../../include/Sound/CSoundManager.h"
 
-namespace is06
-{
-namespace NSound
-{
+namespace is06 { namespace NSound {
 
 //! Constructor, creates the FMOD stream and set loop points if needed
 CMusicSequence::CMusicSequence(const SMusicSequenceInfo& info)
@@ -56,5 +53,4 @@ CMusicSequence::~CMusicSequence()
   FMOD_Sound_Release(SoundPtr);
 }
 
-}
-}
+}}

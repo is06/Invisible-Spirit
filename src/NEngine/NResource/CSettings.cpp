@@ -9,12 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/Resource/CSettings.h"
 #include "../../../include/Engine/Resource/CSettingsGroup.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NResource
-{
+namespace is06 { namespace NEngine { namespace NResource {
 
 //! Reads the settings.ini file and stores all parameters value in a map
 CSettings::CSettings()
@@ -157,6 +152,4 @@ CSettings::~CSettings()
 
 }
 
-}
-}
-}
+}}}

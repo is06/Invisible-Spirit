@@ -14,10 +14,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NEngine
-{
+namespace is06 { namespace NShader {
 
 //! Constructor
 CShadowProcessor::CShadowProcessor(N3D::CCamera* mainCamera)
@@ -84,5 +81,4 @@ CShadowProcessor::~CShadowProcessor()
   delete DepthMapHud;
 }
 
-}
-}
+}}

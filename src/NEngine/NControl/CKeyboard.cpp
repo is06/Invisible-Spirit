@@ -10,12 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/CGame.h"
 #include "../../../include/Engine/CEventManager.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NControl
-{
+namespace is06 { namespace NEngine { namespace NControl {
 
 //! Tests if a specific key is pressed
 /**
@@ -122,6 +117,4 @@ f32 CKeyboard::getDirectionAngle()
   return DirectionAngle;
 }
 
-}
-}
-}
+}}}

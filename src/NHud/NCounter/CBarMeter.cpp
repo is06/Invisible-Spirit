@@ -10,12 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Hud/Counter/CBar.h"
 #include "../../../include/Hud/CPicture.h"
 
-namespace is06
-{
-namespace NHud
-{
-namespace NCounter
-{
+namespace is06 { namespace NHud { namespace NCounter {
 
 CBar::CBar(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, EBarStyle style) : CCounter(init, min, max)
 {
@@ -180,6 +175,4 @@ CBar::~CBar()
   }
 }
 
-}
-}
-}
+}}}

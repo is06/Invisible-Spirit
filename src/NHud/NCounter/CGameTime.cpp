@@ -12,12 +12,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Hud/CCounter.h"
 #include "../../../include/Hud/Counter/CGameTime.h"
 
-namespace is06
-{
-namespace NHud
-{
-namespace NCounter
-{
+namespace is06 { namespace NHud { namespace NCounter {
 
 //! \todo comment this function
 CGameTime::CGameTime() : CCounter()
@@ -122,6 +117,4 @@ f32 CGameTime::getOpacity()
 
 CGameTime::~CGameTime() {}
 
-}
-}
-}
+}}}

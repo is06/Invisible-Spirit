@@ -9,10 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Hud/CWindow.h"
 #include "../../include/Hud/CPicture.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NWindow {
 
 CWindow::CWindow(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, EWindowStyle style) : CHud()
 {
@@ -166,5 +163,4 @@ CWindow::~CWindow()
   }
 }
 
-}
-}
+}}}

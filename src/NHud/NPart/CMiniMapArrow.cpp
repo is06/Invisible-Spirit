@@ -11,10 +11,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NPart
 
 CMiniMapArrow::CMiniMapArrow(video::SColor color) : CHud()
 {
@@ -132,5 +129,4 @@ CMiniMapArrow::~CMiniMapArrow()
 
 }
 
-}
-}
+}}}

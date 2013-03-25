@@ -14,10 +14,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NEngine
-{
+namespace is06 { namespace NEngine { namespace NControl {
 
 //! Constructor: Keyboard and Gamepad initialization
 CPlayerControl::CPlayerControl(bool gamepadActive)
@@ -156,6 +153,4 @@ CPlayerControl::~CPlayerControl()
   delete Gamepad;
 }
 
-}
-}
-
+}}}

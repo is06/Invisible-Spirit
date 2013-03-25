@@ -9,10 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3D/CCamera.h"
 #include "../../include/Sound/CSoundManager.h"
 
-namespace is06
-{
-namespace NSound
-{
+namespace is06 { namespace NSound {
 
 //! Constructor, initializes FMOD system with 3D settings
 CSoundManager::CSoundManager()
@@ -75,5 +72,4 @@ CSoundManager::~CSoundManager()
   FMOD_System_Release(System);
 }
 
-}
-}
+}}

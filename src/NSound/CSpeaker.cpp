@@ -11,10 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Sound/CSpeaker.h"
 #include "../../include/Sound/CSoundManager.h"
 
-namespace is06
-{
-namespace NSound
-{
+namespace is06 { namespace NSound {
 
 //! Constructor
 CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text, f32 radius) : NEngine::CEntity()
@@ -131,5 +128,4 @@ CSpeaker::~CSpeaker()
   FMOD_Sound_Release(SoundPtr);
 }
 
-}
-}
+}}

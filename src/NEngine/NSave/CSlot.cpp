@@ -9,12 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/CSave.h"
 #include "../../../include/Engine/Save/CSlot.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NSave
-{
+namespace is06 { namespace NEngine { namespace NSave {
 
 //! Constructor
 CSlot::CSlot(CSave* save)
@@ -29,6 +24,4 @@ CSlot::~CSlot()
 
 }
 
-}
-}
-}
+}}}

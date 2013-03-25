@@ -8,12 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/core.h"
 #include "../../../include/Hud/Button/CIcon.h"
 
-namespace is06
-{
-namespace NHud
-{
-namespace NButton
-{
+namespace is06 { namespace NHud { namespace NButton {
 
 CIcon::CIcon(f32 x, f32 y) : CButton(x, y)
 {
@@ -30,6 +25,4 @@ CIcon::~CIcon()
 
 }
 
-}
-}
-}
+}}}

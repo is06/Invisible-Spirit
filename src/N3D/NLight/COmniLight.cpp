@@ -8,12 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/core.h"
 #include "../../../include/3D/Light/COmni.h"
 
-namespace is06
-{
-namespace N3D
-{
-namespace NLight
-{
+namespace is06 { namespace N3D { namespace NLight {
 
 //! Constructor
 COmni::COmni() : CLight()
@@ -27,6 +22,4 @@ COmni::~COmni()
 
 }
 
-}
-}
-}
+}}}

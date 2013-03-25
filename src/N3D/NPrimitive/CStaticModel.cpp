@@ -15,10 +15,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace N3D
-{
+namespace is06 { namespace N3D { namespace NPrimitive {
 
 //! Constructor
 CStaticModel::CStaticModel() : CModelEntity()
@@ -318,5 +315,4 @@ CStaticModel::~CStaticModel()
   }
 }
 
-}
-}
+}}}

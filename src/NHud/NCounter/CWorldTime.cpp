@@ -10,12 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Hud/CCounter.h"
 #include "../../../include/Hud/Counter/CWorldTime.h"
 
-namespace is06
-{
-namespace NHud
-{
-namespace NCounter
-{
+namespace is06 { namespace NHud { namespace NCounter {
 
 //! \todo comment this function
 CWorldTime::CWorldTime() : CCounter()
@@ -98,6 +93,4 @@ f32 CWorldTime::getOpacity()
 
 CWorldTime::~CWorldTime() {}
 
-}
-}
-}
+}}}

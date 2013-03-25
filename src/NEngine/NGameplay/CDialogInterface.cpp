@@ -14,12 +14,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Hud/CText.h"
 #include "../../../include/Hud/CPicture.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NGameplay
-{
+namespace is06 { namespace NEngine { namespace NGameplay {
 
 //! Constructor
 /**
@@ -202,6 +197,4 @@ CDialogInterface::~CDialogInterface()
   delete BackWindow;
 }
 
-}
-}
-}
+}}}

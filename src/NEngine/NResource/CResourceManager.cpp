@@ -9,12 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/CGame.h"
 #include "../../../include/Engine/Resource/CResourceManager.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NResource
-{
+namespace is06 { namespace NEngine { namespace NResource {
 
 CResourceManager::CResourceManager()
 {
@@ -36,6 +31,4 @@ CResourceManager::~CResourceManager()
 
 }
 
-}
-}
-}
+}}}

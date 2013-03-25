@@ -13,10 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NShader
-{
+namespace is06 { namespace NShader {
 
 CPostRenderGlow::CPostRenderGlow() : CPostRenderShader()
 {
@@ -79,5 +76,4 @@ CPostRenderGlow::~CPostRenderGlow()
 
 }
 
-}
-}
+}}

@@ -12,12 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NMap
-{
-namespace NDebug
-{
+namespace is06 { namespace NMap { namespace NDebug {
 
 MAP_DEBUG::MAP_DEBUG() : NScene::CSceneGameplay()
 {
@@ -44,6 +39,4 @@ MAP_DEBUG::~MAP_DEBUG()
 
 }
 
-}
-}
-}
+}}}

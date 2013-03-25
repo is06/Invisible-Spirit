@@ -17,10 +17,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Hud/CPlayerState.h"
 #include "../../include/Hud/Counter/CGameTime.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NPauseScreen {
 
 //! All elements creation
 CPauseScreen::CPauseScreen(NEngine::NResource::CTranslation* translation, NEngine::CPlayerControl* control)
@@ -247,5 +244,4 @@ CPauseScreen::~CPauseScreen()
   delete GameplayTime;
 }
 
-}
-}
+}}}

@@ -10,12 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/CGame.h"
 #include "../../../include/Engine/Exception/CFileException.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NSave
-{
+namespace is06 { namespace NEngine { namespace NSave {
 
 //! Default constructor, does nothing
 CFile::CFile()
@@ -125,6 +120,4 @@ CFile::~CFile()
   Ws.close();
 }
 
-}
-}
-}
+}}}

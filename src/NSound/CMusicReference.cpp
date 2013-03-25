@@ -9,10 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Sound/CMusic.h"
 #include "../../include/Sound/CMusicReference.h"
 
-namespace is06
-{
-namespace NSound
-{
+namespace is06 { namespace NSound {
 
 //! Music interface initialization, loads music info from resource/music/list.ism file
 CMusicReference::CMusicReference()
@@ -180,5 +177,4 @@ CMusicReference::~CMusicReference()
   }
 }
 
-}
-}
+}}

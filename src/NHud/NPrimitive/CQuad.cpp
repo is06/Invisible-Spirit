@@ -11,12 +11,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NHud
-{
-namespace NPrimitive
-{
+namespace is06 { namespace NHud { namespace NPrimitive {
 
 CQuad::CQuad(f32 x, f32 y, f32 w, f32 h, video::SColor color) : CFlatElement(x, y, w, h, false)
 {
@@ -33,6 +28,4 @@ CQuad::~CQuad()
 
 }
 
-}
-}
-}
+}}}

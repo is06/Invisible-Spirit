@@ -9,10 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Hud/CHudEnsemble.h"
 #include "../../include/Hud/Ensemble/CCommands.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NPart
 
 CHudEnsemble::CHudEnsemble() : CHud()
 {
@@ -63,5 +60,4 @@ CHudEnsemble::~CHudEnsemble()
   delete Buttons;
 }
 
-}
-}
+}}}

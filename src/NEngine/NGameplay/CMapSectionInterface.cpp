@@ -9,12 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/Gameplay/CMapSectionInterface.h"
 #include "../../../include/3D/CLevelMesh.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NGameplay
-{
+namespace is06 { namespace NEngine { namespace NGameplay {
 
 CMapSectionInterface::CMapSectionInterface()
 {
@@ -72,6 +67,4 @@ CMapSectionInterface::~CMapSectionInterface()
   if (Level[1]) delete Level[1];
 }
 
-}
-}
-}
+}}}

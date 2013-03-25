@@ -9,10 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Hud/CTextChar.h"
 #include "../../include/Hud/CTextFont.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NText {
 
 CTextChar::CTextChar(u8 code, f32& x, f32& y, u8 size, CTextFont* font, bool visible, u8 extTexture) : CFlatElement(x, y, size, size, true)
 {
@@ -70,5 +67,4 @@ CTextChar::~CTextChar()
 
 }
 
-}
-}
+}}}

@@ -11,10 +11,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NPart
 
 f32 CMiniMap::Coeff = 4954.94f;
 
@@ -146,5 +143,4 @@ CMiniMap::~CMiniMap()
   delete EntrancePosition;
 }
 
-}
-}
+}}}

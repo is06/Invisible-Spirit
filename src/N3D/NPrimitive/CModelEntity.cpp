@@ -10,10 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/Resource/CResourceManager.h"
 #include "../../include/3D/CModelEntity.h"
 
-namespace is06
-{
-namespace N3D
-{
+namespace is06 { namespace N3D { namespace NPrimitive {
 
 //! Initializations
 CModelEntity::CModelEntity() : NEngine::CEntity()
@@ -72,5 +69,4 @@ CModelEntity::~CModelEntity()
   AttachedSpeaker = NULL;
 }
 
-}
-}
+}}}

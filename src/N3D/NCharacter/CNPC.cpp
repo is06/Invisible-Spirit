@@ -10,12 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/N3D/CCharacter.h"
 #include "../../../include/N3D/Character/CNPC.h"
 
-namespace is06
-{
-namespace N3D
-{
-namespace NCharacter
-{
+namespace is06 { namespace N3D { namespace NCharacter {
 
 //! Initializations
 CNPC::CNPC() : CCharacter()
@@ -84,6 +79,4 @@ CNPC::~CNPC()
 
 }
 
-}
-}
-}
+}}}

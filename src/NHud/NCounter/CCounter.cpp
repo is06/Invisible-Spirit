@@ -8,10 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/core.h"
 #include "../../include/Hud/CCounter.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NCounter {
 
 CCounter::CCounter(s32 init, s32 min, s32 max)
 {
@@ -52,5 +49,4 @@ CCounter::~CCounter()
 
 }
 
-}
-}
+}}}

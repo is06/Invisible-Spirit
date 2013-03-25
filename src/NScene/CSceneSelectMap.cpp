@@ -9,10 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3D/Camera/CThirdPerson.h"
 #include "../../include/Scene/CSceneSelectMap.h"
 
-namespace is06
-{
-namespace NScene
-{
+namespace is06 { namespace NScene {
 
 CSceneSelectMap::CSceneSelectMap() : CScene()
 {
@@ -44,5 +41,4 @@ CSceneSelectMap::~CSceneSelectMap()
 
 }
 
-}
-}
+}}

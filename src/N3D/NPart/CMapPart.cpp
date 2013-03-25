@@ -6,37 +6,33 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../include/Engine/core.h"
-#include "../../include/3D/CLevelMesh.h"
+#include "../../include/3D/CMapPart.h"
 #include "../../include/3D/CStaticModel.h"
 
-namespace is06
-{
-namespace N3D
-{
+namespace is06 { namespace N3D { namespace NPart {
 
 //! Constructor
-CLevelMesh::CLevelMesh() : CStaticModel()
+CMapPart::CMapPart() : CStaticModel()
 {
 
 }
 
 //! Update method, called every cycle for event testing
-void CLevelMesh::update()
+void CMapPart::update()
 {
   CStaticModel::update();
 }
 
 //! Loads the collision mask for this model from a dedicate file (newton serialization)
-void CLevelMesh::loadCollisionMask()
+void CMapPart::loadCollisionMask()
 {
 
 }
 
 //! Destructor
-CLevelMesh::~CLevelMesh()
+CMapPart::~CMapPart()
 {
 
 }
 
-}
-}
+}}}

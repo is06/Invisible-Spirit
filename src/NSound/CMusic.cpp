@@ -8,10 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/core.h"
 #include "../../include/Sound/CMusic.h"
 
-namespace is06
-{
-namespace NSound
-{
+namespace is06 { namespace NSound {
 
 //! Constructor
 CMusic::CMusic(const string& id)
@@ -77,5 +74,4 @@ CMusic::~CMusic()
   }
 }
 
-}
-}
+}}

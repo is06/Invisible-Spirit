@@ -8,12 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/core.h"
 #include "../../../include/N3D/NCamera/CThirdPerson.h"
 
-namespace is06
-{
-namespace N3D
-{
-namespace NCamera
-{
+namespace is06 { namespace N3D { namespace NCamera {
 
 //! Sets the third-person camera and defines its default properties
 CThirdPerson::CThirdPerson() : CCamera()
@@ -111,6 +106,4 @@ f32 CThirdPerson::getDistance()
   return Distance;
 }
 
-}
-}
-}
+}}}

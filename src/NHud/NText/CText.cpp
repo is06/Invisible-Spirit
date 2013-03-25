@@ -11,10 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Hud/CTextFont.h"
 #include "../../include/Hud/CTextChar.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NText {
 
 CText::CText(const string& str, f32 x, f32 y, EFontStyle style, u8 speed) : CHud()
 {
@@ -234,5 +231,4 @@ CText::~CText()
   }
 }
 
-}
-}
+}}}

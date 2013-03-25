@@ -12,10 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NDebug
-{
+namespace is06 { namespace NDebug {
 
 CConsole::CConsole()
 {
@@ -110,5 +107,4 @@ CConsole::~CConsole()
   CommandTextInput->remove();
 }
 
-}
-}
+}}

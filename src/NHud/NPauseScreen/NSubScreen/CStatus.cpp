@@ -8,14 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../../include/Engine/core.h"
 #include "../../../../include/Hud/PauseScreen/SubScreen/CStatus.h"
 
-namespace is06
-{
-namespace NHud
-{
-namespace NPauseScreen
-{
-namespace NSubScreen
-{
+namespace is06 { namespace NHud { namespace NPauseScreen { namespace NSubScreen {
 
 CStatus::CStatus() : CSubScreen()
 {
@@ -32,7 +25,4 @@ CStatus::~CStatus()
 
 }
 
-}
-}
-}
-}
+}}}}

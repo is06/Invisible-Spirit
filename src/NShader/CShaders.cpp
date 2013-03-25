@@ -14,10 +14,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NShader
-{
+namespace is06 { namespace NShader {
 
 CShaders::CShaders()
 {
@@ -69,5 +66,4 @@ void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
   }
 }
 
-}
-}
+}}

@@ -10,10 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/Resource/CResourceManager.h"
 #include "../../include/3D/CLight.h"
 
-namespace is06
-{
-namespace N3D
-{
+namespace is06 { namespace N3D { namespace NLight {
 
 //! Constructor
 CLight::CLight() : NEngine::CEntity()
@@ -38,5 +35,4 @@ CLight::~CLight()
   Icon->remove();
 }
 
-}
-}
+}}}

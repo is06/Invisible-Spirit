@@ -11,10 +11,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/3D/CModelEntity.h"
 #include "../../include/Shader/CPostRenderShader.h"
 
-namespace is06
-{
-namespace NShader
-{
+namespace is06 { namespace NShader {
 
 CPostRenderShader::CPostRenderShader() : CFlatElement(0, 0, NEngine::CGame::ScreenPos.Hud.Width, NEngine::CGame::ScreenPos.Hud.Height)
 {
@@ -103,5 +100,4 @@ CPostRenderShader::~CPostRenderShader()
 
 }
 
-}
-}
+}}

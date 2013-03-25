@@ -10,12 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/CGame.h"
 #include "../../../include/Engine/CEventManager.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NControl
-{
+namespace is06 { namespace NEngine { namespace NControl {
 
 //! Constructor
 CGamepad::CGamepad()
@@ -143,6 +138,4 @@ bool CGamepad::dirPressed(EGamepadDirection direction, EEventType type)
   }
 }
 
-}
-}
-}
+}}}

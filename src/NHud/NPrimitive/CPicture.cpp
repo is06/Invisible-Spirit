@@ -10,10 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/Resource/CResourceManager.h"
 #include "../../include/Hud/CPicture.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NPrimitive {
 
 CPicture::CPicture(f32 x, f32 y, f32 w, f32 h, const string& filePath, bool useAlphaBlending) : CFlatElement(x, y, w, h, useAlphaBlending)
 {
@@ -54,5 +51,4 @@ CPicture::~CPicture()
 
 }
 
-}
-}
+}}}

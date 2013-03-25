@@ -9,10 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/3D/CCharacter.h"
 #include "../../../include/3D/CAnimatedModel.h"
 
-namespace is06
-{
-namespace N3D
-{
+namespace is06 { namespace N3D { namespace NCharacter {
 
 //! Properties initialization
 CCharacter::CCharacter() : CAnimatedModel()
@@ -159,5 +156,4 @@ void CCharacter::update()
   CAnimatedModel::update();
 }
 
-}
-}
+}}}

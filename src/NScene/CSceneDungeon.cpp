@@ -8,10 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/core.h"
 #include "../../include/Scene/CSceneDungeon.h"
 
-namespace is06
-{
-namespace NScene
-{
+namespace is06 { namespace NScene {
 
 CSceneDungeon::CSceneDungeon() : CSceneGameplay()
 {
@@ -28,5 +25,4 @@ CSceneDungeon::~CSceneDungeon()
 
 }
 
-}
-}
+}}

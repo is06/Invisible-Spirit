@@ -9,10 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/CTimer.h"
 #include "../../include/Engine/CGame.h"
 
-namespace is06
-{
-namespace NEngine
-{
+namespace is06 { namespace NEngine { namespace NTime {
 
 //! Constructor
 /**
@@ -65,5 +62,4 @@ void CTimer::reinit(f32 end, TVoidCallback callback, s32 loopLimit)
   start();
 }
 
-}
-}
+}}}

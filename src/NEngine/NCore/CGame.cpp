@@ -36,10 +36,7 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
-namespace is06
-{
-namespace NEngine
-{
+namespace is06 { namespace NEngine { namespace NCore {
 
 IrrlichtDevice* CGame::Device;
 video::IVideoDriver* CGame::VideoDriver;
@@ -608,5 +605,4 @@ void CGame::finish()
   delete EventManager;
 }
 
-}
-}
+}}}

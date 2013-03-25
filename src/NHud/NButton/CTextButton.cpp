@@ -8,12 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/core.h"
 #include "../../../include/Hud/Button/CText.h"
 
-namespace is06
-{
-namespace NHud
-{
-namespace NButton
-{
+namespace is06 { namespace NHud { namespace NButton {
 
 CText::CText(f32 x, f32 y) : CButton(x, y)
 {
@@ -30,6 +25,4 @@ CText::~CText()
 
 }
 
-}
-}
-}
+}}}

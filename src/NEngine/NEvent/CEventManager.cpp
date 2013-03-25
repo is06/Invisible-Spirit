@@ -8,10 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/core.h"
 #include "../../include/Engine/CEventManager.h"
 
-namespace is06
-{
-namespace NEngine
-{
+namespace is06 { namespace NEngine { namespace NEvent {
 
 //! Initializes arrays for key listening
 CEventManager::CEventManager() : IEventReceiver()
@@ -282,5 +279,4 @@ const core::position2di& CEventManager::getMousePosition() const
   return MousePosition;
 }
 
-}
-}
+}}}

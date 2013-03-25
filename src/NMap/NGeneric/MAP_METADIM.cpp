@@ -13,12 +13,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Map/Generic/MAP_METADIM.h"
 #include "../../../include/Sound/CMusicReference.h"
 
-namespace is06
-{
-namespace NMap
-{
-namespace NGeneric
-{
+namespace is06 { namespace NMap { namespace NGeneric {
 
 MAP_METADIM::MAP_METADIM() : NScene::CSceneGameplay()
 {
@@ -73,6 +68,4 @@ MAP_METADIM::~MAP_METADIM()
 
 }
 
-}
-}
-}
+}}}

@@ -17,10 +17,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Hud/CMenu.h"
 #include "../../include/Hud/CText.h"
 
-namespace is06
-{
-namespace NScene
-{
+namespace is06 { namespace NScene {
 
 //! Init common elements
 CSceneMenu::CSceneMenu() : CScene()
@@ -219,5 +216,4 @@ CSceneMenu::~CSceneMenu()
   delete Camera;
 }
 
-}
-}
+}}

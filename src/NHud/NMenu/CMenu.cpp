@@ -10,10 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Hud/CMenuOption.h"
 #include "../../include/Hud/CPicture.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NMenu {
 
 //! \todo comment this function
 CMenu::CMenu(f32 x, f32 y, f32 width, u8 height, EMenuStyle style) : CHud()
@@ -176,5 +173,4 @@ CMenu::~CMenu()
   delete Cursor;
 }
 
-}
-}
+}}}

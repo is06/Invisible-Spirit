@@ -12,10 +12,7 @@ http://www.is06.com. Legal code in license.txt
 using namespace irr;
 using namespace std;
 
-namespace is06
-{
-namespace N3D
-{
+namespace is06 { namespace N3D { namespace NCamera {
 
 //! Main constructor of abstract class
 CCamera::CCamera()
@@ -158,5 +155,4 @@ CCamera::~CCamera()
 
 }
 
-}
-}
+}}}

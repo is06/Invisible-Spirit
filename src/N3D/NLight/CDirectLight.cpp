@@ -9,12 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/CGame.h"
 #include "../../../include/3D/Light/CDirect.h"
 
-namespace is06
-{
-namespace N3D
-{
-namespace NLight
-{
+namespace is06 { namespace N3D { namespace NLight {
 
 //! Constructor
 CDirect::CDirect()
@@ -36,6 +31,4 @@ CDirect::~CDirect()
   Camera->remove();
 }
 
-}
-}
-}
+}}}

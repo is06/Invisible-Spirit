@@ -8,12 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/Engine/core.h"
 #include "../../../include/Engine/Gameplay/CDialog.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NGameplay
-{
+namespace is06 { namespace NEngine { namespace NGameplay {
 
 //! Default constructor, does nothing
 CDialog::CDialog()
@@ -83,6 +78,4 @@ CDialog::~CDialog()
 
 }
 
-}
-}
-}
+}}}

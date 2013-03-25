@@ -10,10 +10,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/Engine/Resource/CResourceManager.h"
 #include "../../include/Hud/CTextFont.h"
 
-namespace is06
-{
-namespace NHud
-{
+namespace is06 { namespace NHud { namespace NText {
 
 //! Constructor, defines current font style and get the appropriate texture
 /**
@@ -158,5 +155,4 @@ CTextFont::~CTextFont()
   FontTexture = NULL;
 }
 
-}
-}
+}}}

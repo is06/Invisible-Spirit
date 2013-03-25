@@ -7,12 +7,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../../include/Engine/Gameplay/CNPCInterface.h"
 
-namespace is06
-{
-namespace NEngine
-{
-namespace NGameplay
-{
+namespace is06 { namespace NEngine { namespace NGameplay {
 
 CNPCInterface::CNPCInterface() {}
 
@@ -31,6 +26,4 @@ N3D::NCharacter::CNPC* CNPCInterface::getNearestNPC(N3D::CCharacter* character)
 
 CNPCInterface::~CNPCInterface() {}
 
-}
-}
-}
+}}}
