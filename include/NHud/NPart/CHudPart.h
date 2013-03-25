@@ -13,11 +13,11 @@ http://www.is06.com. Legal code in license.txt
 namespace is06 { namespace NHud { namespace NPart {
 
 //! The whole HUD gameplay interface (buttons, energy...)
-class CHudEnsemble : public CHud
+class CHudPart : public CHud
 {
 public:
-  CHudEnsemble();
-  ~CHudEnsemble();
+  CHudPart();
+  ~CHudPart();
 
   void render();
   void hide();

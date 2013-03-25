@@ -13,11 +13,11 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NCounter {
 
-class CTargetLife : public CHud
+class CTargetLifeMeter : public CHud
 {
 public:
-  CTargetLife(s32 init, s32 min, s32 max);
-  ~CTargetLife();
+  CTargetLifeMeter(s32 init, s32 min, s32 max);
+  ~CTargetLifeMeter();
 
   void render(const core::vector3df& targetPosition);
   void updateValue(const s32& value);

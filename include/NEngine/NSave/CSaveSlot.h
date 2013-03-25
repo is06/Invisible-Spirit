@@ -11,11 +11,11 @@ http://www.is06.com. Legal code in license.txt
 namespace is06 { namespace NEngine { namespace NSave {
 
 //! Visual representation of a single save slot in the save slot selection menu
-class CSlot
+class CSaveSlot
 {
 public:
-  CSlot(CSave* save);
-  ~CSlot();
+  CSaveSlot(CSave* save);
+  ~CSaveSlot();
 
 private:
   string PlaceNameIdentifier;

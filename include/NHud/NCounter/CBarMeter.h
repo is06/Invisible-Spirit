@@ -14,11 +14,11 @@ http://www.is06.com. Legal code in license.txt
 namespace is06 { namespace NHud { namespace NCounter {
 
 //! A graphical horizontal bar counter with animation behaviors
-class CBar : public CCounter
+class CBarMeter : public CCounter
 {
 public:
-  CBar(s32 init = 0, s32 min = 0, s32 max = 1000, f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 10, EBarStyle style = EBS_DEFAULT);
-  virtual ~CBar();
+  CBarMeter(s32 init = 0, s32 min = 0, s32 max = 1000, f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 10, EBarStyle style = EBS_DEFAULT);
+  virtual ~CBarMeter();
 
   virtual void render();
 

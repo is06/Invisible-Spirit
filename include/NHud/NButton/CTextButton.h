@@ -12,11 +12,11 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NButton {
 
-class CText : public CButton
+class CTextButton : public CButton
 {
 public:
-  CText(f32 x, f32 y);
-  ~CText();
+  CTextButton(f32 x, f32 y);
+  ~CTextButton();
 
   void render();
 

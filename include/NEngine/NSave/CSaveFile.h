@@ -13,11 +13,11 @@ http://www.is06.com. Legal code in license.txt
 namespace is06 { namespace NEngine { namespace NSave {
 
 //! Save file interface for reading and writing into the save file
-class CFile
+class CSaveFile
 {
 public:
-  CFile();
-  ~CFile();
+  CSaveFile();
+  ~CSaveFile();
 
   void prepareForRead(u8 slot);
   void prepareForWrite(u8 slot);
