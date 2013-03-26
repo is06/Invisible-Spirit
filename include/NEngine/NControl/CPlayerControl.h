@@ -8,8 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENGINE_CONTROL_PLAYER_CONTROL_H__
 #define __IS06_ENGINE_CONTROL_PLAYER_CONTROL_H__
 
-#include "Control/ECommandIdentifier.h"
-#include "EEventType.h"
+#include "ECommandIdentifier.h"
+#include "../NEvent/EEventType.h"
 
 namespace is06 { namespace NEngine { namespace NControl {
 
@@ -19,7 +19,7 @@ public:
   CPlayerControl(bool gamepadActive);
   ~CPlayerControl();
 
-  bool commandEntered(NControl::ECommandIdentifier command, EEventType eventType=EET_ALWAYS);
+  bool commandEntered(NControl::ECommandIdentifier command, NEvent::EEventType eventType=NEvent::EET_ALWAYS);
 
   f32 getPlayerDirection();
   f32 getPlayerXAxis();

@@ -8,14 +8,14 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_SENSOR_SENSOR_H__
 #define __IS06_3D_SENSOR_SENSOR_H__
 
-#include "../Engine/CEntity.h"
+#include "../../NEngine/NCore/CEntity.h"
 
 using namespace irr;
 
 namespace is06 { namespace N3D { namespace NSensor {
 
 //! Main abstract class for all sensors
-class CSensor : public NEngine::CEntity
+class CSensor : public NEngine::NCore::CEntity
 {
 public:
   CSensor(f32 width, f32 height, f32 depth, const core::vector3df& position);

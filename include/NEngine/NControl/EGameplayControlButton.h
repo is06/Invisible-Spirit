@@ -12,12 +12,12 @@ namespace is06 { namespace NEngine { namespace NControl {
 
 enum EGameplayControlButtons
 {
-  CB_BUTTON_COMMAND,
-  CB_BUTTON_DEFENSE,
-  CB_BUTTON_JUMP,
-  CB_BUTTON_MENU,
-  CB_BUTTON_PAUSE,
-  CB_BUTTON_QUIT
+  EGCB_BUTTON_COMMAND,
+  EGCB_BUTTON_DEFENSE,
+  EGCB_BUTTON_JUMP,
+  EGCB_BUTTON_MENU,
+  EGCB_BUTTON_PAUSE,
+  EGCB_BUTTON_QUIT
 };
 
 }}}

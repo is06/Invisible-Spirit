@@ -8,13 +8,13 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SCENE_SCENE_H__
 #define __IS06_SCENE_SCENE_H__
 
-#include "../Scene/ELoadingStatus.h"
-#include "../Shader/CShadowProcessor.h"
-#include "../Engine/CPlayerControl.h"
-#include "../Hud/EFadeColor.h"
-#include "../Hud/CCinemascopeMode.h"
-#include "../3D/CSky.h"
-#include "../Debug/CConsole.h"
+#include "../NScene/ELoadingStatus.h"
+#include "../NShader/CShadowProcessor.h"
+#include "../NEngine/NControl/CPlayerControl.h"
+#include "../NHud/NPrimitive/EFadeColor.h"
+#include "../NHud/NPart/CCinemascopeMode.h"
+#include "../N3D/NPart/CSky.h"
+#include "../NDebug/CConsole.h"
 
 namespace is06 { namespace NScene {
 
@@ -24,62 +24,65 @@ public:
   CScene();
   virtual ~CScene();
 
-  virtual void                            events() = 0;
-  virtual void                            postRender() = 0;
-  virtual void                            hudRender() = 0;
-  virtual void                            start();
+  virtual void events() = 0;
+  virtual void postRender() = 0;
+  virtual void hudRender() = 0;
+  virtual void start();
 
   // Loading methods
-  virtual void                            startLoadingScreen();
-  virtual void                            stopLoadingScreen();
-  virtual void                            loadingSequence();
-  NScene::ELoadingStatus                  getLoadingStatus();
-  void                                    setLoadingStatus(NScene::ELoadingStatus status);
+  virtual void startLoadingScreen();
+  virtual void stopLoadingScreen();
+  virtual void loadingSequence();
+  NScene::ELoadingStatus getLoadingStatus();
+  void setLoadingStatus(NScene::ELoadingStatus status);
 
-  void                                    setSaveSlot(NEngine::CSave* save);
-  void                                    fadeIn(f32 speed = 1.5f, NHud::EFadeColor color = NHud::EFC_BLACK);
-  void                                    fadeOut(f32 speed = 3.0f, NHud::EFadeColor color = NHud::EFC_BLACK);
+  // Save
+  void setSaveSlot(NEngine::NSave::CSave* save);
 
-  const video::SColor&                    getBackBufferColor() const;
-  N3D::CCamera*                           getActiveCamera();
-  NShader::CShadowProcessor*              getShadowProcessor();
+  // Fades
+  void fadeIn(f32 speed = 1.5f, NHud::NPrimitive::EFadeColor color = NHud::NPrimitive::EFC_BLACK);
+  void fadeOut(f32 speed = 3.0f, NHud::NPrimitive::EFadeColor color = NHud::NPrimitive::EFC_BLACK);
+
+  const video::SColor& getBackBufferColor() const;
+  N3D::NCamera::CCamera* getActiveCamera();
+  NShader::CShadowProcessor* getShadowProcessor();
 
 protected:
   // Faders
-  gui::IGUIInOutFader*                    InFader;
-  gui::IGUIInOutFader*                    OutFader;
+  gui::IGUIInOutFader* InFader;
+  gui::IGUIInOutFader* OutFader;
 
   // 2D elements
-  NHud::CPicture* Dummy;
-  NHud::CCinemascopeMode*                 Cinemascope;
+  NHud::NPrimitive::CPicture* Dummy;
+  NHud::NPart::CCinemascopeMode* Cinemascope;
 
   // 3D entities
-  N3D::CCamera*                           Camera;
-  N3D::CSky*                              Sky;
+  N3D::NCamera::CCamera* Camera;
+  N3D::NPart::CSky* Sky;
 
   // Interfaces
-  NEngine::CPlayerControl*                Control;
-  NEngine::CSave*                         GameSave;
-  NEngine::NGameplay::CDialogInterface*   Dialog;
-  NSound::CMusicReference*                Music;
-  NEngine::NResource::CTranslation*       GlobalTranslations;
-  NEngine::NResource::CTranslation*       SceneTranslations;
-  NShader::CShadowProcessor*              ShadowProcessor;
+  NEngine::NControl::CPlayerControl* Control;
+  NEngine::NSave::CSave* GameSave;
+  NEngine::NGameplay::CDialogInterface* Dialog;
+  NSound::CMusicReference* Music;
+  NEngine::NResource::CTranslation* GlobalTranslations;
+  NEngine::NResource::CTranslation* SceneTranslations;
+  NShader::CShadowProcessor* ShadowProcessor;
 
   // Primitive data
-  video::SColor                           BackBufferColor;
-  f32                                     SceneTime;
-  f32                                     StartTime;
-  f32                                     SpeedFactor;
-  NScene::ELoadingStatus                  LoadingStatus;
+  video::SColor BackBufferColor;
+  f32 SceneTime;
+  f32 StartTime;
+  f32 SpeedFactor;
+  NScene::ELoadingStatus LoadingStatus;
 
   // Debug Tools
-  NDebug::CConsole*                       DebugConsole;
+  NDebug::CConsole* DebugConsole;
 
 private:
   // Methods
-  void                                    generateDebugInfo();
-  gui::IGUIStaticText*                    DebugInfo;
+  void generateDebugInfo();
+  gui::IGUIStaticText* DebugInfo;
 };
 
 }}

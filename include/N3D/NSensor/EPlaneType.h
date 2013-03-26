@@ -12,8 +12,8 @@ namespace is06 { namespace N3D { namespace NSensor {
 
 enum EPlaneType
 {
-  PLANE_TYPE_VERTICAL,
-  PLANE_TYPE_HORIZONTAL
+  EPT_VERTICAL,
+  EPT_HORIZONTAL
 };
 
 }}}

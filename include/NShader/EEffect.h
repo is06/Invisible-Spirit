@@ -12,14 +12,14 @@ namespace is06 { namespace NShader {
 
 enum EEffect
 {
-  EFFECT_NONE,
-  EFFECT_DARKEN,
-  EFFECT_LIGHTEN,
-  EFFECT_HIDE,
-  EFFECT_SHOW,
-  EFFECT_TEXTURE_SWITCH,
+  EE_NONE,
+  EE_DARKEN,
+  EE_LIGHTEN,
+  EE_HIDE,
+  EE_SHOW,
+  EE_TEXTURE_SWITCH,
 
-  EFFECT_COUNT
+  EE_COUNT
 };
 
 }}

@@ -9,14 +9,16 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_ENGINE_CONTROL_GAMEPAD_H__
 
 #include "EGamepadDirection.h"
-#include "../EEventType.h"
+#include "../NEvent/EEventType.h"
+
+using namespace irr;
 
 namespace is06 { namespace NEngine { namespace NControl {
 
 //! Boolean gamepad buttons map indexed by u16
-typedef map<u16, bool> TGamepadButtoNMap;
+typedef map<u16, bool> TGamepadButtonMap;
 //! Boolean gamepad directions map indexed by EGamepadDirection
-typedef map<EGamepadDirection, bool> TGamepadDirectioNMap;
+typedef map<EGamepadDirection, bool> TGamepadDirectionMap;
 
 //! Interface for gamepad controls
 class CGamepad
@@ -34,12 +36,12 @@ public:
   s8 getRightJoystickXAxis();
   s8 getRightJoystickYAxis();
 
-  bool buttonPressed(u16 buttons, NEngine::EEventType type = NEngine::EET_ALWAYS);
-  bool dirPressed(EGamepadDirection direction, NEngine::EEventType type = NEngine::EET_ALWAYS);
+  bool buttonPressed(u16 buttons, NEvent::EEventType type = NEvent::EET_ALWAYS);
+  bool dirPressed(EGamepadDirection direction, NEvent::EEventType type = NEvent::EET_ALWAYS);
 
 private:
-  TGamepadButtoNMap ButtonOnce;
-  TGamepadDirectioNMap DirectionOnce;
+  TGamepadButtonMap ButtonOnce;
+  TGamepadDirectionMap DirectionOnce;
 };
 
 }}}

@@ -5,17 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/CGame.h"
-#include "../../include/Engine/Resource/CSettings.h"
-#include "../../include/Engine/Exception/C3DException.h"
-#include "../../include/3D/CStaticModel.h"
-#include "../../include/Scene/CScene.h"
-#include "../../include/Sound/CSpeaker.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NEngine/NResource/CSettings.h"
+#include "../../../include/NEngine/NException/C3DException.h"
+#include "../../../include/N3D/NPrimitive/CStaticModel.h"
+#include "../../../include/NScene/CScene.h"
+#include "../../../include/NSound/CSpeaker.h"
 
 using namespace irr;
 
 namespace is06 { namespace N3D { namespace NPrimitive {
+
+using is06::NEngine::NCore::CGame;
+using is06::NEngine::NException::C3DException;
 
 //! Constructor
 CStaticModel::CStaticModel() : CModelEntity()
@@ -44,9 +47,9 @@ void CStaticModel::shaderRender()
 void CStaticModel::createNode(const core::vector3df& initPosition)
 {
   if (MainMesh) {
-    MainNode = NEngine::CGame::getSceneManager()->addMeshSceneNode(MainMesh);
+    MainNode = CGame::getSceneManager()->addMeshSceneNode(MainMesh);
     MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
-    if (NEngine::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled") {
+    if (CGame::Settings->getParamString("model", "anti_aliasing") == "enabled") {
       MainNode->getMaterial(0).AntiAliasing = video::EAAM_LINE_SMOOTH;
     }
 
@@ -54,17 +57,17 @@ void CStaticModel::createNode(const core::vector3df& initPosition)
     MainNode->setPosition(initPosition);
 
     // Texture filtering
-    if (NEngine::CGame::Settings->getParamString("model", "texture_filter") == "anisotropic") {
+    if (CGame::Settings->getParamString("model", "texture_filter") == "anisotropic") {
       MainNode->setMaterialFlag(video::EMF_ANISOTROPIC_FILTER, true);
-    } else if(NEngine::CGame::Settings->getParamString("model", "texture_filter") == "trilinear") {
+    } else if(CGame::Settings->getParamString("model", "texture_filter") == "trilinear") {
       MainNode->setMaterialFlag(video::EMF_TRILINEAR_FILTER, true);
-    } else if(NEngine::CGame::Settings->getParamString("model", "texture_filter") == "none") {
+    } else if(CGame::Settings->getParamString("model", "texture_filter") == "none") {
       MainNode->setMaterialFlag(video::EMF_BILINEAR_FILTER, false);
     } else {
       MainNode->setMaterialFlag(video::EMF_BILINEAR_FILTER, true);
     }
   } else {
-    throw NEngine::NException::C3DException("Unable to retrieve static mesh");
+    throw C3DException("Unable to retrieve static mesh");
   }
 }
 
@@ -149,7 +152,7 @@ void CStaticModel::textureSwitch()
 void CStaticModel::turnX(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
-    MainNode->getRotation().X + (speed * NEngine::CGame::getSpeedFactor()),
+    MainNode->getRotation().X + (speed * CGame::getSpeedFactor()),
     MainNode->getRotation().Y,
     MainNode->getRotation().Z
   ));
@@ -160,7 +163,7 @@ void CStaticModel::turnY(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
     MainNode->getRotation().X,
-    MainNode->getRotation().Y + (speed * NEngine::CGame::getSpeedFactor()),
+    MainNode->getRotation().Y + (speed * CGame::getSpeedFactor()),
     MainNode->getRotation().Z
   ));
 }
@@ -171,7 +174,7 @@ void CStaticModel::turnZ(f32 speed)
   MainNode->setRotation(core::vector3df(
     MainNode->getRotation().X,
     MainNode->getRotation().Y,
-    MainNode->getRotation().Z + (speed * NEngine::CGame::getSpeedFactor())
+    MainNode->getRotation().Z + (speed * CGame::getSpeedFactor())
   ));
 }
 
@@ -179,7 +182,7 @@ void CStaticModel::turnZ(f32 speed)
 void CStaticModel::moveX(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
-    MainNode->getPosition().X + (speed * NEngine::CGame::getSpeedFactor()),
+    MainNode->getPosition().X + (speed * CGame::getSpeedFactor()),
     MainNode->getPosition().Y,
     MainNode->getPosition().Z
   ));
@@ -190,7 +193,7 @@ void CStaticModel::moveY(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
     MainNode->getPosition().X,
-    MainNode->getPosition().Y + (speed * NEngine::CGame::getSpeedFactor()),
+    MainNode->getPosition().Y + (speed * CGame::getSpeedFactor()),
     MainNode->getPosition().Z
   ));
 }
@@ -201,7 +204,7 @@ void CStaticModel::moveZ(f32 speed)
   MainNode->setPosition(core::vector3df(
     MainNode->getPosition().X,
     MainNode->getPosition().Y,
-    MainNode->getPosition().Z + (speed * NEngine::CGame::getSpeedFactor())
+    MainNode->getPosition().Z + (speed * CGame::getSpeedFactor())
   ));
 }
 
@@ -211,7 +214,7 @@ void CStaticModel::loadMeshCollision()
   bool optimize = true;
 
   if (MainNode) {
-    NewtonCollision* treeCollision = NewtonCreateTreeCollision(NEngine::CGame::getNewtonWorld(), 0);
+    NewtonCollision* treeCollision = NewtonCreateTreeCollision(CGame::getNewtonWorld(), 0);
     NewtonTreeCollisionBeginBuild(treeCollision);
 
     // On récupère les meshBuffer, à chaque meshBuffer, on ajoute les informations à la collision
@@ -228,12 +231,12 @@ void CStaticModel::loadMeshCollision()
 
     // Création du Body Newton
     f32 newtMatrix[16] = {};
-    MainBody = NewtonCreateBody(NEngine::CGame::getNewtonWorld(), treeCollision, newtMatrix);
+    MainBody = NewtonCreateBody(CGame::getNewtonWorld(), treeCollision, newtMatrix);
     MainNode->updateAbsolutePosition();
 
     core::matrix4 irrMatrix = MainNode->getRelativeTransformation();
     NewtonBodySetMatrix(MainBody, irrMatrix.pointer());
-    NewtonReleaseCollision(NEngine::CGame::getNewtonWorld(), treeCollision);
+    NewtonReleaseCollision(CGame::getNewtonWorld(), treeCollision);
   }
 }
 
@@ -296,7 +299,7 @@ void CStaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene
 void CStaticModel::clearMeshCollision()
 {
   if (MainBody) {
-    NewtonDestroyBody(NEngine::CGame::getNewtonWorld(), MainBody);
+    NewtonDestroyBody(CGame::getNewtonWorld(), MainBody);
   }
 }
 

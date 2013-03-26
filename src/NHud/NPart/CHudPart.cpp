@@ -5,57 +5,57 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Hud/CHudEnsemble.h"
-#include "../../include/Hud/Ensemble/CCommands.h"
+#include "../../include/core.h"
+#include "../../include/NHud/NPart/CHudPart.h"
+#include "../../include/NHud/NPart/CCommands.h"
 
 namespace is06 { namespace NHud { namespace NPart
 
-CHudEnsemble::CHudEnsemble() : CHud()
+CHudPart::CHudPart() : CHud()
 {
   Buttons = new NEnsemble::CCommands();
 }
 
-void CHudEnsemble::render()
+void CHudPart::render()
 {
   CHud::render();
   Buttons->render();
 }
 
-void CHudEnsemble::hide()
+void CHudPart::hide()
 {
   Buttons->hide();
 }
 
-void CHudEnsemble::show()
+void CHudPart::show()
 {
   Buttons->show();
 }
 
-void CHudEnsemble::setOpacity(f32 value)
+void CHudPart::setOpacity(f32 value)
 {
   Opacity = value;
   Buttons->setOpacity(Buttons->getOpacity() * Opacity);
 }
 
-void CHudEnsemble::addOpacity(f32 value)
+void CHudPart::addOpacity(f32 value)
 {
   Opacity += value;
   Buttons->setOpacity(Buttons->getOpacity() * Opacity);
 }
 
-void CHudEnsemble::subOpacity(f32 value)
+void CHudPart::subOpacity(f32 value)
 {
   Opacity -= value;
   Buttons->setOpacity(Buttons->getOpacity() * Opacity);
 }
 
-f32 CHudEnsemble::getOpacity()
+f32 CHudPart::getOpacity()
 {
   return Opacity;
 }
 
-CHudEnsemble::~CHudEnsemble()
+CHudPart::~CHudPart()
 {
   delete Buttons;
 }

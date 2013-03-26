@@ -5,19 +5,21 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/CGame.h"
-#include "../../include/Engine/Resource/CSettings.h"
-#include "../../include/Engine/Exception/C3DException.h"
-#include "../../include/Scene/CScene.h"
-#include "../../include/Sound/CSpeaker.h"
-#include "../../include/3D/CAnimatedModel.h"
-#include "../../include/3D/CStaticModel.h"
-#include "../../include/3D/CSensor.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NEngine/NResource/CSettings.h"
+#include "../../../include/NEngine/NException/C3DException.h"
+#include "../../../include/NScene/CScene.h"
+#include "../../../include/NSound/CSpeaker.h"
+#include "../../../include/N3D/NPrimitive/CAnimatedModel.h"
+#include "../../../include/N3D/NPrimitive/CStaticModel.h"
+#include "../../../include/N3D/NSensor/CSensor.h"
 
 using namespace irr;
 
 namespace is06 { namespace N3D { namespace NPrimitive {
+
+using is06::NEngine::NCore::CGame;
 
 //! Default constructor
 CAnimatedModel::CAnimatedModel() : CModelEntity()
@@ -62,7 +64,7 @@ void CAnimatedModel::createModel(const string& meshFile, const string& animation
 void CAnimatedModel::turnX(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
-    MainNode->getRotation().X + (speed * NEngine::CGame::getSpeedFactor()),
+    MainNode->getRotation().X + (speed * CGame::getSpeedFactor()),
     MainNode->getRotation().Y,
     MainNode->getRotation().Z
   ));
@@ -76,7 +78,7 @@ void CAnimatedModel::turnY(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
     MainNode->getRotation().X,
-    MainNode->getRotation().Y + (speed * NEngine::CGame::getSpeedFactor()),
+    MainNode->getRotation().Y + (speed * CGame::getSpeedFactor()),
     MainNode->getRotation().Z
   ));
 }
@@ -90,7 +92,7 @@ void CAnimatedModel::turnZ(f32 speed)
   MainNode->setRotation(core::vector3df(
     MainNode->getRotation().X,
     MainNode->getRotation().Y,
-    MainNode->getRotation().Z + (speed * NEngine::CGame::getSpeedFactor())
+    MainNode->getRotation().Z + (speed * CGame::getSpeedFactor())
   ));
 }
 
@@ -101,7 +103,7 @@ void CAnimatedModel::turnZ(f32 speed)
 void CAnimatedModel::moveX(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
-    MainNode->getPosition().X + (speed * NEngine::CGame::getSpeedFactor()),
+    MainNode->getPosition().X + (speed * CGame::getSpeedFactor()),
     MainNode->getPosition().Y,
     MainNode->getPosition().Z
   ));
@@ -115,7 +117,7 @@ void CAnimatedModel::moveY(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
     MainNode->getPosition().X,
-    MainNode->getPosition().Y + (speed * NEngine::CGame::getSpeedFactor()),
+    MainNode->getPosition().Y + (speed * CGame::getSpeedFactor()),
     MainNode->getPosition().Z
   ));
 }
@@ -129,7 +131,7 @@ void CAnimatedModel::moveZ(f32 speed)
   MainNode->setPosition(core::vector3df(
     MainNode->getPosition().X,
     MainNode->getPosition().Y,
-    MainNode->getPosition().Z + (speed * NEngine::CGame::getSpeedFactor())
+    MainNode->getPosition().Z + (speed * CGame::getSpeedFactor())
   ));
 }
 
@@ -139,11 +141,11 @@ void CAnimatedModel::moveZ(f32 speed)
  */
 void CAnimatedModel::createNode(const core::vector3df& initPosition)
 {
-  MainNode = NEngine::CGame::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)MainMesh);
+  MainNode = CGame::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)MainMesh);
 
   if (MainNode) {
     MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
-    MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (NEngine::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled"));
+    MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (CGame::Settings->getParamString("model", "anti_aliasing") == "enabled"));
     MainNode->setPosition(initPosition);
   } else {
     throw NEngine::NException::C3DException("Unable to create animated mesh node");
@@ -250,7 +252,7 @@ bool CAnimatedModel::collidesWithStatic(CStaticModel* other)
   f32 penetration[3];
 
   s32 res = NewtonCollisionCollide(
-    NEngine::CGame::getNewtonWorld(),
+    CGame::getNewtonWorld(),
     64,
     NewtonBodyGetCollision(MainBody),
     mainBodyMatrix,
@@ -325,7 +327,7 @@ f32 CAnimatedModel::getFloorCollision(CStaticModel* other)
  * \param ERayType type can be P (left ray) or Q (right ray)
  * \return f32 collision between 0.0f and 1.0f
  */
-f32 CAnimatedModel::getWallCollision(N3D::ERayType type, CStaticModel* other, core::vector3df& normal)
+f32 CAnimatedModel::getWallCollision(N3D::NCollision::ERayType type, CStaticModel* other, core::vector3df& normal)
 {
   NewtonCollision* otherBodyCollision = NewtonBodyGetCollision(other->getMainBody());
 
@@ -334,7 +336,7 @@ f32 CAnimatedModel::getWallCollision(N3D::ERayType type, CStaticModel* other, co
   f32 zPoint;
 
   // xPoint and zPoint are destination points of the ray
-  if (type == N3D::ERT_WALL_P) {
+  if (type == N3D::NCollision::ERT_WALL_P) {
     // P Ray (left)
     xPoint = MainNode->getPosition().X - 0.5f * cos(core::degToRad(MainNode->getRotation().Y));
     zPoint = MainNode->getPosition().Z + 0.5f * sin(core::degToRad(MainNode->getRotation().Y));
@@ -378,7 +380,7 @@ bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
   f32 penetration[3];
 
   s32 res = NewtonCollisionCollide(
-    NEngine::CGame::getNewtonWorld(),
+    CGame::getNewtonWorld(),
     64,
     NewtonBodyGetCollision(MainBody),
     mainBodyMatrix,
@@ -399,10 +401,10 @@ bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
  * \param EEventType type can be Always or Once
  * \return bool true if model is in sensor
  */
-bool CAnimatedModel::collidesWithSensor(CSensor* sensor, NEngine::EEventType type)
+bool CAnimatedModel::collidesWithSensor(NSensor::CSensor* sensor, NEngine::NEvent::EEventType type)
 {
   bool inside = sensor->getBox().isPointInside(MainNode->getPosition());
-  if (type == NEngine::EET_ONCE) {
+  if (type == NEngine::NEvent::EET_ONCE) {
     if (!SensorOnce[sensor]) {
       if (inside) {
         SensorOnce[sensor] = true;
@@ -501,7 +503,7 @@ void CAnimatedModel::setCurrentAnimation(s32 id, f32 speed)
   CurrentAnimationId = id;
   CurrentAnimationSpeed = speed;
 
-  N3D::SMeshAnimationInfo anim = AnimationList[id];
+  N3D::NPrimitive::SMeshAnimationInfo anim = AnimationList[id];
 
   MainNode->setCurrentFrame(anim.StartFrame);
   MainNode->setFrameLoop(anim.StartFrame, anim.EndFrame);

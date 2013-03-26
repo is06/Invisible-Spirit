@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENGINE_CONTROL_KEYBOARD_H__
 #define __IS06_ENGINE_CONTROL_KEYBOARD_H__
 
-#include "../EEventType.h"
+#include "../NEvent/EEventType.h"
 
 namespace is06 { namespace NEngine { namespace NControl {
 
@@ -16,8 +16,8 @@ namespace is06 { namespace NEngine { namespace NControl {
 class CKeyboard
 {
 public:
-  bool pressed(EKEY_CODE code, EEventType type = EET_ALWAYS);
-  bool any(EEventType type = EET_ALWAYS);
+  bool pressed(EKEY_CODE code, NEvent::EEventType type = NEvent::EET_ALWAYS);
+  bool any(NEvent::EEventType type = NEvent::EET_ALWAYS);
   s8 getDirectionXAxis();
   s8 getDirectionYAxis();
   f32 getDirectionAngle();

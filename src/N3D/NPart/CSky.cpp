@@ -5,17 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/3D/CSky.h"
-#include "../../include/Engine/CGame.h"
-#include "../../include/Engine/Resource/CResourceManager.h"
+#include "../../../include/N3D/NPart/CSky.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NEngine/NResource/CResourceManager.h"
 
 namespace is06 { namespace N3D { namespace NPart {
+
+using is06::NEngine::NCore::CGame;
+using is06::NEngine::NResource::CResourceManager;
 
 //! Constructor
 /**
  * \todo make multiple layers
  */
-CSky::CSky(const string& textureName) : NEngine::CEntity()
+CSky::CSky(const string& textureName) : NEngine::NCore::CEntity()
 {
   string up = "resource/texture/map/sky/" + textureName + "/up.jpg";
   string dn = "resource/texture/map/sky/" + textureName + "/dn.jpg";
@@ -24,13 +27,13 @@ CSky::CSky(const string& textureName) : NEngine::CEntity()
   string ft = "resource/texture/map/sky/" + textureName + "/ft.jpg";
   string bk = "resource/texture/map/sky/" + textureName + "/bk.jpg";
 
-  Layers[0] = NEngine::CGame::getSceneManager()->addSkyBoxSceneNode(
-    NEngine::NResource::CResourceManager::loadTexture(up),
-    NEngine::NResource::CResourceManager::loadTexture(dn),
-    NEngine::NResource::CResourceManager::loadTexture(lf),
-    NEngine::NResource::CResourceManager::loadTexture(rt),
-    NEngine::NResource::CResourceManager::loadTexture(ft),
-    NEngine::NResource::CResourceManager::loadTexture(bk)
+  Layers[0] = CGame::getSceneManager()->addSkyBoxSceneNode(
+    CResourceManager::loadTexture(up),
+    CResourceManager::loadTexture(dn),
+    CResourceManager::loadTexture(lf),
+    CResourceManager::loadTexture(rt),
+    CResourceManager::loadTexture(ft),
+    CResourceManager::loadTexture(bk)
   );
 }
 

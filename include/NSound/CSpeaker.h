@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SOUND_SPEAKER_H__
 #define __IS06_SOUND_SPEAKER_H__
 
-#include "../Engine/CEntity.h"
+#include "../NEngine/NCore/CEntity.h"
 
 namespace is06 { namespace NSound {
 
 //! 3D sound speaker entity that can be attached to a 3D graphical entity
-class CSpeaker : public NEngine::CEntity
+class CSpeaker : public NEngine::NCore::CEntity
 {
 public:
   CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text = "speaker", f32 radius = 10.0f);

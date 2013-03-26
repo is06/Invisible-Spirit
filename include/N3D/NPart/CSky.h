@@ -8,11 +8,11 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_PART_SKY_H__
 #define __IS06_3D_PART_SKY_H__
 
-#include "../Engine/CEntity.h"
+#include "../../NEngine/NCore/CEntity.h"
 
 namespace is06 { namespace N3D { namespace NPart {
 
-class CSky : public NEngine::CEntity
+class CSky : public NEngine::NCore::CEntity
 {
 public:
   CSky(const string& textureName);

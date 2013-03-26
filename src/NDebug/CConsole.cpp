@@ -5,51 +5,53 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/CGame.h"
-#include "../../include/Engine/Control/CKeyboard.h"
-#include "../../include/Debug/CConsole.h"
+#include "../../include/core.h"
+#include "../../include/NEngine/NCore/CGame.h"
+#include "../../include/NEngine/NControl/CKeyboard.h"
+#include "../../include/NDebug/CConsole.h"
 
 using namespace irr;
 
 namespace is06 { namespace NDebug {
 
+using is06::NEngine::NCore::CGame;
+
 CConsole::CConsole()
 {
-  gui::IGUIFont* font = NEngine::CGame::getDebugGUI()->getFont("resource/texture/debug/font/std.png");
-  CommandTextInput = NEngine::CGame::getDebugGUI()->addEditBox(
+  gui::IGUIFont* font = CGame::getDebugGUI()->getFont("resource/texture/debug/font/std.png");
+  CommandTextInput = CGame::getDebugGUI()->addEditBox(
     L"", core::recti(
       4,
-      NEngine::CGame::ScreenPos.Display.Bottom - 25,
-      NEngine::CGame::ScreenPos.Display.Right - 104,
-      NEngine::CGame::ScreenPos.Display.Bottom - 4
+      CGame::ScreenPos.Display.Bottom - 25,
+      CGame::ScreenPos.Display.Right - 104,
+      CGame::ScreenPos.Display.Bottom - 4
     )
   );
   CommandTextInput->setDrawBorder(false);
   CommandTextInput->setOverrideFont(font);
   CommandTextInput->setOverrideColor(video::SColor(255, 255, 255, 255));
 
-  NEngine::CGame::getDebugGUI()->setFocus(CommandTextInput);
+  CGame::getDebugGUI()->setFocus(CommandTextInput);
 }
 
 void CConsole::render()
 {
-  NEngine::CGame::getVideoDriver()->draw2DRectangle(
+  CGame::getVideoDriver()->draw2DRectangle(
     video::SColor(255, 75, 75, 75),
     core::recti(
       0,
-      NEngine::CGame::ScreenPos.Display.Bottom - 30,
-      NEngine::CGame::ScreenPos.Display.Right - 100,
-      NEngine::CGame::ScreenPos.Display.Bottom
+      CGame::ScreenPos.Display.Bottom - 30,
+      CGame::ScreenPos.Display.Right - 100,
+      CGame::ScreenPos.Display.Bottom
     )
   );
-  NEngine::CGame::getVideoDriver()->draw2DRectangle(
+  CGame::getVideoDriver()->draw2DRectangle(
     video::SColor(255, 50, 50, 50),
     core::recti(
       4,
-      NEngine::CGame::ScreenPos.Display.Bottom - 25,
-      NEngine::CGame::ScreenPos.Display.Right - 104,
-      NEngine::CGame::ScreenPos.Display.Bottom - 4
+      CGame::ScreenPos.Display.Bottom - 25,
+      CGame::ScreenPos.Display.Right - 104,
+      CGame::ScreenPos.Display.Bottom - 4
     )
   );
 }
@@ -91,7 +93,7 @@ void CConsole::manageSceneInterface(const vector<string>& elements)
 void CConsole::execute_scene_set_light_color(u8 alpha, u8 red, u8 green, u8 blue)
 {
   video::SColor color = video::SColor(alpha, red, green, blue);
-  NEngine::CGame::getSceneManager()->setAmbientLight(color);
+  CGame::getSceneManager()->setAmbientLight(color);
 }
 
 s32 CConsole::stringToInt(const string& str)

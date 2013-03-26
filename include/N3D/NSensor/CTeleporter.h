@@ -8,9 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_3D_SENSOR_TELEPORTER_H__
 #define __IS06_3D_SENSOR_TELEPORTER_H__
 
-#include "../../Scene/ESceneIdentifier.h"
+#include "../../NScene/ESceneIdentifier.h"
 #include "EPlaneType.h"
-#include "../CSensor.h"
+#include "../NSensor/CSensor.h"
 
 namespace is06 { namespace N3D { namespace NSensor {
 

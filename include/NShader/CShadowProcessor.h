@@ -19,24 +19,24 @@ namespace is06 { namespace NShader {
 class CShadowProcessor
 {
 public:
-  CShadowProcessor(N3D::CCamera* mainCamera);
+  CShadowProcessor(N3D::NCamera::CCamera* mainCamera);
   ~CShadowProcessor();
 
   void render();
 
-  void addDirectLight(N3D::NLight::CDirect* light);
-  void setMainCamera(N3D::CCamera* camera);
+  void addDirectLight(N3D::NLight::CDirectLight* light);
+  void setMainCamera(N3D::NCamera::CCamera* camera);
 
 private:
   void createDepthRenderTargetTexture();
   void drawDepthOnTexture();
 
-  vector<N3D::NLight::CDirect*> Lights;
-  vector<N3D::NLight::CDirect*>::iterator LightsIt;
+  vector<N3D::NLight::CDirectLight*> Lights;
+  vector<N3D::NLight::CDirectLight*>::iterator LightsIt;
 
-  N3D::CCamera* MainCamera;
+  N3D::NCamera::CCamera* MainCamera;
   video::ITexture* DepthMap;
-  NHud::CPicture* DepthMapHud;
+  NHud::NPrimitive::CPicture* DepthMapHud;
 };
 
 }}

@@ -1,0 +1,57 @@
+0.1 release 10 (in development)
+
+* Cg shaders
+* Irrlicht 1.8 compatibility
+* Hud entities can rotate
+* Debug console
+* Trophies
+* Teleporters
+* Cinemascope stripes
+* Simple sky box
+
+0.1 release 9 (2012-05-15)
+
+* Hero 3D mesh
+* Mini-map
+* Anti-aliasing feature
+* Direct3D 9 support
+* Music
+* Glow effect
+* 3D speakers
+
+0.1 release 8 (2012-03-17)
+
+* Title screen remade
+* Alpha zone test map
+* New gameplay menu
+* Scene transitions
+* UTF-8 text support
+
+0.1 release 7 (???)
+
+* Collision test map and collision improvements
+
+0.1 release 6 (2011-03-01)
+
+* Collisions with floor and walls
+
+0.1 release 5 (2011-01-23)
+
+* Rollback to Newton for collisions
+
+0.1 release 4 (2011-01-19)
+
+* Cmake build file
+* Character moves
+
+0.1 release 3 (2011-01-13)
+
+* Third person camera control
+
+0.1 release 2 (2011-01-12)
+
+* New physic engine for collision detection with static mesh
+
+0.1 release 1 (2011-01-09)
+
+* First test map

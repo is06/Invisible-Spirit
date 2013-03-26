@@ -11,10 +11,12 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace N3D { namespace NLight {
 
+using is06::NEngine::NCore::CGame;
+
 //! Constructor
 CDirectLight::CDirectLight()
 {
-  Camera = NEngine::NCore::CGame::getSceneManager()->addCameraSceneNode();
+  Camera = CGame::getSceneManager()->addCameraSceneNode();
 }
 
 //! Destructor

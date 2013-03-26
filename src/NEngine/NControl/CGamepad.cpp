@@ -5,10 +5,12 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/Control/CGamepad.h"
-#include "../../../include/Engine/CGame.h"
-#include "../../../include/Engine/CEventManager.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NEngine/NControl/CGamepad.h"
+#include "../../../include/NEngine/NEvent/CEventManager.h"
+
+using namespace irr;
 
 namespace is06 { namespace NEngine { namespace NControl {
 
@@ -95,7 +97,7 @@ s8 CGamepad::getRightJoystickYAxis()
  * \param u16 buttons specified in EGamepadButton enumeration
  * \return bool
  */
-bool CGamepad::buttonPressed(u16 buttons, EEventType type)
+bool CGamepad::buttonPressed(u16 buttons, NEvent::EEventType type)
 {
   if (type == EET_ONCE) {
     if (!ButtonOnce[buttons]) {
@@ -119,7 +121,7 @@ bool CGamepad::buttonPressed(u16 buttons, EEventType type)
  * \param EGamepadDirection direction
  * \return bool
  */
-bool CGamepad::dirPressed(EGamepadDirection direction, EEventType type)
+bool CGamepad::dirPressed(EGamepadDirection direction, NEvent::EEventType type)
 {
   if (type == EET_ONCE) {
     if (!DirectionOnce[direction]) {
