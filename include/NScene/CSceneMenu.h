@@ -9,7 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_SCENE_SCENE_MENU_H__
 
 #include "CScene.h"
-#include "../Engine/Save/CSlot.h"
+#include "../NEngine/NSave/CSaveSlot.h"
 
 namespace is06 { namespace NScene {
 

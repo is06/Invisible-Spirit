@@ -9,11 +9,11 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_SCENE_SCENE_GAMEPLAY_H__
 
 #include "CScene.h"
-#include "../Hud/CHudEnsemble.h"
-#include "../Hud/CMiniMap.h"
-#include "../Hud/CPauseScreen.h"
-#include "../Engine/Gameplay/CNPCInterface.h"
-#include "../Engine/Gameplay/CMapSectionInterface.h"
+#include "../NHud/NCore/CHudEntity.h"
+#include "../NHud/NPart/CMiniMap.h"
+#include "../NHud/NPauseScreen/CPauseScreen.h"
+#include "../NEngine/NGameplay/CNPCInterface.h"
+#include "../NEngine/NGameplay/CMapSectionInterface.h"
 
 namespace is06 { namespace NScene {
 
