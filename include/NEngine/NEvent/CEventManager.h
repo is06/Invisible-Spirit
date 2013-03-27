@@ -68,7 +68,6 @@ private:
   core::position2di MousePosition;
 };
 
-}
-}
+}}}
 
 #endif
