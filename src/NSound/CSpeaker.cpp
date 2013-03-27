@@ -5,20 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/CGame.h"
-#include "../../include/Engine/Resource/CResourceManager.h"
-#include "../../include/Sound/CSpeaker.h"
-#include "../../include/Sound/CSoundManager.h"
+#include "../../include/core.h"
+#include "../../include/NEngine/NCore/CGame.h"
+#include "../../include/NEngine/NResource/CResourceManager.h"
+#include "../../include/NSound/CSpeaker.h"
+#include "../../include/NSound/CSoundManager.h"
 
 namespace is06 { namespace NSound {
 
 //! Constructor
-CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text, f32 radius) : NEngine::CEntity()
+CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, const string& text, f32 radius) : NEngine::NCore::CEntity()
 {
   video::ITexture* iconTexture = NEngine::NResource::CResourceManager::loadTexture("resource/debug/icons/speaker.bmp");
 
-  Icon = NEngine::CGame::getSceneManager()->addBillboardSceneNode(0, core::dimension2df(1.0f, 1.0f), initPos);
+  Icon = NEngine::NCore::CGame::getSceneManager()->addBillboardSceneNode(0, core::dimension2df(1.0f, 1.0f), initPos);
   Icon->setMaterialTexture(0, iconTexture);
 
   //@TODO: text
@@ -30,7 +30,7 @@ CSpeaker::CSpeaker(const string& streamFile, const core::vector3df& initPos, con
   Position.z = initPos.Z;
 
   // Sound stream creation
-  FMOD_System_CreateStream(NEngine::CGame::getSoundManager()->getSystem(), streamFile.c_str(), FMOD_3D | FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
+  FMOD_System_CreateStream(NEngine::NCore::CGame::getSoundManager()->getSystem(), streamFile.c_str(), FMOD_3D | FMOD_HARDWARE | FMOD_LOOP_NORMAL, 0, &SoundPtr);
 
   // Setting 3D position
   FMOD_Channel_Set3DAttributes(ChannelPtr, &Position, NULL);
@@ -90,7 +90,7 @@ void CSpeaker::setPosition(const core::vector3df& position)
 //! Plays the sound from the speaker
 void CSpeaker::play()
 {
-  FMOD_System_PlaySound(NEngine::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
+  FMOD_System_PlaySound(NEngine::NCore::CGame::getSoundManager()->getSystem(), FMOD_CHANNEL_FREE, SoundPtr, 0, &ChannelPtr);
   FMOD_Channel_SetPaused(ChannelPtr, false);
 }
 

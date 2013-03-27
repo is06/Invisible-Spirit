@@ -5,30 +5,30 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/CGame.h"
-#include "../../../include/Engine/CSave.h"
-#include "../../../include/Hud/CText.h"
-#include "../../../include/Hud/CCounter.h"
-#include "../../../include/Hud/Counter/CGameTime.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NEngine/NSave/CSave.h"
+#include "../../../include/NHud/NText/CText.h"
+#include "../../../include/NHud/NCounter/CCounter.h"
+#include "../../../include/NHud/NCounter/CGameTime.h"
 
 namespace is06 { namespace NHud { namespace NCounter {
 
 //! \todo comment this function
 CGameTime::CGameTime() : CCounter()
 {
-  CounterText = new CText(
+  CounterText = new NText::CText(
     "---",
-    NEngine::CGame::ScreenPos.Hud.Left + 100,
-    NEngine::CGame::ScreenPos.Hud.Bottom + 80,
-    EFS_STANDARD_48
+    NEngine::NCore::CGame::ScreenPos.Hud.Left + 100,
+    NEngine::NCore::CGame::ScreenPos.Hud.Bottom + 80,
+    NText::EFS_STANDARD_48
   );
 }
 
 //! \todo comment this function
 void CGameTime::render()
 {
-  updateValues(NEngine::CGame::getCurrentSave()->getInteger(21));
+  updateValues(NEngine::NCore::CGame::getCurrentSave()->getInteger(21));
   updateDigits();
   CounterText->render();
 }

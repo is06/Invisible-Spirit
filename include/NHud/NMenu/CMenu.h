@@ -8,13 +8,13 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_MENU_MENU_H__
 #define __IS06_HUD_MENU_MENU_H__
 
-#include "CHud.h"
+#include "../NCore/CHudEntity.h"
 #include "EMenuStyle.h"
 #include "EMenuIcon.h"
 
 namespace is06 { namespace NHud { namespace NMenu {
 
-class CMenu : public CHud
+class CMenu : public NCore::CHudEntity
 {
 public:
   CMenu(f32 x = 0, f32 y = 0, f32 width = 150, u8 height = 8, EMenuStyle style = EMS_STD);
@@ -40,7 +40,7 @@ public:
   f32 getOpacity();
 
 protected:
-  CPicture* Cursor;
+  NPrimitive::CPicture* Cursor;
 
   map<u16, CMenuOption*> Options;
   map<u16, CMenuOption*>::iterator OptionsIt;

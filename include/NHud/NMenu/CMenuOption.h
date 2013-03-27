@@ -8,13 +8,13 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_MENU_MENU_OPTION_H__
 #define __IS06_HUD_MENU_MENU_OPTION_H__
 
-#include "CHud.h"
+#include "../NCore/CHudEntity.h"
 #include "EMenuIcon.h"
 #include "EMenuStyle.h"
 
 namespace is06 { namespace NHud { namespace NMenu {
 
-class CMenuOption : public CHud
+class CMenuOption : public NCore::CHudEntity
 {
 public:
   CMenuOption(EMenuIcon icon, const string& title = "[Option]", f32 x = 0, f32 y = 0, EMenuStyle style = EMS_STD);
@@ -34,8 +34,8 @@ public:
 
 protected:
   EMenuIcon Icon;
-  CText* Label;
-  CWindow* Box;
+  NText::CText* Label;
+  NWindow::CWindow* Box;
 
   f32 Opacity;
   bool Hover;

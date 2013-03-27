@@ -8,13 +8,13 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_BUTTON_BUTTON_H__
 #define __IS06_HUD_BUTTON_BUTTON_H__
 
-#include "../Engine/Control/ECommandIdentifier.h"
-#include "CHud.h"
+#include "../../NEngine/NControl/ECommandIdentifier.h"
+#include "../NCore/CHudEntity.h"
 
 namespace is06 { namespace NHud { namespace NButton {
 
 //! Graphical representation of a button in the HUD gameplay interface
-class CButton : public CHud
+class CButton : public NCore::CHudEntity
 {
 public:
   CButton(f32 x, f32 y);
@@ -31,7 +31,7 @@ public:
   f32 getOpacity();
 
 protected:
-  CPicture* ButtonCircle;
+  NPrimitive::CPicture* ButtonCircle;
   f32 Opacity;
 };
 

@@ -8,6 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SOUND_MUSIC_REFERENCE_H__
 #define __IS06_SOUND_MUSIC_REFERENCE_H__
 
+#include "CMusic.h"
 #include "SMusicInfo.h"
 
 namespace is06 { namespace NSound {

@@ -8,13 +8,13 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PART_MINI_MAP_ARROW_H__
 #define __IS06_HUD_PART_MINI_MAP_ARROW_H__
 
-#include "../Hud/CHud.h"
+#include "../NCore/CHudEntity.h"
 
 using namespace irr;
 
 namespace is06 { namespace NHud { namespace NPart {
 
-class CMiniMapArrow : public CHud
+class CMiniMapArrow : public NCore::CHudEntity
 {
 public:
   CMiniMapArrow(video::SColor color);

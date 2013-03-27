@@ -17,9 +17,6 @@ using namespace irr;
 
 namespace is06 { namespace N3D { namespace NPrimitive {
 
-using is06::NEngine::NCore::CGame;
-using is06::NEngine::NException::C3DException;
-
 //! Constructor
 CStaticModel::CStaticModel() : CModelEntity()
 {
@@ -47,9 +44,9 @@ void CStaticModel::shaderRender()
 void CStaticModel::createNode(const core::vector3df& initPosition)
 {
   if (MainMesh) {
-    MainNode = CGame::getSceneManager()->addMeshSceneNode(MainMesh);
+    MainNode = NEngine::NCore::CGame::getSceneManager()->addMeshSceneNode(MainMesh);
     MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
-    if (CGame::Settings->getParamString("model", "anti_aliasing") == "enabled") {
+    if (NEngine::NCore::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled") {
       MainNode->getMaterial(0).AntiAliasing = video::EAAM_LINE_SMOOTH;
     }
 
@@ -57,17 +54,17 @@ void CStaticModel::createNode(const core::vector3df& initPosition)
     MainNode->setPosition(initPosition);
 
     // Texture filtering
-    if (CGame::Settings->getParamString("model", "texture_filter") == "anisotropic") {
+    if (NEngine::NCore::CGame::Settings->getParamString("model", "texture_filter") == "anisotropic") {
       MainNode->setMaterialFlag(video::EMF_ANISOTROPIC_FILTER, true);
-    } else if(CGame::Settings->getParamString("model", "texture_filter") == "trilinear") {
+    } else if(NEngine::NCore::CGame::Settings->getParamString("model", "texture_filter") == "trilinear") {
       MainNode->setMaterialFlag(video::EMF_TRILINEAR_FILTER, true);
-    } else if(CGame::Settings->getParamString("model", "texture_filter") == "none") {
+    } else if(NEngine::NCore::CGame::Settings->getParamString("model", "texture_filter") == "none") {
       MainNode->setMaterialFlag(video::EMF_BILINEAR_FILTER, false);
     } else {
       MainNode->setMaterialFlag(video::EMF_BILINEAR_FILTER, true);
     }
   } else {
-    throw C3DException("Unable to retrieve static mesh");
+    throw NEngine::NException::C3DException("Unable to retrieve static mesh");
   }
 }
 
@@ -152,7 +149,7 @@ void CStaticModel::textureSwitch()
 void CStaticModel::turnX(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
-    MainNode->getRotation().X + (speed * CGame::getSpeedFactor()),
+    MainNode->getRotation().X + (speed * NEngine::NCore::CGame::getSpeedFactor()),
     MainNode->getRotation().Y,
     MainNode->getRotation().Z
   ));
@@ -163,7 +160,7 @@ void CStaticModel::turnY(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
     MainNode->getRotation().X,
-    MainNode->getRotation().Y + (speed * CGame::getSpeedFactor()),
+    MainNode->getRotation().Y + (speed * NEngine::NCore::CGame::getSpeedFactor()),
     MainNode->getRotation().Z
   ));
 }
@@ -174,7 +171,7 @@ void CStaticModel::turnZ(f32 speed)
   MainNode->setRotation(core::vector3df(
     MainNode->getRotation().X,
     MainNode->getRotation().Y,
-    MainNode->getRotation().Z + (speed * CGame::getSpeedFactor())
+    MainNode->getRotation().Z + (speed * NEngine::NCore::CGame::getSpeedFactor())
   ));
 }
 
@@ -182,7 +179,7 @@ void CStaticModel::turnZ(f32 speed)
 void CStaticModel::moveX(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
-    MainNode->getPosition().X + (speed * CGame::getSpeedFactor()),
+    MainNode->getPosition().X + (speed * NEngine::NCore::CGame::getSpeedFactor()),
     MainNode->getPosition().Y,
     MainNode->getPosition().Z
   ));
@@ -193,7 +190,7 @@ void CStaticModel::moveY(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
     MainNode->getPosition().X,
-    MainNode->getPosition().Y + (speed * CGame::getSpeedFactor()),
+    MainNode->getPosition().Y + (speed * NEngine::NCore::CGame::getSpeedFactor()),
     MainNode->getPosition().Z
   ));
 }
@@ -204,7 +201,7 @@ void CStaticModel::moveZ(f32 speed)
   MainNode->setPosition(core::vector3df(
     MainNode->getPosition().X,
     MainNode->getPosition().Y,
-    MainNode->getPosition().Z + (speed * CGame::getSpeedFactor())
+    MainNode->getPosition().Z + (speed * NEngine::NCore::CGame::getSpeedFactor())
   ));
 }
 
@@ -214,7 +211,7 @@ void CStaticModel::loadMeshCollision()
   bool optimize = true;
 
   if (MainNode) {
-    NewtonCollision* treeCollision = NewtonCreateTreeCollision(CGame::getNewtonWorld(), 0);
+    NewtonCollision* treeCollision = NewtonCreateTreeCollision(NEngine::NCore::CGame::getNewtonWorld(), 0);
     NewtonTreeCollisionBeginBuild(treeCollision);
 
     // On récupère les meshBuffer, à chaque meshBuffer, on ajoute les informations à la collision
@@ -231,12 +228,12 @@ void CStaticModel::loadMeshCollision()
 
     // Création du Body Newton
     f32 newtMatrix[16] = {};
-    MainBody = NewtonCreateBody(CGame::getNewtonWorld(), treeCollision, newtMatrix);
+    MainBody = NewtonCreateBody(NEngine::NCore::CGame::getNewtonWorld(), treeCollision, newtMatrix);
     MainNode->updateAbsolutePosition();
 
     core::matrix4 irrMatrix = MainNode->getRelativeTransformation();
     NewtonBodySetMatrix(MainBody, irrMatrix.pointer());
-    NewtonReleaseCollision(CGame::getNewtonWorld(), treeCollision);
+    NewtonReleaseCollision(NEngine::NCore::CGame::getNewtonWorld(), treeCollision);
   }
 }
 
@@ -299,7 +296,7 @@ void CStaticModel::addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene
 void CStaticModel::clearMeshCollision()
 {
   if (MainBody) {
-    NewtonDestroyBody(CGame::getNewtonWorld(), MainBody);
+    NewtonDestroyBody(NEngine::NCore::CGame::getNewtonWorld(), MainBody);
   }
 }
 

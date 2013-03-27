@@ -5,37 +5,37 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Hud/CMenuOption.h"
-#include "../../include/Hud/CWindow.h"
-#include "../../include/Hud/CText.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NMenu/CMenuOption.h"
+#include "../../../include/NHud/NWindow/CWindow.h"
+#include "../../../include/NHud/NText/CText.h"
 
 namespace is06 { namespace NHud { namespace NMenu {
 
-CMenuOption::CMenuOption(EMenuIcon icon, const string& title, f32 x, f32 y, EMenuStyle style) : CHud()
+CMenuOption::CMenuOption(EMenuIcon icon, const string& title, f32 x, f32 y, EMenuStyle style) : NCore::CHudEntity()
 {
   Icon = icon;
 
-  EWindowStyle boxStyle = EWS_STD;
-  EFontStyle fontStyle = EFS_STANDARD_48;
+  NWindow::EWindowStyle boxStyle = NWindow::EWS_STD;
+  NText::EFontStyle fontStyle = NText::EFS_STANDARD_48;
 
   switch (style) {
     case EMS_STD:
-      boxStyle = EWS_STD;
-      fontStyle = EFS_STANDARD_48;
+      boxStyle = NWindow::EWS_STD;
+      fontStyle = NText::EFS_STANDARD_48;
       break;
     case EMS_TITLE:
-      boxStyle = EWS_NONE;
-      fontStyle = EFS_STANDARD_48;
+      boxStyle = NWindow::EWS_NONE;
+      fontStyle = NText::EFS_STANDARD_48;
       break;
     default:
-      boxStyle = EWS_NONE;
-      fontStyle = EFS_STANDARD_48;
+      boxStyle = NWindow::EWS_NONE;
+      fontStyle = NText::EFS_STANDARD_48;
       break;
   }
 
-  Box = new CWindow(x + 75, y, 150, 28, 3, boxStyle);
-  Label = new CText(title, x + 6, y, fontStyle);
+  Box = new NWindow::CWindow(x + 75, y, 150, 28, 3, boxStyle);
+  Label = new NText::CText(title, x + 6, y, fontStyle);
 
   Hover = false;
   Enabled = true;
@@ -45,7 +45,7 @@ CMenuOption::CMenuOption(EMenuIcon icon, const string& title, f32 x, f32 y, EMen
 
 void CMenuOption::render()
 {
-  CHud::render();
+  NCore::CHudEntity::render();
   Box->render();
   Label->render();
 }

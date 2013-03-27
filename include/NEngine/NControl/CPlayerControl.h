@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENGINE_CONTROL_PLAYER_CONTROL_H__
 #define __IS06_ENGINE_CONTROL_PLAYER_CONTROL_H__
 
+#include "CKeyboard.h"
+#include "CGamepad.h"
 #include "ECommandIdentifier.h"
 #include "../NEvent/EEventType.h"
 

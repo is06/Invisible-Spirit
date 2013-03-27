@@ -5,12 +5,12 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Shader/CShaders.h"
-#include "../../include/Shader/CDiffuseShaderCallback.h"
-#include "../../include/Shader/CBlurShaderCallback.h"
-#include "../../include/Shader/CDepthShaderCallback.h"
-#include "../../include/Shader/CShadowShaderCallback.h"
+#include "../../include/core.h"
+#include "../../include/NShader/CShaders.h"
+#include "../../include/NShader/CDiffuseShaderCallback.h"
+#include "../../include/NShader/CBlurShaderCallback.h"
+#include "../../include/NShader/CDepthShaderCallback.h"
+#include "../../include/NShader/CShadowShaderCallback.h"
 
 using namespace irr;
 

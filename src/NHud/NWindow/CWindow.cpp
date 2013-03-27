@@ -5,13 +5,13 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Hud/CWindow.h"
-#include "../../include/Hud/CPicture.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NWindow/CWindow.h"
+#include "../../../include/NHud/NPrimitive/CPicture.h"
 
 namespace is06 { namespace NHud { namespace NWindow {
 
-CWindow::CWindow(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, EWindowStyle style) : CHud()
+CWindow::CWindow(f32 x, f32 y, f32 w, f32 h, f32 borderWidth, EWindowStyle style) : NCore::CHudEntity()
 {
   Pos = core::position2df(x, y);
   Size = core::dimension2df(w, h);
@@ -33,27 +33,27 @@ void CWindow::applyStyleStd(f32 x, f32 y, f32 w, f32 h, f32 borderWidth)
   f32 sideHMin = y + (h / 2) * -1;
   f32 sideHMax = y + (h / 2);
 
-  CornerTL = new CPicture(sideWMin, sideHMin, borderWidth, borderWidth, texturePath);
-  CornerTR = new CPicture(sideWMax, sideHMin, borderWidth, borderWidth, texturePath);
-  CornerBL = new CPicture(sideWMin, sideHMax, borderWidth, borderWidth, texturePath);
-  CornerBR = new CPicture(sideWMax, sideHMax, borderWidth, borderWidth, texturePath);
+  CornerTL = new NPrimitive::CPicture(sideWMin, sideHMin, borderWidth, borderWidth, texturePath);
+  CornerTR = new NPrimitive::CPicture(sideWMax, sideHMin, borderWidth, borderWidth, texturePath);
+  CornerBL = new NPrimitive::CPicture(sideWMin, sideHMax, borderWidth, borderWidth, texturePath);
+  CornerBR = new NPrimitive::CPicture(sideWMax, sideHMax, borderWidth, borderWidth, texturePath);
 
   CornerBL->setTextureOffset(core::vector2df(0.0f, 0.0f), core::vector2df(0.0625f, 0.0625f));
   CornerBR->setTextureOffset(core::vector2df(0.9375f, 0.0f), core::vector2df(1.0f, 0.0625f));
   CornerTL->setTextureOffset(core::vector2df(0.0f, 0.9375f), core::vector2df(0.0625f, 1.0f));
   CornerTR->setTextureOffset(core::vector2df(0.9375f, 0.9375f), core::vector2df(1.0f, 1.0f));
 
-  SideTop = new CPicture(x, sideHMax, sideW, borderWidth, texturePath);
-  SideLeft = new CPicture(sideWMin, y, borderWidth, sideH, texturePath);
-  SideRight = new CPicture(sideWMax, y, borderWidth, sideH, texturePath);
-  SideBottom = new CPicture(x, sideHMin, sideW, borderWidth, texturePath);
+  SideTop = new NPrimitive::CPicture(x, sideHMax, sideW, borderWidth, texturePath);
+  SideLeft = new NPrimitive::CPicture(sideWMin, y, borderWidth, sideH, texturePath);
+  SideRight = new NPrimitive::CPicture(sideWMax, y, borderWidth, sideH, texturePath);
+  SideBottom = new NPrimitive::CPicture(x, sideHMin, sideW, borderWidth, texturePath);
 
   SideTop->setTextureOffset(core::vector2df(0.0625f, 0.0f), core::vector2df(0.9375f, 0.0625f));
   SideLeft->setTextureOffset(core::vector2df(0.0f, 0.0625f), core::vector2df(0.0625f, 0.9375f));
   SideRight->setTextureOffset(core::vector2df(0.9375f, 0.0625f), core::vector2df(1.0f, 0.9375f));
   SideBottom->setTextureOffset(core::vector2df(0.0625f, 0.9375f), core::vector2df(0.9375f, 1.0f));
 
-  Center = new CPicture(x, y, sideW, sideH, texturePath);
+  Center = new NPrimitive::CPicture(x, y, sideW, sideH, texturePath);
   Center->setTextureOffset(core::vector2df(0.0625f, 0.0625f), core::vector2df(0.9375f, 0.9375f));
 }
 
@@ -64,7 +64,7 @@ void CWindow::applyStyleNone()
 
 void CWindow::render()
 {
-  CHud::render();
+  NCore::CHudEntity::render();
   if (Center) {
     CornerTL->render();
     CornerTR->render();

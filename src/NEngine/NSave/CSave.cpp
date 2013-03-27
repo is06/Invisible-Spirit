@@ -5,10 +5,10 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/CSave.h"
-#include "../../include/Engine/Save/CFile.h"
-#include "../../include/Engine/CGame.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NSave/CSave.h"
+#include "../../../include/NEngine/NSave/CSaveFile.h"
+#include "../../../include/NEngine/NCore/CGame.h"
 
 namespace is06 { namespace NEngine { namespace NSave {
 
@@ -20,10 +20,10 @@ CSave::CSave()
 
 void CSave::loadPrimitiveInfo(u8 slot)
 {
-  NSave::CFile* saveFile = new NSave::CFile();
+  CSaveFile* saveFile = new CSaveFile();
   saveFile->prepareForRead(slot);
 
-  NSave::SFileElement element;
+  SFileElement element;
 
   for (u32 i = 0; i < 65535; i++) {
     element = saveFile->getNextElement();
@@ -44,10 +44,10 @@ void CSave::loadPrimitiveInfo(u8 slot)
 //! Loads all game save variable from a file
 void CSave::load(u8 slot)
 {
-  NSave::CFile* saveFile = new NSave::CFile();
+  CSaveFile* saveFile = new CSaveFile();
   saveFile->prepareForRead(slot);
 
-  NSave::SFileElement element;
+  SFileElement element;
 
   for (u32 i = 0; i < 65535; i++) {
     element = saveFile->getNextElement();
@@ -70,7 +70,7 @@ void CSave::load(u8 slot)
 //! Writes the current game save to a file
 void CSave::save(u8 slot)
 {
-  NSave::CFile* saveFile = new NSave::CFile();
+  CSaveFile* saveFile = new CSaveFile();
   saveFile->prepareForWrite(slot);
 
   for (u32 i = 0; i < 65535; i++) {
@@ -94,7 +94,7 @@ void CSave::save(u8 slot)
 void CSave::newGame(NEngine::NGameplay::EDifficultyLevel difficultyLevel)
 {
   setGeneralDefaultValues(difficultyLevel);
-  CGame::changeScene(IntegerList[11]);
+  NCore::CGame::changeScene(IntegerList[11]);
 }
 
 //! Gets an integer value from the game save

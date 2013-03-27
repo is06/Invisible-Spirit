@@ -8,11 +8,11 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PLAYER_STATE_MAIN_INFO_H__
 #define __IS06_HUD_PLAYER_STATE_MAIN_INFO_H__
 
-#include "../CHud.h"
+#include "../NCore/CHudEntity.h"
 
 namespace is06 { namespace NHud { namespace NPlayerState {
 
-class CMainInfo : public CHud
+class CMainInfo : public NCore::CHudEntity
 {
 public:
   CMainInfo();
@@ -27,9 +27,9 @@ public:
   f32 getOpacity();
 
 private:
-  CText* Label;
-  CText* Info;
-  NCounter::CBar* Gauge;
+  NText::CText* Label;
+  NText::CText* Info;
+  NCounter::CBarMeter* Gauge;
   f32 Opacity;
 };
 

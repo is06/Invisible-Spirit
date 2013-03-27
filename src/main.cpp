@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../include/NEngine/core.h"
-#include "../include/NEngine/CGame.h"
+#include "../include/core.h"
+#include "../include/NEngine/NCore/CGame.h"
 #include "../include/NEngine/NException/CEngineException.h"
 
 using namespace is06;

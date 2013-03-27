@@ -5,22 +5,22 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Hud/Button/CText.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NButton/CTextButton.h"
 
 namespace is06 { namespace NHud { namespace NButton {
 
-CText::CText(f32 x, f32 y) : CButton(x, y)
+CTextButton::CTextButton(f32 x, f32 y) : CButton(x, y)
 {
 
 }
 
-void CText::render()
+void CTextButton::render()
 {
   CButton::render();
 }
 
-CText::~CText()
+CTextButton::~CTextButton()
 {
 
 }

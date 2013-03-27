@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PART_ENERGY_H__
 #define __IS06_HUD_PART_ENERGY_H__
 
-#include "../CHud.h"
+#include "../NCore/CHudEntity.h"
 
 namespace is06 { namespace NHud { namespace NPart {
 
 //! The HUD energy interface
-class CEnergy : public CHud
+class CEnergy : public NCore::CHudEntity
 {
 public:
   CEnergy();
@@ -27,7 +27,7 @@ public:
   void subOpacity(f32 value);
   f32 getOpacity();
 
-  NCounter::CBar* HpBar;
+  NCounter::CBarMeter* HpBar;
   //CBarCounter* MpBar;
   //CSpiritCounter* SpiritPower;
 

@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SHADER_SHADOW_SHADER_CALLBACK_H__
 #define __IS06_SHADER_SHADOW_SHADER_CALLBACK_H__
 
-#include "../Engine/CGame.h"
+#include "../NEngine/NCore/CGame.h"
 
 namespace is06 { namespace NShader {
 

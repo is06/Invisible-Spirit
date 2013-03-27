@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_WINDOW_WINDOW_H__
 #define __IS06_HUD_WINDOW_WINDOW_H__
 
-#include "CHud.h"
+#include "../NCore/CHudEntity.h"
 #include "EWindowStyle.h"
 
 namespace is06 { namespace NHud { namespace NWindow {
 
-class CWindow : public CHud
+class CWindow : public NCore::CHudEntity
 {
 public:
   CWindow(f32 x = 0, f32 y = 0, f32 w = 150, f32 h = 100, f32 borderWidth = 4, EWindowStyle style = EWS_STD);
@@ -34,15 +34,15 @@ private:
   core::position2df Pos;
   core::dimension2df Size;
 
-  CPicture* CornerTL;
-  CPicture* CornerTR;
-  CPicture* CornerBL;
-  CPicture* CornerBR;
-  CPicture* SideTop;
-  CPicture* SideLeft;
-  CPicture* SideRight;
-  CPicture* SideBottom;
-  CPicture* Center;
+  NPrimitive::CPicture* CornerTL;
+  NPrimitive::CPicture* CornerTR;
+  NPrimitive::CPicture* CornerBL;
+  NPrimitive::CPicture* CornerBR;
+  NPrimitive::CPicture* SideTop;
+  NPrimitive::CPicture* SideLeft;
+  NPrimitive::CPicture* SideRight;
+  NPrimitive::CPicture* SideBottom;
+  NPrimitive::CPicture* Center;
 };
 
 }}}

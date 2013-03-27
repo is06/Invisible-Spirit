@@ -8,9 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENGINE_SAVE_SAVE_H__
 #define __IS06_ENGINE_SAVE_SAVE_H__
 
-#include "../Scene/ESceneIdentifier.h"
-#include "../Engine/Gameplay/EDifficultyLevel.h"
-#include "../Engine/Gameplay/ETrophyIdentifier.h"
+#include "../../NScene/ESceneIdentifier.h"
+#include "../../NEngine/NGameplay/EDifficultyLevel.h"
+#include "../../NEngine/NGameplay/ETrophyIdentifier.h"
 
 namespace is06 { namespace NEngine { namespace NSave {
 

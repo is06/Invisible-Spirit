@@ -5,25 +5,25 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Hud/Button/CIconText.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NButton/CIconTextButton.h"
 
 namespace is06 { namespace NHud { namespace NButton {
 
-CIconText::CIconText(f32 x, f32 y) : CButton(x, y)
+CIconTextButton::CIconTextButton(f32 x, f32 y) : CButton(x, y)
 {
   //text = new Text(textMsg);
   //icon = new Picture(40, 40, x - 2, y + 2, "resource/hud/default.bmp");
 }
 
-void CIconText::render()
+void CIconTextButton::render()
 {
   CButton::render();
   //text->render();
   //icon->render();
 }
 
-void CIconText::changeCommand(NEngine::NControl::ECommandIdentifier newCommand)
+void CIconTextButton::changeCommand(NEngine::NControl::ECommandIdentifier newCommand)
 {
   switch (newCommand) {
     default:
@@ -32,7 +32,7 @@ void CIconText::changeCommand(NEngine::NControl::ECommandIdentifier newCommand)
   }
 }
 
-CIconText::~CIconText()
+CIconTextButton::~CIconTextButton()
 {
   //delete text;
   //delete icon;

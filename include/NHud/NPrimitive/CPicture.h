@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PRIMITIVE_PICTURE_H__
 #define __IS06_HUD_PRIMITIVE_PICTURE_H__
 
-#include "Primitive/CFlatElement.h"
+#include "CFlatElement.h"
 
 using namespace irr;
 

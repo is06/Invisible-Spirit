@@ -5,9 +5,9 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Sound/CMusic.h"
-#include "../../include/Sound/CMusicReference.h"
+#include "../../include/core.h"
+#include "../../include/NSound/CMusic.h"
+#include "../../include/NSound/CMusicReference.h"
 
 namespace is06 { namespace NSound {
 

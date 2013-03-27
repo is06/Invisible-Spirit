@@ -5,14 +5,14 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/CGame.h"
-#include "../../../include/Hud/Counter/CBar.h"
-#include "../../../include/Hud/CPicture.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NHud/NCounter/CBarMeter.h"
+#include "../../../include/NHud/NPrimitive/CPicture.h"
 
 namespace is06 { namespace NHud { namespace NCounter {
 
-CBar::CBar(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, EBarStyle style) : CCounter(init, min, max)
+CBarMeter::CBarMeter(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, EBarStyle style) : CCounter(init, min, max)
 {
   string texturePath = "resource/hud/bar/";
   Sub = NULL;
@@ -29,7 +29,7 @@ CBar::CBar(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, EBarStyle sty
   switch (style) {
     case EBS_LIFE:
       texturePath += "life.bmp";
-      Sub = new CPicture(x, y, w, h, "resource/hud/bar/life_gain.bmp", false);
+      Sub = new NPrimitive::CPicture(x, y, w, h, "resource/hud/bar/life_gain.bmp", false);
       Sub->loadSecondTexture("resource/hud/bar/life_loss.bmp");
       break;
     default:
@@ -37,10 +37,10 @@ CBar::CBar(s32 init, s32 min, s32 max, f32 x, f32 y, f32 w, f32 h, EBarStyle sty
       break;
   }
 
-  Bar = new CPicture(x, y, w, h, texturePath, false);
+  Bar = new NPrimitive::CPicture(x, y, w, h, texturePath, false);
 }
 
-void CBar::render()
+void CBarMeter::render()
 {
   if (OldValue != CurrentValue) {
     if (OldValue < CurrentValue) {
@@ -73,15 +73,15 @@ void CBar::render()
           DecreaseFactor = ((BehindValue - CurrentValue) / (MaxValue - CurrentValue)) * 500.0f;
         }
         if (DecreaseFactor > 0.0f) {
-          BehindValue -= (DecreaseFactor * NEngine::CGame::getSpeedFactor());
+          BehindValue -= (DecreaseFactor * NEngine::NCore::CGame::getSpeedFactor());
         }
       } else {
         // Gain de vie
-        BehindValue += (DecreaseFactor * NEngine::CGame::getSpeedFactor());
+        BehindValue += (DecreaseFactor * NEngine::NCore::CGame::getSpeedFactor());
       }
     } else {
       // Evolution du timer
-      DecreaseTimer += 100.0f * NEngine::CGame::getSpeedFactor();
+      DecreaseTimer += 100.0f * NEngine::NCore::CGame::getSpeedFactor();
     }
     if ((s32)BehindValue <= CurrentValue) {
       // Sub arrivée au niveau du compteur
@@ -106,23 +106,23 @@ void CBar::render()
   Bar->render();
 }
 
-void CBar::setPosition(f32 x, f32 y)
+void CBarMeter::setPosition(f32 x, f32 y)
 {
   InitX = x;
   InitY = y;
 }
 
-void CBar::setX(f32 value)
+void CBarMeter::setX(f32 value)
 {
   InitX = value;
 }
 
-void CBar::setY(f32 value)
+void CBarMeter::setY(f32 value)
 {
   InitY = value;
 }
 
-void CBar::hide()
+void CBarMeter::hide()
 {
   Bar->hide();
   if (Sub) {
@@ -130,7 +130,7 @@ void CBar::hide()
   }
 }
 
-void CBar::show()
+void CBarMeter::show()
 {
   Bar->show();
   if (Sub) {
@@ -138,7 +138,7 @@ void CBar::show()
   }
 }
 
-void CBar::setOpacity(f32 value)
+void CBarMeter::setOpacity(f32 value)
 {
   Bar->setOpacity(value);
   if (Sub) {
@@ -146,7 +146,7 @@ void CBar::setOpacity(f32 value)
   }
 }
 
-void CBar::addOpacity(f32 value)
+void CBarMeter::addOpacity(f32 value)
 {
   Bar->addOpacity(value);
   if (Sub) {
@@ -154,7 +154,7 @@ void CBar::addOpacity(f32 value)
   }
 }
 
-void CBar::subOpacity(f32 value)
+void CBarMeter::subOpacity(f32 value)
 {
   Bar->subOpacity(value);
   if (Sub) {
@@ -162,12 +162,12 @@ void CBar::subOpacity(f32 value)
   }
 }
 
-f32 CBar::getOpacity()
+f32 CBarMeter::getOpacity()
 {
   return Bar->getOpacity();
 }
 
-CBar::~CBar()
+CBarMeter::~CBarMeter()
 {
   delete Bar;
   if (Sub) {

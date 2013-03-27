@@ -11,9 +11,6 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace N3D { namespace NPart {
 
-using is06::NEngine::NCore::CGame;
-using is06::NEngine::NResource::CResourceManager;
-
 //! Constructor
 /**
  * \todo make multiple layers
@@ -27,13 +24,13 @@ CSky::CSky(const string& textureName) : NEngine::NCore::CEntity()
   string ft = "resource/texture/map/sky/" + textureName + "/ft.jpg";
   string bk = "resource/texture/map/sky/" + textureName + "/bk.jpg";
 
-  Layers[0] = CGame::getSceneManager()->addSkyBoxSceneNode(
-    CResourceManager::loadTexture(up),
-    CResourceManager::loadTexture(dn),
-    CResourceManager::loadTexture(lf),
-    CResourceManager::loadTexture(rt),
-    CResourceManager::loadTexture(ft),
-    CResourceManager::loadTexture(bk)
+  Layers[0] = NEngine::NCore::CGame::getSceneManager()->addSkyBoxSceneNode(
+    NEngine::NResource::CResourceManager::loadTexture(up),
+    NEngine::NResource::CResourceManager::loadTexture(dn),
+    NEngine::NResource::CResourceManager::loadTexture(lf),
+    NEngine::NResource::CResourceManager::loadTexture(rt),
+    NEngine::NResource::CResourceManager::loadTexture(ft),
+    NEngine::NResource::CResourceManager::loadTexture(bk)
   );
 }
 

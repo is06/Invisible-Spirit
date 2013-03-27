@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PRIMITIVE_FLAT_ELEMENT_H__
 #define __IS06_HUD_PRIMITIVE_FLAT_ELEMENT_H__
 
-#include "../CHud.h"
+#include "../NCore/CHudEntity.h"
 
 namespace is06 { namespace NHud { namespace NPrimitive {
 
 //! A simili-2D HUD element (3D screen-aligned quad), also used for post render effects
-class CFlatElement : public CHud
+class CFlatElement : public NCore::CHudEntity
 {
 public:
   CFlatElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending=false);

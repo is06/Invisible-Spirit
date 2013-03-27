@@ -5,21 +5,21 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/CGame.h"
-#include "../../../include/Hud/Counter/CBar.h"
-#include "../../../include/Hud/Ensemble/CEnergy.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NHud/NCounter/CBarMeter.h"
+#include "../../../include/NHud/NPart/CEnergy.h"
 
-namespace is06 { namespace NHud { namespace NPart
+namespace is06 { namespace NHud { namespace NPart {
 
-CEnergy::CEnergy() : CHud()
+CEnergy::CEnergy() : NCore::CHudEntity()
 {
-  HpBar = new NCounter::CBar(100, 0, 100, (NEngine::CGame::ScreenPos.Hud.Right - 170), (NEngine::CGame::ScreenPos.Hud.Bottom + 30), 150, 4, EBS_LIFE);
+  HpBar = new NCounter::CBarMeter(100, 0, 100, (NEngine::NCore::CGame::ScreenPos.Hud.Right - 170), (NEngine::NCore::CGame::ScreenPos.Hud.Bottom + 30), 150, 4, NCounter::EBS_LIFE);
 }
 
 void CEnergy::render()
 {
-  CHud::render();
+  NCore::CHudEntity::render();
   HpBar->render();
 }
 

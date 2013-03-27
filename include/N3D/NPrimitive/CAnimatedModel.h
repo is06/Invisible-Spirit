@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../NCharacter/ECharacterAnimationIdentifier.h"
 #include "../../NEngine/NEvent/EEventType.h"
 #include "CModelEntity.h"
+#include "CStaticModel.h"
 #include "SMeshAnimationInfo.h"
 
 namespace is06 { namespace N3D { namespace NPrimitive {
@@ -51,11 +52,11 @@ public:
   scene::IAnimatedMeshSceneNode* getNode();
 
   // Collision detection
-  bool collidesWithStatic(N3D::NPrimitive::CStaticModel* other);
-  bool collidesWithAnimated(N3D::NPrimitive::CAnimatedModel* other);
-  bool collidesWithSensor(N3D::NSensor::CSensor* sensor, NEngine::NEvent::EEventType type = NEngine::NEvent::EET_ONCE);
-  f32 getFloorCollision(N3D::NPrimitive::CStaticModel* other);
-  f32 getWallCollision(N3D::NCollision::ERayType type, N3D::NPrimitive::CStaticModel* other, core::vector3df& normal);
+  bool collidesWithStatic(CStaticModel* other);
+  bool collidesWithAnimated(CAnimatedModel* other);
+  bool collidesWithSensor(NSensor::CSensor* sensor, NEngine::NEvent::EEventType type = NEngine::NEvent::EET_ONCE);
+  f32 getFloorCollision(CStaticModel* other);
+  f32 getWallCollision(NCollision::ERayType type, CStaticModel* other, core::vector3df& normal);
 
   // Animations
   void loadAnimation(const string& fileName);

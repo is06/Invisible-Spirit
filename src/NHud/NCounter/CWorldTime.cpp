@@ -5,17 +5,17 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Hud/CText.h"
-#include "../../../include/Hud/CCounter.h"
-#include "../../../include/Hud/Counter/CWorldTime.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NText/CText.h"
+#include "../../../include/NHud/NCounter/CCounter.h"
+#include "../../../include/NHud/NCounter/CWorldTime.h"
 
 namespace is06 { namespace NHud { namespace NCounter {
 
 //! \todo comment this function
 CWorldTime::CWorldTime() : CCounter()
 {
-  CounterText = new CText();
+  CounterText = new NText::CText();
 }
 
 //! \todo write this function

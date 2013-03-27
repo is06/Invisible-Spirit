@@ -5,23 +5,23 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Hud/PlayerState/CMainInfo.h"
-#include "../../../include/Hud/CText.h"
-#include "../../../include/Hud/Counter/CBar.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NPlayerState/CMainInfo.h"
+#include "../../../include/NHud/NText/CText.h"
+#include "../../../include/NHud/NCounter/CBarMeter.h"
 
 namespace is06 { namespace NHud { namespace NPlayerState {
 
-CMainInfo::CMainInfo() : CHud()
+CMainInfo::CMainInfo() : NCore::CHudEntity()
 {
-  Label = new CText();
-  Info = new CText();
-  Gauge = new NCounter::CBar(60, 0, 100, 150, 150, 150, 10, EBS_LIFE);
+  Label = new NText::CText();
+  Info = new NText::CText();
+  Gauge = new NCounter::CBarMeter(60, 0, 100, 150, 150, 150, 10, NCounter::EBS_LIFE);
 }
 
 void CMainInfo::render()
 {
-  CHud::render();
+  NCore::CHudEntity::render();
   Label->render();
   Info->render();
   Gauge->render();

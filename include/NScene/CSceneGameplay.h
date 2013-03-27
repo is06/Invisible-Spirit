@@ -9,11 +9,11 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_SCENE_SCENE_GAMEPLAY_H__
 
 #include "CScene.h"
-#include "../Hud/CHudEnsemble.h"
-#include "../Hud/CMiniMap.h"
-#include "../Hud/CPauseScreen.h"
-#include "../Engine/Gameplay/CNPCInterface.h"
-#include "../Engine/Gameplay/CMapSectionInterface.h"
+#include "../NHud/NPart/CHudPart.h"
+#include "../NHud/NPart/CMiniMap.h"
+#include "../NHud/NPauseScreen/CPauseScreen.h"
+#include "../NEngine/NGameplay/CNPCInterface.h"
+#include "../NEngine/NGameplay/CMapSectionInterface.h"
 
 namespace is06 { namespace NScene {
 
@@ -33,17 +33,17 @@ public:
 protected:
   virtual void everySecond();
 
-  N3D::NCharacter::CPlayable*                 Hero;
+  N3D::NCharacter::CPlayableCharacter* Hero;
 
-  NHud::CHudEnsemble*                         HudEnsemble;
-  NHud::NEnsemble::CEnergy*                   HudEnergyEnsemble;
-  NHud::CMiniMap*                             MiniMap;
-  NHud::NCounter::CWorldTime*                 WorldTime;
-  NHud::CPauseScreen*                         PauseScreen;
+  NHud::NPart::CHudPart* HudEnsemble;
+  NHud::NPart::CEnergy* HudEnergyEnsemble;
+  NHud::NPart::CMiniMap* MiniMap;
+  NHud::NCounter::CWorldTime* WorldTime;
+  NHud::NPauseScreen::CPauseScreen* PauseScreen;
 
-  NEngine::NGameplay::CMapSectionInterface*   MapSections;
-  NEngine::NGameplay::CNPCInterface*          NPCInterface;
-  NEngine::CTimer*                            EverySecondTimer;
+  NEngine::NGameplay::CMapSectionInterface* MapSections;
+  NEngine::NGameplay::CNPCInterface* NPCInterface;
+  NEngine::NTime::CTimer* EverySecondTimer;
 
 private:
   void manageCameraControl();

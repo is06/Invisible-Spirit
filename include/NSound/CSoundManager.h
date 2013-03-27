@@ -17,7 +17,7 @@ public:
   CSoundManager();
   ~CSoundManager();
 
-  void setEarsData(N3D::CCamera* activeCamera);
+  void setEarsData(N3D::NCamera::CCamera* activeCamera);
   void update();
 
   FMOD_SYSTEM* getSystem();

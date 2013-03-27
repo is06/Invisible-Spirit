@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_COUNTER_WORLD_TIME_H__
 #define __IS06_HUD_COUNTER_WORLD_TIME_H__
 
-#include "../CCounter.h"
+#include "CCounter.h"
 
 namespace is06 { namespace NHud { namespace NCounter {
 
@@ -31,7 +31,7 @@ private:
   string Minutes;
   string Hours;
 
-  CText* CounterText;
+  NText::CText* CounterText;
 
   void updateValues(s32 time);
   void updateDigits();

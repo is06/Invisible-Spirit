@@ -5,12 +5,12 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/CPlayerControl.h"
-#include "../../include/Engine/Control/CKeyboard.h"
-#include "../../include/Engine/Control/CGamepad.h"
-#include "../../include/Engine/Control/EGamepadButton.h"
-#include "../../include/Engine/Control/EGamepadDirection.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NControl/CPlayerControl.h"
+#include "../../../include/NEngine/NControl/CKeyboard.h"
+#include "../../../include/NEngine/NControl/CGamepad.h"
+#include "../../../include/NEngine/NControl/EGamepadButton.h"
+#include "../../../include/NEngine/NControl/EGamepadDirection.h"
 
 using namespace irr;
 
@@ -25,7 +25,7 @@ CPlayerControl::CPlayerControl(bool gamepadActive)
 }
 
 //! Returns true if a specific command is entered
-bool CPlayerControl::commandEntered(NControl::ECommandIdentifier command, EEventType eventType)
+bool CPlayerControl::commandEntered(NControl::ECommandIdentifier command, NEvent::EEventType eventType)
 {
   bool value = false;
 

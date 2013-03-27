@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Map/Dungeon/MAP_DUNGEON_5.h"
+#include "../../../include/core.h"
+#include "../../../include/NMap/NDungeon/MAP_DUNGEON_5.h"
 
 namespace is06 { namespace NMap { namespace NDungeon {
 

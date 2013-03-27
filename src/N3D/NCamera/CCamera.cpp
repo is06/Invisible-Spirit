@@ -14,13 +14,11 @@ using namespace std;
 
 namespace is06 { namespace N3D { namespace NCamera {
 
-using is06::NEngine::NCore::CGame;
-
 //! Main constructor of abstract class
 CCamera::CCamera()
 {
   Controlable = true;
-  IrrCam = CGame::getSceneManager()->addCameraSceneNode(0, core::vector3df(0, 0, 0));
+  IrrCam = NEngine::NCore::CGame::getSceneManager()->addCameraSceneNode(0, core::vector3df(0, 0, 0));
   IrrCam->bindTargetAndRotation(true);
   IrrCam->setNearValue(0.1f);
 }
@@ -38,7 +36,7 @@ void CCamera::update()
 void CCamera::turnX(f32 speed)
 {
   IrrCam->setRotation(core::vector3df(
-    IrrCam->getRotation().X + (speed * CGame::getSpeedFactor()),
+    IrrCam->getRotation().X + (speed * NEngine::NCore::CGame::getSpeedFactor()),
     IrrCam->getRotation().Y,
     IrrCam->getRotation().Z
   ));
@@ -52,7 +50,7 @@ void CCamera::turnY(f32 speed)
 {
   IrrCam->setRotation(core::vector3df(
     IrrCam->getRotation().X,
-    IrrCam->getRotation().Y + (speed * CGame::getSpeedFactor()),
+    IrrCam->getRotation().Y + (speed * NEngine::NCore::CGame::getSpeedFactor()),
     IrrCam->getRotation().Z
   ));
 }
@@ -66,7 +64,7 @@ void CCamera::turnZ(f32 speed)
   IrrCam->setRotation(core::vector3df(
     IrrCam->getRotation().X,
     IrrCam->getRotation().Y,
-    IrrCam->getRotation().Z + (speed * CGame::getSpeedFactor())
+    IrrCam->getRotation().Z + (speed * NEngine::NCore::CGame::getSpeedFactor())
   ));
 }
 
@@ -74,7 +72,7 @@ void CCamera::turnZ(f32 speed)
 void CCamera::moveX(f32 speed)
 {
   IrrCam->setPosition(core::vector3df(
-    getX() + (speed * CGame::getSpeedFactor()),
+    getX() + (speed * NEngine::NCore::CGame::getSpeedFactor()),
     getY(),
     getZ()
   ));
@@ -85,7 +83,7 @@ void CCamera::moveY(f32 speed)
 {
   IrrCam->setPosition(core::vector3df(
     getX(),
-    getY() + (speed * CGame::getSpeedFactor()),
+    getY() + (speed * NEngine::NCore::CGame::getSpeedFactor()),
     getZ()
   ));
 }
@@ -96,7 +94,7 @@ void CCamera::moveZ(f32 speed)
   IrrCam->setPosition(core::vector3df(
     getX(),
     getY(),
-    getZ() + (speed * CGame::getSpeedFactor())
+    getZ() + (speed * NEngine::NCore::CGame::getSpeedFactor())
   ));
 }
 

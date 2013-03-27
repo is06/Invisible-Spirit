@@ -5,34 +5,24 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/maps.h"
-#include "../../include/Engine/CGame.h"
-#include "../../include/Engine/Resource/CTranslation.h"
-#include "../../include/Engine/Exception/CEngineException.h"
-#include "../../include/Engine/Exception/CDisplayException.h"
-#include "../../include/Engine/Exception/CMapException.h"
-#include "../../include/Engine/CEventManager.h"
-#include "../../include/Engine/Resource/CSettings.h"
-#include "../../include/Engine/CSave.h"
-#include "../../include/Sound/CSoundManager.h"
-#include "../../include/Sound/CMusicReference.h"
-#include "../../include/Scene/CScene.h"
-#include "../../include/Scene/CSceneMenu.h"
-#include "../../include/Scene/CSceneSelectMap.h"
-#include "../../include/Scene/CSceneGameplay.h"
+#include "../../../include/core.h"
+#include "../../../include/maps.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NEngine/NResource/CTranslation.h"
+#include "../../../include/NEngine/NException/CEngineException.h"
+#include "../../../include/NEngine/NException/CDisplayException.h"
+#include "../../../include/NEngine/NException/CMapException.h"
+#include "../../../include/NEngine/NEvent/CEventManager.h"
+#include "../../../include/NEngine/NResource/CSettings.h"
+#include "../../../include/NEngine/NSave/CSave.h"
+#include "../../../include/NSound/CSoundManager.h"
+#include "../../../include/NSound/CMusicReference.h"
+#include "../../../include/NScene/CScene.h"
+#include "../../../include/NScene/CSceneMenu.h"
+#include "../../../include/NScene/CSceneSelectMap.h"
+#include "../../../include/NScene/CSceneGameplay.h"
 
-#include "../../include/Map/Debug/MAP_DEBUG.h"
-#include "../../include/Map/Debug/MAP_ALPHA_ZONE.h"
-#include "../../include/Map/Dungeon/MAP_DUNGEON_1.h"
-#include "../../include/Map/Dungeon/MAP_DUNGEON_2.h"
-#include "../../include/Map/Dungeon/MAP_DUNGEON_3.h"
-#include "../../include/Map/Dungeon/MAP_DUNGEON_4.h"
-#include "../../include/Map/Dungeon/MAP_DUNGEON_5.h"
-#include "../../include/Map/Dungeon/MAP_DUNGEON_6.h"
-#include "../../include/Map/Dungeon/MAP_DUNGEON_7.h"
-#include "../../include/Map/Dungeon/MAP_DUNGEON_8.h"
-#include "../../include/Map/Dungeon/MAP_DUNGEON_9.h"
+#include "../../../include/map_inclusion.h"
 
 using namespace irr;
 
@@ -45,13 +35,13 @@ scene::ISceneManager* CGame::SceneManager;
 gui::IGUIEnvironment* CGame::DebugGUI;
 NewtonWorld* CGame::GameNewtonWorld;
 NScene::CScene* CGame::CurrentScene;
-NEngine::CEventManager* CGame::EventManager;
+NEngine::NEvent::CEventManager* CGame::EventManager;
 NEngine::NResource::CTranslation* CGame::GlobalTranslations;
-NEngine::CSave* CGame::CurrentSave;
+NEngine::NSave::CSave* CGame::CurrentSave;
 NSound::CSoundManager* CGame::SoundManager;
 NSound::CMusicReference* CGame::MusicReference;
 s32 CGame::NextScene;
-NEngine::ELocaleIdentifier CGame::CurrentLocale;
+NEngine::NResource::ELocaleIdentifier CGame::CurrentLocale;
 bool CGame::SceneChanged;
 bool CGame::ScreenSizeChanged;
 bool CGame::Exit;
@@ -64,7 +54,7 @@ f32 CGame::SpeedFactor;
 /**
  * \section settings_usecase Settings use case
  * \code
- * string rendererName = NEngine::CGame::Settings->getParamString("display", "renderer");
+ * string rendererName = NEngine::NCore::CGame::Settings->getParamString("display", "renderer");
  * \endcode
  */
 NEngine::NResource::CSettings* CGame::Settings;
@@ -73,16 +63,16 @@ NEngine::NResource::CSettings* CGame::Settings;
 /**
  * \section screenpos_usecase ScreenPos use case
  * \code
- * f32 topEdge = NEngine::CGame::ScreenPos.Top;
+ * f32 topEdge = NEngine::NCore::CGame::ScreenPos.Top;
  * \endcode
  */
-NEngine::SScreenPosition CGame::ScreenPos;
+NEngine::NDisplay::SScreenPosition CGame::ScreenPos;
 
 //! Shaders interface
 /**
  * \section shaders_usecase Shaders use case
  * \code
- * Material.MaterialType = (video::E_MATERIAL_TYPE)NEngine::CGame::Shaders.HorizontalBlur;
+ * Material.MaterialType = (video::E_MATERIAL_TYPE)NEngine::NCore::CGame::Shaders.HorizontalBlur;
  * \endcode
  */
 NShader::CShaders CGame::Shaders;
@@ -221,7 +211,7 @@ NScene::CScene* CGame::getCurrentScene()
 /**
  * \return CEventManager*
  */
-CEventManager* CGame::getEventManager()
+NEvent::CEventManager* CGame::getEventManager()
 {
   return EventManager;
 }
@@ -239,7 +229,7 @@ void CGame::initIrrlichtInterfaces()
   VideoDriver = NULL;
 
   // Custom Event Manager
-  EventManager = new CEventManager();
+  EventManager = new NEvent::CEventManager();
 
   // Getting from ini file
   u32 screenWidth = Settings->getParamInt("display", "width");
@@ -350,7 +340,7 @@ void CGame::initShaders()
 void CGame::initLocale()
 {
   //string textLocale = settings->getParamstring("regional", "locale");
-  CurrentLocale = ELI_FRE_FR;
+  CurrentLocale = NResource::ELI_FRE_FR;
   /*
   if (textLocale == "eng-GB") {
     currentLocale = ELI_ENG_GB;
@@ -400,7 +390,7 @@ void CGame::initPhysics()
 //! Creates an empty save memory slot
 void CGame::initSaveSystem()
 {
-  CurrentSave = new CSave();
+  CurrentSave = new NSave::CSave();
 }
 
 //! Check for mandatory graphical capabilities
@@ -550,7 +540,7 @@ void CGame::writeErrorToLogFile(const exception& e)
 /**
  * \return ELocaleIdentifier
  */
-ELocaleIdentifier CGame::getCurrentLocale()
+NResource::ELocaleIdentifier CGame::getCurrentLocale()
 {
   return CurrentLocale;
 }
@@ -568,7 +558,7 @@ NResource::CTranslation* CGame::getGlobalTranslations()
 /**
  * \return CSave*
  */
-CSave* CGame::getCurrentSave()
+NSave::CSave* CGame::getCurrentSave()
 {
   return CurrentSave;
 }

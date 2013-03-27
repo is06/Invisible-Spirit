@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PAUSE_SCREEN_SUB_SCREEN_MAP_H__
 #define __IS06_HUD_PAUSE_SCREEN_SUB_SCREEN_MAP_H__
 
-#include "../CSubScreen.h"
+#include "CSubScreen.h"
 
 namespace is06 { namespace NHud { namespace NPauseScreen { namespace NSubScreen {
 

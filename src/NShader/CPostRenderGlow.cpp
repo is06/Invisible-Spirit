@@ -5,11 +5,11 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/CGame.h"
-#include "../../include/Engine/Resource/CSettings.h"
-#include "../../include/Shader/CPostRenderGlow.h"
-#include "../../include/Scene/CScene.h"
+#include "../../include/core.h"
+#include "../../include/NEngine/NCore/CGame.h"
+#include "../../include/NEngine/NResource/CSettings.h"
+#include "../../include/NShader/CPostRenderGlow.h"
+#include "../../include/NScene/CScene.h"
 
 using namespace irr;
 
@@ -18,10 +18,10 @@ namespace is06 { namespace NShader {
 CPostRenderGlow::CPostRenderGlow() : CPostRenderShader()
 {
   BackBufferColor = video::SColor(255, 255, 255, 255);
-  bool rendererIsDirect3D = (NEngine::CGame::Settings->getParamString("display", "renderer") == "direct3d");
+  bool rendererIsDirect3D = (NEngine::NCore::CGame::Settings->getParamString("display", "renderer") == "direct3d");
 
   // Render to target texture resolution quality
-  u32 texture_quality = NEngine::CGame::Settings->getParamInt("glow", "texture_quality");
+  u32 texture_quality = NEngine::NCore::CGame::Settings->getParamInt("glow", "texture_quality");
   switch (texture_quality) {
     case 1: texture_quality = 64; break;  // 16KB
     default:
@@ -31,7 +31,7 @@ CPostRenderGlow::CPostRenderGlow() : CPostRenderShader()
     case 5: texture_quality = 1024; break; // 4MB
   }
 
-  u32 depth_quality = NEngine::CGame::Settings->getParamInt("glow", "depth_quality");
+  u32 depth_quality = NEngine::NCore::CGame::Settings->getParamInt("glow", "depth_quality");
   video::ECOLOR_FORMAT textureColorFormat = video::ECF_R5G6B5;
   // Render target texture 32-bit only with OpenGL
   if (depth_quality == 32 && !rendererIsDirect3D) {
@@ -39,7 +39,7 @@ CPostRenderGlow::CPostRenderGlow() : CPostRenderShader()
   }
 
   Material.AntiAliasing = false;
-  Texture = NEngine::CGame::getVideoDriver()->addRenderTargetTexture(core::dimension2du(texture_quality, texture_quality), "GlowRTT", textureColorFormat);
+  Texture = NEngine::NCore::CGame::getVideoDriver()->addRenderTargetTexture(core::dimension2du(texture_quality, texture_quality), "GlowRTT", textureColorFormat);
   Material.setTexture(0, Texture);
 }
 
@@ -52,22 +52,22 @@ CPostRenderGlow::CPostRenderGlow() : CPostRenderShader()
 void CPostRenderGlow::render()
 {
   // Perform first pass (horizontal blur)
-  Material.MaterialType = (video::E_MATERIAL_TYPE)NEngine::CGame::Shaders.HorizontalBlur;
+  Material.MaterialType = (video::E_MATERIAL_TYPE)NEngine::NCore::CGame::Shaders.HorizontalBlur;
   CFlatElement::render();
 
   if (Texture) {
-    NEngine::CGame::getVideoDriver()->setRenderTarget(Texture, true, true, BackBufferColor);
+    NEngine::NCore::CGame::getVideoDriver()->setRenderTarget(Texture, true, true, BackBufferColor);
     // Darken non glowing entities
     applyEffectsToEntities();
     // Draw the whole scene
-    NEngine::CGame::getSceneManager()->drawAll();
+    NEngine::NCore::CGame::getSceneManager()->drawAll();
     // Perform second pass (vertical blur)
-    Material.MaterialType = (video::E_MATERIAL_TYPE)NEngine::CGame::Shaders.VerticalBlur;
+    Material.MaterialType = (video::E_MATERIAL_TYPE)NEngine::NCore::CGame::Shaders.VerticalBlur;
     CFlatElement::render();
     // Restore lighting material of all darkened entities
     removeEffectsToEntities();
     // Reset render target to main display viewport
-    NEngine::CGame::getVideoDriver()->setRenderTarget(video::ERT_FRAME_BUFFER, false, true, 0);
+    NEngine::NCore::CGame::getVideoDriver()->setRenderTarget(video::ERT_FRAME_BUFFER, false, true, 0);
   }
 }
 

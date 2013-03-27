@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_TEXT_TEXT_CHAR_H__
 #define __IS06_HUD_TEXT_TEXT_CHAR_H__
 
-#include "Primitive/CFlatElement.h"
+#include "../NPrimitive/CFlatElement.h"
 
 namespace is06 { namespace NHud { namespace NText {
 

@@ -5,9 +5,9 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/Resource/CTranslation.h"
-#include "../../../include/Engine/CGame.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NResource/CTranslation.h"
+#include "../../../include/NEngine/NCore/CGame.h"
 
 namespace is06 { namespace NEngine { namespace NResource {
 
@@ -17,7 +17,7 @@ CTranslation::CTranslation(const string& filePath)
   string fullPath = "resource/text/";
   Notfound = "[not_found]";
 
-  switch (CGame::getCurrentLocale()) {
+  switch (NEngine::NCore::CGame::getCurrentLocale()) {
     case ELI_FRE_FR:
     case ELI_FRE_BE:
     case ELI_FRE_CA:

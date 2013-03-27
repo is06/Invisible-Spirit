@@ -5,9 +5,9 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/Resource/CSettings.h"
-#include "../../../include/Engine/Resource/CSettingsGroup.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NResource/CSettings.h"
+#include "../../../include/NEngine/NResource/CSettingsGroup.h"
 
 namespace is06 { namespace NEngine { namespace NResource {
 

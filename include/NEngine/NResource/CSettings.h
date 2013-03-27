@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENGINE_RESOURCE_SETTINGS_H__
 #define __IS06_ENGINE_RESOURCE_SETTINGS_H__
 
+#include "CSettingsGroup.h"
+
 namespace is06 { namespace NEngine { namespace NResource {
 
 //! Settings interface containing groups
@@ -21,8 +23,8 @@ public:
   s32 getParamInt(const string& groupName, const string& paramName);
 
 private:
-  map<string, NResource::CSettingsGroup> Data;
-  map<string, NResource::CSettingsGroup>::iterator DataIt;
+  map<string, CSettingsGroup> Data;
+  map<string, CSettingsGroup>::iterator DataIt;
   fstream FileStream;
 };
 

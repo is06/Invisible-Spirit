@@ -5,20 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/CGame.h"
-#include "../../../include/Engine/Control/CKeyboard.h"
-#include "../../../include/Engine/Resource/CTranslation.h"
-#include "../../../include/3D/CLevelMesh.h"
-#include "../../../include/3D/Character/CPlayable.h"
-#include "../../../include/3D/Light/COmni.h"
-#include "../../../include/3D/Light/CDirect.h"
-#include "../../../include/3D/Sensor/CTeleporter.h"
-#include "../../../include/3D/Character/CNPC.h"
-#include "../../../include/Engine/Gameplay/CDialogInterface.h"
-#include "../../../include/Sound/CMusicReference.h"
-#include "../../../include/Sound/CSpeaker.h"
-#include "../../../include/Map/Debug/MAP_ALPHA_ZONE.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NEngine/NControl/CKeyboard.h"
+#include "../../../include/NEngine/NResource/CTranslation.h"
+#include "../../../include/N3D/NPart/CMapPart.h"
+#include "../../../include/N3D/NCharacter/CPlayableCharacter.h"
+#include "../../../include/N3D/NLight/COmniLight.h"
+#include "../../../include/N3D/NLight/CDirectLight.h"
+#include "../../../include/N3D/NSensor/CTeleporter.h"
+#include "../../../include/N3D/NCharacter/CNPC.h"
+#include "../../../include/NEngine/NGameplay/CDialogInterface.h"
+#include "../../../include/NSound/CMusicReference.h"
+#include "../../../include/NSound/CSpeaker.h"
+#include "../../../include/NMap/NDebug/MAP_ALPHA_ZONE.h"
 
 using namespace irr;
 
@@ -28,7 +28,7 @@ namespace is06 { namespace NMap { namespace NDebug {
 MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : NScene::CSceneGameplay()
 {
   // Main Player
-  Hero->setCharacter(NEngine::NGameplay::EPCT_CUBE);
+  Hero->setCharacter(N3D::NCharacter::EPCT_CUBE);
 
   // Local Translations
   SceneTranslations = new NEngine::NResource::CTranslation("MAP_ALPHA_ZONE.ist");
@@ -61,11 +61,11 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : NScene::CSceneGameplay()
   //ShadowProcessor->addDirectLight(DLight);
 
   // Hud
-  MiniMap->setMap(NHud::EMMI_ALPHA_ZONE);
+  MiniMap->setMap(NHud::NPart::EMMI_ALPHA_ZONE);
   MiniMap->setWorldSize(120.0f);
 
   // Sky (3d box)
-  Sky = new N3D::CSky("test");
+  Sky = new N3D::NPart::CSky("test");
 
   // Cinemascope mode (black stripes)
   //Cinemascope->slideIn(1.0f);
@@ -98,14 +98,14 @@ void MAP_ALPHA_ZONE::events()
 
   /*
   if (Hero->collidesWithSensor(ToDungeonSensor)) {
-    NEngine::CGame::changeScene(NScene::ESI_MAP_DUNGEON_1);
+    NEngine::NCore::CGame::changeScene(NScene::ESI_MAP_DUNGEON_1);
   }
   */
 
   // Dialogs interface
   /*
   // Start a dialog
-  if (Control->commandEntered(NEngine::ECI_PLAYER_GUARD, NEngine::EET_ONCE)) {
+  if (Control->commandEntered(NEngine::ECI_PLAYER_GUARD, NEngine::NEvent::EET_ONCE)) {
     Dialog->start("norya_first_start");
   }
   // Trigger when a dialog finishes

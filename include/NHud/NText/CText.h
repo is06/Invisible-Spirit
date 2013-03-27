@@ -8,17 +8,17 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_TEXT_TEXT_H__
 #define __IS06_HUD_TEXT_TEXT_H__
 
-#include "CHud.h"
+#include "../NCore/CHudEntity.h"
 
 #include "EFontStyle.h"
 #include "ETextAlignment.h"
 
 namespace is06 { namespace NHud { namespace NText {
 
-class CText : public CHud
+class CText : public NCore::CHudEntity
 {
 public:
-  CText(const string& str = "[Text]", f32 x = 0, f32 y = 0, NHud::EFontStyle style = NHud::EFS_STANDARD_48, u8 speed = 0);
+  CText(const string& str = "[Text]", f32 x = 0, f32 y = 0, NText::EFontStyle style = NText::EFS_STANDARD_48, u8 speed = 0);
   ~CText();
 
   void render();
@@ -53,11 +53,11 @@ private:
   map<u16, u16> LineWidthList;
   f32 LeftBound;
   f32 RightBound;
-  NHud::ETextAlignment CurrentAlign;
+  NText::ETextAlignment CurrentAlign;
   bool TextFinished;
   f32 Opacity;
 
-  NEngine::CTimer* SpeedTimer;
+  NEngine::NTime::CTimer* SpeedTimer;
 };
 
 }}}

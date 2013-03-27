@@ -5,9 +5,9 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Hud/CTextChar.h"
-#include "../../include/Hud/CTextFont.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NText/CTextChar.h"
+#include "../../../include/NHud/NText/CTextFont.h"
 
 namespace is06 { namespace NHud { namespace NText {
 

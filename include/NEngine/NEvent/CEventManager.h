@@ -13,62 +13,61 @@ namespace is06 { namespace NEngine { namespace NEvent {
 //! Interface for event management
 class CEventManager : public IEventReceiver
 {
-  public:
-    CEventManager();
-    bool isKeyDown(EKEY_CODE code);
-    bool isKeyDownOnce(EKEY_CODE code);
-    bool anyKeyDown();
-    bool anyKeyDownOnce();
-    bool click();
-    bool mouseRelease();
-    bool mouseDown();
-    const core::position2di& getMousePosition() const;
+public:
+  CEventManager();
+  bool isKeyDown(EKEY_CODE code);
+  bool isKeyDownOnce(EKEY_CODE code);
+  bool anyKeyDown();
+  bool anyKeyDownOnce();
+  bool click();
+  bool mouseRelease();
+  bool mouseDown();
+  const core::position2di& getMousePosition() const;
 
-    u8 getLeftJoystickForce();
-    f32 getLeftJoystickAngle();
-    s8 getLeftJoystickXAxis();
-    s8 getLeftJoystickYAxis();
+  u8 getLeftJoystickForce();
+  f32 getLeftJoystickAngle();
+  s8 getLeftJoystickXAxis();
+  s8 getLeftJoystickYAxis();
 
-    u8 getRightJoystickForce();
-    f32 getRightJoystickAngle();
-    s8 getRightJoystickXAxis();
-    s8 getRightJoystickYAxis();
+  u8 getRightJoystickForce();
+  f32 getRightJoystickAngle();
+  s8 getRightJoystickXAxis();
+  s8 getRightJoystickYAxis();
 
-    u16 getPressedButtons();
-    u32 getPovValue();
+  u16 getPressedButtons();
+  u32 getPovValue();
 
-    const SEvent::SGUIEvent& getGUIEvent();
+  const SEvent::SGUIEvent& getGUIEvent();
 
-    bool OnEvent(const SEvent& event);
+  bool OnEvent(const SEvent& event);
 
-  private:
-    bool KeyDown[KEY_KEY_CODES_COUNT];
-    bool KeyOnce[KEY_KEY_CODES_COUNT];
-    bool AnyDown;
-    bool AnyOnce;
-    bool MouseLeftDown;
-    bool MouseLeftOnce;
-    bool MouseRightDown;
-    bool MouseRightOnce;
+private:
+  bool KeyDown[KEY_KEY_CODES_COUNT];
+  bool KeyOnce[KEY_KEY_CODES_COUNT];
+  bool AnyDown;
+  bool AnyOnce;
+  bool MouseLeftDown;
+  bool MouseLeftOnce;
+  bool MouseRightDown;
+  bool MouseRightOnce;
 
-    SEvent::SGUIEvent GuiEvent;
+  SEvent::SGUIEvent GuiEvent;
 
-    f32 LeftJoystickAngle;
-    u8 LeftJoystickForce;
-    s16 LeftJoystickXAxis;
-    s16 LeftJoystickYAxis;
+  f32 LeftJoystickAngle;
+  u8 LeftJoystickForce;
+  s16 LeftJoystickXAxis;
+  s16 LeftJoystickYAxis;
 
-    f32 RightJoystickAngle;
-    u8 RightJoystickForce;
-    s16 RightJoystickXAxis;
-    s16 RightJoystickYAxis;
+  f32 RightJoystickAngle;
+  u8 RightJoystickForce;
+  s16 RightJoystickXAxis;
+  s16 RightJoystickYAxis;
 
-    u16 ButtonStates;
-    u32 PovValue;
-    core::position2di MousePosition;
+  u16 ButtonStates;
+  u32 PovValue;
+  core::position2di MousePosition;
 };
 
-}
-}
+}}}
 
 #endif

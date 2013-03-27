@@ -5,21 +5,21 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/CSave.h"
-#include "../../../include/Engine/Save/CSlot.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NSave/CSave.h"
+#include "../../../include/NEngine/NSave/CSaveSlot.h"
 
 namespace is06 { namespace NEngine { namespace NSave {
 
 //! Constructor
-CSlot::CSlot(CSave* save)
+CSaveSlot::CSaveSlot(CSave* save)
 {
   PlaceNameIdentifier = save->getString(12);
   TotalGameTime = save->getInteger(21);
 }
 
 //! Destructor
-CSlot::~CSlot()
+CSaveSlot::~CSaveSlot()
 {
 
 }

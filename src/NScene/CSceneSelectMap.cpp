@@ -5,9 +5,9 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/3D/Camera/CThirdPerson.h"
-#include "../../include/Scene/CSceneSelectMap.h"
+#include "../../include/core.h"
+#include "../../include/N3D/NCamera/CThirdPerson.h"
+#include "../../include/NScene/CSceneSelectMap.h"
 
 namespace is06 { namespace NScene {
 

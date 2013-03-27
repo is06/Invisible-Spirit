@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MAP_DEBUG_MAP_DEBUG_H__
 #define __IS06_MAP_DEBUG_MAP_DEBUG_H__
 
-#include "../../Scene/CSceneGameplay.h"
+#include "../../NScene/CSceneGameplay.h"
 
 namespace is06 { namespace NMap { namespace NDebug {
 

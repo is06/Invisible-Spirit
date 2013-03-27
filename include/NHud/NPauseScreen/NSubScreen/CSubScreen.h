@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PAUSE_SCREEN_SUB_SCREEN_SUB_SCREEN_H__
 #define __IS06_HUD_PAUSE_SCREEN_SUB_SCREEN_SUB_SCREEN_H__
 
-#include "../CHud.h"
+#include "../../NCore/CHudEntity.h"
 
 namespace is06 { namespace NHud { namespace NPauseScreen { namespace NSubScreen {
 
 //! The base class for all gameplay sub-menus
-class CSubScreen : public CHud {
+class CSubScreen : public NCore::CHudEntity {
 public:
   CSubScreen();
   ~CSubScreen();

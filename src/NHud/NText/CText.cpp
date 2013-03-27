@@ -5,15 +5,15 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/CTimer.h"
-#include "../../include/Hud/CText.h"
-#include "../../include/Hud/CTextFont.h"
-#include "../../include/Hud/CTextChar.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NTime/CTimer.h"
+#include "../../../include/NHud/NText/CText.h"
+#include "../../../include/NHud/NText/CTextFont.h"
+#include "../../../include/NHud/NText/CTextChar.h"
 
 namespace is06 { namespace NHud { namespace NText {
 
-CText::CText(const string& str, f32 x, f32 y, EFontStyle style, u8 speed) : CHud()
+CText::CText(const string& str, f32 x, f32 y, EFontStyle style, u8 speed) : NCore::CHudEntity()
 {
   TextFinished = false;
   TextStr = str;
@@ -34,13 +34,13 @@ CText::CText(const string& str, f32 x, f32 y, EFontStyle style, u8 speed) : CHud
 
   SpeedTimer = NULL;
   if (CurrentSpeed > 0) {
-    SpeedTimer = new NEngine::CTimer(CurrentSpeed / 512.0f, boost::bind(&CText::nextChar, this), str.size());
+    SpeedTimer = new NEngine::NTime::CTimer(CurrentSpeed / 512.0f, boost::bind(&CText::nextChar, this), str.size());
   }
 }
 
 void CText::render()
 {
-  CHud::render();
+  NCore::CHudEntity::render();
   if (CurrentSpeed > 0) {
     if (CurrentDisplayChar >= CurrentTextLength) {
       SpeedTimer->stop();

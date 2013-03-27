@@ -8,9 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SHADER_ICE_SHADER_CALLBACK_H__
 #define __IS06_SHADER_ICE_SHADER_CALLBACK_H__
 
-#include "../3D/CCamera.h"
-#include "../Scene/CScene.h"
-#include "../Engine/CGame.h"
+#include "../N3D/CCamera.h"
+#include "../NScene/CScene.h"
+#include "../NEngine/NCore/CGame.h"
 
 namespace is06 { namespace NShader {
 
@@ -28,11 +28,11 @@ public:
   virtual void OnSetConstants(video::IMaterialRendererServices* services, s32 userData)
   {
     // Inversed world matrix
-    core::matrix4 invWorld = NEngine::CGame::getVideoDriver()->getTransform(video::ETS_WORLD);
+    core::matrix4 invWorld = NEngine::NCore::CGame::getVideoDriver()->getTransform(video::ETS_WORLD);
     services->setVertexShaderConstant("invWorldMatrix", invWorld.pointer(), 16);
 
     // Camera position
-    core::vector3df pos = NEngine::CGame::getCurrentScene()->getActiveCamera()->getNode()->getAbsolutePosition();
+    core::vector3df pos = NEngine::NCore::CGame::getCurrentScene()->getActiveCamera()->getNode()->getAbsolutePosition();
     services->setVertexShaderConstant("cameraPosition", reinterpret_cast<f32*>(&pos), 3);
 
     // Light color

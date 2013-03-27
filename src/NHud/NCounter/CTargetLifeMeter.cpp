@@ -5,26 +5,26 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Hud/EFontStyle.h"
-#include "../../../include/Hud/CText.h"
-#include "../../../include/Hud/CPicture.h"
-#include "../../../include/Hud/Counter/CBar.h"
-#include "../../../include/Hud/Counter/EBarStyle.h"
-#include "../../../include/Hud/Counter/CTargetLife.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NText/EFontStyle.h"
+#include "../../../include/NHud/NText/CText.h"
+#include "../../../include/NHud/NPrimitive/CPicture.h"
+#include "../../../include/NHud/NCounter/CBarMeter.h"
+#include "../../../include/NHud/NCounter/EBarStyle.h"
+#include "../../../include/NHud/NCounter/CTargetLifeMeter.h"
 
 namespace is06 { namespace NHud { namespace NCounter {
 
 //! \todo comment this function
-CTargetLife::CTargetLife(s32 init, s32 min, s32 max)
+CTargetLifeMeter::CTargetLifeMeter(s32 init, s32 min, s32 max)
 {
-  Label = new NHud::CText("Cible", 0, 0, EFS_STANDARD_48, 0);
-  Gauge = new CBar(init, min, max, 0, 0, 150, 10, EBS_LIFE);
-  BarBack = new CPicture();
+  Label = new NText::CText("Cible", 0, 0, NText::EFS_STANDARD_48, 0);
+  Gauge = new CBarMeter(init, min, max, 0, 0, 150, 10, NCounter::EBS_LIFE);
+  BarBack = new NPrimitive::CPicture();
 }
 
 //! \todo manage targetPosition parameter
-void CTargetLife::render(const core::vector3df& targetPosition)
+void CTargetLifeMeter::render(const core::vector3df& targetPosition)
 {
   Label->render();
   Gauge->render();
@@ -32,13 +32,13 @@ void CTargetLife::render(const core::vector3df& targetPosition)
 }
 
 //! \todo comment this function
-void CTargetLife::updateValue(const s32& value)
+void CTargetLifeMeter::updateValue(const s32& value)
 {
   Gauge->setValue(value);
 }
 
 //! \todo comment this function
-CTargetLife::~CTargetLife()
+CTargetLifeMeter::~CTargetLifeMeter()
 {
   delete BarBack;
   delete Label;

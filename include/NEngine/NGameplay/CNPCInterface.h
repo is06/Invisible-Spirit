@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENGINE_GAMEPLAY_NPC_INTERFACE_H__
 #define __IS06_ENGINE_GAMEPLAY_NPC_INTERFACE_H__
 
-#include "../../3D/Character/CNPC.h"
+#include "../../N3D/NCharacter/CNPC.h"
 
 namespace is06 { namespace NEngine { namespace NGameplay {
 
@@ -19,7 +19,7 @@ public:
   ~CNPCInterface();
 
   void addNPC(N3D::NCharacter::CNPC* npc);
-  N3D::NCharacter::CNPC* getNearestNPC(N3D::CCharacter* character);
+  N3D::NCharacter::CNPC* getNearestNPC(N3D::NCharacter::CCharacter* character);
 
 private:
   vector<N3D::NCharacter::CNPC*> NPCList;

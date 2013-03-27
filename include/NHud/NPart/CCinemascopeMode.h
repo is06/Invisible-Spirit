@@ -8,6 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PART_CINEMASCOPE_MODE_H__
 #define __IS06_HUD_PART_CINEMASCOPE_MODE_H__
 
+#include "../NPrimitive/CQuad.h"
 #include "../NCore/CHudEntity.h"
 
 namespace is06 { namespace NHud { namespace NPart {

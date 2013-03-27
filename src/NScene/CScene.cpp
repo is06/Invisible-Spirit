@@ -5,16 +5,16 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/CGame.h"
-#include "../../include/Engine/Control/CKeyboard.h"
-#include "../../include/Engine/Control/CGamepad.h"
-#include "../../include/Engine/Gameplay/CDialogInterface.h"
-#include "../../include/Engine/CSave.h"
-#include "../../include/3D/CModelEntity.h"
-#include "../../include/Hud/CPicture.h"
-#include "../../include/Hud/Primitive/CQuad.h"
-#include "../../include/Scene/CScene.h"
+#include "../../include/core.h"
+#include "../../include/NEngine/NCore/CGame.h"
+#include "../../include/NEngine/NControl/CKeyboard.h"
+#include "../../include/NEngine/NControl/CGamepad.h"
+#include "../../include/NEngine/NGameplay/CDialogInterface.h"
+#include "../../include/NEngine/NSave/CSave.h"
+#include "../../include/N3D/NPrimitive/CModelEntity.h"
+#include "../../include/NHud/NPrimitive/CPicture.h"
+#include "../../include/NHud/NPrimitive/CQuad.h"
+#include "../../include/NScene/CScene.h"
 
 using namespace irr;
 
@@ -23,29 +23,29 @@ namespace is06 { namespace NScene {
 //! Instanciate required object interfaces such as player control or music so we can use them in all scenes
 CScene::CScene()
 {
-  StartTime = NEngine::CGame::getCurrentTime();
+  StartTime = NEngine::NCore::CGame::getCurrentTime();
   SceneTime = 0.0f;
 
   Camera = NULL;
   SceneTranslations = NULL;
   Dialog = NULL;
   Sky = NULL;
-  Control = new NEngine::CPlayerControl(false);
+  Control = new NEngine::NControl::CPlayerControl(false);
 
-  Music = NEngine::CGame::getMusicReference();
-  GlobalTranslations = NEngine::CGame::getGlobalTranslations();
-  InFader = NEngine::CGame::getDebugGUI()->addInOutFader();
-  OutFader = NEngine::CGame::getDebugGUI()->addInOutFader();
+  Music = NEngine::NCore::CGame::getMusicReference();
+  GlobalTranslations = NEngine::NCore::CGame::getGlobalTranslations();
+  InFader = NEngine::NCore::CGame::getDebugGUI()->addInOutFader();
+  OutFader = NEngine::NCore::CGame::getDebugGUI()->addInOutFader();
 
   // Temporary picture to avoid a strange bug in hud rendering (first picture to render badly positionned)
-  Dummy = new NHud::CPicture(-5000, -5000, 0, 0);
+  Dummy = new NHud::NPrimitive::CPicture(-5000, -5000, 0, 0);
 
   // Cinemascope elements
-  Cinemascope = new NHud::CCinemascopeMode();
+  Cinemascope = new NHud::NPart::CCinemascopeMode();
 
   //ShadowProcessor = new NEngine::CShadowProcessor(Camera);
 
-  DebugInfo = NEngine::CGame::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
+  DebugInfo = NEngine::NCore::CGame::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
   DebugInfo->setOverrideColor(video::SColor(255, 255, 255, 255));
   //DebugConsole = new NDebug::CDebugConsole();
 
@@ -55,8 +55,8 @@ CScene::CScene()
 //! Event test of all scenes in the game (global events)
 void CScene::events()
 {
-  SpeedFactor = NEngine::CGame::getSpeedFactor();
-  SceneTime = (NEngine::CGame::getCurrentTime() - StartTime) / 1000.0f;
+  SpeedFactor = NEngine::NCore::CGame::getSpeedFactor();
+  SceneTime = (NEngine::NCore::CGame::getCurrentTime() - StartTime) / 1000.0f;
   //GameSave->setInteger(11, (u32)SceneTime); // 11 = Total game time
 
   generateDebugInfo();
@@ -64,7 +64,7 @@ void CScene::events()
   // Debug console
   /*
   DebugConsole->render();
-  if (Control->commandEntered(NEngine::ECI_DEBUG_CONSOLE_EXECUTE, NEngine::EET_ONCE)) {
+  if (Control->commandEntered(NEngine::ECI_DEBUG_CONSOLE_EXECUTE, NEngine::NEvent::EET_ONCE)) {
     DebugConsole->executeCurrentCommand();
   }
   */
@@ -99,15 +99,15 @@ void CScene::generateDebugInfo()
 {
   core::stringw debugText = "";
   debugText += "Texture count: ";
-  debugText += NEngine::CGame::getVideoDriver()->getTextureCount();
+  debugText += NEngine::NCore::CGame::getVideoDriver()->getTextureCount();
   debugText += "\nMesh count: ";
-  debugText += NEngine::CGame::getSceneManager()->getMeshCache()->getMeshCount();
+  debugText += NEngine::NCore::CGame::getSceneManager()->getMeshCache()->getMeshCount();
 
   DebugInfo->setText(debugText.c_str());
 }
 
 //! \todo comment this function
-void CScene::setSaveSlot(NEngine::CSave* saveSlot)
+void CScene::setSaveSlot(NEngine::NSave::CSave* saveSlot)
 {
   GameSave = saveSlot;
 }
@@ -116,7 +116,7 @@ void CScene::setSaveSlot(NEngine::CSave* saveSlot)
 /**
  * \return Camera*
  */
-N3D::CCamera* CScene::getActiveCamera()
+N3D::NCamera::CCamera* CScene::getActiveCamera()
 {
   return Camera;
 }
@@ -155,12 +155,12 @@ void CScene::setLoadingStatus(NScene::ELoadingStatus status)
 }
 
 //! \todo comment this function
-void CScene::fadeIn(f32 speed, NHud::EFadeColor color)
+void CScene::fadeIn(f32 speed, NHud::NPrimitive::EFadeColor color)
 {
   video::SColor irrColor = video::SColor(0, 0, 0, 0);
 
   switch(color) {
-    case NHud::EFC_WHITE: irrColor = video::SColor(255, 255, 255, 255); break;
+    case NHud::NPrimitive::EFC_WHITE: irrColor = video::SColor(255, 255, 255, 255); break;
     default: irrColor = video::SColor(0, 0, 0, 0); break;
   }
 
@@ -169,12 +169,12 @@ void CScene::fadeIn(f32 speed, NHud::EFadeColor color)
 }
 
 //! \todo comment this function
-void CScene::fadeOut(f32 speed, NHud::EFadeColor color)
+void CScene::fadeOut(f32 speed, NHud::NPrimitive::EFadeColor color)
 {
   video::SColor irrColor = video::SColor(0, 0, 0, 0);
 
   switch(color) {
-    case NHud::EFC_WHITE: irrColor = video::SColor(255, 255, 255, 255); break;
+    case NHud::NPrimitive::EFC_WHITE: irrColor = video::SColor(255, 255, 255, 255); break;
     default: irrColor = video::SColor(0, 0, 0, 0); break;
   }
 
@@ -200,8 +200,8 @@ CScene::~CScene()
   InFader->remove();
   OutFader->remove();
 
-  NEngine::CGame::getVideoDriver()->removeAllTextures();
-  NEngine::CGame::getSceneManager()->getMeshCache()->clear();
+  NEngine::NCore::CGame::getVideoDriver()->removeAllTextures();
+  NEngine::NCore::CGame::getSceneManager()->getMeshCache()->clear();
 
   if (Dialog) {
     delete Dialog;

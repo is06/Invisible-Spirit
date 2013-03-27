@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_BUTTON_ICON_TEXT_BUTTON_H__
 #define __IS06_HUD_BUTTON_ICON_TEXT_BUTTON_H__
 
-#include "../CButton.h"
+#include "CButton.h"
 
 namespace is06 { namespace NHud { namespace NButton {
 
@@ -23,8 +23,8 @@ public:
   void changeCommand(NEngine::NControl::ECommandIdentifier newCommand);
 
 protected:
-  CPicture* Icon;
-  CText* Label;
+  NPrimitive::CPicture* Icon;
+  NText::CText* Label;
 };
 
 }}}

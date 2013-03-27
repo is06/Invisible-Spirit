@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_COUNTER_TARGET_LIFE_METER_H__
 #define __IS06_HUD_COUNTER_TARGET_LIFE_METER_H__
 
-#include "../../Engine/Control/ECommandIdentifier.h"
-#include "../CHud.h"
+#include "../../NEngine/NControl/ECommandIdentifier.h"
+#include "../NCore/CHudEntity.h"
 
 namespace is06 { namespace NHud { namespace NCounter {
 
-class CTargetLifeMeter : public CHud
+class CTargetLifeMeter : public NCore::CHudEntity
 {
 public:
   CTargetLifeMeter(s32 init, s32 min, s32 max);
@@ -23,9 +23,9 @@ public:
   void updateValue(const s32& value);
 
 private:
-  CPicture* BarBack;
-  NCounter::CBar* Gauge;
-  CText* Label;
+  NPrimitive::CPicture* BarBack;
+  NCounter::CBarMeter* Gauge;
+  NText::CText* Label;
 };
 
 }}}

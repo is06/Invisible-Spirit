@@ -8,23 +8,23 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PAUSE_SCREEN_PAUSE_SCREEN_H__
 #define __IS06_HUD_PAUSE_SCREEN_PAUSE_SCREEN_H__
 
-#include "CHud.h"
-#include "PauseScreen/SubScreen/CItems.h"
-#include "PauseScreen/SubScreen/CMap.h"
-#include "PauseScreen/SubScreen/CMonsters.h"
-#include "PauseScreen/SubScreen/CSettings.h"
-#include "PauseScreen/SubScreen/CSpirits.h"
-#include "PauseScreen/SubScreen/CStatus.h"
-#include "PauseScreen/SubScreen/CStory.h"
-#include "PauseScreen/SubScreen/CWeapons.h"
+#include "../NCore/CHudEntity.h"
+#include "NSubScreen/CItems.h"
+#include "NSubScreen/CMap.h"
+#include "NSubScreen/CMonsters.h"
+#include "NSubScreen/CSettings.h"
+#include "NSubScreen/CSpirits.h"
+#include "NSubScreen/CStatus.h"
+#include "NSubScreen/CStory.h"
+#include "NSubScreen/CWeapons.h"
 
 namespace is06 { namespace NHud { namespace NPauseScreen {
 
 //! The main gameplay menu
-class CPauseScreen : public CHud
+class CPauseScreen : public NCore::CHudEntity
 {
 public:
-  CPauseScreen(NEngine::NResource::CTranslation* translation, NEngine::CPlayerControl* control);
+  CPauseScreen(NEngine::NResource::CTranslation* translation, NEngine::NControl::CPlayerControl* control);
   ~CPauseScreen();
 
   void render();
@@ -46,17 +46,17 @@ public:
   void goToMonstersMenu();
   void goToSettingsMenu();
 
-  CMenu* getSectionMenu();
+  NMenu::CMenu* getSectionMenu();
 
   bool isVisible();
 
 private:
-  NEngine::CPlayerControl* Control;
+  NEngine::NControl::CPlayerControl* Control;
   NEngine::NResource::CTranslation* GlobalTranslations;
-  CPicture* Background;
-  CPicture* TopBar;
-  CMenu* SectionMenu;
-  CPlayerState* StateInfo;
+  NPrimitive::CPicture* Background;
+  NPrimitive::CPicture* TopBar;
+  NMenu::CMenu* SectionMenu;
+  NPlayerState::CPlayerState* StateInfo;
   NCounter::CGameTime* GameplayTime;
   //DigitCounter* moneyCounter;
 

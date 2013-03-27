@@ -5,7 +5,7 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/Gameplay/CNPCInterface.h"
+#include "../../../include/NEngine/NGameplay/CNPCInterface.h"
 
 namespace is06 { namespace NEngine { namespace NGameplay {
 
@@ -18,7 +18,7 @@ void CNPCInterface::addNPC(N3D::NCharacter::CNPC* npc)
 }
 
 //! \todo write this function
-N3D::NCharacter::CNPC* CNPCInterface::getNearestNPC(N3D::CCharacter* character)
+N3D::NCharacter::CNPC* CNPCInterface::getNearestNPC(N3D::NCharacter::CCharacter* character)
 {
   // Parcours du vector et calcul de la distance avec le personnage passé en paramètre
   return NULL;

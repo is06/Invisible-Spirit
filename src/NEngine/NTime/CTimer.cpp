@@ -5,9 +5,9 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/CTimer.h"
-#include "../../include/Engine/CGame.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NTime/CTimer.h"
+#include "../../../include/NEngine/NCore/CGame.h"
 
 namespace is06 { namespace NEngine { namespace NTime {
 
@@ -27,7 +27,7 @@ CTimer::CTimer(f32 end, TVoidCallback callback, s32 loopLimit)
 void CTimer::update()
 {
   if (Running && (CurrentLoop < CurrentLoopLimit || CurrentLoopLimit == -1)) {
-    CurrentTime += (CGame::getSpeedFactor());
+    CurrentTime += (NEngine::NCore::CGame::getSpeedFactor());
     if (CurrentTime >= EndTime) {
       bool called = true;
       // Appel du callback

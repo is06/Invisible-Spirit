@@ -10,6 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 #include "../../NEngine/NCore/CEntity.h"
 #include "../../NShader/EShadowMode.h"
+#include "../../NSound/CSpeaker.h"
 
 namespace is06 { namespace N3D { namespace NPrimitive {
 

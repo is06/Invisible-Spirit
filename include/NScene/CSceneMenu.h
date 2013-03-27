@@ -9,7 +9,7 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_SCENE_SCENE_MENU_H__
 
 #include "CScene.h"
-#include "../Engine/Save/CSlot.h"
+#include "../NEngine/NSave/CSaveSlot.h"
 
 namespace is06 { namespace NScene {
 
@@ -37,11 +37,11 @@ private:
   void retrieveSaveSlotList();
   void clearSaveSlotList();
 
-  NHud::CPicture* Title;
-  NHud::CPicture* CreativeCommons;
-  NHud::CMenu* MainMenu;
+  NHud::NPrimitive::CPicture* Title;
+  NHud::NPrimitive::CPicture* CreativeCommons;
+  NHud::NMenu::CMenu* MainMenu;
   map<u16, core::vector3di> ModeList;
-  map<u8, NEngine::NSave::CSlot*> SaveSlotList;
+  map<u8, NEngine::NSave::CSaveSlot*> SaveSlotList;
 
   bool NewGameIsFading;
   bool QuitIsFading;

@@ -5,8 +5,8 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Scene/CSceneDungeon.h"
+#include "../../include/core.h"
+#include "../../include/NScene/CSceneDungeon.h"
 
 namespace is06 { namespace NScene {
 

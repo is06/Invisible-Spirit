@@ -5,18 +5,18 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Hud/CPlayerState.h"
-#include "../../include/Hud/CText.h"
-#include "../../include/Hud/PlayerState/CMainInfo.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NPlayerState/CPlayerState.h"
+#include "../../../include/NHud/NText/CText.h"
+#include "../../../include/NHud/NPlayerState/CMainInfo.h"
 
 namespace is06 { namespace NHud { namespace NPlayerState {
 
 CPlayerState::CPlayerState()
 {
-  PlayerName = new CText("Ayron", 0, 0);
-  LevelLabel = new CText("niv.", 0, -24);
-  LevelInfo = new CText("1", 100, -24);
+  PlayerName = new NText::CText("Ayron", 0, 0);
+  LevelLabel = new NText::CText("niv.", 0, -24);
+  LevelInfo = new NText::CText("1", 100, -24);
 
   HpInfo = new NPlayerState::CMainInfo();
 }

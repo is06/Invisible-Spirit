@@ -8,6 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_ENGINE_GAMEPLAY_MAP_SECTION_INTERFACE_H__
 #define __IS06_ENGINE_GAMEPLAY_MAP_SECTION_INTERFACE_H__
 
+#include "../../N3D/NPart/CMapPart.h"
+
 namespace is06 { namespace NEngine { namespace NGameplay {
 
 //! Map sections management interface (section: a room in a dungeon for example)
@@ -23,10 +25,10 @@ public:
   void clearMeshCollision(u8 sectionIndex);
   void swapLevelMeshes();
 
-  N3D::CLevelMesh* getSection(u8 index);
+  N3D::NPart::CMapPart* getSection(u8 index);
 
 private:
-  N3D::CLevelMesh* Level[2];
+  N3D::NPart::CMapPart* Level[2];
 };
 
 }}}

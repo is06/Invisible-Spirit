@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SHADER_DIFFUSE_SHADER_CALLBACK_H__
 #define __IS06_SHADER_DIFFUSE_SHADER_CALLBACK_H__
 
-#include "../Engine/CGame.h"
+#include "../NEngine/NCore/CGame.h"
 
 namespace is06 { namespace NShader {
 
@@ -26,9 +26,9 @@ public:
   virtual void OnSetConstants(video::IMaterialRendererServices* services, s32 userData)
   {
     core::matrix4 worldViewProj;
-    worldViewProj = NEngine::CGame::getVideoDriver()->getTransform(video::ETS_PROJECTION);
-    worldViewProj *= NEngine::CGame::getVideoDriver()->getTransform(video::ETS_VIEW);
-    worldViewProj *= NEngine::CGame::getVideoDriver()->getTransform(video::ETS_WORLD);
+    worldViewProj = NEngine::NCore::CGame::getVideoDriver()->getTransform(video::ETS_PROJECTION);
+    worldViewProj *= NEngine::NCore::CGame::getVideoDriver()->getTransform(video::ETS_VIEW);
+    worldViewProj *= NEngine::NCore::CGame::getVideoDriver()->getTransform(video::ETS_WORLD);
     services->setVertexShaderConstant("mWorldViewProj", worldViewProj.pointer(), 16);
 
     f32 vColor[4] = {

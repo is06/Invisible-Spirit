@@ -5,10 +5,10 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/CGame.h"
-#include "../../../include/Engine/Resource/CSettings.h"
-#include "../../../include/Hud/Primitive/CFlatElement.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NEngine/NResource/CSettings.h"
+#include "../../../include/NHud/NPrimitive/CFlatElement.h"
 
 using namespace irr;
 
@@ -19,7 +19,7 @@ f32 CFlatElement::Coeff = 4954.94f;
 u16 CFlatElement::Indices[] = {2, 1, 3, 0, 1, 2};
 core::matrix4 CFlatElement::Mat;
 
-CFlatElement::CFlatElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : CHud()
+CFlatElement::CFlatElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : NCore::CHudEntity()
 {
   AbsoluteTransformation = core::matrix4();
   AbsoluteTransformation.makeIdentity();
@@ -55,11 +55,11 @@ CFlatElement::CFlatElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : CHu
   }
 
   // Texture filtering
-  if (NEngine::CGame::Settings->getParamString("text", "texture_filter") == "anisotropic") {
+  if (NEngine::NCore::CGame::Settings->getParamString("text", "texture_filter") == "anisotropic") {
     Material.setFlag(video::EMF_ANISOTROPIC_FILTER, true);
-  } else if (NEngine::CGame::Settings->getParamString("text", "texture_filter") == "trilinear") {
+  } else if (NEngine::NCore::CGame::Settings->getParamString("text", "texture_filter") == "trilinear") {
     Material.setFlag(video::EMF_TRILINEAR_FILTER, true);
-  } else if (NEngine::CGame::Settings->getParamString("text", "texture_filter") == "none") {
+  } else if (NEngine::NCore::CGame::Settings->getParamString("text", "texture_filter") == "none") {
     Material.setFlag(video::EMF_BILINEAR_FILTER, false);
   }
 
@@ -141,10 +141,10 @@ void CFlatElement::render()
     }
 
     // Rendering
-    NEngine::CGame::getVideoDriver()->setMaterial(Material);
-    NEngine::CGame::getVideoDriver()->setTransform(video::ETS_VIEW, AbsoluteTransformation);
-    NEngine::CGame::getVideoDriver()->drawIndexedTriangleList(Vertices, 4, Indices, 2);
-    NEngine::CGame::getVideoDriver()->setTransform(video::ETS_WORLD, Mat);
+    NEngine::NCore::CGame::getVideoDriver()->setMaterial(Material);
+    NEngine::NCore::CGame::getVideoDriver()->setTransform(video::ETS_VIEW, AbsoluteTransformation);
+    NEngine::NCore::CGame::getVideoDriver()->drawIndexedTriangleList(Vertices, 4, Indices, 2);
+    NEngine::NCore::CGame::getVideoDriver()->setTransform(video::ETS_WORLD, Mat);
   }
 }
 

@@ -5,9 +5,9 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/Gameplay/CMapSectionInterface.h"
-#include "../../../include/3D/CLevelMesh.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NGameplay/CMapSectionInterface.h"
+#include "../../../include/N3D/NPart/CMapPart.h"
 
 namespace is06 { namespace NEngine { namespace NGameplay {
 
@@ -23,7 +23,7 @@ void CMapSectionInterface::loadSection(const string& mapName, const string& sect
     swapLevelMeshes();
   }
 
-  Level[0] = new N3D::CLevelMesh();
+  Level[0] = new N3D::NPart::CMapPart();
   Level[0]->loadMesh("resource/mesh/level/" + mapName + "/" + sectionName + ".obj");
   Level[0]->createNode(position);
   Level[0]->loadMeshCollision();
@@ -50,13 +50,13 @@ void CMapSectionInterface::clearMeshCollision(u8 sectionIndex)
 
 void CMapSectionInterface::swapLevelMeshes()
 {
-  N3D::CLevelMesh* tmp;
+  N3D::NPart::CMapPart* tmp;
   tmp = Level[1];
   Level[1] = Level[0];
   Level[0] = tmp;
 }
 
-N3D::CLevelMesh* CMapSectionInterface::getSection(u8 index)
+N3D::NPart::CMapPart* CMapSectionInterface::getSection(u8 index)
 {
   return Level[index];
 }

@@ -8,9 +8,9 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_MAP_DEBUG_MAP_ALPHA_ZONE_H__
 #define __IS06_MAP_DEBUG_MAP_ALPHA_ZONE_H__
 
-#include "../../../include/3D/Sensor/CTeleporter.h"
-#include "../../../include/Scene/CSceneGameplay.h"
-#include "../../../include/Shader/CPostRenderGlow.h"
+#include "../../../include/N3D/NSensor/CTeleporter.h"
+#include "../../../include/NScene/CSceneGameplay.h"
+#include "../../../include/NShader/CPostRenderGlow.h"
 
 namespace is06 { namespace NMap { namespace NDebug {
 
@@ -30,8 +30,8 @@ public:
 private:
   NSound::CSpeaker*           Spk;
   NShader::CPostRenderGlow*   GlowShader;
-  N3D::NLight::COmni*         Lt;
-  N3D::NLight::CDirect*       DLight;
+  N3D::NLight::COmniLight*    Lt;
+  N3D::NLight::CDirectLight*  DLight;
   N3D::NSensor::CTeleporter*  ToDungeonSensor;
   N3D::NCharacter::CNPC*      NPC1;
 };

@@ -5,22 +5,22 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Hud/Button/CIcon.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NButton/CIconButton.h"
 
 namespace is06 { namespace NHud { namespace NButton {
 
-CIcon::CIcon(f32 x, f32 y) : CButton(x, y)
+CIconButton::CIconButton(f32 x, f32 y) : CButton(x, y)
 {
 
 }
 
-void CIcon::render()
+void CIconButton::render()
 {
   CButton::render();
 }
 
-CIcon::~CIcon()
+CIconButton::~CIconButton()
 {
 
 }

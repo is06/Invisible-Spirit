@@ -10,17 +10,17 @@ http://www.is06.com. Legal code in license.txt
 
 #include "EMiniMapIdentifier.h"
 #include "CMiniMapArrow.h"
-#include "CHud.h"
-#include "CPicture.h"
+#include "../NCore/CHudEntity.h"
+#include "../NPrimitive/CPicture.h"
 
 using namespace irr;
 
 namespace is06 { namespace NHud { namespace NPart {
 
-class CMiniMap : public CHud
+class CMiniMap : public NCore::CHudEntity
 {
 public:
-  CMiniMap(N3D::NCharacter::CPlayable* player);
+  CMiniMap(N3D::NCharacter::CPlayableCharacter* player);
   ~CMiniMap();
 
   void render();
@@ -40,13 +40,13 @@ private:
   f32 WorldSize;
   f32 Opacity;
 
-  CPicture* Map;
+  NPrimitive::CPicture* Map;
   CMiniMapArrow* PlayerPosition;
   CMiniMapArrow* EntrancePosition;
 
-  N3D::NCharacter::CPlayable* AttachedPlayer;
-  std::vector<N3D::CModelEntity*> AttachedEntities;
-  std::vector<N3D::CModelEntity*>::iterator AttachedEntitiesIt;
+  N3D::NCharacter::CPlayableCharacter* AttachedPlayer;
+  std::vector<N3D::NPrimitive::CModelEntity*> AttachedEntities;
+  std::vector<N3D::NPrimitive::CModelEntity*>::iterator AttachedEntitiesIt;
 
   static f32 Coeff;
 };

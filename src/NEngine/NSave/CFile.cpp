@@ -5,21 +5,21 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/Save/CFile.h"
-#include "../../../include/Engine/CGame.h"
-#include "../../../include/Engine/Exception/CFileException.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NSave/CSaveFile.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NEngine/NException/CFileException.h"
 
 namespace is06 { namespace NEngine { namespace NSave {
 
 //! Default constructor, does nothing
-CFile::CFile()
+CSaveFile::CSaveFile()
 {
 
 }
 
 //! Creates the stream for reading
-void CFile::prepareForRead(u8 slot)
+void CSaveFile::prepareForRead(u8 slot)
 {
   string filePath("save_");
   filePath += slot + ".dat";
@@ -31,7 +31,7 @@ void CFile::prepareForRead(u8 slot)
 }
 
 //! Creates the stream for writing
-void CFile::prepareForWrite(u8 slot)
+void CSaveFile::prepareForWrite(u8 slot)
 {
   string filePath("save_");
   filePath += slot + ".dat";
@@ -43,20 +43,20 @@ void CFile::prepareForWrite(u8 slot)
 }
 
 //! Adds an integer variable in the save file
-void CFile::addVariable(u32 index, s32 value)
+void CSaveFile::addVariable(u32 index, s32 value)
 {
   Ws << index << "\ti\t" << value << "\n";
 }
 
 //! Adds a boolean variable in the save file
-void CFile::addVariable(u32 index, bool value)
+void CSaveFile::addVariable(u32 index, bool value)
 {
   u8 intValue = value ? 1 : 0;
   Ws << index << "\tb\t" << intValue << "\n";
 }
 
 //! Adds a string variable in the save file
-void CFile::addVariable(u32 index, const string& value)
+void CSaveFile::addVariable(u32 index, const string& value)
 {
   Ws << index << "\ts\t" << value.c_str() << "\n";
 }
@@ -65,7 +65,7 @@ void CFile::addVariable(u32 index, const string& value)
 /**
  * \return SaveFileElement structure
  */
-SFileElement CFile::getNextElement()
+SFileElement CSaveFile::getNextElement()
 {
   char currentChar = 0;
   bool inIndexDeclaration = true;
@@ -114,7 +114,7 @@ SFileElement CFile::getNextElement()
 }
 
 //! Closes file
-CFile::~CFile()
+CSaveFile::~CSaveFile()
 {
   Rs.close();
   Ws.close();

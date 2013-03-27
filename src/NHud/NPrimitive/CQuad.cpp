@@ -5,9 +5,9 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/CGame.h"
-#include "../../../include/Engine/CEventManager.h"
-#include "../../../include/Hud/Primitive/CQuad.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NEngine/NEvent/CEventManager.h"
+#include "../../../include/NHud/NPrimitive/CQuad.h"
 
 using namespace irr;
 

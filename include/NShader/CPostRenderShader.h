@@ -8,8 +8,8 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SHADER_POST_RENDER_SHADER_H__
 #define __IS06_SHADER_POST_RENDER_SHADER_H__
 
-#include "EShaderEffect.h"
-#include "../Hud/Primitive/CFlatElement.h"
+#include "EEffect.h"
+#include "../NHud/NPrimitive/CFlatElement.h"
 
 namespace is06 { namespace NShader {
 
@@ -21,14 +21,14 @@ public:
   ~CPostRenderShader();
 
   virtual void render();
-  void addEntityForEffect(N3D::CModelEntity* entity, NShader::EEffect effect);
+  void addEntityForEffect(N3D::NPrimitive::CModelEntity* entity, NShader::EEffect effect);
   void applyEffectsToEntities();
   void removeEffectsToEntities();
 
 protected:
   // A map for post processing effects
-  map<N3D::CModelEntity*, NShader::EEffect> EntityList;
-  map<N3D::CModelEntity*, NShader::EEffect>::iterator EntityListIt;
+  map<N3D::NPrimitive::CModelEntity*, NShader::EEffect> EntityList;
+  map<N3D::NPrimitive::CModelEntity*, NShader::EEffect>::iterator EntityListIt;
 };
 
 }}

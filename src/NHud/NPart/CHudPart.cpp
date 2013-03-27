@@ -5,20 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/core.h"
-#include "../../include/NHud/NPart/CHudPart.h"
-#include "../../include/NHud/NPart/CCommands.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NPart/CHudPart.h"
+#include "../../../include/NHud/NPart/CCommands.h"
 
-namespace is06 { namespace NHud { namespace NPart
+namespace is06 { namespace NHud { namespace NPart {
 
-CHudPart::CHudPart() : CHud()
+CHudPart::CHudPart() : NCore::CHudEntity()
 {
-  Buttons = new NEnsemble::CCommands();
+  Buttons = new NPart::CCommands();
 }
 
 void CHudPart::render()
 {
-  CHud::render();
+  NCore::CHudEntity::render();
   Buttons->render();
 }
 

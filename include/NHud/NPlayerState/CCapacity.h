@@ -8,11 +8,11 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PLAYER_STATE_CAPACITY_H__
 #define __IS06_HUD_PLAYER_STATE_CAPACITY_H__
 
-#include "../CHud.h"
+#include "../NCore/CHudEntity.h"
 
 namespace is06 { namespace NHud { namespace NPlayerState {
 
-class CCapacity : public CHud
+class CCapacity : public NCore::CHudEntity
 {
 public:
   CCapacity();
@@ -21,8 +21,8 @@ public:
   void render();
 
 private:
-  CPicture* Icon;
-  CText* Value;
+  NPrimitive::CPicture* Icon;
+  NText::CText* Value;
 };
 
 }}}

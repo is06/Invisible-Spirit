@@ -5,20 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Hud/CButton.h"
-#include "../../include/Hud/CPicture.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NButton/CButton.h"
+#include "../../../include/NHud/NPrimitive/CPicture.h"
 
 namespace is06 { namespace NHud { namespace NButton {
 
-CButton::CButton(f32 x, f32 y) : CHud()
+CButton::CButton(f32 x, f32 y) : NCore::CHudEntity()
 {
-  ButtonCircle = new CPicture(x, y, 40, 40, "resource/hud/button/buttonCircle.png");
+  ButtonCircle = new NPrimitive::CPicture(x, y, 40, 40, "resource/hud/button/buttonCircle.png");
 }
 
 void CButton::render()
 {
-  CHud::render();
+  NCore::CHudEntity::render();
   ButtonCircle->render();
 }
 

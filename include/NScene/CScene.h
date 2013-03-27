@@ -8,6 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_SCENE_SCENE_H__
 #define __IS06_SCENE_SCENE_H__
 
+#include "../N3D/NCamera/CCamera.h"
 #include "../NScene/ELoadingStatus.h"
 #include "../NShader/CShadowProcessor.h"
 #include "../NEngine/NControl/CPlayerControl.h"

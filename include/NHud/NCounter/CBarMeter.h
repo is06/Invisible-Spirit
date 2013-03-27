@@ -8,7 +8,7 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_COUNTER_BAR_METER_H__
 #define __IS06_HUD_COUNTER_BAR_METER_H__
 
-#include "../CCounter.h"
+#include "CCounter.h"
 #include "EBarStyle.h"
 
 namespace is06 { namespace NHud { namespace NCounter {
@@ -34,8 +34,8 @@ public:
   void setY(f32 value);
 
 protected:
-  CPicture* Bar;
-  CPicture* Sub;
+  NPrimitive::CPicture* Bar;
+  NPrimitive::CPicture* Sub;
 
   s32 OldValue;
   f32 BehindValue;

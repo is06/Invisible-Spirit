@@ -5,17 +5,17 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Hud/PauseScreen/CSubScreen.h"
+#include "../../../../include/core.h"
+#include "../../../../include/NHud/NPauseScreen/NSubScreen/CSubScreen.h"
 
 namespace is06 { namespace NHud { namespace NPauseScreen { namespace NSubScreen {
 
-CSubScreen::CSubScreen() : CHud() {}
+CSubScreen::CSubScreen() : NCore::CHudEntity() {}
 
 //! \todo comment this function
 void CSubScreen::render()
 {
-  CHud::render();
+  NCore::CHudEntity::render();
 }
 
 //! \todo write this function

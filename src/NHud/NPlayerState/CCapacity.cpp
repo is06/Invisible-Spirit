@@ -5,22 +5,22 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Hud/PlayerState/CCapacity.h"
-#include "../../../include/Hud/CPicture.h"
-#include "../../../include/Hud/CText.h"
+#include "../../../include/core.h"
+#include "../../../include/NHud/NPlayerState/CCapacity.h"
+#include "../../../include/NHud/NPrimitive/CPicture.h"
+#include "../../../include/NHud/NText/CText.h"
 
 namespace is06 { namespace NHud { namespace NPlayerState {
 
-CCapacity::CCapacity() : CHud()
+CCapacity::CCapacity() : NCore::CHudEntity()
 {
-  Icon = new CPicture();
-  Value = new CText();
+  Icon = new NPrimitive::CPicture();
+  Value = new NText::CText();
 }
 
 void CCapacity::render()
 {
-  CHud::render();
+  NCore::CHudEntity::render();
   Icon->render();
   Value->render();
 }

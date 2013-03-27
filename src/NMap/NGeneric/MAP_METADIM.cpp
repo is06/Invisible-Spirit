@@ -5,20 +5,20 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/3D/Character/CPlayable.h"
-#include "../../../include/3D/CCamera.h"
-#include "../../../include/Engine/Gameplay/CDialogInterface.h"
-#include "../../../include/Engine/Gameplay/EPlayableCharacterType.h"
-#include "../../../include/Map/Generic/MAP_METADIM.h"
-#include "../../../include/Sound/CMusicReference.h"
+#include "../../../include/core.h"
+#include "../../../include/N3D/NCharacter/CPlayableCharacter.h"
+#include "../../../include/N3D/NCamera/CCamera.h"
+#include "../../../include/NEngine/NGameplay/CDialogInterface.h"
+#include "../../../include/N3D/NCharacter/EPlayableCharacterType.h"
+#include "../../../include/NMap/NGeneric/MAP_METADIM.h"
+#include "../../../include/NSound/CMusicReference.h"
 
 namespace is06 { namespace NMap { namespace NGeneric {
 
 MAP_METADIM::MAP_METADIM() : NScene::CSceneGameplay()
 {
-  Hero = new N3D::NCharacter::CPlayable(Camera);
-  Hero->setCharacter(NEngine::NGameplay::EPCT_AYRON);
+  Hero = new N3D::NCharacter::CPlayableCharacter(Camera);
+  Hero->setCharacter(N3D::NCharacter::EPCT_AYRON);
   Hero->setControl(false);
 
   Music->play("norya");

@@ -5,16 +5,16 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../include/Engine/core.h"
-#include "../../include/Engine/CGame.h"
-#include "../../include/Hud/CCinemascopeMode.h"
-#include "../../include/Hud/Primitive/CQuad.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NHud/NPart/CCinemascopeMode.h"
+#include "../../../include/NHud/NPrimitive/CQuad.h"
 
 using namespace irr;
 
-namespace is06 { namespace NHud { namespace NPart
+namespace is06 { namespace NHud { namespace NPart {
 
-CCinemascopeMode::CCinemascopeMode() : CHud()
+CCinemascopeMode::CCinemascopeMode() : NCore::CHudEntity()
 {
   SlideSpeed = 0.0f;
   SlidingIn = false;
@@ -25,8 +25,8 @@ CCinemascopeMode::CCinemascopeMode() : CHud()
   FadingIn = false;
   FadingOut = false;
 
-  Bars[0] = new NPrimitive::CQuad(0, (NEngine::CGame::ScreenPos.Hud.Top + 44), 1280, 88, video::SColor(255, 0, 0, 0));
-  Bars[1] = new NPrimitive::CQuad(0, (NEngine::CGame::ScreenPos.Hud.Bottom - 44), 1280, 88, video::SColor(255, 0, 0, 0));
+  Bars[0] = new NPrimitive::CQuad(0, (NEngine::NCore::CGame::ScreenPos.Hud.Top + 44), 1280, 88, video::SColor(255, 0, 0, 0));
+  Bars[1] = new NPrimitive::CQuad(0, (NEngine::NCore::CGame::ScreenPos.Hud.Bottom - 44), 1280, 88, video::SColor(255, 0, 0, 0));
 }
 
 void CCinemascopeMode::render()
@@ -36,17 +36,17 @@ void CCinemascopeMode::render()
 
 void CCinemascopeMode::render(f32 speedFactor)
 {
-  CHud::render();
+  NCore::CHudEntity::render();
 
   if (SlidingIn) {
-    if (Bars[0]->getY() > (NEngine::CGame::ScreenPos.Hud.Top - 44)) {
+    if (Bars[0]->getY() > (NEngine::NCore::CGame::ScreenPos.Hud.Top - 44)) {
       Bars[0]->subY(speedFactor * SlideSpeed);
       Bars[1]->addY(speedFactor * SlideSpeed);
     } else {
       SlidingIn = false;
     }
   } else if (SlidingOut) {
-    if (Bars[0]->getY() < (NEngine::CGame::ScreenPos.Hud.Top + 44)) {
+    if (Bars[0]->getY() < (NEngine::NCore::CGame::ScreenPos.Hud.Top + 44)) {
       Bars[0]->addY(speedFactor * SlideSpeed);
       Bars[1]->subY(speedFactor * SlideSpeed);
     } else {
@@ -55,8 +55,8 @@ void CCinemascopeMode::render(f32 speedFactor)
   }
 
   if (FadingIn) {
-    Bars[0]->setY(NEngine::CGame::ScreenPos.Hud.Top - 44);
-    Bars[1]->setY(NEngine::CGame::ScreenPos.Hud.Bottom + 44);
+    Bars[0]->setY(NEngine::NCore::CGame::ScreenPos.Hud.Top - 44);
+    Bars[1]->setY(NEngine::NCore::CGame::ScreenPos.Hud.Bottom + 44);
     if (FadeValue < 255.0f) {
       FadeValue += (speedFactor * FadeSpeed);
     } else {
@@ -72,8 +72,8 @@ void CCinemascopeMode::render(f32 speedFactor)
     } else {
       FadeValue = 0.0f;
       FadingOut = false;
-      Bars[0]->setY(NEngine::CGame::ScreenPos.Hud.Top + 44);
-      Bars[1]->setY(NEngine::CGame::ScreenPos.Hud.Bottom - 44);
+      Bars[0]->setY(NEngine::NCore::CGame::ScreenPos.Hud.Top + 44);
+      Bars[1]->setY(NEngine::NCore::CGame::ScreenPos.Hud.Bottom - 44);
     }
     Bars[0]->setOpacity((u8)FadeValue);
     Bars[1]->setOpacity((u8)FadeValue);

@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_COUNTER_COUNTER_H__
 #define __IS06_HUD_COUNTER_COUNTER_H__
 
-#include "CHud.h"
+#include "../NCore/CHudEntity.h"
 
 namespace is06 { namespace NHud { namespace NCounter {
 
 //! Abstract base class for hud counters
-class CCounter : public CHud
+class CCounter : public NCore::CHudEntity
 {
 public:
   CCounter(s32 init = 0, s32 min = 0, s32 max = 1000);

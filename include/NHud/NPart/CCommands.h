@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PART_COMMANDS_H__
 #define __IS06_HUD_PART_COMMANDS_H__
 
-#include "../CHud.h"
+#include "../NCore/CHudEntity.h"
 
 namespace is06 { namespace NHud { namespace NPart {
 
 //! The HUD button gameplay interface
-class CCommands : public CHud
+class CCommands : public NCore::CHudEntity
 {
 public:
   CCommands();
@@ -28,10 +28,10 @@ public:
   f32 getOpacity();
 
 protected:
-  CButton* Command;
-  CButton* Jump;
-  CButton* Defense;
-  CButton* Menu;
+  NButton::CButton* Command;
+  NButton::CButton* Jump;
+  NButton::CButton* Defense;
+  NButton::CButton* Menu;
 
   f32 Opacity;
 };

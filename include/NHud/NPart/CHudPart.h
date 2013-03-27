@@ -8,12 +8,12 @@ http://www.is06.com. Legal code in license.txt
 #ifndef __IS06_HUD_PART_HUD_PART_H__
 #define __IS06_HUD_PART_HUD_PART_H__
 
-#include "CHud.h"
+#include "../NCore/CHudEntity.h"
 
 namespace is06 { namespace NHud { namespace NPart {
 
 //! The whole HUD gameplay interface (buttons, energy...)
-class CHudPart : public CHud
+class CHudPart : public NCore::CHudEntity
 {
 public:
   CHudPart();
@@ -27,8 +27,8 @@ public:
   void subOpacity(f32 value);
   f32 getOpacity();
 
-  NEnsemble::CCommands* Buttons;
-  NEnsemble::CEnergy* Energy;
+  NPart::CCommands* Buttons;
+  NPart::CEnergy* Energy;
 
 protected:
   f32 Opacity;

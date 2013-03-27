@@ -5,10 +5,10 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/3D/Character/CPlayable.h"
-#include "../../../include/3D/CLevelMesh.h"
-#include "../../../include/Map/Debug/MAP_DEBUG.h"
+#include "../../../include/core.h"
+#include "../../../include/N3D/NCharacter/CPlayableCharacter.h"
+#include "../../../include/N3D/NPart/CMapPart.h"
+#include "../../../include/NMap/NDebug/MAP_DEBUG.h"
 
 using namespace irr;
 

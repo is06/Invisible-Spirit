@@ -5,14 +5,14 @@ is06.com. Permissions beyond the scope of this license may be available at
 http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
-#include "../../../include/Engine/core.h"
-#include "../../../include/Engine/CGame.h"
-#include "../../../include/Engine/CPlayerControl.h"
-#include "../../../include/Engine/Resource/CTranslation.h"
-#include "../../../include/Engine/Gameplay/CDialogInterface.h"
-#include "../../../include/Engine/Exception/CTextException.h"
-#include "../../../include/Hud/CText.h"
-#include "../../../include/Hud/CPicture.h"
+#include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
+#include "../../../include/NEngine/NControl/CPlayerControl.h"
+#include "../../../include/NEngine/NResource/CTranslation.h"
+#include "../../../include/NEngine/NGameplay/CDialogInterface.h"
+#include "../../../include/NEngine/NException/CTextException.h"
+#include "../../../include/NHud/NText/CText.h"
+#include "../../../include/NHud/NPrimitive/CPicture.h"
 
 namespace is06 { namespace NEngine { namespace NGameplay {
 
@@ -23,7 +23,7 @@ namespace is06 { namespace NEngine { namespace NGameplay {
  * Dialog = new NEngine::CDialogInterface("MAP_ALPHA_ZONE.isd", SceneTranslations, Control);
  * \endcode
  */
-CDialogInterface::CDialogInterface(const string& filePath, NResource::CTranslation* translation, CPlayerControl* control)
+CDialogInterface::CDialogInterface(const string& filePath, NResource::CTranslation* translation, NControl::CPlayerControl* control)
 {
   Control = control;
 
@@ -39,15 +39,15 @@ CDialogInterface::CDialogInterface(const string& filePath, NResource::CTranslati
   CurrentMessageNumber = 0;
   CurrentMessageText = NULL;
 
-  BackWindow = new NHud::CPicture(0, CGame::ScreenPos.Hud.Bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
+  BackWindow = new NHud::NPrimitive::CPicture(0, NCore::CGame::ScreenPos.Hud.Bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
 
   string fullPath = "resource/text/";
 
-  switch (CGame::getCurrentLocale()) {
-    case ELI_FRE_FR:
-    case ELI_FRE_BE:
-    case ELI_FRE_CA:
-    case ELI_FRE_CH:
+  switch (NCore::CGame::getCurrentLocale()) {
+    case NResource::ELI_FRE_FR:
+    case NResource::ELI_FRE_BE:
+    case NResource::ELI_FRE_CA:
+    case NResource::ELI_FRE_CH:
       fullPath += "fre-FR";
       break;
     default:
@@ -80,14 +80,14 @@ void CDialogInterface::render()
     }
 
     // Display all message quickly
-    if (MessageDisplaying && Control->commandEntered(NControl::ECI_DIALOG_ACTION, EET_ONCE)) {
+    if (MessageDisplaying && Control->commandEntered(NControl::ECI_DIALOG_ACTION, NEvent::EET_ONCE)) {
       CurrentMessageText->skip();
       MessageDisplaying = false;
       MessageFinished = true;
     }
 
     // Go to next message (only if entirely displayed)
-    if (MessageFinished && Control->commandEntered(NControl::ECI_DIALOG_ACTION, EET_ONCE)) {
+    if (MessageFinished && Control->commandEntered(NControl::ECI_DIALOG_ACTION, NEvent::EET_ONCE)) {
       MessageFinished = false;
       MessageDisplaying = true;
       if (!DialogFinished) {
@@ -160,11 +160,11 @@ void CDialogInterface::start(const string& dialogIdentifier)
 //! Creates and displays a message from the dialog onto the screen
 void CDialogInterface::createMessage(const string& dialogIdentifier, u16 messageNumber)
 {
-  CurrentMessageText = new NHud::CText(
+  CurrentMessageText = new NHud::NText::CText(
     DialogList[dialogIdentifier].getMessage(messageNumber),
     -350,
-    CGame::ScreenPos.Hud.Bottom + 100,
-    NHud::EFS_STANDARD_48,
+    NCore::CGame::ScreenPos.Hud.Bottom + 100,
+    NHud::NText::EFS_STANDARD_48,
     25
   );
 }
