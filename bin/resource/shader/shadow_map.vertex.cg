@@ -1,25 +1,25 @@
 struct SVertexOutput {
   float4 position : POSITION;
   float2 texCoord0 : TEXCOORD0;
-  float2 texCoord1 : TEXCOORD1;
+  float4 texCoord1 : TEXCOORD1;
 };
 
 SVertexOutput mainVS(float4 position : POSITION,
                      float4 normal : NORMAL,
                      uniform float4x4 worldViewProj,
                      uniform float4x4 worldViewProj2,
-                     uniform float3 lightPos,
+                     uniform float4 lightPos,
                      uniform float maxD,
                      uniform float mapRes)
 {
   SVertexOutput output;
 
-  output.position = (worldViewProj * float4(position.x, position.y, position.z, 1.0));
+  output.position = mul(worldViewProj, float4(position.x, position.y, position.z, 1.0));
 
-  float4 samplingPos = (worldViewProj2 * float4(position.x, position.y, position.z, 1.0));
-  float3 lightDir = normalize(lightPos - position);
+  float4 samplingPos = mul(worldViewProj2, float4(position.x, position.y, position.z, 1.0));
+  float4 lightDir = normalize(lightPos - position);
 
-  output.texCoord0 = samplingPos;
+  output.texCoord0 = samplingPos.xy;
 
   output.texCoord1.x = samplingPos.z;
   output.texCoord1.y = dot(normalize(normal.xyz), lightDir);

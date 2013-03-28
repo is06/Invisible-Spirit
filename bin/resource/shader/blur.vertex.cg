@@ -1,4 +1,5 @@
-struct SVertexOutput {
+struct SVertexOutput
+{
   float4 position : POSITION;
   float2 texCoord : TEXCOORD0;
 };

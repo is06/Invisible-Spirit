@@ -12,12 +12,13 @@ float testShadow(float2 shadowMapTexCoord, float2 offset, float realDistance, sa
 
 SPixelOutput mainPS(float4 texCoord0 : TEXCOORD0,
                     float4 texCoord1 : TEXCOORD1,
-                    float3 color : COLOR0,
+                    float4 color : COLOR0,
                     uniform float4 lightColor,
                     uniform sampler2D shadowMapSampler)
 {
   SPixelOutput output;
 
+  /*
   float2 offsets[16];
   offsets[0] = float2(0.0, 0.0);
   offsets[1] = float2(0.0, 1.0);
@@ -36,7 +37,8 @@ SPixelOutput mainPS(float4 texCoord0 : TEXCOORD0,
   offsets[14] = float2(4.0, -4.0);
   offsets[15] = float2(-4.0, 4.0);
 
-  float4 shadowMapPos = texCoord0.xy / texCoord0.w / 2.0 + float2(0.5, 0.5);
+  float4 shadowMapPos = float4(0.0, 0.0, 0.0, 0.0);
+  shadowMapPos = texCoord0.xy / texCoord0.w / 2.0 + float2(0.5, 0.5);
   float4 finalColor = float4(0.0, 0.0, 0.0, 0.0);
   float2 clampedShadowMapPos = clamp(shadowMapPos.xy, float2(0.0, 0.0), float2(1.0, 1.0));
 
@@ -52,6 +54,9 @@ SPixelOutput mainPS(float4 texCoord0 : TEXCOORD0,
   }
 
   output.color = finalColor;
+  */
+
+  output.color = color;
 
   return output;
 }

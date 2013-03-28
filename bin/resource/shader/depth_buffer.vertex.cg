@@ -1,9 +1,10 @@
-struct SVertexOutput {
+struct SVertexOutput
+{
   float4 position : POSITION;
   float2 texCoord : TEXCOORD0;
 };
 
-SVertexOutput mainVS(float4 position : POSITION, uniform float4x4 worldViewProj, uniform float maxD)
+SVertexOutput mainVS(float4 position : POSITION, uniform float4x4 worldViewProj, uniform float maxDepth)
 {
   SVertexOutput output;
 
@@ -16,7 +17,7 @@ SVertexOutput mainVS(float4 position : POSITION, uniform float4x4 worldViewProj,
   // On stocke la valeur max de la profondeur dans la coordonnée X de la texture,
   // et la coordonnée Z du vertex dans la coordonnée Z de la texture
   // --> vers le pixel shader
-  output.texCoord = float4(maxD, 0.0, tPos.z, 0.0);
+  output.texCoord = float4(maxDepth, 0.0, tPos.z, 0.0);
 
   return output;
 }
