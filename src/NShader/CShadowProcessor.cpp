@@ -41,7 +41,7 @@ void CShadowProcessor::setMainCamera(N3D::NCamera::CCamera* camera)
 void CShadowProcessor::createDepthRenderTargetTexture()
 {
   // Render to target texture quality from settings.ini
-  u32 textureQuality = NEngine::NCore::CGame::Settings->getParamInt("shadows", "texture_quality");
+  u32 textureQuality = NEngine::NCore::CGame::getSettings()->getParamInt("shadows", "texture_quality");
   switch (textureQuality) {
     case 1: textureQuality = 64; break;  // 4K
     default:
@@ -52,7 +52,7 @@ void CShadowProcessor::createDepthRenderTargetTexture()
   }
 
   // Depth texture quality from settings.ini
-  u32 depthQuality = NEngine::NCore::CGame::Settings->getParamInt("shadows", "depth_quality");
+  u32 depthQuality = NEngine::NCore::CGame::getSettings()->getParamInt("shadows", "depth_quality");
   video::ECOLOR_FORMAT depthTextureQuality = video::ECF_R5G6B5;
   if (depthQuality == 32) {
     depthTextureQuality = video::ECF_R8G8B8;

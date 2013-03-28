@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/NEngine/NResource/CResourceManager.h"
 #include "../../../include/NHud/NPrimitive/CPicture.h"
 
+using is06::NEngine::NCore::CGame;
+
 namespace is06 { namespace NHud { namespace NPrimitive {
 
 CPicture::CPicture(f32 x, f32 y, f32 w, f32 h, const string& filePath, bool useAlphaBlending) : CFlatElement(x, y, w, h, useAlphaBlending)
@@ -24,7 +26,7 @@ void CPicture::render()
 
 void CPicture::loadSecondTexture(const string& filePath)
 {
-  video::ITexture* second = NEngine::NResource::CResourceManager::loadTexture(filePath);
+  video::ITexture* second = CGame::getResourceManager()->loadTexture(filePath);
   if (second) {
     Material.setTexture(1, second);
   }
@@ -32,7 +34,7 @@ void CPicture::loadSecondTexture(const string& filePath)
 
 void CPicture::changeTexture(const string& filePath)
 {
-  Texture = NEngine::NResource::CResourceManager::loadTexture(filePath);
+  Texture = CGame::getResourceManager()->loadTexture(filePath);
   if (Texture) {
     Material.setTexture(0, Texture);
   }

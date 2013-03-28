@@ -19,8 +19,8 @@ public:
   CResourceManager();
   ~CResourceManager();
 
-  static scene::IMesh* loadMesh(const string& path);
-  static video::ITexture* loadTexture(const string& path);
+  scene::IMesh* loadMesh(const string& path);
+  video::ITexture* loadTexture(const string& path);
 };
 
 }}}

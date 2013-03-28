@@ -21,35 +21,40 @@ namespace is06 { namespace NEngine { namespace NCore {
 class CGame
 {
 public:
+  // Main program actions
   static void init();
   static void run();
   static void finish();
 
-  static void quit();
-  static void changeScene(s32 id);
-  static void writeErrorToLogFile(const exception& e);
-
+  // Pointers getters
   static IrrlichtDevice* getDevice();
   static video::IVideoDriver* getVideoDriver();
   static scene::ISceneManager* getSceneManager();
   static gui::IGUIEnvironment* getDebugGUI();
   static NewtonWorld* getNewtonWorld();
-  static NEngine::NEvent::CEventManager* getEventManager();
-  static NEngine::NResource::CTranslation* getGlobalTranslations();
-  static NEngine::NSave::CSave* getCurrentSave();
+  static NEvent::CEventManager* getEventManager();
+  static NResource::CTranslation* getGlobalTranslations();
+  static NSave::CSave* getCurrentSave();
   static NScene::CScene* getCurrentScene();
   static NSound::CSoundManager* getSoundManager();
+  static NResource::CResourceManager* getResourceManager();
+  static NResource::CSettings* getSettings();
+  static NSound::CMusicReference* getMusicReference();
 
+  // Data getters
   static f32 getFramerate();
   static f32 getSpeedFactor();
   static f32 getCurrentTime();
-  static NEngine::NResource::ELocaleIdentifier getCurrentLocale();
-  static NSound::CMusicReference* getMusicReference();
+  static NResource::ELocaleIdentifier getCurrentLocale();
 
+  // Game actions
+  static void quit();
+  static void changeScene(s32 id);
+  static void writeErrorToLogFile(const exception& e);
   static void changeScreenDisplay(u32 width=848, u32 height=480, u8 colorDepth=32);
 
-  static NEngine::NResource::CSettings* Settings;
-  static NEngine::NDisplay::SScreenPosition ScreenPos;
+  // Game data structure properties
+  static NDisplay::SScreenPosition ScreenPos;
   static NShader::CShaders Shaders;
   static NDebug::SOption DebugOption;
 
@@ -85,14 +90,17 @@ private:
   static NewtonWorld* GameNewtonWorld;
 
   // is06 objects
-  static NEngine::NEvent::CEventManager* EventManager;
+  static NEvent::CEventManager* EventManager;
   static NScene::CScene* CurrentScene;
-  static NEngine::NResource::CTranslation* GlobalTranslations;
-  static NEngine::NSave::CSave* CurrentSave;
+  static NResource::CTranslation* GlobalTranslations;
+  static NSave::CSave* CurrentSave;
   static NSound::CSoundManager* SoundManager;
   static NSound::CMusicReference* MusicReference;
+  static NResource::CResourceManager* ResourceManager;
+  static NResource::CSettings* Settings;
 
-  static NEngine::NResource::ELocaleIdentifier CurrentLocale;
+  // Primitive data
+  static NResource::ELocaleIdentifier CurrentLocale;
   static s32 NextScene;
   static bool SceneChanged;
   static bool ScreenSizeChanged;

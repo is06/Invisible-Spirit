@@ -9,12 +9,14 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/NEngine/NCore/CGame.h"
 #include "../../../include/N3D/NLight/CDirectLight.h"
 
+using is06::NEngine::NCore::CGame;
+
 namespace is06 { namespace N3D { namespace NLight {
 
 //! Constructor
 CDirectLight::CDirectLight()
 {
-  Camera = NEngine::NCore::CGame::getSceneManager()->addCameraSceneNode();
+  Camera = CGame::getSceneManager()->addCameraSceneNode();
 }
 
 //! Destructor

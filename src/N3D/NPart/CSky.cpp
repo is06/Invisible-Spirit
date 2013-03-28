@@ -9,6 +9,9 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/NEngine/NCore/CGame.h"
 #include "../../../include/NEngine/NResource/CResourceManager.h"
 
+using is06::NEngine::NCore::CGame;
+using is06::NEngine::NResource::CResourceManager;
+
 namespace is06 { namespace N3D { namespace NPart {
 
 //! Constructor
@@ -24,13 +27,13 @@ CSky::CSky(const string& textureName) : NEngine::NCore::CEntity()
   string ft = "resource/texture/map/sky/" + textureName + "/ft.jpg";
   string bk = "resource/texture/map/sky/" + textureName + "/bk.jpg";
 
-  Layers[0] = NEngine::NCore::CGame::getSceneManager()->addSkyBoxSceneNode(
-    NEngine::NResource::CResourceManager::loadTexture(up),
-    NEngine::NResource::CResourceManager::loadTexture(dn),
-    NEngine::NResource::CResourceManager::loadTexture(lf),
-    NEngine::NResource::CResourceManager::loadTexture(rt),
-    NEngine::NResource::CResourceManager::loadTexture(ft),
-    NEngine::NResource::CResourceManager::loadTexture(bk)
+  Layers[0] = CGame::getSceneManager()->addSkyBoxSceneNode(
+    CGame::getResourceManager()->loadTexture(up),
+    CGame::getResourceManager()->loadTexture(dn),
+    CGame::getResourceManager()->loadTexture(lf),
+    CGame::getResourceManager()->loadTexture(rt),
+    CGame::getResourceManager()->loadTexture(ft),
+    CGame::getResourceManager()->loadTexture(bk)
   );
 }
 

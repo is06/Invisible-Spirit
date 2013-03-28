@@ -16,7 +16,7 @@ namespace is06 { namespace NShader {
 CPostRenderShader::CPostRenderShader() : CFlatElement(0, 0, NEngine::NCore::CGame::ScreenPos.Hud.Width, NEngine::NCore::CGame::ScreenPos.Hud.Height)
 {
   Texture = 0;
-  if (NEngine::NCore::CGame::Settings->getParamString("display", "renderer") == "direct3d") {
+  if (NEngine::NCore::CGame::getSettings()->getParamString("display", "renderer") == "direct3d") {
     // Direct3D post render texture coordinates
     MinTextureOffset.X = 0.0f;
     MinTextureOffset.Y = 0.0f;

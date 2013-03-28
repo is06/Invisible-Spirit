@@ -17,6 +17,9 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
+using is06::NEngine::NCore::CGame;
+using is06::NEngine::NException::C3DException;
+
 namespace is06 { namespace N3D { namespace NPrimitive {
 
 //! Default constructor
@@ -62,7 +65,7 @@ void CAnimatedModel::createModel(const string& meshFile, const string& animation
 void CAnimatedModel::turnX(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
-    MainNode->getRotation().X + (speed * NEngine::NCore::CGame::getSpeedFactor()),
+    MainNode->getRotation().X + (speed * CGame::getSpeedFactor()),
     MainNode->getRotation().Y,
     MainNode->getRotation().Z
   ));
@@ -76,7 +79,7 @@ void CAnimatedModel::turnY(f32 speed)
 {
   MainNode->setRotation(core::vector3df(
     MainNode->getRotation().X,
-    MainNode->getRotation().Y + (speed * NEngine::NCore::CGame::getSpeedFactor()),
+    MainNode->getRotation().Y + (speed * CGame::getSpeedFactor()),
     MainNode->getRotation().Z
   ));
 }
@@ -90,7 +93,7 @@ void CAnimatedModel::turnZ(f32 speed)
   MainNode->setRotation(core::vector3df(
     MainNode->getRotation().X,
     MainNode->getRotation().Y,
-    MainNode->getRotation().Z + (speed * NEngine::NCore::CGame::getSpeedFactor())
+    MainNode->getRotation().Z + (speed * CGame::getSpeedFactor())
   ));
 }
 
@@ -101,7 +104,7 @@ void CAnimatedModel::turnZ(f32 speed)
 void CAnimatedModel::moveX(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
-    MainNode->getPosition().X + (speed * NEngine::NCore::CGame::getSpeedFactor()),
+    MainNode->getPosition().X + (speed * CGame::getSpeedFactor()),
     MainNode->getPosition().Y,
     MainNode->getPosition().Z
   ));
@@ -115,7 +118,7 @@ void CAnimatedModel::moveY(f32 speed)
 {
   MainNode->setPosition(core::vector3df(
     MainNode->getPosition().X,
-    MainNode->getPosition().Y + (speed * NEngine::NCore::CGame::getSpeedFactor()),
+    MainNode->getPosition().Y + (speed * CGame::getSpeedFactor()),
     MainNode->getPosition().Z
   ));
 }
@@ -129,7 +132,7 @@ void CAnimatedModel::moveZ(f32 speed)
   MainNode->setPosition(core::vector3df(
     MainNode->getPosition().X,
     MainNode->getPosition().Y,
-    MainNode->getPosition().Z + (speed * NEngine::NCore::CGame::getSpeedFactor())
+    MainNode->getPosition().Z + (speed * CGame::getSpeedFactor())
   ));
 }
 
@@ -139,14 +142,14 @@ void CAnimatedModel::moveZ(f32 speed)
  */
 void CAnimatedModel::createNode(const core::vector3df& initPosition)
 {
-  MainNode = NEngine::NCore::CGame::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)MainMesh);
+  MainNode = CGame::getSceneManager()->addAnimatedMeshSceneNode((scene::IAnimatedMesh*)MainMesh);
 
   if (MainNode) {
     MainNode->setMaterialFlag(video::EMF_LIGHTING, false);
-    MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (NEngine::NCore::CGame::Settings->getParamString("model", "anti_aliasing") == "enabled"));
+    MainNode->setMaterialFlag(video::EMF_ANTI_ALIASING, (CGame::getSettings()->getParamString("model", "anti_aliasing") == "enabled"));
     MainNode->setPosition(initPosition);
   } else {
-    throw NEngine::NException::C3DException("Unable to create animated mesh node");
+    throw C3DException("Unable to create animated mesh node");
   }
 }
 
@@ -250,7 +253,7 @@ bool CAnimatedModel::collidesWithStatic(CStaticModel* other)
   f32 penetration[3];
 
   s32 res = NewtonCollisionCollide(
-    NEngine::NCore::CGame::getNewtonWorld(),
+    CGame::getNewtonWorld(),
     64,
     NewtonBodyGetCollision(MainBody),
     mainBodyMatrix,
@@ -378,7 +381,7 @@ bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
   f32 penetration[3];
 
   s32 res = NewtonCollisionCollide(
-    NEngine::NCore::CGame::getNewtonWorld(),
+    CGame::getNewtonWorld(),
     64,
     NewtonBodyGetCollision(MainBody),
     mainBodyMatrix,

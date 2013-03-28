@@ -50,15 +50,10 @@ void CPlayableCharacter::setCharacter(N3D::NCharacter::EPlayableCharacterType ty
 
   CCharacter::setCharacterModel(modelId);
 
-  // Cg Test Shader
-  //getNode()->setMaterialType((video::E_MATERIAL_TYPE)NEngine::NCore::CGame::Shaders.CgTest);
-
   // Start direction
   if (MainNode != NULL) {
     updateDirectionFromAngle(1.0f);
-
     //MainNode->setMaterialFlag(video::EMF_WIREFRAME, true);
-
     //MainNode->animateJoints();
   }
 }

@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/NEngine/NResource/CResourceManager.h"
 #include "../../../include/N3D/NPrimitive/CModelEntity.h"
 
+using is06::NEngine::NCore::CGame;
+
 namespace is06 { namespace N3D { namespace NPrimitive {
 
 //! Initializations
@@ -38,7 +40,7 @@ void CModelEntity::shaderRender()
  */
 void CModelEntity::loadMesh(const string& meshFilePath)
 {
-  MainMesh = NEngine::NResource::CResourceManager::loadMesh(meshFilePath);
+  MainMesh = CGame::getResourceManager()->loadMesh(meshFilePath);
 }
 
 //! Returns the irrlicht mesh object of the entity

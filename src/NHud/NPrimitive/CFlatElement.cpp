@@ -55,11 +55,11 @@ CFlatElement::CFlatElement(f32 x, f32 y, f32 w, f32 h, bool alphaBlending) : NCo
   }
 
   // Texture filtering
-  if (NEngine::NCore::CGame::Settings->getParamString("text", "texture_filter") == "anisotropic") {
+  if (NEngine::NCore::CGame::getSettings()->getParamString("text", "texture_filter") == "anisotropic") {
     Material.setFlag(video::EMF_ANISOTROPIC_FILTER, true);
-  } else if (NEngine::NCore::CGame::Settings->getParamString("text", "texture_filter") == "trilinear") {
+  } else if (NEngine::NCore::CGame::getSettings()->getParamString("text", "texture_filter") == "trilinear") {
     Material.setFlag(video::EMF_TRILINEAR_FILTER, true);
-  } else if (NEngine::NCore::CGame::Settings->getParamString("text", "texture_filter") == "none") {
+  } else if (NEngine::NCore::CGame::getSettings()->getParamString("text", "texture_filter") == "none") {
     Material.setFlag(video::EMF_BILINEAR_FILTER, false);
   }
 

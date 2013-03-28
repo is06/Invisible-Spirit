@@ -12,6 +12,8 @@ http://www.is06.com. Legal code in license.txt
 
 using namespace irr;
 
+using is06::NEngine::NCore::CGame;
+
 namespace is06 { namespace NEngine { namespace NControl {
 
 //! Constructor
@@ -26,7 +28,7 @@ CGamepad::CGamepad()
  */
 u8 CGamepad::getLeftJoystickForce()
 {
-  return NEngine::NCore::CGame::getEventManager()->getLeftJoystickForce();
+  return CGame::getEventManager()->getLeftJoystickForce();
 }
 
 //! Returns the left joystick angle
@@ -35,7 +37,7 @@ u8 CGamepad::getLeftJoystickForce()
  */
 f32 CGamepad::getLeftJoystickAngle()
 {
-  return NEngine::NCore::CGame::getEventManager()->getLeftJoystickAngle();
+  return CGame::getEventManager()->getLeftJoystickAngle();
 }
 
 //! Returns the X axis value of the left joystick
@@ -44,7 +46,7 @@ f32 CGamepad::getLeftJoystickAngle()
  */
 s8 CGamepad::getLeftJoystickXAxis()
 {
-  return NEngine::NCore::CGame::getEventManager()->getLeftJoystickXAxis();
+  return CGame::getEventManager()->getLeftJoystickXAxis();
 }
 
 //! Returns the Y axis value of the left joystick
@@ -53,7 +55,7 @@ s8 CGamepad::getLeftJoystickXAxis()
  */
 s8 CGamepad::getLeftJoystickYAxis()
 {
-  return NEngine::NCore::CGame::getEventManager()->getLeftJoystickYAxis();
+  return CGame::getEventManager()->getLeftJoystickYAxis();
 }
 
 //! Returns the right joystick strength
@@ -62,7 +64,7 @@ s8 CGamepad::getLeftJoystickYAxis()
  */
 u8 CGamepad::getRightJoystickForce()
 {
-  return NEngine::NCore::CGame::getEventManager()->getRightJoystickForce();
+  return CGame::getEventManager()->getRightJoystickForce();
 }
 
 //! Returns the right joystick angle
@@ -71,7 +73,7 @@ u8 CGamepad::getRightJoystickForce()
  */
 f32 CGamepad::getRightJoystickAngle()
 {
-  return NEngine::NCore::CGame::getEventManager()->getRightJoystickAngle();
+  return CGame::getEventManager()->getRightJoystickAngle();
 }
 
 //! Returns the X axis value of the right joystick
@@ -80,7 +82,7 @@ f32 CGamepad::getRightJoystickAngle()
  */
 s8 CGamepad::getRightJoystickXAxis()
 {
-  return NEngine::NCore::CGame::getEventManager()->getRightJoystickXAxis();
+  return CGame::getEventManager()->getRightJoystickXAxis();
 }
 
 //! Returns the X axis value of the right joystick
@@ -89,7 +91,7 @@ s8 CGamepad::getRightJoystickXAxis()
  */
 s8 CGamepad::getRightJoystickYAxis()
 {
-  return NEngine::NCore::CGame::getEventManager()->getRightJoystickYAxis();
+  return CGame::getEventManager()->getRightJoystickYAxis();
 }
 
 //! Tests if a button-combination is currently pressed
@@ -101,18 +103,18 @@ bool CGamepad::buttonPressed(u16 buttons, NEvent::EEventType type)
 {
   if (type == NEvent::EET_ONCE) {
     if (!ButtonOnce[buttons]) {
-      if (NEngine::NCore::CGame::getEventManager()->getPressedButtons() == buttons) {
+      if (CGame::getEventManager()->getPressedButtons() == buttons) {
         ButtonOnce[buttons] = true;
         return true;
       }
     } else {
-      if (NEngine::NCore::CGame::getEventManager()->getPressedButtons() != buttons) {
+      if (CGame::getEventManager()->getPressedButtons() != buttons) {
         ButtonOnce[buttons] = false;
       }
     }
     return false;
   } else {
-    return (NEngine::NCore::CGame::getEventManager()->getPressedButtons() == buttons);
+    return (CGame::getEventManager()->getPressedButtons() == buttons);
   }
 }
 
@@ -125,18 +127,18 @@ bool CGamepad::dirPressed(EGamepadDirection direction, NEvent::EEventType type)
 {
   if (type == NEvent::EET_ONCE) {
     if (!DirectionOnce[direction]) {
-      if ((s32)NEngine::NCore::CGame::getEventManager()->getPovValue() == direction) {
+      if ((s32)CGame::getEventManager()->getPovValue() == direction) {
         DirectionOnce[direction] = true;
         return true;
       }
     } else {
-      if ((s32)NEngine::NCore::CGame::getEventManager()->getPovValue() != direction) {
+      if ((s32)CGame::getEventManager()->getPovValue() != direction) {
         DirectionOnce[direction] = false;
       }
     }
     return false;
   } else {
-    return ((s32)NEngine::NCore::CGame::getEventManager()->getPovValue() == direction);
+    return ((s32)CGame::getEventManager()->getPovValue() == direction);
   }
 }
 

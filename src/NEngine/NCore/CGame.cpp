@@ -35,13 +35,16 @@ scene::ISceneManager* CGame::SceneManager;
 gui::IGUIEnvironment* CGame::DebugGUI;
 NewtonWorld* CGame::GameNewtonWorld;
 NScene::CScene* CGame::CurrentScene;
-NEngine::NEvent::CEventManager* CGame::EventManager;
-NEngine::NResource::CTranslation* CGame::GlobalTranslations;
-NEngine::NSave::CSave* CGame::CurrentSave;
+NEvent::CEventManager* CGame::EventManager;
+NResource::CTranslation* CGame::GlobalTranslations;
+NSave::CSave* CGame::CurrentSave;
 NSound::CSoundManager* CGame::SoundManager;
 NSound::CMusicReference* CGame::MusicReference;
+NResource::CResourceManager* CGame::ResourceManager;
+NResource::CSettings* CGame::Settings;
+
 s32 CGame::NextScene;
-NEngine::NResource::ELocaleIdentifier CGame::CurrentLocale;
+NResource::ELocaleIdentifier CGame::CurrentLocale;
 bool CGame::SceneChanged;
 bool CGame::ScreenSizeChanged;
 bool CGame::Exit;
@@ -50,34 +53,13 @@ bool CGame::ProcessorPriority;
 u8 CGame::Framerate;
 f32 CGame::SpeedFactor;
 
-//! Settings interface
-/**
- * \section settings_usecase Settings use case
- * \code
- * string rendererName = NEngine::NCore::CGame::Settings->getParamString("display", "renderer");
- * \endcode
- */
-NEngine::NResource::CSettings* CGame::Settings;
+//! Screen position data
+NDisplay::SScreenPosition CGame::ScreenPos;
 
-//! Screen position information
-/**
- * \section screenpos_usecase ScreenPos use case
- * \code
- * f32 topEdge = NEngine::NCore::CGame::ScreenPos.Top;
- * \endcode
- */
-NEngine::NDisplay::SScreenPosition CGame::ScreenPos;
-
-//! Shaders interface
-/**
- * \section shaders_usecase Shaders use case
- * \code
- * Material.MaterialType = (video::E_MATERIAL_TYPE)NEngine::NCore::CGame::Shaders.HorizontalBlur;
- * \endcode
- */
+//! Shaders data
 NShader::CShaders CGame::Shaders;
 
-//! Debug options information
+//! Debug options data
 NDebug::SOption CGame::DebugOption;
 
 //! All initializations
@@ -214,6 +196,18 @@ NScene::CScene* CGame::getCurrentScene()
 NEvent::CEventManager* CGame::getEventManager()
 {
   return EventManager;
+}
+
+//! Access to the Resource manager
+NResource::CResourceManager* CGame::getResourceManager()
+{
+  return ResourceManager;
+}
+
+//! Access to settings
+NResource::CSettings* CGame::getSettings()
+{
+  return Settings;
 }
 
 //! Set instruction in order to quit the game

@@ -18,10 +18,10 @@ namespace is06 { namespace NShader {
 CPostRenderGlow::CPostRenderGlow() : CPostRenderShader()
 {
   BackBufferColor = video::SColor(255, 255, 255, 255);
-  bool rendererIsDirect3D = (NEngine::NCore::CGame::Settings->getParamString("display", "renderer") == "direct3d");
+  bool rendererIsDirect3D = (NEngine::NCore::CGame::getSettings()->getParamString("display", "renderer") == "direct3d");
 
   // Render to target texture resolution quality
-  u32 texture_quality = NEngine::NCore::CGame::Settings->getParamInt("glow", "texture_quality");
+  u32 texture_quality = NEngine::NCore::CGame::getSettings()->getParamInt("glow", "texture_quality");
   switch (texture_quality) {
     case 1: texture_quality = 64; break;  // 16KB
     default:
@@ -31,7 +31,7 @@ CPostRenderGlow::CPostRenderGlow() : CPostRenderShader()
     case 5: texture_quality = 1024; break; // 4MB
   }
 
-  u32 depth_quality = NEngine::NCore::CGame::Settings->getParamInt("glow", "depth_quality");
+  u32 depth_quality = NEngine::NCore::CGame::getSettings()->getParamInt("glow", "depth_quality");
   video::ECOLOR_FORMAT textureColorFormat = video::ECF_R5G6B5;
   // Render target texture 32-bit only with OpenGL
   if (depth_quality == 32 && !rendererIsDirect3D) {

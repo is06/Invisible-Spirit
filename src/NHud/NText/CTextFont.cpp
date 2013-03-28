@@ -10,6 +10,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/NEngine/NResource/CResourceManager.h"
 #include "../../../include/NHud/NText/CTextFont.h"
 
+using is06::NEngine::NCore::CGame;
+
 namespace is06 { namespace NHud { namespace NText {
 
 //! Constructor, defines current font style and get the appropriate texture
@@ -144,7 +146,7 @@ void CTextFont::getTextureFromStyle(EFontStyle style, u8 extTexture)
 
   texturePath += ".png";
 
-  FontTexture = NEngine::NResource::CResourceManager::loadTexture(texturePath);
+  FontTexture = CGame::getResourceManager()->loadTexture(texturePath);
   FontMaterial.setTexture(0, FontTexture);
   FontMaterial.Lighting = false;
 }
