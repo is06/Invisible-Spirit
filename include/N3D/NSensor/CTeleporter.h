@@ -9,12 +9,12 @@ http://www.is06.com. Legal code in license.txt
 #define __IS06_3D_SENSOR_TELEPORTER_H__
 
 #include "../../NScene/ESceneIdentifier.h"
+#include "../NSensor/CBoxSensor.h"
 #include "EPlaneType.h"
-#include "../NSensor/CSensor.h"
 
 namespace is06 { namespace N3D { namespace NSensor {
 
-class CTeleporter : public CSensor
+class CTeleporter : public CBoxSensor
 {
 public:
   CTeleporter(f32 width, f32 height, f32 depth, const core::vector3df& position, NScene::ESceneIdentifier destination);

@@ -18,14 +18,9 @@ namespace is06 { namespace N3D { namespace NSensor {
 class CSensor : public NEngine::NCore::CEntity
 {
 public:
-  CSensor(f32 width, f32 height, f32 depth, const core::vector3df& position);
+  CSensor();
+  virtual ~CSensor();
   virtual void update();
-
-  void setSize(f32 width, f32 height, f32 depth, const core::vector3df& position);
-  const core::aabbox3df& getBox();
-
-protected:
-  core::aabbox3df Box;
 };
 
 }}}

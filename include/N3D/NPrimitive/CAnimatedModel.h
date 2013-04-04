@@ -54,7 +54,8 @@ public:
   // Collision detection
   bool collidesWithStatic(CStaticModel* other);
   bool collidesWithAnimated(CAnimatedModel* other);
-  bool collidesWithSensor(NSensor::CSensor* sensor, NEngine::NEvent::EEventType type = NEngine::NEvent::EET_ONCE);
+  bool collidesWithSensor(NSensor::CBoxSensor* boxSensor, NEngine::NEvent::EEventType type);
+  bool collidesWithSensor(NSensor::CPlaneSensor* planeSensor, NEngine::NEvent::EEventType type);
   f32 getFloorCollision(CStaticModel* other);
   f32 getWallCollision(NCollision::ERayType type, CStaticModel* other, core::vector3df& normal);
 

@@ -12,30 +12,21 @@ using namespace irr;
 namespace is06 { namespace N3D { namespace NSensor {
 
 //! Construcotr
-CSensor::CSensor(f32 width, f32 height, f32 depth, const core::vector3df& position) : NEngine::NCore::CEntity()
+CSensor::CSensor() : NEngine::NCore::CEntity()
 {
-  setSize(width, height, depth, position);
+
 }
 
 //! Update method, called every cycle for event testing
 void CSensor::update()
 {
-  //CEntity::update();
+  CEntity::update();
 }
 
-//! Changes the size of the sensor
-void CSensor::setSize(f32 width, f32 height, f32 depth, const core::vector3df& position)
+//! Destructor
+CSensor::~CSensor()
 {
-  core::vector3df min = core::vector3df((width / 2) * -1, (height / 2) * -1, (depth / 2) * - 1) + position;
-  core::vector3df max = core::vector3df((width / 2), (height / 2), (depth / 2)) + position;
 
-  Box = core::aabbox3df(min, max);
-}
-
-//! Returns the aligned axis bounding box of the sensor
-const core::aabbox3df& CSensor::getBox()
-{
-  return Box;
 }
 
 }}}

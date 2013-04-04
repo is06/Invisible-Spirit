@@ -16,6 +16,21 @@ CEntity::CEntity()
 
 }
 
+void CEntity::render()
+{
+
+}
+
+void CEntity::update()
+{
+
+}
+
+CEntity::~CEntity()
+{
+
+}
+
 }
 }
 }

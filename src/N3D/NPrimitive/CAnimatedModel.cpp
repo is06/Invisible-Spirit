@@ -13,7 +13,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/NSound/CSpeaker.h"
 #include "../../../include/N3D/NPrimitive/CAnimatedModel.h"
 #include "../../../include/N3D/NPrimitive/CStaticModel.h"
-#include "../../../include/N3D/NSensor/CSensor.h"
+#include "../../../include/N3D/NSensor/CBoxSensor.h"
+#include "../../../include/N3D/NSensor/CPlaneSensor.h"
 
 using namespace irr;
 
@@ -402,18 +403,18 @@ bool CAnimatedModel::collidesWithAnimated(CAnimatedModel* other)
  * \param EEventType type can be Always or Once
  * \return bool true if model is in sensor
  */
-bool CAnimatedModel::collidesWithSensor(NSensor::CSensor* sensor, NEngine::NEvent::EEventType type)
+bool CAnimatedModel::collidesWithSensor(NSensor::CBoxSensor* boxSensor, NEngine::NEvent::EEventType type)
 {
-  bool inside = sensor->getBox().isPointInside(MainNode->getPosition());
+  bool inside = boxSensor->getBox().isPointInside(MainNode->getPosition());
   if (type == NEngine::NEvent::EET_ONCE) {
-    if (!SensorOnce[sensor]) {
+    if (!SensorOnce[boxSensor]) {
       if (inside) {
-        SensorOnce[sensor] = true;
+        SensorOnce[boxSensor] = true;
         return true;
       }
     } else {
       if (!inside) {
-        SensorOnce[sensor] = false;
+        SensorOnce[boxSensor] = false;
       }
     }
     return false;

@@ -17,6 +17,9 @@ class CEntity
 {
 public:
   CEntity();
+  virtual ~CEntity();
+  virtual void update();
+  virtual void render();
 };
 
 }}}
