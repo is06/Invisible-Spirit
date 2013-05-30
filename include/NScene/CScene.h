@@ -16,6 +16,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../NHud/NPart/CCinemascopeMode.h"
 #include "../N3D/NPart/CSky.h"
 #include "../NDebug/CConsole.h"
+#include "ESceneIdentifier.h"
 
 namespace is06 { namespace NScene {
 
@@ -47,6 +48,8 @@ public:
   const video::SColor& getBackBufferColor() const;
   N3D::NCamera::CCamera* getActiveCamera();
   NShader::CShadowProcessor* getShadowProcessor();
+
+  static CScene* getSceneFromIdentifier(const ESceneIdentifier& id);
 
 protected:
   // Faders

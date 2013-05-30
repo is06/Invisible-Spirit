@@ -23,8 +23,8 @@ CShaders::CShaders()
   Glass = video::EMT_SOLID;
   HorizontalBlur = 0;
   VerticalBlur = 0;
-  ShadowMapPass1 = 0;
-  ShadowMapPass2 = 0;
+  //DepthMap = 0;
+  //ShadowMap = 0;
 }
 
 //! All shader materials creation
@@ -37,32 +37,34 @@ void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
     CBlurShaderCallback* blurCallback = new CBlurShaderCallback();
     // Horizontal Blur Shader
     HorizontalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_2_0,
-      "resource/Shader/horizontal_blur.pixel.cg", "mainPS", video::EPST_PS_2_0,
+      "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_3_0,
+      "resource/Shader/horizontal_blur.pixel.cg", "mainPS", video::EPST_PS_3_0,
       blurCallback, video::EMT_TRANSPARENT_ADD_COLOR, 0, video::EGSL_CG
     );
     // Vertical Blur Shader
     VerticalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_2_0,
-      "resource/Shader/vertical_blur.pixel.cg", "mainPS", video::EPST_PS_2_0,
+      "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_3_0,
+      "resource/Shader/vertical_blur.pixel.cg", "mainPS", video::EPST_PS_3_0,
       blurCallback, video::EMT_TRANSPARENT_ADD_COLOR, 0, video::EGSL_CG
     );
 
     // Shadow map pass 1 (depth buffer emulation)
+    /*
     CDepthShaderCallback* depthCallback = new CDepthShaderCallback();
-    ShadowMapPass1 = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/Shader/shadowmap_pass1.vertex.cg", "mainVS", video::EVST_VS_2_0,
-      "resource/Shader/shadowmap_pass1.pixel.cg", "mainPS", video::EPST_PS_2_0,
+    DepthMap = gpuManager->addHighLevelShaderMaterialFromFiles(
+      "resource/Shader/depth_buffer.vertex.cg", "mainVS", video::EVST_VS_3_0,
+      "resource/Shader/depth_buffer.pixel.cg", "mainPS", video::EPST_PS_3_0,
       depthCallback, video::EMT_SOLID, 0, video::EGSL_CG
     );
 
     // Shadow map pass 2
     CShadowShaderCallback* shadowCallback = new CShadowShaderCallback();
-    ShadowMapPass2 = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/Shader/shadowmap_pass2.vertex.cg", "mainVS", video::EVST_VS_2_0,
-      "resource/Shader/shadowmap_pass2.pixel.cg", "mainPS", video::EPST_PS_2_0,
+    ShadowMap = gpuManager->addHighLevelShaderMaterialFromFiles(
+      "resource/Shader/shadow_map.vertex.cg", "mainVS", video::EVST_VS_3_0,
+      "resource/Shader/shadow_map.pixel.cg", "mainPS", video::EPST_PS_3_0,
       shadowCallback, video::EMT_SOLID, 0, video::EGSL_CG
     );
+    */
   }
 }
 

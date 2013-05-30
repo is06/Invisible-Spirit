@@ -20,12 +20,10 @@ namespace is06 { namespace NShader {
 CShadowProcessor::CShadowProcessor(N3D::NCamera::CCamera* mainCamera)
 {
   DepthMap = NULL;
+  DepthMapHud = new NHud::NPrimitive::CPicture(128, 128, 0, 0);
 
   setMainCamera(mainCamera);
   createDepthRenderTargetTexture();
-
-  DepthMapHud = new NHud::NPrimitive::CPicture(128, 128, 0, 0);
-  DepthMapHud->setRenderTarget(DepthMap);
 }
 
 void CShadowProcessor::addDirectLight(N3D::NLight::CDirectLight* light)
@@ -40,6 +38,8 @@ void CShadowProcessor::setMainCamera(N3D::NCamera::CCamera* camera)
 
 void CShadowProcessor::createDepthRenderTargetTexture()
 {
+  bool rendererIsDirect3D = (NEngine::NCore::CGame::getSettings()->getParamString("display", "renderer") == "direct3d");
+
   // Render to target texture quality from settings.ini
   u32 textureQuality = NEngine::NCore::CGame::getSettings()->getParamInt("shadows", "texture_quality");
   switch (textureQuality) {
@@ -53,12 +53,13 @@ void CShadowProcessor::createDepthRenderTargetTexture()
 
   // Depth texture quality from settings.ini
   u32 depthQuality = NEngine::NCore::CGame::getSettings()->getParamInt("shadows", "depth_quality");
-  video::ECOLOR_FORMAT depthTextureQuality = video::ECF_R5G6B5;
-  if (depthQuality == 32) {
-    depthTextureQuality = video::ECF_R8G8B8;
+  video::ECOLOR_FORMAT depthTextureQuality = video::ECF_R16F;
+  if (depthQuality == 32 && !rendererIsDirect3D) {
+    depthTextureQuality = video::ECF_R32F;
   }
 
-  DepthMap = NEngine::NCore::CGame::getVideoDriver()->addRenderTargetTexture(core::dimension2du(depthQuality, depthQuality), "RTT9", depthTextureQuality);
+  DepthMap = NEngine::NCore::CGame::getVideoDriver()->addRenderTargetTexture(core::dimension2du(depthQuality, depthQuality), "RTDepthMapRTTT9", depthTextureQuality);
+  DepthMapHud->setRenderTarget(DepthMap);
 }
 
 void CShadowProcessor::render()

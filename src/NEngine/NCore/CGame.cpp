@@ -11,7 +11,6 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/NEngine/NResource/CTranslation.h"
 #include "../../../include/NEngine/NException/CEngineException.h"
 #include "../../../include/NEngine/NException/CDisplayException.h"
-#include "../../../include/NEngine/NException/CMapException.h"
 #include "../../../include/NEngine/NEvent/CEventManager.h"
 #include "../../../include/NEngine/NResource/CSettings.h"
 #include "../../../include/NEngine/NSave/CSave.h"
@@ -22,9 +21,9 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/NScene/CSceneSelectMap.h"
 #include "../../../include/NScene/CSceneGameplay.h"
 
-#include "../../../include/map_inclusion.h"
-
 using namespace irr;
+
+using is06::NEngine::NException::CDisplayException;
 
 namespace is06 { namespace NEngine { namespace NCore {
 
@@ -43,7 +42,7 @@ NSound::CMusicReference* CGame::MusicReference;
 NResource::CResourceManager* CGame::ResourceManager;
 NResource::CSettings* CGame::Settings;
 
-s32 CGame::NextScene;
+NScene::ESceneIdentifier CGame::NextScene;
 NResource::ELocaleIdentifier CGame::CurrentLocale;
 bool CGame::SceneChanged;
 bool CGame::ScreenSizeChanged;
@@ -333,13 +332,12 @@ void CGame::initShaders()
 //! Creates a global translation object according to the locale set in settings
 void CGame::initLocale()
 {
-  //string textLocale = settings->getParamstring("regional", "locale");
+  string textLocale = Settings->getParamString("regional", "locale");
   CurrentLocale = NResource::ELI_FRE_FR;
-  /*
+
   if (textLocale == "eng-GB") {
-    currentLocale = ELI_ENG_GB;
+    CurrentLocale = NResource::ELI_ENG_GB;
   }
-  */
 
   GlobalTranslations = new NEngine::NResource::CTranslation("global.ist");
 }
@@ -394,27 +392,27 @@ void CGame::checkGraphicalCapabilities()
     // DirectX 9 requirements
     // HLSL
     if (!VideoDriver->queryFeature(video::EVDF_HLSL)) {
-      throw NException::CDisplayException("[E56] HLSL not supported");
+      throw CDisplayException("[E56] HLSL not supported");
     }
-    // Vertex Shader 2.0
-    if (!VideoDriver->queryFeature(video::EVDF_VERTEX_SHADER_2_0)) {
-      throw NException::CDisplayException("[E50] Vertex shaders 2.0 not supported");
+    // Vertex Shader 3.0
+    if (!VideoDriver->queryFeature(video::EVDF_VERTEX_SHADER_3_0)) {
+      throw CDisplayException("[E50] Vertex shaders 3.0 not supported");
     }
-    // Pixel Shader 2.0
-    if (!VideoDriver->queryFeature(video::EVDF_PIXEL_SHADER_2_0)) {
-      throw NException::CDisplayException("[E51] Pixel shaders 2.0 not supported");
+    // Pixel Shader 3.0
+    if (!VideoDriver->queryFeature(video::EVDF_PIXEL_SHADER_3_0)) {
+      throw CDisplayException("[E51] Pixel shaders 3.0 not supported");
     }
   } else if (VideoDriver->getDriverType() == video::EDT_OPENGL) {
     // OpenGL requirements
     // GLSL
     if (!VideoDriver->queryFeature(video::EVDF_ARB_GLSL)) {
-      throw NException::CDisplayException("[E55] GLSL not supported");
+      throw CDisplayException("[E55] GLSL not supported");
     }
   }
 
   // Render to target textures
   if (!VideoDriver->queryFeature(video::EVDF_RENDER_TO_TARGET)) {
-    throw NException::CDisplayException("[E52] Render to target textures not supported");
+    throw CDisplayException("[E52] Render to target textures not supported");
   }
 }
 
@@ -459,46 +457,18 @@ f32 CGame::getCurrentTime()
 /**
  * \param s32 the scene id
  */
-void CGame::changeScene(s32 id)
+void CGame::changeScene(const NScene::ESceneIdentifier& id)
 {
   NextScene = id;
   SceneChanged = true;
 }
 
-//! Loads the scene which is specified in nextScene attribute on the next cycle
+//! Loads the scene which is specified in NextScene attribute on the next cycle
 void CGame::loadNextScene()
 {
   delete CurrentScene;
-
-  switch (NextScene) {
-    // Menus
-    case NScene::ESI_MENU: CurrentScene = new NScene::CSceneMenu(); break;
-    case NScene::ESI_SELECT_MAP: CurrentScene = new NScene::CSceneSelectMap(); break;
-
-    // Debug
-    case NScene::ESI_MAP_ALPHA_ZONE: CurrentScene = new NMap::NDebug::MAP_ALPHA_ZONE(); break;
-    case NScene::ESI_MAP_DEBUG: CurrentScene = new NMap::NDebug::MAP_DEBUG(); break;
-
-    // Countries
-
-    // Dungeons
-    case NScene::ESI_MAP_DUNGEON_1: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_1(); break;
-    case NScene::ESI_MAP_DUNGEON_2: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_2(); break;
-    case NScene::ESI_MAP_DUNGEON_3: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_3(); break;
-    case NScene::ESI_MAP_DUNGEON_4: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_4(); break;
-    case NScene::ESI_MAP_DUNGEON_5: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_5(); break;
-    case NScene::ESI_MAP_DUNGEON_6: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_6(); break;
-    case NScene::ESI_MAP_DUNGEON_7: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_7(); break;
-    case NScene::ESI_MAP_DUNGEON_8: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_8(); break;
-    case NScene::ESI_MAP_DUNGEON_9: CurrentScene = new NMap::NDungeon::MAP_DUNGEON_9(); break;
-
-    default:
-      throw NException::CMapException("[E10] Unknown map id");
-      break;
-  }
-
+  CurrentScene = NScene::CScene::getSceneFromIdentifier(NextScene);
   CurrentScene->setSaveSlot(CurrentSave);
-
   // Displays scene loading screen
   CurrentScene->startLoadingScreen();
 

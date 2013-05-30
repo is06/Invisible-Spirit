@@ -9,6 +9,8 @@ http://www.is06.com. Legal code in license.txt
 #include "../../../include/NEngine/NCore/CGame.h"
 #include "../../../include/N3D/NLight/CDirectLight.h"
 
+using namespace irr;
+
 using is06::NEngine::NCore::CGame;
 
 namespace is06 { namespace N3D { namespace NLight {
@@ -17,6 +19,21 @@ namespace is06 { namespace N3D { namespace NLight {
 CDirectLight::CDirectLight()
 {
   Camera = CGame::getSceneManager()->addCameraSceneNode();
+}
+
+void CDirectLight::setPosition(const core::vector3df& position)
+{
+  Camera->setPosition(position);
+}
+
+void CDirectLight::setLookAt(const core::vector3df& position)
+{
+  Camera->setTarget(position);
+}
+
+scene::ICameraSceneNode* CDirectLight::getCameraNode()
+{
+  return Camera;
 }
 
 //! Destructor

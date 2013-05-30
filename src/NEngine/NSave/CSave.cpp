@@ -88,13 +88,13 @@ void CSave::save(u8 slot)
 
 //! This function creates a brand new file for the player
 /**
- * Every memorized pieces of data are initialized here, like the start map or character HP...
+ * Every memorized piece of data is initialized here, like the start map or character HP...
  * It changes the current map of the game so the player can start to play.
  */
 void CSave::newGame(NEngine::NGameplay::EDifficultyLevel difficultyLevel)
 {
   setGeneralDefaultValues(difficultyLevel);
-  NCore::CGame::changeScene(IntegerList[11]);
+  NCore::CGame::changeScene((NScene::ESceneIdentifier)IntegerList[11]);
 }
 
 //! Gets an integer value from the game save

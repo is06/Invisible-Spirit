@@ -49,7 +49,7 @@ public:
 
   // Game actions
   static void quit();
-  static void changeScene(s32 id);
+  static void changeScene(const NScene::ESceneIdentifier& id);
   static void writeErrorToLogFile(const exception& e);
   static void changeScreenDisplay(u32 width=848, u32 height=480, u8 colorDepth=32);
 
@@ -101,7 +101,7 @@ private:
 
   // Primitive data
   static NResource::ELocaleIdentifier CurrentLocale;
-  static s32 NextScene;
+  static NScene::ESceneIdentifier NextScene;
   static bool SceneChanged;
   static bool ScreenSizeChanged;
   static bool Exit;

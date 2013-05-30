@@ -11,10 +11,16 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/NEngine/NControl/CGamepad.h"
 #include "../../include/NEngine/NGameplay/CDialogInterface.h"
 #include "../../include/NEngine/NSave/CSave.h"
+#include "../../include/NEngine/NException/CMapException.h"
 #include "../../include/N3D/NPrimitive/CModelEntity.h"
 #include "../../include/NHud/NPrimitive/CPicture.h"
 #include "../../include/NHud/NPrimitive/CQuad.h"
 #include "../../include/NScene/CScene.h"
+#include "../../include/NScene/CSceneMenu.h"
+#include "../../include/NScene/CSceneSelectMap.h"
+#include "../../include/NShader/CShadowProcessor.h"
+
+#include "../../include/map_inclusion.h"
 
 using namespace irr;
 
@@ -43,7 +49,7 @@ CScene::CScene()
   // Cinemascope elements
   Cinemascope = new NHud::NPart::CCinemascopeMode();
 
-  //ShadowProcessor = new NEngine::CShadowProcessor(Camera);
+  ShadowProcessor = new NShader::CShadowProcessor(Camera);
 
   DebugInfo = NEngine::NCore::CGame::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
   DebugInfo->setOverrideColor(video::SColor(255, 255, 255, 255));
@@ -124,16 +130,14 @@ N3D::NCamera::CCamera* CScene::getActiveCamera()
 //! \todo comment this function
 void CScene::postRender()
 {
-
+  // Shadows by shadow mapping
+  ShadowProcessor->render();
 }
 
 //! This method is called every cycle after the event test method (or main loop for scenes). This method can handle post render events like map editor
 void CScene::hudRender()
 {
   Dummy->render();
-
-  // Shadows by shadow mapping
-  //ShadowProcessor->render();
 
   // Cinemascope stripes render
   Cinemascope->render(SpeedFactor);
@@ -194,6 +198,38 @@ const video::SColor& CScene::getBackBufferColor() const
   return BackBufferColor;
 }
 
+CScene* CScene::getSceneFromIdentifier(const ESceneIdentifier& id)
+{
+  switch (id) {
+    // Menus
+    case ESI_MENU: return new CSceneMenu(); break;
+    case ESI_SELECT_MAP: return new CSceneSelectMap(); break;
+
+    // Debug
+    case ESI_MAP_ALPHA_ZONE: return new NMap::NDebug::MAP_ALPHA_ZONE(); break;
+    case ESI_MAP_DEBUG: return new NMap::NDebug::MAP_DEBUG(); break;
+
+    // Countries
+
+    // Dungeons
+    case ESI_MAP_DUNGEON_1: return new NMap::NDungeon::MAP_DUNGEON_1(); break;
+    case ESI_MAP_DUNGEON_2: return new NMap::NDungeon::MAP_DUNGEON_2(); break;
+    case ESI_MAP_DUNGEON_3: return new NMap::NDungeon::MAP_DUNGEON_3(); break;
+    case ESI_MAP_DUNGEON_4: return new NMap::NDungeon::MAP_DUNGEON_4(); break;
+    case ESI_MAP_DUNGEON_5: return new NMap::NDungeon::MAP_DUNGEON_5(); break;
+    case ESI_MAP_DUNGEON_6: return new NMap::NDungeon::MAP_DUNGEON_6(); break;
+    case ESI_MAP_DUNGEON_7: return new NMap::NDungeon::MAP_DUNGEON_7(); break;
+    case ESI_MAP_DUNGEON_8: return new NMap::NDungeon::MAP_DUNGEON_8(); break;
+    case ESI_MAP_DUNGEON_9: return new NMap::NDungeon::MAP_DUNGEON_9(); break;
+
+    default:
+      throw NEngine::NException::CMapException("[E10] Unknown map id");
+      break;
+  }
+
+  return NULL;
+}
+
 //! This destructor removes interfaces and flushes texture and mesh cache
 CScene::~CScene()
 {
@@ -215,7 +251,7 @@ CScene::~CScene()
   delete Dummy;
   delete Cinemascope;
 
-  //delete ShadowProcessor;
+  delete ShadowProcessor;
 
   //delete DebugConsole;
 }

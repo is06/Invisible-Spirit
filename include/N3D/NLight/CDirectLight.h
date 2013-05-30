@@ -19,6 +19,11 @@ public:
   CDirectLight();
   ~CDirectLight();
 
+  void setPosition(const core::vector3df& position);
+  void setLookAt(const core::vector3df& position);
+
+  scene::ICameraSceneNode* getCameraNode();
+
 private:
   scene::ICameraSceneNode* Camera;
 };
