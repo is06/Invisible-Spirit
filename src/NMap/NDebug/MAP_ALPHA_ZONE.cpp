@@ -56,10 +56,10 @@ MAP_ALPHA_ZONE::MAP_ALPHA_ZONE() : NScene::CSceneGameplay()
   //GlowShader->addEntityForEffect(Hero, NShader::EFFECT_DARKEN);
 
   // Direct Light (spot with shadow map system, work in progress)
-  DLight = new N3D::NLight::CDirectLight();
-  DLight->setPosition(core::vector3df(1.0f, 5.0f, 5.0f));
-  DLight->setLookAt(core::vector3df(0.0f, 0.0f, 0.0f));
-  ShadowProcessor->addDirectLight(DLight);
+  //DLight = new N3D::NLight::CDirectLight();
+  //DLight->setPosition(core::vector3df(1.0f, 5.0f, 5.0f));
+  //DLight->setLookAt(core::vector3df(0.0f, 0.0f, 0.0f));
+  //ShadowProcessor->addDirectLight(DLight);
 
   // Hud
   MiniMap->setMap(NHud::NPart::EMMI_ALPHA_ZONE);
@@ -153,8 +153,7 @@ MAP_ALPHA_ZONE::~MAP_ALPHA_ZONE()
   // Level Mesh collision clear
   MapSections->clearMeshCollision(0);
 
-  delete DLight;
-
+  //delete DLight;
   //delete NPC1;
   //delete Spk;
   //delete Lt;
