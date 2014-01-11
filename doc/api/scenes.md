@@ -6,8 +6,31 @@ class **CScene**
 
 ### Interface methods
 
-#### `void fadeIn(f32 speed = 1.5f, NHud::NPrimitive::EFadeColor color = NHud::NPrimitive::EFC_BLACK)`
-#### `void fadeOut(f32 speed = 3.0f, NHud::NPrimitive::EFadeColor color = NHud::NPrimitive::EFC_BLACK);`
+* __`fadeIn`__
+* fadeOut
+* getBackBufferColor
+* getActiveCamera
+* getShadowProcessor
+
+### Interface objects
+
+* Cinemascope
+* Camera
+* Sky
+* Control
+* GameSave
+* Dialog
+* Music
+* GlobalTranslations
+* SceneTranslations
+* ShadowProcessor
+
+### Data
+
+* BackBufferColor
+* SceneTime
+* StartTime
+* SpeedFactor
 
 class **CSceneGameplay**
 ------------------------
