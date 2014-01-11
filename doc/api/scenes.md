@@ -20,7 +20,7 @@ class is06::NScene::CScene
 * Control
 * GameSave
 * Dialog
-* [Music](/is06/Invisible-Spirit/blob/master/doc/api/music_reference.md)
+* [Music](/doc/api/music_reference.md)
 * GlobalTranslations
 * SceneTranslations
 * ShadowProcessor
