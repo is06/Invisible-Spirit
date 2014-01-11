@@ -1,8 +1,8 @@
 Scenes
 ======
 
-class **CScene**
-----------------
+class is06::NScene::CScene
+--------------------------
 
 ### Interface methods
 
@@ -20,7 +20,7 @@ class **CScene**
 * Control
 * GameSave
 * Dialog
-* Music
+* [Music](/is06/Invisible-Spirit/blob/master/doc/api/music_reference.md)
 * GlobalTranslations
 * SceneTranslations
 * ShadowProcessor
@@ -32,12 +32,12 @@ class **CScene**
 * StartTime
 * SpeedFactor
 
-class **CSceneMenu**
---------------------
+class is06::NScene::CSceneMenu
+------------------------------
 (inherits from CScene)
 
-class **CSceneGameplay**
-------------------------
+class is06::NScene::CSceneGameplay
+----------------------------------
 (inherits from CScene)
 
 ### Interface objects
@@ -52,6 +52,6 @@ class **CSceneGameplay**
 * NPCInterface
 * EverySecondTimer
 
-class **CSceneDungeon**
------------------------
+class is06::NScene::CSceneDungeon
+---------------------------------
 (inherits from CSceneGameplay)
