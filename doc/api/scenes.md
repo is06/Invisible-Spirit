@@ -6,7 +6,7 @@ class **CScene**
 
 ### Interface methods
 
-* __`fadeIn`__
+* fadeIn
 * fadeOut
 * getBackBufferColor
 * getActiveCamera
@@ -32,13 +32,26 @@ class **CScene**
 * StartTime
 * SpeedFactor
 
+class **CSceneMenu**
+--------------------
+(inherits from CScene)
+
 class **CSceneGameplay**
 ------------------------
 (inherits from CScene)
 
+### Interface objects
+
+* Hero
+* HudEnsemble
+* HudEnergyEnsemble
+* MiniMap
+* WorldTime
+* PauseScreen
+* MapSections
+* NPCInterface
+* EverySecondTimer
+
 class **CSceneDungeon**
 -----------------------
 (inherits from CSceneGameplay)
-
-class **CSceneMenu**
---------------------
