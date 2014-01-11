@@ -18,8 +18,8 @@ class is06::NScene::CScene
 * Camera
 * Sky
 * Control
-* GameSave
-* Dialog
+* [GameSave](/doc/api/save.md)
+* [Dialog](/doc/api/dialog_interface.md)
 * [Music](/doc/api/music_reference.md)
 * GlobalTranslations
 * SceneTranslations
