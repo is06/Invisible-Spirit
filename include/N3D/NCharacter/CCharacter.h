@@ -30,6 +30,10 @@ public:
   f32 getJumpDelta();
   void setJumpStrength(f32 value);
   f32 getJumpStrength();
+  void setFallDelta(f32 value);
+  f32 getFallDelta();
+  void setGravity(f32 value);
+  f32 getGravity();
 
   void setJumping(bool value);
   void setFalling(bool value);

@@ -42,6 +42,10 @@ CSceneGameplay::CSceneGameplay() : CScene()
   PauseScreen = new NHud::NPauseScreen::CPauseScreen(GlobalTranslations, Control);
 
   EverySecondTimer = new NEngine::NTime::CTimer(1.0f, boost::bind(&CSceneGameplay::everySecond, this), -1);
+
+  DebugInfo = NEngine::NCore::CGame::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(1080, 0), core::vector2di(1280, 70)), false, false, 0, 0, true);
+  DebugInfo->setOverrideColor(video::SColor(255, 255, 255, 255));
+  DebugInfo->setBackgroundColor(video::SColor(127, 0, 0, 0));
 }
 
 //! Loading sequence for all gameplay scenes
@@ -97,6 +101,8 @@ void CSceneGameplay::events()
   // Entities rendering
   Hero->update();
   Camera->update();
+
+  generateDebugInfo();
 }
 
 //! Called every second by a timer
@@ -169,13 +175,14 @@ void CSceneGameplay::manageCharacterMovements()
 //! This function manages Character collision with floor and wall. Called every cycle
 void CSceneGameplay::manageCharacterCollisions()
 {
-  // Floor collision (only if a map section is loaded)
+  // Manage only if a map section is loaded
   if (MapSections->hasSections()) {
-    if (Hero->getFloorCollision(MapSections->getSection(0)) > 1.0) {
+    // Floor collision
+    if (Hero->getFloorCollision(MapSections->getSection(0)) > 1.0f) {
       Hero->fall(SpeedFactor);
     }
-    if (Hero->getFloorCollision(MapSections->getSection(0)) < 1.0) {
-      while (Hero->getFloorCollision(MapSections->getSection(0)) < 0.95) {
+    if (Hero->getFloorCollision(MapSections->getSection(0)) < 1.0f) {
+      while (Hero->getFloorCollision(MapSections->getSection(0)) < 0.98f) {
         Hero->raise();
       }
     }
@@ -185,8 +192,8 @@ void CSceneGameplay::manageCharacterCollisions()
 
     if (Hero->getWallCollision(N3D::NCollision::ERT_WALL_P, MapSections->getSection(0), normal) < 1.0f
     || Hero->getWallCollision(N3D::NCollision::ERT_WALL_Q, MapSections->getSection(0), normal) < 1.0f) {
-      while (Hero->getWallCollision(N3D::NCollision::ERT_WALL_P, MapSections->getSection(0), normal) < 0.99
-      || Hero->getWallCollision(N3D::NCollision::ERT_WALL_Q, MapSections->getSection(0), normal) < 0.99) {
+      while (Hero->getWallCollision(N3D::NCollision::ERT_WALL_P, MapSections->getSection(0), normal) < 0.99f
+      || Hero->getWallCollision(N3D::NCollision::ERT_WALL_Q, MapSections->getSection(0), normal) < 0.99f) {
         Hero->moveOpposite(normal);
       }
     }
@@ -218,6 +225,42 @@ void CSceneGameplay::manageMenuControl()
   if (QuitIsFading && OutFader->isReady()) {
     NEngine::NCore::CGame::changeScene(ESI_MENU);
   }
+}
+
+//! Displays the number of textures and meshes that are currently loaded in the scene
+void CSceneGameplay::generateDebugInfo()
+{
+  core::stringw debugText = "";
+  debugText += "Position: ";
+  debugText += Hero->getNode()->getPosition().X;
+  debugText += " / ";
+  debugText += Hero->getNode()->getPosition().Y;
+  debugText += " / ";
+  debugText += Hero->getNode()->getPosition().Z;
+  debugText += "\nJumpStrength: ";
+  debugText += Hero->getJumpStrength();
+  debugText += "\nJumpDelta: ";
+  debugText += Hero->getJumpDelta();
+  debugText += "\nFallDelta: ";
+  debugText += Hero->getFallDelta();
+  debugText += "\nGravity: ";
+  debugText += Hero->getGravity();
+
+  debugText += "\nJumping: ";
+  if (Hero->isJumping()) {
+    debugText += "yes";
+  } else {
+    debugText += "no";
+  }
+
+  debugText += "\nFalling: ";
+  if (Hero->isFalling()) {
+    debugText += "yes";
+  } else {
+    debugText += "no";
+  }
+
+  DebugInfo->setText(debugText.c_str());
 }
 
 //! Post render (shaders...)

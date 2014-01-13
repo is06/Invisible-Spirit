@@ -80,9 +80,6 @@ protected:
   f32 SpeedFactor;
   NScene::ELoadingStatus LoadingStatus;
 
-  // Debug Tools
-  NDebug::CConsole* DebugConsole;
-
 private:
   // Methods
   void generateDebugInfo();

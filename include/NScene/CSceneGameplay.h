@@ -55,6 +55,9 @@ private:
   void switchLevelMeshes();
 
   bool QuitIsFading;
+
+  void generateDebugInfo();
+  gui::IGUIStaticText* DebugInfo;
 };
 
 }}

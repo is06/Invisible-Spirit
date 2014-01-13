@@ -19,6 +19,7 @@ http://www.is06.com. Legal code in license.txt
 #include "../../include/NScene/CSceneMenu.h"
 #include "../../include/NScene/CSceneSelectMap.h"
 #include "../../include/NShader/CShadowProcessor.h"
+#include "../../include/NDebug/CConsole.h"
 
 #include "../../include/map_inclusion.h"
 
@@ -51,9 +52,9 @@ CScene::CScene()
 
   ShadowProcessor = new NShader::CShadowProcessor(Camera);
 
-  DebugInfo = NEngine::NCore::CGame::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, false);
+  DebugInfo = NEngine::NCore::CGame::getDebugGUI()->addStaticText(L"", core::recti(core::vector2di(0, 0), core::vector2di(200, 20)), false, false, 0, 0, true);
   DebugInfo->setOverrideColor(video::SColor(255, 255, 255, 255));
-  //DebugConsole = new NDebug::CDebugConsole();
+  DebugInfo->setBackgroundColor(video::SColor(127, 0, 0, 0));
 
   BackBufferColor = video::SColor(255, 0, 0, 0);
 }
@@ -66,14 +67,6 @@ void CScene::events()
   //GameSave->setInteger(11, (u32)SceneTime); // 11 = Total game time
 
   generateDebugInfo();
-
-  // Debug console
-  /*
-  DebugConsole->render();
-  if (Control->commandEntered(NEngine::ECI_DEBUG_CONSOLE_EXECUTE, NEngine::NEvent::EET_ONCE)) {
-    DebugConsole->executeCurrentCommand();
-  }
-  */
 }
 
 //! Loads all meshes and textures that will be used in the scene
@@ -247,13 +240,9 @@ CScene::~CScene()
   }
 
   delete Control;
-
   delete Dummy;
   delete Cinemascope;
-
   delete ShadowProcessor;
-
-  //delete DebugConsole;
 }
 
 }}

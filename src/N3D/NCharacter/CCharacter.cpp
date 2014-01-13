@@ -6,10 +6,13 @@ http://www.is06.com. Legal code in license.txt
 *******************************************************************************/
 
 #include "../../../include/core.h"
+#include "../../../include/NEngine/NCore/CGame.h"
 #include "../../../include/N3D/NCharacter/CCharacter.h"
 #include "../../../include/N3D/NPrimitive/CAnimatedModel.h"
 
 namespace is06 { namespace N3D { namespace NCharacter {
+
+using NEngine::NCore::CGame;
 
 //! Properties initialization
 CCharacter::CCharacter() : CAnimatedModel()
@@ -35,8 +38,9 @@ void CCharacter::setCharacterModel(const string& characterId)
 void CCharacter::fall(f32 factor)
 {
   if (!Jumping) {
+    cout << "FD: " << FallDelta << endl;
     if (FallDelta < JumpStrength) {
-      FallDelta += (factor * Gravity);
+      FallDelta += (factor * (Gravity / 2.0f));
     }
     MainNode->setPosition(core::vector3df(
       MainNode->getPosition().X,
@@ -51,12 +55,14 @@ void CCharacter::raise()
 {
   if (Falling) {
     // PlayableCharacter is hitting the floor
-    FallDelta = 0.0f;
     Falling = false;
+    FallDelta = 0.0f;
+    Jumping = false;
+    JumpDelta = 0.0f;
   }
   MainNode->setPosition(core::vector3df(
     MainNode->getPosition().X,
-    MainNode->getPosition().Y + 0.005,
+    MainNode->getPosition().Y + 0.001,
     MainNode->getPosition().Z
   ));
 }
@@ -65,11 +71,11 @@ void CCharacter::raise()
 void CCharacter::jump()
 {
   if (Jumping) {
-    JumpDelta -= Gravity;
-    if (JumpDelta <= 0) {
+    if (JumpDelta <= 0.0f) {
       Jumping = false;
       Falling = true;
     }
+    JumpDelta -= (2.0f * JumpStrength * CGame::getSpeedFactor());
     MainNode->setPosition(core::vector3df(
       MainNode->getPosition().X,
       MainNode->getPosition().Y + JumpDelta,
@@ -100,6 +106,26 @@ void CCharacter::setJumpStrength(f32 value)
 f32 CCharacter::getJumpStrength()
 {
   return JumpStrength;
+}
+
+void CCharacter::setFallDelta(f32 value)
+{
+  FallDelta = value;
+}
+
+f32 CCharacter::getFallDelta()
+{
+  return FallDelta;
+}
+
+void CCharacter::setGravity(f32 value)
+{
+  Gravity = value;
+}
+
+f32 CCharacter::getGravity()
+{
+  return Gravity;
 }
 
 //! Changes the jumping state
