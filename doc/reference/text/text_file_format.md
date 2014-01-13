@@ -1,7 +1,7 @@
 Text file format
 ================
 
-File name extension : ist (for "Invisible Spirit Text")
+File name extension: ist (for "Invisible Spirit Text")
 
 Description
 -----------
