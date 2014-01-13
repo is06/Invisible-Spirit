@@ -15,9 +15,9 @@ File format
 
 Thoses files are plain text files, it's just a list of text items with an identifier and a value:
 
-`identifier1=value1
-identifier2=value2
-...`
+identifier1=value1  
+identifier2=value2  
+...
 
 Identifiers can be used directly in the C++ code or in dialogs.
 
@@ -31,17 +31,21 @@ This line retrieves a text defined in global.ist (because the object **GlobalTra
 The same C++ methods can be used with **SceneTranslations** object defined in scenes:
 
 Defines the SceneTranslations object in a map:
+
 `SceneTranslations = new NEngine::NResource::CTranslation("MAP_ALPHA_ZONE.ist");`
 
 Use a specific-map text:
+
 `SceneTranslations->getTranslation("norya_time_and_space");`
 
 ### Use in dialogs
 
 Sets the dialog interface for this scene with map texts:
+
 `Dialog = new NEngine::NGameplay::CDialogInterface("MAP_ALPHA_ZONE.isd", SceneTranslations, Control);`
 
 Notice that SceneTranslations object is passed in the CDialogInterface constructor because it'll use it.
 
 Start a dialog:
+
 `Dialog->start("norya_first_start");`
