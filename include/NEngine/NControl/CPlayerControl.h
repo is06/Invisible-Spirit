@@ -15,6 +15,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NEngine { namespace NControl {
 
+//! Interface for player control regardless the type of controller
 class CPlayerControl
 {
 public:

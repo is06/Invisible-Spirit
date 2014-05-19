@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NEngine { namespace NException {
 
-//! Main exception class
+//! Map exception class
 class CMapException : public exception
 {
 public:

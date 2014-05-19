@@ -10,6 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace N3D { namespace NSensor {
 
+//! Plane type identifier enumeration for plane sensors
 enum EPlaneType
 {
   EPT_VERTICAL,

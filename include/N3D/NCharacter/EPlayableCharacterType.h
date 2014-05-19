@@ -10,7 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace N3D { namespace NCharacter {
 
-//! Localization identifier enumeration
+//! Playable character identifier enumeration
 enum EPlayableCharacterType
 {
   EPCT_AYRON,

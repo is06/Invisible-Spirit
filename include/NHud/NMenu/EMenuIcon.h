@@ -10,6 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NMenu {
 
+//! Menu icon identifier enumeration
 enum EMenuIcon
 {
   EMI_NONE,

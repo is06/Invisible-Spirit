@@ -13,6 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NCounter {
 
+//! A life meter (with horizontal bar) usually for enemies on the screen
 class CTargetLifeMeter : public NCore::CHudEntity
 {
 public:

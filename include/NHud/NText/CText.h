@@ -15,6 +15,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NText {
 
+//! A text to display on screen
 class CText : public NCore::CHudEntity
 {
 public:

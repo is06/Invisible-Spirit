@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NPlayerState {
 
+//! A player main information (name, level, HP...)
 class CMainInfo : public NCore::CHudEntity
 {
 public:

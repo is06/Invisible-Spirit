@@ -13,6 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NScene {
 
+//! The game main menu scene (also title screen)
 class CSceneMenu : public CScene
 {
 public:

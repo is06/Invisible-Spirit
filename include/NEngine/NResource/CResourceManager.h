@@ -13,6 +13,7 @@ using namespace std;
 
 namespace is06 { namespace NEngine { namespace NResource {
 
+//! Class for loading resource files (not working yet)
 class CResourceManager
 {
 public:

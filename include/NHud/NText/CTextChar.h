@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NText {
 
+//! A text character (component of Text)
 class CTextChar : public NPrimitive::CFlatElement
 {
 public:

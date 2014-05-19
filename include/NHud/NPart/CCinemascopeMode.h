@@ -13,6 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NPart {
 
+//! Class for cinemascope style 'black bars'
 class CCinemascopeMode : public NCore::CHudEntity
 {
 public:

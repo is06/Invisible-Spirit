@@ -16,6 +16,7 @@ using namespace irr;
 
 namespace is06 { namespace NShader {
 
+//! Shader interface for blur effect (post process effect)
 class CBlurShaderCallback : public video::IShaderConstantSetCallBack
 {
 public:

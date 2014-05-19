@@ -10,6 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NEngine { namespace NControl {
 
+//! Gameplay command names enumeration
 enum EGameplayControlButtons
 {
   EGCB_BUTTON_COMMAND,

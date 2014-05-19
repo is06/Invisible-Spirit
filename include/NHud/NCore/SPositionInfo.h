@@ -14,6 +14,7 @@ using namespace irr;
 
 namespace is06 { namespace NHud { namespace NCore {
 
+//! Hud position data structure
 struct SPositionInfo
 {
   f32 Top;
