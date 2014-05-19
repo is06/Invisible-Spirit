@@ -13,10 +13,10 @@ namespace is06 { namespace N3D { namespace NCharacter {
 //! Localization identifier enumeration
 enum EPlayableCharacterType
 {
-  EPCT_AYRON,
-  EPCT_CUBE,
+    EPCT_AYRON,
+    EPCT_CUBE,
 
-  EPCT_COUNT
+    EPCT_COUNT
 };
 
 }}}

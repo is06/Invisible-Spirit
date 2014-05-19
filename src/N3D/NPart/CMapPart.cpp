@@ -20,7 +20,7 @@ CMapPart::CMapPart() : CStaticModel()
 //! Update method, called every cycle for event testing
 void CMapPart::update()
 {
-  CStaticModel::update();
+    CStaticModel::update();
 }
 
 //! Loads the collision mask for this model from a dedicate file (newton serialization)

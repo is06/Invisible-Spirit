@@ -21,67 +21,67 @@ namespace is06 { namespace N3D { namespace NPrimitive {
 class CAnimatedModel : public CModelEntity
 {
 public:
-  CAnimatedModel();
-  virtual ~CAnimatedModel();
+    CAnimatedModel();
+    virtual ~CAnimatedModel();
 
-  virtual void update();
-  virtual void shaderRender();
+    virtual void update();
+    virtual void shaderRender();
 
-  void createModel(const string& meshFile, const string& animationFile);
-  void setVisible(bool value);
-  void hide();
-  void show();
-  void setWireFrame(bool value);
-  void setDebugData(bool value);
-  void darken();
-  void undarken();
-  void lighten();
-  void unlighten();
-  void textureSwitch();
+    void createModel(const string& meshFile, const string& animationFile);
+    void setVisible(bool value);
+    void hide();
+    void show();
+    void setWireFrame(bool value);
+    void setDebugData(bool value);
+    void darken();
+    void undarken();
+    void lighten();
+    void unlighten();
+    void textureSwitch();
 
-  // Movements
-  void turnX(f32 speed);
-  void turnY(f32 speed);
-  void turnZ(f32 speed);
-  void moveX(f32 speed);
-  void moveY(f32 speed);
-  void moveZ(f32 speed);
+    // Movements
+    void turnX(f32 speed);
+    void turnY(f32 speed);
+    void turnZ(f32 speed);
+    void moveX(f32 speed);
+    void moveY(f32 speed);
+    void moveZ(f32 speed);
 
-  video::SMaterial& getMaterial();
-  void createNode(const core::vector3df& initPosition);
-  scene::IAnimatedMeshSceneNode* getNode();
+    video::SMaterial& getMaterial();
+    void createNode(const core::vector3df& initPosition);
+    scene::IAnimatedMeshSceneNode* getNode();
 
-  // Collision detection
-  bool collidesWithStatic(CStaticModel* other);
-  bool collidesWithAnimated(CAnimatedModel* other);
-  bool collidesWithSensor(NSensor::CBoxSensor* boxSensor, NEngine::NEvent::EEventType type);
-  bool collidesWithSensor(NSensor::CPlaneSensor* planeSensor, NEngine::NEvent::EEventType type);
-  f32 getFloorCollision(CStaticModel* other);
-  f32 getWallCollision(NCollision::ERayType type, CStaticModel* other, core::vector3df& normal);
+    // Collision detection
+    bool collidesWithStatic(CStaticModel* other);
+    bool collidesWithAnimated(CAnimatedModel* other);
+    bool collidesWithSensor(NSensor::CBoxSensor* boxSensor, NEngine::NEvent::EEventType type);
+    bool collidesWithSensor(NSensor::CPlaneSensor* planeSensor, NEngine::NEvent::EEventType type);
+    f32 getFloorCollision(CStaticModel* other);
+    f32 getWallCollision(NCollision::ERayType type, CStaticModel* other, core::vector3df& normal);
 
-  // Animations
-  void loadAnimation(const string& fileName);
-  void setCurrentAnimation(s32 id, f32 speed = 30.0f);
-  void pauseAnimation();
-  void playAnimation();
-  void setAnimationSpeed(f32 value);
-  bool currentAnimationFinished();
-  bool animationFinished(s32 id);
+    // Animations
+    void loadAnimation(const string& fileName);
+    void setCurrentAnimation(s32 id, f32 speed = 30.0f);
+    void pauseAnimation();
+    void playAnimation();
+    void setAnimationSpeed(f32 value);
+    bool currentAnimationFinished();
+    bool animationFinished(s32 id);
 
-  // Shadows
-  void setShadowMode(NShader::EShadowMode mode = NShader::ESM_CAST);
+    // Shadows
+    void setShadowMode(NShader::EShadowMode mode = NShader::ESM_CAST);
 
 protected:
-  f32 FloorSensorWidth;
-  f32 WallSensorWidth;
+    f32 FloorSensorWidth;
+    f32 WallSensorWidth;
 
-  scene::IAnimatedMeshSceneNode* MainNode;
+    scene::IAnimatedMeshSceneNode* MainNode;
 
 private:
-  s32 CurrentAnimationId;
-  f32 CurrentAnimationSpeed;
-  map<s32, N3D::NPrimitive::SMeshAnimationInfo> AnimationList;
-  map<N3D::NSensor::CSensor*, bool> SensorOnce;
+    s32 CurrentAnimationId;
+    f32 CurrentAnimationSpeed;
+    map<s32, N3D::NPrimitive::SMeshAnimationInfo> AnimationList;
+    map<N3D::NSensor::CSensor*, bool> SensorOnce;
 };
 
 }}}

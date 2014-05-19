@@ -16,10 +16,10 @@ namespace is06 { namespace N3D { namespace NEnemy {
 class CAirEnemy : public CEnemy
 {
 public:
-  CAirEnemy();
-  virtual ~CAirEnemy();
+    CAirEnemy();
+    virtual ~CAirEnemy();
 
-  virtual void update();
+    virtual void update();
 };
 
 }}}

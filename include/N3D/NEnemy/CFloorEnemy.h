@@ -16,10 +16,10 @@ namespace is06 { namespace N3D { namespace NEnemy {
 class CFloorEnemy : public CEnemy
 {
 public:
-  CFloorEnemy();
-  virtual ~CFloorEnemy();
+    CFloorEnemy();
+    virtual ~CFloorEnemy();
 
-  virtual void update();
+    virtual void update();
 };
 
 }}}

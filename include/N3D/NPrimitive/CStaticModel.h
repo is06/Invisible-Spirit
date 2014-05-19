@@ -16,46 +16,46 @@ namespace is06 { namespace N3D { namespace NPrimitive {
 class CStaticModel : public CModelEntity
 {
 public:
-  CStaticModel();
-  ~CStaticModel();
+    CStaticModel();
+    ~CStaticModel();
 
-  virtual void update();
-  virtual void shaderRender();
+    virtual void update();
+    virtual void shaderRender();
 
-  void setVisible(bool value);
-  void hide();
-  void show();
-  void setGhost(bool value);
-  void setWireFrame(bool value);
-  void setDebugData(bool value);
-  void darken();
-  void undarken();
-  void lighten();
-  void unlighten();
-  void textureSwitch();
+    void setVisible(bool value);
+    void hide();
+    void show();
+    void setGhost(bool value);
+    void setWireFrame(bool value);
+    void setDebugData(bool value);
+    void darken();
+    void undarken();
+    void lighten();
+    void unlighten();
+    void textureSwitch();
 
-  void turnX(f32 speed);
-  void turnY(f32 speed);
-  void turnZ(f32 speed);
-  void moveX(f32 speed);
-  void moveY(f32 speed);
-  void moveZ(f32 speed);
+    void turnX(f32 speed);
+    void turnY(f32 speed);
+    void turnZ(f32 speed);
+    void moveX(f32 speed);
+    void moveY(f32 speed);
+    void moveZ(f32 speed);
 
-  video::SMaterial& getMaterial();
+    video::SMaterial& getMaterial();
 
-  void loadMeshCollision();
-  void clearMeshCollision();
-  void createNode(const core::vector3df& initPosition);
-  scene::IMeshSceneNode* getNode();
+    void loadMeshCollision();
+    void clearMeshCollision();
+    void createNode(const core::vector3df& initPosition);
+    scene::IMeshSceneNode* getNode();
 
-  // Shadows
-  void setShadowMode(NShader::EShadowMode mode = NShader::ESM_CAST);
+    // Shadows
+    void setShadowMode(NShader::EShadowMode mode = NShader::ESM_CAST);
 
 protected:
-  scene::IMeshSceneNode* MainNode;
+    scene::IMeshSceneNode* MainNode;
 
 private:
-  void addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene::IMeshBuffer* meshBuffer, NewtonCollision* treeCollision, core::vector3df scale);
+    void addMeshToTreeCollision(video::E_VERTEX_TYPE vertexType, scene::IMeshBuffer* meshBuffer, NewtonCollision* treeCollision, core::vector3df scale);
 };
 
 }}}

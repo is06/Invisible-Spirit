@@ -20,7 +20,7 @@ CFloorEnemy::CFloorEnemy() : CEnemy()
 //! Update function called every cycle for event testing
 void CFloorEnemy::update()
 {
-  CEnemy::update();
+    CEnemy::update();
 }
 
 //! Destructor

@@ -20,21 +20,21 @@ namespace is06 { namespace N3D { namespace NPart {
  */
 CSky::CSky(const string& textureName) : NEngine::NCore::CEntity()
 {
-  string up = "resource/texture/map/sky/" + textureName + "/up.jpg";
-  string dn = "resource/texture/map/sky/" + textureName + "/dn.jpg";
-  string lf = "resource/texture/map/sky/" + textureName + "/lf.jpg";
-  string rt = "resource/texture/map/sky/" + textureName + "/rt.jpg";
-  string ft = "resource/texture/map/sky/" + textureName + "/ft.jpg";
-  string bk = "resource/texture/map/sky/" + textureName + "/bk.jpg";
+    string up = "resource/texture/map/sky/" + textureName + "/up.jpg";
+    string dn = "resource/texture/map/sky/" + textureName + "/dn.jpg";
+    string lf = "resource/texture/map/sky/" + textureName + "/lf.jpg";
+    string rt = "resource/texture/map/sky/" + textureName + "/rt.jpg";
+    string ft = "resource/texture/map/sky/" + textureName + "/ft.jpg";
+    string bk = "resource/texture/map/sky/" + textureName + "/bk.jpg";
 
-  Layers[0] = CGame::getSceneManager()->addSkyBoxSceneNode(
-    CGame::getResourceManager()->loadTexture(up),
-    CGame::getResourceManager()->loadTexture(dn),
-    CGame::getResourceManager()->loadTexture(lf),
-    CGame::getResourceManager()->loadTexture(rt),
-    CGame::getResourceManager()->loadTexture(ft),
-    CGame::getResourceManager()->loadTexture(bk)
-  );
+    Layers[0] = CGame::getSceneManager()->addSkyBoxSceneNode(
+        CGame::getResourceManager()->loadTexture(up),
+        CGame::getResourceManager()->loadTexture(dn),
+        CGame::getResourceManager()->loadTexture(lf),
+        CGame::getResourceManager()->loadTexture(rt),
+        CGame::getResourceManager()->loadTexture(ft),
+        CGame::getResourceManager()->loadTexture(bk)
+    );
 }
 
 //! Update method, called every cycle for event testing
@@ -64,7 +64,7 @@ void CSky::setRotationSpeed(u8 index, f32 speed)
 //! Destructor
 CSky::~CSky()
 {
-  Layers[0]->remove();
+    Layers[0]->remove();
 }
 
 }}}

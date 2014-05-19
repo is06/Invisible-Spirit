@@ -13,9 +13,9 @@ namespace is06 { namespace N3D { namespace NPrimitive {
 //! Skeletal mesh animation info like frame bounds and loop
 struct SMeshAnimationInfo
 {
-  u32 StartFrame;
-  u32 EndFrame;
-  bool Looped;
+    u32 StartFrame;
+    u32 EndFrame;
+    bool Looped;
 };
 
 }}}

@@ -16,10 +16,10 @@ namespace is06 { namespace N3D { namespace NEnemy {
 class CEnemy : public NPrimitive::CAnimatedModel
 {
 public:
-  CEnemy();
-  virtual ~CEnemy();
+    CEnemy();
+    virtual ~CEnemy();
 
-  virtual void update();
+    virtual void update();
 };
 
 }}}

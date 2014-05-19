@@ -20,7 +20,7 @@ CSensor::CSensor() : NEngine::NCore::CEntity()
 //! Update method, called every cycle for event testing
 void CSensor::update()
 {
-  CEntity::update();
+    CEntity::update();
 }
 
 //! Destructor

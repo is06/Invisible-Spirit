@@ -17,15 +17,15 @@ namespace is06 { namespace N3D { namespace NSensor {
 class CPlaneSensor : public CSensor
 {
 public:
-  CPlaneSensor(f32 width, f32 height, const core::vector3df& position);
-  virtual ~CPlaneSensor();
-  virtual void update();
+    CPlaneSensor(f32 width, f32 height, const core::vector3df& position);
+    virtual ~CPlaneSensor();
+    virtual void update();
 
-  void setSize(f32 width, f32 height, const core::vector3df& position);
-  const core::plane3df& getPlane();
+    void setSize(f32 width, f32 height, const core::vector3df& position);
+    const core::plane3df& getPlane();
 
 protected:
-  core::plane3df Plane;
+    core::plane3df Plane;
 };
 
 }}}

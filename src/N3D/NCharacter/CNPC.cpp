@@ -15,32 +15,32 @@ namespace is06 { namespace N3D { namespace NCharacter {
 //! Initializations
 CNPC::CNPC() : CCharacter()
 {
-  NextDialogIdentifier = 0;
-  CurrentTalkingDialogIdentifier = 0;
+    NextDialogIdentifier = 0;
+    CurrentTalkingDialogIdentifier = 0;
 }
 
 //! Changes the 3d model for this character
 void CNPC::setCharacter(const string& characterId)
 {
-  CCharacter::setCharacterModel(characterId);
+    CCharacter::setCharacterModel(characterId);
 }
 
 //! Rendering and events method
 void CNPC::update()
 {
-  CCharacter::update();
+    CCharacter::update();
 }
 
 //! Execute the talk action for this NPC
 void CNPC::talk(const string& dialogIdentifier) const
 {
-  AttachedDialog->start(dialogIdentifier);
+    AttachedDialog->start(dialogIdentifier);
 }
 
 //! Attaches a dialog interface object to this NPC
 void CNPC::attachDialogInterface(NEngine::NGameplay::CDialogInterface* dialog)
 {
-  AttachedDialog = dialog;
+    AttachedDialog = dialog;
 }
 
 //! Get a random dialog identifier
@@ -51,7 +51,7 @@ void CNPC::attachDialogInterface(NEngine::NGameplay::CDialogInterface* dialog)
  */
 const string& CNPC::getRandomTalkingDialogIdentifier(bool avoidDoubles)
 {
-  return DialogIdentifierList[CurrentTalkingDialogIdentifier];
+    return DialogIdentifierList[CurrentTalkingDialogIdentifier];
 }
 
 //! Get the next dialog identifier
@@ -60,8 +60,8 @@ const string& CNPC::getRandomTalkingDialogIdentifier(bool avoidDoubles)
  */
 const string& CNPC::getNextTalkingDialogIdentifier()
 {
-  CurrentTalkingDialogIdentifier++;
-  return DialogIdentifierList[CurrentTalkingDialogIdentifier];
+    CurrentTalkingDialogIdentifier++;
+    return DialogIdentifierList[CurrentTalkingDialogIdentifier];
 }
 
 //! Returns the distance between the NPC and an other character
@@ -70,7 +70,7 @@ const string& CNPC::getNextTalkingDialogIdentifier()
  */
 f32 CNPC::getDistanceFrom(CCharacter* character)
 {
-  return 0.0f;
+    return 0.0f;
 }
 
 //! Destructor

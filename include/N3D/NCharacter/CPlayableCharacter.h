@@ -17,33 +17,33 @@ namespace is06 { namespace N3D { namespace NCharacter {
 class CPlayableCharacter : public CCharacter
 {
 public:
-  CPlayableCharacter(NCamera::CCamera* cam);
+    CPlayableCharacter(NCamera::CCamera* cam);
 
-  void update();
+    void update();
 
-  void setCharacter(N3D::NCharacter::EPlayableCharacterType type = N3D::NCharacter::EPCT_AYRON);
+    void setCharacter(N3D::NCharacter::EPlayableCharacterType type = N3D::NCharacter::EPCT_AYRON);
 
-  // Player moves
-  void goLeft(f32 speed);
-  void goRight(f32 speed);
-  void goForward(f32 speed);
-  void goBackward(f32 speed);
-  void updateDirectionFromAngle(f32 angle);
+    // Player moves
+    void goLeft(f32 speed);
+    void goRight(f32 speed);
+    void goForward(f32 speed);
+    void goBackward(f32 speed);
+    void updateDirectionFromAngle(f32 angle);
 
-  // Wall collisions
-  void moveOpposite(const core::vector3df& normal);
+    // Wall collisions
+    void moveOpposite(const core::vector3df& normal);
 
-  // Player control
-  void toggleControl();
-  void setControl(bool active);
-  bool hasControl();
+    // Player control
+    void toggleControl();
+    void setControl(bool active);
+    bool hasControl();
 
 private:
-  void updateCoords(f32 deltaU, f32 speed);
+    void updateCoords(f32 deltaU, f32 speed);
 
-  NCamera::CCamera* LinkedCam;
+    NCamera::CCamera* LinkedCam;
 
-  bool Controlable;
+    bool Controlable;
 };
 
 }}}

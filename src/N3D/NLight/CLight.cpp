@@ -17,11 +17,11 @@ namespace is06 { namespace N3D { namespace NLight {
 //! Constructor
 CLight::CLight() : NEngine::NCore::CEntity()
 {
-  video::ITexture* iconTexture = CGame::getResourceManager()->loadTexture("resource/debug/icons/light.bmp");
-  Node = CGame::getSceneManager()->addLightSceneNode(0, core::vector3df(0,2,0), video::SColor(255,255,200,0), 10.0f);
+    video::ITexture* iconTexture = CGame::getResourceManager()->loadTexture("resource/debug/icons/light.bmp");
+    Node = CGame::getSceneManager()->addLightSceneNode(0, core::vector3df(0,2,0), video::SColor(255,255,200,0), 10.0f);
 
-  Icon = CGame::getSceneManager()->addBillboardSceneNode(0, core::dimension2df(1.0f, 1.0f), core::vector3df(0,2,0));
-  Icon->setMaterialTexture(0, iconTexture);
+    Icon = CGame::getSceneManager()->addBillboardSceneNode(0, core::dimension2df(1.0f, 1.0f), core::vector3df(0,2,0));
+    Icon->setMaterialTexture(0, iconTexture);
 }
 
 //! Update method, called every cycle for event testing
@@ -33,8 +33,8 @@ void CLight::update()
 //! Destructor
 CLight::~CLight()
 {
-  Node->remove();
-  Icon->remove();
+    Node->remove();
+    Icon->remove();
 }
 
 }}}

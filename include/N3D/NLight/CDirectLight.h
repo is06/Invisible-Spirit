@@ -16,16 +16,16 @@ namespace is06 { namespace N3D { namespace NLight {
 class CDirectLight : public CLight
 {
 public:
-  CDirectLight();
-  ~CDirectLight();
+    CDirectLight();
+    ~CDirectLight();
 
-  void setPosition(const core::vector3df& position);
-  void setLookAt(const core::vector3df& position);
+    void setPosition(const core::vector3df& position);
+    void setLookAt(const core::vector3df& position);
 
-  scene::ICameraSceneNode* getCameraNode();
+    scene::ICameraSceneNode* getCameraNode();
 
 private:
-  scene::ICameraSceneNode* Camera;
+    scene::ICameraSceneNode* Camera;
 };
 
 }}}

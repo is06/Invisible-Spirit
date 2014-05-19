@@ -15,17 +15,17 @@ namespace is06 { namespace N3D { namespace NPart {
 class CSky : public NEngine::NCore::CEntity
 {
 public:
-  CSky(const string& textureName);
-  ~CSky();
+    CSky(const string& textureName);
+    ~CSky();
 
-  void update();
-  void setLayer(u8 index, const string& textureName);
-  void setFrontLayerOpacity(u8 level);
-  void setRotationSpeed(u8 index, f32 speed);
+    void update();
+    void setLayer(u8 index, const string& textureName);
+    void setFrontLayerOpacity(u8 level);
+    void setRotationSpeed(u8 index, f32 speed);
 
 private:
-  scene::ISceneNode* Layers[2];
-  f32 RotationSpeed[2];
+    scene::ISceneNode* Layers[2];
+    f32 RotationSpeed[2];
 };
 
 }}}

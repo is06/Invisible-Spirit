@@ -18,47 +18,47 @@ namespace is06 { namespace N3D { namespace NPrimitive {
 class CModelEntity : public NEngine::NCore::CEntity
 {
 public:
-  CModelEntity();
-  virtual ~CModelEntity();
+    CModelEntity();
+    virtual ~CModelEntity();
 
-  virtual void update() = 0;
-  virtual void shaderRender();
-  virtual void createNode(const core::vector3df& initPosition) = 0;
+    virtual void update() = 0;
+    virtual void shaderRender();
+    virtual void createNode(const core::vector3df& initPosition) = 0;
 
-  virtual void setVisible(bool value) = 0;
-  virtual void hide() = 0;
-  virtual void show() = 0;
-  virtual void setWireFrame(bool value) = 0;
-  virtual void setDebugData(bool value) = 0;
-  virtual void darken() = 0;
-  virtual void undarken() = 0;
-  virtual void lighten() = 0;
-  virtual void unlighten() = 0;
-  virtual void textureSwitch() = 0;
+    virtual void setVisible(bool value) = 0;
+    virtual void hide() = 0;
+    virtual void show() = 0;
+    virtual void setWireFrame(bool value) = 0;
+    virtual void setDebugData(bool value) = 0;
+    virtual void darken() = 0;
+    virtual void undarken() = 0;
+    virtual void lighten() = 0;
+    virtual void unlighten() = 0;
+    virtual void textureSwitch() = 0;
 
-  virtual video::SMaterial& getMaterial() = 0;
+    virtual video::SMaterial& getMaterial() = 0;
 
-  virtual void turnX(f32 speed) = 0;
-  virtual void turnY(f32 speed) = 0;
-  virtual void turnZ(f32 speed) = 0;
-  virtual void moveX(f32 speed) = 0;
-  virtual void moveY(f32 speed) = 0;
-  virtual void moveZ(f32 speed) = 0;
+    virtual void turnX(f32 speed) = 0;
+    virtual void turnY(f32 speed) = 0;
+    virtual void turnZ(f32 speed) = 0;
+    virtual void moveX(f32 speed) = 0;
+    virtual void moveY(f32 speed) = 0;
+    virtual void moveZ(f32 speed) = 0;
 
-  virtual void setShadowMode(NShader::EShadowMode mode = NShader::ESM_CAST) = 0;
+    virtual void setShadowMode(NShader::EShadowMode mode = NShader::ESM_CAST) = 0;
 
-  void loadMesh(const string& meshFilePath);
+    void loadMesh(const string& meshFilePath);
 
-  void attachSpeaker(NSound::CSpeaker* speaker);
-  void detachSpeaker();
+    void attachSpeaker(NSound::CSpeaker* speaker);
+    void detachSpeaker();
 
-  scene::IMesh* getMesh();
-  NewtonBody* getMainBody();
+    scene::IMesh* getMesh();
+    NewtonBody* getMainBody();
 
 protected:
-  scene::IMesh* MainMesh;
-  NewtonBody* MainBody;
-  NSound::CSpeaker* AttachedSpeaker;
+    scene::IMesh* MainMesh;
+    NewtonBody* MainBody;
+    NSound::CSpeaker* AttachedSpeaker;
 };
 
 }}}

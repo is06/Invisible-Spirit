@@ -16,11 +16,11 @@ namespace is06 { namespace N3D { namespace NPart {
 class CMapPart : public NPrimitive::CStaticModel
 {
 public:
-  CMapPart();
-  ~CMapPart();
+    CMapPart();
+    ~CMapPart();
 
-  void update();
-  void loadCollisionMask();
+    void update();
+    void loadCollisionMask();
 };
 
 }}}

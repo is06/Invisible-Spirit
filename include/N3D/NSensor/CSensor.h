@@ -18,9 +18,9 @@ namespace is06 { namespace N3D { namespace NSensor {
 class CSensor : public NEngine::NCore::CEntity
 {
 public:
-  CSensor();
-  virtual ~CSensor();
-  virtual void update();
+    CSensor();
+    virtual ~CSensor();
+    virtual void update();
 };
 
 }}}

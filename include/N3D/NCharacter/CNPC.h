@@ -17,22 +17,22 @@ namespace is06 { namespace N3D { namespace NCharacter {
 class CNPC : public CCharacter
 {
 public:
-  CNPC();
-  ~CNPC();
+    CNPC();
+    ~CNPC();
 
-  void setCharacter(const string& characterId);
-  void update();
-  void talk(const string& dialogIdentifier) const;
-  void attachDialogInterface(NEngine::NGameplay::CDialogInterface* dialog);
-  const string& getRandomTalkingDialogIdentifier(bool avoidDoubles = false);
-  const string& getNextTalkingDialogIdentifier();
-  f32 getDistanceFrom(CCharacter* character);
+    void setCharacter(const string& characterId);
+    void update();
+    void talk(const string& dialogIdentifier) const;
+    void attachDialogInterface(NEngine::NGameplay::CDialogInterface* dialog);
+    const string& getRandomTalkingDialogIdentifier(bool avoidDoubles = false);
+    const string& getNextTalkingDialogIdentifier();
+    f32 getDistanceFrom(CCharacter* character);
 
 protected:
-  NEngine::NGameplay::CDialogInterface* AttachedDialog;
-  map<u16, string> DialogIdentifierList;
-  u16 NextDialogIdentifier;
-  u16 CurrentTalkingDialogIdentifier;
+    NEngine::NGameplay::CDialogInterface* AttachedDialog;
+    map<u16, string> DialogIdentifierList;
+    u16 NextDialogIdentifier;
+    u16 CurrentTalkingDialogIdentifier;
 };
 
 }}}

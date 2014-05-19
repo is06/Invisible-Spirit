@@ -13,8 +13,8 @@ namespace is06 { namespace N3D { namespace NCollision {
 //! Collision type enumeration
 enum ECollisionType
 {
-  ECT_CHARACTER,
-  ECT_MESH
+    ECT_CHARACTER,
+    ECT_MESH
 };
 
 }}}

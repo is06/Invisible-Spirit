@@ -13,12 +13,12 @@ namespace is06 { namespace N3D { namespace NCollision {
 //! Ray type enumeration for wall and floor collisions
 enum ERayType
 {
-  ERT_WALL_P,
-  ERT_WALL_Q,
-  ERT_FLOOR_A,
-  ERT_FLOOR_B,
-  ERT_FLOOR_C,
-  ERT_FLOOR_D
+    ERT_WALL_P,
+    ERT_WALL_Q,
+    ERT_FLOOR_A,
+    ERT_FLOOR_B,
+    ERT_FLOOR_C,
+    ERT_FLOOR_D
 };
 
 }}}

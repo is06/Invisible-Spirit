@@ -19,10 +19,10 @@ namespace is06 { namespace N3D { namespace NCamera {
 //! Main constructor of abstract class
 CCamera::CCamera()
 {
-  Controlable = true;
-  IrrCam = CGame::getSceneManager()->addCameraSceneNode(0, core::vector3df(0, 0, 0));
-  IrrCam->bindTargetAndRotation(true);
-  IrrCam->setNearValue(0.1f);
+    Controlable = true;
+    IrrCam = CGame::getSceneManager()->addCameraSceneNode(0, core::vector3df(0, 0, 0));
+    IrrCam->bindTargetAndRotation(true);
+    IrrCam->setNearValue(0.1f);
 }
 
 //! All cameras update function
@@ -37,11 +37,11 @@ void CCamera::update()
  */
 void CCamera::turnX(f32 speed)
 {
-  IrrCam->setRotation(core::vector3df(
-    IrrCam->getRotation().X + (speed * CGame::getSpeedFactor()),
-    IrrCam->getRotation().Y,
-    IrrCam->getRotation().Z
-  ));
+    IrrCam->setRotation(core::vector3df(
+        IrrCam->getRotation().X + (speed * CGame::getSpeedFactor()),
+        IrrCam->getRotation().Y,
+        IrrCam->getRotation().Z
+    ));
 }
 
 //! Turns around Y rotation axis (from side to side)
@@ -50,11 +50,11 @@ void CCamera::turnX(f32 speed)
  */
 void CCamera::turnY(f32 speed)
 {
-  IrrCam->setRotation(core::vector3df(
-    IrrCam->getRotation().X,
-    IrrCam->getRotation().Y + (speed * CGame::getSpeedFactor()),
-    IrrCam->getRotation().Z
-  ));
+    IrrCam->setRotation(core::vector3df(
+        IrrCam->getRotation().X,
+        IrrCam->getRotation().Y + (speed * CGame::getSpeedFactor()),
+        IrrCam->getRotation().Z
+    ));
 }
 
 //! Turns around Z rotation axis ((anti-)clockwise)
@@ -63,93 +63,93 @@ void CCamera::turnY(f32 speed)
  */
 void CCamera::turnZ(f32 speed)
 {
-  IrrCam->setRotation(core::vector3df(
-    IrrCam->getRotation().X,
-    IrrCam->getRotation().Y,
-    IrrCam->getRotation().Z + (speed * CGame::getSpeedFactor())
-  ));
+    IrrCam->setRotation(core::vector3df(
+        IrrCam->getRotation().X,
+        IrrCam->getRotation().Y,
+        IrrCam->getRotation().Z + (speed * CGame::getSpeedFactor())
+    ));
 }
 
 //! Moves the camera along the X axis
 void CCamera::moveX(f32 speed)
 {
-  IrrCam->setPosition(core::vector3df(
-    getX() + (speed * CGame::getSpeedFactor()),
-    getY(),
-    getZ()
-  ));
+    IrrCam->setPosition(core::vector3df(
+        getX() + (speed * CGame::getSpeedFactor()),
+        getY(),
+        getZ()
+    ));
 }
 
 //! Moves the camera along the Y axis
 void CCamera::moveY(f32 speed)
 {
-  IrrCam->setPosition(core::vector3df(
-    getX(),
-    getY() + (speed * CGame::getSpeedFactor()),
-    getZ()
-  ));
+    IrrCam->setPosition(core::vector3df(
+        getX(),
+        getY() + (speed * CGame::getSpeedFactor()),
+        getZ()
+    ));
 }
 
 //! Moves the camera along the Z axis
 void CCamera::moveZ(f32 speed)
 {
-  IrrCam->setPosition(core::vector3df(
-    getX(),
-    getY(),
-    getZ() + (speed * CGame::getSpeedFactor())
-  ));
+    IrrCam->setPosition(core::vector3df(
+        getX(),
+        getY(),
+        getZ() + (speed * CGame::getSpeedFactor())
+    ));
 }
 
 //! Returns the current X coordinate of the camera
 f32 CCamera::getX()
 {
-  return IrrCam->getPosition().X;
+    return IrrCam->getPosition().X;
 }
 
 //! Returns the current Y coordinate of the camera
 f32 CCamera::getY()
 {
-  return IrrCam->getPosition().Y;
+    return IrrCam->getPosition().Y;
 }
 
 //! Returns the current Z coordinate of the camera
 f32 CCamera::getZ()
 {
-  return IrrCam->getPosition().Z;
+    return IrrCam->getPosition().Z;
 }
 
 //! Returns the Irrlicht camera scene node pointer
 scene::ICameraSceneNode* CCamera::getNode()
 {
-  return IrrCam;
+    return IrrCam;
 }
 
 //! Returns a 3d vector of the previous position
 const core::vector3df& CCamera::getLastPosition() const
 {
-  return LastPosition;
+    return LastPosition;
 }
 
 //! Toggles control for this camera
 void CCamera::toggleControl()
 {
-  if (Controlable) {
-    Controlable = false;
-  } else {
-    Controlable = true;
-  }
+    if (Controlable) {
+        Controlable = false;
+    } else {
+        Controlable = true;
+    }
 }
 
 //! Enables/Disables the control for this camera
 void CCamera::setControl(bool val)
 {
-  Controlable = val;
+    Controlable = val;
 }
 
 //! Returns true if this camera is controlable
 bool CCamera::hasControl()
 {
-  return Controlable;
+    return Controlable;
 }
 
 CCamera::~CCamera()

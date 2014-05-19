@@ -16,23 +16,23 @@ namespace is06 { namespace N3D { namespace NCamera {
 class CThirdPerson : public CCamera
 {
 public:
-  CThirdPerson();
+    CThirdPerson();
 
-  void update();
+    void update();
 
-  void goLeft(f32 speed);
-  void goRight(f32 speed);
-  void goFar(f32 speed);
-  void goNear(f32 speed);
+    void goLeft(f32 speed);
+    void goRight(f32 speed);
+    void goFar(f32 speed);
+    void goNear(f32 speed);
 
-  void linkEntity(NCharacter::CCharacter* entity);
-  f32 getDistance();
+    void linkEntity(NCharacter::CCharacter* entity);
+    f32 getDistance();
 
 private:
-  NCharacter::CCharacter* LinkedEntity;
-  f32 UAxis;
-  f32 Height;
-  f32 Distance;
+    NCharacter::CCharacter* LinkedEntity;
+    f32 UAxis;
+    f32 Height;
+    f32 Distance;
 };
 
 }}}

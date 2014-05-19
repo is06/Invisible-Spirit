@@ -15,28 +15,28 @@ namespace is06 { namespace N3D { namespace NSensor {
 //! Construcotr
 CBoxSensor::CBoxSensor(f32 width, f32 height, f32 depth, const core::vector3df& position) : CSensor()
 {
-  setSize(width, height, depth, position);
+    setSize(width, height, depth, position);
 }
 
 //! Update method, called every cycle for event testing
 void CBoxSensor::update()
 {
-  CSensor::update();
+    CSensor::update();
 }
 
 //! Changes the size of the sensor
 void CBoxSensor::setSize(f32 width, f32 height, f32 depth, const core::vector3df& position)
 {
-  core::vector3df min = core::vector3df((width / 2) * -1, (height / 2) * -1, (depth / 2) * - 1) + position;
-  core::vector3df max = core::vector3df((width / 2), (height / 2), (depth / 2)) + position;
+    core::vector3df min = core::vector3df((width / 2) * -1, (height / 2) * -1, (depth / 2) * - 1) + position;
+    core::vector3df max = core::vector3df((width / 2), (height / 2), (depth / 2)) + position;
 
-  Box = core::aabbox3df(min, max);
+    Box = core::aabbox3df(min, max);
 }
 
 //! Returns the aligned axis bounding box of the sensor
 const core::aabbox3df& CBoxSensor::getBox()
 {
-  return Box;
+    return Box;
 }
 
 //! Destructor

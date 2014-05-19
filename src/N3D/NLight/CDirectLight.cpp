@@ -18,28 +18,28 @@ namespace is06 { namespace N3D { namespace NLight {
 //! Constructor
 CDirectLight::CDirectLight()
 {
-  Camera = CGame::getSceneManager()->addCameraSceneNode();
+    Camera = CGame::getSceneManager()->addCameraSceneNode();
 }
 
 void CDirectLight::setPosition(const core::vector3df& position)
 {
-  Camera->setPosition(position);
+    Camera->setPosition(position);
 }
 
 void CDirectLight::setLookAt(const core::vector3df& position)
 {
-  Camera->setTarget(position);
+    Camera->setTarget(position);
 }
 
 scene::ICameraSceneNode* CDirectLight::getCameraNode()
 {
-  return Camera;
+    return Camera;
 }
 
 //! Destructor
 CDirectLight::~CDirectLight()
 {
-  Camera->remove();
+    Camera->remove();
 }
 
 }}}

@@ -16,40 +16,40 @@ namespace is06 { namespace N3D { namespace NCharacter {
 class CCharacter : public NPrimitive::CAnimatedModel
 {
 public:
-  CCharacter();
+    CCharacter();
 
-  virtual void update();
-  void setCharacterModel(const string& characterId);
+    virtual void update();
+    void setCharacterModel(const string& characterId);
 
-  // Gravity
-  void fall(f32 factor);
-  void raise();
-  void jump();
+    // Gravity
+    void fall(f32 factor);
+    void raise();
+    void jump();
 
-  void setJumpDelta(f32 value);
-  f32 getJumpDelta();
-  void setJumpStrength(f32 value);
-  f32 getJumpStrength();
+    void setJumpDelta(f32 value);
+    f32 getJumpDelta();
+    void setJumpStrength(f32 value);
+    f32 getJumpStrength();
 
-  void setJumping(bool value);
-  void setFalling(bool value);
-  void setWalking(bool value);
-  void setTalking(bool value);
+    void setJumping(bool value);
+    void setFalling(bool value);
+    void setWalking(bool value);
+    void setTalking(bool value);
 
-  bool isJumping();
-  bool isFalling();
-  bool isWalking();
-  bool isTalking();
+    bool isJumping();
+    bool isFalling();
+    bool isWalking();
+    bool isTalking();
 
 protected:
-  bool Jumping;
-  bool Falling;
-  bool Walking;
-  bool Talking;
-  f32 JumpStrength;
-  f32 JumpDelta;
-  f32 FallDelta;
-  f32 Gravity;
+    bool Jumping;
+    bool Falling;
+    bool Walking;
+    bool Talking;
+    f32 JumpStrength;
+    f32 JumpDelta;
+    f32 FallDelta;
+    f32 Gravity;
 };
 
 }}}

@@ -18,15 +18,15 @@ namespace is06 { namespace N3D { namespace NSensor {
 class CBoxSensor : public CSensor
 {
 public:
-  CBoxSensor(f32 width, f32 height, f32 depth, const core::vector3df& position);
-  virtual ~CBoxSensor();
-  virtual void update();
+    CBoxSensor(f32 width, f32 height, f32 depth, const core::vector3df& position);
+    virtual ~CBoxSensor();
+    virtual void update();
 
-  void setSize(f32 width, f32 height, f32 depth, const core::vector3df& position);
-  const core::aabbox3df& getBox();
+    void setSize(f32 width, f32 height, f32 depth, const core::vector3df& position);
+    const core::aabbox3df& getBox();
 
 protected:
-  core::aabbox3df Box;
+    core::aabbox3df Box;
 };
 
 }}}

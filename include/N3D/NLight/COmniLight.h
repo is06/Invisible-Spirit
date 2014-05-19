@@ -16,8 +16,8 @@ namespace is06 { namespace N3D { namespace NLight {
 class COmniLight : public CLight
 {
 public:
-  COmniLight();
-  ~COmniLight();
+    COmniLight();
+    ~COmniLight();
 };
 
 }}}

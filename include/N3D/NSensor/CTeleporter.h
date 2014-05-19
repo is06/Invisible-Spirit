@@ -17,15 +17,15 @@ namespace is06 { namespace N3D { namespace NSensor {
 class CTeleporter : public CBoxSensor
 {
 public:
-  CTeleporter(f32 width, f32 height, f32 depth, const core::vector3df& position, NScene::ESceneIdentifier destination);
-  ~CTeleporter();
+    CTeleporter(f32 width, f32 height, f32 depth, const core::vector3df& position, NScene::ESceneIdentifier destination);
+    ~CTeleporter();
 
-  void update();
+    void update();
 
-  void setDestination(NScene::ESceneIdentifier id);
+    void setDestination(NScene::ESceneIdentifier id);
 
 private:
-  NScene::ESceneIdentifier Destination;
+    NScene::ESceneIdentifier Destination;
 };
 
 }}}

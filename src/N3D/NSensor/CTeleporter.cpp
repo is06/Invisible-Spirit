@@ -15,19 +15,19 @@ namespace is06 { namespace N3D { namespace NSensor {
 CTeleporter::CTeleporter(f32 width, f32 height, f32 depth, const core::vector3df& position, NScene::ESceneIdentifier destination)
 : CBoxSensor(width, height, depth, position)
 {
-  Destination = destination;
+    Destination = destination;
 }
 
 //! Update function called every cycle for event testing
 void CTeleporter::update()
 {
-  CBoxSensor::update();
+    CBoxSensor::update();
 }
 
 //! Changes the destination scene of the teleporter
 void CTeleporter::setDestination(NScene::ESceneIdentifier id)
 {
-  Destination = id;
+    Destination = id;
 }
 
 //! Destructor

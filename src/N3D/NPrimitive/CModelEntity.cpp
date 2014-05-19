@@ -17,9 +17,9 @@ namespace is06 { namespace N3D { namespace NPrimitive {
 //! Initializations
 CModelEntity::CModelEntity() : NEngine::NCore::CEntity()
 {
-  MainMesh = NULL;
-  MainBody = NULL;
-  AttachedSpeaker = NULL;
+    MainMesh = NULL;
+    MainBody = NULL;
+    AttachedSpeaker = NULL;
 }
 
 //! Update method, called every cycle for event testing
@@ -40,23 +40,23 @@ void CModelEntity::shaderRender()
  */
 void CModelEntity::loadMesh(const string& meshFilePath)
 {
-  MainMesh = CGame::getResourceManager()->loadMesh(meshFilePath);
+    MainMesh = CGame::getResourceManager()->loadMesh(meshFilePath);
 }
 
 //! Returns the irrlicht mesh object of the entity
 scene::IMesh* CModelEntity::getMesh()
 {
-  return MainMesh;
+    return MainMesh;
 }
 
 //! Returns newton main body of this entity
 NewtonBody* CModelEntity::getMainBody()
 {
-  if (MainBody) {
-    return MainBody;
-  } else {
-    return NULL;
-  }
+    if (MainBody) {
+        return MainBody;
+    } else {
+        return NULL;
+    }
 }
 
 //! Links a speaker object to this model entity

@@ -20,7 +20,7 @@ CEnemy::CEnemy() : NPrimitive::CAnimatedModel()
 //! Update method, called every cycle for event testing
 void CEnemy::update()
 {
-  CAnimatedModel::update();
+    CAnimatedModel::update();
 }
 
 //! Destructor

@@ -16,14 +16,14 @@ namespace is06 { namespace N3D { namespace NLight {
 class CLight : public NEngine::NCore::CEntity
 {
 public:
-  CLight();
-  ~CLight();
+    CLight();
+    ~CLight();
 
-  void update();
+    void update();
 
 private:
-  scene::ILightSceneNode* Node;
-  scene::IBillboardSceneNode* Icon;
+    scene::ILightSceneNode* Node;
+    scene::IBillboardSceneNode* Icon;
 };
 
 }}}
