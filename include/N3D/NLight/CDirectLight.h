@@ -12,7 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace N3D { namespace NLight {
 
-//! Light for casting shadows using a camera scene node
+//! Light for casting shadows using a camera scene node (not working yet)
 class CDirectLight : public CLight
 {
 public:

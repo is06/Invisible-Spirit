@@ -14,6 +14,7 @@ using namespace irr;
 
 namespace is06 { namespace N3D { namespace NSensor {
 
+//! A plane sensor for triggering events
 class CPlaneSensor : public CSensor
 {
 public:

@@ -14,6 +14,7 @@ using namespace irr;
 
 namespace is06 { namespace NEngine { namespace NDisplay {
 
+//! Position information data structure
 struct SPositionInfo
 {
   u16 Top;

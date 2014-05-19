@@ -17,6 +17,7 @@ using namespace irr;
 
 namespace is06 { namespace NHud { namespace NPart {
 
+//! A mini map to show the player where his (or her) character is
 class CMiniMap : public NCore::CHudEntity
 {
 public:

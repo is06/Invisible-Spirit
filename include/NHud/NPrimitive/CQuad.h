@@ -14,6 +14,7 @@ using namespace irr;
 
 namespace is06 { namespace NHud { namespace NPrimitive {
 
+//! A quad shape to display (used in cinemascope effect)
 class CQuad : public CFlatElement
 {
 public:

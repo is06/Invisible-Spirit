@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NEngine { namespace NGameplay {
 
+//! Class for easy use of non-playable characters
 class CNPCInterface
 {
 public:

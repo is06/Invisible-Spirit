@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NCounter {
 
+//! Clock counter for time in the story
 class CWorldTime : public CCounter
 {
 public:

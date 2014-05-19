@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NShader {
 
+//! Shader interface for depth information to a texture (used in shadow mapping technique)
 class CDepthShaderCallback : public video::IShaderConstantSetCallBack
 {
 public:

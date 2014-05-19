@@ -17,6 +17,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NScene {
 
+//! All gameplay scenes
 class CSceneGameplay : public CScene
 {
 public:

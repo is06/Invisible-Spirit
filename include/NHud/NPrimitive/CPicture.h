@@ -14,6 +14,7 @@ using namespace irr;
 
 namespace is06 { namespace NHud { namespace NPrimitive {
 
+//! A 2D picture to show on screen
 class CPicture : public NPrimitive::CFlatElement
 {
 public:

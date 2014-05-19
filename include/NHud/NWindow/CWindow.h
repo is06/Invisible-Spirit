@@ -13,6 +13,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NWindow {
 
+//! A window (like in every old school RPGs)
 class CWindow : public NCore::CHudEntity
 {
 public:

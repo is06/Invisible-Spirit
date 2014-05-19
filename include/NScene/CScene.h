@@ -20,6 +20,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NScene {
 
+//! Main abstract class for scene management
 class CScene
 {
 public:

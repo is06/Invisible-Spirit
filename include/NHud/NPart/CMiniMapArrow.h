@@ -14,6 +14,7 @@ using namespace irr;
 
 namespace is06 { namespace NHud { namespace NPart {
 
+//! The arrow (yellow or red) on the mini map
 class CMiniMapArrow : public NCore::CHudEntity
 {
 public:

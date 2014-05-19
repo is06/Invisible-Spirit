@@ -15,6 +15,7 @@ using namespace irr;
 
 namespace is06 { namespace N3D { namespace NSensor {
 
+//! A box-shaped sensor for triggering events
 class CBoxSensor : public CSensor
 {
 public:

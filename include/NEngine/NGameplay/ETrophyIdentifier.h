@@ -10,6 +10,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NEngine { namespace NGameplay {
 
+//! Trophies identifiers enumeration
 enum ETrophyIdentifier
 {
   ETI_FIRST_DUNGEON_CLEAR = 201,

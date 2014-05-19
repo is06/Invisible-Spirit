@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NPlayerState {
 
+//! A player capacity or power (magic spell)
 class CCapacity : public NCore::CHudEntity
 {
 public:

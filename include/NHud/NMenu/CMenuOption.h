@@ -14,6 +14,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NMenu {
 
+//! An option in a menu
 class CMenuOption : public NCore::CHudEntity
 {
 public:

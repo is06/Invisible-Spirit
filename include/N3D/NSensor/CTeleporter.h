@@ -14,6 +14,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace N3D { namespace NSensor {
 
+//! A teleporter sensor
 class CTeleporter : public CBoxSensor
 {
 public:

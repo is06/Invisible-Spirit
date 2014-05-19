@@ -12,6 +12,7 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06 { namespace NHud { namespace NButton {
 
+//! Text and icon (on the left side) button
 class CIconTextButton : public CButton
 {
 public:

@@ -12,6 +12,7 @@ using namespace irr;
 
 namespace is06 { namespace NDebug {
 
+//! The debug console
 class CConsole
 {
 public:
