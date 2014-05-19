@@ -15,19 +15,19 @@ namespace is06 { namespace NDebug {
 class CConsole
 {
 public:
-  CConsole();
-  ~CConsole();
+    CConsole();
+    ~CConsole();
 
-  void render();
-  void executeCurrentCommand();
+    void render();
+    void executeCurrentCommand();
 
 private:
-  void manageSceneInterface(const vector<string>& elements);
-  s32 stringToInt(const string& str);
+    void manageSceneInterface(const vector<string>& elements);
+    s32 stringToInt(const string& str);
 
-  void execute_scene_set_light_color(u8 alpha, u8 red, u8 green, u8 blue);
+    void execute_scene_set_light_color(u8 alpha, u8 red, u8 green, u8 blue);
 
-  gui::IGUIEditBox* CommandTextInput;
+    gui::IGUIEditBox* CommandTextInput;
 };
 
 }}

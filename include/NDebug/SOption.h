@@ -15,7 +15,7 @@ namespace is06 { namespace NDebug {
 //! Debug parameters
 struct SOption
 {
-  SDisplay Display;
+    SDisplay Display;
 };
 
 }}

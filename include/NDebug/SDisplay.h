@@ -13,9 +13,9 @@ namespace is06 { namespace NDebug {
 //! Display debug parameters
 struct SDisplay
 {
-  bool HidePostRender;
-  bool ShowWireFrame;
-  bool ShowIrrlichtDebugData;
+    bool HidePostRender;
+    bool ShowWireFrame;
+    bool ShowIrrlichtDebugData;
 };
 
 }}
