@@ -17,7 +17,7 @@ MAP_DUNGEON_5::MAP_DUNGEON_5() : NScene::CSceneDungeon()
 
 void MAP_DUNGEON_5::events()
 {
-  NScene::CSceneDungeon::events();
+    NScene::CSceneDungeon::events();
 }
 
 MAP_DUNGEON_5::~MAP_DUNGEON_5()

@@ -16,36 +16,36 @@ namespace is06 { namespace NHud { namespace NPrimitive {
 
 CPicture::CPicture(f32 x, f32 y, f32 w, f32 h, const string& filePath, bool useAlphaBlending) : CFlatElement(x, y, w, h, useAlphaBlending)
 {
-  changeTexture(filePath);
+    changeTexture(filePath);
 }
 
 void CPicture::render()
 {
-  CFlatElement::render();
+    CFlatElement::render();
 }
 
 void CPicture::loadSecondTexture(const string& filePath)
 {
-  video::ITexture* second = CGame::getResourceManager()->loadTexture(filePath);
-  if (second) {
-    Material.setTexture(1, second);
-  }
+    video::ITexture* second = CGame::getResourceManager()->loadTexture(filePath);
+    if (second) {
+        Material.setTexture(1, second);
+    }
 }
 
 void CPicture::changeTexture(const string& filePath)
 {
-  Texture = CGame::getResourceManager()->loadTexture(filePath);
-  if (Texture) {
-    Material.setTexture(0, Texture);
-  }
+    Texture = CGame::getResourceManager()->loadTexture(filePath);
+    if (Texture) {
+        Material.setTexture(0, Texture);
+    }
 }
 
 void CPicture::setRenderTarget(video::ITexture* renderTargetTexture)
 {
-  Texture = renderTargetTexture;
-  if (Texture) {
-    Material.setTexture(0, Texture);
-  }
+    Texture = renderTargetTexture;
+    if (Texture) {
+        Material.setTexture(0, Texture);
+    }
 }
 
 CPicture::~CPicture()

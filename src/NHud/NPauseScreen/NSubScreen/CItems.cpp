@@ -17,7 +17,7 @@ CItems::CItems() : CSubScreen()
 
 void CItems::render()
 {
-  CSubScreen::render();
+    CSubScreen::render();
 }
 
 CItems::~CItems()

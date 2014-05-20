@@ -17,40 +17,40 @@ namespace is06 { namespace NMap { namespace NGeneric {
 
 MAP_METADIM::MAP_METADIM() : NScene::CSceneGameplay()
 {
-  Hero = new N3D::NCharacter::CPlayableCharacter(Camera);
-  Hero->setCharacter(N3D::NCharacter::EPCT_AYRON);
-  Hero->setControl(false);
+    Hero = new N3D::NCharacter::CPlayableCharacter(Camera);
+    Hero->setCharacter(N3D::NCharacter::EPCT_AYRON);
+    Hero->setControl(false);
 
-  Music->play("norya");
+    Music->play("norya");
 
-  EventState = 0;
+    EventState = 0;
 }
 
 void MAP_METADIM::events()
 {
-  NScene::CSceneGameplay::events();
+    NScene::CSceneGameplay::events();
 
-  if (SceneTime < 10.0f) {
-    // Camera movement (10 seconds) - EVENT 0
-    //Camera->moveAlongPath(CameraPath);
-  } else {
-    // Norya dialog 1 - EVENT 2
-    EventState = 1;
-    if (EventState == 1) {
-      Dialog->start("norya_first");
-      EventState = 2;
+    if (SceneTime < 10.0f) {
+        // Camera movement (10 seconds) - EVENT 0
+        //Camera->moveAlongPath(CameraPath);
+    } else {
+        // Norya dialog 1 - EVENT 2
+        EventState = 1;
+        if (EventState == 1) {
+            Dialog->start("norya_first");
+            EventState = 2;
+        }
+        // Norya dialog 2 - EVENT 3
+        if (EventState == 2 && Dialog->finished()) {
+            Dialog->start("norya_second");
+            EventState = 3;
+        }
+        // Character control: first tutorial - EVENT 4
+        if (EventState == 3 && Dialog->finished()) {
+            Hero->setControl(true);
+            EventState = 4;
+        }
     }
-    // Norya dialog 2 - EVENT 3
-    if (EventState == 2 && Dialog->finished()) {
-      Dialog->start("norya_second");
-      EventState = 3;
-    }
-    // Character control: first tutorial - EVENT 4
-    if (EventState == 3 && Dialog->finished()) {
-      Hero->setControl(true);
-      EventState = 4;
-    }
-  }
 }
 
 void MAP_METADIM::postRender()

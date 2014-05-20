@@ -14,62 +14,62 @@ namespace is06 { namespace NSound {
 //! Constructor, initializes FMOD system with 3D settings
 CSoundManager::CSoundManager()
 {
-  FMOD_System_Create(&System);
-  FMOD_System_Init(System, 4, FMOD_INIT_NORMAL, NULL);
-  FMOD_System_Set3DSettings(System, 1.0f, 1.0f, 1.0f);
+    FMOD_System_Create(&System);
+    FMOD_System_Init(System, 4, FMOD_INIT_NORMAL, NULL);
+    FMOD_System_Set3DSettings(System, 1.0f, 1.0f, 1.0f);
 }
 
 //! Called by the Game main loop, this converts camera's position and rotation to FMOD vector format and store them into sound manager
 void CSoundManager::setEarsData(N3D::NCamera::CCamera* activeCamera)
 {
-  core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
-  //core::vector3df rotation = activeCamera->getNode()->getRotation();
-  //core::vector3df lastPosition = activeCamera->getLastPosition();
-  core::vector3df forward = activeCamera->getNode()->getTarget() - position;
-  forward.normalize();
-  core::vector3df up = activeCamera->getNode()->getUpVector();
+    core::vector3df position = activeCamera->getNode()->getAbsolutePosition();
+    //core::vector3df rotation = activeCamera->getNode()->getRotation();
+    //core::vector3df lastPosition = activeCamera->getLastPosition();
+    core::vector3df forward = activeCamera->getNode()->getTarget() - position;
+    forward.normalize();
+    core::vector3df up = activeCamera->getNode()->getUpVector();
 
-  CameraPosition.x = position.X;
-  CameraPosition.y = position.Y;
-  CameraPosition.z = position.Z;
+    CameraPosition.x = position.X;
+    CameraPosition.y = position.Y;
+    CameraPosition.z = position.Z;
 
-  CameraForward.x = forward.X;
-  CameraForward.y = forward.Y;
-  CameraForward.z = forward.Z;
+    CameraForward.x = forward.X;
+    CameraForward.y = forward.Y;
+    CameraForward.z = forward.Z;
 
-  CameraUp.x = up.X;
-  CameraUp.y = up.Y;
-  CameraUp.z = up.Z;
+    CameraUp.x = up.X;
+    CameraUp.y = up.Y;
+    CameraUp.z = up.Z;
 
-/*
-  //@todo : for doppler effect, check and fix this calculation
-  CameraVelocity.x = (position.X - lastPosition.X) / cycleTime;
-  CameraVelocity.y = (position.Y - lastPosition.Y) / cycleTime;
-  CameraVelocity.z = (position.Z - lastPosition.Z) / cycleTime;
-*/
+    /*
+    //@todo : for doppler effect, check and fix this calculation
+    CameraVelocity.x = (position.X - lastPosition.X) / cycleTime;
+    CameraVelocity.y = (position.Y - lastPosition.Y) / cycleTime;
+    CameraVelocity.z = (position.Z - lastPosition.Z) / cycleTime;
+    */
 }
 
 //! Updates the FMOD system for 3D sound positions
 void CSoundManager::update()
 {
-  FMOD_RESULT result = FMOD_System_Set3DListenerAttributes(System, 0, &CameraPosition, NULL, &CameraForward, &CameraUp);
-  if (result != FMOD_OK) {
-    cout << "[FMOD] 3D update error" << endl;
-  }
-  FMOD_System_Update(System);
+    FMOD_RESULT result = FMOD_System_Set3DListenerAttributes(System, 0, &CameraPosition, NULL, &CameraForward, &CameraUp);
+    if (result != FMOD_OK) {
+        cout << "[FMOD] 3D update error" << endl;
+    }
+    FMOD_System_Update(System);
 }
 
 //! Returns the FMOD system pointer
 FMOD_SYSTEM* CSoundManager::getSystem()
 {
-  return System;
+    return System;
 }
 
 //! Destructor, releases FMOD System pointer
 CSoundManager::~CSoundManager()
 {
-  FMOD_System_Close(System);
-  FMOD_System_Release(System);
+    FMOD_System_Close(System);
+    FMOD_System_Release(System);
 }
 
 }}

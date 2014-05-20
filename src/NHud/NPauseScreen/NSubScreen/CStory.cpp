@@ -17,7 +17,7 @@ CStory::CStory() : CSubScreen()
 
 void CStory::render()
 {
-  CSubScreen::render();
+    CSubScreen::render();
 }
 
 CStory::~CStory()

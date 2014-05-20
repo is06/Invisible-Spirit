@@ -21,17 +21,17 @@ MAP_DEBUG::MAP_DEBUG() : NScene::CSceneGameplay()
 
 void MAP_DEBUG::events()
 {
-  NScene::CSceneGameplay::events();
+    NScene::CSceneGameplay::events();
 }
 
 void MAP_DEBUG::postRender()
 {
-  NScene::CSceneGameplay::postRender();
+    NScene::CSceneGameplay::postRender();
 }
 
 void MAP_DEBUG::hudRender()
 {
-  NScene::CSceneGameplay::hudRender();
+    NScene::CSceneGameplay::hudRender();
 }
 
 MAP_DEBUG::~MAP_DEBUG()

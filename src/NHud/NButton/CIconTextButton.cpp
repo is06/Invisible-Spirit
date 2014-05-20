@@ -12,30 +12,30 @@ namespace is06 { namespace NHud { namespace NButton {
 
 CIconTextButton::CIconTextButton(f32 x, f32 y) : CButton(x, y)
 {
-  //text = new Text(textMsg);
-  //icon = new Picture(40, 40, x - 2, y + 2, "resource/hud/default.bmp");
+    //text = new Text(textMsg);
+    //icon = new Picture(40, 40, x - 2, y + 2, "resource/hud/default.bmp");
 }
 
 void CIconTextButton::render()
 {
-  CButton::render();
-  //text->render();
-  //icon->render();
+    CButton::render();
+    //text->render();
+    //icon->render();
 }
 
 void CIconTextButton::changeCommand(NEngine::NControl::ECommandIdentifier newCommand)
 {
-  switch (newCommand) {
+    switch (newCommand) {
     default:
-      //icon->change("resource/hud/fireCommand.bmp");
-      break;
-  }
+        //icon->change("resource/hud/fireCommand.bmp");
+        break;
+    }
 }
 
 CIconTextButton::~CIconTextButton()
 {
-  //delete text;
-  //delete icon;
+    //delete text;
+    //delete icon;
 }
 
 }}}

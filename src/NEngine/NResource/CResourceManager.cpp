@@ -18,12 +18,12 @@ CResourceManager::CResourceManager()
 
 scene::IMesh* CResourceManager::loadMesh(const string& path)
 {
-  return NEngine::NCore::CGame::getSceneManager()->getMesh(path.c_str());
+    return NEngine::NCore::CGame::getSceneManager()->getMesh(path.c_str());
 }
 
 video::ITexture* CResourceManager::loadTexture(const string& path)
 {
-  return NEngine::NCore::CGame::getVideoDriver()->getTexture(path.c_str());
+    return NEngine::NCore::CGame::getVideoDriver()->getTexture(path.c_str());
 }
 
 CResourceManager::~CResourceManager()

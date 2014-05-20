@@ -13,58 +13,58 @@ namespace is06 { namespace NEngine { namespace NGameplay {
 
 CMapSectionInterface::CMapSectionInterface()
 {
-  Level[0] = NULL;
-  Level[1] = NULL;
+    Level[0] = NULL;
+    Level[1] = NULL;
 }
 
 void CMapSectionInterface::loadSection(const string& mapName, const string& sectionName, const core::vector3df& position)
 {
-  if (Level[0] != NULL) {
-    swapLevelMeshes();
-  }
+    if (Level[0] != NULL) {
+        swapLevelMeshes();
+    }
 
-  Level[0] = new N3D::NPart::CMapPart();
-  Level[0]->loadMesh("resource/mesh/level/" + mapName + "/" + sectionName + ".obj");
-  Level[0]->createNode(position);
-  Level[0]->loadMeshCollision();
+    Level[0] = new N3D::NPart::CMapPart();
+    Level[0]->loadMesh("resource/mesh/level/" + mapName + "/" + sectionName + ".obj");
+    Level[0]->createNode(position);
+    Level[0]->loadMeshCollision();
 
-  unloadUnusedSection();
+    unloadUnusedSection();
 }
 
 void CMapSectionInterface::unloadUnusedSection()
 {
-  if (Level[1]) {
-    delete Level[1];
-  }
+    if (Level[1]) {
+        delete Level[1];
+    }
 }
 
 bool CMapSectionInterface::hasSections()
 {
-  return (Level[0] != NULL);
+    return (Level[0] != NULL);
 }
 
 void CMapSectionInterface::clearMeshCollision(u8 sectionIndex)
 {
-  Level[sectionIndex]->clearMeshCollision();
+    Level[sectionIndex]->clearMeshCollision();
 }
 
 void CMapSectionInterface::swapLevelMeshes()
 {
-  N3D::NPart::CMapPart* tmp;
-  tmp = Level[1];
-  Level[1] = Level[0];
-  Level[0] = tmp;
+    N3D::NPart::CMapPart* tmp;
+    tmp = Level[1];
+    Level[1] = Level[0];
+    Level[0] = tmp;
 }
 
 N3D::NPart::CMapPart* CMapSectionInterface::getSection(u8 index)
 {
-  return Level[index];
+    return Level[index];
 }
 
 CMapSectionInterface::~CMapSectionInterface()
 {
-  if (Level[0]) delete Level[0];
-  if (Level[1]) delete Level[1];
+    if (Level[0]) delete Level[0];
+    if (Level[1]) delete Level[1];
 }
 
 }}}

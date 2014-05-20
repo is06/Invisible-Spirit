@@ -20,16 +20,16 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT)
 int main()
 #endif
 {
-  try {
-    CGame::init();
-    CGame::run();
-    CGame::finish();
-  } catch(const exception& e) {
-    cerr << "Exception: " << e.what() << endl;
+    try {
+        CGame::init();
+        CGame::run();
+        CGame::finish();
+    } catch(const exception& e) {
+        cerr << "Exception: " << e.what() << endl;
 #ifdef _IRR_WINDOWS_
-    MessageBoxA(NULL, e.what(), "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+        MessageBoxA(NULL, e.what(), "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
 #endif
-    CGame::writeErrorToLogFile(e);
-  }
-  return 0;
+        CGame::writeErrorToLogFile(e);
+    }
+    return 0;
 }

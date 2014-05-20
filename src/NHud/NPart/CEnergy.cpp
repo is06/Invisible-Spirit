@@ -14,51 +14,51 @@ namespace is06 { namespace NHud { namespace NPart {
 
 CEnergy::CEnergy() : NCore::CHudEntity()
 {
-  HpBar = new NCounter::CBarMeter(100, 0, 100, (NEngine::NCore::CGame::ScreenPos.Hud.Right - 170), (NEngine::NCore::CGame::ScreenPos.Hud.Bottom + 30), 150, 4, NCounter::EBS_LIFE);
+    HpBar = new NCounter::CBarMeter(100, 0, 100, (NEngine::NCore::CGame::ScreenPos.Hud.Right - 170), (NEngine::NCore::CGame::ScreenPos.Hud.Bottom + 30), 150, 4, NCounter::EBS_LIFE);
 }
 
 void CEnergy::render()
 {
-  NCore::CHudEntity::render();
-  HpBar->render();
+    NCore::CHudEntity::render();
+    HpBar->render();
 }
 
 void CEnergy::hide()
 {
-  HpBar->hide();
+    HpBar->hide();
 }
 
 void CEnergy::show()
 {
-  HpBar->show();
+    HpBar->show();
 }
 
 void CEnergy::setOpacity(f32 value)
 {
-  Opacity = value;
-  HpBar->setOpacity(HpBar->getOpacity() * Opacity);
+    Opacity = value;
+    HpBar->setOpacity(HpBar->getOpacity() * Opacity);
 }
 
 void CEnergy::addOpacity(f32 value)
 {
-  Opacity += value;
-  HpBar->setOpacity(HpBar->getOpacity() * Opacity);
+    Opacity += value;
+    HpBar->setOpacity(HpBar->getOpacity() * Opacity);
 }
 
 void CEnergy::subOpacity(f32 value)
 {
-  Opacity -= value;
-  HpBar->setOpacity(HpBar->getOpacity() * Opacity);
+    Opacity -= value;
+    HpBar->setOpacity(HpBar->getOpacity() * Opacity);
 }
 
 f32 CEnergy::getOpacity()
 {
-  return Opacity;
+    return Opacity;
 }
 
 CEnergy::~CEnergy()
 {
-  delete HpBar;
+    delete HpBar;
 }
 
 }}}

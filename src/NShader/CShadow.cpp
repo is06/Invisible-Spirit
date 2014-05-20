@@ -13,13 +13,13 @@ namespace is06 { namespace NShader {
 //! Constructor
 CShadow::CShadow(EShadowMode mode)
 {
-  CurrentMode = mode;
+    CurrentMode = mode;
 }
 
 //! Returns the shadow mode identifier
 const EShadowMode& CShadow::getMode() const
 {
-  return CurrentMode;
+    return CurrentMode;
 }
 
 //! Destructor, does nothing

@@ -13,40 +13,40 @@ namespace is06 { namespace NEngine { namespace NResource {
 //! Constructor
 CSettingsGroup::CSettingsGroup(const string& name)
 {
-  Default = "";
-  setName(name);
+    Default = "";
+    setName(name);
 }
 
 //! Changes the name of the group
 void CSettingsGroup::setName(const string& name)
 {
-  Name = name;
+    Name = name;
 }
 
 void CSettingsGroup::addParam(const string& name, const string& value)
 {
-  Params.insert(pair<string, string>(name, value));
+    Params.insert(pair<string, string>(name, value));
 }
 
 string& CSettingsGroup::getParam(const string& name)
 {
-  ParamsIt = Params.find(name);
-  if (ParamsIt != Params.end()) {
-    return ParamsIt->second;
-  } else {
-    return Default;
-  }
+    ParamsIt = Params.find(name);
+    if (ParamsIt != Params.end()) {
+        return ParamsIt->second;
+    } else {
+        return Default;
+    }
 }
 
 //! Returns the name of the settings group
 const string& CSettingsGroup::getName() const
 {
-  return Name;
+    return Name;
 }
 
 string& CSettingsGroup::getDefault()
 {
-  return Default;
+    return Default;
 }
 
 }}}

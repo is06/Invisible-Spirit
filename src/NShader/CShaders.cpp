@@ -18,13 +18,13 @@ namespace is06 { namespace NShader {
 
 CShaders::CShaders()
 {
-  Ice = 0;
-  Metal = video::EMT_SOLID;
-  Glass = video::EMT_SOLID;
-  HorizontalBlur = 0;
-  VerticalBlur = 0;
-  //DepthMap = 0;
-  //ShadowMap = 0;
+    Ice = 0;
+    Metal = video::EMT_SOLID;
+    Glass = video::EMT_SOLID;
+    HorizontalBlur = 0;
+    VerticalBlur = 0;
+    //DepthMap = 0;
+    //ShadowMap = 0;
 }
 
 //! All shader materials creation
@@ -33,39 +33,39 @@ CShaders::CShaders()
  */
 void CShaders::createMaterials(video::IGPUProgrammingServices* gpuManager)
 {
-  if (gpuManager) {
-    CBlurShaderCallback* blurCallback = new CBlurShaderCallback();
-    // Horizontal Blur Shader
-    HorizontalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_3_0,
-      "resource/Shader/horizontal_blur.pixel.cg", "mainPS", video::EPST_PS_3_0,
-      blurCallback, video::EMT_TRANSPARENT_ADD_COLOR, 0, video::EGSL_CG
-    );
-    // Vertical Blur Shader
-    VerticalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_3_0,
-      "resource/Shader/vertical_blur.pixel.cg", "mainPS", video::EPST_PS_3_0,
-      blurCallback, video::EMT_TRANSPARENT_ADD_COLOR, 0, video::EGSL_CG
-    );
+    if (gpuManager) {
+        CBlurShaderCallback* blurCallback = new CBlurShaderCallback();
+        // Horizontal Blur Shader
+        HorizontalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
+            "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_3_0,
+            "resource/Shader/horizontal_blur.pixel.cg", "mainPS", video::EPST_PS_3_0,
+            blurCallback, video::EMT_TRANSPARENT_ADD_COLOR, 0, video::EGSL_CG
+        );
+        // Vertical Blur Shader
+        VerticalBlur = gpuManager->addHighLevelShaderMaterialFromFiles(
+            "resource/Shader/blur.vertex.cg", "mainVS", video::EVST_VS_3_0,
+            "resource/Shader/vertical_blur.pixel.cg", "mainPS", video::EPST_PS_3_0,
+            blurCallback, video::EMT_TRANSPARENT_ADD_COLOR, 0, video::EGSL_CG
+        );
 
-    // Shadow map pass 1 (depth buffer emulation)
-    /*
-    CDepthShaderCallback* depthCallback = new CDepthShaderCallback();
-    DepthMap = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/Shader/depth_buffer.vertex.cg", "mainVS", video::EVST_VS_3_0,
-      "resource/Shader/depth_buffer.pixel.cg", "mainPS", video::EPST_PS_3_0,
-      depthCallback, video::EMT_SOLID, 0, video::EGSL_CG
-    );
+        // Shadow map pass 1 (depth buffer emulation)
+        /*
+        CDepthShaderCallback* depthCallback = new CDepthShaderCallback();
+        DepthMap = gpuManager->addHighLevelShaderMaterialFromFiles(
+            "resource/Shader/depth_buffer.vertex.cg", "mainVS", video::EVST_VS_3_0,
+            "resource/Shader/depth_buffer.pixel.cg", "mainPS", video::EPST_PS_3_0,
+            depthCallback, video::EMT_SOLID, 0, video::EGSL_CG
+        );
 
-    // Shadow map pass 2
-    CShadowShaderCallback* shadowCallback = new CShadowShaderCallback();
-    ShadowMap = gpuManager->addHighLevelShaderMaterialFromFiles(
-      "resource/Shader/shadow_map.vertex.cg", "mainVS", video::EVST_VS_3_0,
-      "resource/Shader/shadow_map.pixel.cg", "mainPS", video::EPST_PS_3_0,
-      shadowCallback, video::EMT_SOLID, 0, video::EGSL_CG
-    );
-    */
-  }
+        // Shadow map pass 2
+        CShadowShaderCallback* shadowCallback = new CShadowShaderCallback();
+        ShadowMap = gpuManager->addHighLevelShaderMaterialFromFiles(
+            "resource/Shader/shadow_map.vertex.cg", "mainVS", video::EVST_VS_3_0,
+            "resource/Shader/shadow_map.pixel.cg", "mainPS", video::EPST_PS_3_0,
+            shadowCallback, video::EMT_SOLID, 0, video::EGSL_CG
+        );
+        */
+    }
 }
 
 }}

@@ -14,75 +14,75 @@ namespace is06 { namespace NHud { namespace NPlayerState {
 
 CPlayerState::CPlayerState()
 {
-  PlayerName = new NText::CText("Ayron", 0, 0);
-  LevelLabel = new NText::CText("niv.", 0, -24);
-  LevelInfo = new NText::CText("1", 100, -24);
+    PlayerName = new NText::CText("Ayron", 0, 0);
+    LevelLabel = new NText::CText("niv.", 0, -24);
+    LevelInfo = new NText::CText("1", 100, -24);
 
-  HpInfo = new NPlayerState::CMainInfo();
+    HpInfo = new NPlayerState::CMainInfo();
 }
 
 void CPlayerState::render()
 {
-  PlayerName->render();
-  LevelLabel->render();
-  LevelInfo->render();
-  HpInfo->render();
+    PlayerName->render();
+    LevelLabel->render();
+    LevelInfo->render();
+    HpInfo->render();
 }
 
 void CPlayerState::show()
 {
-  PlayerName->show();
-  LevelLabel->show();
-  LevelInfo->show();
-  HpInfo->show();
+    PlayerName->show();
+    LevelLabel->show();
+    LevelInfo->show();
+    HpInfo->show();
 }
 
 void CPlayerState::hide()
 {
-  PlayerName->hide();
-  LevelLabel->hide();
-  LevelInfo->hide();
-  HpInfo->hide();
+    PlayerName->hide();
+    LevelLabel->hide();
+    LevelInfo->hide();
+    HpInfo->hide();
 }
 
 void CPlayerState::setOpacity(f32 value)
 {
-  Opacity = value;
-  PlayerName->setOpacity(PlayerName->getOpacity() * Opacity);
-  LevelLabel->setOpacity(LevelLabel->getOpacity() * Opacity);
-  LevelInfo->setOpacity(LevelInfo->getOpacity() * Opacity);
-  HpInfo->setOpacity(HpInfo->getOpacity() * Opacity);
+    Opacity = value;
+    PlayerName->setOpacity(PlayerName->getOpacity() * Opacity);
+    LevelLabel->setOpacity(LevelLabel->getOpacity() * Opacity);
+    LevelInfo->setOpacity(LevelInfo->getOpacity() * Opacity);
+    HpInfo->setOpacity(HpInfo->getOpacity() * Opacity);
 }
 
 void CPlayerState::addOpacity(f32 value)
 {
-  Opacity += value;
-  PlayerName->setOpacity(PlayerName->getOpacity() * Opacity);
-  LevelLabel->setOpacity(LevelLabel->getOpacity() * Opacity);
-  LevelInfo->setOpacity(LevelInfo->getOpacity() * Opacity);
-  HpInfo->setOpacity(HpInfo->getOpacity() * Opacity);
+    Opacity += value;
+    PlayerName->setOpacity(PlayerName->getOpacity() * Opacity);
+    LevelLabel->setOpacity(LevelLabel->getOpacity() * Opacity);
+    LevelInfo->setOpacity(LevelInfo->getOpacity() * Opacity);
+    HpInfo->setOpacity(HpInfo->getOpacity() * Opacity);
 }
 
 void CPlayerState::subOpacity(f32 value)
 {
-  Opacity -= value;
-  PlayerName->setOpacity(PlayerName->getOpacity() * Opacity);
-  LevelLabel->setOpacity(LevelLabel->getOpacity() * Opacity);
-  LevelInfo->setOpacity(LevelInfo->getOpacity() * Opacity);
-  HpInfo->setOpacity(HpInfo->getOpacity() * Opacity);
+    Opacity -= value;
+    PlayerName->setOpacity(PlayerName->getOpacity() * Opacity);
+    LevelLabel->setOpacity(LevelLabel->getOpacity() * Opacity);
+    LevelInfo->setOpacity(LevelInfo->getOpacity() * Opacity);
+    HpInfo->setOpacity(HpInfo->getOpacity() * Opacity);
 }
 
 f32 CPlayerState::getOpacity()
 {
-  return Opacity;
+    return Opacity;
 }
 
 CPlayerState::~CPlayerState()
 {
-  delete PlayerName;
-  delete LevelLabel;
-  delete LevelInfo;
-  delete HpInfo;
+    delete PlayerName;
+    delete LevelLabel;
+    delete LevelInfo;
+    delete HpInfo;
 }
 
 }}}

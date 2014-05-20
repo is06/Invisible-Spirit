@@ -13,51 +13,51 @@ namespace is06 { namespace NHud { namespace NButton {
 
 CButton::CButton(f32 x, f32 y) : NCore::CHudEntity()
 {
-  ButtonCircle = new NPrimitive::CPicture(x, y, 40, 40, "resource/hud/button/buttonCircle.png");
+    ButtonCircle = new NPrimitive::CPicture(x, y, 40, 40, "resource/hud/button/buttonCircle.png");
 }
 
 void CButton::render()
 {
-  NCore::CHudEntity::render();
-  ButtonCircle->render();
+    NCore::CHudEntity::render();
+    ButtonCircle->render();
 }
 
 void CButton::hide()
 {
-  ButtonCircle->hide();
+    ButtonCircle->hide();
 }
 
 void CButton::show()
 {
-  ButtonCircle->show();
+    ButtonCircle->show();
 }
 
 void CButton::setOpacity(f32 value)
 {
-  Opacity = value;
-  ButtonCircle->setOpacity(ButtonCircle->getOpacity() * Opacity);
+    Opacity = value;
+    ButtonCircle->setOpacity(ButtonCircle->getOpacity() * Opacity);
 }
 
 void CButton::addOpacity(f32 value)
 {
-  Opacity += value;
-  ButtonCircle->setOpacity(ButtonCircle->getOpacity() * Opacity);
+    Opacity += value;
+    ButtonCircle->setOpacity(ButtonCircle->getOpacity() * Opacity);
 }
 
 void CButton::subOpacity(f32 value)
 {
-  Opacity -= value;
-  ButtonCircle->setOpacity(ButtonCircle->getOpacity() * Opacity);
+    Opacity -= value;
+    ButtonCircle->setOpacity(ButtonCircle->getOpacity() * Opacity);
 }
 
 f32 CButton::getOpacity()
 {
-  return Opacity;
+    return Opacity;
 }
 
 CButton::~CButton()
 {
-  delete ButtonCircle;
+    delete ButtonCircle;
 }
 
 }}}

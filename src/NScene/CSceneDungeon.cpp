@@ -17,7 +17,7 @@ CSceneDungeon::CSceneDungeon() : CSceneGameplay()
 
 void CSceneDungeon::events()
 {
-  CSceneGameplay::events();
+    CSceneGameplay::events();
 }
 
 CSceneDungeon::~CSceneDungeon()

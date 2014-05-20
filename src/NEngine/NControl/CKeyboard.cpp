@@ -21,11 +21,11 @@ namespace is06 { namespace NEngine { namespace NControl {
  */
 bool CKeyboard::pressed(EKEY_CODE code, NEngine::NEvent::EEventType type)
 {
-  if (type == NEvent::EET_ONCE) {
-    return CGame::getEventManager()->isKeyDownOnce(code);
-  } else {
-    return CGame::getEventManager()->isKeyDown(code);
-  }
+    if (type == NEvent::EET_ONCE) {
+        return CGame::getEventManager()->isKeyDownOnce(code);
+    } else {
+        return CGame::getEventManager()->isKeyDown(code);
+    }
 }
 
 //! Tests if any key is pressed
@@ -34,89 +34,89 @@ bool CKeyboard::pressed(EKEY_CODE code, NEngine::NEvent::EEventType type)
  */
 bool CKeyboard::any(NEvent::EEventType type)
 {
-  if (type == NEvent::EET_ONCE) {
-    return CGame::getEventManager()->anyKeyDownOnce();
-  } else {
-    return CGame::getEventManager()->anyKeyDown();
-  }
+    if (type == NEvent::EET_ONCE) {
+        return CGame::getEventManager()->anyKeyDownOnce();
+    } else {
+        return CGame::getEventManager()->anyKeyDown();
+    }
 }
 
 //! Returns the joystick equivalent of the X axis from the arrows
 s8 CKeyboard::getDirectionXAxis()
 {
-  if (CGame::getEventManager()->isKeyDown(KEY_LEFT)) {
-    if (CGame::getEventManager()->isKeyDown(KEY_UP)) {
-      // UP LEFT
-      DirectionAngle = 135.0f;
-      return -87;
-    } else if (CGame::getEventManager()->isKeyDown(KEY_DOWN)) {
-      // DOWN LEFT
-      DirectionAngle = 225.0f;
-      return -87;
+    if (CGame::getEventManager()->isKeyDown(KEY_LEFT)) {
+        if (CGame::getEventManager()->isKeyDown(KEY_UP)) {
+            // UP LEFT
+            DirectionAngle = 135.0f;
+            return -87;
+        } else if (CGame::getEventManager()->isKeyDown(KEY_DOWN)) {
+            // DOWN LEFT
+            DirectionAngle = 225.0f;
+            return -87;
+        } else {
+            // LEFT
+            DirectionAngle = 180.0f;
+            return -127;
+        }
+    } else if (CGame::getEventManager()->isKeyDown(KEY_RIGHT)) {
+        if (CGame::getEventManager()->isKeyDown(KEY_UP)) {
+            // UP RIGHT
+            DirectionAngle = 45.0f;
+            return 87;
+        } else if (CGame::getEventManager()->isKeyDown(KEY_DOWN)) {
+            // DOWN RIGHT
+            DirectionAngle = 315.0f;
+            return 87;
+        } else {
+            // RIGHT
+            DirectionAngle = 0.0f;
+            return 127;
+        }
     } else {
-      // LEFT
-      DirectionAngle = 180.0f;
-      return -127;
+        return 0;
     }
-  } else if (CGame::getEventManager()->isKeyDown(KEY_RIGHT)) {
-    if (CGame::getEventManager()->isKeyDown(KEY_UP)) {
-      // UP RIGHT
-      DirectionAngle = 45.0f;
-      return 87;
-    } else if (CGame::getEventManager()->isKeyDown(KEY_DOWN)) {
-      // DOWN RIGHT
-      DirectionAngle = 315.0f;
-      return 87;
-    } else {
-      // RIGHT
-      DirectionAngle = 0.0f;
-      return 127;
-    }
-  } else {
-    return 0;
-  }
 }
 
 //! Returns the joystick equivalent of the Y axis from the arrows
 s8 CKeyboard::getDirectionYAxis()
 {
-  if (CGame::getEventManager()->isKeyDown(KEY_UP)) {
-    if (CGame::getEventManager()->isKeyDown(KEY_LEFT)) {
-      // UP LEFT
-      DirectionAngle = 135.0f;
-      return 87;
-    } else if (CGame::getEventManager()->isKeyDown(KEY_RIGHT)) {
-      // UP RIGHT
-      DirectionAngle = 45.0f;
-      return 87;
+    if (CGame::getEventManager()->isKeyDown(KEY_UP)) {
+        if (CGame::getEventManager()->isKeyDown(KEY_LEFT)) {
+            // UP LEFT
+            DirectionAngle = 135.0f;
+            return 87;
+        } else if (CGame::getEventManager()->isKeyDown(KEY_RIGHT)) {
+            // UP RIGHT
+            DirectionAngle = 45.0f;
+            return 87;
+        } else {
+            // UP
+            DirectionAngle = 90.0f;
+            return 127;
+        }
+    } else if (CGame::getEventManager()->isKeyDown(KEY_DOWN)) {
+        if (CGame::getEventManager()->isKeyDown(KEY_LEFT)) {
+            // DOWN LEFT
+            DirectionAngle = 225.0f;
+            return -87;
+        } else if (CGame::getEventManager()->isKeyDown(KEY_RIGHT)) {
+            // DOWN RIGHT
+            DirectionAngle = 315.0f;
+            return -87;
+        } else {
+            // DOWN
+            DirectionAngle = 270.0f;
+            return -127;
+        }
     } else {
-      // UP
-      DirectionAngle = 90.0f;
-      return 127;
+        return 0;
     }
-  } else if (CGame::getEventManager()->isKeyDown(KEY_DOWN)) {
-    if (CGame::getEventManager()->isKeyDown(KEY_LEFT)) {
-      // DOWN LEFT
-      DirectionAngle = 225.0f;
-      return -87;
-    } else if (CGame::getEventManager()->isKeyDown(KEY_RIGHT)) {
-      // DOWN RIGHT
-      DirectionAngle = 315.0f;
-      return -87;
-    } else {
-      // DOWN
-      DirectionAngle = 270.0f;
-      return -127;
-    }
-  } else {
-    return 0;
-  }
 }
 
 //! Returns the joystick equivalent of the direction angle from the arrows
 f32 CKeyboard::getDirectionAngle()
 {
-  return DirectionAngle;
+    return DirectionAngle;
 }
 
 }}}

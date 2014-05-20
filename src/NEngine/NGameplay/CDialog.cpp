@@ -22,8 +22,8 @@ CDialog::CDialog()
  */
 CDialog::CDialog(const string& identifier)
 {
-  CurrentIdentifier = identifier;
-  CurrentNumber = 0;
+    CurrentIdentifier = identifier;
+    CurrentNumber = 0;
 }
 
 //! Adds a message in the dialog object using a message string
@@ -32,8 +32,8 @@ CDialog::CDialog(const string& identifier)
  */
 void CDialog::addMessage(const string& text)
 {
-  MessageList[CurrentNumber] = text;
-  CurrentNumber++;
+    MessageList[CurrentNumber] = text;
+    CurrentNumber++;
 }
 
 //! Changes the identifier of the dialog
@@ -42,7 +42,7 @@ void CDialog::addMessage(const string& text)
  */
 void CDialog::setIdentifier(const string& name)
 {
-  CurrentIdentifier = name;
+    CurrentIdentifier = name;
 }
 
 //! Returns the current identifier of the dialog
@@ -51,7 +51,7 @@ void CDialog::setIdentifier(const string& name)
  */
 const string& CDialog::getIdentifier() const
 {
-  return CurrentIdentifier;
+    return CurrentIdentifier;
 }
 
 //! Returns the number of message in the dialog
@@ -60,7 +60,7 @@ const string& CDialog::getIdentifier() const
  */
 u16 CDialog::getMessageCount()
 {
-  return MessageList.size();
+    return MessageList.size();
 }
 
 //! Returns a specific message by passing its index number
@@ -69,7 +69,7 @@ u16 CDialog::getMessageCount()
  */
 const string& CDialog::getMessage(u16 index)
 {
-  return MessageList[index];
+    return MessageList[index];
 }
 
 //! Default destructor, does nothing

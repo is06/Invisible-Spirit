@@ -17,7 +17,7 @@ CWeapons::CWeapons() : CSubScreen()
 
 void CWeapons::render()
 {
-  CSubScreen::render();
+    CSubScreen::render();
 }
 
 CWeapons::~CWeapons()

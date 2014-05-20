@@ -17,7 +17,7 @@ CMonsters::CMonsters() : CSubScreen()
 
 void CMonsters::render()
 {
-  CSubScreen::render();
+    CSubScreen::render();
 }
 
 CMonsters::~CMonsters()

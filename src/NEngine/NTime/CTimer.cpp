@@ -19,31 +19,31 @@ namespace is06 { namespace NEngine { namespace NTime {
  */
 CTimer::CTimer(f32 end, TVoidCallback callback, s32 loopLimit)
 {
-  Running = true;
-  reinit(end, callback, loopLimit);
+    Running = true;
+    reinit(end, callback, loopLimit);
 }
 
 //! The update methods that must be called in the scene event loop
 void CTimer::update()
 {
-  if (Running && (CurrentLoop < CurrentLoopLimit || CurrentLoopLimit == -1)) {
-    CurrentTime += (NEngine::NCore::CGame::getSpeedFactor());
-    if (CurrentTime >= EndTime) {
-      bool called = true;
-      // Appel du callback
-      EndCall();
-      if (called) {
-        if (CurrentLoopLimit > 0) {
-          CurrentLoop++;
-          CurrentTime = 0.0f;
-        } else if (CurrentLoopLimit == -1) {
-          CurrentTime = 0.0f;
-        } else {
-          stop();
+    if (Running && (CurrentLoop < CurrentLoopLimit || CurrentLoopLimit == -1)) {
+        CurrentTime += (NEngine::NCore::CGame::getSpeedFactor());
+        if (CurrentTime >= EndTime) {
+            bool called = true;
+            // Appel du callback
+            EndCall();
+            if (called) {
+                if (CurrentLoopLimit > 0) {
+                    CurrentLoop++;
+                    CurrentTime = 0.0f;
+                } else if (CurrentLoopLimit == -1) {
+                    CurrentTime = 0.0f;
+                } else {
+                    stop();
+                }
+            }
         }
-      }
     }
-  }
 }
 
 //! Resets the timer with different parameters and starts it
@@ -54,12 +54,12 @@ void CTimer::update()
  */
 void CTimer::reinit(f32 end, TVoidCallback callback, s32 loopLimit)
 {
-  EndCall = callback;
-  CurrentTime = 0.0f;
-  EndTime = end;
-  CurrentLoop = 0;
-  CurrentLoopLimit = loopLimit;
-  start();
+    EndCall = callback;
+    CurrentTime = 0.0f;
+    EndTime = end;
+    CurrentLoop = 0;
+    CurrentLoopLimit = loopLimit;
+    start();
 }
 
 }}}

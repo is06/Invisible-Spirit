@@ -13,27 +13,24 @@ namespace is06 { namespace NScene {
 
 CSceneSelectMap::CSceneSelectMap() : CScene()
 {
-  BackBufferColor = video::SColor(0, 0, 0, 0);
-  Camera = new N3D::NCamera::CThirdPerson();
-  Camera->setControl(false);
+    BackBufferColor = video::SColor(0, 0, 0, 0);
+    Camera = new N3D::NCamera::CThirdPerson();
+    Camera->setControl(false);
 }
 
 void CSceneSelectMap::events()
 {
-  CScene::events();
-
+    CScene::events();
 }
 
 void CSceneSelectMap::postRender()
 {
-  CScene::postRender();
-
+    CScene::postRender();
 }
 
 void CSceneSelectMap::hudRender()
 {
-  CScene::hudRender();
-
+    CScene::hudRender();
 }
 
 CSceneSelectMap::~CSceneSelectMap()

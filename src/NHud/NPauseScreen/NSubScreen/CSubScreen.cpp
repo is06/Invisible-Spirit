@@ -15,7 +15,7 @@ CSubScreen::CSubScreen() : NCore::CHudEntity() {}
 //! \todo comment this function
 void CSubScreen::render()
 {
-  NCore::CHudEntity::render();
+    NCore::CHudEntity::render();
 }
 
 //! \todo write this function
@@ -33,22 +33,22 @@ void CSubScreen::hide()
 //! \todo write this function
 void CSubScreen::setOpacity(f32 value)
 {
-  Opacity = value;
+    Opacity = value;
 }
 
 void CSubScreen::addOpacity(f32 value)
 {
-  Opacity += value;
+    Opacity += value;
 }
 
 void CSubScreen::subOpacity(f32 value)
 {
-  Opacity -= value;
+    Opacity -= value;
 }
 
 f32 CSubScreen::getOpacity()
 {
-  return Opacity;
+    return Opacity;
 }
 
 CSubScreen::~CSubScreen() {}

@@ -17,7 +17,7 @@ CSpirits::CSpirits() : CSubScreen()
 
 void CSpirits::render()
 {
-  CSubScreen::render();
+    CSubScreen::render();
 }
 
 CSpirits::~CSpirits()

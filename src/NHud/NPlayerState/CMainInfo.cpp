@@ -14,67 +14,67 @@ namespace is06 { namespace NHud { namespace NPlayerState {
 
 CMainInfo::CMainInfo() : NCore::CHudEntity()
 {
-  Label = new NText::CText();
-  Info = new NText::CText();
-  Gauge = new NCounter::CBarMeter(60, 0, 100, 150, 150, 150, 10, NCounter::EBS_LIFE);
+    Label = new NText::CText();
+    Info = new NText::CText();
+    Gauge = new NCounter::CBarMeter(60, 0, 100, 150, 150, 150, 10, NCounter::EBS_LIFE);
 }
 
 void CMainInfo::render()
 {
-  NCore::CHudEntity::render();
-  Label->render();
-  Info->render();
-  Gauge->render();
+    NCore::CHudEntity::render();
+    Label->render();
+    Info->render();
+    Gauge->render();
 }
 
 void CMainInfo::show()
 {
-  Label->show();
-  Info->show();
-  Gauge->show();
+    Label->show();
+    Info->show();
+    Gauge->show();
 }
 
 void CMainInfo::hide()
 {
-  Label->hide();
-  Info->hide();
-  Gauge->hide();
+    Label->hide();
+    Info->hide();
+    Gauge->hide();
 }
 
 void CMainInfo::setOpacity(f32 value)
 {
-  Opacity = value;
-  Label->setOpacity(Label->getOpacity() * Opacity);
-  Info->setOpacity(Info->getOpacity() * Opacity);
-  Gauge->setOpacity(Gauge->getOpacity() * Opacity);
+    Opacity = value;
+    Label->setOpacity(Label->getOpacity() * Opacity);
+    Info->setOpacity(Info->getOpacity() * Opacity);
+    Gauge->setOpacity(Gauge->getOpacity() * Opacity);
 }
 
 void CMainInfo::addOpacity(f32 value)
 {
-  Opacity += value;
-  Label->setOpacity(Label->getOpacity() * Opacity);
-  Info->setOpacity(Info->getOpacity() * Opacity);
-  Gauge->setOpacity(Gauge->getOpacity() * Opacity);
+    Opacity += value;
+    Label->setOpacity(Label->getOpacity() * Opacity);
+    Info->setOpacity(Info->getOpacity() * Opacity);
+    Gauge->setOpacity(Gauge->getOpacity() * Opacity);
 }
 
 void CMainInfo::subOpacity(f32 value)
 {
-  Opacity -= value;
-  Label->setOpacity(Label->getOpacity() * Opacity);
-  Info->setOpacity(Info->getOpacity() * Opacity);
-  Gauge->setOpacity(Gauge->getOpacity() * Opacity);
+    Opacity -= value;
+    Label->setOpacity(Label->getOpacity() * Opacity);
+    Info->setOpacity(Info->getOpacity() * Opacity);
+    Gauge->setOpacity(Gauge->getOpacity() * Opacity);
 }
 
 f32 CMainInfo::getOpacity()
 {
-  return Opacity;
+    return Opacity;
 }
 
 CMainInfo::~CMainInfo()
 {
-  delete Label;
-  delete Info;
-  delete Gauge;
+    delete Label;
+    delete Info;
+    delete Gauge;
 }
 
 }}}

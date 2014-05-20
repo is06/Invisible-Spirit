@@ -19,59 +19,59 @@ CMusic::CMusic(const string& id)
 //! Adds a multi-layer music sequence
 void CMusic::addSequences(const map<u16, SMusicSequenceInfo>& list)
 {
-  map<u16, SMusicSequenceInfo>::const_iterator msIt;
-  for (msIt = list.begin(); msIt != list.end(); msIt++) {
-    Sequences[msIt->second.Number] = new CMusicSequence(msIt->second);
-  }
+    map<u16, SMusicSequenceInfo>::const_iterator msIt;
+    for (msIt = list.begin(); msIt != list.end(); msIt++) {
+        Sequences[msIt->second.Number] = new CMusicSequence(msIt->second);
+    }
 }
 
 //! Plays all the music sequences
 void CMusic::playSequences()
 {
-  map<u16, CMusicSequence*>::const_iterator msIt;
-  for (msIt = Sequences.begin(); msIt != Sequences.end(); msIt++) {
-    if (msIt->second) {
-      msIt->second->play();
+    map<u16, CMusicSequence*>::const_iterator msIt;
+    for (msIt = Sequences.begin(); msIt != Sequences.end(); msIt++) {
+        if (msIt->second) {
+            msIt->second->play();
+        }
     }
-  }
 }
 
 //! Stops all the music sequences
 void CMusic::stopSequences()
 {
-  map<u16, CMusicSequence*>::const_iterator msIt;
-  for (msIt = Sequences.begin(); msIt != Sequences.end(); msIt++) {
-    if (msIt->second) {
-      msIt->second->stop();
+    map<u16, CMusicSequence*>::const_iterator msIt;
+    for (msIt = Sequences.begin(); msIt != Sequences.end(); msIt++) {
+        if (msIt->second) {
+            msIt->second->stop();
+        }
     }
-  }
 }
 
 //! Returns a reference to the sequences map
 map<u16, CMusicSequence*>& CMusic::getSequenceMap()
 {
-  return Sequences;
+    return Sequences;
 }
 
 //! Returns a pointer to a sequence specified by number
 CMusicSequence* CMusic::getSequence(u16 number)
 {
-  if (Sequences[number]) {
-    return Sequences[number];
-  } else {
-    return NULL;
-  }
+    if (Sequences[number]) {
+        return Sequences[number];
+    } else {
+        return NULL;
+    }
 }
 
 //! Destructor
 CMusic::~CMusic()
 {
-  map<u16, CMusicSequence*>::const_iterator msIt;
-  for (msIt = Sequences.begin(); msIt != Sequences.end(); msIt++) {
-    if (msIt->second) {
-      delete msIt->second;
+    map<u16, CMusicSequence*>::const_iterator msIt;
+    for (msIt = Sequences.begin(); msIt != Sequences.end(); msIt++) {
+        if (msIt->second) {
+            delete msIt->second;
+        }
     }
-  }
 }
 
 }}

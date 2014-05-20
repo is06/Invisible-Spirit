@@ -10,47 +10,46 @@ http://www.is06.com. Legal code in license.txt
 
 namespace is06
 {
+    //! Maps ensemble namespace
+    namespace NMap
+    {
+        //! Debug maps (alpha zone...)
+        namespace NDebug
+        {
+            class MAP_ALPHA_ZONE;
+        }
 
-//! Maps ensemble namespace
-namespace NMap
-{
-  //! Debug maps (alpha zone...)
-  namespace NDebug
-  {
-    class MAP_ALPHA_ZONE;
-  }
+        //! Generic maps
+        namespace NGeneric
+        {
+            class MAP_METADIM;
+        }
 
-  //! Generic maps
-  namespace NGeneric
-  {
-    class MAP_METADIM;
-  }
+        namespace NOutside
+        {
 
-  namespace NOutside
-  {
+        }
 
-  }
+        //! Inside maps (caverns, houses...)
+        namespace NInside
+        {
 
-  //! Inside maps (caverns, houses...)
-  namespace NInside
-  {
+        }
 
-  }
-
-  //! Dungeons
-  namespace NDungeon
-  {
-    class MAP_DUNGEON_1;
-    class MAP_DUNGEON_2;
-    class MAP_DUNGEON_3;
-    class MAP_DUNGEON_4;
-    class MAP_DUNGEON_5;
-    class MAP_DUNGEON_6;
-    class MAP_DUNGEON_7;
-    class MAP_DUNGEON_8;
-    class MAP_DUNGEON_9;
-  }
-}
+        //! Dungeons
+        namespace NDungeon
+        {
+            class MAP_DUNGEON_1;
+            class MAP_DUNGEON_2;
+            class MAP_DUNGEON_3;
+            class MAP_DUNGEON_4;
+            class MAP_DUNGEON_5;
+            class MAP_DUNGEON_6;
+            class MAP_DUNGEON_7;
+            class MAP_DUNGEON_8;
+            class MAP_DUNGEON_9;
+        }
+    }
 }
 
 #endif

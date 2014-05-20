@@ -12,36 +12,36 @@ namespace is06 { namespace NHud { namespace NCounter {
 
 CCounter::CCounter(s32 init, s32 min, s32 max)
 {
-  MinValue = min;
-  MaxValue = max;
-  CurrentValue = init;
+    MinValue = min;
+    MaxValue = max;
+    CurrentValue = init;
 }
 
 void CCounter::addValue(s32 val)
 {
-  CurrentValue += val;
-  if (CurrentValue > MaxValue) {
-    CurrentValue = MaxValue;
-  }
+    CurrentValue += val;
+    if (CurrentValue > MaxValue) {
+        CurrentValue = MaxValue;
+    }
 }
 
 void CCounter::subValue(s32 val)
 {
-  CurrentValue -= val;
-  if (CurrentValue < MinValue) {
-    CurrentValue = MinValue;
-  }
+    CurrentValue -= val;
+    if (CurrentValue < MinValue) {
+        CurrentValue = MinValue;
+    }
 }
 
 void CCounter::setValue(s32 val)
 {
-  CurrentValue = val;
-  if (CurrentValue > MaxValue) {
-    CurrentValue = MaxValue;
-  }
-  if (CurrentValue < MinValue) {
-    CurrentValue = MinValue;
-  }
+    CurrentValue = val;
+    if (CurrentValue > MaxValue) {
+        CurrentValue = MaxValue;
+    }
+    if (CurrentValue < MinValue) {
+        CurrentValue = MinValue;
+    }
 }
 
 CCounter::~CCounter()

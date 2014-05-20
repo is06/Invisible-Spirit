@@ -17,7 +17,7 @@ CSettings::CSettings() : CSubScreen()
 
 void CSettings::render()
 {
-  CSubScreen::render();
+    CSubScreen::render();
 }
 
 CSettings::~CSettings()

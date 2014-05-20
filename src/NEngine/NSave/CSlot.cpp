@@ -14,8 +14,8 @@ namespace is06 { namespace NEngine { namespace NSave {
 //! Constructor
 CSaveSlot::CSaveSlot(CSave* save)
 {
-  PlaceNameIdentifier = save->getString(12);
-  TotalGameTime = save->getInteger(21);
+    PlaceNameIdentifier = save->getString(12);
+    TotalGameTime = save->getInteger(21);
 }
 
 //! Destructor

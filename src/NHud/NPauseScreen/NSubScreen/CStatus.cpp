@@ -17,7 +17,7 @@ CStatus::CStatus() : CSubScreen()
 
 void CStatus::render()
 {
-  CSubScreen::render();
+    CSubScreen::render();
 }
 
 CStatus::~CStatus()

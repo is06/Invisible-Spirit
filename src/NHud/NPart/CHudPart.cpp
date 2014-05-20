@@ -13,51 +13,51 @@ namespace is06 { namespace NHud { namespace NPart {
 
 CHudPart::CHudPart() : NCore::CHudEntity()
 {
-  Buttons = new NPart::CCommands();
+    Buttons = new NPart::CCommands();
 }
 
 void CHudPart::render()
 {
-  NCore::CHudEntity::render();
-  Buttons->render();
+    NCore::CHudEntity::render();
+    Buttons->render();
 }
 
 void CHudPart::hide()
 {
-  Buttons->hide();
+    Buttons->hide();
 }
 
 void CHudPart::show()
 {
-  Buttons->show();
+    Buttons->show();
 }
 
 void CHudPart::setOpacity(f32 value)
 {
-  Opacity = value;
-  Buttons->setOpacity(Buttons->getOpacity() * Opacity);
+    Opacity = value;
+    Buttons->setOpacity(Buttons->getOpacity() * Opacity);
 }
 
 void CHudPart::addOpacity(f32 value)
 {
-  Opacity += value;
-  Buttons->setOpacity(Buttons->getOpacity() * Opacity);
+    Opacity += value;
+    Buttons->setOpacity(Buttons->getOpacity() * Opacity);
 }
 
 void CHudPart::subOpacity(f32 value)
 {
-  Opacity -= value;
-  Buttons->setOpacity(Buttons->getOpacity() * Opacity);
+    Opacity -= value;
+    Buttons->setOpacity(Buttons->getOpacity() * Opacity);
 }
 
 f32 CHudPart::getOpacity()
 {
-  return Opacity;
+    return Opacity;
 }
 
 CHudPart::~CHudPart()
 {
-  delete Buttons;
+    delete Buttons;
 }
 
 }}}

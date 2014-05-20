@@ -14,14 +14,14 @@ CNPCInterface::CNPCInterface() {}
 //! \todo comment this function
 void CNPCInterface::addNPC(N3D::NCharacter::CNPC* npc)
 {
-  NPCList.push_back(npc);
+    NPCList.push_back(npc);
 }
 
 //! \todo write this function
 N3D::NCharacter::CNPC* CNPCInterface::getNearestNPC(N3D::NCharacter::CCharacter* character)
 {
-  // Parcours du vector et calcul de la distance avec le personnage passé en paramètre
-  return NULL;
+    // Parcours du vector et calcul de la distance avec le personnage passé en paramètre
+    return NULL;
 }
 
 CNPCInterface::~CNPCInterface() {}

@@ -17,7 +17,7 @@ CTextButton::CTextButton(f32 x, f32 y) : CButton(x, y)
 
 void CTextButton::render()
 {
-  CButton::render();
+    CButton::render();
 }
 
 CTextButton::~CTextButton()

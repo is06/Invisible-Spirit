@@ -17,7 +17,7 @@ CIconButton::CIconButton(f32 x, f32 y) : CButton(x, y)
 
 void CIconButton::render()
 {
-  CButton::render();
+    CButton::render();
 }
 
 CIconButton::~CIconButton()

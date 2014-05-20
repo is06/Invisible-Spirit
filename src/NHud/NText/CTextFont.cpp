@@ -20,9 +20,9 @@ namespace is06 { namespace NHud { namespace NText {
  */
 CTextFont::CTextFont(EFontStyle style)
 {
-  CurrentStyle = style;
-  getFontDataFromStyle(style);
-  getTextureFromStyle(style);
+    CurrentStyle = style;
+    getFontDataFromStyle(style);
+    getTextureFromStyle(style);
 }
 
 //! Returns the font Irrlicht material structure
@@ -31,7 +31,7 @@ CTextFont::CTextFont(EFontStyle style)
  */
 video::SMaterial& CTextFont::getMaterial()
 {
-  return FontMaterial;
+    return FontMaterial;
 }
 
 //! Returns the offset of the specified character
@@ -41,13 +41,13 @@ video::SMaterial& CTextFont::getMaterial()
  */
 u8& CTextFont::getCharOffset(u8 code)
 {
-  return Offset[code];
+    return Offset[code];
 }
 
 //! Reset current character table to standard (one-byte character)
 void CTextFont::resetToStandard()
 {
-  getTextureFromStyle(CurrentStyle);
+    getTextureFromStyle(CurrentStyle);
 }
 
 //! Loads another texture in order to get multi-byte character (UTF-8)
@@ -56,7 +56,7 @@ void CTextFont::resetToStandard()
  */
 void CTextFont::changeExtTexture(u8 number)
 {
-  getTextureFromStyle(CurrentStyle, number);
+    getTextureFromStyle(CurrentStyle, number);
 }
 
 //! Reads font characters size and offset
@@ -65,38 +65,38 @@ void CTextFont::changeExtTexture(u8 number)
  */
 void CTextFont::readFontData(const string& dataFilePath)
 {
-  fstream fileStream(dataFilePath.c_str(), ios::in);
-  string currentCode;
-  string currentWidth;
-  char currentChar;
-  bool inReadingCode = true;
-  bool inReadingWidth = false;
+    fstream fileStream(dataFilePath.c_str(), ios::in);
+    string currentCode;
+    string currentWidth;
+    char currentChar;
+    bool inReadingCode = true;
+    bool inReadingWidth = false;
 
-  if (fileStream) {
-    while (fileStream.get(currentChar)) {
-      // Get code
-      if (inReadingCode && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
-        currentCode += currentChar;
-      } else if (inReadingCode && currentChar == ' ') {
-        inReadingCode = false;
-        inReadingWidth = true;
-      }
+    if (fileStream) {
+        while (fileStream.get(currentChar)) {
+            // Get code
+            if (inReadingCode && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
+                currentCode += currentChar;
+            } else if (inReadingCode && currentChar == ' ') {
+                inReadingCode = false;
+                inReadingWidth = true;
+            }
 
-      // Get width
-      if (inReadingWidth && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
-        currentWidth += currentChar;
-      }
+            // Get width
+            if (inReadingWidth && currentChar != ' ' && currentChar != '\n' && currentChar != '\r') {
+                currentWidth += currentChar;
+            }
 
-      // New line
-      if (currentChar == '\n') {
-        Offset[atoi(currentCode.c_str())] = atoi(currentWidth.c_str());
-        currentCode = "";
-        currentWidth = "";
-        inReadingCode = true;
-        inReadingWidth = false;
-      }
+            // New line
+            if (currentChar == '\n') {
+                Offset[atoi(currentCode.c_str())] = atoi(currentWidth.c_str());
+                currentCode = "";
+                currentWidth = "";
+                inReadingCode = true;
+                inReadingWidth = false;
+            }
+        }
     }
-  }
 }
 
 //! Returns current font style
@@ -105,20 +105,20 @@ void CTextFont::readFontData(const string& dataFilePath)
  */
 EFontStyle CTextFont::getCurrentStyle()
 {
-  return CurrentStyle;
+    return CurrentStyle;
 }
 
 void CTextFont::getFontDataFromStyle(EFontStyle style)
 {
-  string filePath = "resource/hud/font/";
+    string filePath = "resource/hud/font/";
 
-  switch (style) {
-    case EFS_STANDARD_48: filePath += "standard_48"; break;
-    default: filePath += "standard_48"; break;
-  }
+    switch (style) {
+        case EFS_STANDARD_48: filePath += "standard_48"; break;
+        default: filePath += "standard_48"; break;
+    }
 
-  string dataPath = filePath + ".isf";
-  readFontData(dataPath);
+    string dataPath = filePath + ".isf";
+    readFontData(dataPath);
 }
 
 //! Changes current character texture from a style and eventually an extended texture for multi-byte characters (UTF-8)
@@ -128,33 +128,33 @@ void CTextFont::getFontDataFromStyle(EFontStyle style)
  */
 void CTextFont::getTextureFromStyle(EFontStyle style, u8 extTexture)
 {
-  string filePath = "resource/hud/font/";
+    string filePath = "resource/hud/font/";
 
-  switch (style) {
-    case EFS_STANDARD_48: filePath += "standard_48"; break;
-    default: filePath += "standard_48"; break;
-  }
+    switch (style) {
+        case EFS_STANDARD_48: filePath += "standard_48"; break;
+        default: filePath += "standard_48"; break;
+    }
 
-  string texturePath = filePath;
-  if (extTexture) {
-    s32 textureNumber = extTexture;
-    texturePath += "_";
-    stringstream oss;
-    oss << textureNumber;
-    texturePath += oss.str();
-  }
+    string texturePath = filePath;
+    if (extTexture) {
+        s32 textureNumber = extTexture;
+        texturePath += "_";
+        stringstream oss;
+        oss << textureNumber;
+        texturePath += oss.str();
+    }
 
-  texturePath += ".png";
+    texturePath += ".png";
 
-  FontTexture = CGame::getResourceManager()->loadTexture(texturePath);
-  FontMaterial.setTexture(0, FontTexture);
-  FontMaterial.Lighting = false;
+    FontTexture = CGame::getResourceManager()->loadTexture(texturePath);
+    FontMaterial.setTexture(0, FontTexture);
+    FontMaterial.Lighting = false;
 }
 
 //! Destructor
 CTextFont::~CTextFont()
 {
-  FontTexture = NULL;
+    FontTexture = NULL;
 }
 
 }}}

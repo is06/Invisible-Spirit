@@ -17,7 +17,7 @@ CMap::CMap() : CSubScreen()
 
 void CMap::render()
 {
-  CSubScreen::render();
+    CSubScreen::render();
 }
 
 CMap::~CMap()

@@ -14,21 +14,21 @@ namespace is06 { namespace NHud { namespace NPlayerState {
 
 CCapacity::CCapacity() : NCore::CHudEntity()
 {
-  Icon = new NPrimitive::CPicture();
-  Value = new NText::CText();
+    Icon = new NPrimitive::CPicture();
+    Value = new NText::CText();
 }
 
 void CCapacity::render()
 {
-  NCore::CHudEntity::render();
-  Icon->render();
-  Value->render();
+    NCore::CHudEntity::render();
+    Icon->render();
+    Value->render();
 }
 
 CCapacity::~CCapacity()
 {
-  delete Icon;
-  delete Value;
+    delete Icon;
+    delete Value;
 }
 
 }}}

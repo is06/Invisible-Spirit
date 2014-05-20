@@ -25,122 +25,121 @@ namespace is06 { namespace NEngine { namespace NGameplay {
  */
 CDialogInterface::CDialogInterface(const string& filePath, NResource::CTranslation* translation, NControl::CPlayerControl* control)
 {
-  Control = control;
+    Control = control;
 
-  MessageDisplaying = false;
-  MessageFinished = false;
-  DialogFinished = false;
+    MessageDisplaying = false;
+    MessageFinished = false;
+    DialogFinished = false;
 
-  if (!translation) {
-    throw NException::CTextException("[E60] No local translation object for dialog interface");
-  }
+    if (!translation) {
+        throw NException::CTextException("[E60] No local translation object for dialog interface");
+    }
 
-  CurrentTranslation = translation;
-  CurrentMessageNumber = 0;
-  CurrentMessageText = NULL;
+    CurrentTranslation = translation;
+    CurrentMessageNumber = 0;
+    CurrentMessageText = NULL;
 
-  BackWindow = new NHud::NPrimitive::CPicture(0, NCore::CGame::ScreenPos.Hud.Bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
+    BackWindow = new NHud::NPrimitive::CPicture(0, NCore::CGame::ScreenPos.Hud.Bottom + 68, 1280, 136, "resource/hud/window/dialog_back.png");
 
-  string fullPath = "resource/text/";
+    string fullPath = "resource/text/";
 
-  switch (NCore::CGame::getCurrentLocale()) {
-    case NResource::ELI_FRE_FR:
-    case NResource::ELI_FRE_BE:
-    case NResource::ELI_FRE_CA:
-    case NResource::ELI_FRE_CH:
-      fullPath += "fre-FR";
-      break;
-    default:
-      fullPath += "eng-GB";
-      break;
-  }
+    switch (NCore::CGame::getCurrentLocale()) {
+        case NResource::ELI_FRE_FR:
+        case NResource::ELI_FRE_BE:
+        case NResource::ELI_FRE_CA:
+        case NResource::ELI_FRE_CH:
+            fullPath += "fre-FR";
+            break;
+        default:
+            fullPath += "eng-GB";
+            break;
+    }
 
-  fullPath += "/" + filePath;
-  loadDialogData(fullPath);
+    fullPath += "/" + filePath;
+    loadDialogData(fullPath);
 }
 
 //! Rendering function, must be called on every cycle
 void CDialogInterface::render()
 {
-  // Background of dialog
-  //BackWindow->render();
+    // Background of dialog
+    //BackWindow->render();
 
-  // Text
-  if (CurrentMessageText) {
-    CurrentMessageText->render();
+    // Text
+    if (CurrentMessageText) {
+        CurrentMessageText->render();
 
-    // Dialog finished
-    if (!DialogFinished && MessageFinished && CurrentMessageNumber >= DialogList[CurrentDialogIdentifier].getMessageCount() - 1) {
-      DialogFinished = true;
+        // Dialog finished
+        if (!DialogFinished && MessageFinished && CurrentMessageNumber >= DialogList[CurrentDialogIdentifier].getMessageCount() - 1) {
+            DialogFinished = true;
+        }
+
+        if (MessageDisplaying && CurrentMessageText->finished()) {
+            MessageDisplaying = false;
+            MessageFinished = true;
+        }
+
+        // Display all message quickly
+        if (MessageDisplaying && Control->commandEntered(NControl::ECI_DIALOG_ACTION, NEvent::EET_ONCE)) {
+            CurrentMessageText->skip();
+            MessageDisplaying = false;
+            MessageFinished = true;
+        }
+
+        // Go to next message (only if entirely displayed)
+        if (MessageFinished && Control->commandEntered(NControl::ECI_DIALOG_ACTION, NEvent::EET_ONCE)) {
+            MessageFinished = false;
+            MessageDisplaying = true;
+            if (!DialogFinished) {
+                nextMessage();
+            }
+        }
     }
-
-    if (MessageDisplaying && CurrentMessageText->finished()) {
-      MessageDisplaying = false;
-      MessageFinished = true;
-    }
-
-    // Display all message quickly
-    if (MessageDisplaying && Control->commandEntered(NControl::ECI_DIALOG_ACTION, NEvent::EET_ONCE)) {
-      CurrentMessageText->skip();
-      MessageDisplaying = false;
-      MessageFinished = true;
-    }
-
-    // Go to next message (only if entirely displayed)
-    if (MessageFinished && Control->commandEntered(NControl::ECI_DIALOG_ACTION, NEvent::EET_ONCE)) {
-      MessageFinished = false;
-      MessageDisplaying = true;
-      if (!DialogFinished) {
-        nextMessage();
-      }
-    }
-  }
 }
 
 //! Loads dialog data from an .isd file
 void CDialogInterface::loadDialogData(const string& fullPath)
 {
-  fstream fileStream(fullPath.c_str(), ios::in);
+    fstream fileStream(fullPath.c_str(), ios::in);
 
-  if (fileStream) {
-    char current = 0;
-    string dialogIdentifier = "";
-    string textIdentifier = "";
-    bool inIdentifierDeclaration = true;
-    bool inTextDeclaration = false;
+    if (fileStream) {
+        char current = 0;
+        string dialogIdentifier = "";
+        string textIdentifier = "";
+        bool inIdentifierDeclaration = true;
+        bool inTextDeclaration = false;
 
-    while (fileStream.get(current)) {
-      if (current == '=') {
-        // Add dialog to list
-        //cout << "create new dialog (" << dialogIdentifier << ")" << endl;
-        DialogList[dialogIdentifier] = CDialog(dialogIdentifier);
-        inTextDeclaration = true;
-        inIdentifierDeclaration = false;
-        textIdentifier = "";
-        continue;
-      }
-      if (current == ';') {
-        // Add text to the dialog
-        //cout << "adding text to the dialog (" << textIdentifier << ") => (" << currentTranslation->getTranslation(textIdentifier) << ")" << endl;
-        DialogList[dialogIdentifier].addMessage(CurrentTranslation->getTranslation(textIdentifier));
-        textIdentifier = "";
-        continue;
-      }
-      if (current == '\n' || current == '\r') {
-        inIdentifierDeclaration = true;
-        inTextDeclaration = false;
-        dialogIdentifier = "";
-        continue;
-      }
-
-      if (inIdentifierDeclaration) {
-        dialogIdentifier += current;
-      }
-      if (inTextDeclaration) {
-        textIdentifier += current;
-      }
+        while (fileStream.get(current)) {
+            if (current == '=') {
+                // Add dialog to list
+                //cout << "create new dialog (" << dialogIdentifier << ")" << endl;
+                DialogList[dialogIdentifier] = CDialog(dialogIdentifier);
+                inTextDeclaration = true;
+                inIdentifierDeclaration = false;
+                textIdentifier = "";
+                continue;
+            }
+            if (current == ';') {
+                // Add text to the dialog
+                //cout << "adding text to the dialog (" << textIdentifier << ") => (" << currentTranslation->getTranslation(textIdentifier) << ")" << endl;
+                DialogList[dialogIdentifier].addMessage(CurrentTranslation->getTranslation(textIdentifier));
+                textIdentifier = "";
+                continue;
+            }
+            if (current == '\n' || current == '\r') {
+                inIdentifierDeclaration = true;
+                inTextDeclaration = false;
+                dialogIdentifier = "";
+                continue;
+            }
+            if (inIdentifierDeclaration) {
+                dialogIdentifier += current;
+            }
+            if (inTextDeclaration) {
+                textIdentifier += current;
+            }
+        }
     }
-  }
 }
 
 //! Starts a specific dialog in a scene
@@ -152,49 +151,49 @@ void CDialogInterface::loadDialogData(const string& fullPath)
  */
 void CDialogInterface::start(const string& dialogIdentifier)
 {
-  CurrentDialogIdentifier = dialogIdentifier;
-  createMessage(dialogIdentifier, 0);
-  MessageDisplaying = true;
+    CurrentDialogIdentifier = dialogIdentifier;
+    createMessage(dialogIdentifier, 0);
+    MessageDisplaying = true;
 }
 
 //! Creates and displays a message from the dialog onto the screen
 void CDialogInterface::createMessage(const string& dialogIdentifier, u16 messageNumber)
 {
-  CurrentMessageText = new NHud::NText::CText(
-    DialogList[dialogIdentifier].getMessage(messageNumber),
-    -350,
-    NCore::CGame::ScreenPos.Hud.Bottom + 100,
-    NHud::NText::EFS_STANDARD_48,
-    25
-  );
+    CurrentMessageText = new NHud::NText::CText(
+        DialogList[dialogIdentifier].getMessage(messageNumber),
+        -350,
+        NCore::CGame::ScreenPos.Hud.Bottom + 100,
+        NHud::NText::EFS_STANDARD_48,
+        25
+    );
 }
 
 //! Go to the next message in this dialog
 void CDialogInterface::nextMessage()
 {
-  delete CurrentMessageText;
-  CurrentMessageNumber++;
-  createMessage(CurrentDialogIdentifier, CurrentMessageNumber);
+    delete CurrentMessageText;
+    CurrentMessageNumber++;
+    createMessage(CurrentDialogIdentifier, CurrentMessageNumber);
 }
 
 //! Go to a specific message in this dialog
 void CDialogInterface::goToMessage(u32 number)
 {
-  delete CurrentMessageText;
-  CurrentMessageNumber = number;
-  createMessage(CurrentDialogIdentifier, CurrentMessageNumber);
+    delete CurrentMessageText;
+    CurrentMessageNumber = number;
+    createMessage(CurrentDialogIdentifier, CurrentMessageNumber);
 }
 
 //! Returns true if the current dialog is finished
 bool CDialogInterface::finished()
 {
-  return false;
+    return false;
 }
 
 //! Destructor
 CDialogInterface::~CDialogInterface()
 {
-  delete BackWindow;
+    delete BackWindow;
 }
 
 }}}
